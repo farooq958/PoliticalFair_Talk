@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "424538767306",
+    "firebase_url": "https://aft-flutter-default-rtdb.firebaseio.com",
+    "project_id": "aft-flutter",
+    "storage_bucket": "aft-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424538767306:android:6f678b918dbdefe19e9933",
+        "android_client_info": {
+          "package_name": "com.example.aft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424538767306-ph0efa9v4jinam45lc22amdrb4fgl59d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aft",
+            "certificate_hash": "a4de1aff0cf6ec2c2fa2da29d1891b5c0c1dd46a"
+          }
+        },
+        {
+          "client_id": "424538767306-nv4oiaid7bfm1gc21bhls9utuosf0jvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuKDz78TOAUIuwm5V9jfZ7qhSz3gyQCS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424538767306-nv4oiaid7bfm1gc21bhls9utuosf0jvv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "424538767306-esubop5366gnjriprpp2jl65i70vt6br.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.fairtalk.fairtalk"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424538767306:android:2ec335991972015b9e9933",
+        "android_client_info": {
+          "package_name": "net.fairtalk.fairtalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424538767306-nv4oiaid7bfm1gc21bhls9utuosf0jvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuKDz78TOAUIuwm5V9jfZ7qhSz3gyQCS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424538767306-nv4oiaid7bfm1gc21bhls9utuosf0jvv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "424538767306-esubop5366gnjriprpp2jl65i70vt6br.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.fairtalk.fairtalk"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
