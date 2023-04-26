@@ -205,13 +205,13 @@ class _StatisticsState extends State<Statistics> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   RotatedBox(
                                     quarterTurns: 1,
                                     child: Icon(Icons.poll_outlined, size: 17),
                                   ),
                                   SizedBox(width: 8),
-                                  const Text('Polls:',
+                                  Text('Polls:',
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500)),
