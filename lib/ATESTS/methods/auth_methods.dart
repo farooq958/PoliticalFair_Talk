@@ -1,17 +1,16 @@
 import 'dart:typed_data';
+
 import 'package:aft/ATESTS/services/firebase_notification.dart';
 import 'package:aft/ATESTS/utils/global_variables.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:ntp/ntp.dart';
-import '../../main.dart';
-import '../models/user.dart' as model;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/user.dart' as model;
 import '../provider/user_provider.dart';
 import '../utils/utils.dart';
 import 'storage_methods.dart';
@@ -596,10 +595,11 @@ class AuthMethods {
     if (userProvider.getUser != null) {
       FirebaseNotification.unSubscribeTopic(
           userProvider.getUser!.fcmTopic ?? '');
-      FirebaseFirestore.instance
-          .collection(FirestoreValues.userCollection)
-          .doc(userProvider.getUser!.UID)
-          .update({'fcmTopic': ''});
+      debugPrint("unsubscribe ${userProvider.getUser!.fcmTopic}");
+      // FirebaseFirestore.instance
+      //     .collection(FirestoreValues.userCollection)
+      //     .doc(userProvider.getUser!.UID)
+      //     .update({'fcmTopic': ''});
     }
     await _auth.signOut();
   }

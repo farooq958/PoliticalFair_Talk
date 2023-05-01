@@ -1,8 +1,9 @@
 import 'package:aft/ATESTS/provider/user_provider.dart';
-
+import 'package:aft/ATESTS/services/firebase_notification.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../utils/utils.dart';
@@ -69,6 +70,9 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (res == "success") {
       User? user = await AuthMethods().getUserDetails();
       if (user != null) {
+        if (user.fcmToken != null && user.fcmToken!.isNotEmpty) {
+          FirebaseNotification.subscribeTopic(user.fcmTopic!);
+        }
         if (user.userReportCounter > 2) {
           AuthMethods().signOut();
           // DialogUtils.showMessageDialog();

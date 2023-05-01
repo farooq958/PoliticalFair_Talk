@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:aft/ATESTS/provider/filter_provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -297,7 +298,7 @@ class FirebaseNotification {
 
   static Future<String?> getToken() async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
-    // debugPrint('fcmToken $fcmToken');
+    debugPrint('fcmToken $fcmToken');
     return fcmToken;
   }
 
@@ -420,7 +421,7 @@ class FirebaseNotification {
 
   static subscribeTopic(String topic) async {
     try {
-      // debugPrint('subscribeTopic triggered $topic');
+      debugPrint('subscribeTopic triggered $topic');
       await FirebaseMessaging.instance.subscribeToTopic(topic);
     } catch (e) {
       // debugPrint('subscribeTopic $e $st');
