@@ -1,30 +1,31 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:core';
 import 'dart:developer';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'dart:core';
+
 import '../camera/camera_screen.dart';
 import '../info screens/add_post_rules.dart';
 import '../methods/auth_methods.dart';
-import '../models/user.dart';
 import '../methods/firestore_methods.dart';
 import '../methods/storage_methods.dart';
+import '../models/user.dart';
 import '../provider/create_provider.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'full_image_add.dart';
 import 'my_drawer_list.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({
