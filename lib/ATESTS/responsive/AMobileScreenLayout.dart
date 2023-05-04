@@ -1,5 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
+// import 'dart:async';
+// import 'dart:convert';
+// import 'package:http/http.dart';
+// import 'package:intl/intl.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:aft/ATESTS/provider/block_list_provider.dart';
@@ -8,11 +11,9 @@ import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/screens/most_liked_screen.dart';
 import 'package:aft/ATESTS/services/firebase_notification.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +21,6 @@ import '../provider/country_change_provider.dart';
 import '../provider/user_report_provider.dart';
 import '../screens/add_post.dart';
 import '../screens/home_screen.dart';
-import 'package:http/http.dart';
 
 import '../screens/search.dart';
 import '../screens/submissions.dart';
@@ -324,7 +324,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const SizedBox(
-                                        width: 35,
+                                        width: 36,
                                         height: 35,
                                         child: Material(
                                           shape: CircleBorder(),
@@ -526,7 +526,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                         ],
                                       ),
                                       const SizedBox(
-                                        width: 35,
+                                        width: 36,
                                         height: 35,
                                         child: Icon(Icons.filter_list,
                                             color: Color.fromARGB(

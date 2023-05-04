@@ -2021,7 +2021,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 1 || _post.tagsLowerCase?.length == 2 || _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(
@@ -2045,7 +2045,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 2 || _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(
@@ -2069,7 +2069,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(

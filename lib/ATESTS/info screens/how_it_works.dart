@@ -149,244 +149,7 @@ class _HowItWorksState extends State<HowItWorks> {
                             ],
                           ),
                         ),
-                        // SizedBox(
-                        //   width: MediaQuery.of(context).size.width,
-                        //   child: Stack(
-                        //     children: [
-                        //       player,
-                        //       Positioned.fill(
-                        //         child: YoutubeValueBuilder(
-                        //           controller: controller,
-                        //           builder: (context, value) {
-                        //             return AnimatedCrossFade(
-                        //               crossFadeState: value.isReady
-                        //                   ? CrossFadeState.showSecond
-                        //                   : CrossFadeState.showFirst,
-                        //               duration:
-                        //                   const Duration(milliseconds: 300),
-                        //               secondChild: const SizedBox.shrink(),
-                        //               firstChild: Material(
-                        //                 child: DecoratedBox(
-                        //                   // ignore: sort_child_properties_last
-                        //                   child: const Center(
-                        //                     child: CircularProgressIndicator(),
-                        //                   ),
-                        //                   decoration: BoxDecoration(
-                        //                     image: DecorationImage(
-                        //                       image: NetworkImage(
-                        //                         YoutubePlayerController
-                        //                             .getThumbnail(
-                        //                           videoId: controller!
-                        //                               .initialVideoId,
-                        //                           quality:
-                        //                               ThumbnailQuality.medium,
-                        //                         ),
-                        //                       ),
-                        //                     ),
-                        //                   ),
-                        //                 ),
-                        //               ),
-                        //             );
-                        //           },
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 15),
-                        // PhysicalModel(
-                        //   color: Colors.white,
-                        //   elevation: 3,
-                        //   borderRadius: BorderRadius.circular(5),
-                        //   child: Container(
-                        //     width: MediaQuery.of(context).size.width,
-                        //     padding: const EdgeInsets.symmetric(
-                        //         horizontal: 10, vertical: 5),
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(5),
-                        //       color: Colors.white,
-                        //       // border: Border.all(
-                        //       //     width: 2,
-                        //       //     color: const Color.fromARGB(255, 36, 64, 101)),
-                        //     ),
-                        //     child: Padding(
-                        //       padding: EdgeInsets.only(bottom: isBrief ? 8 : 0),
-                        //       child: Column(
-                        //         children: [
-                        //           InkWell(
-                        //             onTap: () {
-                        //               setState(() {
-                        //                 isBrief = !isBrief;
-                        //               });
-                        //             },
-                        //             child: Padding(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   vertical: 6, horizontal: 6),
-                        //               child: Row(
-                        //                 mainAxisAlignment:
-                        //                     MainAxisAlignment.spaceBetween,
-                        //                 children: [
-                        //                   const Text(
-                        //                     "What is Fairtalk?",
-                        //                     textAlign: TextAlign.center,
-                        //                     style: TextStyle(
-                        //                       color: Color.fromARGB(
-                        //                           255, 36, 64, 101),
-                        //                       letterSpacing: 0.5,
-                        //                       fontWeight: FontWeight.w500,
-                        //                       fontSize: 16,
-                        //                     ),
-                        //                   ),
-                        //                   Icon(
-                        //                       isBrief
-                        //                           ? Icons.keyboard_arrow_up
-                        //                           : Icons.keyboard_arrow_down,
-                        //                       color: const Color.fromARGB(
-                        //                           255, 36, 64, 101),
-                        //                       size: 28)
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //           ),
-                        //           isBrief
-                        //               ? Padding(
-                        //                   padding: const EdgeInsets.symmetric(
-                        //                       horizontal: 6),
-                        //                   child: Column(
-                        //                     crossAxisAlignment:
-                        //                         CrossAxisAlignment.start,
-                        //                     children: [
-                        //                       const Padding(
-                        //                         padding: EdgeInsets.only(
-                        //                           top: 2.0,
-                        //                         ),
-                        //                         child: Text(
-                        //                           "Summary",
-                        //                           textAlign: TextAlign.left,
-                        //                           style: TextStyle(
-                        //                             letterSpacing: 0.3,
-                        //                             fontWeight: FontWeight.w500,
-                        //                           ),
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 3),
-                        //                       const Text(
-                        //                         "As soon as you send a post on Fairtalk, it'll immediately get listed on the Home screen where other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the post that received the highest score will be added and saved forever in Fairtalk's Archives. All other posts will be removed from the Home screen in order to make space for new posts and new voting cycles. There are two different types of posts: messages & polls.",
-                        //                         // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 15),
-                        //                       const Text(
-                        //                         "Message score calculation",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                           fontWeight: FontWeight.w500,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 3),
-                        //                       RichText(
-                        //                         text: const TextSpan(
-                        //                           children: [
-                        //                             TextSpan(
-                        //                               text: 'Message score = ',
-                        //                               style: TextStyle(
-                        //                                   color: Colors.black,
-                        //                                   letterSpacing: 0.3),
-                        //                             ),
-                        //                             WidgetSpan(
-                        //                               child: Icon(
-                        //                                   Icons.add_circle,
-                        //                                   color: Colors.green,
-                        //                                   size: 15),
-                        //                             ),
-                        //                             TextSpan(
-                        //                                 text: ' - ',
-                        //                                 style: TextStyle(
-                        //                                     color: Colors.black,
-                        //                                     fontWeight:
-                        //                                         FontWeight.w500,
-                        //                                     letterSpacing:
-                        //                                         0.3)),
-                        //                             WidgetSpan(
-                        //                               child: Icon(
-                        //                                   Icons
-                        //                                       .do_not_disturb_on,
-                        //                                   color: Colors.red,
-                        //                                   size: 15),
-                        //                             ),
-                        //                             // TextSpan(
-                        //                             //     text: ' votes.',
-                        //                             //     style: TextStyle(
-                        //                             //         color: Colors.black,
-                        //                             //         letterSpacing: 0.3)),
-                        //                           ],
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 15),
-                        //                       const Text(
-                        //                         "Poll score calculation",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                           fontWeight: FontWeight.w500,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 3),
-                        //                       const Text(
-                        //                         "Poll score = Total # of votes received.",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 15),
-                        //                       const Text(
-                        //                         "How is Fairtalk considered “Fair”?",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                           fontWeight: FontWeight.w500,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 3),
-                        //                       const Text(
-                        //                         "Each individual user can only vote once for every post and trying to manipulate the voting metrics by creating bots and/or multiple accounts is impossible thanks to our account verification system.",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 15),
-                        //                       const Text(
-                        //                         "Additional details & information",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                           fontWeight: FontWeight.w500,
-                        //                         ),
-                        //                       ),
-                        //                       const SizedBox(height: 3),
-                        //                       const Text(
-                        //                         "If you still don’t fully understand how Fairtalk works, we suggest that you read the fully detailed explanation below.",
-                        //                         textAlign: TextAlign.left,
-                        //                         style: TextStyle(
-                        //                           letterSpacing: 0.3,
-                        //                         ),
-                        //                       ),
-                        //                     ],
-                        //                   ),
-                        //                 )
-                        //               : Row(),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 15),
+
                         PhysicalModel(
                           color: Colors.white,
                           elevation: 3,
@@ -420,7 +183,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
-                                            "What is Fairtalk?",
+                                            "Brief Explanation",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Color.fromARGB(
@@ -448,92 +211,44 @@ class _HowItWorksState extends State<HowItWorks> {
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: const [
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 2.0,
-                                                  ),
-                                                  child: Text(
-                                                      'Fairtalk is a new social media platform that offers an alternative way of communicating online.')),
-                                            ],
-                                          ),
-                                        )
-                                      : SizedBox()
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        PhysicalModel(
-                          color: Colors.white,
-                          elevation: 3,
-                          borderRadius: BorderRadius.circular(5),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //     width: 2,
-                              //     color: const Color.fromARGB(255, 36, 64, 101)),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: isHowDoesItWork ? 8 : 0),
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        isHowDoesItWork = !isHowDoesItWork;
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 6, horizontal: 6),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          const Text(
-                                            "How does it work?",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 36, 64, 101),
-                                              letterSpacing: 0.5,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Icon(
-                                              isHowDoesItWork
-                                                  ? Icons.keyboard_arrow_up
-                                                  : Icons.keyboard_arrow_down,
-                                              color: const Color.fromARGB(
-                                                  255, 36, 64, 101),
-                                              size: 28)
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  isHowDoesItWork
-                                      ? Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 6),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
                                             children: [
-                                              const Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 2.0,
-                                                  ),
-                                                  child: Text(
-                                                      "Whenever you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives. There are two types of posts: messages & polls. Calculating the score differs for each type of post.")),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                "What is Fairtalk?",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  'Fairtalk is a social media platform that lets the majority vote & decide everything.'),
+                                              const SizedBox(height: 15),
+                                              const Text("This includes:"),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which new features should be implemented or removed from our platform. "),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which posts should be Archived & seen by everyone else."),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which keywords or subjects should be currently trending."),
+                                              const SizedBox(height: 3),
+                                              const Text("• And more."),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                "How does it work?",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "Whenever you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. There are two types of posts: messages & polls. Calculating the score differs for each type of post."),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "Message score calculation",
@@ -593,12 +308,13 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                "Poll score = Total # of votes received.",
+                                                "Poll score = Total votes received.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0.3,
                                                 ),
                                               ),
+                                              const SizedBox(height: 3),
                                             ],
                                           ),
                                         )
@@ -620,16 +336,19 @@ class _HowItWorksState extends State<HowItWorks> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Colors.white,
+                              // border: Border.all(
+                              //     width: 2,
+                              //     color: const Color.fromARGB(255, 36, 64, 101)),
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(bottom: isCompare ? 8 : 0),
+                              padding: EdgeInsets.only(
+                                  bottom: isHowDoesItWork ? 8 : 0),
                               child: Column(
                                 children: [
                                   InkWell(
                                     onTap: () {
                                       setState(() {
-                                        isCompare = !isCompare;
+                                        isHowDoesItWork = !isHowDoesItWork;
                                       });
                                     },
                                     child: Padding(
@@ -639,21 +358,19 @@ class _HowItWorksState extends State<HowItWorks> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Expanded(
-                                            child: Text(
-                                              "How does Fairtalk differ from other platforms?",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 36, 64, 101),
-                                                letterSpacing: 0.5,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 16,
-                                              ),
+                                          const Text(
+                                            "Detailed Explanation",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 36, 64, 101),
+                                              letterSpacing: 0.5,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
                                             ),
                                           ),
                                           Icon(
-                                              isCompare
+                                              isHowDoesItWork
                                                   ? Icons.keyboard_arrow_up
                                                   : Icons.keyboard_arrow_down,
                                               color: const Color.fromARGB(
@@ -663,7 +380,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                       ),
                                     ),
                                   ),
-                                  isCompare
+                                  isHowDoesItWork
                                       ? Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 6),
@@ -671,36 +388,41 @@ class _HowItWorksState extends State<HowItWorks> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: const [
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 2.0,
-                                                  ),
-                                                  child: Text(
-                                                      "• Other platforms will often use algorithms to suggest content for you. Our platform does not. The content displayed on Fairtalk is always the same for every single user. Instead of having each user divided into their own little corner, we're bringing everyone together. This makes our platform very similar to a real life discussion where each person sits around a large table and take turns exchanging thoughts and ideas.")),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 10.0,
-                                                  ),
-                                                  child: Text(
-                                                      "• Most platforms today give all the power and attention to a very small percentage of individuals (politicians, billionaires, actors, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. To make sure each user can fairly participate, we had to keep every user anonymous and we also had to remove the traditional following system which can often be found on other platforms.")),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 10.0,
-                                                  ),
-                                                  child: Text(
-                                                      '• On other platforms, most decisions are taken by a few individuals sitting around a table during a board meeting. These platforms have unfortunately turned into little dictatorships and to fix this issue, we simply let our users vote and decide everything. This includes which new features should be implemented or removed from our platform.')),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 10.0,
-                                                  ),
-                                                  child: Text(
-                                                      "• Since our voting metrics play a crucial role into our platform's functionalities, we had to build a unique account verification system that helps us eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free.")),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: 10.0,
-                                                  ),
-                                                  child: Text(
-                                                      "• Our platform isn't a place where you connect with your friends, gain followers, upload video content or start an online business. Fairtalk functions more like a democracy but instead of voting for politicians to represent us, we're instead voting for the best thoughts & ideas that were shared on the platform.")),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                  "Unfortunately, we currently live in a time where we can't rely on our leaders or governments to resolve any major issues peacefully. They always play their little games of politics & care more about preserving their positions of power instead of doing what's best for the majority. There's currently more than 13,000 nuclear warheads stockpiled & ready to be launched at any moment. This issue likely won't be solved by starting a protest & releasing our anger on the properties of business owners who are simply trying to earn a living like the rest of us. The world desperately needs a platform where we can all collectively communicate with each other & show to our leaders/governments that we're tired of fighting their wars, we're tired of the political division, we're tired of corruption, we're tired of seeing prices increase faster than our salaries, we're tired of poor leadership, we're tired of being treated like we're mere chess pieces on a board."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "Whether it's Facebook, Instagram, Twitter, YouTube, Reddit or TikTok, all of these platforms use algorithms to suggest content for each individual user. This unfortunately divides everyone into their own worlds and it simply becomes impossible to have any collective discussion. If we want a social media platform that impersonates a real life discussion where each person sits around a table and take turns exchanging thoughts and ideas, we can't have each user separated into their own worlds. Instead, we need to bring everyone together in the same room. To fix this issue, we simply let our users collectively vote & decide which posts should be displayed & suggested to every other user. In other words, the majority becomes the algorithm."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "If we want to give everyone a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the traditional following system. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, actors, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more power than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "Additionally, many platforms are now charging users a monthly fee just to be prioritized in discussions. This is yet another slap in the face for the people who live in poorer conditions and can't afford to pay the monthly fee. To fix this issue, we simply let everyone verify their accounts for free."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "Social media should work like a democracy, not like a dictatorship. Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. On Fairtalk, we simply let our users vote & decide everything."),
+                                              SizedBox(height: 15),
+                                              Text("This includes:"),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                  "• Which new features should be implemented or removed from our platform. "),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                  "• Which messages or polls should be Archived & seen by everyone else."),
+                                              SizedBox(height: 3),
+                                              Text(
+                                                  "• Which keywords or subjects should be currently trending."),
+                                              SizedBox(height: 3),
+                                              Text("• And more."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "Knowing that voting plays a crucial role into our platform's functionalities, we had to build a unique account verification system that helps eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free."),
+                                              SizedBox(height: 15),
+                                              Text(
+                                                  "Fairtalk's purpose isn't to replace any other social media platform because we simply do not offer the same type of service. It's not a place where you connect with your friends, gain followers, upload video content or start an online business. Our platform functions more like a democracy but instead of voting for politicians to represent us, we're instead voting & creating a historical collection of the best thoughts & ideas that were shared on the platform."),
+                                              SizedBox(height: 3),
                                             ],
                                           ),
                                         )
@@ -710,6 +432,108 @@ class _HowItWorksState extends State<HowItWorks> {
                             ),
                           ),
                         ),
+                        // const SizedBox(height: 12),
+                        // PhysicalModel(
+                        //   color: Colors.white,
+                        //   elevation: 3,
+                        //   borderRadius: BorderRadius.circular(5),
+                        //   child: Container(
+                        //     width: MediaQuery.of(context).size.width,
+                        //     padding: const EdgeInsets.symmetric(
+                        //         horizontal: 10, vertical: 5),
+                        //     decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(5),
+                        //       color: Colors.white,
+                        //     ),
+                        //     child: Padding(
+                        //       padding:
+                        //           EdgeInsets.only(bottom: isCompare ? 8 : 0),
+                        //       child: Column(
+                        //         children: [
+                        //           InkWell(
+                        //             onTap: () {
+                        //               setState(() {
+                        //                 isCompare = !isCompare;
+                        //               });
+                        //             },
+                        //             child: Padding(
+                        //               padding: const EdgeInsets.symmetric(
+                        //                   vertical: 6, horizontal: 6),
+                        //               child: Row(
+                        //                 mainAxisAlignment:
+                        //                     MainAxisAlignment.spaceBetween,
+                        //                 children: [
+                        //                   const Expanded(
+                        //                     child: Text(
+                        //                       "How does Fairtalk differ from other platforms?",
+                        //                       textAlign: TextAlign.left,
+                        //                       style: TextStyle(
+                        //                         color: Color.fromARGB(
+                        //                             255, 36, 64, 101),
+                        //                         letterSpacing: 0.5,
+                        //                         fontWeight: FontWeight.w500,
+                        //                         fontSize: 16,
+                        //                       ),
+                        //                     ),
+                        //                   ),
+                        //                   Icon(
+                        //                       isCompare
+                        //                           ? Icons.keyboard_arrow_up
+                        //                           : Icons.keyboard_arrow_down,
+                        //                       color: const Color.fromARGB(
+                        //                           255, 36, 64, 101),
+                        //                       size: 28)
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           isCompare
+                        //               ? Padding(
+                        //                   padding: const EdgeInsets.symmetric(
+                        //                       horizontal: 6),
+                        //                   child: Column(
+                        //                     crossAxisAlignment:
+                        //                         CrossAxisAlignment.start,
+                        //                     children: const [
+                        //                       Padding(
+                        //                           padding: EdgeInsets.only(
+                        //                             top: 2.0,
+                        //                           ),
+                        //                           child: Text(
+                        //                               "• Other platforms will often use algorithms to suggest content for you. Our platform does not. The content displayed on Fairtalk is always the same for every single user. Instead of having each user divided into their own little corner, we're bringing everyone together. This makes our platform very similar to a real life discussion where each person sits around a large table and take turns exchanging thoughts and ideas.")),
+                        //                       Padding(
+                        //                           padding: EdgeInsets.only(
+                        //                             top: 10.0,
+                        //                           ),
+                        //                           child: Text(
+                        //                               "• Most platforms today give all the power and attention to a very small percentage of individuals (politicians, billionaires, actors, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. To make sure each user can fairly participate, we had to keep every user anonymous and we also had to remove the traditional following system which can often be found on other platforms.")),
+                        //                       Padding(
+                        //                           padding: EdgeInsets.only(
+                        //                             top: 10.0,
+                        //                           ),
+                        //                           child: Text(
+                        //                               '• On other platforms, most decisions are taken by a few individuals sitting around a table during a board meeting. These platforms have unfortunately turned into little dictatorships and to fix this issue, we simply let our users vote and decide everything. This includes which new features should be implemented or removed from our platform.')),
+                        //                       Padding(
+                        //                           padding: EdgeInsets.only(
+                        //                             top: 10.0,
+                        //                           ),
+                        //                           child: Text(
+                        //                               "• Since our voting metrics play a crucial role into our platform's functionalities, we had to build a unique account verification system that helps us eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free.")),
+                        //                       Padding(
+                        //                           padding: EdgeInsets.only(
+                        //                             top: 10.0,
+                        //                           ),
+                        //                           child: Text(
+                        //                               "• Our platform isn't a place where you connect with your friends, gain followers, upload video content or start an online business. Fairtalk functions more like a democracy but instead of voting for politicians to represent us, we're instead voting for the best thoughts & ideas that were shared on the platform.")),
+                        //                     ],
+                        //                   ),
+                        //                 )
+                        //               : const SizedBox()
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(height: 15),
                         // PhysicalModel(
                         //   color: Colors.white,
@@ -1235,7 +1059,6 @@ class _HowItWorksState extends State<HowItWorks> {
                         //     ),
                         //   ),
                         // ),
-                        const SizedBox(height: 8),
                       ],
                     ),
                   ),

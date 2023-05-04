@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:core';
 import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'dart:core';
 import '../camera/camera_screen.dart';
 import '../info screens/add_post_rules.dart';
 import '../methods/auth_methods.dart';
@@ -88,7 +89,7 @@ class _AddPostState extends State<AddPost> {
   Uint8List? _file;
   var selected = 0;
   String? videoUrl = '';
-  Color buttonColor = Colors.blue;
+  Color buttonColor = Colors.blueAccent;
   int i = 0;
   String proxyurl = 'abc';
   bool emptyTittle = false;
@@ -701,7 +702,7 @@ class _AddPostState extends State<AddPost> {
               splashColor: Colors.grey.withOpacity(0.3),
               child: Icon(
                 icon,
-                color: selected == index ? Colors.blue : Colors.grey,
+                color: selected == index ? Colors.blueAccent : Colors.grey,
               ),
               onTap: () {
                 setState(
@@ -1374,7 +1375,7 @@ class _AddPostState extends State<AddPost> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
                                 child: Material(
                                   shape: const CircleBorder(),
@@ -1756,9 +1757,9 @@ class _AddPostState extends State<AddPost> {
                                 ],
                               ),
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
-                                // color: Colors.blue,
+                                // color: Colors.blueAccent,
                                 child: Material(
                                   shape: const CircleBorder(),
                                   color: Colors.white,
@@ -1853,7 +1854,7 @@ class _AddPostState extends State<AddPost> {
                                               focusedBorder:
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: Colors.blue,
+                                                    color: Colors.blueAccent,
                                                     width: 2),
                                               ),
                                               contentPadding: EdgeInsets.only(
@@ -1916,7 +1917,7 @@ class _AddPostState extends State<AddPost> {
                                               focusedBorder:
                                                   UnderlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: Colors.blue,
+                                                    color: Colors.blueAccent,
                                                     width: 2),
                                               ),
                                               contentPadding: EdgeInsets.only(
@@ -2828,7 +2829,7 @@ class _AddPostState extends State<AddPost> {
                                                                                 Colors.transparent,
                                                                             child: InkWell(
                                                                                 borderRadius: BorderRadius.circular(25),
-                                                                                splashColor: Colors.blue.withOpacity(0.2),
+                                                                                splashColor: Colors.blueAccent.withOpacity(0.2),
                                                                                 onTap: () {
                                                                                   Future.delayed(const Duration(milliseconds: 100), () {
                                                                                     createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: false);
@@ -2841,7 +2842,7 @@ class _AddPostState extends State<AddPost> {
                                                                                   ),
                                                                                   child: Text('View ${((createProvider.postKeywordListCount - 2) * 10) + 1} - ${(createProvider.postKeywordListCount - 1) * 10}',
                                                                                       style: const TextStyle(
-                                                                                        color: Colors.blue,
+                                                                                        color: Colors.blueAccent,
                                                                                         fontWeight: FontWeight.w500,
                                                                                         fontSize: 13,
                                                                                         letterSpacing: 0.3,
@@ -2903,7 +2904,7 @@ class _AddPostState extends State<AddPost> {
                                                                                 Colors.transparent,
                                                                             child: InkWell(
                                                                                 borderRadius: BorderRadius.circular(25),
-                                                                                splashColor: Colors.blue.withOpacity(0.2),
+                                                                                splashColor: Colors.blueAccent.withOpacity(0.2),
                                                                                 onTap: () {
                                                                                   Future.delayed(const Duration(milliseconds: 100), () {
                                                                                     createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: true);
@@ -2916,7 +2917,7 @@ class _AddPostState extends State<AddPost> {
                                                                                   ),
                                                                                   child: Text("View ${(createProvider.postKeywordListCount * 10) + 1} - ${(createProvider.postKeywordListCount + 1) * 10}",
                                                                                       style: const TextStyle(
-                                                                                        color: Colors.blue,
+                                                                                        color: Colors.blueAccent,
                                                                                         fontWeight: FontWeight.w500,
                                                                                         fontSize: 13,
                                                                                         letterSpacing: 0.3,
@@ -2980,7 +2981,7 @@ class _AddPostState extends State<AddPost> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(25),
                                       child: Material(
-                                        color: Colors.blue,
+                                        color: Colors.blueAccent,
                                         borderRadius: BorderRadius.circular(30),
                                         child: InkWell(
                                           onTap: () {
@@ -2993,7 +2994,7 @@ class _AddPostState extends State<AddPost> {
                                             });
                                           },
                                           child: SizedBox(
-                                            height: 38,
+                                            height: 40,
                                             child: Container(
                                               alignment: Alignment.center,
                                               padding: const EdgeInsets.only(
@@ -3032,7 +3033,7 @@ class _AddPostState extends State<AddPost> {
                                               BorderRadius.circular(25),
                                           child: Material(
                                             color: user == null
-                                                ? Colors.blue
+                                                ? Colors.blueAccent
                                                 : snap?.pending == "true" &&
                                                             global == 'false' ||
                                                         snap?.aaCountry == "" &&
@@ -3047,7 +3048,7 @@ class _AddPostState extends State<AddPost> {
                                                             global == 'false'
                                                     ? const Color.fromARGB(
                                                         255, 180, 180, 180)
-                                                    : Colors.blue,
+                                                    : Colors.blueAccent,
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                             child: InkWell(
@@ -3114,7 +3115,7 @@ class _AddPostState extends State<AddPost> {
                                                 });
                                               },
                                               child: SizedBox(
-                                                height: 38,
+                                                height: 40,
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   padding:
@@ -3313,7 +3314,8 @@ class _AddPostState extends State<AddPost> {
                                                     focusedBorder:
                                                         UnderlineInputBorder(
                                                       borderSide: BorderSide(
-                                                          color: Colors.blue,
+                                                          color:
+                                                              Colors.blueAccent,
                                                           width: 2),
                                                     ),
                                                     contentPadding:
@@ -3426,8 +3428,8 @@ class _AddPostState extends State<AddPost> {
                                                         OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
-                                                              color:
-                                                                  Colors.blue,
+                                                              color: Colors
+                                                                  .blueAccent,
                                                               width: 2.0),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -3496,8 +3498,8 @@ class _AddPostState extends State<AddPost> {
                                                         OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
-                                                              color:
-                                                                  Colors.blue,
+                                                              color: Colors
+                                                                  .blueAccent,
                                                               width: 2.0),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -5082,7 +5084,8 @@ class _AddPostState extends State<AddPost> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               50),
-                                                      splashColor: Colors.blue
+                                                      splashColor: Colors
+                                                          .blueAccent
                                                           .withOpacity(0.3),
                                                       onTap: () {
                                                         Future.delayed(
@@ -5157,8 +5160,8 @@ class _AddPostState extends State<AddPost> {
                                                             Icon(
                                                               Icons
                                                                   .add_circle_outline,
-                                                              color:
-                                                                  Colors.blue,
+                                                              color: Colors
+                                                                  .blueAccent,
                                                               size: 27,
                                                             ),
                                                             SizedBox(width: 5),
@@ -5624,7 +5627,7 @@ class _AddPostState extends State<AddPost> {
                                                                                   color: Colors.transparent,
                                                                                   child: InkWell(
                                                                                       borderRadius: BorderRadius.circular(25),
-                                                                                      splashColor: Colors.blue.withOpacity(0.2),
+                                                                                      splashColor: Colors.blueAccent.withOpacity(0.2),
                                                                                       onTap: () {
                                                                                         Future.delayed(const Duration(milliseconds: 100), () {
                                                                                           createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: false);
@@ -5637,7 +5640,7 @@ class _AddPostState extends State<AddPost> {
                                                                                         ),
                                                                                         child: Text('View ${((createProvider.pollKeywordListCount - 2) * 10) + 1} - ${(createProvider.pollKeywordListCount - 1) * 10}',
                                                                                             style: const TextStyle(
-                                                                                              color: Colors.blue,
+                                                                                              color: Colors.blueAccent,
                                                                                               fontWeight: FontWeight.w500,
                                                                                               fontSize: 13,
                                                                                               letterSpacing: 0.3,
@@ -5684,7 +5687,7 @@ class _AddPostState extends State<AddPost> {
                                                                                   color: Colors.transparent,
                                                                                   child: InkWell(
                                                                                       borderRadius: BorderRadius.circular(25),
-                                                                                      splashColor: Colors.blue.withOpacity(0.2),
+                                                                                      splashColor: Colors.blueAccent.withOpacity(0.2),
                                                                                       onTap: () {
                                                                                         Future.delayed(const Duration(milliseconds: 100), () {
                                                                                           createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: true);
@@ -5697,7 +5700,7 @@ class _AddPostState extends State<AddPost> {
                                                                                         ),
                                                                                         child: Text("View ${(createProvider.pollKeywordListCount * 10) + 1} - ${(createProvider.pollKeywordListCount + 1) * 10}",
                                                                                             style: const TextStyle(
-                                                                                              color: Colors.blue,
+                                                                                              color: Colors.blueAccent,
                                                                                               fontWeight: FontWeight.w500,
                                                                                               fontSize: 13,
                                                                                               letterSpacing: 0.3,
@@ -5757,7 +5760,7 @@ class _AddPostState extends State<AddPost> {
                                   borderRadius: BorderRadius.circular(25),
                                   child: Material(
                                     color: user == null
-                                        ? Colors.blue
+                                        ? Colors.blueAccent
                                         : snap?.pending == "true" &&
                                                     global == 'false' ||
                                                 snap?.aaCountry == "" &&
@@ -5770,7 +5773,7 @@ class _AddPostState extends State<AddPost> {
                                                     global == 'false'
                                             ? const Color.fromARGB(
                                                 255, 180, 180, 180)
-                                            : Colors.blue,
+                                            : Colors.blueAccent,
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(50),
@@ -5846,7 +5849,7 @@ class _AddPostState extends State<AddPost> {
                                         });
                                       },
                                       child: SizedBox(
-                                        height: 38,
+                                        height: 40,
                                         child: Container(
                                           padding: const EdgeInsets.only(
                                               left: 20, right: 20),

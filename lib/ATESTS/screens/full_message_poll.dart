@@ -1435,7 +1435,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                           _poll.tagsLowerCase?.length == 1 || _poll.tagsLowerCase?.length == 2 || _poll.tagsLowerCase?.length == 3
                                                                               ? Row(
                                                                                   children: [
-                                                                                    const SizedBox(width: 35),
+                                                                                    const SizedBox(width: 36),
                                                                                     const Text(
                                                                                       '•',
                                                                                       style: TextStyle(
@@ -1459,7 +1459,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                           _poll.tagsLowerCase?.length == 2 || _poll.tagsLowerCase?.length == 3
                                                                               ? Row(
                                                                                   children: [
-                                                                                    const SizedBox(width: 35),
+                                                                                    const SizedBox(width: 36),
                                                                                     const Text(
                                                                                       '•',
                                                                                       style: TextStyle(
@@ -1483,7 +1483,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                           _poll.tagsLowerCase?.length == 3
                                                                               ? Row(
                                                                                   children: [
-                                                                                    const SizedBox(width: 35),
+                                                                                    const SizedBox(width: 36),
                                                                                     const Text(
                                                                                       '•',
                                                                                       style: TextStyle(

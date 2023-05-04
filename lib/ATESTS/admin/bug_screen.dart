@@ -174,7 +174,7 @@ class _ReportBugAdminState extends State<ReportBugAdmin> {
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 35,
+                            width: 36,
                             height: 35,
                             child: Material(
                               shape: const CircleBorder(),

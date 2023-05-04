@@ -93,7 +93,7 @@ class CameraScreenState extends State<CameraScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 4.0),
                                   child: SizedBox(
-                                    width: 35,
+                                    width: 36,
                                     height: 35,
                                     child: Material(
                                       color: Colors.transparent,

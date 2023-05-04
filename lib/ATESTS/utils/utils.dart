@@ -11,6 +11,7 @@ import '../authentication/signup.dart';
 import '../camera/camera_screen.dart';
 import '../info screens/add_post_rules.dart';
 import '../info screens/how_it_works.dart';
+import '../info screens/submissions_info.dart';
 import '../info screens/terms_conditions.dart';
 import '../info screens/verification_fail.dart';
 import '../info screens/verification_success.dart';
@@ -2381,7 +2382,7 @@ scoreDialogPoll({required BuildContext context}) {
                         ),
                         SizedBox(height: 6),
                         Text(
-                          'Total # of votes received',
+                          'Total votes received',
                           style: TextStyle(
                               fontSize: 15,
                               color: darkBlue,

@@ -192,7 +192,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: 35,
+                                    width: 36,
                                     height: 35,
                                     child: Material(
                                       shape: const CircleBorder(),
@@ -630,7 +630,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 35,
+                                    width: 36,
                                     height: 35,
                                     child: Material(
                                       shape: const CircleBorder(),

@@ -143,10 +143,10 @@ class _StatisticsState extends State<Statistics> {
                               Row(
                                 children: [
                                   Row(
-                                    children: [
+                                    children: const [
                                       Icon(Icons.person_outlined, size: 17),
                                       SizedBox(width: 8),
-                                      const Text('Accounts:',
+                                      Text('Accounts:',
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500)),
@@ -165,10 +165,10 @@ class _StatisticsState extends State<Statistics> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   Icon(Icons.verified_outlined, size: 17),
                                   SizedBox(width: 8),
-                                  const Text('Verified Accounts:',
+                                  Text('Verified Accounts:',
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500)),
@@ -185,7 +185,7 @@ class _StatisticsState extends State<Statistics> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   Icon(Icons.message_outlined, size: 17),
                                   SizedBox(width: 8),
                                   Text('Messages:',

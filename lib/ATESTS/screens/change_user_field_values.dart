@@ -242,7 +242,7 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
                           Row(
                             children: [
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
                                 child: Material(
                                   shape: const CircleBorder(),
@@ -1483,7 +1483,7 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
                                                                               child: Ink.image(
                                                                                 image: NetworkImage(postsList[index].photoUrl ?? ''),
                                                                                 fit: BoxFit.cover,
-                                                                                width: 35,
+                                                                                width: 36,
                                                                                 height: 35,
                                                                                 child: InkWell(
                                                                                   splashColor: Colors.white.withOpacity(0.5),
@@ -1503,7 +1503,7 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
                                                                               child: Ink.image(
                                                                                 image: const AssetImage('assets/avatarFT.jpg'),
                                                                                 fit: BoxFit.cover,
-                                                                                width: 35,
+                                                                                width: 36,
                                                                                 height: 35,
                                                                                 child: InkWell(
                                                                                   splashColor: Colors.white.withOpacity(0.5),

@@ -309,7 +309,7 @@ class _SearchState extends State<Search> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          width: 35,
+                                          width: 36,
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
@@ -1802,7 +1802,7 @@ class _SearchState extends State<Search> {
                                           ],
                                         ),
                                         SizedBox(
-                                          width: 35,
+                                          width: 36,
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
@@ -3016,7 +3016,7 @@ class _SearchState extends State<Search> {
                                                                           ),
                                                                           userListProvider.searchUserList[index].UID != user?.UID
                                                                               ? SizedBox(
-                                                                                  width: 35,
+                                                                                  width: 36,
                                                                                   height: 35,
                                                                                   child: Material(
                                                                                     color: Colors.transparent,
