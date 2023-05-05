@@ -2258,7 +2258,7 @@ scoreDialogMessage({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The message that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives.",
+                      "The message that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2398,7 +2398,7 @@ scoreDialogPoll({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The poll that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives.",
+                      "The poll that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
