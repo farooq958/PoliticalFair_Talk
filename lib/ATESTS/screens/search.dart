@@ -74,6 +74,7 @@ class _SearchState extends State<Search> {
   void _getList({
     required FilterProvider filterProvider,
   }) {
+    debugPrint("all dayes value :${twoValue}");
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,
@@ -1826,9 +1827,7 @@ class _SearchState extends State<Search> {
                                                               removeFilterOptions: filterProvider
                                                                       .isMostLiked
                                                                   ? 2
-                                                                  : filterProvider.isUser ==
-                                                                              false &&
-                                                                          filterProvider.showMessages ==
+                                                                  : filterProvider.isUser == false && filterProvider.showMessages ==
                                                                               true
                                                                       ? 0
                                                                       : filterProvider.isAllKey == true && filterProvider.isUser == false ||

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:aft/ATESTS/provider/filter_provider.dart';
 import 'package:aft/ATESTS/provider/most_liked_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
@@ -6,10 +7,9 @@ import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../responsive/my_flutter_app_icons.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'filter_arrays.dart';
 
@@ -504,7 +504,6 @@ class _CountriesState extends State<Countries> {
                                           if (value == 'Most Recent') {
                                             // setValueOne('All Days');
                                             //  filterProvider.setOneValue('All Days');
-
                                           }
                                           filterProvider.setOneValue(
                                               value ?? 'Highest Score');
@@ -668,12 +667,13 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
     return InkWell(
       onTap: () {
         widget.onChanged(widget.value);
+        debugPrint("widget value :${widget.value}");
 
         final filterProvider =
             Provider.of<FilterProvider>(context, listen: false);
         if (widget.type == 'one value') {
           if (widget.value.toString() == 'Most Recent') {
-            filterProvider.setTwoValue('All Days');
+            filterProvider.setTwoValue('≤ 7 Days');
           }
           filterProvider.setOneValue(widget.value.toString());
         } else if (widget.type == 'two value') {

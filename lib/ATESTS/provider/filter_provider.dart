@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../screens/filter_arrays.dart';
 
 class FilterProvider extends ChangeNotifier {
@@ -9,7 +10,7 @@ class FilterProvider extends ChangeNotifier {
   String _global = 'true';
   String _messages = 'true';
   String _oneValue = 'Highest Score';
-  String _twoValue = 'All Days';
+  String _twoValue = '≤ 7 Days';
   String _threeValue = '';
   String _countryCode = 'us';
   bool isAllKey = true;
@@ -79,6 +80,7 @@ class FilterProvider extends ChangeNotifier {
   setTwoValue(String value) {
     _twoValue = value;
     notifyListeners();
+    debugPrint("two vlaue ${_twoValue}");
   }
 
   setDurationInDay(var value) async {
