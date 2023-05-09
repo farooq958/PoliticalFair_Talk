@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:math';
-import 'package:aft/ATESTS/provider/duration_provider.dart';
+
 import 'package:aft/ATESTS/provider/postPoll_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+
 import '../models/post.dart';
 import '../utils/global_variables.dart';
 import 'filter_provider.dart';
@@ -76,7 +76,7 @@ class PostProvider extends ChangeNotifier {
     try {
       //  _posts = [];
 
-      // debugPrint('duration in day $durationInDay');
+      debugPrint('two values : $twoValue');
       await Future.delayed(Duration.zero);
       _isButtonVisible = false;
       _pLoading = true;

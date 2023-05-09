@@ -29,8 +29,8 @@ class _CountriesState extends State<Countries> {
   String searchText = '';
   int selectedCountryIndex = short.indexOf('us');
   var oneValue = 'Highest Score';
-  var twoValue = 'All Days';
-  var two1Value = 'All Days';
+  var twoValue = '≤ 7 Days';
+  var two1Value = '≤ 7 Days';
 
   @override
   void initState() {
@@ -122,6 +122,7 @@ class _CountriesState extends State<Countries> {
     if (prefs.getString('selected_radio1') != null) {
       setState(() {
         twoValue = prefs.getString('selected_radio1')!;
+        debugPrint("value two $twoValue");
       });
     }
   }
@@ -139,6 +140,7 @@ class _CountriesState extends State<Countries> {
     if (prefs.getString('selected_radio') != null) {
       setState(() {
         oneValue = prefs.getString('selected_radio')!;
+        debugPrint("value one $oneValue");
       });
     }
   }
@@ -502,8 +504,9 @@ class _CountriesState extends State<Countries> {
                                         // ),
                                         onChanged: (value) {
                                           if (value == 'Most Recent') {
-                                            // setValueOne('All Days');
-                                            //  filterProvider.setOneValue('All Days');
+                                            //   setValueOne('≤ 7 Days');
+                                            //   filterProvider
+                                            //       .setOneValue('≤ 7 Days');
                                           }
                                           filterProvider.setOneValue(
                                               value ?? 'Highest Score');
