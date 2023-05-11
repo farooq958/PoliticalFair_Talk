@@ -74,6 +74,7 @@ class PostProvider extends ChangeNotifier {
   getPosts(String twoValue, String global, String countryCode,
       int durationInDay, String oneValue) async {
     try {
+      debugPrint("working ");
       //  _posts = [];
 
       debugPrint('two values : $twoValue');

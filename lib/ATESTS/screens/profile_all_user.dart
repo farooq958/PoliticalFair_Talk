@@ -48,13 +48,6 @@ class ProfileAllUserState extends State<ProfileAllUser>
   final StreamController<int> _commentRepliesIndexController =
       StreamController<int>.broadcast();
   static const Duration animationDuration = Duration(milliseconds: 300);
-  // bool valueBadge = false;
-  // bool valueFlag = false;
-  // bool valueScore = false;
-  // bool valueVotes = false;
-  // bool selectFlag = false;
-  // bool test = false;
-
   User? _userProfile;
   User? _userAdmin;
   User? _userP;

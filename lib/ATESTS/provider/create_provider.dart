@@ -33,9 +33,7 @@ class CreatePageProvider extends ChangeNotifier {
     }
 
     try {
-      // query1.get().then((QuerySnapshot querySnapshot) {
-      //   print("query1--- ${querySnapshot.docs.length} )");
-      // });
+
 
       if (Loading == false) {
         await Future.delayed(Duration.zero);

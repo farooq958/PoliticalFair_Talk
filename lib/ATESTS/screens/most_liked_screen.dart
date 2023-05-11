@@ -17,8 +17,6 @@ class MostLikedScreen extends StatefulWidget {
     required this.durationInDay,
   }) : super(key: key);
   final durationInDay;
-  // final dynamic durationForHours;
-  // final dynamic durationForMinutes;
 
   @override
   State<MostLikedScreen> createState() => _MostLikedScreenState();

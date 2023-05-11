@@ -108,12 +108,7 @@ class _CountriesState extends State<Countries> {
     setState(() {
       selectedCountryIndex = countryIndex;
       prefs.setInt('countryRadio', selectedCountryIndex);
-      // prefs.setString('selected_radio', long[selectedCountryIndex]);
 
-      // if(userProvider.getUser!=null){
-      // userProvider.updateCountry(short[selectedCountryIndex]);
-      //   debugPrint("country code is ${short[selectedCountryIndex]}");
-      // }
     });
   }
 

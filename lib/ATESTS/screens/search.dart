@@ -33,8 +33,6 @@ class _SearchState extends State<Search> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   final _scrollController = ScrollController();
-  // var messages = 'true';
-  // var global = 'true';
   bool loading = false;
   String oneValue = '';
   String twoValue = '';
@@ -466,17 +464,7 @@ class _SearchState extends State<Search> {
                                                                           .durationInDay,
                                                                       filterProvider
                                                                           .twoValue);
-                                                              // Provider.of<PostProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPosts(
-                                                              //         filterProvider.twoValue,
-                                                              //         filterProvider.global,
-                                                              //         filterProvider
-                                                              //             .countryCode,
-                                                              //         widget.durationInDay,
-                                                              //         filterProvider
-                                                              //             .oneValue);
+
                                                             } else if (filterProvider
                                                                         .messages !=
                                                                     'true' &&

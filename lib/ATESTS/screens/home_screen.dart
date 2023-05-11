@@ -22,14 +22,8 @@ import 'my_drawer_list.dart';
 class FeedScreen extends StatefulWidget {
   const FeedScreen({
     Key? key,
-    this.durationInDay,
-    // this.durationForMinutes,
-    // this.durationForHours
-  }) : super(key: key);
+    this.durationInDay,  }) : super(key: key);
   final durationInDay;
-
-  // final durationForMinutes;
-  // final durationForHours;
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();
