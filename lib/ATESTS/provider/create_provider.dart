@@ -1,8 +1,8 @@
-import 'package:aft/ATESTS/provider/duration_provider.dart';
 import 'package:aft/ATESTS/provider/postPoll_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/keywords.dart';
 import '../utils/global_variables.dart';
 
@@ -70,23 +70,8 @@ class CreatePageProvider extends ChangeNotifier {
               .startAfterDocument(_postKeywordListSnapshot!.docs.last)
               .limit(paginationNumber)
               .get();
-          // }
-          // else {
-          //   query
-          //       .startAfterDocument(_postKeywordListSnapshot!.docs.last)
-          //       .limit(6)
-          //       .get()
-          //       .then((QuerySnapshot querySnapshot) =>
-          //           handleQueryResult(querySnapshot));
-          //   _postKeywordListSnapshot = await query
-          //       .startAfterDocument(_postKeywordListSnapshot!.docs.last)
-          //       .limit(6)
-          //       .get();
-          // }
         } else {
           postKeywordListCount -= 1;
-
-          // if (twoValue == "All Days") {
           await query1
               .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
               .limitToLast(paginationNumber)
@@ -97,19 +82,6 @@ class CreatePageProvider extends ChangeNotifier {
               .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
               .limitToLast(paginationNumber)
               .get();
-          // }
-          // else {
-          //   await query
-          //       .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
-          //       .limitToLast(6)
-          //       .get()
-          //       .then((QuerySnapshot querySnapshot) =>
-          //           handleQueryResult(querySnapshot));
-          //   _postKeywordListSnapshot = await query
-          //       .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
-          //       .limitToLast(6)
-          //       .get();
-          // }
         }
       } else {
         postKeywordListCount = 1;
