@@ -233,7 +233,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             child: Image.asset(
                                                 'icons/flags/png/${snap?.aaCountry}.png',
                                                 package: 'country_icons'))
-                                        : const Row()
+                                        : Row()
                                   ],
                                 ),
                               ),
@@ -241,7 +241,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   bottom: 0,
                                   right: 4,
                                   child: country != "" && profileBadge
-                                      ? const Stack(
+                                      ? Stack(
                                           children: [
                                             Positioned(
                                               right: 3,
@@ -259,7 +259,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             ),
                                           ],
                                         )
-                                      : const Row()),
+                                      : Row()),
                             ],
                           ),
                         ),
@@ -366,7 +366,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ),
                           ],
                         )
-                      : const Row(),
+                      : Row(),
 
                   // ///
                 ],
@@ -598,7 +598,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                 ),
                               )
-                            : const Row(),
+                            : Row(),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 12),
                           child: PhysicalModel(
