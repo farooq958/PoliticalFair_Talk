@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class FullImageProfile extends StatefulWidget {
-  // ignore: prefer_typing_uninitialized_variables
   final photo;
   const FullImageProfile({Key? key, required this.photo}) : super(key: key);
 

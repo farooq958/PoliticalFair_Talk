@@ -37,7 +37,7 @@ class FilterProvider extends ChangeNotifier {
 
   setListPostPollId(List<String> val) {
     listPostPollId = val;
-    // print("trendkeystore-- $val");
+
     notifyListeners();
   }
 
