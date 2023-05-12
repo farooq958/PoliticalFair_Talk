@@ -3,10 +3,11 @@ import 'package:aft/ATESTS/provider/most_liked_key_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:ntp/ntp.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
-import '../../main.dart';
+
 import '../models/comment.dart';
 import '../models/keywords.dart';
 import '../models/poll.dart';
@@ -15,7 +16,6 @@ import '../models/reply.dart';
 import '../models/reportedBug.dart';
 import '../provider/comments_replies_provider.dart';
 import '../provider/searchpage_provider.dart';
-import '../utils/utils.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -304,6 +304,7 @@ class FirestoreMethods {
     int time,
   ) async {
     try {
+      debugPrint("firestore method working  time :$time");
       List<String>? tagsList;
       tagsList = tagsLowerCase!.toSet().toList();
       tagsList.forEach((element) {
@@ -1116,7 +1117,6 @@ class FirestoreMethods {
           .neutralPost(postId, uid);
     } catch (e) {
       // print(
-
     }
   }
 

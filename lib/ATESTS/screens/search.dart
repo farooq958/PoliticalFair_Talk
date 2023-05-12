@@ -33,8 +33,6 @@ class _SearchState extends State<Search> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   final _scrollController = ScrollController();
-  // var messages = 'true';
-  // var global = 'true';
   bool loading = false;
   String oneValue = '';
   String twoValue = '';
@@ -74,6 +72,7 @@ class _SearchState extends State<Search> {
   void _getList({
     required FilterProvider filterProvider,
   }) {
+    debugPrint("all dayes value :${twoValue}");
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,
@@ -465,17 +464,7 @@ class _SearchState extends State<Search> {
                                                                           .durationInDay,
                                                                       filterProvider
                                                                           .twoValue);
-                                                              // Provider.of<PostProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPosts(
-                                                              //         filterProvider.twoValue,
-                                                              //         filterProvider.global,
-                                                              //         filterProvider
-                                                              //             .countryCode,
-                                                              //         widget.durationInDay,
-                                                              //         filterProvider
-                                                              //             .oneValue);
+
                                                             } else if (filterProvider
                                                                         .messages !=
                                                                     'true' &&
@@ -1826,9 +1815,7 @@ class _SearchState extends State<Search> {
                                                               removeFilterOptions: filterProvider
                                                                       .isMostLiked
                                                                   ? 2
-                                                                  : filterProvider.isUser ==
-                                                                              false &&
-                                                                          filterProvider.showMessages ==
+                                                                  : filterProvider.isUser == false && filterProvider.showMessages ==
                                                                               true
                                                                       ? 0
                                                                       : filterProvider.isAllKey == true && filterProvider.isUser == false ||

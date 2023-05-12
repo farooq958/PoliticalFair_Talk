@@ -242,7 +242,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   right: 4,
                                   child: country != "" && profileBadge
                                       ? Stack(
-                                          children: const [
+                                          children: [
                                             Positioned(
                                               right: 3,
                                               top: 3,

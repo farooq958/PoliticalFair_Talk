@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:aft/ATESTS/provider/duration_provider.dart';
 import 'package:aft/ATESTS/provider/postPoll_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +35,7 @@ class SearchPageProvider extends ChangeNotifier {
   Future<void> getkeywordList(
       String global, String countryCode, durationInDay, String twoValue,
       {bool? getNextList1}) async {
+    debugPrint("global $global  contryCode $countryCode ,twoValue $twoValue");
     // var query = (twoValue == "All Days"
     //     ? (global == "true"
     //             ? FirebaseFirestore.instance.collectionGroup('globallyPost')
@@ -80,10 +80,12 @@ class SearchPageProvider extends ChangeNotifier {
     dynamic handleQueryResult(QuerySnapshot querySnapshot) {
       // var datalist = querySnapshot.docs;
       list.clear();
+      debugPrint("querySnapshot value ");
 
       querySnapshot.docs.forEach((element) {
         Keyword dataIn =
             Keyword.fromMap(element.data() as Map<String, dynamic>);
+        debugPrint("data ${dataIn.length}");
         list.add(dataIn);
       });
     }

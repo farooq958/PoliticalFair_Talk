@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:aft/ATESTS/provider/filter_provider.dart';
 import 'package:aft/ATESTS/provider/most_liked_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
@@ -6,10 +7,9 @@ import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../responsive/my_flutter_app_icons.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'filter_arrays.dart';
 
@@ -29,8 +29,8 @@ class _CountriesState extends State<Countries> {
   String searchText = '';
   int selectedCountryIndex = short.indexOf('us');
   var oneValue = 'Highest Score';
-  var twoValue = 'All Days';
-  var two1Value = 'All Days';
+  var twoValue = '≤ 7 Days';
+  var two1Value = '≤ 7 Days';
 
   @override
   void initState() {
@@ -108,12 +108,7 @@ class _CountriesState extends State<Countries> {
     setState(() {
       selectedCountryIndex = countryIndex;
       prefs.setInt('countryRadio', selectedCountryIndex);
-      // prefs.setString('selected_radio', long[selectedCountryIndex]);
 
-      // if(userProvider.getUser!=null){
-      // userProvider.updateCountry(short[selectedCountryIndex]);
-      //   debugPrint("country code is ${short[selectedCountryIndex]}");
-      // }
     });
   }
 
@@ -122,6 +117,7 @@ class _CountriesState extends State<Countries> {
     if (prefs.getString('selected_radio1') != null) {
       setState(() {
         twoValue = prefs.getString('selected_radio1')!;
+        debugPrint("value two $twoValue");
       });
     }
   }
@@ -139,6 +135,7 @@ class _CountriesState extends State<Countries> {
     if (prefs.getString('selected_radio') != null) {
       setState(() {
         oneValue = prefs.getString('selected_radio')!;
+        debugPrint("value one $oneValue");
       });
     }
   }
@@ -502,9 +499,9 @@ class _CountriesState extends State<Countries> {
                                         // ),
                                         onChanged: (value) {
                                           if (value == 'Most Recent') {
-                                            // setValueOne('All Days');
-                                            //  filterProvider.setOneValue('All Days');
-
+                                            //   setValueOne('≤ 7 Days');
+                                            //   filterProvider
+                                            //       .setOneValue('≤ 7 Days');
                                           }
                                           filterProvider.setOneValue(
                                               value ?? 'Highest Score');
@@ -668,12 +665,13 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
     return InkWell(
       onTap: () {
         widget.onChanged(widget.value);
+        debugPrint("widget value :${widget.value}");
 
         final filterProvider =
             Provider.of<FilterProvider>(context, listen: false);
         if (widget.type == 'one value') {
           if (widget.value.toString() == 'Most Recent') {
-            filterProvider.setTwoValue('All Days');
+            filterProvider.setTwoValue('≤ 7 Days');
           }
           filterProvider.setOneValue(widget.value.toString());
         } else if (widget.type == 'two value') {
