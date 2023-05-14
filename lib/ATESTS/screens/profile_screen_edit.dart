@@ -12,7 +12,7 @@ import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 
 class EditProfile extends StatefulWidget {
-  // final Post post;
+
   const EditProfile({Key? key}) : super(key: key);
 
   @override
@@ -166,15 +166,7 @@ class _EditProfileState extends State<EditProfile> {
                                       height: 120,
                                       child: Stack(
                                         children: [
-                                          // Center(
-                                          // child:
-                                          // Container(
-                                          //   width: 120,
-                                          //   height: 120,
-                                          //   decoration: const BoxDecoration(
-                                          //     shape: BoxShape.circle,
-                                          //     color: Colors.black,
-                                          //   ),
+
                                           Center(
                                             child: Center(
                                               child: Opacity(
@@ -239,9 +231,7 @@ class _EditProfileState extends State<EditProfile> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  // Expanded(
-                                                  //   child: Container(),
-                                                  // ),
+
                                                   SizedBox(
                                                     height: 60,
                                                     width: 60,

@@ -1,8 +1,8 @@
-import 'package:aft/ATESTS/provider/duration_provider.dart';
 import 'package:aft/ATESTS/provider/postPoll_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/keywords.dart';
 import '../utils/global_variables.dart';
 
@@ -19,6 +19,7 @@ class CreatePageProvider extends ChangeNotifier {
   final _postPollProvider = Provider.of<PostPollProvider>(
       navigatorKey.currentContext!,
       listen: false);
+
   Future<void> getkeywordList(String global, String countryCode, durationInDay,
       {bool? getNextList1}) async {
     dynamic handleQueryResult(QuerySnapshot querySnapshot) {
@@ -28,21 +29,19 @@ class CreatePageProvider extends ChangeNotifier {
       querySnapshot.docs.forEach((element) {
         Keyword dataIn =
             Keyword.fromMap(element.data() as Map<String, dynamic>);
+
         list.add(dataIn);
       });
     }
 
     try {
-      // query1.get().then((QuerySnapshot querySnapshot) {
-      //   print("query1--- ${querySnapshot.docs.length} )");
-      // });
-
       if (Loading == false) {
         await Future.delayed(Duration.zero);
         Loading = true;
         notifyListeners();
       }
       // durationInDay = await DurationProvider.getDurationInDays();
+
       var query1 = (global == "true"
               ? FirebaseFirestore.instance.collectionGroup('globallyPost')
               : FirebaseFirestore.instance
@@ -53,6 +52,7 @@ class CreatePageProvider extends ChangeNotifier {
           .orderBy("length", descending: true);
 
       var snap = await query1.count().get();
+
       // var snap = twoValue == "All Days"
       //     ? await query1.count().get()
       //     : await query.count().get();
@@ -70,23 +70,8 @@ class CreatePageProvider extends ChangeNotifier {
               .startAfterDocument(_postKeywordListSnapshot!.docs.last)
               .limit(paginationNumber)
               .get();
-          // }
-          // else {
-          //   query
-          //       .startAfterDocument(_postKeywordListSnapshot!.docs.last)
-          //       .limit(6)
-          //       .get()
-          //       .then((QuerySnapshot querySnapshot) =>
-          //           handleQueryResult(querySnapshot));
-          //   _postKeywordListSnapshot = await query
-          //       .startAfterDocument(_postKeywordListSnapshot!.docs.last)
-          //       .limit(6)
-          //       .get();
-          // }
         } else {
           postKeywordListCount -= 1;
-
-          // if (twoValue == "All Days") {
           await query1
               .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
               .limitToLast(paginationNumber)
@@ -97,19 +82,6 @@ class CreatePageProvider extends ChangeNotifier {
               .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
               .limitToLast(paginationNumber)
               .get();
-          // }
-          // else {
-          //   await query
-          //       .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
-          //       .limitToLast(6)
-          //       .get()
-          //       .then((QuerySnapshot querySnapshot) =>
-          //           handleQueryResult(querySnapshot));
-          //   _postKeywordListSnapshot = await query
-          //       .endBeforeDocument(_postKeywordListSnapshot!.docs.first)
-          //       .limitToLast(6)
-          //       .get();
-          // }
         }
       } else {
         postKeywordListCount = 1;
@@ -117,12 +89,6 @@ class CreatePageProvider extends ChangeNotifier {
         await query1.limit(paginationNumber).get().then(
             (QuerySnapshot querySnapshot) => handleQueryResult(querySnapshot));
         _postKeywordListSnapshot = await query1.limit(paginationNumber).get();
-        // }
-        // else {
-        // await query.limit(6).get().then(
-        //     (QuerySnapshot querySnapshot) => handleQueryResult(querySnapshot));
-        // _postKeywordListSnapshot = await query.limit(6).get();
-        // }
       }
       postKeywordLast = false;
       // debugPrint(

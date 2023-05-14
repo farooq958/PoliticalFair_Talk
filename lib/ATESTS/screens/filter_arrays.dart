@@ -4,10 +4,10 @@ final List<String> one = [
 ];
 
 final List<String> two1 = [
-  'All Days',
+  '≤ 7 Days',
 ];
 final List<String> two = [
-  'All Days',
+  // 'All Days',
   '≤ 1 Day',
   '≤ 2 Days',
   '≤ 3 Days',

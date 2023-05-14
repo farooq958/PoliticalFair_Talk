@@ -20,12 +20,6 @@ class PostPollProvider extends ChangeNotifier {
   bool _postLast = false;
   bool _pollLast = false;
 
-  // final _postProvider =
-  //     Provider.of<PostProvider>(navigatorKey.currentContext!, listen: false);
-  // final _pollProvider =
-  //     Provider.of<PollsProvider>(navigatorKey.currentContext!, listen: false);
-
-  // Returns Combined List of Poll and posts done by user
   getPostPollResult(String? userId) async {
     try {
       _pageLoading = true;

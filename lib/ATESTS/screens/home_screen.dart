@@ -1,35 +1,29 @@
 import 'dart:async';
-import 'dart:convert';
+
 import 'package:aft/ATESTS/provider/filter_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import '../provider/left_time_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/poll.dart';
+import '../models/post.dart';
+import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
-import '../models/poll.dart';
-import '../models/post.dart';
 import 'filter_arrays.dart';
-import 'my_drawer_list.dart';
 import 'filter_screen.dart';
-import '../models/user.dart';
+import 'my_drawer_list.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({
     Key? key,
-    this.durationInDay,
-    // this.durationForMinutes,
-    // this.durationForHours
-  }) : super(key: key);
+    this.durationInDay,  }) : super(key: key);
   final durationInDay;
-
-  // final durationForMinutes;
-  // final durationForHours;
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();
@@ -129,6 +123,7 @@ class _FeedScreenState extends State<FeedScreen> {
     // debugPrint("loadCountry working");
     setState(() {
       int selectedCountryIndex = prefs.getInt('countryRadio') ?? 188;
+
       // debugPrint('number value ${short.indexOf(userProvider.getUser!.aaCountry)}');
       countryCode = short[userProvider.getUser != null
           ? userProvider.getUser!.aaCountry.isNotEmpty
@@ -138,6 +133,8 @@ class _FeedScreenState extends State<FeedScreen> {
       oneValue = prefs.getString('selected_radio') ?? '';
       twoValue = prefs.getString('selected_radio1') ?? '';
       threeValue = prefs.getString('selected_radio2') ?? '';
+      debugPrint(
+          "onle value ${oneValue} two value ${twoValue} threevalue ${threeValue}");
     });
   }
 
@@ -1160,6 +1157,8 @@ class _FeedScreenState extends State<FeedScreen> {
   void _getPosts({
     required FilterProvider filterProvider,
   }) {
+    debugPrint(
+        "getPost method working one Value: ${filterProvider.oneValue} two value ${filterProvider.twoValue}");
     if (filterProvider.messages == 'true') {
       Provider.of<PostProvider>(context, listen: false).getPosts(
           filterProvider.twoValue,
