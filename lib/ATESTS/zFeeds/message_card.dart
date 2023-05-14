@@ -331,8 +331,8 @@ class _PostCardTestState extends State<PostCardTest> {
                                     children: [
                                       _userProfile?.profileFlag == true
                                           ? SizedBox(
-                                              width: 17.5,
-                                              height: 8.75,
+                                              width: 20,
+                                              height: 10,
                                               child: Image.asset(
                                                   'icons/flags/png/${_userProfile?.aaCountry}.png',
                                                   package: 'country_icons'),

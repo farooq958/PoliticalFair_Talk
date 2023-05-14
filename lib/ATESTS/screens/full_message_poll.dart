@@ -1118,14 +1118,14 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                       ),
                                                 Positioned(
                                                   bottom: 0,
-                                                  right: 2.8,
+                                                  right: 3,
                                                   child: Row(
                                                     children: [
                                                       _userProfile?.profileFlag ==
                                                               true
                                                           ? SizedBox(
-                                                              width: 15.5,
-                                                              height: 7.7,
+                                                              width: 20,
+                                                              height: 10,
                                                               child: Image.asset(
                                                                   'icons/flags/png/${_userProfile?.aaCountry}.png',
                                                                   package:
@@ -2257,14 +2257,14 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                       ""
                                                               ? Positioned(
                                                                   bottom: 0,
-                                                                  right: 2.8,
+                                                                  right: 3,
                                                                   child: Row(
                                                                     children: [
                                                                       SizedBox(
                                                                           width:
-                                                                              15.5,
+                                                                              20,
                                                                           height:
-                                                                              7.7,
+                                                                              10,
                                                                           child: Image.asset(
                                                                               'icons/flags/png/${user.aaCountry}.png',
                                                                               package: 'country_icons'))

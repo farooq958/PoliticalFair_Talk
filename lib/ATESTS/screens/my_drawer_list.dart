@@ -808,7 +808,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         left: 12, top: 17, bottom: 17),
                                     child: Row(
                                       children: [
-                                        const Icon(Icons.help_outline,
+                                        const Icon(Icons.info_outline,
                                             size: 23, color: Colors.black),
                                         Container(width: 15),
                                         const Text(
@@ -1163,8 +1163,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               });
                             },
                             child: const Padding(
-                              padding: EdgeInsets.only(
-                                  top: 8.0, bottom: 8, right: 2, left: 2),
+                              padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
                                 'Data Privacy',
                                 textAlign: TextAlign.center,
@@ -1207,8 +1206,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               });
                             },
                             child: const Padding(
-                              padding: EdgeInsets.only(
-                                  top: 8.0, bottom: 8, right: 2, left: 2),
+                              padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
                                 'Terms of Use',
                                 textAlign: TextAlign.center,

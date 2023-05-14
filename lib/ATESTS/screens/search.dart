@@ -2951,13 +2951,13 @@ class _SearchState extends State<Search> {
                                                                                       : const CircleAvatar(backgroundColor: Colors.grey, backgroundImage: AssetImage('assets/avatarFT.jpg')),
                                                                                   Positioned(
                                                                                     bottom: 0,
-                                                                                    right: 4,
+                                                                                    right: 3,
                                                                                     child: Row(
                                                                                       children: [
                                                                                         userListProvider.searchUserList[index].profileFlag == true
                                                                                             ? SizedBox(
-                                                                                                width: 15.5,
-                                                                                                height: 7.7,
+                                                                                                width: 20,
+                                                                                                height: 10,
                                                                                                 child: Image.asset('icons/flags/png/${userListProvider.searchUserList[index].aaCountry}.png', package: 'country_icons'),
                                                                                               )
                                                                                             : Row()

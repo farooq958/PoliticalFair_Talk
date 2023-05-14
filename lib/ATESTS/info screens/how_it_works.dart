@@ -13,7 +13,7 @@ class HowItWorks extends StatefulWidget {
 }
 
 class _HowItWorksState extends State<HowItWorks> {
-  bool isBrief = false;
+  bool isBrief = true;
   bool isDetailed = false;
 
   bool isHowDoesItWork = false;
@@ -212,7 +212,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                             children: [
                                               const SizedBox(height: 3),
                                               const Text(
-                                                'On Fairtalk, we let our users vote & decide everything. This includes:',
+                                                'The majority votes & decides:',
                                                 style: TextStyle(
                                                   letterSpacing: 0.3,
                                                   fontWeight: FontWeight.w500,
@@ -220,15 +220,14 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "• Which new features should be implemented or removed from our platform. "),
-                                              const SizedBox(height: 3),
-                                              const Text(
                                                   "• Which messages or polls should be Archived & seen by everyone else."),
                                               const SizedBox(height: 3),
                                               const Text(
                                                   "• Which keywords or subjects should be trending."),
                                               const SizedBox(height: 3),
-                                              const Text("• And more."),
+                                              const Text(
+                                                  "• Which new features should be implemented or removed from our platform. "),
+                                              const SizedBox(height: 3),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "How does it work?",
@@ -240,10 +239,10 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "When you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. There are two types of posts: messages & polls. Calculating the score differs for each type of post."),
+                                                  "When you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection."),
                                               const SizedBox(height: 15),
                                               const Text(
-                                                "Message score calculation",
+                                                "Score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0.3,
@@ -251,6 +250,94 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
+                                              RichText(
+                                                text: const TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: "",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    WidgetSpan(
+                                                      child: Icon(
+                                                          Icons.add_circle,
+                                                          color: Colors.green,
+                                                          size: 15),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                          " increments the message's score by +1.",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              RichText(
+                                                text: const TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: "",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    WidgetSpan(
+                                                      child: Icon(
+                                                          Icons
+                                                              .do_not_disturb_on,
+                                                          color: Colors.red,
+                                                          size: 15),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                          " decrements the message's score by -1.",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              RichText(
+                                                text: const TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: "",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    WidgetSpan(
+                                                      child: RotatedBox(
+                                                        quarterTurns: 1,
+                                                        child: Icon(
+                                                          Icons
+                                                              .pause_circle_filled,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              104,
+                                                              104,
+                                                              104),
+                                                          size: 15,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                          " doesn't change the score at all.",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 15),
                                               RichText(
                                                 text: const TextSpan(
                                                   children: [
@@ -290,15 +377,6 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
-                                              const Text(
-                                                "Poll score calculation",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  letterSpacing: 0.3,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
                                               const Text(
                                                 "Poll score = Total votes received.",
                                                 textAlign: TextAlign.left,
@@ -449,7 +527,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 text: const TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: "• Up-voting (",
+                                                      text: "",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -462,7 +540,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     ),
                                                     TextSpan(
                                                       text:
-                                                          ") increments the message's score by +1.",
+                                                          " increments the message's score by +1.",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -475,7 +553,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 text: const TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: "• Down-voting (",
+                                                      text: "",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -489,7 +567,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     ),
                                                     TextSpan(
                                                       text:
-                                                          ") decrements the message's score by -1.",
+                                                          " decrements the message's score by -1.",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -502,8 +580,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 text: const TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text:
-                                                          "• Neutral-voting (",
+                                                      text: "",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -525,7 +602,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     ),
                                                     TextSpan(
                                                       text:
-                                                          ") doesn't change the score at all.",
+                                                          " doesn't change the score at all.",
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                       ),
@@ -551,12 +628,13 @@ class _HowItWorksState extends State<HowItWorks> {
                                             ],
                                           ),
                                         )
-                                      : const SizedBox()
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
                           ),
                         ),
+                        const SizedBox(height: 10),
                       ],
                     ),
                   ),

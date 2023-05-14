@@ -98,9 +98,9 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
+                                  const SizedBox(height: 3),
                                   const Text(
-                                    "Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. On Fairtalk, we simply let the majority vote & decide everything. By creating & voting submissions, you're deciding which new features should be implemented or removed from our platform.",
+                                    "Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. By creating submissions, you're deciding which new features should be implemented or removed from our platform.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
@@ -108,16 +108,16 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   ),
                                   const SizedBox(height: 15),
                                   const Text(
-                                    "When can I create submissions?",
+                                    "How do I create a submission?",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
+                                  const SizedBox(height: 3),
                                   const Text(
-                                    "Submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate and vote before releasing this important feature. You can always track the current amount of verified users by clicking on the button below.",
+                                    "Creating submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate and vote before releasing this important feature. You can always track the current amount of verified users by clicking on the button below.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,

@@ -198,7 +198,10 @@ class SubmissionsState extends State<Submissions>
                           [
                             Column(
                               children: [
-                                const SizedBox(height: 10),
+                                _PostTabScreen(
+                                    filter: filter,
+                                    onLoadMore: initScrollControllerListener,
+                                    durationInDay: durationInDay),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -252,10 +255,7 @@ class SubmissionsState extends State<Submissions>
                                     ),
                                   ],
                                 ),
-                                _PostTabScreen(
-                                    filter: filter,
-                                    onLoadMore: initScrollControllerListener,
-                                    durationInDay: durationInDay)
+                                const SizedBox(height: 10)
                               ],
                             ),
                           ],
