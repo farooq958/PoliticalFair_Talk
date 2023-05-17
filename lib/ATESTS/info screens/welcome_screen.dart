@@ -131,7 +131,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 topRight: Radius.circular(75),
                               ),
                             ),
-                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(bottom: 10),
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height -
                                         safePadding >=

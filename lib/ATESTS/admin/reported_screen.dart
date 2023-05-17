@@ -240,12 +240,12 @@ class _ReportScreenState extends State<ReportScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 8, right: 8, left: 8),
+                      padding: const EdgeInsets.only(top: 8, right: 6, left: 6),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 35,
+                            width: 36,
                             height: 35,
                             child: Material(
                               shape: const CircleBorder(),

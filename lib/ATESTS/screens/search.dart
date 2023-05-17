@@ -308,7 +308,7 @@ class _SearchState extends State<Search> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          width: 35,
+                                          width: 36,
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
@@ -1791,7 +1791,7 @@ class _SearchState extends State<Search> {
                                           ],
                                         ),
                                         SizedBox(
-                                          width: 35,
+                                          width: 36,
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
@@ -2939,13 +2939,13 @@ class _SearchState extends State<Search> {
                                                                                       : const CircleAvatar(backgroundColor: Colors.grey, backgroundImage: AssetImage('assets/avatarFT.jpg')),
                                                                                   Positioned(
                                                                                     bottom: 0,
-                                                                                    right: 4,
+                                                                                    right: 3,
                                                                                     child: Row(
                                                                                       children: [
                                                                                         userListProvider.searchUserList[index].profileFlag == true
                                                                                             ? SizedBox(
-                                                                                                width: 15.5,
-                                                                                                height: 7.7,
+                                                                                                width: 20,
+                                                                                                height: 10,
                                                                                                 child: Image.asset('icons/flags/png/${userListProvider.searchUserList[index].aaCountry}.png', package: 'country_icons'),
                                                                                               )
                                                                                             : Row()
@@ -3004,7 +3004,7 @@ class _SearchState extends State<Search> {
                                                                           ),
                                                                           userListProvider.searchUserList[index].UID != user?.UID
                                                                               ? SizedBox(
-                                                                                  width: 35,
+                                                                                  width: 36,
                                                                                   height: 35,
                                                                                   child: Material(
                                                                                     color: Colors.transparent,

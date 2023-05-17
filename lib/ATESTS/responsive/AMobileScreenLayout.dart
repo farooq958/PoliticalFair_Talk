@@ -73,7 +73,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     Provider.of<PostProvider>(context, listen: false).startScrollListener();
     Provider.of<PollsProvider>(context, listen: false).startScrollListener();
     Provider.of<BlockListProvider>(context, listen: false);
-    // isLoading = true;
+    isLoading = true;
     // _page = int.parse(widget.s);
     if (widget.pageIndex != null) {
       _page = widget.pageIndex!;
@@ -196,8 +196,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
     //////////////////////////////////////////////////////////////////////
     // midnightTimer();
-
-    debugPrint("Home loading ${isLoading}");
   }
 
   // midnightTimer() async {
@@ -320,7 +318,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const SizedBox(
-                                        width: 35,
+                                        width: 36,
                                         height: 35,
                                         child: Material(
                                           shape: CircleBorder(),
@@ -522,7 +520,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                         ],
                                       ),
                                       const SizedBox(
-                                        width: 35,
+                                        width: 36,
                                         height: 35,
                                         child: Icon(Icons.filter_list,
                                             color: Color.fromARGB(

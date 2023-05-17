@@ -103,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         SizedBox(
-                          width: 35,
+                          width: 36,
                           height: 35,
                           child: Material(
                             shape: const CircleBorder(),
@@ -808,7 +808,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         left: 12, top: 17, bottom: 17),
                                     child: Row(
                                       children: [
-                                        const Icon(Icons.help_outline,
+                                        const Icon(Icons.info_outline,
                                             size: 23, color: Colors.black),
                                         Container(width: 15),
                                         const Text(
@@ -1138,7 +1138,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: const Color.fromARGB(255, 245, 245, 245),
                 elevation: 2,
                 child: Container(
-                  height: 35,
+                  height: 40,
                   color: Colors.transparent,
                   padding: const EdgeInsets.only(
                       top: 2, bottom: 2, right: 10, left: 10),
@@ -1163,12 +1163,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               });
                             },
                             child: const Padding(
-                              padding: EdgeInsets.only(top: 6.0, bottom: 6),
+                              padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
                                 'Data Privacy',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 11.5,
+                                    fontSize: 12.5,
                                     color: Colors.black,
                                     letterSpacing: 0.3,
                                     fontWeight: FontWeight.w500),
@@ -1179,9 +1179,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(),
                       SizedBox(
-                        height: 27,
+                        height: 31,
                         child: Image.asset(
-                          'assets/bottomIconSettings5.png',
+                          'assets/bottomIconSettingsBlack(1).png',
+                          opacity: const AlwaysStoppedAnimation(.6),
                         ),
                       ),
                       const SizedBox(),
@@ -1205,12 +1206,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               });
                             },
                             child: const Padding(
-                              padding: EdgeInsets.only(top: 6.0, bottom: 6),
+                              padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
                                 'Terms of Use',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 11.5,
+                                    fontSize: 12.5,
                                     color: Colors.black,
                                     letterSpacing: 0.3,
                                     fontWeight: FontWeight.w500),

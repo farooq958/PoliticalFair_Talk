@@ -168,7 +168,6 @@ class _CommentCardPollState extends State<CommentCardPoll> {
       if (res == "success") {
         // FirestoreMethods().commentCounter(widget.pollId, 'poll', false);
         // commentReplyProvider.deleteUserComment(commentId);
-
       } else {}
     } catch (e) {
       //
@@ -436,13 +435,13 @@ class _CommentCardPollState extends State<CommentCardPoll> {
                                     ),
                               Positioned(
                                 bottom: 0,
-                                right: 2.8,
+                                right: 3,
                                 child: Row(
                                   children: [
                                     _userProfile?.profileFlag == true
                                         ? SizedBox(
-                                            width: 15.5,
-                                            height: 7.7,
+                                            width: 20,
+                                            height: 10,
                                             child: Image.asset(
                                                 'icons/flags/png/${_userProfile?.aaCountry}.png',
                                                 package: 'country_icons'))
@@ -1859,13 +1858,13 @@ class _CommentCardPollState extends State<CommentCardPoll> {
                                     ),
                               Positioned(
                                 bottom: 0,
-                                right: 2.8,
+                                right: 3,
                                 child: Row(
                                   children: [
                                     _userProfile?.profileFlag == true
                                         ? SizedBox(
-                                            width: 15.5,
-                                            height: 7.7,
+                                            width: 20,
+                                            height: 10,
                                             child: Image.asset(
                                                 'icons/flags/png/${_userProfile?.aaCountry}.png',
                                                 package: 'country_icons'))

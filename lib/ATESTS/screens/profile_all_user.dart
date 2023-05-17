@@ -1112,7 +1112,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                 padding: const EdgeInsets.only(
                                                   left: 6,
                                                 ),
-                                                width: 35,
+                                                width: 36,
                                                 height: 20,
                                                 color: Colors.transparent,
                                                 child: Stack(

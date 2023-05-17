@@ -114,7 +114,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width: 35,
+                                  width: 36,
                                   height: 35,
                                   child: Material(
                                     shape: const CircleBorder(),
@@ -652,7 +652,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                   ],
                                 ),
                                 SizedBox(
-                                  width: 35,
+                                  width: 36,
                                   height: 35,
                                   child: Material(
                                     shape: const CircleBorder(),

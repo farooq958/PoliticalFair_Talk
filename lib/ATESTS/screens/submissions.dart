@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:aft/ATESTS/screens/statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../info screens/submissions_info.dart';
 import '../provider/post_provider.dart';
 import '../provider/user_provider.dart';
 import '../utils/utils.dart';
@@ -131,7 +132,7 @@ class SubmissionsState extends State<Submissions>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
                                 child: Material(
                                   shape: const CircleBorder(),
@@ -157,22 +158,30 @@ class SubmissionsState extends State<Submissions>
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 0.3)),
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
+                                // color: Colors.blue,
                                 child: Material(
                                   shape: const CircleBorder(),
                                   color: Colors.white,
                                   child: InkWell(
-                                    customBorder: const CircleBorder(),
-                                    splashColor: Colors.grey.withOpacity(0.5),
-                                    onTap: () {
-                                      showSnackBar(
-                                          'Creating a submission is currently unavailable. Read "What are submissions?" for more info.',
-                                          context);
-                                    },
-                                    child: const Icon(Icons.create,
-                                        color: Color.fromARGB(255, 80, 80, 80)),
-                                  ),
+                                      customBorder: const CircleBorder(),
+                                      splashColor: Colors.grey.withOpacity(0.5),
+                                      onTap: () {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 50),
+                                            () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SubmissionInfo()),
+                                          );
+                                        });
+                                      },
+                                      child: const Icon(Icons.help_outline,
+                                          color:
+                                              Color.fromARGB(255, 80, 80, 80))),
                                 ),
                               ),
                             ],
@@ -189,239 +198,64 @@ class SubmissionsState extends State<Submissions>
                           [
                             Column(
                               children: [
-                                const SizedBox(height: 12),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0),
-                                  child: PhysicalModel(
-                                    color: Colors.white,
-                                    elevation: 3,
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: Colors.white,
-                                        // border: Border.all(
-                                        //     width: 2,
-                                        //     color: const Color.fromARGB(255, 36, 64, 101)),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                isHowSubWork = !isHowSubWork;
-                                              });
-                                            },
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6,
-                                                      horizontal: 6),
+                                _PostTabScreen(
+                                    filter: filter,
+                                    onLoadMore: initScrollControllerListener,
+                                    durationInDay: durationInDay),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    PhysicalModel(
+                                      color: Colors.blueAccent,
+                                      elevation: 3,
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Material(
+                                        color: Colors.blueAccent,
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: InkWell(
+                                          splashColor:
+                                              Colors.black.withOpacity(0.3),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          onTap: () {
+                                            showSnackBar(
+                                                'Action failed. Click on the "Question Mark" icon to find out why.',
+                                                context);
+                                          },
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              padding: const EdgeInsets.only(
+                                                  left: 25, right: 25),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  const Text(
-                                                    "What are submissions?",
+                                                    MainAxisAlignment.center,
+                                                children: const [
+                                                  Icon(Icons.create,
+                                                      color: Colors.white,
+                                                      size: 19),
+                                                  SizedBox(width: 10),
+                                                  Text(
+                                                    "Create a Submission",
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 30, 30, 30),
-                                                      letterSpacing: 0.5,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 16,
-                                                    ),
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        letterSpacing: 1),
                                                   ),
-                                                  Icon(
-                                                      isHowSubWork
-                                                          ? Icons
-                                                              .keyboard_arrow_up
-                                                          : Icons
-                                                              .keyboard_arrow_down,
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255, 30, 30, 30),
-                                                      size: 28)
                                                 ],
                                               ),
                                             ),
                                           ),
-                                          isHowSubWork
-                                              ? Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(horizontal: 6),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SizedBox(height: 4),
-                                                      Text(
-                                                        "Summary",
-                                                        // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          letterSpacing: 0.3,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 2),
-                                                      Text(
-                                                        "On other platforms, most decisions are taken by a few individuals sitting around a table during a board meeting. On Fairtalk, we let our users vote and decide everything. When you create a submission, other users will be given a total of 30 days to vote on it. Once the 30 days have passed, the submission that received the highest score will become the new feature that will be developed and implemented into our platform.",
-                                                        // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          letterSpacing: 0.3,
-                                                        ),
-                                                      ),
-                                                      // const SizedBox(
-                                                      //     height: 15),
-                                                      // const Text(
-                                                      //   "When you create a submission, you're deciding which features should be implemented or removed from our platform.",
-                                                      //   // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                      //   textAlign:
-                                                      //       TextAlign.left,
-                                                      //   style: TextStyle(
-                                                      //     letterSpacing: 0.3,
-                                                      //   ),
-                                                      // ),
-                                                      // SizedBox(height: 15),
-                                                      // Text(
-                                                      //   "How do submissions work?",
-                                                      //   // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                      //   textAlign:
-                                                      //       TextAlign.left,
-                                                      //   style: TextStyle(
-                                                      //     letterSpacing: 0.3,
-                                                      //     fontWeight:
-                                                      //         FontWeight.w500,
-                                                      //   ),
-                                                      // ),
-                                                      // const SizedBox(height: 2),
-                                                      // const Text(
-                                                      //   "The moment you successfully create a submission, it'll immediately get listed on this screen for 30 days. During that time, other verified users will be able to cast votes on your submission. Once the 30 days have passed, the submission that received the highest score will become the newest feature that will be developed/implemented into our platform.",
-                                                      //   // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                      //   textAlign:
-                                                      //       TextAlign.left,
-                                                      //   style: TextStyle(
-                                                      //     letterSpacing: 0.3,
-                                                      //   ),
-                                                      // ),
-
-                                                      SizedBox(height: 15),
-                                                      Text(
-                                                        "When will I be able to create a submission?",
-                                                        // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          letterSpacing: 0.3,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(height: 2),
-                                                      Text(
-                                                        "Since Fairtalk is completely new, submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate and vote before releasing a critical feature like this. You can always track the current amount of verified users by clicking on the button below.",
-                                                        // "As soon as you create a message or a poll, other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the message & poll that received the highest scores will get added to Fairtalk's Archives.",
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          letterSpacing: 0.3,
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 15),
-                                                      PhysicalModel(
-                                                        elevation: 2.5,
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                        child: Material(
-                                                          color:
-                                                              Colors.blueAccent,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(30),
-                                                          child: InkWell(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        50),
-                                                            splashColor: Colors
-                                                                .black
-                                                                .withOpacity(
-                                                                    0.3),
-                                                            onTap: () {
-                                                              Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          150),
-                                                                  () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .push(
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              const Statistics()),
-                                                                );
-                                                              });
-                                                            },
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          10,
-                                                                      vertical:
-                                                                          9),
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              // height: 40,
-                                                              // width: 100,
-                                                              child: Center(
-                                                                child: Text(
-                                                                  'Track Users',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          15,
-                                                                      letterSpacing:
-                                                                          0.5),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 15),
-                                                    ],
-                                                  ),
-                                                )
-                                              : Row(),
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                _PostTabScreen(
-                                    filter: filter,
-                                    onLoadMore: initScrollControllerListener,
-                                    durationInDay: durationInDay)
+                                const SizedBox(height: 10)
                               ],
                             ),
                           ],

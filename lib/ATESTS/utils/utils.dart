@@ -11,6 +11,7 @@ import '../authentication/signup.dart';
 import '../camera/camera_screen.dart';
 import '../info screens/add_post_rules.dart';
 import '../info screens/how_it_works.dart';
+import '../info screens/submissions_info.dart';
 import '../info screens/terms_conditions.dart';
 import '../info screens/verification_fail.dart';
 import '../info screens/verification_success.dart';
@@ -2257,7 +2258,7 @@ scoreDialogMessage({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The message that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives.",
+                      "The message that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2381,7 +2382,7 @@ scoreDialogPoll({required BuildContext context}) {
                         ),
                         SizedBox(height: 6),
                         Text(
-                          'Total # of votes received',
+                          'Total votes received',
                           style: TextStyle(
                               fontSize: 15,
                               color: darkBlue,
@@ -2397,7 +2398,7 @@ scoreDialogPoll({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The poll that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives.",
+                      "The poll that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,

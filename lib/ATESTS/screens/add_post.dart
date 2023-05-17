@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:core';
-import 'dart:developer';
 import 'dart:io';
-
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -1375,7 +1373,7 @@ class _AddPostState extends State<AddPost> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 35,
+                                width: 36,
                                 height: 35,
                                 child: Material(
                                   shape: const CircleBorder(),
@@ -3115,7 +3113,7 @@ class _AddPostState extends State<AddPost> {
                                                 });
                                               },
                                               child: SizedBox(
-                                                height: 38,
+                                                height: 40,
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   padding:
@@ -3314,7 +3312,8 @@ class _AddPostState extends State<AddPost> {
                                                     focusedBorder:
                                                         UnderlineInputBorder(
                                                       borderSide: BorderSide(
-                                                          color: Colors.blue,
+                                                          color:
+                                                              Colors.blueAccent,
                                                           width: 2),
                                                     ),
                                                     contentPadding:
@@ -3427,8 +3426,8 @@ class _AddPostState extends State<AddPost> {
                                                         OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
-                                                              color:
-                                                                  Colors.blue,
+                                                              color: Colors
+                                                                  .blueAccent,
                                                               width: 2.0),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -5083,7 +5082,8 @@ class _AddPostState extends State<AddPost> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               50),
-                                                      splashColor: Colors.blue
+                                                      splashColor: Colors
+                                                          .blueAccent
                                                           .withOpacity(0.3),
                                                       onTap: () {
                                                         Future.delayed(

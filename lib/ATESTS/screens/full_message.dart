@@ -1737,14 +1737,14 @@ class _FullMessageState extends State<FullMessage> {
                                                             ),
                                                       Positioned(
                                                         bottom: 0,
-                                                        right: 2.8,
+                                                        right: 3,
                                                         child: Row(
                                                           children: [
                                                             _userProfile?.profileFlag ==
                                                                     true
                                                                 ? SizedBox(
-                                                                    width: 15.5,
-                                                                    height: 7.7,
+                                                                    width: 20,
+                                                                    height: 10,
                                                                     child: Image.asset(
                                                                         'icons/flags/png/${_userProfile?.aaCountry}.png',
                                                                         package:
@@ -2021,7 +2021,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 1 || _post.tagsLowerCase?.length == 2 || _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(
@@ -2045,7 +2045,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 2 || _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(
@@ -2069,7 +2069,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                                 _post.tagsLowerCase?.length == 3
                                                                                     ? Row(
                                                                                         children: [
-                                                                                          const SizedBox(width: 35),
+                                                                                          const SizedBox(width: 36),
                                                                                           const Text(
                                                                                             '•',
                                                                                             style: TextStyle(
@@ -2777,14 +2777,14 @@ class _FullMessageState extends State<FullMessage> {
                                                                       ""
                                                               ? Positioned(
                                                                   bottom: 0,
-                                                                  right: 2.8,
+                                                                  right: 3,
                                                                   child: Row(
                                                                     children: [
                                                                       SizedBox(
                                                                           width:
-                                                                              15.5,
+                                                                              20,
                                                                           height:
-                                                                              7.7,
+                                                                              10,
                                                                           child: Image.asset(
                                                                               'icons/flags/png/${snap?.aaCountry}.png',
                                                                               package: 'country_icons'))
