@@ -16,9 +16,13 @@ import 'filter_arrays.dart';
 class Countries extends StatefulWidget {
   final durationInDay;
   final int removeFilterOptions;
+  final int pageIndex;
 
   const Countries(
-      {this.durationInDay, required this.removeFilterOptions, super.key});
+      {this.durationInDay,
+      required this.removeFilterOptions,
+      required this.pageIndex,
+      super.key});
 
   @override
   State<Countries> createState() => _CountriesState();
@@ -36,7 +40,12 @@ class _CountriesState extends State<Countries> {
   void initState() {
     super.initState();
     // getValue();
+    if (widget.pageIndex == 0 || widget.pageIndex == 1) {
+      twoValue = 'All Days';
+      two1Value = 'All Days';
+    }
     getValueOne();
+
     getValue1();
     final filterProvider = Provider.of<FilterProvider>(context, listen: false);
     selectedCountryIndex = short.indexOf(filterProvider.countryCode);
@@ -108,7 +117,6 @@ class _CountriesState extends State<Countries> {
     setState(() {
       selectedCountryIndex = countryIndex;
       prefs.setInt('countryRadio', selectedCountryIndex);
-
     });
   }
 
@@ -116,8 +124,18 @@ class _CountriesState extends State<Countries> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('selected_radio1') != null) {
       setState(() {
-        twoValue = prefs.getString('selected_radio1')!;
-        debugPrint("value two $twoValue");
+        String value2 = prefs.getString('selected_radio1')!;
+
+        if (value2.isNotEmpty) {
+          twoValue = value2;
+          if (widget.pageIndex == 2) {
+            if (twoValue == 'All Days') {
+              twoValue = '≤ 7 Days';
+            }
+          }
+        }
+
+        debugPrint("value two check $twoValue   1 ${two1Value}");
       });
     }
   }
@@ -134,7 +152,10 @@ class _CountriesState extends State<Countries> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('selected_radio') != null) {
       setState(() {
-        oneValue = prefs.getString('selected_radio')!;
+        String value1 = prefs.getString('selected_radio')!;
+        if (value1.isNotEmpty) {
+          oneValue = value1;
+        }
         debugPrint("value one $oneValue");
       });
     }
@@ -490,6 +511,7 @@ class _CountriesState extends State<Countries> {
                                 itemBuilder: (context, index) =>
                                     NoRadioListTile<String>(
                                         type: 'one value',
+                                        pageIndex: widget.pageIndex,
                                         value: one[index],
                                         durationInDay: widget.durationInDay,
                                         groupValue: filterProvider.oneValue,
@@ -578,8 +600,14 @@ class _CountriesState extends State<Countries> {
                           ? Expanded(
                               child: ListView.separated(
                                 itemCount: oneValue != 'Most Recent'
-                                    ? two.length
-                                    : two1.length,
+                                    ? widget.pageIndex == 0 ||
+                                            widget.pageIndex == 1
+                                        ? twoHome.length
+                                        : two.length
+                                    : widget.pageIndex == 0 ||
+                                            widget.pageIndex == 1
+                                        ? twoHome1.length
+                                        : two1.length,
                                 controller: ScrollController(),
                                 separatorBuilder: (_, __) =>
                                     const SizedBox(height: 6),
@@ -588,14 +616,27 @@ class _CountriesState extends State<Countries> {
                                   type: 'two value',
                                   durationInDay: widget.durationInDay,
                                   value: oneValue != 'Most Recent'
-                                      ? two[index]
-                                      : two1[index],
+                                      ? widget.pageIndex == 0 ||
+                                              widget.pageIndex == 1
+                                          ? twoHome[index]
+                                          : two[index]
+                                      : widget.pageIndex == 0 ||
+                                              widget.pageIndex == 1
+                                          ? twoHome1[index]
+                                          : two1[index],
                                   groupValue: oneValue != 'Most Recent'
                                       ? twoValue
                                       : two1Value,
                                   leading: oneValue != 'Most Recent'
-                                      ? two[index]
-                                      : two1[index],
+                                      ? widget.pageIndex == 0 ||
+                                              widget.pageIndex == 1
+                                          ? twoHome[index]
+                                          : two[index]
+                                      : widget.pageIndex == 0 ||
+                                              widget.pageIndex == 1
+                                          ? twoHome1[index]
+                                          : two1[index],
+                                  pageIndex: widget.pageIndex,
                                   onChanged: (valueo) {
                                     // onChanged: (valueo) => setValueOne(valueo.toString()),
                                     if (oneValue != "Most Recent") {
@@ -642,6 +683,7 @@ class NoRadioListTile<T> extends StatefulWidget {
   final String type;
   final durationInDay;
   final ValueChanged<T?> onChanged;
+  final int pageIndex;
 
   const NoRadioListTile({
     super.key,
@@ -651,6 +693,7 @@ class NoRadioListTile<T> extends StatefulWidget {
     required this.onChanged,
     required this.leading,
     required this.durationInDay,
+    required this.pageIndex,
   });
 
   @override
@@ -671,7 +714,10 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
             Provider.of<FilterProvider>(context, listen: false);
         if (widget.type == 'one value') {
           if (widget.value.toString() == 'Most Recent') {
-            filterProvider.setTwoValue('≤ 7 Days');
+            filterProvider.setTwoValue(
+                widget.pageIndex == 0 || widget.pageIndex == 1
+                    ? 'All Days'
+                    : '≤ 7 Days');
           }
           filterProvider.setOneValue(widget.value.toString());
         } else if (widget.type == 'two value') {

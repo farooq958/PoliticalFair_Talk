@@ -16,6 +16,20 @@ final List<String> two = [
   '≤ 6 Days',
   '≤ 7 Days',
 ];
+
+List<String> twoHome1 = [
+  'All Days',
+];
+final List<String> twoHome = [
+  'All Days',
+  '≤ 1 Day',
+  '≤ 2 Days',
+  '≤ 3 Days',
+  '≤ 4 Days',
+  '≤ 5 Days',
+  '≤ 6 Days',
+  '≤ 7 Days',
+];
 final List<String> short = [
   'af',
   'al',

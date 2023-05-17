@@ -427,23 +427,23 @@ class FirestoreMethods {
                 lastDay: time - n + 6,
               );
               if (type == "posts") {
-                FirebaseFirestore.instance
-                    .collection('weeklyKeywordsPost')
-                    .doc("week ${time - n}-${time - n + 6}")
-                    .collection(global == "true"
-                        ? "globallyPost"
-                        : "byCountryWeeklyPost")
-                    .doc(global == "true" ? element : "$element-$country")
-                    .set(_keyword.toJson());
+                // FirebaseFirestore.instance
+                //     .collection('weeklyKeywordsPost')
+                //     .doc("week ${time - n}-${time - n + 6}")
+                //     .collection(global == "true"
+                //         ? "globallyPost"
+                //         : "byCountryWeeklyPost")
+                //     .doc(global == "true" ? element : "$element-$country")
+                //     .set(_keyword.toJson());
               } else {
-                FirebaseFirestore.instance
-                    .collection('weeklyKeywordsPolls')
-                    .doc("week ${time - n}-${time - n + 6}")
-                    .collection(global == "true"
-                        ? "globallyPolls"
-                        : "byCountryWeeklyPolls")
-                    .doc(global == "true" ? element : "$element-$country")
-                    .set(_keyword.toJson());
+                // FirebaseFirestore.instance
+                //     .collection('weeklyKeywordsPolls')
+                //     .doc("week ${time - n}-${time - n + 6}")
+                //     .collection(global == "true"
+                //         ? "globallyPolls"
+                //         : "byCountryWeeklyPolls")
+                //     .doc(global == "true" ? element : "$element-$country")
+                //     .set(_keyword.toJson());
               }
             }
           } else {

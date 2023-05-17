@@ -1810,6 +1810,7 @@ class _SearchState extends State<Search> {
                                                     MaterialPageRoute(
                                                       builder: (context) =>
                                                           Countries(
+                                                            pageIndex: 2,
                                                               durationInDay: widget
                                                                   .durationInDay,
                                                               removeFilterOptions: filterProvider

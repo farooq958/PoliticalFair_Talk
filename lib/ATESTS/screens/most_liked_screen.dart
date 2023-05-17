@@ -671,6 +671,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 durationInDay:
                                                     widget.durationInDay,
                                                 removeFilterOptions: 2,
+                                                pageIndex: 1,
                                               ),
                                             ),
                                           ).then((value) async {

@@ -22,8 +22,8 @@ class CreatePageProvider extends ChangeNotifier {
 
   Future<void> getkeywordList(String global, String countryCode, durationInDay,
       {bool? getNextList1}) async {
+    debugPrint("durations $durationInDay");
     dynamic handleQueryResult(QuerySnapshot querySnapshot) {
-      // var datalist = querySnapshot.docs;
       list.clear();
 
       querySnapshot.docs.forEach((element) {
@@ -42,17 +42,37 @@ class CreatePageProvider extends ChangeNotifier {
       }
       // durationInDay = await DurationProvider.getDurationInDays();
 
+      // FirebaseFirestore.instance
+      //     .collection('keywords')
+      //     .doc(durationInDay)
+      //     .collection('globalPosts')
+      //     .get()
+      //     .then((value) {
+      //   debugPrint("keyword working ");
+      //   for (var i in value.docs) {
+      //     debugPrint("keyword working ${i}");
+      //   }
+      // });
+
       var query1 = (global == "true"
-              ? FirebaseFirestore.instance.collectionGroup('globallyPost')
-              : FirebaseFirestore.instance
-                  .collectionGroup('byCountryWeeklyPost')
-                  .where("country", isEqualTo: countryCode))
-          .where("lastDay", isEqualTo: durationInDay)
-          .where("global", isEqualTo: global)
-          .orderBy("length", descending: true);
+          // ? FirebaseFirestore.instance.collectionGroup('globallyPost')
+          ? FirebaseFirestore.instance
+              .collection('keywords')
+              .doc('$durationInDay')
+              .collection('globalPosts')
+          : FirebaseFirestore.instance
+              .collection('keywordsByCountry')
+              .doc('$durationInDay')
+              .collection('countryByPosts')
+              .where("country", isEqualTo: countryCode));
+      // .where("lastDay", isEqualTo: durationInDay)
+
+      //  .where("global", isEqualTo: global)
+      //   .orderBy("length", descending: true);
+      debugPrint("query1 working");
 
       var snap = await query1.count().get();
-
+      debugPrint("query1 $snap");
       // var snap = twoValue == "All Days"
       //     ? await query1.count().get()
       //     : await query.count().get();
@@ -143,13 +163,15 @@ class CreatePageProvider extends ChangeNotifier {
       }
       // durationInDay = await DurationProvider.getDurationInDays();
       var query1 = (global == "true"
-              ? FirebaseFirestore.instance.collectionGroup('globallyPolls')
-              : FirebaseFirestore.instance
-                  .collectionGroup('byCountryWeeklyPolls')
-                  .where("country", isEqualTo: countryCode))
-          .where("lastDay", isEqualTo: durationInDay)
-          .where("global", isEqualTo: global)
-          .orderBy("length", descending: true);
+          ? FirebaseFirestore.instance
+              .collection('keywords')
+              .doc('$durationInDay')
+              .collection('globalPolls')
+          : FirebaseFirestore.instance
+              .collection('keywordsByCountry')
+              .doc('$durationInDay')
+              .collection('countryByPolls')
+              .where("country", isEqualTo: countryCode));
       var snap = await query1.count().get();
 
       if (getNextListPoll != null) {
