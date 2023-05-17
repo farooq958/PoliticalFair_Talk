@@ -35,7 +35,8 @@ class SearchPageProvider extends ChangeNotifier {
   Future<void> getkeywordList(
       String global, String countryCode, durationInDay, String twoValue,
       {bool? getNextList1}) async {
-    debugPrint("global $global  contryCode $countryCode ,twoValue $twoValue");
+    debugPrint(
+        "global $global  contryCode $countryCode ,twoValue $twoValue deucati$durationInDay");
     // var query = (twoValue == "All Days"
     //     ? (global == "true"
     //             ? FirebaseFirestore.instance.collectionGroup('globallyPost')

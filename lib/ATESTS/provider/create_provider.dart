@@ -23,7 +23,7 @@ class CreatePageProvider extends ChangeNotifier {
   Future<void> getkeywordList(String global, String countryCode, durationInDay,
       {bool? getNextList1}) async {
     dynamic handleQueryResult(QuerySnapshot querySnapshot) {
-      // var datalist = querySnapshot.docs;
+      debugPrint("durations ${durationInDay}");
       list.clear();
 
       querySnapshot.docs.forEach((element) {
@@ -52,7 +52,7 @@ class CreatePageProvider extends ChangeNotifier {
           .orderBy("length", descending: true);
 
       var snap = await query1.count().get();
-
+      debugPrint("query1 $snap");
       // var snap = twoValue == "All Days"
       //     ? await query1.count().get()
       //     : await query.count().get();
