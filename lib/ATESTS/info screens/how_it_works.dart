@@ -226,7 +226,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   "• Which keywords or subjects should be trending."),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "• Which new features should be implemented or removed from our platform. "),
+                                                  "• Which new features should be implemented or removed from our platform."),
                                               const SizedBox(height: 3),
                                               const SizedBox(height: 15),
                                               const Text(
@@ -613,6 +613,9 @@ class _HowItWorksState extends State<HowItWorks> {
                                               const SizedBox(height: 3),
                                               const Text(
                                                   "* The score determines which messages will be seen by everyone else."),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                  "Since voting plays a crucial role into our platform's functionalities, we had to build a unique account verification system that helps eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free."),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "Summary",
