@@ -5195,10 +5195,6 @@ class _AddPostState extends State<AddPost> {
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(5),
-                                    // border: Border.all(
-                                    //     color:
-                                    //         const Color.fromARGB(255, 210, 210, 210),
-                                    //     width: 1.5),
                                   ),
                                   child: Consumer<CreatePageProvider>(builder:
                                       (context, createProvider, child) {
@@ -5734,7 +5730,7 @@ class _AddPostState extends State<AddPost> {
                                                       ),
                                                     ),
                                                   )
-                                            : Row(),
+                                            : const Row(),
                                         const SizedBox(
                                           height: 4,
                                         ),
@@ -5878,14 +5874,14 @@ class _AddPostState extends State<AddPost> {
                                                               widget
                                                                   .durationInDay &&
                                                           global == 'false'
-                                                  ? Column(
+                                                  ? const Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: const [
+                                                      children: [
                                                         Text(
                                                           'WAIT TIME',
                                                           style: TextStyle(
