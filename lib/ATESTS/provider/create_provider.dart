@@ -151,9 +151,7 @@ class CreatePageProvider extends ChangeNotifier {
           .where("global", isEqualTo: global)
           .orderBy("length", descending: true);
       var snap = await query1.count().get();
-      // var snap = twoValue == "All Days"
-      //     ? await query.count().get()
-      //     : await query1.count().get();
+
       if (getNextListPoll != null) {
         if (getNextListPoll) {
           pollKeywordListCount += 1;
