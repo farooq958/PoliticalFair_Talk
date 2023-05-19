@@ -5730,7 +5730,7 @@ class _AddPostState extends State<AddPost> {
                                                       ),
                                                     ),
                                                   )
-                                            : const Row(),
+                                            : const SizedBox(),
                                         const SizedBox(
                                           height: 4,
                                         ),
@@ -5874,14 +5874,14 @@ class _AddPostState extends State<AddPost> {
                                                               widget
                                                                   .durationInDay &&
                                                           global == 'false'
-                                                  ? const Column(
+                                                  ? Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           'WAIT TIME',
                                                           style: TextStyle(

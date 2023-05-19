@@ -6,15 +6,26 @@ final List<String> one = [
 final List<String> two1 = [
   '≤ 7 Days',
 ];
+// final List<String> two = [
+//   // 'All Days',
+//   '≤ 1 Day',
+//   '≤ 2 Days',
+//   '≤ 3 Days',
+//   '≤ 4 Days',
+//   '≤ 5 Days',
+//   '≤ 6 Days',
+//   '≤ 7 Days',
+// ];
+
 final List<String> two = [
   // 'All Days',
-  '≤ 1 Day',
-  '≤ 2 Days',
-  '≤ 3 Days',
-  '≤ 4 Days',
-  '≤ 5 Days',
-  '≤ 6 Days',
   '≤ 7 Days',
+  '≤ 6 Days',
+  '≤ 5 Days',
+  '≤ 4 Days',
+  '≤ 3 Days',
+  '≤ 2 Days',
+  '≤ 1 Day',
 ];
 
 List<String> twoHome1 = [
@@ -22,13 +33,13 @@ List<String> twoHome1 = [
 ];
 final List<String> twoHome = [
   'All Days',
-  '≤ 1 Day',
-  '≤ 2 Days',
-  '≤ 3 Days',
-  '≤ 4 Days',
-  '≤ 5 Days',
-  '≤ 6 Days',
   '≤ 7 Days',
+  '≤ 6 Days',
+  '≤ 5 Days',
+  '≤ 4 Days',
+  '≤ 3 Days',
+  '≤ 2 Days',
+  '≤ 1 Day',
 ];
 final List<String> short = [
   'af',
