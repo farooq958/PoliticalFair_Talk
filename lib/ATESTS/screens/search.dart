@@ -72,13 +72,13 @@ class _SearchState extends State<Search> {
   void _getList({
     required FilterProvider filterProvider,
   }) {
-    debugPrint("all dayes value :${twoValue}");
+    debugPrint("all dayes value :$twoValue");
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,
         filterProvider.countryCode,
         filterProvider.durationInDay,
-        filterProvider.twoValue,
+        filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
       );
     } else {
       // debugPrint("Getting Polls");
@@ -87,7 +87,7 @@ class _SearchState extends State<Search> {
         filterProvider.global,
         filterProvider.countryCode,
         filterProvider.durationInDay,
-        filterProvider.twoValue,
+        filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
       );
     }
   }

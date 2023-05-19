@@ -4,6 +4,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/filter_arrays.dart';
 
 class FilterProvider extends ChangeNotifier {
+  FilterProvider() {
+    twoValueGet();
+  }
+
+  twoValueGet() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? value = prefs.getString('selected_radio1H') ?? '';
+
+    setTwoValue(value);
+    debugPrint("page value $value");
+  }
+
   bool isHome = true;
 
   bool isMostLiked = false;
@@ -163,6 +175,7 @@ class FilterProvider extends ChangeNotifier {
   }
 
   Future<void> loadFilters() async {
+    debugPrint('loadFilters working ');
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     int selectedCountryIndex = prefs.getInt('countryRadio') ?? 188;

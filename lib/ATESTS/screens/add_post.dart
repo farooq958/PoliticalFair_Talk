@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:developer';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5501,10 +5502,7 @@ class _AddPostState extends State<AddPost> {
                                                         const Duration(
                                                             milliseconds: 100),
                                                         () async {
-                                                      // setState(() {
-                                                      // createProvider.showTrendingPoll =
-                                                      //     !showTrendingPoll;
-                                                      // });
+
                                                       await createProvider
                                                           .setShowTrendingPoll(
                                                         !createProvider
@@ -5730,7 +5728,7 @@ class _AddPostState extends State<AddPost> {
                                                       ),
                                                     ),
                                                   )
-                                            : const Row(),
+                                            : Row(),
                                         const SizedBox(
                                           height: 4,
                                         ),
@@ -5874,7 +5872,7 @@ class _AddPostState extends State<AddPost> {
                                                               widget
                                                                   .durationInDay &&
                                                           global == 'false'
-                                                  ? const Column(
+                                                  ? Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
