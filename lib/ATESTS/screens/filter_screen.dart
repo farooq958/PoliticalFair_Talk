@@ -122,29 +122,36 @@ class _CountriesState extends State<Countries> {
 
   Future<void> getValueOne() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('selected_radio1') != null) {
-      setState(() {
-        String value2 = prefs.getString('selected_radio1')!;
 
-        if (value2.isNotEmpty) {
-          twoValue = value2;
-          if (widget.pageIndex == 2) {
-            if (twoValue == 'All Days') {
-              twoValue = '≤ 7 Days';
-            }
+    setState(() {
+      String value2 = '';
+      if (widget.pageIndex == 2) {
+        value2 = prefs.getString('selected_radio1') ?? "";
+      } else {
+        value2 = prefs.getString('selected_radio1H') ?? "";
+      }
+      if (value2.isNotEmpty) {
+        twoValue = value2;
+        if (widget.pageIndex == 2) {
+          if (twoValue == 'All Days') {
+            twoValue = '≤ 7 Days';
           }
         }
+      }
 
-        debugPrint("value two check $twoValue   1 ${two1Value}");
-      });
-    }
+      debugPrint("value two check $twoValue   1 $two1Value");
+    });
   }
 
   Future<void> setValueOne(String valueo) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       twoValue = valueo.toString();
-      prefs.setString('selected_radio1', twoValue);
+      if (widget.pageIndex == 2) {
+        prefs.setString('selected_radio1', twoValue);
+      } else {
+        prefs.setString('selected_radio1H', twoValue);
+      }
     });
   }
 

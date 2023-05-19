@@ -4,6 +4,7 @@ import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/screens/most_liked_screen.dart';
 import 'package:aft/ATESTS/services/firebase_notification.dart';
+import 'package:aft/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,6 +69,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     super.initState();
 
     setInitialSharedPreferrences();
+
     Provider.of<FilterProvider>(context, listen: false)
         .setDurationInDay(durationInDay);
     Provider.of<PostProvider>(context, listen: false).startScrollListener();
@@ -78,6 +80,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     if (widget.pageIndex != null) {
       _page = widget.pageIndex!;
     }
+
     if (FirebaseNotification.mostLikedNav &&
         FirebaseNotification.mostLikedPageType.isNotEmpty) {
       switch (FirebaseNotification.mostLikedPageType) {
@@ -265,6 +268,9 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     //     Provider.of<LeftTimeProvider>(context, listen: false);
 
     if (page == 0) {
+      String? value = prefs!.getString('selected_radio1H') ?? '';
+      filterProvider.setTwoValue(value);
+      debugPrint("page value $value");
       // debugPrint('page is ${page}');
       //  await filterProvider.loadFilters();
       // debugPrint('messages value outsice ${filterProvider.messages}');
@@ -278,7 +284,13 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         pollProvider.getPolls(filterProvider.twoValue, filterProvider.global,
             filterProvider.countryCode, durationInDay, filterProvider.oneValue);
       }
+    } else if (page == 2) {
+      String? value = prefs!.getString('selected_radio1') ?? '≤ 7 Days';
+      filterProvider.setTwoValue(value);
+
+      // filterProvider.setTwoValue("All Days");
     } else if (page == 3) {
+      debugPrint("page value ${page}");
       filterProvider.setAllValue();
       // filterProvider.setTwoValue("All Days");
     }
@@ -800,7 +812,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setString('selected_radio', 'Highest Score');
-    prefs.setString('selected_radio1', 'All Days');
+    // prefs.setString('selected_radio1', '≤ 7 Days');
     prefs.setString('selected_radio3', 'true');
     prefs.setString('selected_radio4', 'true');
     prefs.setInt('countryRadio', 188);

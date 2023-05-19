@@ -132,7 +132,7 @@ class _FeedScreenState extends State<FeedScreen> {
               : selectedCountryIndex
           : selectedCountryIndex];
       oneValue = prefs.getString('selected_radio') ?? '';
-      twoValue = prefs.getString('selected_radio1') ?? '';
+      twoValue = prefs.getString('selected_radio1H') ?? '';
       threeValue = prefs.getString('selected_radio2') ?? '';
       debugPrint(
           "onle value ${oneValue} two value ${twoValue} threevalue ${threeValue}");
