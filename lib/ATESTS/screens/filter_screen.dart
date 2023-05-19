@@ -126,9 +126,9 @@ class _CountriesState extends State<Countries> {
     setState(() {
       String value2 = '';
       if (widget.pageIndex == 2) {
-        value2 = prefs.getString('selected_radio1')! ?? "";
+        value2 = prefs.getString('selected_radio1') ?? "";
       } else {
-        value2 = prefs.getString('selected_radio1H')! ?? "";
+        value2 = prefs.getString('selected_radio1H') ?? "";
       }
       if (value2.isNotEmpty) {
         twoValue = value2;

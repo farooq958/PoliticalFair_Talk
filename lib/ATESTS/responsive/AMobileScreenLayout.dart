@@ -67,7 +67,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   @override
   void initState() {
     super.initState();
-    debugPrint("app initlize every time ");
+
     setInitialSharedPreferrences();
 
     Provider.of<FilterProvider>(context, listen: false)
@@ -287,7 +287,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     } else if (page == 2) {
       String? value = prefs!.getString('selected_radio1') ?? '≤ 7 Days';
       filterProvider.setTwoValue(value);
-      debugPrint("page valueff  $value");
+
       // filterProvider.setTwoValue("All Days");
     } else if (page == 3) {
       debugPrint("page value ${page}");
