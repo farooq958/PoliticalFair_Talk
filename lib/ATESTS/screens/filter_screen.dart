@@ -717,7 +717,7 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
     final isSelected = widget.value == widget.groupValue;
 
     return InkWell(
-      onTap: () {
+      onTap: () async {
         widget.onChanged(widget.value);
         debugPrint("widget value :${widget.value}");
 
@@ -732,7 +732,14 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
           }
           filterProvider.setOneValue(widget.value.toString());
         } else if (widget.type == 'two value') {
-          debugPrint("working sss ");
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+
+          if (widget.pageIndex == 2) {
+            await prefs.setString('selected_radio1', widget.value.toString());
+          } else {
+            await prefs.setString('selected_radio1H', widget.value.toString());
+          }
+
           filterProvider.setTwoValue(widget.value.toString());
         }
         if (filterProvider.messages == 'true') {

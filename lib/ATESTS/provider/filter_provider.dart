@@ -92,7 +92,7 @@ class FilterProvider extends ChangeNotifier {
   setTwoValue(String value) {
     _twoValue = value;
     notifyListeners();
-    debugPrint("two vlaue ${_twoValue}");
+    debugPrint("set two values  ${_twoValue}");
   }
 
   setDurationInDay(var value) async {
