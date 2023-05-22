@@ -72,7 +72,7 @@ class _SearchState extends State<Search> {
   void _getList({
     required FilterProvider filterProvider,
   }) {
-    debugPrint("all dayes value :$twoValue");
+    debugPrint("all dayes value :${filterProvider.twoValue}");
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,

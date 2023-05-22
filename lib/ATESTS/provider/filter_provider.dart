@@ -22,7 +22,7 @@ class FilterProvider extends ChangeNotifier {
   String _global = 'true';
   String _messages = 'true';
   String _oneValue = 'Highest Score';
-  String _twoValue = '≤ 7 Days';
+  String _twoValue = '';
   String _threeValue = '';
   String _countryCode = 'us';
   bool isAllKey = true;

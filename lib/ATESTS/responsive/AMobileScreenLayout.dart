@@ -257,6 +257,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   }
 
   void navigationTapped(int page) async {
+    debugPrint("page $page");
     FocusScope.of(context).unfocus();
     pageController.jumpToPage(page);
     final filterProvider = Provider.of<FilterProvider>(context, listen: false);
