@@ -1,8 +1,6 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 
 import '../../main.dart';
-
-import 'package:flutter/material.dart';
 
 const webScreenSize = 800;
 
@@ -29,3 +27,6 @@ const Color darkBlue = Color.fromARGB(255, 36, 64, 101);
 class FirestoreValues {
   static const String userCollection = 'users';
 }
+
+String twoValue1H = 'selected_radio1Home';
+String twoValue11 = 'selected_radio1Search';

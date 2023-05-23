@@ -13,6 +13,7 @@ import '../models/post.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
 import 'filter_arrays.dart';
@@ -132,7 +133,7 @@ class _FeedScreenState extends State<FeedScreen> {
               : selectedCountryIndex
           : selectedCountryIndex];
       oneValue = prefs.getString('selected_radio') ?? '';
-      twoValue = prefs.getString('selected_radio1H') ?? '';
+      twoValue = prefs.getString(twoValue1H) ?? '';
       threeValue = prefs.getString('selected_radio2') ?? '';
       debugPrint(
           "onle value ${oneValue} two value ${twoValue} threevalue ${threeValue}");
@@ -1156,14 +1157,15 @@ class _FeedScreenState extends State<FeedScreen> {
     );
   }
 
-  void _getPosts({
+  Future<void> _getPosts({
     required FilterProvider filterProvider,
-  }) {
+  }) async {
+    await Future.delayed(Duration.zero);
     debugPrint(
         "getPost method working one Value: ${filterProvider.oneValue} two value ${filterProvider.twoValue}");
     if (filterProvider.messages == 'true') {
       Provider.of<PostProvider>(context, listen: false).getPosts(
-          filterProvider.twoValue,
+          twoValue,
           filterProvider.global,
           filterProvider.countryCode,
           widget.durationInDay,

@@ -4,7 +4,6 @@ import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/screens/most_liked_screen.dart';
 import 'package:aft/ATESTS/services/firebase_notification.dart';
-import 'package:aft/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -269,25 +268,41 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     //     Provider.of<LeftTimeProvider>(context, listen: false);
 
     if (page == 0) {
-      String? value = prefs!.getString('selected_radio1H') ?? '';
-      filterProvider.setTwoValue(value);
-      debugPrint("page value $value");
+      // String? value = await prefs!.getString(twoValue1H);
+      // debugPrint("val8e $value");
+      // if (value != null) {
+      //   filterProvider.setTwoValue(value ?? '');
+      // }
+      // await Future.delayed(Duration(seconds: 1));
+      // String? value = prefs!.getString(twoValue1H);
+      // debugPrint("val8e $value");
+      // if (value != null) {
+      //   filterProvider.setTwoValue(value);
+      // }
+      // debugPrint("page value $value");
       // debugPrint('page is ${page}');
       //  await filterProvider.loadFilters();
       // debugPrint('messages value outsice ${filterProvider.messages}');
-      if (filterProvider.messages == 'true') {
-        // debugPrint(
-        //     'Filter Values at page change two val: ${filterProvider.twoValue}\n global: ${filterProvider.global} \n country ${filterProvider.countryCode}\n duration ${filterProvider.durationInDay}\n one val ${filterProvider.oneValue}');
-        postProvider.getPosts(filterProvider.twoValue, filterProvider.global,
-            filterProvider.countryCode, durationInDay, filterProvider.oneValue);
-      } else {
-        // debugPrint('messages value ${filterProvider.messages}');
-        pollProvider.getPolls(filterProvider.twoValue, filterProvider.global,
-            filterProvider.countryCode, durationInDay, filterProvider.oneValue);
-      }
+      // if (filterProvider.messages == 'true') {
+      //   debugPrint(
+      //       'Filter Values at page change two val: ${filterProvider.twoValue}\n global: ${filterProvider.global} \n country ${filterProvider.countryCode}\n duration ${filterProvider.durationInDay}\n one val ${filterProvider.oneValue}');
+      //   postProvider.getPosts(
+      //       value ?? filterProvider.twoValue,
+      //       filterProvider.global,
+      //       filterProvider.countryCode,
+      //       durationInDay,
+      //       filterProvider.oneValue);
+      // } else {
+      //   // debugPrint('messages value ${filterProvider.messages}');
+      //   pollProvider.getPolls(filterProvider.twoValue, filterProvider.global,
+      //       filterProvider.countryCode, durationInDay, filterProvider.oneValue);
+      // }
     } else if (page == 2) {
-      String? value = prefs!.getString('selected_radio1') ?? '≤ 7 Days';
-      filterProvider.setTwoValue(value);
+      // String? value = prefs!.getString(twoValue1);
+      // debugPrint("val8e $value");
+      // if (value != null) {
+      //   filterProvider.setTwoValue(value ?? '');
+      // }
 
       // filterProvider.setTwoValue("All Days");
     } else if (page == 3) {

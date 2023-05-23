@@ -1,3 +1,4 @@
+import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,7 @@ class FilterProvider extends ChangeNotifier {
 
   twoValueGet() async {
     final prefs = await SharedPreferences.getInstance();
-    String? value = prefs.getString('selected_radio1H') ?? '';
+    String? value = prefs.getString(twoValue1H) ?? '';
 
     setTwoValue(value);
     debugPrint("page value $value");
@@ -91,7 +92,7 @@ class FilterProvider extends ChangeNotifier {
 
   setTwoValue(String value) {
     _twoValue = value;
-    notifyListeners();
+    //notifyListeners();
     debugPrint("set two values  ${_twoValue}");
   }
 

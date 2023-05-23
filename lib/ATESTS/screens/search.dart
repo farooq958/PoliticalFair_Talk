@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../main.dart';
 import '../models/user.dart';
 import '../provider/filter_provider.dart';
 import '../provider/most_liked_key_provider.dart';
 import '../provider/search_userList.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
@@ -35,7 +37,7 @@ class _SearchState extends State<Search> {
   final _scrollController = ScrollController();
   bool loading = false;
   String oneValue = '';
-  String twoValue = '';
+  String _twoValue = '';
   String threeValue = '';
   String countryCode = "";
 
@@ -45,8 +47,8 @@ class _SearchState extends State<Search> {
   void initState() {
     super.initState();
     final filterProvider = Provider.of<FilterProvider>(context, listen: false);
+  getTwoValueLocal();
 
-    _getList(filterProvider: filterProvider);
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.offset) {
@@ -62,23 +64,47 @@ class _SearchState extends State<Search> {
             getNextList: true)
         : null;
   }
+getTwoValueLocal()async{
+  String? value = prefs!.getString(twoValue11);
+  debugPrint("val8e $value");
+  await Future.delayed(const Duration(seconds:1));
 
+    final filterProvider = Provider.of<FilterProvider>(context, listen: false);
+    setState((){
+      _twoValue=value ?? '';
+    });
+
+    filterProvider.setTwoValue(value ?? '');
+    _getList(filterProvider: filterProvider);
+
+
+}
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
   }
 
-  void _getList({
+  Future<void> _getList({
     required FilterProvider filterProvider,
-  }) {
+  }) async {
     debugPrint("all dayes value :${filterProvider.twoValue}");
+
+
+
+    String? value =await  prefs!.getString(twoValue11);
+    debugPrint("val8e $value ss $_twoValue");
+    if (value != null) {
+      filterProvider.setTwoValue(value ?? '');
+    }
+    await Future.delayed(Duration.zero);
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,
         filterProvider.countryCode,
         filterProvider.durationInDay,
-        filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
+       _twoValue
+       // filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
       );
     } else {
       // debugPrint("Getting Polls");
@@ -249,7 +275,7 @@ class _SearchState extends State<Search> {
               : selectedCountryIndex
           : selectedCountryIndex];
       oneValue = prefs.getString('selected_radio') ?? '';
-      twoValue = prefs.getString('selected_radio1') ?? '';
+      _twoValue = prefs.getString('selected_radio1') ?? '';
       threeValue = prefs.getString('selected_radio2') ?? '';
     });
   }

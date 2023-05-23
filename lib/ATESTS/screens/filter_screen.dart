@@ -5,6 +5,7 @@ import 'package:aft/ATESTS/provider/most_liked_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/provider/user_provider.dart';
+import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,7 +41,7 @@ class _CountriesState extends State<Countries> {
   void initState() {
     super.initState();
     // getValue();
-    if (widget.pageIndex == 0 || widget.pageIndex == 1) {
+    if (widget.pageIndex != 2) {
       twoValue = 'All Days';
       two1Value = 'All Days';
     }
@@ -125,33 +126,39 @@ class _CountriesState extends State<Countries> {
     setState(() {
       String value2 = '';
       if (widget.pageIndex == 2) {
-        value2 = prefs.getString('selected_radio1') ?? "";
+        debugPrint("search page ${widget.pageIndex}");
+        value2 = prefs.getString(twoValue11) ?? "";
       } else {
-        value2 = prefs.getString('selected_radio1H') ?? "";
+        debugPrint("home page ${widget.pageIndex}");
+        value2 = prefs.getString(twoValue1H) ?? "";
       }
       if (value2.isNotEmpty) {
         twoValue = value2;
         if (widget.pageIndex == 2) {
-          debugPrint("two value for chek working ${twoValue}");
-          if (twoValue == 'All Days') {
-            twoValue = '≤ 7 Days';
-          }
+          // debugPrint("two value for chek working ${twoValue}");
+          // if (twoValue == 'All Days') {
+          //   twoValue = '≤ 7 Days';
+          // }
         }
       }
-
-      debugPrint("value two check $twoValue   1 $two1Value");
     });
   }
 
   Future<void> setValueOne(String valueo) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    final filterProvider = Provider.of<FilterProvider>(context, listen: false);
     setState(() {
       twoValue = valueo.toString();
+      filterProvider.setTwoValue(valueo);
+
       if (widget.pageIndex == 2) {
-        prefs.setString('selected_radio1', twoValue);
+        prefs.setString(twoValue11, valueo);
+        debugPrint("serach page ");
       } else {
-        prefs.setString('selected_radio1H', twoValue);
+        prefs.setString(twoValue1H, valueo);
       }
+      debugPrint(
+          "value two check $valueo pageindex ${widget.pageIndex}  $two1Value");
     });
   }
 
@@ -648,10 +655,11 @@ class _CountriesState extends State<Countries> {
                                           ? twoHome1[index]
                                           : two1[index],
                                   pageIndex: widget.pageIndex,
-                                  onChanged: (valueo) {
-                                    // onChanged: (valueo) => setValueOne(valueo.toString()),
+                                  onChanged: (valueo) async {
+                                    debugPrint('selsected value  $valueo');
+
                                     if (oneValue != "Most Recent") {
-                                      setValueOne(valueo.toString());
+                                      await setValueOne(valueo.toString());
                                     }
                                   },
                                 ),
@@ -735,11 +743,14 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
 
           if (widget.pageIndex == 2) {
-            await prefs.setString('selected_radio1', widget.value.toString());
+            debugPrint('unkonwn ${widget.value}');
+            await prefs.setString(twoValue11, widget.value.toString());
           } else {
-            await prefs.setString('selected_radio1H', widget.value.toString());
+            await prefs.setString(twoValue1H, widget.value.toString());
           }
-
+          String? v1 = prefs.getString(twoValue11);
+          String? v2 = prefs.getString(twoValue1H);
+          debugPrint('selected_radio1 $v1  selected v2 $v2');
           filterProvider.setTwoValue(widget.value.toString());
         }
         if (filterProvider.messages == 'true') {
