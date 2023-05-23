@@ -5502,7 +5502,6 @@ class _AddPostState extends State<AddPost> {
                                                         const Duration(
                                                             milliseconds: 100),
                                                         () async {
-
                                                       await createProvider
                                                           .setShowTrendingPoll(
                                                         !createProvider
@@ -5728,7 +5727,7 @@ class _AddPostState extends State<AddPost> {
                                                       ),
                                                     ),
                                                   )
-                                            : Row(),
+                                            : const SizedBox(),
                                         const SizedBox(
                                           height: 4,
                                         ),
@@ -5879,7 +5878,7 @@ class _AddPostState extends State<AddPost> {
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           'WAIT TIME',
                                                           style: TextStyle(

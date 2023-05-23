@@ -91,7 +91,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                 children: [
                                   const SizedBox(height: 4),
                                   const Text(
-                                    "Social media should work like a democracy, not like a dictatorship.",
+                                    "On Fairtalk, the majority decides the direction of the platform.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
@@ -99,8 +99,15 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                     ),
                                   ),
                                   const SizedBox(height: 3),
+                                  // const Text(
+                                  //   "Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. By creating submissions, you're deciding which new features should be implemented or removed from our platform.",
+                                  //   textAlign: TextAlign.left,
+                                  //   style: TextStyle(
+                                  //     letterSpacing: 0.3,
+                                  //   ),
+                                  // ),
                                   const Text(
-                                    "Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. By creating submissions, you're deciding which new features should be implemented or removed from our platform.",
+                                    "By creating a submission, you're deciding which new features should be implemented or removed from Fairtalk.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
@@ -117,7 +124,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   ),
                                   const SizedBox(height: 3),
                                   const Text(
-                                    "Creating submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate and vote before releasing this important feature. You can always track the current amount of verified users by clicking on the button below.",
+                                    "Submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate before releasing an important feature like this. You can always track the current amount of verified users by clicking on the button below.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
