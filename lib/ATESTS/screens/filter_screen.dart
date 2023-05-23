@@ -50,7 +50,6 @@ class _CountriesState extends State<Countries> {
     final filterProvider = Provider.of<FilterProvider>(context, listen: false);
     selectedCountryIndex = short.indexOf(filterProvider.countryCode);
     _countriesController.addListener(_filterList);
-    // debugPrint('init call ${filterProvider.countryCode}');
   }
 
   @override
@@ -133,6 +132,7 @@ class _CountriesState extends State<Countries> {
       if (value2.isNotEmpty) {
         twoValue = value2;
         if (widget.pageIndex == 2) {
+          debugPrint("two value for chek working ${twoValue}");
           if (twoValue == 'All Days') {
             twoValue = '≤ 7 Days';
           }
@@ -527,11 +527,15 @@ class _CountriesState extends State<Countries> {
                                         //   value.toString(),
                                         // ),
                                         onChanged: (value) {
-                                          if (value == 'Most Recent') {
-                                            //   setValueOne('≤ 7 Days');
-                                            //   filterProvider
-                                            //       .setOneValue('≤ 7 Days');
+                                          if (value == 'Highest Score') {
+                                            if (widget.pageIndex == 2) {
+                                              // setValueOne('≤ 7 Days');
+                                              // getValueOne();
+                                              // filterProvider
+                                              //     .setOneValue('≤ 7 Days');
+                                            }
                                           }
+
                                           filterProvider.setOneValue(
                                               value ?? 'Highest Score');
                                           // debugPrint('change is here ${value}');
@@ -713,7 +717,7 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
     final isSelected = widget.value == widget.groupValue;
 
     return InkWell(
-      onTap: () {
+      onTap: () async {
         widget.onChanged(widget.value);
         debugPrint("widget value :${widget.value}");
 
@@ -728,10 +732,17 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
           }
           filterProvider.setOneValue(widget.value.toString());
         } else if (widget.type == 'two value') {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+
+          if (widget.pageIndex == 2) {
+            await prefs.setString('selected_radio1', widget.value.toString());
+          } else {
+            await prefs.setString('selected_radio1H', widget.value.toString());
+          }
+
           filterProvider.setTwoValue(widget.value.toString());
         }
         if (filterProvider.messages == 'true') {
-          // debugPrint("message is true");
           Provider.of<PostProvider>(context, listen: false).getPosts(
               filterProvider.twoValue,
               filterProvider.global,
