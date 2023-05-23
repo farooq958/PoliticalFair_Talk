@@ -47,7 +47,7 @@ class _SearchState extends State<Search> {
   void initState() {
     super.initState();
     final filterProvider = Provider.of<FilterProvider>(context, listen: false);
-  getTwoValueLocal();
+    _getList(filterProvider: filterProvider);
 
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
@@ -64,21 +64,6 @@ class _SearchState extends State<Search> {
             getNextList: true)
         : null;
   }
-getTwoValueLocal()async{
-  String? value = prefs!.getString(twoValue11);
-  debugPrint("val8e $value");
-  await Future.delayed(const Duration(seconds:1));
-
-    final filterProvider = Provider.of<FilterProvider>(context, listen: false);
-    setState((){
-      _twoValue=value ?? '';
-    });
-
-    filterProvider.setTwoValue(value ?? '');
-    _getList(filterProvider: filterProvider);
-
-
-}
   @override
   void dispose() {
     _scrollController.dispose();
@@ -88,22 +73,15 @@ getTwoValueLocal()async{
   Future<void> _getList({
     required FilterProvider filterProvider,
   }) async {
-    debugPrint("all dayes value :${filterProvider.twoValue}");
+    debugPrint("search value :${filterProvider.twoValueSearch}");
 
 
-
-    String? value =await  prefs!.getString(twoValue11);
-    debugPrint("val8e $value ss $_twoValue");
-    if (value != null) {
-      filterProvider.setTwoValue(value ?? '');
-    }
-    await Future.delayed(Duration.zero);
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
         filterProvider.global,
         filterProvider.countryCode,
         filterProvider.durationInDay,
-       _twoValue
+       filterProvider.twoValueSearch
        // filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
       );
     } else {

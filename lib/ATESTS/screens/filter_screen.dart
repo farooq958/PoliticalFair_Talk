@@ -153,9 +153,11 @@ class _CountriesState extends State<Countries> {
 
       if (widget.pageIndex == 2) {
         prefs.setString(twoValue11, valueo);
+        filterProvider.setTwoValueSearch(valueo);
         debugPrint("serach page ");
       } else {
         prefs.setString(twoValue1H, valueo);
+        filterProvider.setTwoValueHome(valueo);
       }
       debugPrint(
           "value two check $valueo pageindex ${widget.pageIndex}  $two1Value");
@@ -659,6 +661,14 @@ class _CountriesState extends State<Countries> {
                                     debugPrint('selsected value  $valueo');
 
                                     if (oneValue != "Most Recent") {
+                                      if (widget.pageIndex == 2) {
+                                        filterProvider.setTwoValueSearch(
+                                            valueo.toString());
+                                      } else {
+                                        filterProvider.setTwoValueSearch(
+                                            valueo.toString());
+                                      }
+
                                       await setValueOne(valueo.toString());
                                     }
                                   },
@@ -744,9 +754,11 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
 
           if (widget.pageIndex == 2) {
             debugPrint('unkonwn ${widget.value}');
+            filterProvider.setTwoValueSearch(widget.value.toString());
             await prefs.setString(twoValue11, widget.value.toString());
           } else {
             await prefs.setString(twoValue1H, widget.value.toString());
+            filterProvider.setTwoValueHome(widget.value.toString());
           }
           String? v1 = prefs.getString(twoValue11);
           String? v2 = prefs.getString(twoValue1H);

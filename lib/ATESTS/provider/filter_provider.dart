@@ -12,8 +12,11 @@ class FilterProvider extends ChangeNotifier {
   twoValueGet() async {
     final prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(twoValue1H) ?? '';
+    String? value2 = prefs.getString(twoValue11) ?? '';
 
     setTwoValue(value);
+    setTwoValueHome(value);
+    setTwoValueSearch(value2);
     debugPrint("page value $value");
   }
 
@@ -32,6 +35,8 @@ class FilterProvider extends ChangeNotifier {
   bool searchFieldSelected = false;
   bool showMessages = false;
   bool showPolls = false;
+  String _valueTwoHome = '';
+  String _valueTwoSearch = '';
   String? trendkeystore;
   List<String>? listPostPollId;
   final TextEditingController searchController = TextEditingController();
@@ -44,6 +49,18 @@ class FilterProvider extends ChangeNotifier {
 
   setOneValue(String value) {
     _oneValue = value;
+
+    notifyListeners();
+  }
+
+  setTwoValueHome(String value) {
+    _valueTwoHome = value;
+
+    notifyListeners();
+  }
+
+  setTwoValueSearch(String value) {
+    _valueTwoSearch = value;
 
     notifyListeners();
   }
@@ -245,6 +262,8 @@ class FilterProvider extends ChangeNotifier {
   String get threeValue => _threeValue;
 
   String get countryCode => _countryCode;
+  String get twoValueHome => _valueTwoHome;
+  String get twoValueSearch => _valueTwoSearch;
 
   String get _trendkeystore => trendkeystore!;
 
