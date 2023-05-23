@@ -220,7 +220,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "• Which messages or polls should be Archived & seen by everyone else."),
+                                                  "• Which messages or polls should be Archived & displayed to everyone else."),
                                               const SizedBox(height: 3),
                                               const Text(
                                                   "• Which keywords or subjects should be trending."),
@@ -612,7 +612,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "* The score determines which messages will be seen by everyone else."),
+                                                  "* The score determines which messages should be displayed to everyone else."),
                                               const SizedBox(height: 15),
                                               const Text(
                                                   "Since voting plays a crucial role into our platform's functionalities, we had to build a unique account verification system that helps eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free."),
