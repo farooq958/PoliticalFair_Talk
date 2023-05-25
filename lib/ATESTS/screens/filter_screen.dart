@@ -135,10 +135,10 @@ class _CountriesState extends State<Countries> {
       if (value2.isNotEmpty) {
         twoValue = value2;
         if (widget.pageIndex == 2) {
-          // debugPrint("two value for chek working ${twoValue}");
-          // if (twoValue == 'All Days') {
-          //   twoValue = '≤ 7 Days';
-          // }
+          debugPrint("two value for chek working ${twoValue}");
+          if (twoValue == 'All Days') {
+            twoValue = '≤ 7 Days';
+          }
         }
       }
     });

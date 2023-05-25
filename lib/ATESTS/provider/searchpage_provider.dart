@@ -86,7 +86,7 @@ class SearchPageProvider extends ChangeNotifier {
       querySnapshot.docs.forEach((element) {
         Keyword dataIn =
             Keyword.fromMap(element.data() as Map<String, dynamic>);
-        debugPrint("data ${dataIn.length}");
+        debugPrint("data lenght ${dataIn.length}");
         list.add(dataIn);
       });
     }
