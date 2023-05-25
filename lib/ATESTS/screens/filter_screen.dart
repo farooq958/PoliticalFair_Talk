@@ -538,6 +538,7 @@ class _CountriesState extends State<Countries> {
                                         onChanged: (value) {
                                           if (value == 'Highest Score') {
                                             if (widget.pageIndex == 2) {
+                                              debugPrint("page working $value");
                                               // setValueOne('≤ 7 Days');
                                               // getValueOne();
                                               // filterProvider
@@ -658,19 +659,19 @@ class _CountriesState extends State<Countries> {
                                           : two1[index],
                                   pageIndex: widget.pageIndex,
                                   onChanged: (valueo) async {
-                                    debugPrint('selsected value  $valueo');
-
                                     if (oneValue != "Most Recent") {
                                       if (widget.pageIndex == 2) {
                                         filterProvider.setTwoValueSearch(
                                             valueo.toString());
                                       } else {
-                                        filterProvider.setTwoValueSearch(
-                                            valueo.toString());
+                                        filterProvider
+                                            .setTwoValueHome(valueo.toString());
                                       }
 
                                       await setValueOne(valueo.toString());
                                     }
+                                    debugPrint(
+                                        'selsected values home : ${filterProvider.twoValueHome} searcha ${filterProvider.twoValueSearch} current vlaue  $valueo current index :${widget.pageIndex}');
                                   },
                                 ),
                               ),

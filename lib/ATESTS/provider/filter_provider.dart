@@ -14,10 +14,10 @@ class FilterProvider extends ChangeNotifier {
     String? value = prefs.getString(twoValue1H) ?? '';
     String? value2 = prefs.getString(twoValue11) ?? '';
 
-    setTwoValue(value);
+    // setTwoValue(value);
     setTwoValueHome(value);
     setTwoValueSearch(value2);
-    debugPrint("page value $value");
+    debugPrint("pageHome  value $value search $value2");
   }
 
   bool isHome = true;
