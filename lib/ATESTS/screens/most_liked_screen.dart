@@ -38,11 +38,11 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
 
     if (filterProvider.messages == 'true') {
       mostLikeProvider.getMostLikedPosts(filterProvider.global,
-          filterProvider.countryCode, filterProvider.oneValue);
+          filterProvider.countryCode, filterProvider.oneValueHome);
     } else {
       // debugPrint('messages are false');
       mostLikeProvider.getMostLikedPolls(filterProvider.global,
-          filterProvider.countryCode, filterProvider.oneValue);
+          filterProvider.countryCode, filterProvider.oneValueHome);
     }
     // _postScrollController.addListener(postNextScroll);
     // _pollsScrollController.addListener(pollsNextScroll);
@@ -53,7 +53,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
     if (_postScrollController.position.extentAfter < 1) {
       Provider.of<MostLikedProvider>(context, listen: false)
           .getNextMostLikedPosts(filterProvider.global,
-              filterProvider.countryCode, filterProvider.oneValue);
+              filterProvider.countryCode, filterProvider.oneValueHome);
     }
   }
 
@@ -62,7 +62,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
     if (_postScrollController.position.extentAfter < 1) {
       Provider.of<MostLikedProvider>(context, listen: false)
           .getNextMostLikedPosts(filterProvider.global,
-              filterProvider.countryCode, filterProvider.oneValue);
+              filterProvider.countryCode, filterProvider.oneValueHome);
     }
   }
 
@@ -186,10 +186,6 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(25),
-                                            // border: Border.all(
-                                            //   width: .75,
-                                            //   color: Colors.grey,
-                                            // ),
                                           ),
                                           child: Row(
                                             children: [
@@ -221,7 +217,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                       Provider.of<PostProvider>(
                                                               context,
                                                               listen: false)
@@ -235,7 +231,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               widget
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                     } else {
                                                       Provider.of<PollsProvider>(
                                                               context,
@@ -250,7 +246,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               widget
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                       mostLikedProvider
                                                           .getMostLikedPolls(
                                                               filterProvider
@@ -258,7 +254,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                     }
                                                   },
                                                   child: Container(
@@ -329,7 +325,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               widget
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                       mostLikedProvider
                                                           .getMostLikedPosts(
                                                               filterProvider
@@ -337,7 +333,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                     } else {
                                                       Provider.of<PollsProvider>(
                                                               context,
@@ -352,7 +348,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               widget
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
 
                                                       mostLikedProvider
                                                           .getMostLikedPolls(
@@ -361,7 +357,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                     }
                                                   },
                                                   child: Container(
@@ -476,7 +472,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             widget
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
 
                                                     mostLikedProvider
                                                         .getMostLikedPosts(
@@ -485,7 +481,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             filterProvider
                                                                 .countryCode,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                   } else {
                                                     Provider.of<PollsProvider>(
                                                             context,
@@ -500,7 +496,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             widget
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
 
                                                     mostLikedProvider
                                                         .getMostLikedPolls(
@@ -509,7 +505,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             filterProvider
                                                                 .countryCode,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                   }
                                                   //  filterProvider.setValueM(messages);
                                                 },
@@ -574,7 +570,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             widget
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
 
                                                     mostLikedProvider
                                                         .getMostLikedPosts(
@@ -583,7 +579,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             filterProvider
                                                                 .countryCode,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                   } else {
                                                     Provider.of<PollsProvider>(
                                                             context,
@@ -598,7 +594,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             widget
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                     mostLikedProvider
                                                         .getMostLikedPolls(
                                                             filterProvider
@@ -606,7 +602,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                             filterProvider
                                                                 .countryCode,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                   }
 
                                                   //   filterProvider.setValueM(messages);
@@ -745,7 +741,8 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 .getPreviousMostLikedPosts(
                                                     filterProvider.global,
                                                     filterProvider.countryCode,
-                                                    filterProvider.oneValue);
+                                                    filterProvider
+                                                        .oneValueHome);
                                           });
                                         },
                                         child: Container(
@@ -823,7 +820,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                   .getNextMostLikedPosts(
                                                 filterProvider.global,
                                                 filterProvider.countryCode,
-                                                filterProvider.oneValue,
+                                                filterProvider.oneValueHome,
                                               );
                                             },
                                           );
@@ -913,7 +910,8 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 .getPreviousMostLikedPolls(
                                                     filterProvider.global,
                                                     filterProvider.countryCode,
-                                                    filterProvider.oneValue);
+                                                    filterProvider
+                                                        .oneValueHome);
                                           });
                                         },
                                         child: Container(
@@ -991,7 +989,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                   .getNextMostLikedPolls(
                                                 filterProvider.global,
                                                 filterProvider.countryCode,
-                                                filterProvider.oneValue,
+                                                filterProvider.oneValueHome,
                                               );
                                             },
                                           );

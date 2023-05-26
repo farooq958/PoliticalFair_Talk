@@ -165,19 +165,40 @@ class _CountriesState extends State<Countries> {
   }
 
   Future<void> getValue1() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('selected_radio') != null) {
-      setState(() {
-        String value1 = prefs.getString('selected_radio')!;
-        if (value1.isNotEmpty) {
-          oneValue = value1;
-        }
-        debugPrint("value one $oneValue");
-      });
+    final filterProvider = Provider.of<FilterProvider>(context, listen: false);
+
+    // setState(() {
+    if (widget.pageIndex == 2) {
+      oneValue = filterProvider.oneValueSearch;
+      filterProvider.setOneValue(oneValue);
+    } else {
+      oneValue = filterProvider.oneValueHome;
+      filterProvider.setOneValue(oneValue);
     }
+    // });
+    //  filterProvider.setOneValue(oneValue);
+    debugPrint("getMethod working $oneValue");
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   if (prefs.getString('selected_radio') != null) {
+    //     setState(() {
+    //       String value1 = prefs.getString('selected_radio')!;
+    //       if (value1.isNotEmpty) {
+    //         oneValue = value1;
+    //       }
+    //       debugPrint("value one $oneValue");
+    //     });
+    //   }
   }
 
   Future<void> setValue1(String value) async {
+    final filterProvider = Provider.of<FilterProvider>(context, listen: false);
+
+    if (widget.pageIndex == 2) {
+      filterProvider.setOneValueSearch(value);
+    } else {
+      filterProvider.setOneValueHome(value);
+    }
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       oneValue = value.toString();
@@ -628,7 +649,7 @@ class _CountriesState extends State<Countries> {
                                     : widget.pageIndex == 0 ||
                                             widget.pageIndex == 1
                                         ? twoHome1.length
-                                        : two1.length,
+                                        : two.length,
                                 controller: ScrollController(),
                                 separatorBuilder: (_, __) =>
                                     const SizedBox(height: 6),
@@ -644,10 +665,12 @@ class _CountriesState extends State<Countries> {
                                       : widget.pageIndex == 0 ||
                                               widget.pageIndex == 1
                                           ? twoHome1[index]
-                                          : two1[index],
+                                          : two[index],
                                   groupValue: oneValue != 'Most Recent'
                                       ? twoValue
-                                      : two1Value,
+                                      : widget.pageIndex == 2
+                                          ? filterProvider.twoValueSearch
+                                          : two1Value,
                                   leading: oneValue != 'Most Recent'
                                       ? widget.pageIndex == 0 ||
                                               widget.pageIndex == 1
@@ -656,7 +679,7 @@ class _CountriesState extends State<Countries> {
                                       : widget.pageIndex == 0 ||
                                               widget.pageIndex == 1
                                           ? twoHome1[index]
-                                          : two1[index],
+                                          : two[index],
                                   pageIndex: widget.pageIndex,
                                   onChanged: (valueo) async {
                                     if (oneValue != "Most Recent") {
@@ -669,6 +692,12 @@ class _CountriesState extends State<Countries> {
                                       }
 
                                       await setValueOne(valueo.toString());
+                                    } else {
+                                      if (widget.pageIndex == 2) {
+                                        filterProvider.setTwoValueSearch(
+                                            valueo.toString());
+                                        await setValueOne(valueo.toString());
+                                      }
                                     }
                                     debugPrint(
                                         'selsected values home : ${filterProvider.twoValueHome} searcha ${filterProvider.twoValueSearch} current vlaue  $valueo current index :${widget.pageIndex}');
@@ -733,6 +762,7 @@ class NoRadioListTile<T> extends StatefulWidget {
 class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
   @override
   Widget build(BuildContext context) {
+    debugPrint("value and gourtpvlaue ${widget.value} g :${widget.groupValue}");
     final isSelected = widget.value == widget.groupValue;
 
     return InkWell(
