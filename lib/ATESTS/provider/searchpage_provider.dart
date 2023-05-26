@@ -36,7 +36,7 @@ class SearchPageProvider extends ChangeNotifier {
       String global, String countryCode, durationInDay, String twoValue,
       {bool? getNextList1}) async {
     debugPrint(
-        "global $global  contryCode $countryCode ,twoValue $twoValue deucati$durationInDay");
+        "global $global  contryCode $countryCode ,twoValue $twoValue  onevAleu    deucati$durationInDay");
     // var query = (twoValue == "All Days"
     //     ? (global == "true"
     //             ? FirebaseFirestore.instance.collectionGroup('globallyPost')
@@ -440,6 +440,8 @@ class SearchPageProvider extends ChangeNotifier {
   initList(String trendKey, String global, String countryCode, String oneValue,
       String twoValue, durationInDay,
       {bool? getNextList}) async {
+    debugPrint("one value is ${oneValue}");
+
     if (loadDataStream != null) {
       loadDataStream!.cancel();
       postsList = [];

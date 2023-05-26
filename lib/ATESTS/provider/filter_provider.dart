@@ -14,13 +14,14 @@ class FilterProvider extends ChangeNotifier {
     String? value = prefs.getString(twoValue1H) ?? '';
     String? value2 = prefs.getString(twoValue11) ?? '';
 
-    // setTwoValue(value);
     setTwoValueHome(value);
     setTwoValueSearch(value2);
     debugPrint("pageHome  value $value search $value2");
   }
 
   bool isHome = true;
+  String _oneValueHome = 'Highest Score';
+  String _oneValueSearch = 'Highest Score';
 
   bool isMostLiked = false;
   String _global = 'true';
@@ -48,9 +49,10 @@ class FilterProvider extends ChangeNotifier {
   int _initialPage = 0;
 
   setOneValue(String value) {
+    debugPrint("one vlaue is working :$value");
     _oneValue = value;
 
-    notifyListeners();
+    //  notifyListeners();
   }
 
   setTwoValueHome(String value) {
@@ -61,6 +63,7 @@ class FilterProvider extends ChangeNotifier {
 
   setTwoValueSearch(String value) {
     _valueTwoSearch = value;
+    debugPrint("tow serchvlaue $_valueTwoSearch}");
 
     notifyListeners();
   }
@@ -137,6 +140,18 @@ class FilterProvider extends ChangeNotifier {
 
   setMessage(String value) {
     _messages = value;
+
+    notifyListeners();
+  }
+
+  setOneValueHome(String value) {
+    _oneValueHome = value;
+
+    notifyListeners();
+  }
+
+  setOneValueSearch(String value) {
+    _oneValueSearch = value;
 
     notifyListeners();
   }
@@ -264,6 +279,8 @@ class FilterProvider extends ChangeNotifier {
   String get countryCode => _countryCode;
   String get twoValueHome => _valueTwoHome;
   String get twoValueSearch => _valueTwoSearch;
+  String get oneValueHome => _oneValueHome;
+  String get oneValueSearch => _oneValueSearch;
 
   String get _trendkeystore => trendkeystore!;
 

@@ -297,7 +297,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 listen: false)
                                                             .getPosts(
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueHome,
                                                                 filterProvider
                                                                     .global,
                                                                 filterProvider
@@ -305,14 +305,14 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 widget
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .oneValue);
+                                                                    .oneValueHome);
                                                       } else {
                                                         Provider.of<PollsProvider>(
                                                                 context,
                                                                 listen: false)
                                                             .getPolls(
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueHome,
                                                                 filterProvider
                                                                     .global,
                                                                 filterProvider
@@ -320,7 +320,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 widget
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .oneValue);
+                                                                    .oneValueHome);
                                                       }
                                                       // initList();
                                                       // initPollList();
@@ -394,7 +394,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 listen: false)
                                                             .getPosts(
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueHome,
                                                                 filterProvider
                                                                     .global,
                                                                 filterProvider
@@ -402,14 +402,14 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 widget
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .oneValue);
+                                                                    .oneValueHome);
                                                       } else {
                                                         Provider.of<PollsProvider>(
                                                                 context,
                                                                 listen: false)
                                                             .getPolls(
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueHome,
                                                                 filterProvider
                                                                     .global,
                                                                 filterProvider
@@ -417,7 +417,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 widget
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .oneValue);
+                                                                    .oneValueHome);
                                                       }
                                                     },
                                                     child: Container(
@@ -726,7 +726,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                       postProvider
                                                           .getPreviousPosts(
                                                               filterProvider
-                                                                  .twoValue,
+                                                                  .twoValueHome,
                                                               filterProvider
                                                                   .global,
                                                               filterProvider
@@ -734,7 +734,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                               filterProvider
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .oneValue);
+                                                                  .oneValueHome);
                                                       _postScrollController
                                                           .jumpTo(0);
                                                     });
@@ -843,14 +843,14 @@ class _FeedScreenState extends State<FeedScreen> {
                                                         postProvider
                                                             .getNextPosts(
                                                           filterProvider
-                                                              .twoValue,
+                                                              .twoValueHome,
                                                           filterProvider.global,
                                                           filterProvider
                                                               .countryCode,
                                                           filterProvider
                                                               .durationInDay,
                                                           filterProvider
-                                                              .oneValue,
+                                                              .oneValueHome,
                                                         );
                                                         _postScrollController
                                                             .jumpTo(0);
@@ -961,7 +961,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                     pollsProvider
                                                         .getPreviousPolls(
                                                             filterProvider
-                                                                .twoValue,
+                                                                .twoValueHome,
                                                             filterProvider
                                                                 .global,
                                                             filterProvider
@@ -969,7 +969,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                             filterProvider
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                   },
                                                 );
                                               },
@@ -1060,7 +1060,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                       () {
                                                         pollsProvider.getNextPolls(
                                                             filterProvider
-                                                                .twoValue,
+                                                                .twoValueHome,
                                                             filterProvider
                                                                 .global,
                                                             filterProvider
@@ -1068,7 +1068,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                             filterProvider
                                                                 .durationInDay,
                                                             filterProvider
-                                                                .oneValue);
+                                                                .oneValueHome);
                                                         _pollsScrollController
                                                             .jumpTo(0);
                                                       },
@@ -1160,22 +1160,22 @@ class _FeedScreenState extends State<FeedScreen> {
   }) async {
     await Future.delayed(Duration.zero);
     debugPrint(
-        "getPost method working one Value: ${filterProvider.oneValue} two value ${filterProvider.twoValue}");
+        "getPost method working one Value: ${filterProvider.oneValueHome} two value ${filterProvider.twoValueHome}");
     if (filterProvider.messages == 'true') {
       Provider.of<PostProvider>(context, listen: false).getPosts(
           filterProvider.twoValueHome,
           filterProvider.global,
           filterProvider.countryCode,
           widget.durationInDay,
-          filterProvider.oneValue);
+          filterProvider.oneValueHome);
     } else {
       // debugPrint("Getting Polls");
       Provider.of<PollsProvider>(context, listen: false).getPolls(
-          filterProvider.twoValue,
+          filterProvider.twoValueHome,
           filterProvider.global,
           filterProvider.countryCode,
           widget.durationInDay,
-          filterProvider.oneValue);
+          filterProvider.oneValueHome);
     }
   }
 }

@@ -8,14 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../main.dart';
 import '../models/user.dart';
 import '../provider/filter_provider.dart';
 import '../provider/most_liked_key_provider.dart';
 import '../provider/search_userList.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
-import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
@@ -91,7 +89,7 @@ class _SearchState extends State<Search> {
         filterProvider.global,
         filterProvider.countryCode,
         filterProvider.durationInDay,
-        filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
+        filterProvider.twoValueSearch,
       );
     }
   }
@@ -105,14 +103,14 @@ class _SearchState extends State<Search> {
           filterProvider.global,
           filterProvider.countryCode,
           filterProvider.durationInDay,
-          filterProvider.twoValue);
+          filterProvider.twoValueSearch);
       if (filterProvider.showMessages && filterProvider.isHome) {
         Provider.of<SearchPageProvider>(context, listen: false).initList(
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
-          filterProvider.twoValue,
+          filterProvider.oneValueSearch,
+          filterProvider.twoValueSearch,
           filterProvider.durationInDay,
         );
       }
@@ -121,15 +119,15 @@ class _SearchState extends State<Search> {
         filterProvider.isHome) {
       Provider.of<SearchPageProvider>(context, listen: false)
           .getpollKeywordList(filterProvider.global, filterProvider.countryCode,
-              filterProvider.durationInDay, filterProvider.twoValue);
+              filterProvider.durationInDay, filterProvider.twoValueSearch);
 
       if (filterProvider.showMessages && filterProvider.isHome) {
         Provider.of<SearchPageProvider>(context, listen: false).initPollList(
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
-          filterProvider.twoValue,
+          filterProvider.oneValueSearch,
+          filterProvider.twoValueSearch,
           filterProvider.durationInDay,
         );
       }
@@ -140,7 +138,7 @@ class _SearchState extends State<Search> {
         filterProvider.searchController.text,
         filterProvider.global,
         filterProvider.countryCode,
-        filterProvider.twoValue,
+        filterProvider.twoValueSearch,
         filterProvider.durationInDay,
       );
       if (filterProvider.showMessages && filterProvider.isHome) {
@@ -148,8 +146,8 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
-          filterProvider.twoValue,
+          filterProvider.oneValueSearch,
+          filterProvider.twoValueSearch,
           filterProvider.durationInDay,
         );
       }
@@ -160,7 +158,7 @@ class _SearchState extends State<Search> {
         filterProvider.searchController.text,
         filterProvider.global,
         filterProvider.countryCode,
-        filterProvider.twoValue,
+        filterProvider.twoValueSearch,
         filterProvider.durationInDay,
       );
       if (filterProvider.showMessages && filterProvider.isHome) {
@@ -168,8 +166,8 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
-          filterProvider.twoValue,
+          filterProvider.oneValueSearch,
+          filterProvider.twoValueSearch,
           filterProvider.durationInDay,
         );
       }
@@ -187,7 +185,7 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
+          filterProvider.oneValueSearch,
         );
       }
     } else if (filterProvider.messages != "true" &&
@@ -204,7 +202,7 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
+          filterProvider.oneValueSearch,
         );
       }
     } else if (filterProvider.messages == "true" &&
@@ -220,7 +218,7 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
+          filterProvider.oneValueSearch,
         );
       }
     } else if (filterProvider.messages != "true" &&
@@ -237,7 +235,7 @@ class _SearchState extends State<Search> {
           filterProvider.trendkeystore ?? "",
           filterProvider.global,
           filterProvider.countryCode,
-          filterProvider.oneValue,
+          filterProvider.oneValueSearch,
         );
       }
     }
@@ -449,9 +447,9 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -467,7 +465,7 @@ class _SearchState extends State<Search> {
                                                                       filterProvider
                                                                           .durationInDay,
                                                                       filterProvider
-                                                                          .twoValue);
+                                                                          .twoValueSearch);
 
                                                             } else if (filterProvider
                                                                         .messages !=
@@ -491,9 +489,9 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -509,7 +507,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                               );
                                                             }
                                                             if (filterProvider
@@ -537,7 +535,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -567,7 +565,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -730,7 +728,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                               );
                                                               // : null;
                                                             }
@@ -796,7 +794,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                               );
                                                               // : null;
                                                             }
@@ -891,9 +889,9 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -909,7 +907,7 @@ class _SearchState extends State<Search> {
                                                                       filterProvider
                                                                           .durationInDay,
                                                                       filterProvider
-                                                                          .twoValue);
+                                                                          .twoValueSearch);
                                                               // Provider.of<PostProvider>(
                                                               //         context,
                                                               //         listen: false)
@@ -920,7 +918,7 @@ class _SearchState extends State<Search> {
                                                               //             .countryCode,
                                                               //         widget.durationInDay,
                                                               //         filterProvider
-                                                              //             .oneValue);
+                                                              //             .oneValueSearch);
                                                             } else if (filterProvider
                                                                         .messages !=
                                                                     'true' &&
@@ -943,9 +941,9 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -961,7 +959,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .durationInDay,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                               );
                                                               // Provider.of<PollsProvider>(
                                                               //         context,
@@ -997,7 +995,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -1027,7 +1025,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .twoValue,
+                                                                    .twoValueSearch,
                                                                 filterProvider
                                                                     .durationInDay,
                                                               );
@@ -1191,7 +1189,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                               );
                                                               // : null;
                                                             }
@@ -1257,7 +1255,7 @@ class _SearchState extends State<Search> {
                                                                 filterProvider
                                                                     .countryCode,
                                                                 filterProvider
-                                                                    .oneValue,
+                                                                    .oneValueSearch,
                                                               );
                                                               // : null;
                                                             }
@@ -1390,7 +1388,7 @@ class _SearchState extends State<Search> {
                                                                     filterProvider
                                                                         .durationInDay,
                                                                     filterProvider
-                                                                        .twoValue);
+                                                                        .twoValueSearch);
                                                           }
                                                           if (filterProvider
                                                                   .searchController
@@ -1411,7 +1409,7 @@ class _SearchState extends State<Search> {
                                                                     filterProvider
                                                                         .countryCode,
                                                                     filterProvider
-                                                                        .twoValue,
+                                                                        .twoValueSearch,
                                                                     filterProvider
                                                                         .durationInDay);
                                                           }
@@ -1433,9 +1431,9 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue,
+                                                                  .oneValueSearch,
                                                               filterProvider
-                                                                  .twoValue,
+                                                                  .twoValueSearch,
                                                               filterProvider
                                                                   .durationInDay,
                                                             );
@@ -1517,7 +1515,7 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue,
+                                                                  .oneValueSearch,
                                                             );
                                                           }
                                                           // _getPosts(
@@ -1608,7 +1606,7 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .durationInDay,
                                                               filterProvider
-                                                                  .twoValue,
+                                                                  .twoValueSearch,
                                                             );
                                                           }
                                                           if (filterProvider
@@ -1630,7 +1628,7 @@ class _SearchState extends State<Search> {
                                                                     filterProvider
                                                                         .countryCode,
                                                                     filterProvider
-                                                                        .twoValue,
+                                                                        .twoValueSearch,
                                                                     filterProvider
                                                                         .durationInDay);
                                                           }
@@ -1655,9 +1653,9 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue,
+                                                                  .oneValueSearch,
                                                               filterProvider
-                                                                  .twoValue,
+                                                                  .twoValueSearch,
                                                               filterProvider
                                                                   .durationInDay,
                                                             );
@@ -1736,7 +1734,7 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .oneValue,
+                                                                  .oneValueSearch,
                                                             );
                                                           }
                                                           // _getPosts(
@@ -1986,7 +1984,7 @@ class _SearchState extends State<Search> {
                                                               filterProvider
                                                                   .countryCode,
                                                               filterProvider
-                                                                  .twoValue,
+                                                                  .twoValueSearch,
                                                               filterProvider
                                                                   .durationInDay,
                                                             )
@@ -2004,7 +2002,7 @@ class _SearchState extends State<Search> {
                                                                   filterProvider
                                                                       .countryCode,
                                                                   filterProvider
-                                                                      .twoValue,
+                                                                      .twoValueSearch,
                                                                   filterProvider
                                                                       .durationInDay);
                                                     }
@@ -2160,7 +2158,7 @@ class _SearchState extends State<Search> {
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
                                                   filterProvider.durationInDay,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.twoValueSearch,
                                                 );
                                               }
                                               if (filterProvider.messages !=
@@ -2178,7 +2176,7 @@ class _SearchState extends State<Search> {
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
                                                   filterProvider.durationInDay,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.twoValueSearch,
                                                 );
                                               }
                                               if (filterProvider.messages !=
@@ -2197,7 +2195,7 @@ class _SearchState extends State<Search> {
                                                       .searchController.text,
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.twoValueSearch,
                                                   filterProvider.durationInDay,
                                                 );
                                               }
@@ -2217,7 +2215,7 @@ class _SearchState extends State<Search> {
                                                       .searchController.text,
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.twoValueSearch,
                                                   filterProvider.durationInDay,
                                                 );
                                               }
@@ -2235,8 +2233,8 @@ class _SearchState extends State<Search> {
                                                       "",
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.oneValue,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.oneValueSearch,
+                                                  filterProvider.twoValueSearch,
                                                   filterProvider.durationInDay,
                                                 );
                                                 // : null;
@@ -2255,8 +2253,8 @@ class _SearchState extends State<Search> {
                                                       "",
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.oneValue,
-                                                  filterProvider.twoValue,
+                                                  filterProvider.oneValueSearch,
+                                                  filterProvider.twoValueSearch,
                                                   filterProvider.durationInDay,
                                                 );
                                                 // : null;
@@ -2433,7 +2431,7 @@ class _SearchState extends State<Search> {
                                                       "",
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.oneValue,
+                                                  filterProvider.oneValueSearch,
                                                 );
                                                 // : null;
                                               }
@@ -2484,7 +2482,7 @@ class _SearchState extends State<Search> {
                                                       "",
                                                   filterProvider.global,
                                                   filterProvider.countryCode,
-                                                  filterProvider.oneValue,
+                                                  filterProvider.oneValueSearch,
                                                 );
                                                 // : null;
                                               }
@@ -3219,7 +3217,7 @@ class _SearchState extends State<Search> {
                                                                               borderRadius: BorderRadius.circular(25),
                                                                               splashColor: const Color.fromARGB(255, 245, 245, 245),
                                                                               onTap: () {
-                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValue, getNextList1: false);
+                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: false);
                                                                               },
                                                                               child: Container(
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -3287,7 +3285,7 @@ class _SearchState extends State<Search> {
                                                                                 //   getNextListPoll =
                                                                                 //       false;
                                                                                 // });
-                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValue, getNextListPoll: false);
+                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: false);
                                                                               },
                                                                               child: Container(
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -3381,8 +3379,8 @@ class _SearchState extends State<Search> {
                                                                               searchPageProvider.list[indexValue].keyName ?? "",
                                                                               filterProvider.global,
                                                                               filterProvider.countryCode,
-                                                                              filterProvider.oneValue,
-                                                                              filterProvider.twoValue,
+                                                                              filterProvider.oneValueSearch,
+                                                                              filterProvider.twoValueSearch,
                                                                               filterProvider.durationInDay,
                                                                             )
                                                                           : searchPageProvider
@@ -3390,8 +3388,8 @@ class _SearchState extends State<Search> {
                                                                               searchPageProvider.listPoll[indexValue].keyName ?? "",
                                                                               filterProvider.global,
                                                                               filterProvider.countryCode,
-                                                                              filterProvider.oneValue,
-                                                                              filterProvider.twoValue,
+                                                                              filterProvider.oneValueSearch,
+                                                                              filterProvider.twoValueSearch,
                                                                               filterProvider.durationInDay,
                                                                             );
                                                                       filterProvider
@@ -3477,7 +3475,7 @@ class _SearchState extends State<Search> {
                                                                                 //   getNextList1 =
                                                                                 //       true;
                                                                                 // });
-                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValue, getNextList1: true);
+                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: true);
                                                                               },
                                                                               child: Container(
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -3549,7 +3547,7 @@ class _SearchState extends State<Search> {
                                                                                 //   getNextListPoll =
                                                                                 //       true;
                                                                                 // });
-                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValue, getNextListPoll: true);
+                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: true);
                                                                               },
                                                                               child: Container(
                                                                                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -3682,8 +3680,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: false);
                                                                           } else {
@@ -3691,8 +3689,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: false);
                                                                           }
@@ -3797,8 +3795,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: false);
                                                                           } else {
@@ -3806,8 +3804,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: false);
                                                                           }
@@ -3965,8 +3963,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: true);
                                                                           } else {
@@ -3974,8 +3972,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: true);
                                                                           }
@@ -4080,8 +4078,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: true);
                                                                           } else {
@@ -4089,8 +4087,8 @@ class _SearchState extends State<Search> {
                                                                                 filterProvider.trendkeystore ?? "",
                                                                                 filterProvider.global,
                                                                                 filterProvider.countryCode,
-                                                                                filterProvider.oneValue,
-                                                                                filterProvider.twoValue,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
                                                                                 filterProvider.durationInDay,
                                                                                 getNextList: true);
                                                                           }
@@ -4298,7 +4296,7 @@ class _SearchState extends State<Search> {
                                                                                                       filterProvider.searchController.text,
                                                                                                       filterProvider.global,
                                                                                                       filterProvider.countryCode,
-                                                                                                      filterProvider.twoValue,
+                                                                                                      filterProvider.twoValueSearch,
                                                                                                       filterProvider.durationInDay,
                                                                                                       getnextPage: false,
                                                                                                     );
@@ -4350,7 +4348,7 @@ class _SearchState extends State<Search> {
                                                                                                   borderRadius: BorderRadius.circular(25),
                                                                                                   splashColor: const Color.fromARGB(255, 245, 245, 245),
                                                                                                   onTap: () {
-                                                                                                    searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValue, filterProvider.durationInDay, getnextPage: false);
+                                                                                                    searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: false);
                                                                                                   },
                                                                                                   child: Container(
                                                                                                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -4410,16 +4408,16 @@ class _SearchState extends State<Search> {
                                                                                                 searchPageProvider.searchResult[index].keyName ?? "",
                                                                                                 filterProvider.global,
                                                                                                 filterProvider.countryCode,
-                                                                                                filterProvider.oneValue,
-                                                                                                filterProvider.twoValue,
+                                                                                                filterProvider.oneValueSearch,
+                                                                                                filterProvider.twoValueSearch,
                                                                                                 filterProvider.durationInDay,
                                                                                               )
                                                                                             : searchPageProvider.initPollList(
                                                                                                 searchPageProvider.searchResultPoll[index].keyName ?? "",
                                                                                                 filterProvider.global,
                                                                                                 filterProvider.countryCode,
-                                                                                                filterProvider.oneValue,
-                                                                                                filterProvider.twoValue,
+                                                                                                filterProvider.oneValueSearch,
+                                                                                                filterProvider.twoValueSearch,
                                                                                                 filterProvider.durationInDay,
                                                                                               );
                                                                                         // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
@@ -4464,7 +4462,7 @@ class _SearchState extends State<Search> {
                                                                                                       filterProvider.searchController.text,
                                                                                                       filterProvider.global,
                                                                                                       filterProvider.countryCode,
-                                                                                                      filterProvider.twoValue,
+                                                                                                      filterProvider.twoValueSearch,
                                                                                                       filterProvider.durationInDay,
                                                                                                       getnextPage: true,
                                                                                                     );
@@ -4525,7 +4523,7 @@ class _SearchState extends State<Search> {
                                                                                                   // setState(() {
                                                                                                   //   getNextListSearchPoll = true;
                                                                                                   // });
-                                                                                                  searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValue, filterProvider.durationInDay, getnextPage: true);
+                                                                                                  searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: true);
                                                                                                 },
                                                                                                 child: Container(
                                                                                                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -4753,16 +4751,16 @@ class _SearchState extends State<Search> {
                                                                                                     searchPageProvider.searchResult[index].keyName ?? "",
                                                                                                     filterProvider.global,
                                                                                                     filterProvider.countryCode,
-                                                                                                    filterProvider.oneValue,
-                                                                                                    filterProvider.twoValue,
+                                                                                                    filterProvider.oneValueSearch,
+                                                                                                    filterProvider.twoValueSearch,
                                                                                                     filterProvider.durationInDay,
                                                                                                   )
                                                                                                 : searchPageProvider.initPollList(
                                                                                                     searchPageProvider.searchResultPoll[index].keyName ?? "",
                                                                                                     filterProvider.global,
                                                                                                     filterProvider.countryCode,
-                                                                                                    filterProvider.oneValue,
-                                                                                                    filterProvider.twoValue,
+                                                                                                    filterProvider.oneValueSearch,
+                                                                                                    filterProvider.twoValueSearch,
                                                                                                     filterProvider.durationInDay,
                                                                                                   );
                                                                                             // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
@@ -5049,13 +5047,13 @@ class _SearchState extends State<Search> {
                                                                                                               mostLikedKeyProvider.list[indexValue].keyName ?? "",
                                                                                                               filterProvider.global,
                                                                                                               filterProvider.countryCode,
-                                                                                                              filterProvider.oneValue,
+                                                                                                              filterProvider.oneValueSearch,
                                                                                                             )
                                                                                                           : mostLikedKeyProvider.initPollList(
                                                                                                               mostLikedKeyProvider.listPoll[indexValue].keyName ?? "",
                                                                                                               filterProvider.global,
                                                                                                               filterProvider.countryCode,
-                                                                                                              filterProvider.oneValue,
+                                                                                                              filterProvider.oneValueSearch,
                                                                                                             );
                                                                                                       filterProvider.setisAllKey(false);
                                                                                                       filterProvider.setShowMessage(true);
@@ -5356,13 +5354,13 @@ class _SearchState extends State<Search> {
                                                                                                             mostLikedKeyProvider.list[index].keyName ?? "",
                                                                                                             filterProvider.global,
                                                                                                             filterProvider.countryCode,
-                                                                                                            filterProvider.oneValue,
+                                                                                                            filterProvider.oneValueSearch,
                                                                                                           )
                                                                                                         : mostLikedKeyProvider.initPollList(
                                                                                                             mostLikedKeyProvider.listPoll[index].keyName ?? "",
                                                                                                             filterProvider.global,
                                                                                                             filterProvider.countryCode,
-                                                                                                            filterProvider.oneValue,
+                                                                                                            filterProvider.oneValueSearch,
                                                                                                           );
                                                                                                     // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
                                                                                                     filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResult[index].keyName ?? "") : filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResultPoll[index].keyName ?? "");
@@ -5534,9 +5532,9 @@ class _SearchState extends State<Search> {
                                                                                                                 const Duration(milliseconds: 100),
                                                                                                                 () {
                                                                                                                   if (filterProvider.messages == "true") {
-                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: false);
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
                                                                                                                   } else {
-                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: false);
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
                                                                                                                   }
                                                                                                                 },
                                                                                                               );
@@ -5596,9 +5594,9 @@ class _SearchState extends State<Search> {
                                                                                                                 const Duration(milliseconds: 100),
                                                                                                                 () {
                                                                                                                   if (filterProvider.messages == "true") {
-                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: false);
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
                                                                                                                   } else {
-                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: false);
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
                                                                                                                   }
                                                                                                                 },
                                                                                                               );
@@ -5681,9 +5679,9 @@ class _SearchState extends State<Search> {
                                                                                                                 const Duration(milliseconds: 100),
                                                                                                                 () {
                                                                                                                   if (filterProvider.messages == "true") {
-                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: true);
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
                                                                                                                   } else {
-                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: true);
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
                                                                                                                   }
                                                                                                                 },
                                                                                                               );
@@ -5743,9 +5741,9 @@ class _SearchState extends State<Search> {
                                                                                                                 const Duration(milliseconds: 100),
                                                                                                                 () {
                                                                                                                   if (filterProvider.messages == "true") {
-                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: true);
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
                                                                                                                   } else {
-                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValue, getNextList: true);
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
                                                                                                                   }
                                                                                                                 },
                                                                                                               );
