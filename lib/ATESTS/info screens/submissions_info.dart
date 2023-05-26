@@ -107,7 +107,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   //   ),
                                   // ),
                                   const Text(
-                                    "By creating a submission, you're deciding which new features should be implemented or removed from Fairtalk.",
+                                    "By creating a submission, you're deciding which new features should be implemented or removed our platform.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,

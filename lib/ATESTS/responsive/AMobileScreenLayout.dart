@@ -12,9 +12,12 @@ import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/user.dart';
+import '../provider/user_provider.dart';
 import '../provider/country_change_provider.dart';
 import '../provider/user_report_provider.dart';
 import '../screens/add_post.dart';
+import '../screens/add_post_daily.dart';
 import '../screens/home_screen.dart';
 import '../screens/search.dart';
 import '../screens/submissions.dart';
@@ -47,8 +50,11 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   bool isLoading = false;
   var durationInDay = 0;
   var oldDurationInDay = 0;
+  var initialDurationInDay = 0;
   // DateTime ntpTime = DateTime.now();
   FirebaseDatabase rdb = FirebaseDatabase.instance;
+
+  User? user;
 
   final RateMyApp rateMyApp = RateMyApp(
     minDays: 7,
@@ -195,7 +201,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         );
       }
     });
-
+    initialDurationInDay = durationInDay;
     //////////////////////////////////////////////////////////////////////
     // midnightTimer();
   }
@@ -320,51 +326,155 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading == true
-        ? Stack(
-            children: [
-              Container(
-                color: Colors.white,
-                child: SafeArea(
-                  child: Scaffold(
-                    backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-                    appBar: AppBar(
-                      elevation: 4,
-                      toolbarHeight: 68,
-                      backgroundColor: Colors.white,
-                      actions: [
-                        Expanded(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 1,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8, right: 8, left: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        width: 36,
-                                        height: 35,
-                                        child: Material(
-                                          shape: CircleBorder(),
-                                          color: Colors.white,
-                                          child: Icon(Icons.settings,
-                                              color: Color.fromARGB(
-                                                  255, 80, 80, 80)),
-                                        ),
-                                      ),
-                                      Column(
+    User? user;
+    user = Provider.of<UserProvider>(context).getUser;
+    return user?.gMessageTime != initialDurationInDay ||
+            user?.gPollTime != initialDurationInDay
+        ? Text('hi')
+        : isLoading == true
+            ? Stack(
+                children: [
+                  Container(
+                    color: Colors.white,
+                    child: SafeArea(
+                      child: Scaffold(
+                        backgroundColor:
+                            const Color.fromARGB(255, 245, 245, 245),
+                        appBar: AppBar(
+                          elevation: 4,
+                          toolbarHeight: 68,
+                          backgroundColor: Colors.white,
+                          actions: [
+                            Expanded(
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8, right: 8, left: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Row(
-                                            children: const [
-                                              Padding(
+                                          const SizedBox(
+                                            width: 36,
+                                            height: 35,
+                                            child: Material(
+                                              shape: CircleBorder(),
+                                              color: Colors.white,
+                                              child: Icon(Icons.settings,
+                                                  color: Color.fromARGB(
+                                                      255, 80, 80, 80)),
+                                            ),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Row(
+                                                children: const [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 1.0),
+                                                    child: Text(
+                                                      'Global',
+                                                      style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 55, 55, 55),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14.5,
+                                                        letterSpacing: 0.5,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              PhysicalModel(
+                                                color: Colors.transparent,
+                                                elevation: 3,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                child: Container(
+                                                    width: 116,
+                                                    height: 32.5,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                    ),
+                                                    child: Row(
+                                                      children: [
+                                                        ClipRRect(
+                                                          child: Container(
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              25),
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              25),
+                                                                    ),
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            125,
+                                                                            125,
+                                                                            125)),
+                                                            height: 100,
+                                                            width: 58,
+                                                            child: const Icon(
+                                                                MyFlutterApp
+                                                                    .globe_americas,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 23),
+                                                          ),
+                                                        ),
+                                                        ClipRRect(
+                                                          child: Container(
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          25),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          25),
+                                                                ),
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        228,
+                                                                        228,
+                                                                        228),
+                                                              ),
+                                                              height: 100,
+                                                              width: 58,
+                                                              child: const Icon(
+                                                                  Icons.flag,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 17)),
+                                                        )
+                                                      ],
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            children: [
+                                              const Padding(
                                                 padding: EdgeInsets.only(
                                                     bottom: 1.0),
                                                 child: Text(
-                                                  'Global',
+                                                  'Messages',
                                                   style: TextStyle(
                                                     color: Color.fromARGB(
                                                         255, 55, 55, 55),
@@ -374,388 +484,303 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          PhysicalModel(
-                                            color: Colors.transparent,
-                                            elevation: 3,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Container(
-                                                width: 116,
-                                                height: 32.5,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    ClipRRect(
-                                                      child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          25),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          25),
-                                                                ),
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        125,
-                                                                        125,
-                                                                        125)),
-                                                        height: 100,
-                                                        width: 58,
-                                                        child: const Icon(
-                                                            MyFlutterApp
-                                                                .globe_americas,
-                                                            color: Colors.white,
-                                                            size: 23),
-                                                      ),
-                                                    ),
-                                                    ClipRRect(
-                                                      child: Container(
+                                              PhysicalModel(
+                                                color: Colors.transparent,
+                                                elevation: 3,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                child: Container(
+                                                  width: 116,
+                                                  height: 32.5,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      ClipRRect(
+                                                        child: Container(
                                                           decoration:
                                                               const BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              topRight: Radius
-                                                                  .circular(25),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          25),
-                                                            ),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    228,
-                                                                    228,
-                                                                    228),
-                                                          ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            25),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            25),
+                                                                  ),
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          125,
+                                                                          125,
+                                                                          125)),
                                                           height: 100,
                                                           width: 58,
                                                           child: const Icon(
-                                                              Icons.flag,
+                                                              Icons.message,
                                                               color:
                                                                   Colors.white,
-                                                              size: 17)),
-                                                    )
-                                                  ],
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          const Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 1.0),
-                                            child: Text(
-                                              'Messages',
-                                              style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 55, 55, 55),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14.5,
-                                                letterSpacing: 0.5,
-                                              ),
-                                            ),
-                                          ),
-                                          PhysicalModel(
-                                            color: Colors.transparent,
-                                            elevation: 3,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Container(
-                                              width: 116,
-                                              height: 32.5,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  ClipRRect(
-                                                    child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
+                                                              size: 23),
+                                                        ),
+                                                      ),
+                                                      ClipRRect(
+                                                        child: Container(
+                                                            decoration:
+                                                                const BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .only(
-                                                                topLeft: Radius
+                                                                topRight: Radius
                                                                     .circular(
                                                                         25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25),
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            25),
                                                               ),
                                                               color: Color
                                                                   .fromARGB(
                                                                       255,
-                                                                      125,
-                                                                      125,
-                                                                      125)),
-                                                      height: 100,
-                                                      width: 58,
-                                                      child: const Icon(
-                                                          Icons.message,
-                                                          color: Colors.white,
-                                                          size: 23),
-                                                    ),
+                                                                      228,
+                                                                      228,
+                                                                      228),
+                                                            ),
+                                                            height: 100,
+                                                            width: 58,
+                                                            child:
+                                                                const RotatedBox(
+                                                              quarterTurns: 1,
+                                                              child: Icon(
+                                                                  Icons.poll,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 17),
+                                                            )),
+                                                      )
+                                                    ],
                                                   ),
-                                                  ClipRRect(
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                          ),
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              228,
-                                                              228,
-                                                              228),
-                                                        ),
-                                                        height: 100,
-                                                        width: 58,
-                                                        child: const RotatedBox(
-                                                          quarterTurns: 1,
-                                                          child: Icon(
-                                                              Icons.poll,
-                                                              color:
-                                                                  Colors.white,
-                                                              size: 17),
-                                                        )),
-                                                  )
-                                                ],
+                                                ),
                                               ),
-                                            ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            width: 36,
+                                            height: 35,
+                                            child: Icon(Icons.filter_list,
+                                                color: Color.fromARGB(
+                                                    255, 80, 80, 80)),
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        width: 36,
-                                        height: 35,
-                                        child: Icon(Icons.filter_list,
-                                            color: Color.fromARGB(
-                                                255, 80, 80, 80)),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    bottomNavigationBar: CupertinoTabBar(
-                        inactiveColor: Colors.grey,
-                        activeColor: Colors.black,
-                        height: 50,
-                        backgroundColor: Colors.white,
-                        items: [
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                                padding: EdgeInsets.only(top: 3.0, right: 0),
-                                child: Icon(
-                                  Icons.home,
-                                )),
-                            label: 'Home',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 4.0),
-                              child: Icon(MyFlutterApp.university, size: 25),
-                            ),
-                            label: 'Archives',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.search,
                               ),
                             ),
-                            label: 'Search',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: Stack(
-                              children: const [
-                                Padding(
+                          ],
+                        ),
+                        bottomNavigationBar: CupertinoTabBar(
+                            inactiveColor: Colors.grey,
+                            activeColor: Colors.black,
+                            height: 50,
+                            backgroundColor: Colors.white,
+                            items: [
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 3.0, right: 0),
+                                    child: Icon(
+                                      Icons.home,
+                                    )),
+                                label: 'Home',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 4.0),
+                                  child:
+                                      Icon(MyFlutterApp.university, size: 25),
+                                ),
+                                label: 'Archives',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
                                   padding: EdgeInsets.only(top: 3.0),
                                   child: Icon(
-                                    Icons.create,
+                                    Icons.search,
                                   ),
                                 ),
-                                Positioned(
-                                  top: 15,
-                                  left: 13,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 3.0),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 14,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            label: 'Create',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.phone_iphone,
+                                label: 'Search',
                               ),
-                            ),
-                            label: 'Submissions',
-                          ),
-                        ],
-                        currentIndex: _page,
-                        onTap: navigationTapped),
+                              BottomNavigationBarItem(
+                                icon: Stack(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.0),
+                                      child: Icon(
+                                        Icons.create,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 15,
+                                      left: 13,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 3.0),
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                label: 'Create',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child: Icon(
+                                    Icons.phone_iphone,
+                                  ),
+                                ),
+                                label: 'Submissions',
+                              ),
+                            ],
+                            currentIndex: _page,
+                            onTap: navigationTapped),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Positioned.fill(
-                child: Visibility(
-                  visible: isLoading,
+                  Positioned.fill(
+                    child: Visibility(
+                      visible: isLoading,
+                      child: Container(
+                        color: Colors.black.withOpacity(0.3),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : ChangeNotifierProvider<ChangeCountryProvider>(
+                create: (context) => ChangeCountryProvider(),
+                lazy: false,
+                child: ChangeNotifierProvider<UserReportProvider>(
+                  create: (context) => UserReportProvider(),
+                  lazy: false,
                   child: Container(
-                    color: Colors.black.withOpacity(0.3),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
+                    color: Colors.white,
+                    child: SafeArea(
+                      child: Scaffold(
+                        body: PageView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            controller: pageController,
+                            onPageChanged: onPageChanged,
+                            children: [
+                              FeedScreen(
+                                durationInDay: durationInDay,
+                              ),
+                              MostLikedScreen(durationInDay: durationInDay),
+                              Search(
+                                durationInDay: durationInDay,
+                              ),
+                              AddPost(
+                                durationInDay: durationInDay,
+                              ),
+                              Submissions(
+                                durationInDay: durationInDay,
+                              ),
+                            ]),
+                        bottomNavigationBar: CupertinoTabBar(
+                            inactiveColor: Colors.grey,
+                            activeColor: Colors.black,
+                            height: 50,
+                            backgroundColor: Colors.white,
+                            items: [
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 3.0, right: 0),
+                                    child: Icon(
+                                      Icons.home,
+                                    )),
+                                label: 'Home',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 4.0),
+                                  child:
+                                      Icon(MyFlutterApp.university, size: 25),
+                                ),
+                                label: 'Archives',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child: Icon(
+                                    Icons.search,
+                                  ),
+                                ),
+                                label: 'Search',
+                              ),
+                              BottomNavigationBarItem(
+                                icon: Stack(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.0),
+                                      child: Icon(
+                                        Icons.create,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 15,
+                                      left: 13,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 3.0),
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                label: 'Create',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child: Icon(
+                                    Icons.phone_iphone,
+                                  ),
+                                ),
+                                label: 'Submissions',
+                              ),
+                              // BottomNavigationBarItem(
+                              //   icon: Padding(
+                              //     padding: const EdgeInsets.only(top: 3.0),
+                              //     child: Icon(
+                              //       Icons.notifications,
+                              //     ),
+                              //   ),
+                              //   label: 'Notifications',
+                              // ),
+                            ],
+                            currentIndex: _page,
+                            onTap: navigationTapped),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          )
-        : ChangeNotifierProvider<ChangeCountryProvider>(
-            create: (context) => ChangeCountryProvider(),
-            lazy: false,
-            child: ChangeNotifierProvider<UserReportProvider>(
-              create: (context) => UserReportProvider(),
-              lazy: false,
-              child: Container(
-                color: Colors.white,
-                child: SafeArea(
-                  child: Scaffold(
-                    body: PageView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        controller: pageController,
-                        onPageChanged: onPageChanged,
-                        children: [
-                          FeedScreen(
-                            durationInDay: durationInDay,
-                          ),
-                          MostLikedScreen(durationInDay: durationInDay),
-                          Search(
-                            durationInDay: durationInDay,
-                          ),
-                          AddPost(
-                            durationInDay: durationInDay,
-                          ),
-                          Submissions(
-                            durationInDay: durationInDay,
-                          ),
-                        ]),
-                    bottomNavigationBar: CupertinoTabBar(
-                        inactiveColor: Colors.grey,
-                        activeColor: Colors.black,
-                        height: 50,
-                        backgroundColor: Colors.white,
-                        items: [
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                                padding: EdgeInsets.only(top: 3.0, right: 0),
-                                child: Icon(
-                                  Icons.home,
-                                )),
-                            label: 'Home',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 4.0),
-                              child: Icon(MyFlutterApp.university, size: 25),
-                            ),
-                            label: 'Archives',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.search,
-                              ),
-                            ),
-                            label: 'Search',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: Stack(
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Icon(
-                                    Icons.create,
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 15,
-                                  left: 13,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 3.0),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 14,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            label: 'Create',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.phone_iphone,
-                              ),
-                            ),
-                            label: 'Submissions',
-                          ),
-                          // BottomNavigationBarItem(
-                          //   icon: Padding(
-                          //     padding: const EdgeInsets.only(top: 3.0),
-                          //     child: Icon(
-                          //       Icons.notifications,
-                          //     ),
-                          //   ),
-                          //   label: 'Notifications',
-                          // ),
-                        ],
-                        currentIndex: _page,
-                        onTap: navigationTapped),
-                  ),
-                ),
-              ),
-            ),
-          );
+              );
   }
 
   _getStartTime() {
