@@ -112,5 +112,8 @@ flutter:
     - family: MyFlutterApp
       fonts:
         - asset: assets/MyFlutterApp.ttf
+    - family: Capitalis
+      fonts:
+        - asset: assets/CapitalisTypOasis.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

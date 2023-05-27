@@ -124,30 +124,32 @@ class _HowItWorksState extends State<HowItWorks> {
                   padding: const EdgeInsets.only(
                     right: 16.0,
                     left: 16,
+                    top: 16,
+                    bottom: 16,
                   ),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15, top: 24.0),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 50,
-                                child: Image.asset(
-                                  'assets/fairtalk_blue_transparent.png',
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text('$version  •  $year',
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3,
-                                      color: Color.fromARGB(255, 36, 64, 101))),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(bottom: 15, top: 24.0),
+                        //   child: Column(
+                        //     children: [
+                        //       SizedBox(
+                        //         height: 50,
+                        //         child: Image.asset(
+                        //           'assets/fairtalk_blue_transparent.png',
+                        //         ),
+                        //       ),
+                        //       const SizedBox(height: 6),
+                        //       Text('$version  •  $year',
+                        //           style: const TextStyle(
+                        //               fontSize: 12,
+                        //               fontWeight: FontWeight.w500,
+                        //               letterSpacing: 0.3,
+                        //               color: Color.fromARGB(255, 36, 64, 101))),
+                        //     ],
+                        //   ),
+                        // ),
                         PhysicalModel(
                           color: Colors.white,
                           elevation: 3,
@@ -184,8 +186,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                             "Brief Explanation",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 36, 64, 101),
+                                              color: Colors.black,
                                               letterSpacing: 0.5,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16,
@@ -195,8 +196,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               isBrief
                                                   ? Icons.keyboard_arrow_up
                                                   : Icons.keyboard_arrow_down,
-                                              color: const Color.fromARGB(
-                                                  255, 36, 64, 101),
+                                              color: Colors.black,
                                               size: 28)
                                         ],
                                       ),
@@ -212,7 +212,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                             children: [
                                               const SizedBox(height: 3),
                                               const Text(
-                                                'The majority votes & decides:',
+                                                'On Fairtalk, the majority votes & decides:',
                                                 style: TextStyle(
                                                   letterSpacing: 0.3,
                                                   fontWeight: FontWeight.w500,
@@ -432,8 +432,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                             "Detailed Explanation",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 36, 64, 101),
+                                              color: Colors.black,
                                               letterSpacing: 0.5,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16,
@@ -443,8 +442,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               isHowDoesItWork
                                                   ? Icons.keyboard_arrow_up
                                                   : Icons.keyboard_arrow_down,
-                                              color: const Color.fromARGB(
-                                                  255, 36, 64, 101),
+                                              color: Colors.black,
                                               size: 28)
                                         ],
                                       ),
@@ -493,7 +491,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "If we want to give everyone a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the traditional following system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, actors, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more power than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy."),
+                                                  "If we want to give everyone a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the traditional following system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more power than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy."),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "An argument against Fairtalk",

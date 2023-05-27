@@ -13,11 +13,13 @@ import '../methods/storage_methods.dart';
 import '../provider/user_provider.dart';
 import '../methods/auth_methods.dart';
 import '../utils/utils.dart';
+import 'add_post_daily.dart';
 
 final List<Uint8List> emailAttachmentPhotos = [];
 
 class VerifyComplete extends StatefulWidget {
-  const VerifyComplete({Key? key}) : super(key: key);
+  var durationInDay;
+  VerifyComplete({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<VerifyComplete> createState() => _VerifyCompleteState();
@@ -260,7 +262,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                       ),
                                       Container(height: 8),
                                       const Text(
-                                        "The personal data you've provided by verifying your account will never be shared or sold.",
+                                        "The personal data you've provided by verifying your account is 100% secure and will never be shared or sold.",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 13.5,
@@ -387,10 +389,23 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                   res1 == 'success' &&
                                                   res2 == 'success') {
                                                 emailAttachmentPhotos.clear();
-                                                goToHome(context);
+
                                                 showSnackBar(
                                                     "Verification successfully completed.",
                                                     context);
+
+                                                widget.durationInDay == null
+                                                    ? goToHome(context)
+                                                    : Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                AddPostDaily(
+                                                                  durationInDay:
+                                                                      widget
+                                                                          .durationInDay,
+                                                                )),
+                                                      );
                                               }
                                             }
                                           });

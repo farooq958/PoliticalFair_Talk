@@ -104,9 +104,7 @@ class FirebaseNotification {
                     .setMessage('false');
                 Navigator.push(navigatorKey.currentContext!,
                     MaterialPageRoute(builder: (BuildContext context) {
-                  return const MobileScreenLayout(
-                    pageIndex: 1,
-                  );
+                  return const MobileScreenLayout(pageIndex: 1);
                 }));
               }
               break;

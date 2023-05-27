@@ -3,7 +3,9 @@ import '../info screens/how_it_works.dart';
 import 'verify_two.dart';
 
 class VerifyOne extends StatefulWidget {
-  const VerifyOne({Key? key}) : super(key: key);
+  var durationInDay;
+
+  VerifyOne({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<VerifyOne> createState() => _VerifyOneState();
@@ -191,7 +193,16 @@ class _VerifyOneState extends State<VerifyOne> {
                                   ),
                                   Container(height: 8),
                                   const Text(
-                                    "Because it helps eliminate all forms of voting manipulation. Without a verification system like this, it would be very easy for anyone to simply create multiple accounts and unfairly manipulate the platform's voting metrics.",
+                                    "Without an account verification system, anyone could simply create multiple accounts and unfairly manipulate our platform's voting metrics.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        letterSpacing: 0.3),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  const Text(
+                                    "Additionally, it also allows us to validate your Nationality. Once verified, you'll gain full access to the National section of the app.",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
@@ -208,50 +219,49 @@ class _VerifyOneState extends State<VerifyOne> {
                                   //       letterSpacing: 0.3),
                                   // ),
                                   Container(height: 4),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Material(
-                                        color: Colors.transparent,
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: InkWell(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          splashColor:
-                                              Colors.blue.withOpacity(0.5),
-                                          onTap: () {
-                                            Future.delayed(
-                                                const Duration(
-                                                    milliseconds: 150), () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const HowItWorks()),
-                                              );
-                                            });
-                                          },
-                                          child: Container(
-                                            padding: const EdgeInsets.all(4),
-                                            child: Row(
-                                              children: [
-                                                const Icon(Icons.info_outline,
-                                                    color: Colors.blue,
-                                                    size: 14),
-                                                Container(width: 4),
-                                                const Text(
-                                                    'Learn more about Fairtalk',
-                                                    style: TextStyle(
-                                                        color: Colors.blue,
-                                                        fontSize: 14)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Container(height: 0),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Material(
+                                  //       color: Colors.transparent,
+                                  //       borderRadius: BorderRadius.circular(5),
+                                  //       child: InkWell(
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(50),
+                                  //         splashColor:
+                                  //             Colors.blue.withOpacity(0.5),
+                                  //         onTap: () {
+                                  //           Future.delayed(
+                                  //               const Duration(
+                                  //                   milliseconds: 150), () {
+                                  //             Navigator.push(
+                                  //               context,
+                                  //               MaterialPageRoute(
+                                  //                   builder: (context) =>
+                                  //                       const HowItWorks()),
+                                  //             );
+                                  //           });
+                                  //         },
+                                  //         child: Container(
+                                  //           padding: const EdgeInsets.all(4),
+                                  //           child: Row(
+                                  //             children: [
+                                  //               const Icon(Icons.info_outline,
+                                  //                   color: Colors.blue,
+                                  //                   size: 14),
+                                  //               Container(width: 4),
+                                  //               const Text(
+                                  //                   'Learn more about Fairtalk',
+                                  //                   style: TextStyle(
+                                  //                       color: Colors.blue,
+                                  //                       fontSize: 14)),
+                                  //             ],
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
                                 ],
                               ),
                             ),
@@ -270,8 +280,9 @@ class _VerifyOneState extends State<VerifyOne> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const VerifyTwo()),
+                                              builder: (context) => VerifyTwo(
+                                                  durationInDay:
+                                                      widget.durationInDay)),
                                         );
                                       });
                                     },

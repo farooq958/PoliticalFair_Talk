@@ -17,7 +17,7 @@ const Color gW = Color.fromARGB(255, 245, 245, 245);
 const Color cardBottom = Color.fromARGB(255, 0, 0, 0);
 
 String version = '1.0.1';
-String year = '2023';
+String year = 'Launched in 2023';
 String email = 'fairtalk.assist@gmail.com';
 
 const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);

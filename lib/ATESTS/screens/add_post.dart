@@ -14,6 +14,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../camera/camera_screen.dart';
+import '../info screens/add_info.dart';
 import '../info screens/add_post_rules.dart';
 import '../methods/auth_methods.dart';
 import '../methods/firestore_methods.dart';
@@ -1408,8 +1409,9 @@ class _AddPostState extends State<AddPost> {
                                             color:
                                                 Color.fromARGB(255, 55, 55, 55),
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14.5,
-                                            letterSpacing: 0.5,
+                                            fontSize: 11.5,
+                                            letterSpacing: -0.2,
+                                            fontFamily: 'Capitalis',
                                           ),
                                         ),
                                       ),
@@ -1616,8 +1618,9 @@ class _AddPostState extends State<AddPost> {
                                       style: const TextStyle(
                                         color: Color.fromARGB(255, 55, 55, 55),
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 14.5,
-                                        letterSpacing: 0.5,
+                                        fontSize: 11.5,
+                                        letterSpacing: -0.2,
+                                        fontFamily: 'Capitalis',
                                       ),
                                     ),
                                   ),
@@ -1773,7 +1776,7 @@ class _AddPostState extends State<AddPost> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const AddPostRules()),
+                                                    const AddInfo()),
                                           );
                                         });
                                       },

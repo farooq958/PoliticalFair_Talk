@@ -151,12 +151,32 @@ class SubmissionsState extends State<Submissions>
                                   ),
                                 ),
                               ),
-                              const Text('Submissions',
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 30, 30, 30),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3)),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16.0),
+                                child: Column(
+                                  children: [
+                                    Text('Submissions',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 55, 55, 55),
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: -0.2,
+                                            fontFamily: 'Capitalis')),
+                                    Expanded(
+                                      child: const Text(
+                                          'You decide the direction of the platform.',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 55, 55, 55),
+                                              fontSize: 7.5,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: -0.2,
+                                              fontFamily: 'Capitalis')),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               SizedBox(
                                 width: 36,
                                 height: 35,

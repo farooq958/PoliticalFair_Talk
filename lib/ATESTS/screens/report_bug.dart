@@ -139,7 +139,7 @@ class _ReportBugState extends State<ReportBug> {
                           fontWeight: FontWeight.w500)),
                   const SizedBox(height: 10),
                   const Text(
-                      "Errors can be very irritating, we get it. Sometimes these errors can occur without us knowing and this is why you can report them here. If you believe you've found a bug, feel free to report it in full detail below and we'll do our very best to fix it.",
+                      "Errors & bugs can sometimes occur without us knowing and this is why you can report them here. If you believe you've found a bug, feel free to report it in full detail below and we'll do our very best to fix it as soon as possible.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12.5,

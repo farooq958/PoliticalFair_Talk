@@ -194,7 +194,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             // ),
 
                             const Text(
-                              "Fairtalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any political reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
+                              "Fairtalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
                               style: TextStyle(
                                 letterSpacing: 0.3,
                               ),

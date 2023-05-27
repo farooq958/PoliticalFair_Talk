@@ -11,7 +11,9 @@ import 'forgot_password.dart';
 import 'signup.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  var durationInDay;
+
+  LoginScreen({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -112,10 +114,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(children: [
                     const SizedBox(height: 20),
                     SizedBox(
-                        width: MediaQuery.of(context).size.width * 1 - 100,
+                        width: MediaQuery.of(context).size.width * 1 - 80,
                         child: Image.asset(
                             'assets/fairtalk_blue_transparent.png')),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 1 - 80,
+                      child: const Text(
+                        'A platform built to unite us all.',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 36, 64, 101),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 9,
+                            fontFamily: 'Capitalis'),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
                     Theme(
                       data: themeData.copyWith(inputDecorationTheme:
                           themeData.inputDecorationTheme.copyWith(
@@ -254,85 +269,96 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width > 600
-                                ? MediaQuery.of(context).size.width / 2 - 130
-                                : MediaQuery.of(context).size.width / 2 - 70,
-                            // MediaQuery.of(context).size.width / 2 - 194,
-                            decoration: const BoxDecoration(
-                              // color: Colors.red,
-                              border: Border(
-                                top: BorderSide(width: 1, color: Colors.grey),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 33,
-                          alignment: Alignment.center,
-                          child: const Text('or',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black)),
-                        ),
-                        Expanded(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width > 600
-                                ? MediaQuery.of(context).size.width / 2 - 130
-                                : MediaQuery.of(context).size.width / 2 - 70,
-                            decoration: const BoxDecoration(
-                              // color: Colors.red,
-                              border: Border(
-                                top: BorderSide(width: 1, color: Colors.grey),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    PhysicalModel(
-                      color: const Color.fromARGB(255, 179, 179, 179),
-                      elevation: 3,
-                      borderRadius: BorderRadius.circular(50),
-                      child: Material(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(25),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(25),
-                          splashColor: Colors.white.withOpacity(0.5),
-                          onTap: () {
-                            Future.delayed(const Duration(milliseconds: 150),
-                                () {
-                              goToHome(context);
-                            });
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            decoration: const ShapeDecoration(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(25),
+                    SizedBox(height: widget.durationInDay != null ? 0 : 12),
+                    widget.durationInDay != null
+                        ? const SizedBox()
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width > 600
+                                      ? MediaQuery.of(context).size.width / 2 -
+                                          130
+                                      : MediaQuery.of(context).size.width / 2 -
+                                          70,
+                                  // MediaQuery.of(context).size.width / 2 - 194,
+                                  decoration: const BoxDecoration(
+                                    // color: Colors.red,
+                                    border: Border(
+                                      top: BorderSide(
+                                          width: 1, color: Colors.grey),
+                                    ),
                                   ),
                                 ),
-                                color: Colors.transparent),
-                            child: const Text('Continue as a Guest',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.5)),
+                              ),
+                              Container(
+                                width: 33,
+                                alignment: Alignment.center,
+                                child: const Text('or',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.black)),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width > 600
+                                      ? MediaQuery.of(context).size.width / 2 -
+                                          130
+                                      : MediaQuery.of(context).size.width / 2 -
+                                          70,
+                                  decoration: const BoxDecoration(
+                                    // color: Colors.red,
+                                    border: Border(
+                                      top: BorderSide(
+                                          width: 1, color: Colors.grey),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 14),
+                    SizedBox(height: widget.durationInDay != null ? 0 : 12),
+                    widget.durationInDay != null
+                        ? const SizedBox()
+                        : PhysicalModel(
+                            color: const Color.fromARGB(255, 179, 179, 179),
+                            elevation: 3,
+                            borderRadius: BorderRadius.circular(50),
+                            child: Material(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(25),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(25),
+                                splashColor: Colors.white.withOpacity(0.5),
+                                onTap: () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 150), () {
+                                    goToHomeAsGuest(context);
+                                  });
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  alignment: Alignment.center,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
+                                  decoration: const ShapeDecoration(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(25),
+                                        ),
+                                      ),
+                                      color: Colors.transparent),
+                                  child: const Text('Continue as a Guest',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          letterSpacing: 0.5)),
+                                ),
+                              ),
+                            ),
+                          ),
+                    SizedBox(height: widget.durationInDay != null ? 12 : 14),
                     Column(
                       children: [
                         Material(
@@ -346,8 +372,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignupScreen()),
+                                      builder: (context) => SignupScreen(
+                                          durationInDay: widget.durationInDay)),
                                 );
                               });
                             },

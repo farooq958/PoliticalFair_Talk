@@ -5,7 +5,8 @@ import '../camera/camera_screen.dart';
 import '../utils/utils.dart';
 
 class VerifyThree extends StatefulWidget {
-  const VerifyThree({Key? key}) : super(key: key);
+  var durationInDay;
+  VerifyThree({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<VerifyThree> createState() => _VerifyThreeState();
@@ -235,7 +236,9 @@ class _VerifyThreeState extends State<VerifyThree> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const VerifyComplete()),
+                                                    VerifyComplete(
+                                                        durationInDay: widget
+                                                            .durationInDay)),
                                           );
                                         }
                                       });

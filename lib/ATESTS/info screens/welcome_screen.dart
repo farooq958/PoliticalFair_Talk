@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../screens/add_post_daily.dart';
 import '../screens/verify_one.dart';
 import '../utils/utils.dart';
 
 class WelcomeScreen extends StatefulWidget {
   var username;
-  WelcomeScreen({Key? key, required this.username}) : super(key: key);
+  var durationInDay;
+  WelcomeScreen({Key? key, required this.username, this.durationInDay})
+      : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -71,48 +74,60 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                     0.25
                                 : 150,
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20.0, horizontal: 5),
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 60,
-                                        child: Image.asset(
-                                          'assets/fairtalk_blue_transparent.png',
-                                        ),
-                                      ),
-
-                                      // Text(
-                                      //   'Welcome to Fairtalk,',
-                                      //   textAlign: TextAlign.center,
-                                      //   style: TextStyle(
-                                      //       fontWeight: FontWeight.w500,
-                                      //       fontSize: 24,
-                                      //       letterSpacing: 0.5,
-                                      //       color: Color.fromARGB(
-                                      //           255, 36, 64, 101)),
-                                      // ),
-                                      // Text(
-                                      //   '${widget.username}!',
-                                      //   textAlign: TextAlign.center,
-                                      //   style: TextStyle(
-                                      //       fontWeight: FontWeight.w500,
-                                      //       fontSize: 24,
-                                      //       letterSpacing: 0.5,
-                                      //       color: Color.fromARGB(
-                                      //           255, 36, 64, 101)),
-                                      // ),
-                                    ],
+                                  SizedBox(
+                                    height: 50,
+                                    child: Image.asset(
+                                      'assets/fairtalk_blue_transparent.png',
+                                    ),
                                   ),
-                                  // SizedBox(
-                                  //   height: 115,
-                                  //   child: Image.asset(
-                                  //     'assets/bottomIconSettingsWhite.png',
-                                  //   ),
+                                  const SizedBox(height: 5),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1 -
+                                            80,
+                                    child: const Text(
+                                      'A platform built to unite us all.',
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 36, 64, 101),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 9,
+                                          fontFamily: 'Capitalis'),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  // SizedBox(height: 15),
+                                  // Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Welcome to Fairtalk,',
+                                  //       textAlign: TextAlign.center,
+                                  //       style: TextStyle(
+                                  //           fontWeight: FontWeight.bold,
+                                  //           fontSize: 10,
+                                  //           letterSpacing: 0.5,
+                                  //           fontFamily: 'Capitalis',
+                                  //           color: Color.fromARGB(
+                                  //               255, 36, 64, 101)),
+                                  //     ),
+                                  //     Text(
+                                  //       '${widget.username}!',
+                                  //       textAlign: TextAlign.center,
+                                  //       style: TextStyle(
+                                  //           fontWeight: FontWeight.w500,
+                                  //           fontSize: 30,
+                                  //           letterSpacing: 0.5,
+                                  //           // fontFamily: 'Capitalis',
+                                  //           color: Color.fromARGB(
+                                  //               255, 36, 64, 101)),
+                                  //     ),
+                                  //   ],
                                   // ),
                                 ],
                               ),
@@ -180,8 +195,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   ),
                                   child: Column(
                                     children: [
-                                      const Text(
-                                        "Your account is currently unverified.",
+                                      Text(
+                                        "Welcome to Fairtalk, ${widget.username}!",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
@@ -191,6 +206,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                         ),
                                       ),
                                       Container(height: 8),
+                                      // Text(
+                                      //   "Your account is currently unverified.",
+                                      //   textAlign: TextAlign.center,
+                                      //   style: TextStyle(
+                                      //     color: Colors.white,
+                                      //     fontWeight: FontWeight.w500,
+                                      //     fontSize: 18,
+                                      //     letterSpacing: 0.3,
+                                      //   ),
+                                      // ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10),
@@ -206,11 +231,38 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           ),
                                         ),
                                       ),
+                                      // Container(height: 8),
+                                      // const Text(
+                                      //   "Your account is currently unverified.",
+                                      //   textAlign: TextAlign.center,
+                                      //   style: TextStyle(
+                                      //     color: Colors.white,
+                                      //     fontWeight: FontWeight.w500,
+                                      //     fontSize: 18,
+                                      //     letterSpacing: 0.3,
+                                      //   ),
+                                      // ),
+                                      // Container(height: 8),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       horizontal: 10),
+                                      //   child: Container(
+                                      //     width:
+                                      //         MediaQuery.of(context).size.width,
+                                      //     decoration: const BoxDecoration(
+                                      //       border: Border(
+                                      //         top: BorderSide(
+                                      //             width: 0,
+                                      //             color: Colors.white),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
                                       Container(height: 8),
                                       Column(
                                         children: const [
                                           Text(
-                                            "Verifying your account is not mandatory. As an unverified account, you'll still have access to most features on the platform. Unverified accounts are not allowed to cast any votes.",
+                                            "You must either: verify your account or continue as an unverified account.",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white,
@@ -220,7 +272,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           ),
                                           SizedBox(height: 8),
                                           Text(
-                                            "Without a verification system, it would be very easy for anyone to simply create multiple accounts and unfairly manipulate the platform's voting metrics.",
+                                            "As an unverified account, you'll still have access to most features on the platform but you won't be able to cast any votes. Our account verification system prevents users from manipulating our platform's voting metrics. Verifying your account is completely free.",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white,
@@ -228,6 +280,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                               letterSpacing: 0.3,
                                             ),
                                           ),
+
+                                          // SizedBox(height: 8),
+                                          // Text(
+                                          //   "Without a verification system, it would be very easy for anyone to simply create multiple accounts and unfairly manipulate the platform's voting metrics.",
+                                          //   textAlign: TextAlign.center,
+                                          //   style: TextStyle(
+                                          //     color: Colors.white,
+                                          //     fontSize: 13.5,
+                                          //     letterSpacing: 0.3,
+                                          //   ),
+                                          // ),
 
                                           // SizedBox(height: 2),
                                           // Text(
@@ -271,7 +334,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                                     Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const VerifyOne(),
+                                                            VerifyOne(
+                                                                durationInDay:
+                                                                    widget
+                                                                        .durationInDay),
                                                       ),
                                                     );
                                                   });
@@ -423,7 +489,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                                 Future.delayed(
                                                     const Duration(
                                                         milliseconds: 150), () {
-                                                  goToHome(context);
+                                                  // goToHome(context);
+
+                                                  widget.durationInDay == null
+                                                      ? goToHome(context)
+                                                      : Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      AddPostDaily(
+                                                                        durationInDay:
+                                                                            widget.durationInDay,
+                                                                      )),
+                                                        );
                                                 });
                                               },
                                               child: Container(

@@ -167,7 +167,7 @@ showSnackBarErrorLonger(
 void goToLogin(BuildContext context) {
   Navigator.of(context).pushAndRemoveUntil(
     MaterialPageRoute(
-      builder: (context) => const LoginScreen(),
+      builder: (context) => LoginScreen(),
     ),
     (route) => false,
   );
@@ -177,7 +177,7 @@ void goToLoginWithoutContext() {
   if (navigatorKey.currentContext != null) {
     Navigator.of(navigatorKey.currentContext!).pushAndRemoveUntil(
       MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
+        builder: (context) => LoginScreen(),
       ),
       (route) => false,
     );
@@ -199,7 +199,7 @@ void goToVerificationFail(String reason) {
 void goToSignup(BuildContext context) {
   Navigator.of(context).pushAndRemoveUntil(
     MaterialPageRoute(
-      builder: (context) => const SignupScreen(),
+      builder: (context) => SignupScreen(),
     ),
     (route) => false,
   );
@@ -210,6 +210,17 @@ void goToHome(BuildContext context) {
     MaterialPageRoute(
         builder: (context) => const ResponsiveLayout(
               mobileScreenLayout: MobileScreenLayout(),
+              webScreenLayout: WebScreenLayout(),
+            )),
+    (route) => false,
+  );
+}
+
+void goToHomeAsGuest(BuildContext context) {
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(
+        builder: (context) => const ResponsiveLayout(
+              mobileScreenLayout: MobileScreenLayout(guest: true),
               webScreenLayout: WebScreenLayout(),
             )),
     (route) => false,
@@ -1599,7 +1610,7 @@ verificationRequired({
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const VerifyOne()),
+                                  builder: (context) => VerifyOne()),
                             );
                           });
                         },
@@ -1836,7 +1847,7 @@ nationalityUnknown({required BuildContext context}) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const VerifyOne()),
+                                builder: (context) => VerifyOne()),
                           );
                         });
                       },
@@ -3130,7 +3141,7 @@ keywordsDialog({
                   child: Column(
                     children: const [
                       Text(
-                        "Keywords should always represent the topic of your message or poll. They're most often used as a searching tool in order to help users find topics and discussions that interests them.",
+                        "Keywords should always represent the topic of your message or poll. They're used as a searching tool to help users find subjects or discussions that interests them.",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15, color: darkBlue),
                       ),

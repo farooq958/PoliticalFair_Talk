@@ -62,6 +62,7 @@ class _SearchState extends State<Search> {
             getNextList: true)
         : null;
   }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -73,15 +74,14 @@ class _SearchState extends State<Search> {
   }) async {
     debugPrint("search value :${filterProvider.twoValueSearch}");
 
-
     if (filterProvider.messages == 'true') {
       Provider.of<SearchPageProvider>(context, listen: false).getkeywordList(
-        filterProvider.global,
-        filterProvider.countryCode,
-        filterProvider.durationInDay,
-       filterProvider.twoValueSearch
-       // filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
-      );
+          filterProvider.global,
+          filterProvider.countryCode,
+          filterProvider.durationInDay,
+          filterProvider.twoValueSearch
+          // filterProvider.twoValue=='All Days'?"≤ 7 Days":filterProvider.twoValue,
+          );
     } else {
       // debugPrint("Getting Polls");
       Provider.of<SearchPageProvider>(context, listen: false)
@@ -352,8 +352,9 @@ class _SearchState extends State<Search> {
                                                           255, 55, 55, 55),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 14.5,
-                                                      letterSpacing: 0.5,
+                                                      fontSize: 11.5,
+                                                      letterSpacing: -0.2,
+                                                      fontFamily: 'Capitalis',
                                                     ),
                                                   ),
                                                 ),
@@ -466,7 +467,6 @@ class _SearchState extends State<Search> {
                                                                           .durationInDay,
                                                                       filterProvider
                                                                           .twoValueSearch);
-
                                                             } else if (filterProvider
                                                                         .messages !=
                                                                     'true' &&
@@ -1321,8 +1321,9 @@ class _SearchState extends State<Search> {
                                                   color: Color.fromARGB(
                                                       255, 55, 55, 55),
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 14.5,
-                                                  letterSpacing: 0.5,
+                                                  fontSize: 11.5,
+                                                  letterSpacing: -0.2,
+                                                  fontFamily: 'Capitalis',
                                                 ),
                                               ),
                                             ),
@@ -1812,13 +1813,15 @@ class _SearchState extends State<Search> {
                                                     MaterialPageRoute(
                                                       builder: (context) =>
                                                           Countries(
-                                                            pageIndex: 2,
+                                                              pageIndex: 2,
                                                               durationInDay: widget
                                                                   .durationInDay,
                                                               removeFilterOptions: filterProvider
                                                                       .isMostLiked
                                                                   ? 2
-                                                                  : filterProvider.isUser == false && filterProvider.showMessages ==
+                                                                  : filterProvider.isUser ==
+                                                                              false &&
+                                                                          filterProvider.showMessages ==
                                                                               true
                                                                       ? 0
                                                                       : filterProvider.isAllKey == true && filterProvider.isUser == false ||

@@ -14,6 +14,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../camera/camera_screen.dart';
+import '../info screens/add_info.dart';
 import '../info screens/add_post_rules.dart';
 import '../methods/auth_methods.dart';
 import '../methods/firestore_methods.dart';
@@ -24,7 +25,7 @@ import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'full_image_add.dart';
-import 'my_drawer_list.dart';
+import 'package:flutter/gestures.dart';
 
 class AddPostDaily extends StatefulWidget {
   const AddPostDaily({
@@ -379,12 +380,14 @@ class _AddPostDailyState extends State<AddPostDaily> {
       if (res1 == "success" && res == "success") {
         Future.delayed(const Duration(milliseconds: 1500), () {
           // _showInterstitialAd();
-          FocusScope.of(context).unfocus();
-          _titleController.clear();
-          _bodyController.clear();
 
-          clearImage();
-          clearVideoUrl();
+          goToHome(context);
+          FocusScope.of(context).unfocus();
+          // _titleController.clear();
+          // _bodyController.clear();
+
+          // clearImage();
+          // clearVideoUrl();
           setState(() {
             _isLoading = false;
             selected = 0;
@@ -393,6 +396,10 @@ class _AddPostDailyState extends State<AddPostDaily> {
           global == 'true'
               ? waitTimer(time: widget.durationInDay, type: 'gMessage')
               : waitTimer(time: widget.durationInDay, type: 'nMessage');
+          showSnackBar(
+            'Message successfully created.',
+            context,
+          );
         });
       } else {
         showSnackBar(res, context);
@@ -456,26 +463,30 @@ class _AddPostDailyState extends State<AddPostDaily> {
       if (res1 == "success" && res == "success") {
         Future.delayed(const Duration(milliseconds: 1500), () {
           // _showInterstitialAd();
-
+          goToHome(context);
           setState(() {
             _isLoading = false;
-            _pollController.clear();
-            _optionOne.clear();
-            _optionTwo.clear();
-            _optionThree.clear();
-            _optionFour.clear();
-            _optionFive.clear();
-            _optionSix.clear();
-            _optionSeven.clear();
-            _optionEight.clear();
-            _optionNine.clear();
-            _optionTen.clear();
+            // _pollController.clear();
+            // _optionOne.clear();
+            // _optionTwo.clear();
+            // _optionThree.clear();
+            // _optionFour.clear();
+            // _optionFive.clear();
+            // _optionSix.clear();
+            // _optionSeven.clear();
+            // _optionEight.clear();
+            // _optionNine.clear();
+            // _optionTen.clear();
             FocusScope.of(context).unfocus();
           });
 
           global == 'true'
               ? waitTimer(time: widget.durationInDay, type: 'gPoll')
               : waitTimer(time: widget.durationInDay, type: 'nPoll');
+          showSnackBar(
+            'Poll successfully created.',
+            context,
+          );
         });
       } else {
         showSnackBar(res, context);
@@ -1302,24 +1313,7 @@ class _AddPostDailyState extends State<AddPostDaily> {
         child: Stack(
           children: [
             Scaffold(
-              key: _key,
-              backgroundColor: Colors.black.withOpacity(0.05),
-              drawer: Drawer(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SettingsScreen(
-                        durationInDay: widget.durationInDay,
-                        onLoading: (isLoading) {
-                          setState(() {
-                            _logoutLoading = isLoading;
-                          });
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              backgroundColor: const Color.fromARGB(255, 245, 245, 245),
               appBar: AppBar(
                 automaticallyImplyLeading: false,
                 elevation: 4,
@@ -1337,7 +1331,7 @@ class _AddPostDailyState extends State<AddPostDaily> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Column(
                                   children: [
@@ -1354,8 +1348,9 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                               color: Color.fromARGB(
                                                   255, 55, 55, 55),
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 14.5,
-                                              letterSpacing: 0.5,
+                                              fontSize: 11.5,
+                                              letterSpacing: -0.2,
+                                              fontFamily: 'Capitalis',
                                             ),
                                           ),
                                         ),
@@ -1569,21 +1564,21 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                     ),
                                   ],
                                 ),
+
                                 Column(
                                   children: [
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 1.0),
                                       child: Text(
-                                        messages == "true"
-                                            ? 'Messages'
-                                            : 'Polls',
+                                        messages == "true" ? 'Message' : 'Poll',
                                         style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 55, 55, 55),
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14.5,
-                                          letterSpacing: 0.5,
+                                          fontSize: 11.5,
+                                          letterSpacing: -0.2,
+                                          fontFamily: 'Capitalis',
                                         ),
                                       ),
                                     ),
@@ -1727,34 +1722,34 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  width: 35,
-                                  height: 35,
-                                  // color: Colors.blue,
-                                  child: Material(
-                                    shape: const CircleBorder(),
-                                    color: Colors.white,
-                                    child: InkWell(
-                                        customBorder: const CircleBorder(),
-                                        splashColor:
-                                            Colors.grey.withOpacity(0.5),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 50),
-                                              () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const AddPostRules()),
-                                            );
-                                          });
-                                        },
-                                        child: const Icon(Icons.info_outline,
-                                            color: Color.fromARGB(
-                                                255, 80, 80, 80))),
-                                  ),
-                                ),
+                                // SizedBox(
+                                //   width: 35,
+                                //   height: 35,
+                                //   // color: Colors.blue,
+                                //   child: Material(
+                                //     shape: const CircleBorder(),
+                                //     color: Colors.white,
+                                //     child: InkWell(
+                                //         customBorder: const CircleBorder(),
+                                //         splashColor:
+                                //             Colors.grey.withOpacity(0.5),
+                                //         onTap: () {
+                                //           Future.delayed(
+                                //               const Duration(milliseconds: 50),
+                                //               () {
+                                //             Navigator.push(
+                                //               context,
+                                //               MaterialPageRoute(
+                                //                   builder: (context) =>
+                                //                       const AddPostRules()),
+                                //             );
+                                //           });
+                                //         },
+                                //         child: const Icon(Icons.info_outline,
+                                //             color: Color.fromARGB(
+                                //                 255, 80, 80, 80))),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -1768,1513 +1763,112 @@ class _AddPostDailyState extends State<AddPostDaily> {
                   ),
                 ],
               ),
-              body: messages == 'true'
-                  ? SingleChildScrollView(
-                      reverse: true,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // _isLoading
-                          //     ? const LinearProgressIndicator()
-                          //     : const Padding(padding: EdgeInsets.only(top: 0)),
-                          // const Divider(),
-                          const SizedBox(
-                            height: 10,
+              body: SingleChildScrollView(
+                reverse: true,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    PhysicalModel(
+                      elevation: 3,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(55),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 20,
+                        padding: const EdgeInsets.only(
+                          left: 14,
+                          right: 14,
+                          top: 16,
+                          bottom: 10,
+                        ),
+                        child: const Text(
+                          'Start by creating your very first message or poll.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 55, 55, 55),
+                            fontSize: 11.5,
+                            fontFamily: 'Capitalis',
+                            letterSpacing: -0.2,
+                            fontWeight: FontWeight.bold,
                           ),
-                          PhysicalModel(
-                            elevation: 3,
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 6),
-                              width: MediaQuery.of(context).size.width - 20,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(5.0),
-                                ),
-                              ),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(height: 20),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2),
-                                      child: WillPopScope(
-                                        onWillPop: () async {
-                                          return false;
-                                        },
-                                        child: Stack(
-                                          children: [
-                                            TextField(
-                                              maxLength:
-                                                  _messageTitleTextfieldMaxLength,
-                                              onChanged: (val) {
-                                                setState(() {});
-                                                // setState(() {
-                                                //   emptyTittle = false;
-                                                //   // emptyPollQuestion = false;
-                                                // });
-                                              },
-                                              controller: _titleController,
-                                              onTap: () {},
-                                              decoration: const InputDecoration(
-                                                hintText: "Create a message",
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.blue,
-                                                      width: 2),
-                                                ),
-                                                contentPadding: EdgeInsets.only(
-                                                    top: 0,
-                                                    left: 4,
-                                                    right: 45,
-                                                    bottom: 8),
-                                                isDense: true,
-                                                hintStyle: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 16,
-                                                ),
-                                                labelStyle: TextStyle(
-                                                    color: Colors.black),
-                                                counterText: '',
-                                              ),
-                                              maxLines: null,
-                                            ),
-                                            Positioned(
-                                              bottom: 5,
-                                              right: 0,
-                                              child: Text(
-                                                '${_titleController.text.length}/$_messageTitleTextfieldMaxLength',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: _titleController
-                                                              .text.length ==
-                                                          _messageTitleTextfieldMaxLength
-                                                      ? const Color.fromARGB(
-                                                          255, 220, 105, 96)
-                                                      : Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(height: 30),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2),
-                                      child: WillPopScope(
-                                        onWillPop: () async {
-                                          return false;
-                                        },
-                                        child: Stack(
-                                          children: [
-                                            TextField(
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  // emptyPollQuestion = false;
-                                                });
-                                              },
-                                              controller: _bodyController,
-                                              onTap: () {},
-                                              decoration: const InputDecoration(
-                                                hintText:
-                                                    "Additional text (optional)",
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.blue,
-                                                      width: 2),
-                                                ),
-                                                contentPadding: EdgeInsets.only(
-                                                    top: 0,
-                                                    left: 4,
-                                                    right: 45,
-                                                    bottom: 8),
-                                                isDense: true,
-                                                hintStyle: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 16,
-                                                ),
-                                                labelStyle: TextStyle(
-                                                    color: Colors.black),
-                                                counterText: '',
-                                              ),
-                                              maxLines: null,
-                                            ),
-                                            const Positioned(
-                                              bottom: 5,
-                                              right: 0,
-                                              child: Text(
-                                                'unlimited',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(height: 27),
-                                    Column(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                              Radius.circular(5.0),
-                                            ),
-                                            border: Border.all(
-                                                color: Colors.grey, width: 1),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              _icon(0,
-                                                  icon: Icons.do_not_disturb),
-                                              _icon(1, icon: Icons.collections),
-                                              // _icon(2, icon: Icons.video_library),
-                                              _icon(3,
-                                                  icon: MyFlutterApp.youtube_1),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(height: 20),
-                                      ],
-                                    ),
-                                    _file != null
-                                        ? Column(
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                // _isVideoFile &&
-                                                                //         _videoFile !=
-                                                                //             null
-                                                                //     ? PreviewPictureScreen(
-                                                                //         previewOnly:
-                                                                //             true,
-                                                                //         filePath:
-                                                                //             _videoFile!
-                                                                //                 .path,
-                                                                //         cameraFileType:
-                                                                //             CameraFileType
-                                                                //                 .video,
-                                                                //         add: add,
-                                                                //       )
-                                                                // :
-                                                                FullImageScreenAdd(
-                                                                  file: MemoryImage(
-                                                                      _file!),
-                                                                )),
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        color: const Color
-                                                                .fromARGB(
-                                                            255, 248, 248, 248),
-                                                        border: Border.all(
-                                                            color: Colors.grey,
-                                                            width: 0.5),
-                                                      ),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.36,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.72,
-
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(3.0),
-                                                        child:
-                                                            // _isVideoFile &&
-                                                            //         _videoFile != null
-                                                            //     ? FutureBuilder(
-                                                            //         future:
-                                                            //             _getVideoThumbnail(
-                                                            //           file: _videoFile!,
-                                                            //         ),
-                                                            //         builder: (BuildContext
-                                                            //                 context,
-                                                            //             AsyncSnapshot<File>
-                                                            //                 snapshot) {
-                                                            //           switch (snapshot
-                                                            //               .connectionState) {
-                                                            //             case ConnectionState
-                                                            //                 .none:
-                                                            //               print(
-                                                            //                   'ConnectionState.none');
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .waiting:
-                                                            //               return const Center(
-                                                            //                 child:
-                                                            //                     CircularProgressIndicator(),
-                                                            //               );
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .active:
-                                                            //               print(
-                                                            //                   'ConnectionState.active');
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .done:
-                                                            //               print(
-                                                            //                   'ConnectionState.done');
-                                                            //               break;
-                                                            //           }
-
-                                                            //           return snapshot
-                                                            //                       .data !=
-                                                            //                   null
-                                                            //               ? Stack(
-                                                            //                   alignment:
-                                                            //                       Alignment
-                                                            //                           .center,
-                                                            //                   children: [
-                                                            //                     Image.file(
-                                                            //                         snapshot
-                                                            //                             .data!),
-                                                            //                     const Center(
-                                                            //                       child:
-                                                            //                           Icon(
-                                                            //                         Icons
-                                                            //                             .play_circle_outline,
-                                                            //                         color: Colors
-                                                            //                             .white,
-                                                            //                       ),
-                                                            //                     ),
-                                                            //                   ],
-                                                            //                 )
-                                                            //               : const Center(
-                                                            //                   child:
-                                                            //                       CircularProgressIndicator(),
-                                                            //                 );
-                                                            //         },
-                                                            //       )
-                                                            // :
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            image:
-                                                                DecorationImage(
-                                                              image:
-                                                                  MemoryImage(
-                                                                      _file!),
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                              // alignment: FractionalOffset.topCenter,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      // ),
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      SizedBox(
-                                                        width: 40,
-                                                        height: 40,
-                                                        child: Material(
-                                                          shape:
-                                                              const CircleBorder(),
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: InkWell(
-                                                            customBorder:
-                                                                const CircleBorder(),
-                                                            splashColor: Colors
-                                                                .grey
-                                                                .withOpacity(
-                                                                    0.3),
-                                                            onTap: () {
-                                                              Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          50),
-                                                                  () {
-                                                                // _isVideoFile
-                                                                //     ? _selectVideo(
-                                                                //         context)
-                                                                // :
-                                                                _selectImage(
-                                                                    context);
-                                                              });
-                                                            },
-                                                            child: const Icon(
-                                                                Icons
-                                                                    .change_circle,
-                                                                color: Colors
-                                                                    .grey),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 40,
-                                                        height: 40,
-                                                        child: Material(
-                                                          shape:
-                                                              const CircleBorder(),
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: InkWell(
-                                                            customBorder:
-                                                                const CircleBorder(),
-                                                            splashColor: Colors
-                                                                .grey
-                                                                .withOpacity(
-                                                                    0.3),
-                                                            onTap: () {
-                                                              Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          50),
-                                                                  () {
-                                                                clearImage();
-                                                                selected = 0;
-                                                              });
-                                                            },
-                                                            child: const Icon(
-                                                                Icons.delete,
-                                                                color: Colors
-                                                                    .grey),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              // Container(height: 20),
-                                            ],
-                                          )
-                                        : _videoUrlController.text.isEmpty
-                                            ? Container()
-                                            : LayoutBuilder(
-                                                builder:
-                                                    (context, constraints) {
-                                                  // if (kIsWeb &&
-                                                  //     constraints.maxWidth > 800) {
-                                                  //   return Row(
-                                                  //     crossAxisAlignment:
-                                                  //         CrossAxisAlignment.start,
-                                                  //     children: const [
-                                                  //       Expanded(child: player),
-                                                  //       SizedBox(
-                                                  //         width: 500,
-                                                  //       ),
-                                                  //     ],
-                                                  //   );
-                                                  // }
-                                                  return SizedBox(
-                                                    // width: MediaQuery.of(context)
-                                                    //         .size
-                                                    //         .width *
-                                                    //     0.9,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width -
-                                                              100,
-                                                          child: Stack(
-                                                            children: [
-                                                              player,
-                                                              Positioned.fill(
-                                                                child:
-                                                                    YoutubeValueBuilder(
-                                                                  controller:
-                                                                      controller,
-                                                                  builder:
-                                                                      (context,
-                                                                          value) {
-                                                                    return AnimatedCrossFade(
-                                                                      crossFadeState: value.isReady
-                                                                          ? CrossFadeState
-                                                                              .showSecond
-                                                                          : CrossFadeState
-                                                                              .showFirst,
-                                                                      duration: const Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      secondChild:
-                                                                          const SizedBox
-                                                                              .shrink(),
-                                                                      firstChild:
-                                                                          Material(
-                                                                        child:
-                                                                            DecoratedBox(
-                                                                          // ignore: sort_child_properties_last
-                                                                          child:
-                                                                              const Center(
-                                                                            child:
-                                                                                CircularProgressIndicator(),
-                                                                          ),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            image:
-                                                                                DecorationImage(
-                                                                              image: NetworkImage(
-                                                                                YoutubePlayerController.getThumbnail(
-                                                                                  videoId: controller!.initialVideoId,
-                                                                                  quality: ThumbnailQuality.medium,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Column(
-                                                          children: [
-                                                            SizedBox(
-                                                              height: 40,
-                                                              width: 40,
-                                                              child: Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child: InkWell(
-                                                                  customBorder:
-                                                                      const CircleBorder(),
-                                                                  splashColor: Colors
-                                                                      .grey
-                                                                      .withOpacity(
-                                                                          0.3),
-                                                                  onTap: () {
-                                                                    Future.delayed(
-                                                                        const Duration(
-                                                                            milliseconds:
-                                                                                50),
-                                                                        () {
-                                                                      _selectYoutube(
-                                                                          context);
-                                                                    });
-                                                                  },
-                                                                  child: const Icon(
-                                                                      Icons
-                                                                          .change_circle,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 40,
-                                                              height: 40,
-                                                              child: Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child: InkWell(
-                                                                  customBorder:
-                                                                      const CircleBorder(),
-                                                                  splashColor: Colors
-                                                                      .grey
-                                                                      .withOpacity(
-                                                                          0.3),
-                                                                  onTap: () {
-                                                                    Future.delayed(
-                                                                        const Duration(
-                                                                            milliseconds:
-                                                                                50),
-                                                                        () {
-                                                                      clearVideoUrl();
-                                                                      setState(
-                                                                          () {
-                                                                        selected =
-                                                                            0;
-                                                                      });
-                                                                    });
-                                                                  },
-                                                                  child: const Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                    SizedBox(
-                                        height: _videoUrlController
-                                                    .text.isNotEmpty ||
-                                                _file != null
-                                            ? 20
-                                            : 0)
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          PhysicalModel(
-                            elevation: 3,
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width - 20,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                // border: Border.all(
-                                //     color: const Color.fromARGB(255, 210, 210, 210),
-                                //     width: 1.5),
-                              ),
-                              child: Consumer<CreatePageProvider>(
-                                  builder: (context, createProvider, child) {
-                                return Column(
-                                  children: [
-                                    const SizedBox(height: 20),
-                                    Autocomplete<String>(
-                                      optionsViewBuilder:
-                                          (context, onSelected, options) {
-                                        return Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 10.0, vertical: 4.0),
-                                          child: Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Material(
-                                              elevation: 4.0,
-                                              child: ConstrainedBox(
-                                                constraints:
-                                                    const BoxConstraints(
-                                                        maxHeight: 200),
-                                                child: ListView.builder(
-                                                  shrinkWrap: true,
-                                                  itemCount: options.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    final dynamic option =
-                                                        options
-                                                            .elementAt(index);
-                                                    return TextButton(
-                                                      onPressed: () {
-                                                        onSelected(option);
-                                                      },
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical:
-                                                                      15.0),
-                                                          child: Text(
-                                                            '$option',
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style:
-                                                                const TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      74,
-                                                                      137,
-                                                                      92),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      optionsBuilder:
-                                          (TextEditingValue textEditingValue) {
-                                        if (textEditingValue.text == '') {
-                                          return const Iterable<String>.empty();
-                                        }
-                                        return _pickLanguage
-                                            .where((String option) {
-                                          return option.contains(
-                                              textEditingValue.text
-                                                  .toLowerCase());
-                                        });
-                                      },
-                                      onSelected: (String selectedTag) {
-                                        keywordMessageController.addTag =
-                                            selectedTag;
-                                      },
-                                      fieldViewBuilder: (context, ttec, tfn,
-                                          onFieldSubmitted) {
-                                        return Stack(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 14.0),
-                                              child: Container(
-                                                height: 46,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(5.0),
-                                                  ),
-                                                  border: Border.all(
-                                                      color: Colors.grey,
-                                                      width: 1),
-                                                ),
-                                                child: TextFieldTags(
-                                                  textEditingController: ttec,
-                                                  focusNode: tfn,
-                                                  // textfieldTagsController:
-                                                  //     keywordMessageController,
-                                                  initialTags: const [],
-                                                  textSeparators: const [
-                                                    ' ',
-                                                    ',',
-                                                  ],
-                                                  letterCase: LetterCase.normal,
-                                                  inputfieldBuilder: (context,
-                                                      tec,
-                                                      fn,
-                                                      error,
-                                                      onChanged,
-                                                      onSubmitted) {
-                                                    return ((context, sc, tags,
-                                                        onTagDelete) {
-                                                      myTags = tags;
-                                                      List<String> tagsLower =
-                                                          tags;
-                                                      tagsLower = tagsLower
-                                                          .map((tagLower) =>
-                                                              tagLower
-                                                                  .toLowerCase())
-                                                          .toList();
-                                                      myTagsLowerCase =
-                                                          tagsLower;
-                                                      return Row(
-                                                        children: [
-                                                          Container(
-                                                            constraints: BoxConstraints(
-                                                                maxWidth: tags
-                                                                            .length <
-                                                                        3
-                                                                    ? MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        2
-                                                                    : MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        1.4),
-                                                            child:
-                                                                SingleChildScrollView(
-                                                              controller: sc,
-                                                              scrollDirection:
-                                                                  Axis.horizontal,
-                                                              child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: tags
-                                                                      .map((String
-                                                                          tag) {
-                                                                    return Container(
-                                                                      height:
-                                                                          28,
-                                                                      decoration: const BoxDecoration(
-                                                                          borderRadius: BorderRadius.all(
-                                                                            Radius.circular(20.0),
-                                                                          ),
-                                                                          color: Colors.grey),
-                                                                      margin: const EdgeInsets
-                                                                              .only(
-                                                                          left:
-                                                                              3,
-                                                                          right:
-                                                                              3),
-                                                                      padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          horizontal:
-                                                                              10.0,
-                                                                          vertical:
-                                                                              4.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          InkWell(
-                                                                            child:
-                                                                                Text(
-                                                                              tag,
-                                                                              style: const TextStyle(color: Colors.white),
-                                                                            ),
-                                                                          ),
-                                                                          const SizedBox(
-                                                                              width: 4.0),
-                                                                          InkWell(
-                                                                            child:
-                                                                                const Icon(
-                                                                              Icons.cancel,
-                                                                              size: 17.0,
-                                                                              color: Colors.white,
-                                                                            ),
-                                                                            onTap:
-                                                                                () {
-                                                                              onTagDelete(tag);
-                                                                            },
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  }).toList()),
-                                                            ),
-                                                          ),
-                                                          Flexible(
-                                                            child: TextField(
-                                                              controller: tec,
-                                                              focusNode: fn,
-                                                              enabled:
-                                                                  tags.length <
-                                                                      3,
-                                                              onTap: () {},
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            10.0,
-                                                                        left:
-                                                                            10,
-                                                                        right:
-                                                                            0,
-                                                                        bottom:
-                                                                            10),
-                                                                hintText: tags
-                                                                        .isNotEmpty
-                                                                    ? ''
-                                                                    : "Add up to 3 keywords (optional)",
-                                                                hintStyle: const TextStyle(
-                                                                    // fontStyle:
-                                                                    //     FontStyle
-                                                                    //         .italic,
-                                                                    color: Colors.grey,
-                                                                    fontSize: 15),
-                                                                errorText:
-                                                                    error,
-                                                                border:
-                                                                    InputBorder
-                                                                        .none,
-                                                              ),
-                                                              onChanged:
-                                                                  onChanged,
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 5,
-                                                                    right: 5),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                const Icon(
-                                                                    Icons.key,
-                                                                    color: Colors
-                                                                        .grey),
-                                                                tags.length == 3
-                                                                    ? Text(
-                                                                        '${tags.length}/3',
-                                                                        style: const TextStyle(
-                                                                            // fontStyle: FontStyle.italic,
-                                                                            fontSize: 12,
-                                                                            color: Color.fromARGB(255, 220, 105, 96)),
-                                                                      )
-                                                                    : Text(
-                                                                        '${tags.length}/3',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          // fontStyle: FontStyle.italic,
-                                                                          fontSize:
-                                                                              12,
-                                                                          color:
-                                                                              Colors.grey,
-                                                                        ),
-                                                                      )
-                                                              ],
-                                                            ),
-                                                          )
-                                                        ],
-                                                      );
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                    Container(height: 3.5),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 14.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            width: 30,
-                                          ),
-                                          Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              splashColor:
-                                                  Colors.grey.withOpacity(0.3),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              onTap: () {
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 100),
-                                                    () async {
-                                                  // setState(() {
-                                                  //   showTrendingMessage =
-                                                  //       !showTrendingMessage;
-                                                  // });
-                                                  await createProvider
-                                                      .setShowTrendingMessage(
-                                                          !createProvider
-                                                              .showTrendingMessage);
-                                                  if (createProvider
-                                                          .showTrendingMessage ==
-                                                      true) {
-                                                    createProvider
-                                                        .getkeywordList(
-                                                      global,
-                                                      user?.aaCountry ?? "",
-                                                      widget.durationInDay,
-                                                    );
-                                                  }
-                                                });
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const SizedBox(width: 10),
-                                                  const Text(
-                                                      'View trending keywords',
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 13)),
-                                                  Icon(
-                                                    createProvider
-                                                            .showTrendingMessage
-                                                        ? Icons.arrow_drop_up
-                                                        : Icons.arrow_drop_down,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 0),
-                                            child: Material(
-                                              color: Colors.white,
-                                              shape: const CircleBorder(),
-                                              child: InkWell(
-                                                customBorder:
-                                                    const CircleBorder(),
-                                                splashColor: Colors.grey
-                                                    .withOpacity(0.5),
-                                                onTap: () {
-                                                  Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 50),
-                                                    () {
-                                                      keywordsDialog(
-                                                          context: context);
-                                                    },
-                                                  );
-                                                },
-                                                child: const SizedBox(
-                                                  height: 32,
-                                                  width: 38,
-                                                  child: Icon(
-                                                      Icons.help_outline,
-                                                      size: 20,
-                                                      color: Colors.grey),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    // SizedBox(
-                                    //     height: createProvider.showTrendingMessage
-                                    //         ? 0
-                                    //         : 3.5),
-                                    createProvider.showTrendingMessage
-                                        ? createProvider.Loading == true
-                                            ? const SizedBox(
-                                                height: 223,
-                                                child: Center(
-                                                    child:
-                                                        CircularProgressIndicator()),
-                                              )
-                                            : Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10),
-                                                child: SizedBox(
-                                                  height: createProvider
-                                                              .postKeywordListCount ==
-                                                          1
-                                                      ? 200
-                                                      : 223,
-                                                  child: FutureBuilder(
-                                                    builder:
-                                                        (BuildContext context,
-                                                            snapshot) {
-                                                      return createProvider
-                                                              .list.isNotEmpty
-                                                          ? SingleChildScrollView(
-                                                              child: Column(
-                                                                children: [
-                                                                  createProvider
-                                                                              .postKeywordListCount >
-                                                                          1
-                                                                      ? Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Material(
-                                                                              color: Colors.transparent,
-                                                                              child: InkWell(
-                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                  splashColor: Colors.blue.withOpacity(0.2),
-                                                                                  onTap: () {
-                                                                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                      createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: false);
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    padding: const EdgeInsets.symmetric(
-                                                                                      vertical: 4,
-                                                                                      horizontal: 8,
-                                                                                    ),
-                                                                                    child: Text('View ${((createProvider.postKeywordListCount - 2) * 10) + 1} - ${(createProvider.postKeywordListCount - 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Colors.blue,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
-                                                                                  )),
-                                                                            ),
-                                                                          ],
-                                                                        )
-                                                                      : const SizedBox(),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          4),
-                                                                  ListView
-                                                                      .builder(
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    physics:
-                                                                        const NeverScrollableScrollPhysics(),
-                                                                    itemCount:
-                                                                        createProvider
-                                                                            .list
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                                index) =>
-                                                                            Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          vertical:
-                                                                              1),
-                                                                      child: NoRadioListTile<
-                                                                              String>(
-                                                                          start: ((((createProvider.postKeywordListCount - 1) * 10) + 1) + index)
-                                                                              .toString(),
-                                                                          center: createProvider
-                                                                              .list[
-                                                                                  index]
-                                                                              .keyName
-                                                                          //     ??
-                                                                          // ""
-                                                                          ,
-                                                                          end: createProvider
-                                                                              .list[index]
-                                                                              .length
-                                                                              .toString()),
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          4),
-                                                                  createProvider
-                                                                              .postKeywordLast ==
-                                                                          false
-                                                                      ? Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Material(
-                                                                              color: Colors.transparent,
-                                                                              child: InkWell(
-                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                  splashColor: Colors.blue.withOpacity(0.2),
-                                                                                  onTap: () {
-                                                                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                      createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: true);
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    padding: const EdgeInsets.symmetric(
-                                                                                      vertical: 4,
-                                                                                      horizontal: 8,
-                                                                                    ),
-                                                                                    child: Text("View ${(createProvider.postKeywordListCount * 10) + 1} - ${(createProvider.postKeywordListCount + 1) * 10}",
-                                                                                        style: const TextStyle(
-                                                                                          color: Colors.blue,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
-                                                                                  )),
-                                                                            ),
-                                                                          ],
-                                                                        )
-                                                                      : Container(),
-                                                                  const SizedBox(
-                                                                    height: 6,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          : const Center(
-                                                              child: Text(
-                                                                  'No trending keywords yet.',
-                                                                  style: TextStyle(
-                                                                      color: Color.fromARGB(
-                                                                          255,
-                                                                          183,
-                                                                          183,
-                                                                          183),
-                                                                      fontSize:
-                                                                          16)));
-                                                    },
-                                                  ),
-                                                ),
-                                              )
-                                        : Row(),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                  ],
-                                );
-                              }),
-                            ),
-                          ),
-
-                          // StreamBuilder(
-                          //     stream: FirebaseFirestore.instance
-                          //         .collection('users')
-                          //         .doc(user?.UID)
-                          //         .snapshots(),
-                          //     builder: (content, snapshot) {
-                          //       snap = snapshot.data != null
-                          //           ? User.fromSnap(snapshot.data!)
-                          //           : snap;
-
-                          //       return
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 8.0, top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                user == null
-                                    ? PhysicalModel(
-                                        elevation: 3,
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(25),
-                                        child: Material(
-                                          color: Colors.blue,
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          child: InkWell(
-                                            onTap: () {
-                                              Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 150), () {
-                                                performLoggedUserAction(
-                                                    context: context,
-                                                    action: () {});
-                                              });
-                                            },
-                                            child: SizedBox(
-                                              height: 38,
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                padding: const EdgeInsets.only(
-                                                    left: 20, right: 20),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(Icons.send,
-                                                        color: Colors.white,
-                                                        size: 19),
-                                                    const SizedBox(width: 10),
-                                                    Text(
-                                                      global == 'true'
-                                                          ? 'Send Message Globally'
-                                                          : 'Send Message Nationally',
-                                                      style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 15,
-                                                          letterSpacing: 1),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : user != null && snapshot?.data != null
-                                        ? PhysicalModel(
-                                            elevation: 3,
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Material(
-                                              color: user == null
-                                                  ? Colors.blue
-                                                  : snap?.pending == "true" &&
-                                                              global ==
-                                                                  'false' ||
-                                                          snap?.aaCountry ==
-                                                                  "" &&
-                                                              global ==
-                                                                  "false" ||
-                                                          snap?.gMessageTime ==
-                                                                  widget
-                                                                      .durationInDay &&
-                                                              global ==
-                                                                  'true' ||
-                                                          snap?.nMessageTime ==
-                                                                  widget
-                                                                      .durationInDay &&
-                                                              global == 'false'
-                                                      ? const Color.fromARGB(
-                                                          255, 180, 180, 180)
-                                                      : Colors.blue,
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              child: InkWell(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                splashColor: Colors.black
-                                                    .withOpacity(0.3),
-                                                onTap: () {
-                                                  Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 150),
-                                                      () {
-                                                    performLoggedUserAction(
-                                                        context: context,
-                                                        action: () {
-                                                          snap?.pending ==
-                                                                      "true" &&
-                                                                  global ==
-                                                                      "false"
-                                                              ? voteIfPending(
-                                                                  context:
-                                                                      context)
-                                                              : snap?.aaCountry ==
-                                                                          "" &&
-                                                                      global ==
-                                                                          "false"
-                                                                  ? nationalityUnknown(
-                                                                      context:
-                                                                          context)
-                                                                  : snap?.gMessageTime == widget.durationInDay &&
-                                                                              global ==
-                                                                                  'true' ||
-                                                                          snap?.nMessageTime == widget.durationInDay &&
-                                                                              global ==
-                                                                                  'false'
-                                                                      ? sendTimerDialog(
-                                                                          context:
-                                                                              context,
-                                                                          type:
-                                                                              'message',
-                                                                          type2: global == 'true'
-                                                                              ? 'global'
-                                                                              : 'national',
-                                                                        )
-                                                                      : _titleController
-                                                                              .text
-                                                                              .trim()
-                                                                              .isEmpty
-                                                                          ? showSnackBarError(
-                                                                              'Message field cannot be empty.',
-                                                                              context)
-                                                                          : postImage(
-                                                                              user?.UID ?? '',
-                                                                              user?.username ?? '',
-                                                                              user?.photoUrl ?? '',
-                                                                              global == 'true' ? '' : snap?.aaCountry ?? '',
-                                                                            );
-                                                        });
-                                                  });
-                                                },
-                                                child: SizedBox(
-                                                  height: 40,
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 20,
-                                                            right: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Icon(
-                                                            snap?.pending ==
-                                                                            "true" &&
-                                                                        global ==
-                                                                            'false' ||
-                                                                    snap?.gMessageTime ==
-                                                                            widget
-                                                                                .durationInDay &&
-                                                                        global ==
-                                                                            'true' ||
-                                                                    snap?.nMessageTime ==
-                                                                            widget
-                                                                                .durationInDay &&
-                                                                        global ==
-                                                                            'false'
-                                                                ? Icons.timer
-                                                                : Icons.send,
-                                                            color: Colors.white,
-                                                            size: 18),
-                                                        const SizedBox(
-                                                            width: 10),
-                                                        snap?.gMessageTime ==
-                                                                        widget
-                                                                            .durationInDay &&
-                                                                    global ==
-                                                                        'true' ||
-                                                                snap?.nMessageTime ==
-                                                                        widget
-                                                                            .durationInDay &&
-                                                                    global ==
-                                                                        'false'
-                                                            ? Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: const [
-                                                                  Text(
-                                                                    'WAIT TIME',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize:
-                                                                            15,
-                                                                        letterSpacing:
-                                                                            1),
-                                                                  ),
-                                                                  Text(
-                                                                    'Timer refreshes at 12:01AM EST',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize:
-                                                                            9,
-                                                                        letterSpacing:
-                                                                            0.2),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            : Text(
-                                                                snap?.pending ==
-                                                                            "true" &&
-                                                                        global ==
-                                                                            'false'
-                                                                    ? 'Verification Pending'
-                                                                    : snap?.aaCountry ==
-                                                                                "" &&
-                                                                            global ==
-                                                                                "false"
-                                                                        ? 'Nationality Unknown'
-                                                                        : global ==
-                                                                                'true'
-                                                                            ? 'Send Message Globally'
-                                                                            : 'Send Message Nationally',
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        15,
-                                                                    letterSpacing:
-                                                                        1),
-                                                              ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : const SizedBox()
-                              ],
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    )
-                  : SingleChildScrollView(
-                      physics: const ScrollPhysics(),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 1,
-                        child: Column(
-                          children: [
-                            // _isLoading
-                            //     ? const LinearProgressIndicator()
-                            //     : const Padding(padding: EdgeInsets.only(top: 0)),
-                            // const Divider(),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Icon(
+                      Icons.arrow_downward,
+                      size: 18,
+                      color: Color.fromARGB(255, 55, 55, 55),
+                    ),
+                    SizedBox(
+                      height: messages == 'true' ? 10 : 0,
+                    ),
+                    messages == 'true'
+                        ? SingleChildScrollView(
+                            reverse: true,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 PhysicalModel(
                                   elevation: 3,
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(5),
-                                  color: Colors.transparent,
                                   child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6),
                                     width:
                                         MediaQuery.of(context).size.width - 20,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 14),
                                     decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(5.0),
                                       ),
                                     ),
-                                    child: Column(
-                                      children: [
-                                        // emptyPollQuestion == true
-                                        //     ? Column(
-                                        //         children: [
-                                        //           Container(height: 6),
-                                        //           Row(
-                                        //             mainAxisAlignment:
-                                        //                 MainAxisAlignment.center,
-                                        //             children: [
-                                        //               const Icon(Icons.error,
-                                        //                   size: 16,
-                                        //                   color: Color.fromARGB(
-                                        //                       255, 220, 105, 96)),
-                                        //               Container(width: 4),
-                                        //               const Text(
-                                        //                 'Poll question cannot be blank.',
-                                        //                 style: TextStyle(
-                                        //                   color: Color.fromARGB(
-                                        //                       255, 220, 105, 96),
-                                        //                 ),
-                                        //               ),
-                                        //             ],
-                                        //           ),
-                                        //         ],
-                                        //       )
-                                        //     : Container(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 20.0, top: 20),
-                                          child: Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Column(
+                                        children: [
+                                          Material(
+                                            color: Colors.white,
+                                            shape: const CircleBorder(),
+                                            child: InkWell(
+                                              customBorder:
+                                                  const CircleBorder(),
+                                              splashColor:
+                                                  Colors.grey.withOpacity(0.5),
+                                              onTap: () {
+                                                performLoggedUserAction(
+                                                    context: context,
+                                                    action: () {
+                                                      Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 50),
+                                                        () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const AddInfo()),
+                                                          );
+                                                        },
+                                                      );
+                                                    });
+                                              },
+                                              child: const SizedBox(
+                                                height: 32,
+                                                width: 38,
+                                                child: Icon(Icons.info_outline,
+                                                    size: 20,
+                                                    color: Colors.grey),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 2),
                                             child: WillPopScope(
@@ -3285,20 +1879,25 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                                 children: [
                                                   TextField(
                                                     maxLength:
-                                                        _pollQuestionTextfieldMaxLength,
+                                                        _messageTitleTextfieldMaxLength,
                                                     onChanged: (val) {
                                                       setState(() {});
+                                                      // setState(() {
+                                                      //   emptyTittle = false;
+                                                      //   // emptyPollQuestion = false;
+                                                      // });
                                                     },
-                                                    controller: _pollController,
+                                                    controller:
+                                                        _titleController,
                                                     onTap: () {},
                                                     decoration:
                                                         const InputDecoration(
-                                                      hintText: "Create a poll",
+                                                      hintText:
+                                                          "Create a message",
                                                       focusedBorder:
                                                           UnderlineInputBorder(
                                                         borderSide: BorderSide(
-                                                            color: Colors
-                                                                .blueAccent,
+                                                            color: Colors.blue,
                                                             width: 2),
                                                       ),
                                                       contentPadding:
@@ -3322,13 +1921,13 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                                     bottom: 5,
                                                     right: 0,
                                                     child: Text(
-                                                      '${_pollController.text.length}/$_pollQuestionTextfieldMaxLength',
+                                                      '${_titleController.text.length}/$_messageTitleTextfieldMaxLength',
                                                       style: TextStyle(
                                                         fontSize: 12,
-                                                        color: _pollController
+                                                        color: _titleController
                                                                     .text
                                                                     .length ==
-                                                                _pollQuestionTextfieldMaxLength
+                                                                _messageTitleTextfieldMaxLength
                                                             ? const Color
                                                                     .fromARGB(
                                                                 255,
@@ -3343,2326 +1942,3429 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Colors.white,
+                                          Container(height: 30),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 2),
+                                            child: WillPopScope(
+                                              onWillPop: () async {
+                                                return false;
+                                              },
+                                              child: Stack(
+                                                children: [
+                                                  TextField(
+                                                    onChanged: (val) {
+                                                      setState(() {
+                                                        // emptyPollQuestion = false;
+                                                      });
+                                                    },
+                                                    controller: _bodyController,
+                                                    onTap: () {},
+                                                    decoration:
+                                                        const InputDecoration(
+                                                      hintText:
+                                                          "Additional text (optional)",
+                                                      focusedBorder:
+                                                          UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.blue,
+                                                            width: 2),
+                                                      ),
+                                                      contentPadding:
+                                                          EdgeInsets.only(
+                                                              top: 0,
+                                                              left: 4,
+                                                              right: 45,
+                                                              bottom: 8),
+                                                      isDense: true,
+                                                      hintStyle: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 16,
+                                                      ),
+                                                      labelStyle: TextStyle(
+                                                          color: Colors.black),
+                                                      counterText: '',
+                                                    ),
+                                                    maxLines: null,
+                                                  ),
+                                                  const Positioned(
+                                                    bottom: 5,
+                                                    right: 0,
+                                                    child: Text(
+                                                      'unlimited',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          child: Column(
+                                          Container(height: 27),
+                                          Column(
                                             children: [
-                                              // emptyOptionOne || emptyOptionTwo
-                                              //     ? Padding(
-                                              //         padding: const EdgeInsets.only(
-                                              //             bottom: 4.0),
-                                              //         child: Row(
-                                              //           mainAxisAlignment:
-                                              //               MainAxisAlignment.center,
-                                              //           children: [
-                                              //             const Icon(Icons.error,
-                                              //                 size: 16,
-                                              //                 color: Color.fromARGB(
-                                              //                     255, 220, 105, 96)),
-                                              //             Container(width: 6),
-                                              //             const Text(
-                                              //                 'First two poll options cannot be blank.',
-                                              //                 style: TextStyle(
-                                              //                     color: Color.fromARGB(
-                                              //                         255,
-                                              //                         220,
-                                              //                         105,
-                                              //                         96))),
-                                              //           ],
-                                              //         ),
-                                              //       )
-                                              //     : Container(),
-                                              Stack(
-                                                children: [
-                                                  TextField(
-                                                    maxLength:
-                                                        _optionTextfieldMaxLength,
-                                                    onChanged: (val) {
-                                                      setState(() {});
-                                                    },
-                                                    controller: _optionOne,
-                                                    decoration: InputDecoration(
-                                                      filled: true,
-                                                      fillColor: Colors.white,
-                                                      counter: Container(),
-                                                      labelText: "Option #1",
-                                                      labelStyle:
-                                                          const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey,
-                                                      ),
-                                                      // hintText: "Option #$ic",
-                                                      contentPadding:
-                                                          const EdgeInsets.only(
-                                                              left: 10),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color:
-                                                                    Colors.grey,
-                                                                width: 1),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color: Colors
-                                                                    .blueAccent,
-                                                                width: 2.0),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      border: InputBorder.none,
-                                                    ),
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                    ),
-                                                    maxLines: 1,
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                    Radius.circular(5.0),
                                                   ),
-                                                  Positioned(
-                                                    bottom: 12,
-                                                    right: 6,
-                                                    child: Text(
-                                                      '${_optionOne.text.length}/$_optionTextfieldMaxLength',
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        color: _optionOne.text
-                                                                    .length ==
-                                                                _optionTextfieldMaxLength
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                220,
-                                                                105,
-                                                                96)
-                                                            : Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Stack(
-                                                children: [
-                                                  TextField(
-                                                    maxLength:
-                                                        _optionTextfieldMaxLength,
-                                                    onChanged: (val) {
-                                                      setState(() {});
-                                                    },
-                                                    controller: _optionTwo,
-                                                    decoration: InputDecoration(
-                                                      filled: true,
-                                                      fillColor: Colors.white,
-                                                      counter: Container(),
-                                                      labelText: "Option #2",
-                                                      labelStyle:
-                                                          const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey,
-                                                      ),
-                                                      // hintText: "Option #$ic",
-                                                      contentPadding:
-                                                          const EdgeInsets.only(
-                                                              left: 10),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color:
-                                                                    Colors.grey,
-                                                                width: 1),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color:
-                                                                    Colors.blue,
-                                                                width: 2.0),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      border: InputBorder.none,
-                                                      // fillColor: Colors.white,
-                                                      // filled: true,
-                                                    ),
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                    ),
-                                                    maxLines: 1,
-                                                  ),
-                                                  Positioned(
-                                                    bottom: 12,
-                                                    right: 6,
-                                                    child: Text(
-                                                      '${_optionTwo.text.length}/$_optionTextfieldMaxLength',
-                                                      style: TextStyle(
-                                                        // fontStyle: FontStyle.italic,
-                                                        fontSize: 12,
-                                                        color: _optionTwo.text
-                                                                    .length ==
-                                                                _optionTextfieldMaxLength
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                220,
-                                                                105,
-                                                                96)
-                                                            : Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Visibility(
-                                                visible: visiblityThree,
-                                                child: Stack(
+                                                  border: Border.all(
+                                                      color: Colors.grey,
+                                                      width: 1),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
                                                   children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionThree,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #3 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              10.0,
-                                                                          left:
-                                                                              6),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionThree.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionThree
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
+                                                    _icon(0,
+                                                        icon: Icons
+                                                            .do_not_disturb),
+                                                    _icon(1,
+                                                        icon:
+                                                            Icons.collections),
+                                                    // _icon(2, icon: Icons.video_library),
+                                                    _icon(3,
+                                                        icon: MyFlutterApp
+                                                            .youtube_1),
                                                   ],
                                                 ),
                                               ),
-                                              Visibility(
-                                                visible: visiblityFour,
-                                                child: Stack(
+                                              Container(height: 20),
+                                            ],
+                                          ),
+                                          _file != null
+                                              ? Column(
                                                   children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionFour,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #4 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              10.0,
-                                                                          left:
-                                                                              6),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionFour.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionFour
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      // _isVideoFile &&
+                                                                      //         _videoFile !=
+                                                                      //             null
+                                                                      //     ? PreviewPictureScreen(
+                                                                      //         previewOnly:
+                                                                      //             true,
+                                                                      //         filePath:
+                                                                      //             _videoFile!
+                                                                      //                 .path,
+                                                                      //         cameraFileType:
+                                                                      //             CameraFileType
+                                                                      //                 .video,
+                                                                      //         add: add,
+                                                                      //       )
+                                                                      // :
+                                                                      FullImageScreenAdd(
+                                                                        file: MemoryImage(
+                                                                            _file!),
+                                                                      )),
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: const Color
                                                                       .fromARGB(
                                                                   255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblityFive,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionFive,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #5 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              6,
-                                                                          bottom:
-                                                                              10.0),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionFive.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionFive
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblitySix,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionSix,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #6 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          bottom:
-                                                                              10,
-                                                                          left:
-                                                                              6),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionSix.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionSix.text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblitySeven,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionSeven,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #7 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              6,
-                                                                          bottom:
-                                                                              10),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionSeven.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionSeven
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblityEight,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionEight,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #8 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              6.0,
-                                                                          bottom:
-                                                                              10),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionEight.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionEight
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblityNine,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionNine,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #9 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              6,
-                                                                          bottom:
-                                                                              10),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionNine.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionNine
-                                                                      .text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: visiblityTen,
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      maxLength:
-                                                          _optionTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller: _optionTen,
-                                                      decoration:
-                                                          InputDecoration(
-                                                              filled: true,
-                                                              fillColor: Colors
-                                                                  .white,
-                                                              counter:
-                                                                  Container(),
-                                                              labelText:
-                                                                  "Option #10 (optional)",
-                                                              labelStyle:
-                                                                  const TextStyle(
-                                                                fontSize: 14,
-                                                                color:
-                                                                    Colors.grey,
-                                                              ),
-                                                              // hintText: "Option #$ic",
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        width:
-                                                                            1),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        width:
-                                                                            2.0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                              ),
-                                                              border:
-                                                                  InputBorder
-                                                                      .none,
-                                                              suffixIcon:
-                                                                  IconButton(
-                                                                icon:
-                                                                    const Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              6,
-                                                                          bottom:
-                                                                              10),
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      size: 22,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                                onPressed: () {
-                                                                  setState(() {
-                                                                    if (visibleOptions ==
-                                                                        3) {
-                                                                      visiblityThree =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionThree
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        4) {
-                                                                      visiblityFour =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFour
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        5) {
-                                                                      visiblityFive =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionFive
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        6) {
-                                                                      visiblitySix =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSix
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        7) {
-                                                                      visiblitySeven =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionSeven
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        8) {
-                                                                      visiblityEight =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionEight
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        9) {
-                                                                      visiblityNine =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionNine
-                                                                          .clear();
-                                                                    } else if (visibleOptions ==
-                                                                        10) {
-                                                                      visiblityTen =
-                                                                          false;
-                                                                      visibleOptions =
-                                                                          visibleOptions -
-                                                                              1;
-                                                                      _optionTen
-                                                                          .clear();
-                                                                    } else {}
-                                                                  });
-                                                                },
-                                                              )),
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                      maxLines: 1,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 12,
-                                                      right: 6,
-                                                      child: Text(
-                                                        '${_optionTen.text.length}/$_optionTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: _optionTen.text
-                                                                      .length ==
-                                                                  _optionTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              ListView.builder(
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  shrinkWrap: true,
-                                                  itemCount: i,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    _cont!.add(
-                                                        TextEditingController());
-                                                    int ic = index + 3;
-                                                    return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          // right: 10,
-                                                          // left: 10,
-                                                          top: 6,
-                                                        ),
-                                                        child: Stack(
-                                                          children: [
-                                                            TextField(
-                                                              maxLength:
-                                                                  _optionTextfieldMaxLength,
-                                                              onChanged: (val) {
-                                                                setState(() {});
-                                                                // setState(() {
-                                                                //   emptyOptionOne ==
-                                                                //           true
-                                                                //       ? emptyOptionOne =
-                                                                //           false
-                                                                //       : null;
-                                                                //   emptyOptionTwo ==
-                                                                //           true
-                                                                //       ? emptyOptionTwo =
-                                                                //           false
-                                                                //       : null;
-                                                                // });
-                                                              },
-                                                              controller:
-                                                                  _cont![index],
-                                                              onTap: () {},
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                filled: true,
-                                                                fillColor:
-                                                                    Colors
-                                                                        .white,
-                                                                counter:
-                                                                    Container(),
-                                                                labelText: index ==
-                                                                            0 ||
-                                                                        index ==
-                                                                            1
-                                                                    // ? "Option #${ic} (optional)"
-                                                                    // : "Option #${ic} (optional)",
-                                                                    ? "Option #$ic"
-                                                                    : "Option #$ic (optional)",
-                                                                labelStyle:
-                                                                    const TextStyle(
-                                                                  fontSize: 14,
+                                                                  248,
+                                                                  248,
+                                                                  248),
+                                                              border: Border.all(
                                                                   color: Colors
                                                                       .grey,
-                                                                ),
-                                                                suffixIcon: i ==
-                                                                        0
-                                                                    ? const Icon(
-                                                                        Icons
-                                                                            .cancel,
-                                                                        color: Colors
-                                                                            .transparent)
-                                                                    : InkWell(
-                                                                        onTap:
-                                                                            () {
-                                                                          if (i >=
-                                                                              1) {
-                                                                            setState(() {
-                                                                              i = i - 1;
-
-                                                                              _cont![index].clear();
-                                                                            });
-
-                                                                            if (index !=
-                                                                                i) {
-                                                                              if (_cont![i - 1].text.isEmpty) {
-                                                                                _cont![i - 1].text = _cont![i].text;
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        },
-                                                                        child:
-                                                                            const Padding(
-                                                                          padding: EdgeInsets.only(
-                                                                              left: 8.0,
-                                                                              bottom: 14),
-                                                                          child:
-                                                                              Icon(
-                                                                            Icons.delete,
-                                                                            size:
-                                                                                20,
-                                                                            color:
-                                                                                Colors.grey,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            10),
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: const BorderSide(
-                                                                      color: Colors
-                                                                          .grey,
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5.0),
-                                                                ),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: const BorderSide(
-                                                                      color: Colors
-                                                                          .blue,
-                                                                      width:
-                                                                          2.0),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                ),
-                                                                border:
-                                                                    InputBorder
-                                                                        .none,
-                                                              ),
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontSize: 16,
-                                                              ),
-                                                              maxLines: 1,
+                                                                  width: 0.5),
                                                             ),
-                                                            Positioned(
-                                                              bottom: 12,
-                                                              right: 6,
-                                                              child: Text(
-                                                                '${_cont![index].text.length}/$_optionTextfieldMaxLength',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 12,
-                                                                  color: _cont![index]
-                                                                              .text
-                                                                              .length ==
-                                                                          _optionTextfieldMaxLength
-                                                                      ? const Color
-                                                                              .fromARGB(
-                                                                          255,
-                                                                          220,
-                                                                          105,
-                                                                          96)
-                                                                      : Colors
-                                                                          .grey,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.36,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.72,
+
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(3.0),
+                                                              child:
+                                                                  // _isVideoFile &&
+                                                                  //         _videoFile != null
+                                                                  //     ? FutureBuilder(
+                                                                  //         future:
+                                                                  //             _getVideoThumbnail(
+                                                                  //           file: _videoFile!,
+                                                                  //         ),
+                                                                  //         builder: (BuildContext
+                                                                  //                 context,
+                                                                  //             AsyncSnapshot<File>
+                                                                  //                 snapshot) {
+                                                                  //           switch (snapshot
+                                                                  //               .connectionState) {
+                                                                  //             case ConnectionState
+                                                                  //                 .none:
+                                                                  //               print(
+                                                                  //                   'ConnectionState.none');
+                                                                  //               break;
+                                                                  //             case ConnectionState
+                                                                  //                 .waiting:
+                                                                  //               return const Center(
+                                                                  //                 child:
+                                                                  //                     CircularProgressIndicator(),
+                                                                  //               );
+                                                                  //               break;
+                                                                  //             case ConnectionState
+                                                                  //                 .active:
+                                                                  //               print(
+                                                                  //                   'ConnectionState.active');
+                                                                  //               break;
+                                                                  //             case ConnectionState
+                                                                  //                 .done:
+                                                                  //               print(
+                                                                  //                   'ConnectionState.done');
+                                                                  //               break;
+                                                                  //           }
+
+                                                                  //           return snapshot
+                                                                  //                       .data !=
+                                                                  //                   null
+                                                                  //               ? Stack(
+                                                                  //                   alignment:
+                                                                  //                       Alignment
+                                                                  //                           .center,
+                                                                  //                   children: [
+                                                                  //                     Image.file(
+                                                                  //                         snapshot
+                                                                  //                             .data!),
+                                                                  //                     const Center(
+                                                                  //                       child:
+                                                                  //                           Icon(
+                                                                  //                         Icons
+                                                                  //                             .play_circle_outline,
+                                                                  //                         color: Colors
+                                                                  //                             .white,
+                                                                  //                       ),
+                                                                  //                     ),
+                                                                  //                   ],
+                                                                  //                 )
+                                                                  //               : const Center(
+                                                                  //                   child:
+                                                                  //                       CircularProgressIndicator(),
+                                                                  //                 );
+                                                                  //         },
+                                                                  //       )
+                                                                  // :
+                                                                  Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image: MemoryImage(
+                                                                        _file!),
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                    // alignment: FractionalOffset.topCenter,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            // ),
+                                                          ),
+                                                        ),
+                                                        Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              width: 40,
+                                                              height: 40,
+                                                              child: Material(
+                                                                shape:
+                                                                    const CircleBorder(),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child: InkWell(
+                                                                  customBorder:
+                                                                      const CircleBorder(),
+                                                                  splashColor: Colors
+                                                                      .grey
+                                                                      .withOpacity(
+                                                                          0.3),
+                                                                  onTap: () {
+                                                                    Future.delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                50),
+                                                                        () {
+                                                                      // _isVideoFile
+                                                                      //     ? _selectVideo(
+                                                                      //         context)
+                                                                      // :
+                                                                      _selectImage(
+                                                                          context);
+                                                                    });
+                                                                  },
+                                                                  child: const Icon(
+                                                                      Icons
+                                                                          .change_circle,
+                                                                      color: Colors
+                                                                          .grey),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 40,
+                                                              height: 40,
+                                                              child: Material(
+                                                                shape:
+                                                                    const CircleBorder(),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child: InkWell(
+                                                                  customBorder:
+                                                                      const CircleBorder(),
+                                                                  splashColor: Colors
+                                                                      .grey
+                                                                      .withOpacity(
+                                                                          0.3),
+                                                                  onTap: () {
+                                                                    Future.delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                50),
+                                                                        () {
+                                                                      clearImage();
+                                                                      selected =
+                                                                          0;
+                                                                    });
+                                                                  },
+                                                                  child: const Icon(
+                                                                      Icons
+                                                                          .delete,
+                                                                      color: Colors
+                                                                          .grey),
                                                                 ),
                                                               ),
                                                             ),
                                                           ],
-                                                        ));
-                                                  }),
-                                            ],
-                                          ),
-                                        ),
-                                        visibleOptions == 10
-                                            ? const Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 15, bottom: 19),
-                                                child: Text(
-                                                    'MAXIMUM OPTIONS REACHED',
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 85, 85, 85),
-                                                        fontSize: 13)),
-                                              )
-                                            : Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 0, bottom: 6),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Material(
-                                                      color: Colors.transparent,
-                                                      child: InkWell(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                        splashColor: Colors
-                                                            .blueAccent
-                                                            .withOpacity(0.3),
-                                                        onTap: () {
-                                                          Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      150), () {
-                                                            setState(() {
-                                                              if (visibleOptions ==
-                                                                  2) {
-                                                                visiblityThree =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  3) {
-                                                                visiblityFour =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  4) {
-                                                                visiblityFive =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  5) {
-                                                                visiblitySix =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  6) {
-                                                                visiblitySeven =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  7) {
-                                                                visiblityEight =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  8) {
-                                                                visiblityNine =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else if (visibleOptions ==
-                                                                  9) {
-                                                                visiblityTen =
-                                                                    true;
-                                                                visibleOptions =
-                                                                    visibleOptions +
-                                                                        1;
-                                                              } else {}
-                                                            });
-                                                          });
-                                                        },
-                                                        child: SizedBox(
-                                                          height: 45,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    // Container(height: 20),
+                                                  ],
+                                                )
+                                              : _videoUrlController.text.isEmpty
+                                                  ? Container()
+                                                  : LayoutBuilder(
+                                                      builder: (context,
+                                                          constraints) {
+                                                        // if (kIsWeb &&
+                                                        //     constraints.maxWidth > 800) {
+                                                        //   return Row(
+                                                        //     crossAxisAlignment:
+                                                        //         CrossAxisAlignment.start,
+                                                        //     children: const [
+                                                        //       Expanded(child: player),
+                                                        //       SizedBox(
+                                                        //         width: 500,
+                                                        //       ),
+                                                        //     ],
+                                                        //   );
+                                                        // }
+                                                        return SizedBox(
+                                                          // width: MediaQuery.of(context)
+                                                          //         .size
+                                                          //         .width *
+                                                          //     0.9,
                                                           child: Row(
-                                                            children: const [
-                                                              Icon(
-                                                                Icons
-                                                                    .add_circle_outline,
-                                                                color:
-                                                                    Colors.blue,
-                                                                size: 27,
-                                                              ),
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
                                                               SizedBox(
-                                                                  width: 5),
-                                                              Text('ADD OPTION',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .blue,
-                                                                    fontSize:
-                                                                        15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  )),
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    100,
+                                                                child: Stack(
+                                                                  children: [
+                                                                    player,
+                                                                    Positioned
+                                                                        .fill(
+                                                                      child:
+                                                                          YoutubeValueBuilder(
+                                                                        controller:
+                                                                            controller,
+                                                                        builder:
+                                                                            (context,
+                                                                                value) {
+                                                                          return AnimatedCrossFade(
+                                                                            crossFadeState: value.isReady
+                                                                                ? CrossFadeState.showSecond
+                                                                                : CrossFadeState.showFirst,
+                                                                            duration:
+                                                                                const Duration(milliseconds: 300),
+                                                                            secondChild:
+                                                                                const SizedBox.shrink(),
+                                                                            firstChild:
+                                                                                Material(
+                                                                              child: DecoratedBox(
+                                                                                // ignore: sort_child_properties_last
+                                                                                child: const Center(
+                                                                                  child: CircularProgressIndicator(),
+                                                                                ),
+                                                                                decoration: BoxDecoration(
+                                                                                  image: DecorationImage(
+                                                                                    image: NetworkImage(
+                                                                                      YoutubePlayerController.getThumbnail(
+                                                                                        videoId: controller!.initialVideoId,
+                                                                                        quality: ThumbnailQuality.medium,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Column(
+                                                                children: [
+                                                                  SizedBox(
+                                                                    height: 40,
+                                                                    width: 40,
+                                                                    child:
+                                                                        Material(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      shape:
+                                                                          const CircleBorder(),
+                                                                      child:
+                                                                          InkWell(
+                                                                        customBorder:
+                                                                            const CircleBorder(),
+                                                                        splashColor: Colors
+                                                                            .grey
+                                                                            .withOpacity(0.3),
+                                                                        onTap:
+                                                                            () {
+                                                                          Future.delayed(
+                                                                              const Duration(milliseconds: 50),
+                                                                              () {
+                                                                            _selectYoutube(context);
+                                                                          });
+                                                                        },
+                                                                        child: const Icon(
+                                                                            Icons
+                                                                                .change_circle,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    child:
+                                                                        Material(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      shape:
+                                                                          const CircleBorder(),
+                                                                      child:
+                                                                          InkWell(
+                                                                        customBorder:
+                                                                            const CircleBorder(),
+                                                                        splashColor: Colors
+                                                                            .grey
+                                                                            .withOpacity(0.3),
+                                                                        onTap:
+                                                                            () {
+                                                                          Future.delayed(
+                                                                              const Duration(milliseconds: 50),
+                                                                              () {
+                                                                            clearVideoUrl();
+                                                                            setState(() {
+                                                                              selected = 0;
+                                                                            });
+                                                                          });
+                                                                        },
+                                                                        child: const Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ],
                                                           ),
-                                                        ),
-                                                      ),
+                                                        );
+                                                      },
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                      ],
+                                          SizedBox(
+                                              height: _videoUrlController
+                                                          .text.isNotEmpty ||
+                                                      _file != null
+                                                  ? 20
+                                                  : 0)
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 10),
                                 PhysicalModel(
+                                  elevation: 3,
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(5),
-                                  elevation: 3,
                                   child: Container(
                                     width:
                                         MediaQuery.of(context).size.width - 20,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5),
+                                      // border: Border.all(
+                                      //     color: const Color.fromARGB(255, 210, 210, 210),
+                                      //     width: 1.5),
                                     ),
-                                    child: Consumer<CreatePageProvider>(builder:
-                                        (context, createProvider, child) {
-                                      return Column(
-                                        children: [
-                                          const SizedBox(height: 20),
-                                          Autocomplete<String>(
-                                            optionsViewBuilder:
-                                                (context, onSelected, options) {
-                                              return Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 0),
+                                          child: Material(
+                                            color: Colors.white,
+                                            shape: const CircleBorder(),
+                                            child: InkWell(
+                                              customBorder:
+                                                  const CircleBorder(),
+                                              splashColor:
+                                                  Colors.grey.withOpacity(0.5),
+                                              onTap: () {
+                                                Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 50),
+                                                  () {
+                                                    keywordsDialog(
+                                                        context: context);
+                                                  },
+                                                );
+                                              },
+                                              child: const SizedBox(
+                                                height: 32,
+                                                width: 38,
+                                                child: Icon(Icons.info_outline,
+                                                    size: 20,
+                                                    color: Colors.grey),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Consumer<CreatePageProvider>(builder:
+                                            (context, createProvider, child) {
+                                          return Column(
+                                            children: [
+                                              // const SizedBox(height: 20),
+                                              Autocomplete<String>(
+                                                optionsViewBuilder: (context,
+                                                    onSelected, options) {
+                                                  return Container(
+                                                    margin: const EdgeInsets
+                                                            .symmetric(
                                                         horizontal: 10.0,
                                                         vertical: 4.0),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.topCenter,
-                                                  child: Material(
-                                                    elevation: 4.0,
-                                                    child: ConstrainedBox(
-                                                      constraints:
-                                                          const BoxConstraints(
-                                                              maxHeight: 200),
-                                                      child: ListView.builder(
-                                                        shrinkWrap: true,
-                                                        itemCount:
-                                                            options.length,
-                                                        itemBuilder:
-                                                            (BuildContext
-                                                                    context,
-                                                                int index) {
-                                                          final dynamic option =
-                                                              options.elementAt(
-                                                                  index);
-                                                          return TextButton(
-                                                            onPressed: () {
-                                                              onSelected(
-                                                                  option);
-                                                            },
-                                                            child: Align(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              child: Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        15.0),
-                                                                child: Text(
-                                                                  '$option',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.topCenter,
+                                                      child: Material(
+                                                        elevation: 4.0,
+                                                        child: ConstrainedBox(
+                                                          constraints:
+                                                              const BoxConstraints(
+                                                                  maxHeight:
+                                                                      200),
+                                                          child:
+                                                              ListView.builder(
+                                                            shrinkWrap: true,
+                                                            itemCount:
+                                                                options.length,
+                                                            itemBuilder:
+                                                                (BuildContext
+                                                                        context,
+                                                                    int index) {
+                                                              final dynamic
+                                                                  option =
+                                                                  options
+                                                                      .elementAt(
+                                                                          index);
+                                                              return TextButton(
+                                                                onPressed: () {
+                                                                  onSelected(
+                                                                      option);
+                                                                },
+                                                                child: Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        vertical:
+                                                                            15.0),
+                                                                    child: Text(
+                                                                      '$option',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .left,
+                                                                      style:
+                                                                          const TextStyle(
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            74,
+                                                                            137,
+                                                                            92),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                optionsBuilder:
+                                                    (TextEditingValue
+                                                        textEditingValue) {
+                                                  if (textEditingValue.text ==
+                                                      '') {
+                                                    return const Iterable<
+                                                        String>.empty();
+                                                  }
+                                                  return _pickLanguage
+                                                      .where((String option) {
+                                                    return option.contains(
+                                                        textEditingValue.text
+                                                            .toLowerCase());
+                                                  });
+                                                },
+                                                onSelected:
+                                                    (String selectedTag) {
+                                                  keywordMessageController
+                                                      .addTag = selectedTag;
+                                                },
+                                                fieldViewBuilder: (context,
+                                                    ttec,
+                                                    tfn,
+                                                    onFieldSubmitted) {
+                                                  return Stack(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    14.0),
+                                                        child: Container(
+                                                          height: 46,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  5.0),
                                                             ),
-                                                          );
-                                                        },
+                                                            border: Border.all(
+                                                                color:
+                                                                    Colors.grey,
+                                                                width: 1),
+                                                          ),
+                                                          child: TextFieldTags(
+                                                            textEditingController:
+                                                                ttec,
+                                                            focusNode: tfn,
+                                                            // textfieldTagsController:
+                                                            //     keywordMessageController,
+                                                            initialTags: const [],
+                                                            textSeparators: const [
+                                                              ' ',
+                                                              ',',
+                                                            ],
+                                                            letterCase:
+                                                                LetterCase
+                                                                    .normal,
+                                                            inputfieldBuilder:
+                                                                (context,
+                                                                    tec,
+                                                                    fn,
+                                                                    error,
+                                                                    onChanged,
+                                                                    onSubmitted) {
+                                                              return ((context,
+                                                                  sc,
+                                                                  tags,
+                                                                  onTagDelete) {
+                                                                myTags = tags;
+                                                                List<String>
+                                                                    tagsLower =
+                                                                    tags;
+                                                                tagsLower = tagsLower
+                                                                    .map((tagLower) =>
+                                                                        tagLower
+                                                                            .toLowerCase())
+                                                                    .toList();
+                                                                myTagsLowerCase =
+                                                                    tagsLower;
+                                                                return Row(
+                                                                  children: [
+                                                                    Container(
+                                                                      constraints: BoxConstraints(
+                                                                          maxWidth: tags.length < 3
+                                                                              ? MediaQuery.of(context).size.width / 2
+                                                                              : MediaQuery.of(context).size.width / 1.4),
+                                                                      child:
+                                                                          SingleChildScrollView(
+                                                                        controller:
+                                                                            sc,
+                                                                        scrollDirection:
+                                                                            Axis.horizontal,
+                                                                        child: Row(
+                                                                            mainAxisSize: MainAxisSize.min,
+                                                                            children: tags.map((String tag) {
+                                                                              return Container(
+                                                                                height: 28,
+                                                                                decoration: const BoxDecoration(
+                                                                                    borderRadius: BorderRadius.all(
+                                                                                      Radius.circular(20.0),
+                                                                                    ),
+                                                                                    color: Colors.grey),
+                                                                                margin: const EdgeInsets.only(left: 3, right: 3),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+                                                                                child: Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  children: [
+                                                                                    InkWell(
+                                                                                      child: Text(
+                                                                                        tag,
+                                                                                        style: const TextStyle(color: Colors.white),
+                                                                                      ),
+                                                                                    ),
+                                                                                    const SizedBox(width: 4.0),
+                                                                                    InkWell(
+                                                                                      child: const Icon(
+                                                                                        Icons.cancel,
+                                                                                        size: 17.0,
+                                                                                        color: Colors.white,
+                                                                                      ),
+                                                                                      onTap: () {
+                                                                                        onTagDelete(tag);
+                                                                                      },
+                                                                                    )
+                                                                                  ],
+                                                                                ),
+                                                                              );
+                                                                            }).toList()),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          TextField(
+                                                                        controller:
+                                                                            tec,
+                                                                        focusNode:
+                                                                            fn,
+                                                                        enabled:
+                                                                            tags.length <
+                                                                                3,
+                                                                        onTap:
+                                                                            () {},
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          contentPadding: const EdgeInsets.only(
+                                                                              top: 10.0,
+                                                                              left: 10,
+                                                                              right: 0,
+                                                                              bottom: 10),
+                                                                          hintText: tags.isNotEmpty
+                                                                              ? ''
+                                                                              : "Add up to 3 keywords (optional)",
+                                                                          hintStyle: const TextStyle(
+                                                                              // fontStyle:
+                                                                              //     FontStyle
+                                                                              //         .italic,
+                                                                              color: Colors.grey,
+                                                                              fontSize: 15),
+                                                                          errorText:
+                                                                              error,
+                                                                          border:
+                                                                              InputBorder.none,
+                                                                        ),
+                                                                        onChanged:
+                                                                            onChanged,
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          left:
+                                                                              5,
+                                                                          right:
+                                                                              5),
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        children: [
+                                                                          const Icon(
+                                                                              Icons.key,
+                                                                              color: Colors.grey),
+                                                                          tags.length == 3
+                                                                              ? Text(
+                                                                                  '${tags.length}/3',
+                                                                                  style: const TextStyle(
+                                                                                      // fontStyle: FontStyle.italic,
+                                                                                      fontSize: 12,
+                                                                                      color: Color.fromARGB(255, 220, 105, 96)),
+                                                                                )
+                                                                              : Text(
+                                                                                  '${tags.length}/3',
+                                                                                  style: const TextStyle(
+                                                                                    // fontStyle: FontStyle.italic,
+                                                                                    fontSize: 12,
+                                                                                    color: Colors.grey,
+                                                                                  ),
+                                                                                )
+                                                                        ],
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                );
+                                                              });
+                                                            },
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  );
+                                                },
+                                              ),
+                                              Container(height: 20),
+                                              // Padding(
+                                              //   padding: const EdgeInsets.symmetric(
+                                              //       horizontal: 14.0),
+                                              //   child: Row(
+                                              //     mainAxisAlignment:
+                                              //         MainAxisAlignment
+                                              //             .spaceBetween,
+                                              //     children: [
+                                              //       Container(
+                                              //         width: 30,
+                                              //       ),
+                                              //       Material(
+                                              //         color: Colors.transparent,
+                                              //         child: InkWell(
+                                              //           splashColor: Colors.grey
+                                              //               .withOpacity(0.3),
+                                              //           borderRadius:
+                                              //               BorderRadius.circular(
+                                              //                   25),
+                                              //           onTap: () {
+                                              //             Future.delayed(
+                                              //                 const Duration(
+                                              //                     milliseconds:
+                                              //                         100),
+                                              //                 () async {
+                                              //               // setState(() {
+                                              //               //   showTrendingMessage =
+                                              //               //       !showTrendingMessage;
+                                              //               // });
+                                              //               await createProvider
+                                              //                   .setShowTrendingMessage(
+                                              //                       !createProvider
+                                              //                           .showTrendingMessage);
+                                              //               if (createProvider
+                                              //                       .showTrendingMessage ==
+                                              //                   true) {
+                                              //                 createProvider
+                                              //                     .getkeywordList(
+                                              //                   global,
+                                              //                   user?.aaCountry ??
+                                              //                       "",
+                                              //                   widget
+                                              //                       .durationInDay,
+                                              //                 );
+                                              //               }
+                                              //             });
+                                              //           },
+                                              //           child: Row(
+                                              //             mainAxisAlignment:
+                                              //                 MainAxisAlignment
+                                              //                     .center,
+                                              //             children: [
+                                              //               const SizedBox(
+                                              //                   width: 10),
+                                              //               const Text(
+                                              //                   'View trending keywords',
+                                              //                   style: TextStyle(
+                                              //                       color:
+                                              //                           Colors.grey,
+                                              //                       fontWeight:
+                                              //                           FontWeight
+                                              //                               .w500,
+                                              //                       fontSize: 13)),
+                                              //               Icon(
+                                              //                 createProvider
+                                              //                         .showTrendingMessage
+                                              //                     ? Icons
+                                              //                         .arrow_drop_up
+                                              //                     : Icons
+                                              //                         .arrow_drop_down,
+                                              //                 color: Colors.grey,
+                                              //               ),
+                                              //             ],
+                                              //           ),
+                                              //         ),
+                                              //       ),
+                                              //       Padding(
+                                              //         padding:
+                                              //             const EdgeInsets.only(
+                                              //                 right: 0),
+                                              //         child: Material(
+                                              //           color: Colors.white,
+                                              //           shape: const CircleBorder(),
+                                              //           child: InkWell(
+                                              //             customBorder:
+                                              //                 const CircleBorder(),
+                                              //             splashColor: Colors.grey
+                                              //                 .withOpacity(0.5),
+                                              //             onTap: () {
+                                              //               Future.delayed(
+                                              //                 const Duration(
+                                              //                     milliseconds: 50),
+                                              //                 () {
+                                              //                   keywordsDialog(
+                                              //                       context:
+                                              //                           context);
+                                              //                 },
+                                              //               );
+                                              //             },
+                                              //             child: const SizedBox(
+                                              //               height: 32,
+                                              //               width: 38,
+                                              //               child: Icon(
+                                              //                   Icons.help_outline,
+                                              //                   size: 20,
+                                              //                   color: Colors.grey),
+                                              //             ),
+                                              //           ),
+                                              //         ),
+                                              //       ),
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                              // // SizedBox(
+                                              // //     height: createProvider.showTrendingMessage
+                                              // //         ? 0
+                                              // //         : 3.5),
+                                              // createProvider.showTrendingMessage
+                                              //     ? createProvider.Loading == true
+                                              //         ? const SizedBox(
+                                              //             height: 223,
+                                              //             child: Center(
+                                              //                 child:
+                                              //                     CircularProgressIndicator()),
+                                              //           )
+                                              //         : Padding(
+                                              //             padding: const EdgeInsets
+                                              //                     .symmetric(
+                                              //                 horizontal: 10),
+                                              //             child: SizedBox(
+                                              //               height: createProvider
+                                              //                           .postKeywordListCount ==
+                                              //                       1
+                                              //                   ? 200
+                                              //                   : 223,
+                                              //               child: FutureBuilder(
+                                              //                 builder: (BuildContext
+                                              //                         context,
+                                              //                     snapshot) {
+                                              //                   return createProvider
+                                              //                           .list
+                                              //                           .isNotEmpty
+                                              //                       ? SingleChildScrollView(
+                                              //                           child:
+                                              //                               Column(
+                                              //                             children: [
+                                              //                               createProvider.postKeywordListCount >
+                                              //                                       1
+                                              //                                   ? Row(
+                                              //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                              //                                       children: [
+                                              //                                         Material(
+                                              //                                           color: Colors.transparent,
+                                              //                                           child: InkWell(
+                                              //                                               borderRadius: BorderRadius.circular(25),
+                                              //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                              //                                               onTap: () {
+                                              //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                              //                                                   createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: false);
+                                              //                                                 });
+                                              //                                               },
+                                              //                                               child: Container(
+                                              //                                                 padding: const EdgeInsets.symmetric(
+                                              //                                                   vertical: 4,
+                                              //                                                   horizontal: 8,
+                                              //                                                 ),
+                                              //                                                 child: Text('View ${((createProvider.postKeywordListCount - 2) * 10) + 1} - ${(createProvider.postKeywordListCount - 1) * 10}',
+                                              //                                                     style: const TextStyle(
+                                              //                                                       color: Colors.blue,
+                                              //                                                       fontWeight: FontWeight.w500,
+                                              //                                                       fontSize: 13,
+                                              //                                                       letterSpacing: 0.3,
+                                              //                                                     )),
+                                              //                                               )),
+                                              //                                         ),
+                                              //                                       ],
+                                              //                                     )
+                                              //                                   : const SizedBox(),
+                                              //                               const SizedBox(
+                                              //                                   height:
+                                              //                                       4),
+                                              //                               ListView
+                                              //                                   .builder(
+                                              //                                 shrinkWrap:
+                                              //                                     true,
+                                              //                                 physics:
+                                              //                                     const NeverScrollableScrollPhysics(),
+                                              //                                 itemCount: createProvider
+                                              //                                     .list
+                                              //                                     .length,
+                                              //                                 itemBuilder: (context, index) =>
+                                              //                                     Padding(
+                                              //                                   padding:
+                                              //                                       const EdgeInsets.symmetric(vertical: 1),
+                                              //                                   child: NoRadioListTile<String>(
+                                              //                                       start: ((((createProvider.postKeywordListCount - 1) * 10) + 1) + index).toString(),
+                                              //                                       center: createProvider.list[index].keyName
+                                              //                                       //     ??
+                                              //                                       // ""
+                                              //                                       ,
+                                              //                                       end: createProvider.list[index].length.toString()),
+                                              //                                 ),
+                                              //                               ),
+                                              //                               const SizedBox(
+                                              //                                   height:
+                                              //                                       4),
+                                              //                               createProvider.postKeywordLast ==
+                                              //                                       false
+                                              //                                   ? Row(
+                                              //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                              //                                       children: [
+                                              //                                         Material(
+                                              //                                           color: Colors.transparent,
+                                              //                                           child: InkWell(
+                                              //                                               borderRadius: BorderRadius.circular(25),
+                                              //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                              //                                               onTap: () {
+                                              //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                              //                                                   createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: true);
+                                              //                                                 });
+                                              //                                               },
+                                              //                                               child: Container(
+                                              //                                                 padding: const EdgeInsets.symmetric(
+                                              //                                                   vertical: 4,
+                                              //                                                   horizontal: 8,
+                                              //                                                 ),
+                                              //                                                 child: Text("View ${(createProvider.postKeywordListCount * 10) + 1} - ${(createProvider.postKeywordListCount + 1) * 10}",
+                                              //                                                     style: const TextStyle(
+                                              //                                                       color: Colors.blue,
+                                              //                                                       fontWeight: FontWeight.w500,
+                                              //                                                       fontSize: 13,
+                                              //                                                       letterSpacing: 0.3,
+                                              //                                                     )),
+                                              //                                               )),
+                                              //                                         ),
+                                              //                                       ],
+                                              //                                     )
+                                              //                                   : Container(),
+                                              //                               const SizedBox(
+                                              //                                 height:
+                                              //                                     6,
+                                              //                               ),
+                                              //                             ],
+                                              //                           ),
+                                              //                         )
+                                              //                       : const Center(
+                                              //                           child: Text(
+                                              //                               'No trending keywords yet.',
+                                              //                               style: TextStyle(
+                                              //                                   color: Color.fromARGB(
+                                              //                                       255,
+                                              //                                       183,
+                                              //                                       183,
+                                              //                                       183),
+                                              //                                   fontSize:
+                                              //                                       16)));
+                                              //                 },
+                                              //               ),
+                                              //             ),
+                                              //           )
+                                              // : Row(),
+                                            ],
+                                          );
+                                        }),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                // StreamBuilder(
+                                //     stream: FirebaseFirestore.instance
+                                //         .collection('users')
+                                //         .doc(user?.UID)
+                                //         .snapshots(),
+                                //     builder: (content, snapshot) {
+                                //       snap = snapshot.data != null
+                                //           ? User.fromSnap(snapshot.data!)
+                                //           : snap;
+
+                                //       return
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      bottom: 6.0, top: 10),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      user == null
+                                          ? PhysicalModel(
+                                              elevation: 3,
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: Material(
+                                                color: Colors.blue,
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 150),
+                                                        () {
+                                                      performLoggedUserAction(
+                                                          context: context,
+                                                          action: () {});
+                                                    });
+                                                  },
+                                                  child: SizedBox(
+                                                    height: 38,
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20,
+                                                              right: 20),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          const Icon(Icons.send,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 19),
+                                                          const SizedBox(
+                                                              width: 10),
+                                                          Text(
+                                                            global == 'true'
+                                                                ? 'Send Message Globally'
+                                                                : 'Send Message Nationally',
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15,
+                                                                letterSpacing:
+                                                                    1),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              );
-                                            },
-                                            optionsBuilder: (TextEditingValue
-                                                textEditingValue) {
-                                              if (textEditingValue.text == '') {
-                                                return const Iterable<
-                                                    String>.empty();
-                                              }
-                                              return _pickLanguage
-                                                  .where((String option) {
-                                                return option.contains(
-                                                    textEditingValue.text
-                                                        .toLowerCase());
-                                              });
-                                            },
-                                            onSelected: (String selectedTag) {
-                                              keywordMessageController.addTag =
-                                                  selectedTag;
-                                            },
-                                            fieldViewBuilder: (context, ttec,
-                                                tfn, onFieldSubmitted) {
-                                              return Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 14),
-                                                    child: Container(
-                                                      height: 46,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                          Radius.circular(5.0),
-                                                        ),
-                                                        border: Border.all(
-                                                            color: Colors.grey,
-                                                            width: 1),
-                                                      ),
-                                                      child: TextFieldTags(
-                                                        textEditingController:
-                                                            ttec,
-                                                        focusNode: tfn,
-                                                        // textfieldTagsController:
-                                                        //     keywordMessageController,
-                                                        initialTags: const [],
-                                                        textSeparators: const [
-                                                          ' ',
-                                                          ','
-                                                        ],
-                                                        letterCase:
-                                                            LetterCase.normal,
-                                                        inputfieldBuilder:
-                                                            (context,
-                                                                tec,
-                                                                fn,
-                                                                error,
-                                                                onChanged,
-                                                                onSubmitted) {
-                                                          return ((context,
-                                                              sc,
-                                                              tags,
-                                                              onTagDelete) {
-                                                            myTagsPoll = tags;
-                                                            List<String>
-                                                                tagsLower =
-                                                                tags;
-                                                            tagsLower = tagsLower
-                                                                .map((tagLower) =>
-                                                                    tagLower
-                                                                        .toLowerCase())
-                                                                .toList();
-                                                            myTagsPollLowerCase =
-                                                                tagsLower;
-                                                            return Row(
-                                                              children: [
-                                                                Container(
-                                                                  constraints: BoxConstraints(
-                                                                      maxWidth: tags.length < 3
-                                                                          ? MediaQuery.of(context).size.width /
-                                                                              2
-                                                                          : MediaQuery.of(context).size.width /
-                                                                              1.4),
-                                                                  child:
-                                                                      SingleChildScrollView(
-                                                                    controller:
-                                                                        sc,
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    child: Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize
-                                                                                .min,
-                                                                        children:
-                                                                            tags.map((String
-                                                                                tag) {
-                                                                          return Container(
-                                                                            height:
-                                                                                28,
-                                                                            decoration: const BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(
-                                                                                  Radius.circular(20.0),
-                                                                                ),
-                                                                                color: Colors.grey),
-                                                                            margin:
-                                                                                const EdgeInsets.only(left: 3, right: 3),
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              children: [
-                                                                                InkWell(
-                                                                                  child: Text(
-                                                                                    tag,
-                                                                                    style: const TextStyle(color: Colors.white),
-                                                                                  ),
-                                                                                ),
-                                                                                const SizedBox(width: 4.0),
-                                                                                InkWell(
-                                                                                  child: const Icon(
-                                                                                    Icons.cancel,
-                                                                                    size: 17.0,
-                                                                                    color: Colors.white,
-                                                                                  ),
-                                                                                  onTap: () {
-                                                                                    onTagDelete(tag);
-                                                                                  },
-                                                                                )
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        }).toList()),
-                                                                  ),
-                                                                ),
-                                                                Flexible(
-                                                                  child:
-                                                                      TextField(
-                                                                    controller:
-                                                                        tec,
-                                                                    focusNode:
-                                                                        fn,
-                                                                    enabled:
-                                                                        tags.length <
-                                                                            3,
-                                                                    onTap:
-                                                                        () {},
-                                                                    decoration:
-                                                                        InputDecoration(
-                                                                      contentPadding: const EdgeInsets
-                                                                              .only(
-                                                                          top:
-                                                                              10.0,
-                                                                          left:
-                                                                              10,
-                                                                          right:
-                                                                              0,
-                                                                          bottom:
-                                                                              10),
-                                                                      hintText: tags
-                                                                              .isNotEmpty
-                                                                          ? ''
-                                                                          : "Add up to 3 keywords (optional)",
-                                                                      hintStyle: const TextStyle(
-                                                                          // fontStyle:
-                                                                          //     FontStyle
-                                                                          //         .italic,
-                                                                          color: Colors.grey,
-                                                                          fontSize: 15),
-                                                                      errorText:
-                                                                          error,
-                                                                      border: InputBorder
-                                                                          .none,
-                                                                    ),
-                                                                    onChanged:
-                                                                        onChanged,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      left: 5,
-                                                                      right: 5),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      const Icon(
-                                                                          Icons
-                                                                              .key,
-                                                                          color:
-                                                                              Colors.grey),
-                                                                      tags.length ==
-                                                                              3
-                                                                          ? Text(
-                                                                              '${tags.length}/3',
-                                                                              style: const TextStyle(
-                                                                                fontSize: 12,
-                                                                                color: Colors.red,
-                                                                              ),
-                                                                            )
-                                                                          : Text(
-                                                                              '${tags.length}/3',
-                                                                              style: const TextStyle(
-                                                                                fontSize: 12,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                            )
-                                                                    ],
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            );
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            },
-                                          ),
-                                          Container(height: 3.5),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 12.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(width: 30),
-                                                Material(
-                                                  color: Colors.transparent,
-                                                  child: InkWell(
-                                                    splashColor: Colors.grey
-                                                        .withOpacity(0.3),
+                                              ),
+                                            )
+                                          : user != null &&
+                                                  snapshot?.data != null
+                                              ? PhysicalModel(
+                                                  elevation: 3,
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  child: Material(
+                                                    color: user == null
+                                                        ? Colors.blue
+                                                        : snap?.pending ==
+                                                                        "true" &&
+                                                                    global ==
+                                                                        'false' ||
+                                                                snap?.aaCountry ==
+                                                                        "" &&
+                                                                    global ==
+                                                                        "false" ||
+                                                                snap?.gMessageTime ==
+                                                                        widget
+                                                                            .durationInDay &&
+                                                                    global ==
+                                                                        'true' ||
+                                                                snap?.nMessageTime ==
+                                                                        widget
+                                                                            .durationInDay &&
+                                                                    global ==
+                                                                        'false'
+                                                            ? const Color
+                                                                    .fromARGB(
+                                                                255,
+                                                                180,
+                                                                180,
+                                                                180)
+                                                            : Colors.blue,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            25),
-                                                    onTap: () {
-                                                      Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  100),
-                                                          () async {
-                                                        await createProvider
-                                                            .setShowTrendingPoll(
-                                                          !createProvider
-                                                              .showTrendingPoll,
-                                                        );
-                                                        if (createProvider
-                                                                .showTrendingPoll ==
-                                                            true) {
-                                                          await createProvider
-                                                              .getpollKeywordList(
-                                                                  global,
-                                                                  user!
-                                                                      .aaCountry,
-                                                                  widget
-                                                                      .durationInDay);
-                                                        }
-                                                      });
+                                                            30),
+                                                    child: InkWell(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      splashColor: Colors.black
+                                                          .withOpacity(0.3),
+                                                      onTap: () {
+                                                        Future.delayed(
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    150), () {
+                                                          performLoggedUserAction(
+                                                              context: context,
+                                                              action: () {
+                                                                snap?.pending ==
+                                                                            "true" &&
+                                                                        global ==
+                                                                            "false"
+                                                                    ? voteIfPending(
+                                                                        context:
+                                                                            context)
+                                                                    : snap?.aaCountry ==
+                                                                                "" &&
+                                                                            global ==
+                                                                                "false"
+                                                                        ? nationalityUnknown(
+                                                                            context:
+                                                                                context)
+                                                                        : snap?.gMessageTime == widget.durationInDay && global == 'true' ||
+                                                                                snap?.nMessageTime == widget.durationInDay && global == 'false'
+                                                                            ? sendTimerDialog(
+                                                                                context: context,
+                                                                                type: 'message',
+                                                                                type2: global == 'true' ? 'global' : 'national',
+                                                                              )
+                                                                            : _titleController.text.trim().isEmpty
+                                                                                ? showSnackBarError('Message field cannot be empty.', context)
+                                                                                : postImage(
+                                                                                    user?.UID ?? '',
+                                                                                    user?.username ?? '',
+                                                                                    user?.photoUrl ?? '',
+                                                                                    global == 'true' ? '' : snap?.aaCountry ?? '',
+                                                                                  );
+                                                              });
+                                                        });
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 40,
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 20,
+                                                                  right: 20),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                  snap?.pending ==
+                                                                                  "true" &&
+                                                                              global ==
+                                                                                  'false' ||
+                                                                          snap?.gMessageTime == widget.durationInDay &&
+                                                                              global ==
+                                                                                  'true' ||
+                                                                          snap?.nMessageTime == widget.durationInDay &&
+                                                                              global ==
+                                                                                  'false'
+                                                                      ? Icons
+                                                                          .timer
+                                                                      : Icons
+                                                                          .send,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 18),
+                                                              const SizedBox(
+                                                                  width: 10),
+                                                              snap?.gMessageTime ==
+                                                                              widget
+                                                                                  .durationInDay &&
+                                                                          global ==
+                                                                              'true' ||
+                                                                      snap?.nMessageTime ==
+                                                                              widget
+                                                                                  .durationInDay &&
+                                                                          global ==
+                                                                              'false'
+                                                                  ? Column(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: const [
+                                                                        Text(
+                                                                          'WAIT TIME',
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 15,
+                                                                              letterSpacing: 1),
+                                                                        ),
+                                                                        Text(
+                                                                          'Timer refreshes at 12:01AM EST',
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 9,
+                                                                              letterSpacing: 0.2),
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  : Text(
+                                                                      snap?.pending == "true" &&
+                                                                              global == 'false'
+                                                                          ? 'Verification Pending'
+                                                                          : snap?.aaCountry == "" && global == "false"
+                                                                              ? 'Nationality Unknown'
+                                                                              : global == 'true'
+                                                                                  ? 'Send Message Globally'
+                                                                                  : 'Send Message Nationally',
+                                                                      style: const TextStyle(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          fontSize:
+                                                                              15,
+                                                                          letterSpacing:
+                                                                              1),
+                                                                    ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              : const SizedBox()
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : SingleChildScrollView(
+                            physics: const ScrollPhysics(),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 1,
+                              child: Column(
+                                children: [
+                                  // _isLoading
+                                  //     ? const LinearProgressIndicator()
+                                  //     : const Padding(padding: EdgeInsets.only(top: 0)),
+                                  // const Divider(),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      PhysicalModel(
+                                        elevation: 3,
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.transparent,
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              20,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 14),
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(5.0),
+                                            ),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Material(
+                                                color: Colors.white,
+                                                shape: const CircleBorder(),
+                                                child: InkWell(
+                                                  customBorder:
+                                                      const CircleBorder(),
+                                                  splashColor: Colors.grey
+                                                      .withOpacity(0.5),
+                                                  onTap: () {
+                                                    performLoggedUserAction(
+                                                        context: context,
+                                                        action: () {
+                                                          Future.delayed(
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    50),
+                                                            () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            const AddInfo()),
+                                                              );
+                                                            },
+                                                          );
+                                                        });
+                                                  },
+                                                  child: const SizedBox(
+                                                    height: 32,
+                                                    width: 38,
+                                                    child: Icon(
+                                                        Icons.info_outline,
+                                                        size: 20,
+                                                        color: Colors.grey),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 20.0, top: 0),
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 2),
+                                                  child: WillPopScope(
+                                                    onWillPop: () async {
+                                                      return false;
                                                     },
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                    child: Stack(
                                                       children: [
-                                                        const SizedBox(
-                                                            width: 10),
-                                                        const Text(
-                                                            'View trending keywords',
+                                                        TextField(
+                                                          maxLength:
+                                                              _pollQuestionTextfieldMaxLength,
+                                                          onChanged: (val) {
+                                                            setState(() {});
+                                                          },
+                                                          controller:
+                                                              _pollController,
+                                                          onTap: () {},
+                                                          decoration:
+                                                              const InputDecoration(
+                                                            hintText:
+                                                                "Create a poll",
+                                                            focusedBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                  color: Colors
+                                                                      .blueAccent,
+                                                                  width: 2),
+                                                            ),
+                                                            contentPadding:
+                                                                EdgeInsets.only(
+                                                                    top: 0,
+                                                                    left: 4,
+                                                                    right: 45,
+                                                                    bottom: 8),
+                                                            isDense: true,
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 16,
+                                                            ),
+                                                            labelStyle:
+                                                                TextStyle(
+                                                                    color: Colors
+                                                                        .black),
+                                                            counterText: '',
+                                                          ),
+                                                          maxLines: null,
+                                                        ),
+                                                        Positioned(
+                                                          bottom: 5,
+                                                          right: 0,
+                                                          child: Text(
+                                                            '${_pollController.text.length}/$_pollQuestionTextfieldMaxLength',
                                                             style: TextStyle(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize: 13)),
-                                                        Icon(
-                                                          showTrendingPoll
-                                                              ? Icons
-                                                                  .arrow_drop_up
-                                                              : Icons
-                                                                  .arrow_drop_down,
-                                                          color: Colors.grey,
+                                                              fontSize: 12,
+                                                              color: _pollController
+                                                                          .text
+                                                                          .length ==
+                                                                      _pollQuestionTextfieldMaxLength
+                                                                  ? const Color
+                                                                          .fromARGB(
+                                                                      255,
+                                                                      220,
+                                                                      105,
+                                                                      96)
+                                                                  : Colors.grey,
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
+                                              ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: Colors.white,
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    // emptyOptionOne || emptyOptionTwo
+                                                    //     ? Padding(
+                                                    //         padding: const EdgeInsets.only(
+                                                    //             bottom: 4.0),
+                                                    //         child: Row(
+                                                    //           mainAxisAlignment:
+                                                    //               MainAxisAlignment.center,
+                                                    //           children: [
+                                                    //             const Icon(Icons.error,
+                                                    //                 size: 16,
+                                                    //                 color: Color.fromARGB(
+                                                    //                     255, 220, 105, 96)),
+                                                    //             Container(width: 6),
+                                                    //             const Text(
+                                                    //                 'First two poll options cannot be blank.',
+                                                    //                 style: TextStyle(
+                                                    //                     color: Color.fromARGB(
+                                                    //                         255,
+                                                    //                         220,
+                                                    //                         105,
+                                                    //                         96))),
+                                                    //           ],
+                                                    //         ),
+                                                    //       )
+                                                    //     : Container(),
+                                                    Stack(
+                                                      children: [
+                                                        TextField(
+                                                          maxLength:
+                                                              _optionTextfieldMaxLength,
+                                                          onChanged: (val) {
+                                                            setState(() {});
+                                                          },
+                                                          controller:
+                                                              _optionOne,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            filled: true,
+                                                            fillColor:
+                                                                Colors.white,
+                                                            counter:
+                                                                Container(),
+                                                            labelText:
+                                                                "Option #1",
+                                                            labelStyle:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.grey,
+                                                            ),
+                                                            // hintText: "Option #$ic",
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      width: 1),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      color: Colors
+                                                                          .blueAccent,
+                                                                      width:
+                                                                          2.0),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                            ),
+                                                            border: InputBorder
+                                                                .none,
+                                                          ),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                          maxLines: 1,
+                                                        ),
+                                                        Positioned(
+                                                          bottom: 12,
+                                                          right: 6,
+                                                          child: Text(
+                                                            '${_optionOne.text.length}/$_optionTextfieldMaxLength',
+                                                            style: TextStyle(
+                                                              fontSize: 12,
+                                                              color: _optionOne
+                                                                          .text
+                                                                          .length ==
+                                                                      _optionTextfieldMaxLength
+                                                                  ? const Color
+                                                                          .fromARGB(
+                                                                      255,
+                                                                      220,
+                                                                      105,
+                                                                      96)
+                                                                  : Colors.grey,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Stack(
+                                                      children: [
+                                                        TextField(
+                                                          maxLength:
+                                                              _optionTextfieldMaxLength,
+                                                          onChanged: (val) {
+                                                            setState(() {});
+                                                          },
+                                                          controller:
+                                                              _optionTwo,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            filled: true,
+                                                            fillColor:
+                                                                Colors.white,
+                                                            counter:
+                                                                Container(),
+                                                            labelText:
+                                                                "Option #2",
+                                                            labelStyle:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.grey,
+                                                            ),
+                                                            // hintText: "Option #$ic",
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      width: 1),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      color: Colors
+                                                                          .blue,
+                                                                      width:
+                                                                          2.0),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                            ),
+                                                            border: InputBorder
+                                                                .none,
+                                                            // fillColor: Colors.white,
+                                                            // filled: true,
+                                                          ),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                          maxLines: 1,
+                                                        ),
+                                                        Positioned(
+                                                          bottom: 12,
+                                                          right: 6,
+                                                          child: Text(
+                                                            '${_optionTwo.text.length}/$_optionTextfieldMaxLength',
+                                                            style: TextStyle(
+                                                              // fontStyle: FontStyle.italic,
+                                                              fontSize: 12,
+                                                              color: _optionTwo
+                                                                          .text
+                                                                          .length ==
+                                                                      _optionTextfieldMaxLength
+                                                                  ? const Color
+                                                                          .fromARGB(
+                                                                      255,
+                                                                      220,
+                                                                      105,
+                                                                      96)
+                                                                  : Colors.grey,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityThree,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionThree,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #3 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            bottom:
+                                                                                10.0,
+                                                                            left:
+                                                                                6),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionThree.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionThree
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityFour,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionFour,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #4 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            bottom:
+                                                                                10.0,
+                                                                            left:
+                                                                                6),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionFour.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionFour
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityFive,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionFive,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #5 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            left:
+                                                                                6,
+                                                                            bottom:
+                                                                                10.0),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionFive.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionFive
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblitySix,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionSix,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #6 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            bottom:
+                                                                                10,
+                                                                            left:
+                                                                                6),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionSix.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionSix
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblitySeven,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionSeven,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #7 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            left:
+                                                                                6,
+                                                                            bottom:
+                                                                                10),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionSeven.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionSeven
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityEight,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionEight,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #8 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            left:
+                                                                                6.0,
+                                                                            bottom:
+                                                                                10),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionEight.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionEight
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityNine,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionNine,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #9 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            left:
+                                                                                6,
+                                                                            bottom:
+                                                                                10),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionNine.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionNine
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible: visiblityTen,
+                                                      child: Stack(
+                                                        children: [
+                                                          TextField(
+                                                            maxLength:
+                                                                _optionTextfieldMaxLength,
+                                                            onChanged: (val) {
+                                                              setState(() {});
+                                                            },
+                                                            controller:
+                                                                _optionTen,
+                                                            decoration:
+                                                                InputDecoration(
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    counter:
+                                                                        Container(),
+                                                                    labelText:
+                                                                        "Option #10 (optional)",
+                                                                    labelStyle:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                    // hintText: "Option #$ic",
+                                                                    contentPadding:
+                                                                        const EdgeInsets.only(
+                                                                            left:
+                                                                                10),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .grey,
+                                                                          width:
+                                                                              1),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .blue,
+                                                                          width:
+                                                                              2.0),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
+                                                                    suffixIcon:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const Padding(
+                                                                        padding: EdgeInsets.only(
+                                                                            left:
+                                                                                6,
+                                                                            bottom:
+                                                                                10),
+                                                                        child: Icon(
+                                                                            Icons
+                                                                                .delete,
+                                                                            size:
+                                                                                22,
+                                                                            color:
+                                                                                Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          if (visibleOptions ==
+                                                                              3) {
+                                                                            visiblityThree =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionThree.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              4) {
+                                                                            visiblityFour =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFour.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              5) {
+                                                                            visiblityFive =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionFive.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              6) {
+                                                                            visiblitySix =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSix.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              7) {
+                                                                            visiblitySeven =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionSeven.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              8) {
+                                                                            visiblityEight =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionEight.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              9) {
+                                                                            visiblityNine =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionNine.clear();
+                                                                          } else if (visibleOptions ==
+                                                                              10) {
+                                                                            visiblityTen =
+                                                                                false;
+                                                                            visibleOptions =
+                                                                                visibleOptions - 1;
+                                                                            _optionTen.clear();
+                                                                          } else {}
+                                                                        });
+                                                                      },
+                                                                    )),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                            maxLines: 1,
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 12,
+                                                            right: 6,
+                                                            child: Text(
+                                                              '${_optionTen.text.length}/$_optionTextfieldMaxLength',
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: _optionTen
+                                                                            .text
+                                                                            .length ==
+                                                                        _optionTextfieldMaxLength
+                                                                    ? const Color
+                                                                            .fromARGB(
+                                                                        255,
+                                                                        220,
+                                                                        105,
+                                                                        96)
+                                                                    : Colors
+                                                                        .grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    ListView.builder(
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        itemCount: i,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          _cont!.add(
+                                                              TextEditingController());
+                                                          int ic = index + 3;
+                                                          return Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                // right: 10,
+                                                                // left: 10,
+                                                                top: 6,
+                                                              ),
+                                                              child: Stack(
+                                                                children: [
+                                                                  TextField(
+                                                                    maxLength:
+                                                                        _optionTextfieldMaxLength,
+                                                                    onChanged:
+                                                                        (val) {
+                                                                      setState(
+                                                                          () {});
+                                                                      // setState(() {
+                                                                      //   emptyOptionOne ==
+                                                                      //           true
+                                                                      //       ? emptyOptionOne =
+                                                                      //           false
+                                                                      //       : null;
+                                                                      //   emptyOptionTwo ==
+                                                                      //           true
+                                                                      //       ? emptyOptionTwo =
+                                                                      //           false
+                                                                      //       : null;
+                                                                      // });
+                                                                    },
+                                                                    controller:
+                                                                        _cont![
+                                                                            index],
+                                                                    onTap:
+                                                                        () {},
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      filled:
+                                                                          true,
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      counter:
+                                                                          Container(),
+                                                                      labelText: index == 0 ||
+                                                                              index == 1
+                                                                          // ? "Option #${ic} (optional)"
+                                                                          // : "Option #${ic} (optional)",
+                                                                          ? "Option #$ic"
+                                                                          : "Option #$ic (optional)",
+                                                                      labelStyle:
+                                                                          const TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Colors
+                                                                            .grey,
+                                                                      ),
+                                                                      suffixIcon: i ==
+                                                                              0
+                                                                          ? const Icon(
+                                                                              Icons.cancel,
+                                                                              color: Colors.transparent)
+                                                                          : InkWell(
+                                                                              onTap: () {
+                                                                                if (i >= 1) {
+                                                                                  setState(() {
+                                                                                    i = i - 1;
+
+                                                                                    _cont![index].clear();
+                                                                                  });
+
+                                                                                  if (index != i) {
+                                                                                    if (_cont![i - 1].text.isEmpty) {
+                                                                                      _cont![i - 1].text = _cont![i].text;
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              child: const Padding(
+                                                                                padding: EdgeInsets.only(left: 8.0, bottom: 14),
+                                                                                child: Icon(
+                                                                                  Icons.delete,
+                                                                                  size: 20,
+                                                                                  color: Colors.grey,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                      contentPadding: const EdgeInsets
+                                                                              .only(
+                                                                          left:
+                                                                              10),
+                                                                      enabledBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide: const BorderSide(
+                                                                            color:
+                                                                                Colors.grey,
+                                                                            width: 1),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(5.0),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide: const BorderSide(
+                                                                            color:
+                                                                                Colors.blue,
+                                                                            width: 2.0),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(5),
+                                                                      ),
+                                                                      border: InputBorder
+                                                                          .none,
+                                                                    ),
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                    ),
+                                                                    maxLines: 1,
+                                                                  ),
+                                                                  Positioned(
+                                                                    bottom: 12,
+                                                                    right: 6,
+                                                                    child: Text(
+                                                                      '${_cont![index].text.length}/$_optionTextfieldMaxLength',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        color: _cont![index].text.length ==
+                                                                                _optionTextfieldMaxLength
+                                                                            ? const Color.fromARGB(
+                                                                                255,
+                                                                                220,
+                                                                                105,
+                                                                                96)
+                                                                            : Colors.grey,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ));
+                                                        }),
+                                                  ],
+                                                ),
+                                              ),
+                                              visibleOptions == 10
+                                                  ? const Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 15, bottom: 19),
+                                                      child: Text(
+                                                          'MAXIMUM OPTIONS REACHED',
+                                                          style: TextStyle(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      85,
+                                                                      85,
+                                                                      85),
+                                                              fontSize: 13)),
+                                                    )
+                                                  : Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 0,
+                                                              bottom: 6),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            child: InkWell(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                              splashColor: Colors
+                                                                  .blueAccent
+                                                                  .withOpacity(
+                                                                      0.3),
+                                                              onTap: () {
+                                                                Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            150),
+                                                                    () {
+                                                                  setState(() {
+                                                                    if (visibleOptions ==
+                                                                        2) {
+                                                                      visiblityThree =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        3) {
+                                                                      visiblityFour =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        4) {
+                                                                      visiblityFive =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        5) {
+                                                                      visiblitySix =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        6) {
+                                                                      visiblitySeven =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        7) {
+                                                                      visiblityEight =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        8) {
+                                                                      visiblityNine =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else if (visibleOptions ==
+                                                                        9) {
+                                                                      visiblityTen =
+                                                                          true;
+                                                                      visibleOptions =
+                                                                          visibleOptions +
+                                                                              1;
+                                                                    } else {}
+                                                                  });
+                                                                });
+                                                              },
+                                                              child: SizedBox(
+                                                                height: 45,
+                                                                child: Row(
+                                                                  children: const [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .add_circle_outline,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                      size: 27,
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width:
+                                                                            5),
+                                                                    Text(
+                                                                        'ADD OPTION',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.blue,
+                                                                          fontSize:
+                                                                              15,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        )),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      PhysicalModel(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                        elevation: 3,
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              20,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Consumer<CreatePageProvider>(
+                                              builder: (context, createProvider,
+                                                  child) {
+                                            return Column(
+                                              children: [
+                                                const SizedBox(height: 0),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
@@ -5690,299 +5392,575 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                                         height: 32,
                                                         width: 38,
                                                         child: Icon(
-                                                            Icons.help_outline,
+                                                            Icons.info_outline,
                                                             size: 20,
                                                             color: Colors.grey),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                          createProvider.showTrendingPoll
-                                              ? createProvider.Loading == true
-                                                  ? const SizedBox(
-                                                      height: 223,
-                                                      child: Center(
-                                                          child:
-                                                              CircularProgressIndicator()),
-                                                    )
-                                                  : Padding(
-                                                      padding: const EdgeInsets
+                                                Autocomplete<String>(
+                                                  optionsViewBuilder: (context,
+                                                      onSelected, options) {
+                                                    return Container(
+                                                      margin: const EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 10),
-                                                      child: SizedBox(
-                                                        height: createProvider
-                                                                    .pollKeywordListCount ==
-                                                                1
-                                                            ? 200
-                                                            : 223,
-                                                        child: FutureBuilder(
-                                                          builder: (BuildContext
-                                                                  context,
-                                                              snapshot) {
-                                                            return createProvider
-                                                                    .listPoll
-                                                                    .isNotEmpty
-                                                                ? SingleChildScrollView(
+                                                          horizontal: 10.0,
+                                                          vertical: 4.0),
+                                                      child: Align(
+                                                        alignment:
+                                                            Alignment.topCenter,
+                                                        child: Material(
+                                                          elevation: 4.0,
+                                                          child: ConstrainedBox(
+                                                            constraints:
+                                                                const BoxConstraints(
+                                                                    maxHeight:
+                                                                        200),
+                                                            child: ListView
+                                                                .builder(
+                                                              shrinkWrap: true,
+                                                              itemCount: options
+                                                                  .length,
+                                                              itemBuilder:
+                                                                  (BuildContext
+                                                                          context,
+                                                                      int index) {
+                                                                final dynamic
+                                                                    option =
+                                                                    options.elementAt(
+                                                                        index);
+                                                                return TextButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    onSelected(
+                                                                        option);
+                                                                  },
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .centerLeft,
                                                                     child:
-                                                                        Column(
-                                                                      children: [
-                                                                        createProvider.pollKeywordListCount >
-                                                                                1
-                                                                            ? Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                children: [
-                                                                                  Material(
-                                                                                    color: Colors.transparent,
-                                                                                    child: InkWell(
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        splashColor: Colors.blue.withOpacity(0.2),
-                                                                                        onTap: () {
-                                                                                          Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                            createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: false);
-                                                                                          });
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          padding: const EdgeInsets.symmetric(
-                                                                                            vertical: 4,
-                                                                                            horizontal: 8,
-                                                                                          ),
-                                                                                          child: Text('View ${((createProvider.pollKeywordListCount - 2) * 10) + 1} - ${(createProvider.pollKeywordListCount - 1) * 10}',
-                                                                                              style: const TextStyle(
-                                                                                                color: Colors.blue,
-                                                                                                fontWeight: FontWeight.w500,
-                                                                                                fontSize: 13,
-                                                                                                letterSpacing: 0.3,
-                                                                                              )),
-                                                                                        )),
-                                                                                  ),
-                                                                                ],
-                                                                              )
-                                                                            : const SizedBox(),
-                                                                        const SizedBox(
-                                                                            height:
-                                                                                4),
-                                                                        ListView
-                                                                            .builder(
-                                                                          shrinkWrap:
-                                                                              true,
-                                                                          physics:
-                                                                              const NeverScrollableScrollPhysics(),
-                                                                          itemCount: createProvider
-                                                                              .listPoll
-                                                                              .length,
-                                                                          itemBuilder: (context, index) =>
-                                                                              Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(vertical: 1),
-                                                                            child: NoRadioListTile<String>(
-                                                                                start: ((((createProvider.pollKeywordListCount - 1) * 10) + 1) + index).toString(),
-                                                                                center: createProvider.listPoll[index].keyName
-                                                                                // ?? ""
-                                                                                ,
-                                                                                end: createProvider.listPoll[index].length.toString()),
-                                                                          ),
-                                                                        ),
-                                                                        const SizedBox(
-                                                                            height:
-                                                                                4),
-                                                                        createProvider.pollKeywordLast ==
-                                                                                false
-                                                                            ? Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                children: [
-                                                                                  Material(
-                                                                                    color: Colors.transparent,
-                                                                                    child: InkWell(
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        splashColor: Colors.blue.withOpacity(0.2),
-                                                                                        onTap: () {
-                                                                                          Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                            createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: true);
-                                                                                          });
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          padding: const EdgeInsets.symmetric(
-                                                                                            vertical: 4,
-                                                                                            horizontal: 8,
-                                                                                          ),
-                                                                                          child: Text("View ${(createProvider.pollKeywordListCount * 10) + 1} - ${(createProvider.pollKeywordListCount + 1) * 10}",
-                                                                                              style: const TextStyle(
-                                                                                                color: Colors.blue,
-                                                                                                fontWeight: FontWeight.w500,
-                                                                                                fontSize: 13,
-                                                                                                letterSpacing: 0.3,
-                                                                                              )),
-                                                                                        )),
-                                                                                  ),
-                                                                                ],
-                                                                              )
-                                                                            : Container(),
-                                                                        const SizedBox(
-                                                                          height:
-                                                                              6,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                : const Center(
-                                                                    child: Text(
-                                                                      'No trending keywords yet.',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            183,
-                                                                            183,
-                                                                            183),
-                                                                        fontSize:
-                                                                            16,
+                                                                        Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              15.0),
+                                                                      child:
+                                                                          Text(
+                                                                        '$option',
+                                                                        textAlign:
+                                                                            TextAlign.left,
                                                                       ),
                                                                     ),
-                                                                  );
-                                                          },
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
-                                                    )
-                                              : const SizedBox(),
-                                          const SizedBox(
-                                            height: 4,
-                                          ),
-                                        ],
-                                      );
-                                    }),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10.0, bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  PhysicalModel(
-                                    elevation: 3,
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: Material(
-                                      color: user == null
-                                          ? Colors.blue
-                                          : snap?.pending == "true" &&
-                                                      global == 'false' ||
-                                                  snap?.aaCountry == "" &&
-                                                      global == "false" ||
-                                                  snap?.gPollTime ==
-                                                          widget
-                                                              .durationInDay &&
-                                                      global == 'true' ||
-                                                  snap?.nPollTime ==
-                                                          widget
-                                                              .durationInDay &&
-                                                      global == 'false'
-                                              ? const Color.fromARGB(
-                                                  255, 180, 180, 180)
-                                              : Colors.blue,
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(50),
-                                        splashColor:
-                                            Colors.black.withOpacity(0.3),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 150),
-                                              () {
-                                            performLoggedUserAction(
-                                                context: context,
-                                                action: () {
-                                                  snap?.pending == "true" &&
-                                                          global == "false"
-                                                      ? voteIfPending(
-                                                          context: context)
-                                                      : snap?.aaCountry == "" &&
-                                                              global == "false"
-                                                          ? nationalityUnknown(
-                                                              context: context)
-                                                          : snap?.gPollTime ==
-                                                                          widget
-                                                                              .durationInDay &&
-                                                                      global ==
-                                                                          'true' ||
-                                                                  snap?.nPollTime ==
-                                                                          widget
-                                                                              .durationInDay &&
-                                                                      global ==
-                                                                          'false'
-                                                              ? sendTimerDialog(
-                                                                  context:
-                                                                      context,
-                                                                  type: 'poll',
-                                                                  type2: global ==
-                                                                          'true'
-                                                                      ? 'global'
-                                                                      : 'national',
-                                                                )
-                                                              : _pollController
-                                                                      .text
-                                                                      .trim()
-                                                                      .isEmpty
-                                                                  ? showSnackBarError(
-                                                                      'Poll field cannot be empty.',
-                                                                      context)
-                                                                  : _optionOne
-                                                                          .text
-                                                                          .trim()
-                                                                          .isEmpty
-                                                                      ? showSnackBarError(
-                                                                          'Poll option #1 cannot be empty.',
-                                                                          context)
-                                                                      : _optionTwo
-                                                                              .text
-                                                                              .trim()
-                                                                              .isEmpty
-                                                                          ? showSnackBarError(
-                                                                              'Poll option #2 cannot be empty.',
-                                                                              context)
-                                                                          : postImagePoll(
-                                                                              user?.UID ?? '',
-                                                                              user?.username ?? '',
-                                                                              user?.photoUrl ?? '',
-                                                                              global == 'true' ? '' : snap?.aaCountry ?? '',
-                                                                            );
-                                                });
-                                          });
-                                        },
-                                        child: SizedBox(
-                                          height: 38,
-                                          child: Container(
-                                            padding: const EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  snap?.pending == "true" &&
-                                                              global ==
-                                                                  'false' ||
-                                                          snap?.gPollTime ==
-                                                                  widget
-                                                                      .durationInDay &&
-                                                              global ==
-                                                                  'true' ||
-                                                          snap?.nPollTime ==
-                                                                  widget
-                                                                      .durationInDay &&
-                                                              global == 'false'
-                                                      ? Icons.timer
-                                                      : Icons.send,
-                                                  color: Colors.white,
-                                                  size: 18,
+                                                    );
+                                                  },
+                                                  optionsBuilder:
+                                                      (TextEditingValue
+                                                          textEditingValue) {
+                                                    if (textEditingValue.text ==
+                                                        '') {
+                                                      return const Iterable<
+                                                          String>.empty();
+                                                    }
+                                                    return _pickLanguage
+                                                        .where((String option) {
+                                                      return option.contains(
+                                                          textEditingValue.text
+                                                              .toLowerCase());
+                                                    });
+                                                  },
+                                                  onSelected:
+                                                      (String selectedTag) {
+                                                    keywordMessageController
+                                                        .addTag = selectedTag;
+                                                  },
+                                                  fieldViewBuilder: (context,
+                                                      ttec,
+                                                      tfn,
+                                                      onFieldSubmitted) {
+                                                    return Stack(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      14),
+                                                          child: Container(
+                                                            height: 46,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    5.0),
+                                                              ),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  width: 1),
+                                                            ),
+                                                            child:
+                                                                TextFieldTags(
+                                                              textEditingController:
+                                                                  ttec,
+                                                              focusNode: tfn,
+                                                              // textfieldTagsController:
+                                                              //     keywordMessageController,
+                                                              initialTags: const [],
+                                                              textSeparators: const [
+                                                                ' ',
+                                                                ','
+                                                              ],
+                                                              letterCase:
+                                                                  LetterCase
+                                                                      .normal,
+                                                              inputfieldBuilder:
+                                                                  (context,
+                                                                      tec,
+                                                                      fn,
+                                                                      error,
+                                                                      onChanged,
+                                                                      onSubmitted) {
+                                                                return ((context,
+                                                                    sc,
+                                                                    tags,
+                                                                    onTagDelete) {
+                                                                  myTagsPoll =
+                                                                      tags;
+                                                                  List<String>
+                                                                      tagsLower =
+                                                                      tags;
+                                                                  tagsLower = tagsLower
+                                                                      .map((tagLower) =>
+                                                                          tagLower
+                                                                              .toLowerCase())
+                                                                      .toList();
+                                                                  myTagsPollLowerCase =
+                                                                      tagsLower;
+                                                                  return Row(
+                                                                    children: [
+                                                                      Container(
+                                                                        constraints: BoxConstraints(
+                                                                            maxWidth: tags.length < 3
+                                                                                ? MediaQuery.of(context).size.width / 2
+                                                                                : MediaQuery.of(context).size.width / 1.4),
+                                                                        child:
+                                                                            SingleChildScrollView(
+                                                                          controller:
+                                                                              sc,
+                                                                          scrollDirection:
+                                                                              Axis.horizontal,
+                                                                          child: Row(
+                                                                              mainAxisSize: MainAxisSize.min,
+                                                                              children: tags.map((String tag) {
+                                                                                return Container(
+                                                                                  height: 28,
+                                                                                  decoration: const BoxDecoration(
+                                                                                      borderRadius: BorderRadius.all(
+                                                                                        Radius.circular(20.0),
+                                                                                      ),
+                                                                                      color: Colors.grey),
+                                                                                  margin: const EdgeInsets.only(left: 3, right: 3),
+                                                                                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+                                                                                  child: Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      InkWell(
+                                                                                        child: Text(
+                                                                                          tag,
+                                                                                          style: const TextStyle(color: Colors.white),
+                                                                                        ),
+                                                                                      ),
+                                                                                      const SizedBox(width: 4.0),
+                                                                                      InkWell(
+                                                                                        child: const Icon(
+                                                                                          Icons.cancel,
+                                                                                          size: 17.0,
+                                                                                          color: Colors.white,
+                                                                                        ),
+                                                                                        onTap: () {
+                                                                                          onTagDelete(tag);
+                                                                                        },
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                );
+                                                                              }).toList()),
+                                                                        ),
+                                                                      ),
+                                                                      Flexible(
+                                                                        child:
+                                                                            TextField(
+                                                                          controller:
+                                                                              tec,
+                                                                          focusNode:
+                                                                              fn,
+                                                                          enabled:
+                                                                              tags.length < 3,
+                                                                          onTap:
+                                                                              () {},
+                                                                          decoration:
+                                                                              InputDecoration(
+                                                                            contentPadding: const EdgeInsets.only(
+                                                                                top: 10.0,
+                                                                                left: 10,
+                                                                                right: 0,
+                                                                                bottom: 10),
+                                                                            hintText: tags.isNotEmpty
+                                                                                ? ''
+                                                                                : "Add up to 3 keywords (optional)",
+                                                                            hintStyle: const TextStyle(
+                                                                                // fontStyle:
+                                                                                //     FontStyle
+                                                                                //         .italic,
+                                                                                color: Colors.grey,
+                                                                                fontSize: 15),
+                                                                            errorText:
+                                                                                error,
+                                                                            border:
+                                                                                InputBorder.none,
+                                                                          ),
+                                                                          onChanged:
+                                                                              onChanged,
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets.only(
+                                                                            left:
+                                                                                5,
+                                                                            right:
+                                                                                5),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          children: [
+                                                                            const Icon(Icons.key,
+                                                                                color: Colors.grey),
+                                                                            tags.length == 3
+                                                                                ? Text(
+                                                                                    '${tags.length}/3',
+                                                                                    style: const TextStyle(
+                                                                                      fontSize: 12,
+                                                                                      color: Colors.red,
+                                                                                    ),
+                                                                                  )
+                                                                                : Text(
+                                                                                    '${tags.length}/3',
+                                                                                    style: const TextStyle(
+                                                                                      fontSize: 12,
+                                                                                      color: Colors.grey,
+                                                                                    ),
+                                                                                  )
+                                                                          ],
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  );
+                                                                });
+                                                              },
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    );
+                                                  },
                                                 ),
-                                                const SizedBox(width: 10),
-                                                snap?.gPollTime ==
+                                                Container(height: 20),
+                                                // Padding(
+                                                //   padding: const EdgeInsets
+                                                //           .symmetric(
+                                                //       horizontal: 12.0),
+                                                //   child: Row(
+                                                //     mainAxisAlignment:
+                                                //         MainAxisAlignment
+                                                //             .spaceBetween,
+                                                //     children: [
+                                                //       Container(width: 30),
+                                                //       Material(
+                                                //         color:
+                                                //             Colors.transparent,
+                                                //         child: InkWell(
+                                                //           splashColor: Colors
+                                                //               .grey
+                                                //               .withOpacity(0.3),
+                                                //           borderRadius:
+                                                //               BorderRadius
+                                                //                   .circular(25),
+                                                //           onTap: () {
+                                                //             Future.delayed(
+                                                //                 const Duration(
+                                                //                     milliseconds:
+                                                //                         100),
+                                                //                 () async {
+                                                //               await createProvider
+                                                //                   .setShowTrendingPoll(
+                                                //                 !createProvider
+                                                //                     .showTrendingPoll,
+                                                //               );
+                                                //               if (createProvider
+                                                //                       .showTrendingPoll ==
+                                                //                   true) {
+                                                //                 await createProvider
+                                                //                     .getpollKeywordList(
+                                                //                         global,
+                                                //                         user!
+                                                //                             .aaCountry,
+                                                //                         widget
+                                                //                             .durationInDay);
+                                                //               }
+                                                //             });
+                                                //           },
+                                                //           child: Row(
+                                                //             mainAxisAlignment:
+                                                //                 MainAxisAlignment
+                                                //                     .center,
+                                                //             children: [
+                                                //               const SizedBox(
+                                                //                   width: 10),
+                                                //               const Text(
+                                                //                   'View trending keywords',
+                                                //                   style: TextStyle(
+                                                //                       color: Colors
+                                                //                           .grey,
+                                                //                       fontWeight:
+                                                //                           FontWeight
+                                                //                               .w500,
+                                                //                       fontSize:
+                                                //                           13)),
+                                                //               Icon(
+                                                //                 showTrendingPoll
+                                                //                     ? Icons
+                                                //                         .arrow_drop_up
+                                                //                     : Icons
+                                                //                         .arrow_drop_down,
+                                                //                 color:
+                                                //                     Colors.grey,
+                                                //               ),
+                                                //             ],
+                                                //           ),
+                                                //         ),
+                                                //       ),
+                                                //       Padding(
+                                                //         padding:
+                                                //             const EdgeInsets
+                                                //                 .only(right: 0),
+                                                //         child: Material(
+                                                //           color: Colors.white,
+                                                //           shape:
+                                                //               const CircleBorder(),
+                                                //           child: InkWell(
+                                                //             customBorder:
+                                                //                 const CircleBorder(),
+                                                //             splashColor: Colors
+                                                //                 .grey
+                                                //                 .withOpacity(
+                                                //                     0.5),
+                                                //             onTap: () {
+                                                //               Future.delayed(
+                                                //                 const Duration(
+                                                //                     milliseconds:
+                                                //                         50),
+                                                //                 () {
+                                                //                   keywordsDialog(
+                                                //                       context:
+                                                //                           context);
+                                                //                 },
+                                                //               );
+                                                //             },
+                                                //             child:
+                                                //                 const SizedBox(
+                                                //               height: 32,
+                                                //               width: 38,
+                                                //               child: Icon(
+                                                //                   Icons
+                                                //                       .help_outline,
+                                                //                   size: 20,
+                                                //                   color: Colors
+                                                //                       .grey),
+                                                //             ),
+                                                //           ),
+                                                //         ),
+                                                //       ),
+                                                //     ],
+                                                //   ),
+                                                // ),
+                                                // createProvider.showTrendingPoll
+                                                //     ? createProvider.Loading ==
+                                                //             true
+                                                //         ? const SizedBox(
+                                                //             height: 223,
+                                                //             child: Center(
+                                                //                 child:
+                                                //                     CircularProgressIndicator()),
+                                                //           )
+                                                //         : Padding(
+                                                //             padding:
+                                                //                 const EdgeInsets
+                                                //                         .symmetric(
+                                                //                     horizontal:
+                                                //                         10),
+                                                //             child: SizedBox(
+                                                //               height: createProvider
+                                                //                           .pollKeywordListCount ==
+                                                //                       1
+                                                //                   ? 200
+                                                //                   : 223,
+                                                //               child:
+                                                //                   FutureBuilder(
+                                                //                 builder: (BuildContext
+                                                //                         context,
+                                                //                     snapshot) {
+                                                //                   return createProvider
+                                                //                           .listPoll
+                                                //                           .isNotEmpty
+                                                //                       ? SingleChildScrollView(
+                                                //                           child:
+                                                //                               Column(
+                                                //                             children: [
+                                                //                               createProvider.pollKeywordListCount > 1
+                                                //                                   ? Row(
+                                                //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                //                                       children: [
+                                                //                                         Material(
+                                                //                                           color: Colors.transparent,
+                                                //                                           child: InkWell(
+                                                //                                               borderRadius: BorderRadius.circular(25),
+                                                //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                                //                                               onTap: () {
+                                                //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                                //                                                   createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: false);
+                                                //                                                 });
+                                                //                                               },
+                                                //                                               child: Container(
+                                                //                                                 padding: const EdgeInsets.symmetric(
+                                                //                                                   vertical: 4,
+                                                //                                                   horizontal: 8,
+                                                //                                                 ),
+                                                //                                                 child: Text('View ${((createProvider.pollKeywordListCount - 2) * 10) + 1} - ${(createProvider.pollKeywordListCount - 1) * 10}',
+                                                //                                                     style: const TextStyle(
+                                                //                                                       color: Colors.blue,
+                                                //                                                       fontWeight: FontWeight.w500,
+                                                //                                                       fontSize: 13,
+                                                //                                                       letterSpacing: 0.3,
+                                                //                                                     )),
+                                                //                                               )),
+                                                //                                         ),
+                                                //                                       ],
+                                                //                                     )
+                                                //                                   : const SizedBox(),
+                                                //                               const SizedBox(height: 4),
+                                                //                               ListView.builder(
+                                                //                                 shrinkWrap: true,
+                                                //                                 physics: const NeverScrollableScrollPhysics(),
+                                                //                                 itemCount: createProvider.listPoll.length,
+                                                //                                 itemBuilder: (context, index) => Padding(
+                                                //                                   padding: const EdgeInsets.symmetric(vertical: 1),
+                                                //                                   child: NoRadioListTile<String>(
+                                                //                                       start: ((((createProvider.pollKeywordListCount - 1) * 10) + 1) + index).toString(),
+                                                //                                       center: createProvider.listPoll[index].keyName
+                                                //                                       // ?? ""
+                                                //                                       ,
+                                                //                                       end: createProvider.listPoll[index].length.toString()),
+                                                //                                 ),
+                                                //                               ),
+                                                //                               const SizedBox(height: 4),
+                                                //                               createProvider.pollKeywordLast == false
+                                                //                                   ? Row(
+                                                //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                                //                                       children: [
+                                                //                                         Material(
+                                                //                                           color: Colors.transparent,
+                                                //                                           child: InkWell(
+                                                //                                               borderRadius: BorderRadius.circular(25),
+                                                //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                                //                                               onTap: () {
+                                                //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                                //                                                   createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: true);
+                                                //                                                 });
+                                                //                                               },
+                                                //                                               child: Container(
+                                                //                                                 padding: const EdgeInsets.symmetric(
+                                                //                                                   vertical: 4,
+                                                //                                                   horizontal: 8,
+                                                //                                                 ),
+                                                //                                                 child: Text("View ${(createProvider.pollKeywordListCount * 10) + 1} - ${(createProvider.pollKeywordListCount + 1) * 10}",
+                                                //                                                     style: const TextStyle(
+                                                //                                                       color: Colors.blue,
+                                                //                                                       fontWeight: FontWeight.w500,
+                                                //                                                       fontSize: 13,
+                                                //                                                       letterSpacing: 0.3,
+                                                //                                                     )),
+                                                //                                               )),
+                                                //                                         ),
+                                                //                                       ],
+                                                //                                     )
+                                                //                                   : Container(),
+                                                //                               const SizedBox(
+                                                //                                 height: 6,
+                                                //                               ),
+                                                //                             ],
+                                                //                           ),
+                                                //                         )
+                                                //                       : const Center(
+                                                //                           child:
+                                                //                               Text(
+                                                //                             'No trending keywords yet.',
+                                                //                             style:
+                                                //                                 TextStyle(
+                                                //                               color: Color.fromARGB(255, 183, 183, 183),
+                                                //                               fontSize: 16,
+                                                //                             ),
+                                                //                           ),
+                                                //                         );
+                                                //                 },
+                                                //               ),
+                                                //             ),
+                                                //           )
+                                                //     : const SizedBox(),
+                                                // const SizedBox(
+                                                //   height: 4,
+                                                // ),
+                                              ],
+                                            );
+                                          }),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10.0, bottom: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        PhysicalModel(
+                                          elevation: 3,
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Material(
+                                            color: user == null
+                                                ? Colors.blue
+                                                : snap?.pending == "true" &&
+                                                            global == 'false' ||
+                                                        snap?.aaCountry == "" &&
+                                                            global == "false" ||
+                                                        snap?.gPollTime ==
                                                                 widget
                                                                     .durationInDay &&
                                                             global == 'true' ||
@@ -5990,76 +5968,193 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                                                 widget
                                                                     .durationInDay &&
                                                             global == 'false'
-                                                    ? Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Text(
-                                                            'WAIT TIME',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 15,
-                                                                letterSpacing:
-                                                                    1),
-                                                          ),
-                                                          Text(
-                                                            'Timer refreshes at 12:01AM EST',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 9,
-                                                                letterSpacing:
-                                                                    0.2),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : Text(
+                                                    ? const Color.fromARGB(
+                                                        255, 180, 180, 180)
+                                                    : Colors.blue,
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            child: InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              splashColor:
+                                                  Colors.black.withOpacity(0.3),
+                                              onTap: () {
+                                                Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 150), () {
+                                                  performLoggedUserAction(
+                                                      context: context,
+                                                      action: () {
                                                         snap?.pending ==
                                                                     "true" &&
                                                                 global ==
                                                                     "false"
-                                                            ? 'Verification Pending'
+                                                            ? voteIfPending(
+                                                                context:
+                                                                    context)
                                                             : snap?.aaCountry ==
                                                                         "" &&
                                                                     global ==
                                                                         "false"
-                                                                ? 'Nationality Unknown'
-                                                                : global ==
-                                                                        'true'
-                                                                    ? 'Send Poll Globally'
-                                                                    : 'Send Poll Nationally',
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 15,
-                                                            letterSpacing: 1),
-                                                      )
-                                              ],
+                                                                ? nationalityUnknown(
+                                                                    context:
+                                                                        context)
+                                                                : snap?.gPollTime == widget.durationInDay &&
+                                                                            global ==
+                                                                                'true' ||
+                                                                        snap?.nPollTime == widget.durationInDay &&
+                                                                            global ==
+                                                                                'false'
+                                                                    ? sendTimerDialog(
+                                                                        context:
+                                                                            context,
+                                                                        type:
+                                                                            'poll',
+                                                                        type2: global ==
+                                                                                'true'
+                                                                            ? 'global'
+                                                                            : 'national',
+                                                                      )
+                                                                    : _pollController
+                                                                            .text
+                                                                            .trim()
+                                                                            .isEmpty
+                                                                        ? showSnackBarError(
+                                                                            'Poll field cannot be empty.',
+                                                                            context)
+                                                                        : _optionOne.text
+                                                                                .trim()
+                                                                                .isEmpty
+                                                                            ? showSnackBarError('Poll option #1 cannot be empty.',
+                                                                                context)
+                                                                            : _optionTwo.text.trim().isEmpty
+                                                                                ? showSnackBarError('Poll option #2 cannot be empty.', context)
+                                                                                : postImagePoll(
+                                                                                    user?.UID ?? '',
+                                                                                    user?.username ?? '',
+                                                                                    user?.photoUrl ?? '',
+                                                                                    global == 'true' ? '' : snap?.aaCountry ?? '',
+                                                                                  );
+                                                      });
+                                                });
+                                              },
+                                              child: SizedBox(
+                                                height: 38,
+                                                child: Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20, right: 20),
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(
+                                                        snap?.pending ==
+                                                                        "true" &&
+                                                                    global ==
+                                                                        'false' ||
+                                                                snap?.gPollTime ==
+                                                                        widget
+                                                                            .durationInDay &&
+                                                                    global ==
+                                                                        'true' ||
+                                                                snap?.nPollTime ==
+                                                                        widget
+                                                                            .durationInDay &&
+                                                                    global ==
+                                                                        'false'
+                                                            ? Icons.timer
+                                                            : Icons.send,
+                                                        color: Colors.white,
+                                                        size: 18,
+                                                      ),
+                                                      const SizedBox(width: 10),
+                                                      snap?.gPollTime ==
+                                                                      widget
+                                                                          .durationInDay &&
+                                                                  global ==
+                                                                      'true' ||
+                                                              snap?.nPollTime ==
+                                                                      widget
+                                                                          .durationInDay &&
+                                                                  global ==
+                                                                      'false'
+                                                          ? Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: const [
+                                                                Text(
+                                                                  'WAIT TIME',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15,
+                                                                      letterSpacing:
+                                                                          1),
+                                                                ),
+                                                                Text(
+                                                                  'Timer refreshes at 12:01AM EST',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          9,
+                                                                      letterSpacing:
+                                                                          0.2),
+                                                                ),
+                                                              ],
+                                                            )
+                                                          : Text(
+                                                              snap?.pending ==
+                                                                          "true" &&
+                                                                      global ==
+                                                                          "false"
+                                                                  ? 'Verification Pending'
+                                                                  : snap?.aaCountry ==
+                                                                              "" &&
+                                                                          global ==
+                                                                              "false"
+                                                                      ? 'Nationality Unknown'
+                                                                      : global ==
+                                                                              'true'
+                                                                          ? 'Send Poll Globally'
+                                                                          : 'Send Poll Nationally',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15,
+                                                                  letterSpacing:
+                                                                      1),
+                                                            )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
+                  ],
+                ),
+              ),
             ),
             Visibility(
               visible: _logoutLoading,

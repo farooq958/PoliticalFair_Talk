@@ -150,8 +150,9 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                               color: Color.fromARGB(
                                                   255, 55, 55, 55),
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 14.5,
-                                              letterSpacing: 0.5,
+                                              fontSize: 11.5,
+                                              letterSpacing: -0.2,
+                                              fontFamily: 'Capitalis',
                                             ),
                                           ),
                                         ),
@@ -417,8 +418,9 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                           color:
                                               Color.fromARGB(255, 55, 55, 55),
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14.5,
-                                          letterSpacing: 0.5,
+                                          fontSize: 11.5,
+                                          letterSpacing: -0.2,
+                                          fontFamily: 'Capitalis',
                                         ),
                                       ),
                                     ),

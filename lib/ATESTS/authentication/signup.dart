@@ -13,7 +13,8 @@ import '../info screens/terms_conditions.dart';
 import 'package:aft/ATESTS/methods/firestore_methods.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  var durationInDay;
+  SignupScreen({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -40,7 +41,6 @@ class _SignupScreenState extends State<SignupScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    // _bioController.dispose();
     _usernameController.dispose();
   }
 
@@ -128,8 +128,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) =>
-                WelcomeScreen(username: _usernameController.text.trim()),
+            builder: (context) => WelcomeScreen(
+                username: _usernameController.text.trim(),
+                durationInDay: widget.durationInDay),
           ),
           (route) => false,
         );
@@ -144,7 +145,8 @@ class _SignupScreenState extends State<SignupScreen> {
     Future.delayed(const Duration(milliseconds: 150), () {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) =>
+              LoginScreen(durationInDay: widget.durationInDay),
         ),
       );
     });
@@ -174,10 +176,23 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: Column(children: [
                       const SizedBox(height: 20),
                       Image.asset(
-                        width: MediaQuery.of(context).size.width * 1 - 100,
+                        width: MediaQuery.of(context).size.width * 1 - 80,
                         'assets/fairtalk_blue_transparent.png',
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 5),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 1 - 80,
+                        child: const Text(
+                          'A platform built to unite us all.',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 36, 64, 101),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 9,
+                              fontFamily: 'Capitalis'),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
                       Padding(
                         padding: const EdgeInsets.only(top: 0.0),
                         child: SizedBox(

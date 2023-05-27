@@ -6,7 +6,9 @@ import '../utils/utils.dart';
 import 'verify_three.dart';
 
 class VerifyTwo extends StatefulWidget {
-  const VerifyTwo({Key? key}) : super(key: key);
+  var durationInDay;
+
+  VerifyTwo({Key? key, this.durationInDay}) : super(key: key);
 
   @override
   State<VerifyTwo> createState() => _VerifyTwoState();
@@ -277,7 +279,9 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const VerifyThree()),
+                                                      VerifyThree(
+                                                          durationInDay: widget
+                                                              .durationInDay)),
                                             );
                                           }
                                         });

@@ -91,7 +91,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                 children: [
                                   const SizedBox(height: 4),
                                   const Text(
-                                    "On Fairtalk, the majority decides the direction of the platform.",
+                                    "You decide the direction of the platform.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
@@ -107,7 +107,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   //   ),
                                   // ),
                                   const Text(
-                                    "By creating a submission, you're deciding which new features should be implemented or removed our platform.",
+                                    "By voting and/or creating a submission, you're deciding which new features should be implemented or removed from our platform. On other social media platforms, all decisions are mostly taken by a single individual or a handful of individuals during board meetings (dictatorships). On Fairtalk, all decisions are always taken by the majority (democracy).",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
@@ -124,7 +124,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   ),
                                   const SizedBox(height: 3),
                                   const Text(
-                                    "Submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate before releasing an important feature like this. You can always track the current amount of verified users by clicking on the button below.",
+                                    "Submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,

@@ -21,6 +21,7 @@ import 'notifications.dart';
 import 'profile_all_user.dart';
 import 'profile_screen_edit.dart';
 import 'report_bug.dart';
+import '../screens/add_post_daily.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Function(bool)? onLoading;
@@ -317,8 +318,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           () {
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                const VerifyOne(),
+                                            builder: (context) => VerifyOne(),
                                           ),
                                         );
                                       });
@@ -1038,7 +1038,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const SignupScreen()),
+                                                      SignupScreen()),
                                             );
                                           });
                                         },
@@ -1178,11 +1178,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(),
-                      SizedBox(
-                        height: 31,
-                        child: Image.asset(
-                          'assets/bottomIconSettingsBlack(1).png',
-                          opacity: const AlwaysStoppedAnimation(.6),
+                      InkWell(
+                        splashColor: Colors.grey.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const AddPostDaily(durationInDay: 253),
+                              ),
+                            );
+                          });
+                        },
+                        child: SizedBox(
+                          height: 31,
+                          child: Image.asset(
+                            'assets/bottomIconSettingsBlack(1).png',
+                            opacity: const AlwaysStoppedAnimation(.6),
+                          ),
                         ),
                       ),
                       const SizedBox(),
