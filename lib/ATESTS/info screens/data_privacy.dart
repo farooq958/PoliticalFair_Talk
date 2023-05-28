@@ -121,7 +121,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "This Data Privacy statement was last updated on: April 17th, 2023.",
+                            "This Data Privacy statement was last updated on: May 28th, 2023.",
                             style: TextStyle(
                               letterSpacing: 0.3,
                               // fontWeight: FontWeight.w500,

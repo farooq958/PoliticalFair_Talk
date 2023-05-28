@@ -345,16 +345,14 @@ class _SearchState extends State<Search> {
                                                   child: Text(
                                                     filterProvider.global ==
                                                             "true"
-                                                        ? 'Global'
-                                                        : 'National',
+                                                        ? 'GLOBAL'
+                                                        : 'NATIONAL',
                                                     style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 55, 55, 55),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 11.5,
-                                                      letterSpacing: -0.2,
-                                                      fontFamily: 'Capitalis',
+                                                      fontSize: 14,
                                                     ),
                                                   ),
                                                 ),
@@ -1315,15 +1313,13 @@ class _SearchState extends State<Search> {
                                               child: Text(
                                                 filterProvider.messages ==
                                                         "true"
-                                                    ? 'Messages'
-                                                    : 'Polls',
+                                                    ? 'MESSAGES'
+                                                    : 'POLLS',
                                                 style: const TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 55, 55, 55),
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 11.5,
-                                                  letterSpacing: -0.2,
-                                                  fontFamily: 'Capitalis',
+                                                  fontSize: 14,
                                                 ),
                                               ),
                                             ),

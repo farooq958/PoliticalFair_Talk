@@ -114,7 +114,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 2),
                             const Text(
-                              "This Terms of Use statement was last updated on: April 17th, 2023.",
+                              "This Terms of Use statement was last updated on: May 28th, 2023.",
                               style: TextStyle(
                                 letterSpacing: 0.3,
                                 // fontWeight: FontWeight.w500,
@@ -201,7 +201,14 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 15),
                             const Text(
-                              "Firstly, we need to make something clear. In order for us to provide our service, we are obliged to follow Apple App Store & Google Play Store user-generated content rules & policies. For more information on those rules & policies, we suggest that you read & understand them by clicking on the two links below:",
+                              "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure), we'll ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing. Everyone has the same opportunity to share their thoughts and ideas with the rest of the world or country. If you want to brag about how great you are as an individual, you already have thousands of other platforms such as Twitter & Instagram that let you do exactly just that. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                              style: TextStyle(
+                                letterSpacing: 0.3,
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+                            const Text(
+                              "In order for us to provide our service, we are obliged to follow Apple App Store & Google Play Store user-generated content rules & policies. For more information on those rules & policies, we suggest that you read & understand them by clicking on the two links below:",
                               style: TextStyle(
                                 letterSpacing: 0.3,
                               ),

@@ -152,27 +152,29 @@ class SubmissionsState extends State<Submissions>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: const EdgeInsets.only(top: 11.0),
                                 child: Column(
-                                  children: [
-                                    Text('Submissions',
+                                  children: const [
+                                    Text('SUBMISSIONS',
                                         style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 55, 55, 55),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          // letterSpacing: -0.2,
+                                          // fontFamily: 'Capitalis',
+                                        )),
+                                    Expanded(
+                                      child: Text(
+                                          'YOU DECIDE THE DIRECTION OF THE PLATFORM.',
+                                          style: TextStyle(
                                             color:
                                                 Color.fromARGB(255, 55, 55, 55),
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: -0.2,
-                                            fontFamily: 'Capitalis')),
-                                    Expanded(
-                                      child: const Text(
-                                          'You decide the direction of the platform.',
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 55, 55, 55),
-                                              fontSize: 7.5,
-                                              fontWeight: FontWeight.bold,
-                                              letterSpacing: -0.2,
-                                              fontFamily: 'Capitalis')),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500,
+                                            // letterSpacing: -0.2,
+                                            // fontFamily: 'Capitalis',
+                                          )),
                                     ),
                                   ],
                                 ),

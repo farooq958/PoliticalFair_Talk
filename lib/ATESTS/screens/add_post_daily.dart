@@ -1342,15 +1342,15 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                               bottom: 1.0),
                                           child: Text(
                                             global == "true"
-                                                ? 'Global'
-                                                : 'National',
+                                                ? 'GLOBAL'
+                                                : 'NATIONAL',
                                             style: const TextStyle(
                                               color: Color.fromARGB(
                                                   255, 55, 55, 55),
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 11.5,
-                                              letterSpacing: -0.2,
-                                              fontFamily: 'Capitalis',
+                                              fontSize: 14,
+                                              // letterSpacing: -0.2,
+                                              // fontFamily: 'Capitalis',
                                             ),
                                           ),
                                         ),
@@ -1571,14 +1571,12 @@ class _AddPostDailyState extends State<AddPostDaily> {
                                       padding:
                                           const EdgeInsets.only(bottom: 1.0),
                                       child: Text(
-                                        messages == "true" ? 'Message' : 'Poll',
+                                        messages == "true" ? 'MESSAGE' : 'POLL',
                                         style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 55, 55, 55),
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 11.5,
-                                          letterSpacing: -0.2,
-                                          fontFamily: 'Capitalis',
+                                          fontSize: 14,
                                         ),
                                       ),
                                     ),
@@ -1773,23 +1771,23 @@ class _AddPostDailyState extends State<AddPostDaily> {
                     PhysicalModel(
                       elevation: 3,
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(55),
+                      borderRadius: BorderRadius.circular(5),
                       child: Container(
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.only(
-                          left: 14,
-                          right: 14,
+                          left: 16,
+                          right: 16,
                           top: 16,
                           bottom: 10,
                         ),
                         child: const Text(
-                          'Start by creating your very first message or poll.',
+                          'START BY CREATING YOUR VERY FIRST MESSAGE OR POLL.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color.fromARGB(255, 55, 55, 55),
-                            fontSize: 11.5,
+                            fontSize: 12,
                             fontFamily: 'Capitalis',
-                            letterSpacing: -0.2,
+                            letterSpacing: 0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -1798,7 +1796,7 @@ class _AddPostDailyState extends State<AddPostDaily> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_downward,
                       size: 18,
                       color: Color.fromARGB(255, 55, 55, 55),

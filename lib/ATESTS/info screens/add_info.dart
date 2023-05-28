@@ -225,31 +225,31 @@ class _AddInfoState extends State<AddInfo> {
                             ),
                           ),
                           const SizedBox(height: 15),
-                          RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                const TextSpan(
-                                    text: 'For additonal details ',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        letterSpacing: 0.3)),
-                                TextSpan(
-                                    text: 'click here.',
-                                    style: const TextStyle(
-                                        color: Colors.blue, letterSpacing: 0.3),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const HowItWorks(),
-                                          ),
-                                        );
-                                      }),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 15),
+                          // RichText(
+                          //   text: TextSpan(
+                          //     children: <TextSpan>[
+                          //       const TextSpan(
+                          //           text: 'For additonal details ',
+                          //           style: TextStyle(
+                          //               color: Colors.black,
+                          //               letterSpacing: 0.3)),
+                          //       TextSpan(
+                          //           text: 'click here.',
+                          //           style: const TextStyle(
+                          //               color: Colors.blue, letterSpacing: 0.3),
+                          //           recognizer: TapGestureRecognizer()
+                          //             ..onTap = () {
+                          //               Navigator.of(context).push(
+                          //                 MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       const HowItWorks(),
+                          //                 ),
+                          //               );
+                          //             }),
+                          //     ],
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 15),
                           Row(
                             children: [
                               Expanded(
@@ -258,7 +258,7 @@ class _AddInfoState extends State<AddInfo> {
                                     children: <TextSpan>[
                                       const TextSpan(
                                           text:
-                                              'To view the list of rules & restrictions to post on Fairtalk ',
+                                              'To view our rules & restrictions to post on Fairtalk, ',
                                           style: TextStyle(
                                               color: Colors.black,
                                               letterSpacing: 0.3)),

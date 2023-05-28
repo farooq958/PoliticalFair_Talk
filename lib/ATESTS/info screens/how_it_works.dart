@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/global_variables.dart';
 
 class HowItWorks extends StatefulWidget {
@@ -212,24 +213,6 @@ class _HowItWorksState extends State<HowItWorks> {
                                             children: [
                                               const SizedBox(height: 3),
                                               const Text(
-                                                'On Fairtalk, the majority votes & decides:',
-                                                style: TextStyle(
-                                                  letterSpacing: 0.3,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which messages or polls should be Archived & displayed to everyone else."),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which keywords or subjects should be trending."),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which new features should be implemented or removed from our platform."),
-                                              const SizedBox(height: 3),
-                                              const SizedBox(height: 15),
-                                              const Text(
                                                 "How does it work?",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
@@ -239,10 +222,10 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "When you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection."),
+                                                  "When you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. Posts sent on a specific date compete against other posts that were also sent on that same date."),
                                               const SizedBox(height: 15),
                                               const Text(
-                                                "Score calculation",
+                                                "Message score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0.3,
@@ -337,46 +320,55 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   ],
                                                 ),
                                               ),
+                                              // const SizedBox(height: 5),
+                                              // RichText(
+                                              //   text: const TextSpan(
+                                              //     children: [
+                                              //       TextSpan(
+                                              //         text: 'Message score = ',
+                                              //         style: TextStyle(
+                                              //             color: Colors.black,
+                                              //             letterSpacing: 0.3),
+                                              //       ),
+                                              //       WidgetSpan(
+                                              //         child: Icon(
+                                              //             Icons.add_circle,
+                                              //             color: Colors.green,
+                                              //             size: 15),
+                                              //       ),
+                                              //       TextSpan(
+                                              //           text: ' - ',
+                                              //           style: TextStyle(
+                                              //               color: Colors.black,
+                                              //               fontWeight:
+                                              //                   FontWeight.w500,
+                                              //               letterSpacing:
+                                              //                   0.3)),
+                                              //       WidgetSpan(
+                                              //         child: Icon(
+                                              //             Icons
+                                              //                 .do_not_disturb_on,
+                                              //             color: Colors.red,
+                                              //             size: 15),
+                                              //       ),
+                                              //       // TextSpan(
+                                              //       //     text: ' votes.',
+                                              //       //     style: TextStyle(
+                                              //       //         color: Colors.black,
+                                              //       //         letterSpacing: 0.3)),
+                                              //     ],
+                                              //   ),
+                                              // ),
                                               const SizedBox(height: 15),
-                                              RichText(
-                                                text: const TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'Message score = ',
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          letterSpacing: 0.3),
-                                                    ),
-                                                    WidgetSpan(
-                                                      child: Icon(
-                                                          Icons.add_circle,
-                                                          color: Colors.green,
-                                                          size: 15),
-                                                    ),
-                                                    TextSpan(
-                                                        text: ' - ',
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            letterSpacing:
-                                                                0.3)),
-                                                    WidgetSpan(
-                                                      child: Icon(
-                                                          Icons
-                                                              .do_not_disturb_on,
-                                                          color: Colors.red,
-                                                          size: 15),
-                                                    ),
-                                                    // TextSpan(
-                                                    //     text: ' votes.',
-                                                    //     style: TextStyle(
-                                                    //         color: Colors.black,
-                                                    //         letterSpacing: 0.3)),
-                                                  ],
+                                              const Text(
+                                                "Poll score calculation",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                              const SizedBox(height: 15),
+                                              const SizedBox(height: 3),
                                               const Text(
                                                 "Poll score = Total votes received.",
                                                 textAlign: TextAlign.left,
@@ -384,6 +376,158 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   letterSpacing: 0.3,
                                                 ),
                                               ),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                "There are 4 different types of posts:",
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              Row(
+                                                children: const [
+                                                  Icon(
+                                                      MyFlutterApp
+                                                          .globe_americas,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 3),
+                                                  Icon(Icons.message,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 6),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Global Messages",
+                                                      style: TextStyle(
+                                                        letterSpacing: 0.3,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 3),
+                                              Row(
+                                                children: const [
+                                                  Icon(Icons.flag,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 3),
+                                                  Icon(Icons.message,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 6),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "National Messages",
+                                                      style: TextStyle(
+                                                        letterSpacing: 0.3,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 3),
+                                              Row(
+                                                children: const [
+                                                  Icon(
+                                                      MyFlutterApp
+                                                          .globe_americas,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 3),
+                                                  RotatedBox(
+                                                    quarterTurns: 1,
+                                                    child: Icon(Icons.poll,
+                                                        color: Color.fromARGB(
+                                                            255, 56, 56, 56),
+                                                        size: 15),
+                                                  ),
+                                                  SizedBox(width: 6),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Global Polls",
+                                                      style: TextStyle(
+                                                        letterSpacing: 0.3,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 3),
+                                              Row(
+                                                children: const [
+                                                  Icon(Icons.flag,
+                                                      color: Color.fromARGB(
+                                                          255, 56, 56, 56),
+                                                      size: 15),
+                                                  SizedBox(width: 3),
+                                                  RotatedBox(
+                                                    quarterTurns: 1,
+                                                    child: Icon(Icons.poll,
+                                                        color: Color.fromARGB(
+                                                            255, 56, 56, 56),
+                                                        size: 15),
+                                                  ),
+                                                  SizedBox(width: 6),
+                                                  Expanded(
+                                                    child: Text(
+                                                      "National Polls",
+                                                      style: TextStyle(
+                                                        letterSpacing: 0.3,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each & every day.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                "Verified accounts",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    letterSpacing: 0.3,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                "National messages/polls can only be created by verified accounts. Additionally, voting is only allowed for verified accounts.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                'On Fairtalk, the majority votes & decides everything. This includes:',
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which messages or polls should be Archived & displayed to everyone else."),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which keywords or subjects should be trending."),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "• Which new features should be implemented or removed from our platform."),
                                               const SizedBox(height: 3),
                                             ],
                                           ),
@@ -492,6 +636,18 @@ class _HowItWorksState extends State<HowItWorks> {
                                               const SizedBox(height: 3),
                                               const Text(
                                                   "If we want to give everyone a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the traditional following system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more power than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy."),
+                                              const SizedBox(height: 15),
+                                              const Text(
+                                                "All users remain anonymous.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0.3,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure), we'll ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing. Everyone has the same opportunity to share their thoughts and ideas with the rest of the world or country. If you want to brag about how great you are as an individual, you already have thousands of other platforms such as Twitter & Instagram that let you do exactly just that. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else."),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "An argument against Fairtalk",

@@ -1178,27 +1178,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(),
-                      InkWell(
-                        splashColor: Colors.grey.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(25),
-                        onTap: () {
-                          Future.delayed(const Duration(milliseconds: 150), () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const AddPostDaily(durationInDay: 253),
-                              ),
-                            );
-                          });
-                        },
-                        child: SizedBox(
-                          height: 31,
-                          child: Image.asset(
-                            'assets/bottomIconSettingsBlack(1).png',
-                            opacity: const AlwaysStoppedAnimation(.6),
-                          ),
+                      // InkWell(
+                      //   splashColor: Colors.grey.withOpacity(0.3),
+                      //   borderRadius: BorderRadius.circular(25),
+                      //   onTap: () {
+                      //     Future.delayed(const Duration(milliseconds: 150), () {
+                      //       Navigator.of(context).push(
+                      //         MaterialPageRoute(
+                      //           builder: (context) =>
+                      //               const AddPostDaily(durationInDay: 253),
+                      //         ),
+                      //       );
+                      //     });
+                      //   },
+                      // child:
+                      SizedBox(
+                        height: 31,
+                        child: Image.asset(
+                          'assets/bottomIconSettingsBlack(1).png',
+                          opacity: const AlwaysStoppedAnimation(.6),
                         ),
                       ),
+                      // ),
                       const SizedBox(),
                       SizedBox(
                         width: 85,

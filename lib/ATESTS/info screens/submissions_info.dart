@@ -124,7 +124,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   ),
                                   const SizedBox(height: 3),
                                   const Text(
-                                    "Submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
+                                    "Fairtalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0.3,
