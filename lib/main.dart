@@ -1,6 +1,7 @@
 import 'package:aft/ATESTS/provider/block_list_provider.dart';
 import 'package:aft/ATESTS/provider/comments_replies_provider.dart';
 import 'package:aft/ATESTS/provider/filter_provider.dart';
+import 'package:aft/ATESTS/provider/google_sign_in.dart';
 import 'package:aft/ATESTS/provider/most_liked_provider.dart';
 import 'package:aft/ATESTS/provider/most_liked_key_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
@@ -113,6 +114,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (_) => MostLikedKeyProvider(),
     ),
+    ChangeNotifierProvider(
+      create: (_) => GoogleSignInProvider(),
+    ),
 
     // ChangeNotifierProvider(
     //   create: (_) => ChangeCountryProvider(),
@@ -187,4 +191,4 @@ class MyApp extends StatelessWidget {
 //     //
 //   }
 //   // debugPrint('Date from timer $datetime || $localdate  offset: $offset');
-// }
+//

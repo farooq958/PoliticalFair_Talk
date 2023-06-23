@@ -1,16 +1,22 @@
 import 'dart:typed_data';
 import 'package:aft/ATESTS/provider/user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
+import '../provider/google_sign_in.dart';
+import '../services/auth_service.dart';
 import '../utils/utils.dart';
+import 'google_username.dart';
 import 'login_screen.dart';
 import '../info screens/data_privacy.dart';
 import '../info screens/terms_conditions.dart';
 import 'package:aft/ATESTS/methods/firestore_methods.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignupScreen extends StatefulWidget {
   var durationInDay;
@@ -84,6 +90,22 @@ class _SignupScreenState extends State<SignupScreen> {
 
   //   return null;
   // }
+
+  signInWithGoogle() async {
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: gAuth.accessToken,
+      idToken: gAuth.idToken,
+    );
+
+    // return await FirebaseAuth.instance.signInWithCredential(credential);
+
+    final UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   void signUpUser() async {
     try {
@@ -386,6 +408,72 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      PhysicalModel(
+                        color: Colors.white,
+                        elevation: 3,
+                        borderRadius: BorderRadius.circular(50),
+                        child: Material(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(25),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(50),
+                            splashColor: Colors.grey.withOpacity(0.3),
+                            onTap: () async {
+                              // final provider =
+                              //     Provider.of<GoogleSignInProvider>(context,
+                              //         listen: false);
+
+                              // provider.googleLogin();
+                              await signInWithGoogle();
+                              if (mounted) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            CreateUsernameGoogle()));
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              decoration: const ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(25),
+                                  ),
+                                ),
+                                color: Colors.transparent,
+                              ),
+                              child: _isLoading
+                                  ? const Center(
+                                      child: SizedBox(
+                                          height: 18,
+                                          width: 18,
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          )),
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        FaIcon(FontAwesomeIcons.google),
+                                        SizedBox(width: 6),
+                                        Text('Sign up with Google',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                letterSpacing: 0.5)),
+                                      ],
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 8.0, right: 12, left: 12),

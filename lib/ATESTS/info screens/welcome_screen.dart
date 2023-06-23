@@ -489,20 +489,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                                 Future.delayed(
                                                     const Duration(
                                                         milliseconds: 150), () {
-                                                  // goToHome(context);
-
-                                                  widget.durationInDay == null
-                                                      ? goToHome(context)
-                                                      : Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      AddPostDaily(
-                                                                        durationInDay:
-                                                                            widget.durationInDay,
-                                                                      )),
-                                                        );
+                                                  // widget.durationInDay == null
+                                                  //     ?
+                                                  goToHome(context);
+                                                  // : Navigator.push(
+                                                  //     context,
+                                                  //     MaterialPageRoute(
+                                                  //         builder:
+                                                  //             (context) =>
+                                                  //                 AddPostDaily(
+                                                  //                   durationInDay:
+                                                  //                       widget.durationInDay,
+                                                  //                 )),
+                                                  //   );
                                                 });
                                               },
                                               child: Container(

@@ -394,18 +394,19 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                     "Verification successfully completed.",
                                                     context);
 
-                                                widget.durationInDay == null
-                                                    ? goToHome(context)
-                                                    : Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                AddPostDaily(
-                                                                  durationInDay:
-                                                                      widget
-                                                                          .durationInDay,
-                                                                )),
-                                                      );
+                                                // widget.durationInDay == null
+                                                //     ?
+                                                goToHome(context);
+                                                // : Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             AddPostDaily(
+                                                //               durationInDay:
+                                                //                   widget
+                                                //                       .durationInDay,
+                                                //             )),
+                                                //   );
                                               }
                                             }
                                           });

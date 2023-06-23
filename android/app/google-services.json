@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "424538767306-ph0efa9v4jinam45lc22amdrb4fgl59d.apps.googleusercontent.com",
+          "client_id": "424538767306-1qamkmi7tlmm41hql26umr0fkdd70sn0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.aft",
-            "certificate_hash": "a4de1aff0cf6ec2c2fa2da29d1891b5c0c1dd46a"
+            "certificate_hash": "95de1a99384fa11f3a46bcc2b6a5664c5f71e70d"
           }
         },
         {
@@ -40,10 +40,11 @@
               "client_type": 3
             },
             {
-              "client_id": "424538767306-esubop5366gnjriprpp2jl65i70vt6br.apps.googleusercontent.com",
+              "client_id": "424538767306-9tsastoasimirfkmcc6v9m3ju5lc0q7q.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "net.fairtalk.fairtalk"
+                "bundle_id": "com.example.aft",
+                "app_store_id": "1665430482"
               }
             }
           ]
@@ -76,10 +77,11 @@
               "client_type": 3
             },
             {
-              "client_id": "424538767306-esubop5366gnjriprpp2jl65i70vt6br.apps.googleusercontent.com",
+              "client_id": "424538767306-9tsastoasimirfkmcc6v9m3ju5lc0q7q.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "net.fairtalk.fairtalk"
+                "bundle_id": "com.example.aft",
+                "app_store_id": "1665430482"
               }
             }
           ]

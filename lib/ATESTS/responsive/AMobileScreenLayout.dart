@@ -1100,474 +1100,472 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         //       ),
         //     ],
         //   )
-        : user == null && isGuest == false
-            ? Scaffold(
-                backgroundColor: Colors.white,
-                body: Container(
-                  color: Colors.transparent,
-                  child: SafeArea(
-                    child: Container(
-                      color: Colors.white,
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 1,
-                      child: Center(
-                        child: ListView(
-                          shrinkWrap: true,
-                          // reverse: true,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                      MediaQuery.of(context).size.width > 600
-                                          ? 100
-                                          : 32),
-                              child: Column(children: [
-                                const SizedBox(height: 20),
-                                Image.asset(
-                                  width: MediaQuery.of(context).size.width * 1 -
-                                      80,
-                                  'assets/fairtalk_blue_transparent.png',
-                                ),
-                                const SizedBox(height: 5),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width * 1 -
-                                      80,
-                                  child: const Text(
-                                    'A platform built to unite us all.',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 36, 64, 101),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 9,
-                                        fontFamily: 'Capitalis'),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 0.0),
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: Theme(
-                                      data: themeData.copyWith(
-                                          inputDecorationTheme: themeData
-                                              .inputDecorationTheme
-                                              .copyWith(
-                                        prefixIconColor:
-                                            MaterialStateColor.resolveWith(
-                                                (Set<MaterialState> states) {
-                                          if (states.contains(
-                                              MaterialState.focused)) {
-                                            return const Color.fromARGB(
-                                                255, 36, 64, 101);
-                                          }
+        // : user == null && isGuest == false
+        //     ? Scaffold(
+        //         backgroundColor: Colors.white,
+        //         body: Container(
+        //           color: Colors.transparent,
+        //           child: SafeArea(
+        //             child: Container(
+        //               color: Colors.white,
+        //               width: double.infinity,
+        //               height: MediaQuery.of(context).size.height * 1,
+        //               child: Center(
+        //                 child: ListView(
+        //                   shrinkWrap: true,
+        //                   // reverse: true,
+        //                   children: [
+        //                     Container(
+        //                       padding: EdgeInsets.symmetric(
+        //                           horizontal:
+        //                               MediaQuery.of(context).size.width > 600
+        //                                   ? 100
+        //                                   : 32),
+        //                       child: Column(children: [
+        //                         const SizedBox(height: 20),
+        //                         Image.asset(
+        //                           width: MediaQuery.of(context).size.width * 1 -
+        //                               80,
+        //                           'assets/fairtalk_blue_transparent.png',
+        //                         ),
+        //                         const SizedBox(height: 5),
+        //                         SizedBox(
+        //                           width: MediaQuery.of(context).size.width * 1 -
+        //                               80,
+        //                           child: const Text(
+        //                             'A platform built to unite us all.',
+        //                             style: TextStyle(
+        //                                 color: Color.fromARGB(255, 36, 64, 101),
+        //                                 fontWeight: FontWeight.bold,
+        //                                 fontSize: 9,
+        //                                 fontFamily: 'Capitalis'),
+        //                             textAlign: TextAlign.center,
+        //                           ),
+        //                         ),
+        //                         const SizedBox(height: 24),
+        //                         Padding(
+        //                           padding: const EdgeInsets.only(top: 0.0),
+        //                           child: SizedBox(
+        //                             height: 60,
+        //                             child: Theme(
+        //                               data: themeData.copyWith(
+        //                                   inputDecorationTheme: themeData
+        //                                       .inputDecorationTheme
+        //                                       .copyWith(
+        //                                 prefixIconColor:
+        //                                     MaterialStateColor.resolveWith(
+        //                                         (Set<MaterialState> states) {
+        //                                   if (states.contains(
+        //                                       MaterialState.focused)) {
+        //                                     return const Color.fromARGB(
+        //                                         255, 36, 64, 101);
+        //                                   }
 
-                                          return Colors.grey;
-                                        }),
-                                      )),
-                                      child: TextField(
-                                        textInputAction: TextInputAction.next,
-                                        controller: _usernameController,
-                                        maxLength: 16,
-                                        decoration: InputDecoration(
-                                            counterText: '',
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              borderSide: const BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 36, 64, 101),
-                                                  width: 2),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey, width: 1),
-                                            ),
-                                            labelText: 'Username',
-                                            labelStyle: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.grey),
-                                            hintStyle: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.grey),
-                                            fillColor: const Color.fromARGB(
-                                                255, 245, 245, 245),
-                                            filled: true,
-                                            prefixIcon: const Icon(
-                                              Icons.person_outlined,
-                                            )),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                Theme(
-                                  data: themeData.copyWith(inputDecorationTheme:
-                                      themeData.inputDecorationTheme.copyWith(
-                                    prefixIconColor:
-                                        MaterialStateColor.resolveWith(
-                                            (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.focused)) {
-                                        return const Color.fromARGB(
-                                            255, 36, 64, 101);
-                                      }
+        //                                   return Colors.grey;
+        //                                 }),
+        //                               )),
+        //                               child: TextField(
+        //                                 textInputAction: TextInputAction.next,
+        //                                 controller: _usernameController,
+        //                                 maxLength: 16,
+        //                                 decoration: InputDecoration(
+        //                                     counterText: '',
+        //                                     focusedBorder: OutlineInputBorder(
+        //                                       borderRadius:
+        //                                           BorderRadius.circular(25),
+        //                                       borderSide: const BorderSide(
+        //                                           color: Color.fromARGB(
+        //                                               255, 36, 64, 101),
+        //                                           width: 2),
+        //                                     ),
+        //                                     enabledBorder: OutlineInputBorder(
+        //                                       borderRadius:
+        //                                           BorderRadius.circular(25),
+        //                                       borderSide: const BorderSide(
+        //                                           color: Colors.grey, width: 1),
+        //                                     ),
+        //                                     labelText: 'Username',
+        //                                     labelStyle: const TextStyle(
+        //                                         fontSize: 14,
+        //                                         color: Colors.grey),
+        //                                     hintStyle: const TextStyle(
+        //                                         fontSize: 14,
+        //                                         color: Colors.grey),
+        //                                     fillColor: const Color.fromARGB(
+        //                                         255, 245, 245, 245),
+        //                                     filled: true,
+        //                                     prefixIcon: const Icon(
+        //                                       Icons.person_outlined,
+        //                                     )),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                         const SizedBox(height: 24),
+        //                         Theme(
+        //                           data: themeData.copyWith(inputDecorationTheme:
+        //                               themeData.inputDecorationTheme.copyWith(
+        //                             prefixIconColor:
+        //                                 MaterialStateColor.resolveWith(
+        //                                     (Set<MaterialState> states) {
+        //                               if (states
+        //                                   .contains(MaterialState.focused)) {
+        //                                 return const Color.fromARGB(
+        //                                     255, 36, 64, 101);
+        //                               }
 
-                                      return Colors.grey;
-                                    }),
-                                  )),
-                                  child: TextField(
-                                    textInputAction: TextInputAction.next,
-                                    controller: _emailController,
-                                    onChanged: (val) {
-                                      setState(() {
-                                        // emptyPollQuestion = false;
-                                      });
-                                    },
-                                    decoration: InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          borderSide: const BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 36, 64, 101),
-                                              width: 2),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey, width: 1),
-                                        ),
-                                        labelText: 'Email Address',
-                                        labelStyle: const TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                        hintStyle: const TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                        fillColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        filled: true,
-                                        prefixIcon: const Icon(
-                                          Icons.email_outlined,
-                                        )),
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                Theme(
-                                  data: themeData.copyWith(inputDecorationTheme:
-                                      themeData.inputDecorationTheme.copyWith(
-                                    prefixIconColor:
-                                        MaterialStateColor.resolveWith(
-                                            (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.focused)) {
-                                        return const Color.fromARGB(
-                                            255, 36, 64, 101);
-                                      }
+        //                               return Colors.grey;
+        //                             }),
+        //                           )),
+        //                           child: TextField(
+        //                             textInputAction: TextInputAction.next,
+        //                             controller: _emailController,
+        //                             onChanged: (val) {
+        //                               setState(() {
+        //                                 // emptyPollQuestion = false;
+        //                               });
+        //                             },
+        //                             decoration: InputDecoration(
+        //                                 focusedBorder: OutlineInputBorder(
+        //                                   borderRadius:
+        //                                       BorderRadius.circular(25),
+        //                                   borderSide: const BorderSide(
+        //                                       color: Color.fromARGB(
+        //                                           255, 36, 64, 101),
+        //                                       width: 2),
+        //                                 ),
+        //                                 enabledBorder: OutlineInputBorder(
+        //                                   borderRadius:
+        //                                       BorderRadius.circular(25),
+        //                                   borderSide: const BorderSide(
+        //                                       color: Colors.grey, width: 1),
+        //                                 ),
+        //                                 labelText: 'Email Address',
+        //                                 labelStyle: const TextStyle(
+        //                                     fontSize: 14, color: Colors.grey),
+        //                                 hintStyle: const TextStyle(
+        //                                     fontSize: 14, color: Colors.grey),
+        //                                 fillColor: const Color.fromARGB(
+        //                                     255, 245, 245, 245),
+        //                                 filled: true,
+        //                                 prefixIcon: const Icon(
+        //                                   Icons.email_outlined,
+        //                                 )),
+        //                           ),
+        //                         ),
+        //                         const SizedBox(height: 24),
+        //                         Theme(
+        //                           data: themeData.copyWith(inputDecorationTheme:
+        //                               themeData.inputDecorationTheme.copyWith(
+        //                             prefixIconColor:
+        //                                 MaterialStateColor.resolveWith(
+        //                                     (Set<MaterialState> states) {
+        //                               if (states
+        //                                   .contains(MaterialState.focused)) {
+        //                                 return const Color.fromARGB(
+        //                                     255, 36, 64, 101);
+        //                               }
 
-                                      return Colors.grey;
-                                    }),
-                                  )),
-                                  child: TextField(
-                                    controller: _passwordController,
-                                    textInputAction: TextInputAction.done,
-                                    decoration: InputDecoration(
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                        borderSide: const BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 36, 64, 101),
-                                            width: 2),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey, width: 1),
-                                      ),
-                                      labelText: 'Password',
-                                      labelStyle: const TextStyle(
-                                          fontSize: 14, color: Colors.grey),
-                                      hintStyle: const TextStyle(
-                                          fontSize: 14, color: Colors.grey),
-                                      fillColor: const Color.fromARGB(
-                                          255, 245, 245, 245),
-                                      filled: true,
-                                      prefixIcon: const Icon(
-                                        Icons.lock_outline,
-                                      ),
-                                      suffixIcon: InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            _passwordVisible =
-                                                !_passwordVisible;
-                                          });
-                                        },
-                                        child: Icon(
-                                          _passwordVisible
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color: Colors.grey,
-                                          size: 22,
-                                        ),
-                                      ),
-                                    ),
-                                    obscureText: !_passwordVisible,
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                PhysicalModel(
-                                  color: const Color.fromARGB(255, 36, 64, 101),
-                                  elevation: 3,
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(25),
-                                    child: InkWell(
-                                      borderRadius: BorderRadius.circular(50),
-                                      splashColor:
-                                          Colors.black.withOpacity(0.3),
-                                      onTap: signUpUser,
-                                      child: Container(
-                                        width: double.infinity,
-                                        alignment: Alignment.center,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 12),
-                                        decoration: const ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25),
-                                            ),
-                                          ),
-                                          color: Colors.transparent,
-                                        ),
-                                        child: _isLoading
-                                            ? const Center(
-                                                child: SizedBox(
-                                                    height: 18,
-                                                    width: 18,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: Colors.white,
-                                                    )),
-                                              )
-                                            : const Text('Sign Up',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w500,
-                                                    letterSpacing: 0.5)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, right: 12, left: 12),
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        const TextSpan(
-                                            text:
-                                                'By signing up, you agree to our ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12)),
-                                        TextSpan(
-                                            text: 'Terms of Use',
-                                            style: const TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 12),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const TermsConditions(),
-                                                  ),
-                                                );
-                                              }),
-                                        const TextSpan(
-                                            text:
-                                                ' and confirm that you have read and understood our ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12)),
-                                        TextSpan(
-                                            text: 'Privacy Policy.',
-                                            style: const TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 12),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const DataPrivacy(),
-                                                  ),
-                                                );
-                                              }),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor:
-                                            Colors.grey.withOpacity(0.3),
-                                        onTap: navigateToLogin,
-                                        child: SizedBox(
-                                          height: 45,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Text("Already have an account?",
-                                                  style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 13)),
-                                              Text(
-                                                "Log In",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color.fromARGB(
-                                                        255, 81, 81, 81),
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 20),
-                              ]),
+        //                               return Colors.grey;
+        //                             }),
+        //                           )),
+        //                           child: TextField(
+        //                             controller: _passwordController,
+        //                             textInputAction: TextInputAction.done,
+        //                             decoration: InputDecoration(
+        //                               focusedBorder: OutlineInputBorder(
+        //                                 borderRadius: BorderRadius.circular(25),
+        //                                 borderSide: const BorderSide(
+        //                                     color: Color.fromARGB(
+        //                                         255, 36, 64, 101),
+        //                                     width: 2),
+        //                               ),
+        //                               enabledBorder: OutlineInputBorder(
+        //                                 borderRadius: BorderRadius.circular(25),
+        //                                 borderSide: const BorderSide(
+        //                                     color: Colors.grey, width: 1),
+        //                               ),
+        //                               labelText: 'Password',
+        //                               labelStyle: const TextStyle(
+        //                                   fontSize: 14, color: Colors.grey),
+        //                               hintStyle: const TextStyle(
+        //                                   fontSize: 14, color: Colors.grey),
+        //                               fillColor: const Color.fromARGB(
+        //                                   255, 245, 245, 245),
+        //                               filled: true,
+        //                               prefixIcon: const Icon(
+        //                                 Icons.lock_outline,
+        //                               ),
+        //                               suffixIcon: InkWell(
+        //                                 onTap: () {
+        //                                   setState(() {
+        //                                     _passwordVisible =
+        //                                         !_passwordVisible;
+        //                                   });
+        //                                 },
+        //                                 child: Icon(
+        //                                   _passwordVisible
+        //                                       ? Icons.visibility
+        //                                       : Icons.visibility_off,
+        //                                   color: Colors.grey,
+        //                                   size: 22,
+        //                                 ),
+        //                               ),
+        //                             ),
+        //                             obscureText: !_passwordVisible,
+        //                           ),
+        //                         ),
+        //                         const SizedBox(height: 24),
+        //                         PhysicalModel(
+        //                           color: const Color.fromARGB(255, 36, 64, 101),
+        //                           elevation: 3,
+        //                           borderRadius: BorderRadius.circular(50),
+        //                           child: Material(
+        //                             color: Colors.transparent,
+        //                             borderRadius: BorderRadius.circular(25),
+        //                             child: InkWell(
+        //                               borderRadius: BorderRadius.circular(50),
+        //                               splashColor:
+        //                                   Colors.black.withOpacity(0.3),
+        //                               onTap: signUpUser,
+        //                               child: Container(
+        //                                 width: double.infinity,
+        //                                 alignment: Alignment.center,
+        //                                 padding: const EdgeInsets.symmetric(
+        //                                     vertical: 12),
+        //                                 decoration: const ShapeDecoration(
+        //                                   shape: RoundedRectangleBorder(
+        //                                     borderRadius: BorderRadius.all(
+        //                                       Radius.circular(25),
+        //                                     ),
+        //                                   ),
+        //                                   color: Colors.transparent,
+        //                                 ),
+        //                                 child: _isLoading
+        //                                     ? const Center(
+        //                                         child: SizedBox(
+        //                                             height: 18,
+        //                                             width: 18,
+        //                                             child:
+        //                                                 CircularProgressIndicator(
+        //                                               color: Colors.white,
+        //                                             )),
+        //                                       )
+        //                                     : const Text('Sign Up',
+        //                                         style: TextStyle(
+        //                                             fontSize: 16,
+        //                                             color: Colors.white,
+        //                                             fontWeight: FontWeight.w500,
+        //                                             letterSpacing: 0.5)),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                         Padding(
+        //                           padding: const EdgeInsets.only(
+        //                               top: 8.0, right: 12, left: 12),
+        //                           child: RichText(
+        //                             text: TextSpan(
+        //                               children: <TextSpan>[
+        //                                 const TextSpan(
+        //                                     text:
+        //                                         'By signing up, you agree to our ',
+        //                                     style: TextStyle(
+        //                                         color: Colors.black,
+        //                                         fontSize: 12)),
+        //                                 TextSpan(
+        //                                     text: 'Terms of Use',
+        //                                     style: const TextStyle(
+        //                                         color: Colors.blue,
+        //                                         fontSize: 12),
+        //                                     recognizer: TapGestureRecognizer()
+        //                                       ..onTap = () {
+        //                                         Navigator.of(context).push(
+        //                                           MaterialPageRoute(
+        //                                             builder: (context) =>
+        //                                                 const TermsConditions(),
+        //                                           ),
+        //                                         );
+        //                                       }),
+        //                                 const TextSpan(
+        //                                     text:
+        //                                         ' and confirm that you have read and understood our ',
+        //                                     style: TextStyle(
+        //                                         color: Colors.black,
+        //                                         fontSize: 12)),
+        //                                 TextSpan(
+        //                                     text: 'Privacy Policy.',
+        //                                     style: const TextStyle(
+        //                                         color: Colors.blue,
+        //                                         fontSize: 12),
+        //                                     recognizer: TapGestureRecognizer()
+        //                                       ..onTap = () {
+        //                                         Navigator.of(context).push(
+        //                                           MaterialPageRoute(
+        //                                             builder: (context) =>
+        //                                                 const DataPrivacy(),
+        //                                           ),
+        //                                         );
+        //                                       }),
+        //                               ],
+        //                             ),
+        //                           ),
+        //                         ),
+        //                         const SizedBox(height: 12),
+        //                         Column(
+        //                           mainAxisAlignment: MainAxisAlignment.end,
+        //                           children: [
+        //                             Material(
+        //                               color: Colors.transparent,
+        //                               child: InkWell(
+        //                                 borderRadius: BorderRadius.circular(25),
+        //                                 splashColor:
+        //                                     Colors.grey.withOpacity(0.3),
+        //                                 onTap: navigateToLogin,
+        //                                 child: SizedBox(
+        //                                   height: 45,
+        //                                   child: Column(
+        //                                     mainAxisAlignment:
+        //                                         MainAxisAlignment.center,
+        //                                     children: const [
+        //                                       Text("Already have an account?",
+        //                                           style: TextStyle(
+        //                                               color: Colors.grey,
+        //                                               fontSize: 13)),
+        //                                       Text(
+        //                                         "Log In",
+        //                                         style: TextStyle(
+        //                                             fontWeight: FontWeight.w500,
+        //                                             color: Color.fromARGB(
+        //                                                 255, 81, 81, 81),
+        //                                             fontSize: 14),
+        //                                       ),
+        //                                     ],
+        //                                   ),
+        //                                 ),
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         ),
+        //                         const SizedBox(height: 20),
+        //                       ]),
+        //                     ),
+        //                   ],
+        //                 ),
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       )
+        : ChangeNotifierProvider<ChangeCountryProvider>(
+            create: (context) => ChangeCountryProvider(),
+            lazy: false,
+            child: ChangeNotifierProvider<UserReportProvider>(
+              create: (context) => UserReportProvider(),
+              lazy: false,
+              child: Container(
+                color: Colors.white,
+                child: SafeArea(
+                  child: Scaffold(
+                    body: PageView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: pageController,
+                        onPageChanged: onPageChanged,
+                        children: [
+                          FeedScreen(
+                            durationInDay: durationInDay,
+                          ),
+                          MostLikedScreen(durationInDay: durationInDay),
+                          Search(
+                            durationInDay: durationInDay,
+                          ),
+                          AddPost(
+                            durationInDay: durationInDay,
+                          ),
+                          Submissions(
+                            durationInDay: durationInDay,
+                          ),
+                        ]),
+                    bottomNavigationBar: CupertinoTabBar(
+                        inactiveColor: Colors.grey,
+                        activeColor: Colors.black,
+                        height: 50,
+                        backgroundColor: Colors.white,
+                        items: [
+                          const BottomNavigationBarItem(
+                            icon: Padding(
+                                padding: EdgeInsets.only(top: 3.0, right: 0),
+                                child: Icon(
+                                  Icons.home,
+                                )),
+                            label: 'Home',
+                          ),
+                          const BottomNavigationBarItem(
+                            icon: Padding(
+                              padding: EdgeInsets.only(top: 4.0),
+                              child: Icon(MyFlutterApp.university, size: 25),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            : ChangeNotifierProvider<ChangeCountryProvider>(
-                create: (context) => ChangeCountryProvider(),
-                lazy: false,
-                child: ChangeNotifierProvider<UserReportProvider>(
-                  create: (context) => UserReportProvider(),
-                  lazy: false,
-                  child: Container(
-                    color: Colors.white,
-                    child: SafeArea(
-                      child: Scaffold(
-                        body: PageView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: pageController,
-                            onPageChanged: onPageChanged,
-                            children: [
-                              FeedScreen(
-                                durationInDay: durationInDay,
+                            label: 'Archives',
+                          ),
+                          const BottomNavigationBarItem(
+                            icon: Padding(
+                              padding: EdgeInsets.only(top: 3.0),
+                              child: Icon(
+                                Icons.search,
                               ),
-                              MostLikedScreen(durationInDay: durationInDay),
-                              Search(
-                                durationInDay: durationInDay,
-                              ),
-                              AddPost(
-                                durationInDay: durationInDay,
-                              ),
-                              Submissions(
-                                durationInDay: durationInDay,
-                              ),
-                            ]),
-                        bottomNavigationBar: CupertinoTabBar(
-                            inactiveColor: Colors.grey,
-                            activeColor: Colors.black,
-                            height: 50,
-                            backgroundColor: Colors.white,
-                            items: [
-                              const BottomNavigationBarItem(
-                                icon: Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 3.0, right: 0),
+                            ),
+                            label: 'Search',
+                          ),
+                          BottomNavigationBarItem(
+                            icon: Stack(
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child: Icon(
+                                    Icons.create,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 15,
+                                  left: 13,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 3.0),
                                     child: Icon(
-                                      Icons.home,
-                                    )),
-                                label: 'Home',
-                              ),
-                              const BottomNavigationBarItem(
-                                icon: Padding(
-                                  padding: EdgeInsets.only(top: 4.0),
-                                  child:
-                                      Icon(MyFlutterApp.university, size: 25),
-                                ),
-                                label: 'Archives',
-                              ),
-                              const BottomNavigationBarItem(
-                                icon: Padding(
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Icon(
-                                    Icons.search,
+                                      Icons.add,
+                                      size: 14,
+                                    ),
                                   ),
                                 ),
-                                label: 'Search',
+                              ],
+                            ),
+                            label: 'Create',
+                          ),
+                          const BottomNavigationBarItem(
+                            icon: Padding(
+                              padding: EdgeInsets.only(top: 3.0),
+                              child: Icon(
+                                Icons.phone_iphone,
                               ),
-                              BottomNavigationBarItem(
-                                icon: Stack(
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 3.0),
-                                      child: Icon(
-                                        Icons.create,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 15,
-                                      left: 13,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: 3.0),
-                                        child: Icon(
-                                          Icons.add,
-                                          size: 14,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                label: 'Create',
-                              ),
-                              const BottomNavigationBarItem(
-                                icon: Padding(
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Icon(
-                                    Icons.phone_iphone,
-                                  ),
-                                ),
-                                label: 'Submissions',
-                              ),
-                              // BottomNavigationBarItem(
-                              //   icon: Padding(
-                              //     padding: const EdgeInsets.only(top: 3.0),
-                              //     child: Icon(
-                              //       Icons.notifications,
-                              //     ),
-                              //   ),
-                              //   label: 'Notifications',
-                              // ),
-                            ],
-                            currentIndex: _page,
-                            onTap: navigationTapped),
-                      ),
-                    ),
+                            ),
+                            label: 'Submissions',
+                          ),
+                          // BottomNavigationBarItem(
+                          //   icon: Padding(
+                          //     padding: const EdgeInsets.only(top: 3.0),
+                          //     child: Icon(
+                          //       Icons.notifications,
+                          //     ),
+                          //   ),
+                          //   label: 'Notifications',
+                          // ),
+                        ],
+                        currentIndex: _page,
+                        onTap: navigationTapped),
                   ),
                 ),
-              );
+              ),
+            ),
+          );
   }
 
   _getStartTime() {
