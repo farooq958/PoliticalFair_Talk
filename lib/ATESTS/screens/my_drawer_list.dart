@@ -16,6 +16,7 @@ import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../utils/utils.dart';
+import 'automate.dart';
 import 'blocked_list.dart';
 import 'notifications.dart';
 import 'profile_all_user.dart';
@@ -633,6 +634,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         Future.delayed(
                                             const Duration(milliseconds: 150),
                                             () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Automate()),
+                                          );
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 12, top: 17, bottom: 17),
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.person_outline,
+                                                size: 23, color: Colors.black),
+                                            Container(width: 15),
+                                            const Text(
+                                              'Automate',
+                                              style: TextStyle(
+                                                  fontSize: 16.5,
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      splashColor: Colors.grey.withOpacity(0.3),
+                                      onTap: () {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 150),
+                                            () {
                                           performLoggedUserAction(
                                               context: context,
                                               action: () {
@@ -1165,10 +1203,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             child: const Padding(
                               padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
-                                'Data Privacy',
+                                'Privacy',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 12.5,
+                                    fontSize: 11.5,
                                     color: Colors.black,
                                     letterSpacing: 0.3,
                                     fontWeight: FontWeight.w500),
@@ -1223,10 +1261,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             child: const Padding(
                               padding: EdgeInsets.only(top: 8.0, bottom: 8),
                               child: Text(
-                                'Terms of Use',
+                                'Terms',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 12.5,
+                                    fontSize: 11.5,
                                     color: Colors.black,
                                     letterSpacing: 0.3,
                                     fontWeight: FontWeight.w500),

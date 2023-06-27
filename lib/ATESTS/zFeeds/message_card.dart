@@ -190,6 +190,67 @@ class _PostCardTestState extends State<PostCardTest> {
       gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
     );
     final User? user = Provider.of<UserProvider>(context).getUser;
+
+    void unverifiedPlusVote(bool pending) async {
+      await FirestoreMethods().plusMessageUnverified(
+        _post.postId,
+        user?.UID ?? '',
+        _post.plus,
+        _post.neutral,
+        _post.minus,
+        _post,
+        _post.global,
+        _post.country,
+      );
+      _post.plus.contains(user?.UID)
+          ? showSnackBarAction(
+              "Votes from unverified accounts don't count!",
+              pending,
+              context,
+            )
+          : null;
+    }
+
+    void unverifiedNeutralVote(bool pending) async {
+      await FirestoreMethods().neutralMessageUnverified(
+        _post.postId,
+        user?.UID ?? '',
+        _post.plus,
+        _post.neutral,
+        _post.minus,
+        _post,
+        _post.global,
+        _post.country,
+      );
+      _post.neutral.contains(user?.UID)
+          ? showSnackBarAction(
+              "Votes from unverified accounts don't count!",
+              pending,
+              context,
+            )
+          : null;
+    }
+
+    void unverifiedMinusVote(bool pending) async {
+      await FirestoreMethods().minusMessageUnverified(
+        _post.postId,
+        user?.UID ?? '',
+        _post.plus,
+        _post.neutral,
+        _post.minus,
+        _post,
+        _post.global,
+        _post.country,
+      );
+      _post.minus.contains(user?.UID)
+          ? showSnackBarAction(
+              "Votes from unverified accounts don't count!",
+              pending,
+              context,
+            )
+          : null;
+    }
+
     return YoutubePlayerControllerProvider(
       controller: controller,
       child: Padding(
@@ -1584,23 +1645,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                           performLoggedUserAction(
                                                                               context: context,
                                                                               action: () async {
-                                                                                snap?.pending == 'true'
-                                                                                    ? voteIfPending(context: context)
-                                                                                    : snap?.aaCountry == ""
-                                                                                        ? verificationRequired(context: context)
-                                                                                        : _post.time == 0
-                                                                                            ? await FirestoreMethods().plusMessage(
-                                                                                                _post.postId,
-                                                                                                user?.UID ?? '',
-                                                                                                _post.plus,
-                                                                                                _post.neutral,
-                                                                                                _post.minus,
-                                                                                                _post,
-                                                                                                _post.global,
-                                                                                                _post.country,
-                                                                                              )
-                                                                                            : _isPostEnded
-                                                                                                ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                _isPostEnded
+                                                                                    ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                    : snap?.pending == 'true'
+                                                                                        ? unverifiedPlusVote(true)
+                                                                                        : snap?.aaCountry == ""
+                                                                                            ? unverifiedPlusVote(false)
+                                                                                            : _post.time == 0
+                                                                                                ? await FirestoreMethods().plusMessage(
+                                                                                                    _post.postId,
+                                                                                                    user?.UID ?? '',
+                                                                                                    _post.plus,
+                                                                                                    _post.neutral,
+                                                                                                    _post.minus,
+                                                                                                    _post,
+                                                                                                    _post.global,
+                                                                                                    _post.country,
+                                                                                                  )
                                                                                                 : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                     ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                     : widget.archives == true
@@ -1711,23 +1772,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                           performLoggedUserAction(
                                                                               context: context,
                                                                               action: () async {
-                                                                                snap?.pending == 'true'
-                                                                                    ? voteIfPending(context: context)
-                                                                                    : snap?.aaCountry == ""
-                                                                                        ? verificationRequired(context: context)
-                                                                                        : _post.time == 0
-                                                                                            ? await FirestoreMethods().neutralMessage(
-                                                                                                _post.postId,
-                                                                                                user?.UID ?? '',
-                                                                                                _post.plus,
-                                                                                                _post.neutral,
-                                                                                                _post.minus,
-                                                                                                _post,
-                                                                                                _post.global,
-                                                                                                _post.country,
-                                                                                              )
-                                                                                            : _isPostEnded
-                                                                                                ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                _isPostEnded
+                                                                                    ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                    : snap?.pending == 'true'
+                                                                                        ? unverifiedNeutralVote(true)
+                                                                                        : snap?.aaCountry == ""
+                                                                                            ? unverifiedNeutralVote(false)
+                                                                                            : _post.time == 0
+                                                                                                ? await FirestoreMethods().neutralMessage(
+                                                                                                    _post.postId,
+                                                                                                    user?.UID ?? '',
+                                                                                                    _post.plus,
+                                                                                                    _post.neutral,
+                                                                                                    _post.minus,
+                                                                                                    _post,
+                                                                                                    _post.global,
+                                                                                                    _post.country,
+                                                                                                  )
                                                                                                 : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                     ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                     : widget.archives == true
@@ -1844,23 +1905,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                           performLoggedUserAction(
                                                                               context: context,
                                                                               action: () async {
-                                                                                snap?.pending == 'true'
-                                                                                    ? voteIfPending(context: context)
-                                                                                    : snap?.aaCountry == ""
-                                                                                        ? verificationRequired(context: context)
-                                                                                        : _post.time == 0
-                                                                                            ? await FirestoreMethods().minusMessage(
-                                                                                                _post.postId,
-                                                                                                user?.UID ?? '',
-                                                                                                _post.plus,
-                                                                                                _post.neutral,
-                                                                                                _post.minus,
-                                                                                                _post,
-                                                                                                _post.global,
-                                                                                                _post.country,
-                                                                                              )
-                                                                                            : _isPostEnded
-                                                                                                ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                _isPostEnded
+                                                                                    ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                    : snap?.pending == 'true'
+                                                                                        ? unverifiedMinusVote(true)
+                                                                                        : snap?.aaCountry == ""
+                                                                                            ? unverifiedMinusVote(false)
+                                                                                            : _post.time == 0
+                                                                                                ? await FirestoreMethods().minusMessage(
+                                                                                                    _post.postId,
+                                                                                                    user?.UID ?? '',
+                                                                                                    _post.plus,
+                                                                                                    _post.neutral,
+                                                                                                    _post.minus,
+                                                                                                    _post,
+                                                                                                    _post.global,
+                                                                                                    _post.country,
+                                                                                                  )
                                                                                                 : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                     ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                     : widget.archives == true

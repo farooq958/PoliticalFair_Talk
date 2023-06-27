@@ -446,6 +446,51 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
+  neutralPostUnverified(postId, uid) {
+    try {
+      Post? post;
+      bool postListContainsPost = elementFoundInList(_posts, postId);
+      bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+      if (postListContainsPost) {
+        post = _posts.where((element) => element.postId == postId).first;
+      } else if (userPostListContainsPost) {
+        post = _userPosts.where((element) => element.postId == postId).first;
+      }
+      if (post != null && post.neutral.contains(uid)) {
+        post.neutral.removeWhere((element) => element == uid);
+        // post.neutralCount--;
+        post.votesUIDs.removeWhere((element) => element == uid);
+      } else if (post != null && post.plus.contains(uid)) {
+        // post.score--;
+        post.neutral.add(uid);
+        // post.neutralCount++;
+        post.plus.removeWhere((element) => element == uid);
+        // post.plusCount--;
+        post.votesUIDs.add(uid);
+        //   batch.commit();
+      } else if (post != null && post.minus.contains(uid)) {
+        // post.score++;
+        post.neutral.add(uid);
+        // post.neutralCount++;
+        post.minus.removeWhere((element) => element == uid);
+        // post.minusCount--;
+        post.votesUIDs.add(uid);
+      } else {
+        post?.neutral.add(uid);
+        // post?.neutralCount++;
+        post?.votesUIDs.add(uid);
+      }
+      if (post != null) {
+        checkItemIndexAndUpdateInList(_posts, post);
+        checkItemIndexAndUpdateInList(_userPosts, post);
+        _postPollProvider.updatePostPollCombinedList(post: post);
+      }
+      notifyListeners();
+    } catch (e) {
+      // debugPrint('error $e $st');
+    }
+  }
+
   minusPost(postId, uid) {
     try {
       Post? post;
@@ -479,6 +524,98 @@ class PostProvider extends ChangeNotifier {
         post?.score--;
         post?.minus.add(uid);
         post?.minusCount++;
+        post?.votesUIDs.add(uid);
+      }
+      if (post != null) {
+        checkItemIndexAndUpdateInList(_posts, post);
+        checkItemIndexAndUpdateInList(_userPosts, post);
+        _postPollProvider.updatePostPollCombinedList(post: post);
+      }
+      notifyListeners();
+    } catch (e) {
+      // debugPrint('error $e $st');
+    }
+  }
+
+  minusPostUnverified(postId, uid) {
+    try {
+      Post? post;
+      bool postListContainsPost = elementFoundInList(_posts, postId);
+      bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+      if (postListContainsPost) {
+        post = _posts.where((element) => element.postId == postId).first;
+      } else if (userPostListContainsPost) {
+        post = _userPosts.where((element) => element.postId == postId).first;
+      }
+      if (post != null && post.minus.contains(uid)) {
+        // post.score++;
+        post.minus.removeWhere((element) => element == uid);
+        // post.minusCount--;
+        post.votesUIDs.removeWhere((element) => element == uid);
+      } else if (post != null && post.neutral.contains(uid)) {
+        // post.score--;
+        post.minus.add(uid);
+        // post.minusCount++;
+        post.neutral.removeWhere((element) => element == uid);
+        // post.neutralCount--;
+        post.votesUIDs.add(uid);
+      } else if (post != null && post.plus.contains(uid)) {
+        // post.score -= 2;
+        post.minus.add(uid);
+        // post.minusCount++;
+        post.plus.removeWhere((element) => element == uid);
+        // post.plusCount--;
+        post.votesUIDs.add(uid);
+      } else {
+        // post?.score--;
+        post?.minus.add(uid);
+        // post?.minusCount++;
+        post?.votesUIDs.add(uid);
+      }
+      if (post != null) {
+        checkItemIndexAndUpdateInList(_posts, post);
+        checkItemIndexAndUpdateInList(_userPosts, post);
+        _postPollProvider.updatePostPollCombinedList(post: post);
+      }
+      notifyListeners();
+    } catch (e) {
+      // debugPrint('error $e $st');
+    }
+  }
+
+  plusPostUnverified(postId, uid) {
+    try {
+      Post? post;
+      bool postListContainsPost = elementFoundInList(_posts, postId);
+      bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+      if (postListContainsPost) {
+        post = _posts.where((element) => element.postId == postId).first;
+      } else if (userPostListContainsPost) {
+        post = _userPosts.where((element) => element.postId == postId).first;
+      }
+      if (post != null && post.plus.contains(uid)) {
+        // post.score--;
+        post.plus.removeWhere((element) => element == uid);
+        // post.plusCount--;
+        post.votesUIDs.removeWhere((element) => element == uid);
+      } else if (post != null && post.neutral.contains(uid)) {
+        // post.score++;
+        post.plus.add(uid);
+        // post.plusCount++;
+        post.neutral.removeWhere((element) => element == uid);
+        // post.neutralCount--;
+        post.votesUIDs.add(uid);
+      } else if (post != null && post.minus.contains(uid)) {
+        // post.score += 2;
+        post.plus.add(uid);
+        // post.plusCount++;
+        post.minus.removeWhere((element) => element == uid);
+        // post.minusCount--;
+        post.votesUIDs.add(uid);
+      } else {
+        // post?.score++;
+        post?.plus.add(uid);
+        // post?.plusCount++;
         post?.votesUIDs.add(uid);
       }
       if (post != null) {

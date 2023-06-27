@@ -15,6 +15,7 @@ import '../models/post.dart';
 import '../models/reply.dart';
 import '../models/reportedBug.dart';
 import '../provider/comments_replies_provider.dart';
+import '../provider/poll_provider.dart';
 import '../provider/searchpage_provider.dart';
 
 class FirestoreMethods {
@@ -207,6 +208,32 @@ class FirestoreMethods {
             });
       // updatePollVoteNotification(uid, pollId, pollUId);
 
+      res = "success";
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> pollUnverified({
+    required Poll poll,
+    required String uid,
+    required int optionIndex,
+  }) async {
+    String res = "Some error occurred.";
+    try {
+      String pollId = poll.pollId;
+      // ignore: unused_local_variable
+      String pollUId = poll.UID;
+      if (poll.votesUIDs.contains(uid)) {
+      } else {
+        _firestore.collection('polls').doc(pollId).update({
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+          // 'totalVotes': FieldValue.increment(1),
+          'vote$optionIndex': FieldValue.arrayUnion([uid]),
+          // 'voteCount$optionIndex': FieldValue.increment(1),
+        });
+      }
       res = "success";
     } catch (err) {
       res = err.toString();
@@ -1326,6 +1353,186 @@ class FirestoreMethods {
       // print(
       //   e.toString(),
       // );
+    }
+  }
+
+  Future<void> plusMessageUnverified(
+    String postId,
+    String uid,
+    List plus,
+    List neutral,
+    List minus,
+    Post post,
+    String global,
+    String country,
+  ) async {
+    try {
+      final batch = _firestore.batch();
+      var postRef = _firestore.collection('posts').doc(postId);
+      var postAuthorRef = _firestore.collection('users').doc(post.UID);
+      if (plus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(-1),
+          'plus': FieldValue.arrayRemove([uid]),
+          // 'plusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayRemove([uid]),
+        });
+      } else if (neutral.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(1),
+          'plus': FieldValue.arrayUnion([uid]),
+          // 'plusCount': FieldValue.increment(1),
+          'neutral': FieldValue.arrayRemove([uid]),
+          // 'neutralCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else if (minus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(2),
+          'plus': FieldValue.arrayUnion([uid]),
+          // 'plusCount': FieldValue.increment(1),
+          'minus': FieldValue.arrayRemove([uid]),
+          // 'minusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(1),
+          'plus': FieldValue.arrayUnion([uid]),
+          // 'plusCount': FieldValue.increment(1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      }
+      batch.commit();
+      Provider.of<PostProvider>(navigatorKey.currentContext!, listen: false)
+          .plusPostUnverified(postId, uid);
+      Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
+              listen: false)
+          .plusPostUnverified(postId, uid);
+    } catch (e) {
+      // debugPrint('plus message error $e');
+    }
+  }
+
+  Future<void> neutralMessageUnverified(
+    String postId,
+    String uid,
+    List plus,
+    List neutral,
+    List minus,
+    Post post,
+    String global,
+    String country,
+  ) async {
+    try {
+      var postRef = _firestore.collection('posts').doc(postId);
+      var userRef = _firestore.collection('users').doc(uid);
+      var postAuthorRef = _firestore.collection('users').doc(post.UID);
+      final batch = _firestore.batch();
+      if (neutral.contains(uid)) {
+        batch.update(postRef, {
+          'neutral': FieldValue.arrayRemove([uid]),
+          // 'neutralCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayRemove([uid]),
+        });
+      } else if (plus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(-1),
+          'neutral': FieldValue.arrayUnion([uid]),
+          // 'neutralCount': FieldValue.increment(1),
+          'plus': FieldValue.arrayRemove([uid]),
+          // 'plusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else if (minus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(1),
+          'neutral': FieldValue.arrayUnion([uid]),
+          // 'neutralCount': FieldValue.increment(1),
+          'minus': FieldValue.arrayRemove([uid]),
+          // 'minusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else {
+        batch.update(postRef, {
+          'neutral': FieldValue.arrayUnion([uid]),
+          // 'neutralCount': FieldValue.increment(1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      }
+
+      batch.commit();
+      Provider.of<PostProvider>(navigatorKey.currentContext!, listen: false)
+          .neutralPostUnverified(postId, uid);
+      Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
+              listen: false)
+          .neutralPostUnverified(postId, uid);
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> minusMessageUnverified(
+    String postId,
+    String uid,
+    List plus,
+    List neutral,
+    List minus,
+    Post post,
+    String global,
+    String country,
+  ) async {
+    try {
+      var postRef = _firestore.collection('posts').doc(postId);
+      var userRef = _firestore.collection('users').doc(uid);
+      var postAuthorRef = _firestore.collection('users').doc(post.UID);
+      final batch = _firestore.batch();
+
+      if (minus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(1),
+          'minus': FieldValue.arrayRemove([uid]),
+          // 'minusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayRemove([uid]),
+        });
+      } else if (neutral.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(-1),
+          'minus': FieldValue.arrayUnion([uid]),
+          // 'minusCount': FieldValue.increment(1),
+          'neutral': FieldValue.arrayRemove([uid]),
+          // 'neutralCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else if (plus.contains(uid)) {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(-2),
+          'minus': FieldValue.arrayUnion([uid]),
+          // 'minusCount': FieldValue.increment(1),
+          'plus': FieldValue.arrayRemove([uid]),
+          // 'plusCount': FieldValue.increment(-1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      } else {
+        batch.update(postRef, {
+          // 'score': FieldValue.increment(-1),
+          'minus': FieldValue.arrayUnion([uid]),
+          // 'minusCount': FieldValue.increment(1),
+          'votesUIDs': FieldValue.arrayUnion([uid]),
+        });
+      }
+
+      batch.commit();
+      Provider.of<PostProvider>(navigatorKey.currentContext!, listen: false)
+          .minusPostUnverified(postId, uid);
+      Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
+              listen: false)
+          .minusPostUnverified(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .minusPost(postId, uid);
+    } catch (e) {
+      // print(
     }
   }
 

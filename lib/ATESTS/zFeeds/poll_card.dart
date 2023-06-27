@@ -156,6 +156,7 @@ class _PollCardState extends State<PollCard> {
     //         DateTime.now(),
     //       )
     //       .isNegative;
+
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('users')
@@ -927,25 +928,38 @@ class _PollCardState extends State<PollCard> {
                                   // "message is  true show$_isPollEnded ");
                                 });
                               }
+
+                              void unverifiedPoll(bool pending) async {
+                                await FirestoreMethods().pollUnverified(
+                                  poll: widget.poll,
+                                  uid: user?.UID ?? '',
+                                  optionIndex: pollOption.id!,
+                                );
+                                showSnackBarAction(
+                                  "Votes from unverified accounts don't count!",
+                                  pending,
+                                  context,
+                                );
+                              }
+
                               performLoggedUserAction(
                                   context: context,
                                   action: () async {
-                                    snap?.pending == 'true'
-                                        ? voteIfPending(context: context)
-                                        : snap?.aaCountry == ""
-                                            ? verificationRequired(
-                                                context: context)
-                                            : widget.poll.country != "" &&
-                                                    widget.poll.global ==
-                                                        "false" &&
-                                                    widget.poll.country !=
-                                                        snap.aaCountry
-                                                ? showSnackBar(
-                                                    "Action failed. Voting nationally is only available for your specific country.",
-                                                    context)
-                                                : _isPollEnded
-                                                    ? showSnackBarError(
-                                                        "This poll's voting cycle has already ended.",
+                                    _isPollEnded
+                                        ? showSnackBarError(
+                                            "This poll's voting cycle has already ended.",
+                                            context)
+                                        : snap?.pending == 'true'
+                                            ? unverifiedPoll(true)
+                                            : snap?.aaCountry == ""
+                                                ? unverifiedPoll(false)
+                                                : widget.poll.country != "" &&
+                                                        widget.poll.global ==
+                                                            "false" &&
+                                                        widget.poll.country !=
+                                                            snap.aaCountry
+                                                    ? showSnackBar(
+                                                        "Action failed. Voting nationally is only available for your specific country.",
                                                         context)
                                                     : widget.archives == true
                                                         ? showSnackBarError(

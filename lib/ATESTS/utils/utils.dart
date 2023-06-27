@@ -69,6 +69,90 @@ showSnackBar(
           )));
 }
 
+showSnackBarAction(
+  String content,
+  bool action,
+  BuildContext context,
+) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Column(
+        children: [
+          Text(
+            content,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          InkWell(
+            onTap: () {
+              verificationRequired(context: context);
+              // action;
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.white,
+                      )),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(5),
+                      splashColor: const Color.fromARGB(255, 245, 245, 245),
+                      onTap: () {
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          action
+                              ? voteIfPending(context: context)
+                              : verificationRequired(context: context);
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 6),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.info_outline,
+                              color: Colors.white,
+                              size: 17,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              "FIND OUT WHY",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      duration: const Duration(seconds: 5),
+      // width: MediaQuery.of(context).size.width * 0.85,
+      // elevation: 0,
+      // behavior: SnackBarBehavior.floating,
+      backgroundColor:
+          const Color.fromARGB(255, 105, 105, 105).withOpacity(0.8),
+      shape: const RoundedRectangleBorder(
+          // borderRadius: BorderRadius.circular(25.0),
+          )));
+}
+
 // showSnackBarAddPost(
 //   String content,
 //   BuildContext context,
