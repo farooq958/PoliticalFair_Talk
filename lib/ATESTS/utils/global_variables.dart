@@ -20,9 +20,11 @@ String version = '1.0.1';
 String year = '2023';
 String email = 'fairtalk.assist@gmail.com';
 
-const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);
+const Color testing = Color.fromARGB(255, 245, 245, 245);
 
 const Color darkBlue = Color.fromARGB(255, 36, 64, 101);
+
+const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);
 
 class FirestoreValues {
   static const String userCollection = 'users';

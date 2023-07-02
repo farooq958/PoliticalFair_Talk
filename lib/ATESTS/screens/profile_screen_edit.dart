@@ -9,10 +9,10 @@ import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../methods/storage_methods.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 class EditProfile extends StatefulWidget {
-
   const EditProfile({Key? key}) : super(key: key);
 
   @override
@@ -97,7 +97,7 @@ class _EditProfileState extends State<EditProfile> {
             child: Stack(
               children: [
                 Scaffold(
-                  backgroundColor: const Color.fromARGB(255, 240, 240, 240),
+                  backgroundColor: testing,
                   appBar: AppBar(
                       automaticallyImplyLeading: false,
                       elevation: 4,
@@ -166,7 +166,6 @@ class _EditProfileState extends State<EditProfile> {
                                       height: 120,
                                       child: Stack(
                                         children: [
-
                                           Center(
                                             child: Center(
                                               child: Opacity(
@@ -231,7 +230,6 @@ class _EditProfileState extends State<EditProfile> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-
                                                   SizedBox(
                                                     height: 60,
                                                     width: 60,
@@ -726,12 +724,12 @@ class _EditProfileState extends State<EditProfile> {
                                                   maxLength: 16,
                                                   label: "Username",
                                                   hintText:
-                                                      "Enter new username ...",
+                                                      "Enter new username..",
                                                   value: user?.username,
                                                   textController:
                                                       _userNameController,
                                                   isEditing: isEditingUsername,
-                                                  topPadding: 8,
+                                                  topPadding: 0,
                                                   onEdit: () {
                                                     Future.delayed(
                                                       const Duration(
@@ -810,12 +808,12 @@ class _EditProfileState extends State<EditProfile> {
                                                         TextInputAction.done,
                                                     label: "Email",
                                                     hintText:
-                                                        "Enter new email ...",
+                                                        "Enter new email..",
                                                     value: user?.aEmail,
                                                     isEditing: isEditingEmail,
                                                     textController:
                                                         _emailController,
-                                                    topPadding: 8,
+                                                    topPadding: 0,
                                                     onEdit: () {
                                                       // user?.aEmail ==
                                                       //         _emailController.text
@@ -885,13 +883,13 @@ class _EditProfileState extends State<EditProfile> {
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    top: 4.0),
+                                                    top: 4.0, bottom: 10),
                                                 child: UserFieldListTile(
                                                     label: "Bio",
                                                     minLines: 7,
-                                                    maxLength: 500,
+                                                    maxLength: 10000,
                                                     hintText:
-                                                        "Write something about yourself ...",
+                                                        "Write something about yourself..",
                                                     value: user?.bio == ''
                                                         ? "-"
                                                         :
@@ -902,7 +900,7 @@ class _EditProfileState extends State<EditProfile> {
                                                     isEditing: isEditingBio,
                                                     textController:
                                                         _bioController,
-                                                    topPadding: 16,
+                                                    topPadding: 8,
                                                     onEdit: () {
                                                       Future.delayed(
                                                           const Duration(
@@ -1040,81 +1038,75 @@ class UserFieldListTile extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: topPadding),
           isEditing
-              ? Padding(
-                  padding: const EdgeInsets.only(
-                    top: 0,
-                    bottom: 0,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                            controller: textController,
-                            textInputAction: textInputAction,
-                            maxLines: null,
-                            maxLength: maxLength,
-                            minLines: minLines,
-                            decoration: InputDecoration(
-                              counterText: counterText,
-                              hintText: hintText,
-                              hintStyle: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                left: 10,
-                                top: topPadding,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
-                                    color: Colors.blue, width: 1.5),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 215, 215, 215),
-                                    width: 0),
-                              ),
-                              fillColor:
-                                  const Color.fromARGB(255, 245, 245, 245),
-                              filled: true,
-                            )),
-                      ),
-                      // Container(width: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
+              ? Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                          controller: textController,
+                          textInputAction: textInputAction,
+                          maxLines: null,
+                          maxLength: maxLength,
+                          minLines: minLines,
+                          decoration: InputDecoration(
+                            counterText: counterText,
+                            hintText: hintText,
+                            hintStyle: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(
+                              left: 10,
+                              top: topPadding,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 1.5),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 215, 215, 215),
+                                  width: 0),
+                            ),
+                            fillColor: const Color.fromARGB(255, 245, 245, 245),
+                            filled: true,
+                          )),
+                    ),
+                    // Container(width: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: 27,
+                          width: 58,
+                          child: InkWell(
+                            onTap: onSave,
+                            child: const Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.green,
+                              size: 22,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: onCancelEdit,
+                          child: const SizedBox(
                             height: 27,
-                            width: 58,
-                            child: InkWell(
-                              onTap: onSave,
-                              child: const Icon(
-                                Icons.check_circle_outline,
-                                color: Colors.green,
-                                size: 22,
-                              ),
+                            width: 30,
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              color: Colors.red,
+                              size: 22,
                             ),
                           ),
-                          InkWell(
-                            onTap: onCancelEdit,
-                            child: const SizedBox(
-                              height: 27,
-                              width: 30,
-                              child: Icon(
-                                Icons.cancel_outlined,
-                                color: Colors.red,
-                                size: 22,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 )
               : Row(
                   children: [

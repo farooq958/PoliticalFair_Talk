@@ -1476,10 +1476,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             durationInDay: durationInDay,
                           ),
                           MostLikedScreen(durationInDay: durationInDay),
-                          Search(
+                          AddPost(
                             durationInDay: durationInDay,
                           ),
-                          AddPost(
+                          Search(
                             durationInDay: durationInDay,
                           ),
                           Submissions(
@@ -1502,20 +1502,12 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           ),
                           const BottomNavigationBarItem(
                             icon: Padding(
-                              padding: EdgeInsets.only(top: 4.0),
-                              child: Icon(MyFlutterApp.university, size: 25),
+                              padding: EdgeInsets.only(top: 3.0),
+                              child: Icon(MyFlutterApp.university, size: 23),
                             ),
                             label: 'Archives',
                           ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.search,
-                              ),
-                            ),
-                            label: 'Search',
-                          ),
+
                           BottomNavigationBarItem(
                             icon: Stack(
                               children: const [
@@ -1544,10 +1536,20 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             icon: Padding(
                               padding: EdgeInsets.only(top: 3.0),
                               child: Icon(
-                                Icons.phone_iphone,
+                                Icons.search,
                               ),
                             ),
-                            label: 'Submissions',
+                            label: 'Search',
+                          ),
+                          const BottomNavigationBarItem(
+                            icon: Padding(
+                              padding: EdgeInsets.only(top: 6.0),
+                              child: Icon(
+                                MyFlutterApp.users,
+                                size: 24,
+                              ),
+                            ),
+                            label: 'Democracy',
                           ),
                           // BottomNavigationBarItem(
                           //   icon: Padding(

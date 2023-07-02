@@ -2528,7 +2528,7 @@ class _SearchState extends State<Search> {
                                                                   75,
                                                                   75)
                                                               : Colors.grey,
-                                                          size: 25),
+                                                          size: 22),
                                                     ],
                                                   )),
                                             ),
@@ -2826,7 +2826,7 @@ class _SearchState extends State<Search> {
                                                   //                   },
                                                   //                   child: Center(
                                                   //                     child: Text(
-                                                  //                       'Load ${(userListProvider.userListingListCount - 2) * 6 + 1} - ${(userListProvider.userListingListCount - 1) * 6}',
+                                                  //                       'View ${(userListProvider.userListingListCount - 2) * 6 + 1} - ${(userListProvider.userListingListCount - 1) * 6}',
                                                   //                       style:
                                                   //                           const TextStyle(
                                                   //                         color: Colors
@@ -3219,7 +3219,7 @@ class _SearchState extends State<Search> {
                                                                                 searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: false);
                                                                               },
                                                                               child: Container(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                 decoration: BoxDecoration(
                                                                                   color: Colors.transparent,
                                                                                   borderRadius: BorderRadius.circular(25),
@@ -3230,16 +3230,17 @@ class _SearchState extends State<Search> {
                                                                                     const Icon(
                                                                                       Icons.arrow_upward,
                                                                                       size: 16,
-                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                      color: Colors.black,
                                                                                     ),
                                                                                     const SizedBox(width: 8),
-                                                                                    Text('View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
+                                                                                    Text(
+                                                                                      'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontSize: 13.5,
+                                                                                        letterSpacing: 0.3,
+                                                                                      ),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               )),
@@ -3287,7 +3288,7 @@ class _SearchState extends State<Search> {
                                                                                 searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: false);
                                                                               },
                                                                               child: Container(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                 decoration: BoxDecoration(
                                                                                   color: Colors.transparent,
                                                                                   borderRadius: BorderRadius.circular(25),
@@ -3295,19 +3296,16 @@ class _SearchState extends State<Search> {
                                                                                 child: Row(
                                                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                                                   children: [
-                                                                                    const Icon(
-                                                                                      Icons.arrow_upward,
-                                                                                      size: 16,
-                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                    ),
+                                                                                    const Icon(Icons.arrow_upward, size: 16, color: Colors.black),
                                                                                     const SizedBox(width: 8),
-                                                                                    Text('View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
+                                                                                    Text(
+                                                                                      'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontSize: 13,
+                                                                                        letterSpacing: 0.3,
+                                                                                      ),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               )),
@@ -3477,7 +3475,7 @@ class _SearchState extends State<Search> {
                                                                                 searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: true);
                                                                               },
                                                                               child: Container(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                 decoration: BoxDecoration(
                                                                                   color: Colors.transparent,
                                                                                   borderRadius: BorderRadius.circular(25),
@@ -3485,20 +3483,17 @@ class _SearchState extends State<Search> {
                                                                                 child: Row(
                                                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                                                   children: [
-                                                                                    const Icon(
-                                                                                      Icons.arrow_downward,
-                                                                                      size: 16,
-                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                    ),
+                                                                                    const Icon(Icons.arrow_downward, size: 16, color: Colors.black),
                                                                                     const SizedBox(width: 8),
-                                                                                    Text("View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
-                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
+                                                                                    Text(
+                                                                                      "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
+                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontSize: 13.5,
+                                                                                        letterSpacing: 0.3,
+                                                                                      ),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               )),
@@ -3549,7 +3544,7 @@ class _SearchState extends State<Search> {
                                                                                 searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: true);
                                                                               },
                                                                               child: Container(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                 decoration: BoxDecoration(
                                                                                   color: Colors.transparent,
                                                                                   borderRadius: BorderRadius.circular(25),
@@ -3560,17 +3555,18 @@ class _SearchState extends State<Search> {
                                                                                     const Icon(
                                                                                       Icons.arrow_downward,
                                                                                       size: 16,
-                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                      color: Colors.black,
                                                                                     ),
                                                                                     const SizedBox(width: 8),
-                                                                                    Text("View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
-                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0.3,
-                                                                                        )),
+                                                                                    Text(
+                                                                                      "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
+                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontSize: 13.5,
+                                                                                        letterSpacing: 0.3,
+                                                                                      ),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               )),
@@ -3705,9 +3701,9 @@ class _SearchState extends State<Search> {
                                                                       padding: const EdgeInsets
                                                                               .symmetric(
                                                                           horizontal:
-                                                                              12,
+                                                                              16,
                                                                           vertical:
-                                                                              6),
+                                                                              8),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: Colors
@@ -3723,16 +3719,15 @@ class _SearchState extends State<Search> {
                                                                           const Icon(
                                                                               Icons.arrow_upward,
                                                                               size: 16,
-                                                                              color: Color.fromARGB(255, 81, 81, 81)),
+                                                                              color: Colors.black),
                                                                           const SizedBox(
                                                                               width: 8),
                                                                           Text(
                                                                             'View ${(searchPageProvider.postPageCount - 2) * 6 + 1} - ${(searchPageProvider.postPageCount - 1) * 6}',
                                                                             style:
                                                                                 const TextStyle(
-                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontSize: 13,
+                                                                              color: Colors.black,
+                                                                              fontSize: 13.5,
                                                                               letterSpacing: 0.3,
                                                                             ),
                                                                           ),
@@ -3820,9 +3815,9 @@ class _SearchState extends State<Search> {
                                                                       padding: const EdgeInsets
                                                                               .symmetric(
                                                                           horizontal:
-                                                                              12,
+                                                                              16,
                                                                           vertical:
-                                                                              6),
+                                                                              8),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: Colors
@@ -3838,16 +3833,15 @@ class _SearchState extends State<Search> {
                                                                           const Icon(
                                                                               Icons.arrow_upward,
                                                                               size: 16,
-                                                                              color: Color.fromARGB(255, 81, 81, 81)),
+                                                                              color: Colors.black),
                                                                           const SizedBox(
                                                                               width: 8),
                                                                           Text(
                                                                             'View ${(searchPageProvider.pollPageCount - 2) * 6 + 1} - ${(searchPageProvider.pollPageCount - 1) * 6}',
                                                                             style:
                                                                                 const TextStyle(
-                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontSize: 13,
+                                                                              color: Colors.black,
+                                                                              fontSize: 13.5,
                                                                               letterSpacing: 0.3,
                                                                             ),
                                                                           ),
@@ -3988,9 +3982,9 @@ class _SearchState extends State<Search> {
                                                                       padding: const EdgeInsets
                                                                               .symmetric(
                                                                           horizontal:
-                                                                              12,
+                                                                              16,
                                                                           vertical:
-                                                                              6),
+                                                                              8),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: Colors
@@ -4006,16 +4000,15 @@ class _SearchState extends State<Search> {
                                                                           const Icon(
                                                                               Icons.arrow_downward,
                                                                               size: 16,
-                                                                              color: Color.fromARGB(255, 81, 81, 81)),
+                                                                              color: Colors.black),
                                                                           const SizedBox(
                                                                               width: 8),
                                                                           Text(
                                                                             'View ${searchPageProvider.postPageCount * 6 + 1} - ${(searchPageProvider.postPageCount + 1) * 6}',
                                                                             style:
                                                                                 const TextStyle(
-                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontSize: 13,
+                                                                              color: Colors.black,
+                                                                              fontSize: 13.5,
                                                                               letterSpacing: 0.3,
                                                                             ),
                                                                           ),
@@ -4103,9 +4096,9 @@ class _SearchState extends State<Search> {
                                                                       padding: const EdgeInsets
                                                                               .symmetric(
                                                                           horizontal:
-                                                                              12,
+                                                                              16,
                                                                           vertical:
-                                                                              6),
+                                                                              8),
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         color: Colors
@@ -4121,7 +4114,7 @@ class _SearchState extends State<Search> {
                                                                           const Icon(
                                                                               Icons.arrow_downward,
                                                                               size: 16,
-                                                                              color: Color.fromARGB(255, 81, 81, 81)),
+                                                                              color: Colors.black),
                                                                           const SizedBox(
                                                                               width: 8),
                                                                           Text(
@@ -4129,9 +4122,8 @@ class _SearchState extends State<Search> {
                                                                             // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
                                                                             style:
                                                                                 const TextStyle(
-                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontSize: 13,
+                                                                              color: Colors.black,
+                                                                              fontSize: 13.5,
                                                                               letterSpacing: 0.3,
                                                                             ),
                                                                           ),
@@ -4301,7 +4293,7 @@ class _SearchState extends State<Search> {
                                                                                                     );
                                                                                                   },
                                                                                                   child: Container(
-                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                     decoration: BoxDecoration(
                                                                                                       color: Colors.transparent,
                                                                                                       borderRadius: BorderRadius.circular(25),
@@ -4312,16 +4304,17 @@ class _SearchState extends State<Search> {
                                                                                                         const Icon(
                                                                                                           Icons.arrow_upward,
                                                                                                           size: 16,
-                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                          color: Colors.black,
                                                                                                         ),
                                                                                                         const SizedBox(width: 8),
-                                                                                                        Text('View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
-                                                                                                            style: const TextStyle(
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                              fontWeight: FontWeight.w500,
-                                                                                                              fontSize: 13,
-                                                                                                              letterSpacing: 0.3,
-                                                                                                            )),
+                                                                                                        Text(
+                                                                                                          'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
+                                                                                                          style: const TextStyle(
+                                                                                                            color: Colors.black,
+                                                                                                            fontSize: 13.5,
+                                                                                                            letterSpacing: 0.3,
+                                                                                                          ),
+                                                                                                        ),
                                                                                                       ],
                                                                                                     ),
                                                                                                   )),
@@ -4350,7 +4343,7 @@ class _SearchState extends State<Search> {
                                                                                                     searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: false);
                                                                                                   },
                                                                                                   child: Container(
-                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                     decoration: BoxDecoration(
                                                                                                       color: Colors.transparent,
                                                                                                       borderRadius: BorderRadius.circular(25),
@@ -4361,16 +4354,17 @@ class _SearchState extends State<Search> {
                                                                                                         const Icon(
                                                                                                           Icons.arrow_upward,
                                                                                                           size: 16,
-                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                          color: Colors.black,
                                                                                                         ),
                                                                                                         const SizedBox(width: 8),
-                                                                                                        Text('View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                            style: const TextStyle(
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                              fontWeight: FontWeight.w500,
-                                                                                                              fontSize: 13,
-                                                                                                              letterSpacing: 0.3,
-                                                                                                            )),
+                                                                                                        Text(
+                                                                                                          'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                          style: const TextStyle(
+                                                                                                            color: Colors.black,
+                                                                                                            fontSize: 13.5,
+                                                                                                            letterSpacing: 0.3,
+                                                                                                          ),
+                                                                                                        ),
                                                                                                       ],
                                                                                                     ),
                                                                                                   )),
@@ -4467,7 +4461,7 @@ class _SearchState extends State<Search> {
                                                                                                     );
                                                                                                   },
                                                                                                   child: Container(
-                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                     decoration: BoxDecoration(
                                                                                                       color: Colors.transparent,
                                                                                                       borderRadius: BorderRadius.circular(25),
@@ -4478,17 +4472,18 @@ class _SearchState extends State<Search> {
                                                                                                         const Icon(
                                                                                                           Icons.arrow_downward,
                                                                                                           size: 16,
-                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                          color: Colors.black,
                                                                                                         ),
                                                                                                         const SizedBox(width: 8),
-                                                                                                        Text("View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
-                                                                                                            // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                            style: const TextStyle(
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                              fontWeight: FontWeight.w500,
-                                                                                                              fontSize: 13,
-                                                                                                              letterSpacing: 0.3,
-                                                                                                            )),
+                                                                                                        Text(
+                                                                                                          "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
+                                                                                                          // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                          style: const TextStyle(
+                                                                                                            color: Colors.black,
+                                                                                                            fontSize: 13.5,
+                                                                                                            letterSpacing: 0.3,
+                                                                                                          ),
+                                                                                                        ),
                                                                                                       ],
                                                                                                     ),
                                                                                                   )),
@@ -4525,7 +4520,7 @@ class _SearchState extends State<Search> {
                                                                                                   searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: true);
                                                                                                 },
                                                                                                 child: Container(
-                                                                                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                   decoration: BoxDecoration(
                                                                                                     color: Colors.transparent,
                                                                                                     borderRadius: BorderRadius.circular(25),
@@ -4536,16 +4531,15 @@ class _SearchState extends State<Search> {
                                                                                                       const Icon(
                                                                                                         Icons.arrow_downward,
                                                                                                         size: 16,
-                                                                                                        color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                        color: Colors.black,
                                                                                                       ),
                                                                                                       const SizedBox(width: 8),
                                                                                                       Text(
                                                                                                         "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
                                                                                                         // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
                                                                                                         style: const TextStyle(
-                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                          fontSize: 13,
+                                                                                                          color: Colors.black,
+                                                                                                          fontSize: 13.5,
                                                                                                           letterSpacing: 0.3,
                                                                                                         ),
                                                                                                       ),
@@ -4648,7 +4642,7 @@ class _SearchState extends State<Search> {
                                                                                                         // });
                                                                                                       },
                                                                                                       child: Container(
-                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Colors.transparent,
                                                                                                           borderRadius: BorderRadius.circular(25),
@@ -4659,16 +4653,17 @@ class _SearchState extends State<Search> {
                                                                                                             const Icon(
                                                                                                               Icons.arrow_upward,
                                                                                                               size: 16,
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                              color: Colors.black,
                                                                                                             ),
                                                                                                             const SizedBox(width: 8),
-                                                                                                            Text('View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13,
-                                                                                                                  letterSpacing: 0.3,
-                                                                                                                )),
+                                                                                                            Text(
+                                                                                                              'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontSize: 13.5,
+                                                                                                                letterSpacing: 0.3,
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ],
                                                                                                         ),
                                                                                                       )),
@@ -4699,7 +4694,7 @@ class _SearchState extends State<Search> {
                                                                                                         // });
                                                                                                       },
                                                                                                       child: Container(
-                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Colors.transparent,
                                                                                                           borderRadius: BorderRadius.circular(25),
@@ -4710,16 +4705,17 @@ class _SearchState extends State<Search> {
                                                                                                             const Icon(
                                                                                                               Icons.arrow_upward,
                                                                                                               size: 16,
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                              color: Colors.black,
                                                                                                             ),
                                                                                                             const SizedBox(width: 8),
-                                                                                                            Text('View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13,
-                                                                                                                  letterSpacing: 0.3,
-                                                                                                                )),
+                                                                                                            Text(
+                                                                                                              'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontSize: 13.5,
+                                                                                                                letterSpacing: 0.3,
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ],
                                                                                                         ),
                                                                                                       )),
@@ -4802,7 +4798,7 @@ class _SearchState extends State<Search> {
                                                                                                         // });
                                                                                                       },
                                                                                                       child: Container(
-                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Colors.transparent,
                                                                                                           borderRadius: BorderRadius.circular(25),
@@ -4813,17 +4809,18 @@ class _SearchState extends State<Search> {
                                                                                                             const Icon(
                                                                                                               Icons.arrow_downward,
                                                                                                               size: 16,
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                              color: Colors.black,
                                                                                                             ),
                                                                                                             const SizedBox(width: 8),
-                                                                                                            Text("View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
-                                                                                                                // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13,
-                                                                                                                  letterSpacing: 0.3,
-                                                                                                                )),
+                                                                                                            Text(
+                                                                                                              "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
+                                                                                                              // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontSize: 13.5,
+                                                                                                                letterSpacing: 0.3,
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ],
                                                                                                         ),
                                                                                                       )),
@@ -4859,7 +4856,7 @@ class _SearchState extends State<Search> {
                                                                                                         // });
                                                                                                       },
                                                                                                       child: Container(
-                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Colors.transparent,
                                                                                                           borderRadius: BorderRadius.circular(25),
@@ -4870,17 +4867,18 @@ class _SearchState extends State<Search> {
                                                                                                             const Icon(
                                                                                                               Icons.arrow_downward,
                                                                                                               size: 16,
-                                                                                                              color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                              color: Colors.black,
                                                                                                             ),
                                                                                                             const SizedBox(width: 8),
-                                                                                                            Text("View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                                // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13,
-                                                                                                                  letterSpacing: 0.3,
-                                                                                                                )),
+                                                                                                            Text(
+                                                                                                              "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                              // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontSize: 13.5,
+                                                                                                                letterSpacing: 0.3,
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ],
                                                                                                         ),
                                                                                                       )),
@@ -4947,7 +4945,7 @@ class _SearchState extends State<Search> {
                                                                                                                 mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: false);
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -4958,16 +4956,17 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_upward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text('View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -4996,7 +4995,7 @@ class _SearchState extends State<Search> {
                                                                                                                 mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: false);
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5007,16 +5006,17 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_upward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text('View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5089,7 +5089,7 @@ class _SearchState extends State<Search> {
                                                                                                                 mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: true);
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5100,17 +5100,18 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_downward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text("View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
-                                                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
+                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5139,7 +5140,7 @@ class _SearchState extends State<Search> {
                                                                                                                 mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: true);
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5150,17 +5151,18 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_downward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text("View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5253,7 +5255,7 @@ class _SearchState extends State<Search> {
                                                                                                                 );
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5264,16 +5266,17 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_upward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text('View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5302,7 +5305,7 @@ class _SearchState extends State<Search> {
                                                                                                                 mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: false);
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5313,16 +5316,17 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_upward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text('View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5400,7 +5404,7 @@ class _SearchState extends State<Search> {
                                                                                                                 );
                                                                                                               },
                                                                                                               child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                                 decoration: BoxDecoration(
                                                                                                                   color: Colors.transparent,
                                                                                                                   borderRadius: BorderRadius.circular(25),
@@ -5411,17 +5415,18 @@ class _SearchState extends State<Search> {
                                                                                                                     const Icon(
                                                                                                                       Icons.arrow_downward,
                                                                                                                       size: 16,
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                      color: Colors.black,
                                                                                                                     ),
                                                                                                                     const SizedBox(width: 8),
-                                                                                                                    Text("View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
-                                                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                        style: const TextStyle(
-                                                                                                                          color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                          fontWeight: FontWeight.w500,
-                                                                                                                          fontSize: 13,
-                                                                                                                          letterSpacing: 0.3,
-                                                                                                                        )),
+                                                                                                                    Text(
+                                                                                                                      "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
+                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                        letterSpacing: 0.3,
+                                                                                                                      ),
+                                                                                                                    ),
                                                                                                                   ],
                                                                                                                 ),
                                                                                                               )),
@@ -5458,7 +5463,7 @@ class _SearchState extends State<Search> {
                                                                                                               mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: true);
                                                                                                             },
                                                                                                             child: Container(
-                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 color: Colors.transparent,
                                                                                                                 borderRadius: BorderRadius.circular(25),
@@ -5469,16 +5474,15 @@ class _SearchState extends State<Search> {
                                                                                                                   const Icon(
                                                                                                                     Icons.arrow_downward,
                                                                                                                     size: 16,
-                                                                                                                    color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                    color: Colors.black,
                                                                                                                   ),
                                                                                                                   const SizedBox(width: 8),
                                                                                                                   Text(
                                                                                                                     "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
                                                                                                                     // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
                                                                                                                     style: const TextStyle(
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                                      fontSize: 13,
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontSize: 13.5,
                                                                                                                       letterSpacing: 0.3,
                                                                                                                     ),
                                                                                                                   ),
@@ -5539,7 +5543,7 @@ class _SearchState extends State<Search> {
                                                                                                               );
                                                                                                             },
                                                                                                             child: Container(
-                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 color: Colors.transparent,
                                                                                                                 borderRadius: BorderRadius.circular(25),
@@ -5550,15 +5554,14 @@ class _SearchState extends State<Search> {
                                                                                                                   const Icon(
                                                                                                                     Icons.arrow_upward,
                                                                                                                     size: 16,
-                                                                                                                    color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                    color: Colors.black,
                                                                                                                   ),
                                                                                                                   const SizedBox(width: 8),
                                                                                                                   Text(
                                                                                                                     'View ${(mostLikedKeyProvider.postPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.postPageCount - 1) * 6}',
                                                                                                                     style: const TextStyle(
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                                      fontSize: 13,
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontSize: 13.5,
                                                                                                                       letterSpacing: 0.3,
                                                                                                                     ),
                                                                                                                   ),
@@ -5601,7 +5604,7 @@ class _SearchState extends State<Search> {
                                                                                                               );
                                                                                                             },
                                                                                                             child: Container(
-                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 color: Colors.transparent,
                                                                                                                 borderRadius: BorderRadius.circular(25),
@@ -5612,15 +5615,14 @@ class _SearchState extends State<Search> {
                                                                                                                   const Icon(
                                                                                                                     Icons.arrow_upward,
                                                                                                                     size: 16,
-                                                                                                                    color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                    color: Colors.black,
                                                                                                                   ),
                                                                                                                   const SizedBox(width: 8),
                                                                                                                   Text(
                                                                                                                     'View ${(mostLikedKeyProvider.pollPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount - 1) * 6}',
                                                                                                                     style: const TextStyle(
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                                      fontSize: 13,
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontSize: 13.5,
                                                                                                                       letterSpacing: 0.3,
                                                                                                                     ),
                                                                                                                   ),
@@ -5686,7 +5688,7 @@ class _SearchState extends State<Search> {
                                                                                                               );
                                                                                                             },
                                                                                                             child: Container(
-                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 color: Colors.transparent,
                                                                                                                 borderRadius: BorderRadius.circular(25),
@@ -5697,15 +5699,14 @@ class _SearchState extends State<Search> {
                                                                                                                   const Icon(
                                                                                                                     Icons.arrow_downward,
                                                                                                                     size: 16,
-                                                                                                                    color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                    color: Colors.black,
                                                                                                                   ),
                                                                                                                   const SizedBox(width: 8),
                                                                                                                   Text(
                                                                                                                     'View ${mostLikedKeyProvider.postPageCount * 6 + 1} - ${(mostLikedKeyProvider.postPageCount + 1) * 6}',
                                                                                                                     style: const TextStyle(
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                                      fontSize: 13,
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontSize: 13.5,
                                                                                                                       letterSpacing: 0.3,
                                                                                                                     ),
                                                                                                                   ),
@@ -5748,7 +5749,7 @@ class _SearchState extends State<Search> {
                                                                                                               );
                                                                                                             },
                                                                                                             child: Container(
-                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                                                                                               decoration: BoxDecoration(
                                                                                                                 color: Colors.transparent,
                                                                                                                 borderRadius: BorderRadius.circular(25),
@@ -5759,16 +5760,15 @@ class _SearchState extends State<Search> {
                                                                                                                   const Icon(
                                                                                                                     Icons.arrow_downward,
                                                                                                                     size: 16,
-                                                                                                                    color: Color.fromARGB(255, 81, 81, 81),
+                                                                                                                    color: Colors.black,
                                                                                                                   ),
                                                                                                                   const SizedBox(width: 8),
                                                                                                                   Text(
                                                                                                                     'View ${mostLikedKeyProvider.pollPageCount * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount + 1) * 6}',
                                                                                                                     // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
                                                                                                                     style: const TextStyle(
-                                                                                                                      color: Color.fromARGB(255, 81, 81, 81),
-                                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                                      fontSize: 13,
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontSize: 13.5,
                                                                                                                       letterSpacing: 0.3,
                                                                                                                     ),
                                                                                                                   ),

@@ -1458,8 +1458,8 @@ class _CommentCardState extends State<CommentCard> {
                                                         padding:
                                                             const EdgeInsets
                                                                     .symmetric(
-                                                                vertical: 6,
-                                                                horizontal: 12),
+                                                                vertical: 8,
+                                                                horizontal: 16),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: Colors
@@ -1477,27 +1477,16 @@ class _CommentCardState extends State<CommentCard> {
                                                               Icons
                                                                   .arrow_downward,
                                                               size: 16,
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      81,
-                                                                      81,
-                                                                      81),
+                                                              color:
+                                                                  Colors.black,
                                                             ),
                                                             SizedBox(width: 8),
                                                             Text(
                                                               'View More Replies',
                                                               style: TextStyle(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize: 13,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 13.5,
                                                                 letterSpacing:
                                                                     0.3,
                                                               ),

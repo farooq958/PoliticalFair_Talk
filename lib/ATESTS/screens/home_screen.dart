@@ -18,6 +18,7 @@ import '../zFeeds/poll_card.dart';
 import 'filter_arrays.dart';
 import 'filter_screen.dart';
 import 'my_drawer_list.dart';
+import '../utils/global_variables.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({
@@ -148,7 +149,7 @@ class _FeedScreenState extends State<FeedScreen> {
         children: [
           Scaffold(
             key: _key,
-            backgroundColor: Colors.black.withOpacity(0.05),
+            backgroundColor: testing,
             drawer: Drawer(
               child: SingleChildScrollView(
                 child: Column(
@@ -168,7 +169,22 @@ class _FeedScreenState extends State<FeedScreen> {
             appBar: AppBar(
               elevation: 4,
               toolbarHeight: 68,
-              backgroundColor: Colors.white,
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              // flexibleSpace: Container(
+              //   decoration: const BoxDecoration(
+              //     gradient: LinearGradient(
+              //       begin: Alignment.topCenter,
+              //       end: Alignment.bottomCenter,
+              //       stops: [0.05, 0.35, 0.65, 0.95],
+              //       colors: [
+              //         Color.fromARGB(255, 255, 248, 226),
+              //         Color.fromARGB(255, 255, 248, 226),
+              //         Color.fromARGB(255, 255, 248, 226),
+              //         Color.fromARGB(255, 255, 248, 226),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               actions: [
                 Expanded(
                   child: SizedBox(
@@ -193,7 +209,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     height: 35,
                                     child: Material(
                                       shape: const CircleBorder(),
-                                      color: Colors.white,
+                                      color: Colors.transparent,
                                       child: InkWell(
                                         customBorder: const CircleBorder(),
                                         splashColor:
@@ -629,7 +645,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     height: 35,
                                     child: Material(
                                       shape: const CircleBorder(),
-                                      color: Colors.white,
+                                      color: Colors.transparent,
                                       child: InkWell(
                                         customBorder: const CircleBorder(),
                                         splashColor:
@@ -740,8 +756,8 @@ class _FeedScreenState extends State<FeedScreen> {
                                                   child: Container(
                                                     padding: const EdgeInsets
                                                             .symmetric(
-                                                        horizontal: 12,
-                                                        vertical: 6),
+                                                        horizontal: 16,
+                                                        vertical: 8),
                                                     decoration: BoxDecoration(
                                                       color: Colors.transparent,
                                                       borderRadius:
@@ -756,23 +772,15 @@ class _FeedScreenState extends State<FeedScreen> {
                                                         Icon(
                                                           Icons.arrow_upward,
                                                           size: 16,
-                                                          color: Color.fromARGB(
-                                                              255, 81, 81, 81),
+                                                          color: Colors.black,
                                                         ),
                                                         SizedBox(width: 8),
                                                         Text('View Previous',
                                                             // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
                                                             style: TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      81,
-                                                                      81,
-                                                                      81),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize: 13,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 13.5,
                                                               letterSpacing:
                                                                   0.3,
                                                             )),
@@ -858,13 +866,17 @@ class _FeedScreenState extends State<FeedScreen> {
                                                   child: Container(
                                                     padding: const EdgeInsets
                                                             .symmetric(
-                                                        horizontal: 12,
-                                                        vertical: 6),
+                                                        horizontal: 16,
+                                                        vertical: 8),
                                                     decoration: BoxDecoration(
                                                       color: Colors.transparent,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               25),
+                                                      // border: Border.all(
+                                                      //   width: 1,
+                                                      //   color: Colors.black,
+                                                      // ),
                                                     ),
                                                     child: Row(
                                                       mainAxisAlignment:
@@ -872,25 +884,20 @@ class _FeedScreenState extends State<FeedScreen> {
                                                               .center,
                                                       children: const [
                                                         Icon(
-                                                          Icons.arrow_downward,
-                                                          size: 16,
-                                                          color: Color.fromARGB(
-                                                              255, 81, 81, 81),
-                                                        ),
+                                                            Icons
+                                                                .arrow_downward,
+                                                            size: 16,
+                                                            color:
+                                                                Colors.black),
                                                         SizedBox(width: 8),
                                                         Text(
-                                                          'View Next',
+                                                          'View More',
                                                           // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
                                                           style: TextStyle(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    81,
-                                                                    81,
-                                                                    81),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 13,
+                                                            color: Colors.black,
+                                                            // fontWeight:
+                                                            //     FontWeight.w500,
+                                                            fontSize: 13.5,
                                                             letterSpacing: 0.3,
                                                           ),
                                                         ),
@@ -974,8 +981,8 @@ class _FeedScreenState extends State<FeedScreen> {
                                               child: Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                  horizontal: 12,
-                                                  vertical: 6,
+                                                  horizontal: 16,
+                                                  vertical: 8,
                                                 ),
                                                 decoration: BoxDecoration(
                                                   color: Colors.transparent,
@@ -986,22 +993,16 @@ class _FeedScreenState extends State<FeedScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: const [
-                                                    Icon(
-                                                      Icons.arrow_upward,
-                                                      size: 16,
-                                                      color: Color.fromARGB(
-                                                          255, 81, 81, 81),
-                                                    ),
+                                                    Icon(Icons.arrow_upward,
+                                                        size: 16,
+                                                        color: Colors.black),
                                                     SizedBox(width: 8),
                                                     Text(
                                                       'View Previous',
                                                       // '${(pollsProvider.count - 2) * pollsProvider.pageSize + 1} - ${(pollsProvider.count - 1) * pollsProvider.pageSize}',
                                                       style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 81, 81, 81),
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 13,
+                                                        color: Colors.black,
+                                                        fontSize: 13.5,
                                                         letterSpacing: 0.3,
                                                       ),
                                                     ),
@@ -1075,8 +1076,8 @@ class _FeedScreenState extends State<FeedScreen> {
                                                   child: Container(
                                                     padding: const EdgeInsets
                                                         .symmetric(
-                                                      horizontal: 12,
-                                                      vertical: 6,
+                                                      horizontal: 16,
+                                                      vertical: 8,
                                                     ),
                                                     decoration: BoxDecoration(
                                                       color: Colors.transparent,
@@ -1090,25 +1091,18 @@ class _FeedScreenState extends State<FeedScreen> {
                                                               .center,
                                                       children: const [
                                                         Icon(
-                                                          Icons.arrow_downward,
-                                                          size: 16,
-                                                          color: Color.fromARGB(
-                                                              255, 81, 81, 81),
-                                                        ),
+                                                            Icons
+                                                                .arrow_downward,
+                                                            size: 16,
+                                                            color:
+                                                                Colors.black),
                                                         SizedBox(width: 8),
                                                         Text(
-                                                          'View Next',
+                                                          'View More',
                                                           // '${pollsProvider.count * pollsProvider.pageSize + 1} - ${(pollsProvider.count + 1) * pollsProvider.pageSize}',
                                                           style: TextStyle(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    81,
-                                                                    81,
-                                                                    81),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 13,
+                                                            color: Colors.black,
+                                                            fontSize: 13.5,
                                                             letterSpacing: 0.3,
                                                           ),
                                                         ),

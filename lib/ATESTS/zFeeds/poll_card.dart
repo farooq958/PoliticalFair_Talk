@@ -197,9 +197,8 @@ class _PollCardState extends State<PollCard> {
         top: 10,
       ),
       child: PhysicalModel(
-        color:
-            tileClick ? const Color.fromARGB(255, 245, 245, 245) : Colors.white,
-        elevation: 2,
+        color: tileClick ? testing : whiteDialog,
+        elevation: 3,
         child: Theme(
           data: ThemeData(
               splashColor: Colors.transparent,

@@ -292,7 +292,7 @@ class _AutomateState extends State<Automate> {
                           maxLines: 1,
                           decoration: const InputDecoration(
                             hintText: "Paste YouTube URL",
-                            prefixIcon: Icon(MyFlutterApp.link_1,
+                            prefixIcon: Icon(MyFlutterApp.link,
                                 size: 15, color: Colors.grey),
                             prefixIconColor: Color.fromARGB(255, 136, 136, 136),
                             contentPadding: EdgeInsets.only(left: 16, top: 15),
@@ -392,7 +392,7 @@ class _AutomateState extends State<Automate> {
                   radius: 43.5,
                   child: FittedBox(
                     child: Icon(
-                      MyFlutterApp.youtube_1,
+                      MyFlutterApp.youtube,
                       size: 50,
                       color: Colors.white,
                     ),
@@ -1433,7 +1433,7 @@ class _AutomateState extends State<Automate> {
                                                                   // _icon(2, icon: Icons.video_library),
                                                                   _icon(3,
                                                                       icon: MyFlutterApp
-                                                                          .youtube_1),
+                                                                          .youtube),
                                                                 ],
                                                               ),
                                                             ),

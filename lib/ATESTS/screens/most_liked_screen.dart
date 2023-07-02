@@ -745,7 +745,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
+                                              horizontal: 16, vertical: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius:
@@ -758,17 +758,14 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                               Icon(
                                                 Icons.arrow_upward,
                                                 size: 16,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
+                                                color: Colors.black,
                                               ),
                                               SizedBox(width: 8),
                                               Text('View Previous',
                                                   // '${(mostLikedProvider.postPageCount - 2) * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.postPageCount - 1) * mostLikedProvider.pageSize}',
                                                   style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 81, 81, 81),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontSize: 13.5,
                                                     letterSpacing: 0.3,
                                                   )),
                                             ],
@@ -825,7 +822,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
+                                              horizontal: 16, vertical: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius:
@@ -838,18 +835,15 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                               Icon(
                                                 Icons.arrow_downward,
                                                 size: 16,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
+                                                color: Colors.black,
                                               ),
                                               SizedBox(width: 8),
                                               Text(
                                                 'View Next',
                                                 // '${mostLikedProvider.postPageCount * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.postPageCount + 1) * mostLikedProvider.pageSize}',
                                                 style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 81, 81, 81),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontSize: 13.5,
                                                   letterSpacing: 0.3,
                                                 ),
                                               ),
@@ -914,7 +908,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
+                                              horizontal: 16, vertical: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius:
@@ -927,17 +921,14 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                               Icon(
                                                 Icons.arrow_upward,
                                                 size: 16,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
+                                                color: Colors.black,
                                               ),
                                               SizedBox(width: 8),
                                               Text('View Previous',
                                                   // '${(mostLikedProvider.pollPageCount - 2) * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.pollPageCount - 1) * mostLikedProvider.pageSize}',
                                                   style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 81, 81, 81),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontSize: 13.5,
                                                     letterSpacing: 0.3,
                                                   )),
                                             ],
@@ -994,7 +985,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
+                                              horizontal: 16, vertical: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
                                             borderRadius:
@@ -1007,18 +998,15 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                               Icon(
                                                 Icons.arrow_downward,
                                                 size: 16,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
+                                                color: Colors.black,
                                               ),
                                               SizedBox(width: 8),
                                               Text(
                                                 'View Next',
                                                 // '${mostLikedProvider.pollPageCount * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.pollPageCount + 1) * mostLikedProvider.pageSize}',
                                                 style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 81, 81, 81),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontSize: 13.5,
                                                   letterSpacing: 0.3,
                                                 ),
                                               ),

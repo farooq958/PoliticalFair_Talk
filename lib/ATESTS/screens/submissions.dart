@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../info screens/submissions_info.dart';
 import '../provider/post_provider.dart';
 import '../provider/user_provider.dart';
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../models/user.dart';
@@ -31,7 +32,7 @@ class SubmissionsState extends State<Submissions>
   bool comment = false;
   bool profileScreen = true;
   bool filter = false;
-
+  int currentTab = 0;
   User? _userProfile;
   User? _userAdmin;
   User? _userP;
@@ -51,6 +52,39 @@ class SubmissionsState extends State<Submissions>
   var durationInDay = 0;
 
   PostProvider? postProvider;
+
+  List<Widget> list = [
+    Tab(
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.check_circle_outline,
+              size: 14,
+            ),
+            SizedBox(width: 6),
+            Text('SUBMISSIONS', style: TextStyle(fontSize: 12)),
+          ],
+        ),
+      ),
+    ),
+    Tab(
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.update_outlined,
+              size: 14,
+            ),
+            SizedBox(width: 6),
+            Text('UPDATES', style: TextStyle(fontSize: 12)),
+          ],
+        ),
+      ),
+    ),
+  ];
 
   @override
   void initState() {
@@ -95,239 +129,259 @@ class SubmissionsState extends State<Submissions>
         userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
 
     return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Builder(
-          builder: (BuildContext context) {
-            return Stack(
-              children: [
-                Scaffold(
-                  key: _key,
-                  backgroundColor: Colors.black.withOpacity(0.05),
-                  drawer: Drawer(
-                    child: SingleChildScrollView(
-                      child: Column(
+        color: Colors.white,
+        child: SafeArea(
+            child: Builder(
+                builder: (BuildContext context) => DefaultTabController(
+                      length: 2,
+                      child: Stack(
                         children: [
-                          SettingsScreen(
-                            durationInDay: widget.durationInDay,
-                            onLoading: (isLoading) {
-                              setState(() {
-                                _logoutLoading = isLoading;
-                              });
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  appBar: AppBar(
-                    elevation: 4,
-                    toolbarHeight: 56,
-                    backgroundColor: Colors.white,
-                    actions: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 36,
-                                height: 35,
-                                child: Material(
-                                  shape: const CircleBorder(),
-                                  color: Colors.white,
-                                  child: InkWell(
-                                    customBorder: const CircleBorder(),
-                                    splashColor: Colors.grey.withOpacity(0.5),
-                                    onTap: () {
-                                      Future.delayed(
-                                          const Duration(milliseconds: 50), () {
-                                        _key.currentState?.openDrawer();
-                                      });
-                                    },
-                                    child: const Icon(Icons.settings,
-                                        color: Color.fromARGB(255, 80, 80, 80)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 11.0),
+                          Scaffold(
+                            key: _key,
+                            backgroundColor: Colors.black.withOpacity(0.05),
+                            drawer: Drawer(
+                              child: SingleChildScrollView(
                                 child: Column(
-                                  children: const [
-                                    Text('SUBMISSIONS',
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 55, 55, 55),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          // letterSpacing: -0.2,
-                                          // fontFamily: 'Capitalis',
-                                        )),
-                                    Expanded(
-                                      child: Text(
-                                          'YOU DECIDE THE DIRECTION OF THE PLATFORM.',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 55, 55, 55),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500,
-                                            // letterSpacing: -0.2,
-                                            // fontFamily: 'Capitalis',
-                                          )),
-                                    ),
+                                  children: [
+                                    SettingsScreen(
+                                      durationInDay: widget.durationInDay,
+                                      onLoading: (isLoading) {
+                                        setState(() {
+                                          _logoutLoading = isLoading;
+                                        });
+                                      },
+                                    )
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 36,
-                                height: 35,
-                                // color: Colors.blue,
-                                child: Material(
-                                  shape: const CircleBorder(),
-                                  color: Colors.white,
-                                  child: InkWell(
-                                      customBorder: const CircleBorder(),
-                                      splashColor: Colors.grey.withOpacity(0.5),
-                                      onTap: () {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 50),
-                                            () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SubmissionInfo()),
-                                          );
-                                        });
-                                      },
-                                      child: const Icon(Icons.help_outline,
-                                          color:
-                                              Color.fromARGB(255, 80, 80, 80))),
+                            ),
+                            appBar: AppBar(
+                              elevation: 4,
+                              toolbarHeight: 38,
+                              backgroundColor: Colors.white,
+                              bottom: PreferredSize(
+                                preferredSize: Size(40, 37),
+                                child: Container(
+                                  height: 35,
+                                  // color: Color.fromARGB(255, 245, 245, 245),
+                                  child: TabBar(
+                                    onTap: (index) {
+                                      setState(() {
+                                        currentTab = index;
+                                      });
+                                    },
+                                    // isScrollable: true,
+                                    tabs: list,
+                                    indicatorColor:
+                                        Color.fromARGB(255, 55, 55, 55),
+                                    indicatorWeight: 2,
+                                    labelColor: Color.fromARGB(255, 55, 55, 55),
+                                    controller: _tabController,
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  body: CustomScrollView(
-                    controller: _scrollController,
-                    slivers: [
-                      SliverList(
-                        delegate: SliverChildListDelegate(
-                          [
-                            Column(
-                              children: [
-                                _PostTabScreen(
-                                    filter: filter,
-                                    onLoadMore: initScrollControllerListener,
-                                    durationInDay: durationInDay),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    PhysicalModel(
-                                      color: Colors.blueAccent,
-                                      elevation: 3,
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Material(
-                                        color: Colors.blueAccent,
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.black.withOpacity(0.3),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          onTap: () {
-                                            showSnackBar(
-                                                'Action failed. Click on the "Question Mark" icon to find out why.',
-                                                context);
-                                          },
+                              actions: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
                                           child: SizedBox(
-                                            height: 40,
-                                            child: Container(
-                                              alignment: Alignment.center,
-                                              padding: const EdgeInsets.only(
-                                                  left: 25, right: 25),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: const [
-                                                  Icon(Icons.create,
-                                                      color: Colors.white,
-                                                      size: 19),
-                                                  SizedBox(width: 10),
-                                                  Text(
-                                                    "Create a Submission",
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 15,
-                                                        letterSpacing: 1),
-                                                  ),
-                                                ],
+                                            width: 36,
+                                            height: 35,
+                                            child: Material(
+                                              shape: const CircleBorder(),
+                                              color: Colors.white,
+                                              child: InkWell(
+                                                customBorder:
+                                                    const CircleBorder(),
+                                                splashColor: Colors.grey
+                                                    .withOpacity(0.5),
+                                                onTap: () {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 50),
+                                                      () {
+                                                    _key.currentState
+                                                        ?.openDrawer();
+                                                  });
+                                                },
+                                                child: const Icon(
+                                                    Icons.settings,
+                                                    color: Color.fromARGB(
+                                                        255, 80, 80, 80)),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 14.0),
+                                          child: Column(
+                                            children: [
+                                              Stack(
+                                                clipBehavior: Clip.none,
+                                                children: [
+                                                  Text(
+                                                    "FAIRTALK'S DEMOCRACY",
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 55, 55, 55),
+                                                      fontSize: 17,
+                                                      letterSpacing: 0.3,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    right: -16,
+                                                    top: 3,
+                                                    child: Icon(
+                                                        Icons.info_outlined,
+                                                        color: Colors.black,
+                                                        size: 13),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 2),
+                                              Container(
+                                                // height: 1,
+                                                width: 230,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey,
+                                                  border: Border(
+                                                    top: BorderSide(
+                                                        width: 0,
+                                                        color: Colors.grey),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 5.0),
+                                          child: Material(
+                                            shape: const CircleBorder(),
+                                            color: Colors.white,
+                                            child: InkWell(
+                                              customBorder:
+                                                  const CircleBorder(),
+                                              splashColor:
+                                                  Colors.grey.withOpacity(0.5),
+                                              onTap: () {
+                                                Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 50),
+                                                  () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SubmissionInfo()),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: SizedBox(
+                                                width: 40,
+                                                height: 40,
+                                                child: Stack(
+                                                  children: const [
+                                                    Positioned(
+                                                      left: 7,
+                                                      top: 7,
+                                                      child: Icon(Icons.create,
+                                                          color: Color.fromARGB(
+                                                              255, 80, 80, 80),
+                                                          size: 26),
+                                                    ),
+                                                    Positioned(
+                                                      top: 19,
+                                                      left: 19,
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        size: 13,
+                                                        color: Color.fromARGB(
+                                                            255, 80, 80, 80),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                                const SizedBox(height: 10)
                               ],
                             ),
-                          ],
-                        ),
+                            body: CustomScrollView(
+                              controller: _scrollController,
+                              slivers: [
+                                SliverList(
+                                  delegate: SliverChildListDelegate(
+                                    [
+                                      Column(children: [
+                                        _PostTabScreen(
+                                            filter: filter,
+                                            onLoadMore:
+                                                initScrollControllerListener,
+                                            durationInDay: durationInDay),
+                                      ])
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Visibility(
+                            visible: _logoutLoading,
+                            child: Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.black.withOpacity(0.2),
+                              child: const Center(
+                                child: SizedBox(
+                                  height: 19,
+                                  width: 19,
+                                  child: CircularProgressIndicator(
+                                    // color: Color.fromARGB(255, 231, 104, 104),
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                Visibility(
-                  visible: _logoutLoading,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.black.withOpacity(0.2),
-                    child: const Center(
-                      child: SizedBox(
-                        height: 19,
-                        width: 19,
-                        child: CircularProgressIndicator(
-                          // color: Color.fromARGB(255, 231, 104, 104),
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            );
-          },
-        ),
-        // }),
-      ),
-    );
-  }
-
-  Widget animatedTabContainer({required String label, required Color color}) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: Text(label,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 80, 80, 80))),
-    );
+                    ))));
   }
 }
+
+// Widget animatedTabContainer({required String label, required Color color}) {
+//   return Container(
+//     alignment: Alignment.center,
+//     decoration: BoxDecoration(
+//       color: color,
+//       borderRadius: BorderRadius.circular(25),
+//     ),
+//     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+//     child: Text(label,
+//         style: const TextStyle(
+//             fontWeight: FontWeight.bold,
+//             color: Color.fromARGB(255, 80, 80, 80))),
+//   );
+// }
 
 class _PostTabScreen extends StatelessWidget {
   final bool filter;
