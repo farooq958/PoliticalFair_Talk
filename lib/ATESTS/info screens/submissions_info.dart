@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/statistics.dart';
+import '../utils/global_variables.dart';
 
 class SubmissionInfo extends StatefulWidget {
   const SubmissionInfo({Key? key}) : super(key: key);
@@ -18,10 +19,10 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: testing,
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -49,19 +50,19 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                 );
                               },
                               child: const Icon(
-                                Icons.arrow_back,
+                                Icons.keyboard_arrow_left,
                                 size: 24,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 16),
-                        const Text('What are submissions?',
+                        const Text("Fairtalk's Democracy",
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontSize: 20,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500)),
                       ],
                     ),
@@ -80,22 +81,24 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: PhysicalModel(
+                            color: darkBlue,
                             elevation: 3,
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 12),
+                                  horizontal: 20, vertical: 12.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const SizedBox(height: 4),
                                   const Text(
-                                    "You decide the direction of the platform.",
+                                    "How does it work?",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                       fontWeight: FontWeight.w500,
+                                      fontSize: 18,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(height: 3),
@@ -103,14 +106,15 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   //   "Today's popular social media platforms mostly operate like dictatorships because all major decisions are always taken by a single individual or a handful of individuals sitting around a table during a board meeting. By creating submissions, you're deciding which new features should be implemented or removed from our platform.",
                                   //   textAlign: TextAlign.left,
                                   //   style: TextStyle(
-                                  //     letterSpacing: 0.3,
+                                  //     letterSpacing: 0,
                                   //   ),
                                   // ),
                                   const Text(
                                     "By voting and/or creating a submission, you're deciding which new features should be implemented or removed from our platform. On other social media platforms, all decisions are mostly taken by a single individual or a handful of individuals during board meetings (dictatorships). On Fairtalk, all decisions are always taken by the majority (democracy).",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(height: 15),
@@ -118,8 +122,10 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                     "How do I create a submission?",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                       fontWeight: FontWeight.w500,
+                                      fontSize: 18,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(height: 3),
@@ -127,7 +133,8 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                     "Fairtalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(height: 15),

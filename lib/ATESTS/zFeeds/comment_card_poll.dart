@@ -1713,7 +1713,7 @@ class _CommentCardPollState extends State<CommentCardPoll> {
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                             ],

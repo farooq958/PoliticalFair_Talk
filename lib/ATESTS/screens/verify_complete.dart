@@ -12,6 +12,7 @@ import '../info screens/data_privacy.dart';
 import '../methods/storage_methods.dart';
 import '../provider/user_provider.dart';
 import '../methods/auth_methods.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'add_post_daily.dart';
 
@@ -124,11 +125,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                     children: [
                       Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromARGB(255, 36, 64, 101),
-                                  width: 0)),
+                              bottom: BorderSide(color: darkBlue, width: 0)),
                         ),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: MediaQuery.of(context).size.height -
@@ -191,7 +190,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                         child: Center(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 36, 64, 101),
+                              color: darkBlue,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(75),
                               ),
@@ -231,7 +230,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                             fontSize: 18,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: 0.3),
+                                            letterSpacing: 0),
                                       ),
                                       Container(height: 8),
                                       Padding(
@@ -257,7 +256,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         style: TextStyle(
                                           fontSize: 13.5,
                                           color: Colors.white,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -267,7 +266,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         style: TextStyle(
                                           fontSize: 13.5,
                                           color: Colors.white,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -280,14 +279,14 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 )),
                                             TextSpan(
                                                 text: 'Privacy Policy',
                                                 style: const TextStyle(
                                                   color: Colors.blue,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                                 recognizer:
                                                     TapGestureRecognizer()
@@ -305,7 +304,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 )),
                                             // TextSpan(
                                             //     text:
@@ -313,7 +312,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                             //     style: TextStyle(
                                             //       color: Colors.white,
                                             //       fontSize: 13.5,
-                                            //       letterSpacing: 0.3,
+                                            //       letterSpacing: 0,
                                             //     )),
                                           ],
                                         ),
@@ -438,7 +437,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                           255, 25, 61, 94),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      letterSpacing: 0.3)),
+                                                      letterSpacing: 0)),
                                               Container(width: 8),
                                               const Icon(
                                                 Icons.keyboard_arrow_right,

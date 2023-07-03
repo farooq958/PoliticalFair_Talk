@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:aft/ATESTS/screens/verify_complete.dart';
 import 'package:flutter/material.dart';
 import '../camera/camera_screen.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'verify_three.dart';
 
@@ -77,11 +78,9 @@ class _VerifyTwoState extends State<VerifyTwo> {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 36, 64, 101),
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 0)),
+                      color: darkBlue,
+                      border:
+                          Border(bottom: BorderSide(color: darkBlue, width: 0)),
                     ),
                     width: MediaQuery.of(context).size.width * 0.5,
                     height:
@@ -137,7 +136,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
@@ -181,7 +180,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           fontSize: 18,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                     ),
@@ -213,7 +212,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -223,7 +222,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -233,7 +232,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         // Container(height: 8),
@@ -243,7 +242,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                         //   style: TextStyle(
                                         //     color: Colors.white,
                                         //     fontSize: 14.5,
-                                        //     letterSpacing: 0.3,
+                                        //     letterSpacing: 0,
                                         //   ),
                                         // ),
                                       ],
@@ -298,7 +297,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                                     color: Color.fromARGB(
                                                         255, 25, 61, 94),
                                                     fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0.3)),
+                                                    letterSpacing: 0)),
                                             Container(width: 6),
                                             const Icon(
                                               Icons.keyboard_arrow_right,

@@ -110,7 +110,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     prefixIconColor: MaterialStateColor.resolveWith(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.focused)) {
-                        return const Color.fromARGB(255, 36, 64, 101);
+                        return darkBlue;
                       }
 
                       return Colors.grey;
@@ -122,9 +122,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
-                          borderSide: const BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 2),
+                          borderSide:
+                              const BorderSide(color: darkBlue, width: 2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
@@ -134,7 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         labelText: 'Email',
                         labelStyle: const TextStyle(
                             fontSize: 16,
-                            letterSpacing: 0.3,
+                            letterSpacing: 0,
                             color: Colors.grey,
                             fontWeight: FontWeight.w500),
                         // labelText: 'Username',
@@ -148,7 +147,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(height: 12),
                 UnconstrainedBox(
                   child: Material(
-                    color: const Color.fromARGB(255, 36, 64, 101),
+                    color: darkBlue,
                     borderRadius: BorderRadius.circular(50),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(50),

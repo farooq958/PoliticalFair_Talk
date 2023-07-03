@@ -453,7 +453,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                   child: const Text(
                                     'A platform built to unite us all.',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 36, 64, 101),
+                                        color: darkBlue,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 9,
                                         fontFamily: 'Capitalis'),
@@ -621,7 +621,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                 ),
                                 const SizedBox(height: 24),
                                 PhysicalModel(
-                                  color: const Color.fromARGB(255, 36, 64, 101),
+                                  color: darkBlue,
                                   elevation: 3,
                                   borderRadius: BorderRadius.circular(50),
                                   child: Material(
@@ -1135,7 +1135,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         //                           child: const Text(
         //                             'A platform built to unite us all.',
         //                             style: TextStyle(
-        //                                 color: Color.fromARGB(255, 36, 64, 101),
+        //                                 color: darkBlue,
         //                                 fontWeight: FontWeight.bold,
         //                                 fontSize: 9,
         //                                 fontFamily: 'Capitalis'),
@@ -1317,7 +1317,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         //                         ),
         //                         const SizedBox(height: 24),
         //                         PhysicalModel(
-        //                           color: const Color.fromARGB(255, 36, 64, 101),
+        //                           color: const darkBlue,
         //                           elevation: 3,
         //                           borderRadius: BorderRadius.circular(50),
         //                           child: Material(
@@ -1487,10 +1487,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           ),
                         ]),
                     bottomNavigationBar: CupertinoTabBar(
-                        inactiveColor: Colors.grey,
-                        activeColor: Colors.black,
+                        inactiveColor: Colors.white.withOpacity(0.6),
+                        activeColor: Colors.white,
                         height: 50,
-                        backgroundColor: Colors.white,
+                        backgroundColor: darkBlue,
                         items: [
                           const BottomNavigationBarItem(
                             icon: Padding(

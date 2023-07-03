@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:aft/ATESTS/screens/verify_complete.dart';
 import 'package:flutter/material.dart';
 import '../camera/camera_screen.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 class VerifyThree extends StatefulWidget {
@@ -76,11 +77,9 @@ class _VerifyThreeState extends State<VerifyThree> {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 36, 64, 101),
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 0)),
+                      color: darkBlue,
+                      border:
+                          Border(bottom: BorderSide(color: darkBlue, width: 0)),
                     ),
                     width: MediaQuery.of(context).size.width * 0.5,
                     height:
@@ -140,7 +139,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
@@ -178,7 +177,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                                       fontSize: 18,
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                     ),
                                   ),
                                   Container(height: 8),
@@ -202,7 +201,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.white,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                     ),
                                   ),
                                 ],
@@ -257,7 +256,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                                                           255, 25, 61, 94),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      letterSpacing: 0.3)),
+                                                      letterSpacing: 0)),
                                               Text('holding ID card',
                                                   style: TextStyle(
                                                       fontSize: 16.5,
@@ -265,7 +264,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                                                           255, 25, 61, 94),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      letterSpacing: 0.3)),
+                                                      letterSpacing: 0)),
                                             ],
                                           ),
                                           Container(width: 8),

@@ -231,7 +231,7 @@ class _AdminVerificationState extends State<AdminVerification> {
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500)),
                     ],
                   ),
@@ -255,8 +255,7 @@ class _AdminVerificationState extends State<AdminVerification> {
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 36, 64, 101), width: 2),
+                        borderSide: const BorderSide(color: darkBlue, width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -290,9 +289,8 @@ class _AdminVerificationState extends State<AdminVerification> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: const BorderSide(
-                                color: Color.fromARGB(255, 36, 64, 101),
-                                width: 2),
+                            borderSide:
+                                const BorderSide(color: darkBlue, width: 2),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -334,7 +332,7 @@ class _AdminVerificationState extends State<AdminVerification> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                       fontWeight: FontWeight.w500)),
                             )),
                       ),
@@ -1121,7 +1119,7 @@ class _AdminVerificationState extends State<AdminVerification> {
                                 'No pending verifications.',
                                 style: TextStyle(
                                   fontSize: 17,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                 ),
                               ),
                             ),

@@ -613,7 +613,7 @@ class _FullMessageState extends State<FullMessage> {
                   backgroundColor: Colors.white,
                   automaticallyImplyLeading: false,
                   elevation: 4,
-                  toolbarHeight: isSwapped ? 68 : 68,
+                  toolbarHeight: 68,
                   actions: [
                     Expanded(
                       child: Padding(
@@ -2241,7 +2241,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                         style:
                                                                             const TextStyle(
                                                                           color:
-                                                                              Colors.blueAccent,
+                                                                              Colors.blue,
                                                                           fontSize:
                                                                               14,
                                                                           fontWeight:
@@ -3190,7 +3190,7 @@ class _FullMessageState extends State<FullMessage> {
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 13.5,
-                                                            letterSpacing: 0.3,
+                                                            letterSpacing: 0,
                                                           ),
                                                         ),
                                                       ],

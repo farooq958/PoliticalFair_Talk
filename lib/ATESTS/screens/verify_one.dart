@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../info screens/how_it_works.dart';
+import '../utils/global_variables.dart';
 import 'verify_two.dart';
 
 class VerifyOne extends StatefulWidget {
@@ -74,11 +75,9 @@ class _VerifyOneState extends State<VerifyOne> {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 36, 64, 101),
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 0)),
+                      color: darkBlue,
+                      border:
+                          Border(bottom: BorderSide(color: darkBlue, width: 0)),
                     ),
                     width: MediaQuery.of(context).size.width * 0.5,
                     height:
@@ -137,7 +136,7 @@ class _VerifyOneState extends State<VerifyOne> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
@@ -175,7 +174,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                         fontSize: 18,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.3),
+                                        letterSpacing: 0),
                                   ),
                                   Container(height: 8),
                                   Padding(
@@ -198,7 +197,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
-                                        letterSpacing: 0.3),
+                                        letterSpacing: 0),
                                   ),
                                   const SizedBox(height: 8),
                                   const Text(
@@ -207,7 +206,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
-                                        letterSpacing: 0.3),
+                                        letterSpacing: 0),
                                   ),
                                   // Container(height: 8),
                                   // const Text(
@@ -216,7 +215,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                   //   style: TextStyle(
                                   //       color: Colors.white,
                                   //       fontSize: 14,
-                                  //       letterSpacing: 0.3),
+                                  //       letterSpacing: 0),
                                   // ),
                                   Container(height: 4),
                                   // Row(
@@ -300,7 +299,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                                   color: Color.fromARGB(
                                                       255, 25, 61, 94),
                                                   fontWeight: FontWeight.bold,
-                                                  letterSpacing: 0.3)),
+                                                  letterSpacing: 0)),
                                           Container(width: 6),
                                           const Icon(
                                             Icons.keyboard_arrow_right,

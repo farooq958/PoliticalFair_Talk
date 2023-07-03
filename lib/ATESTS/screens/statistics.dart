@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 
 class Statistics extends StatefulWidget {
   const Statistics({Key? key}) : super(key: key);
@@ -69,17 +70,16 @@ class _StatisticsState extends State<Statistics> {
   @override
   Widget build(BuildContext context) {
     final User? user = Provider.of<UserProvider>(context).getUser;
-    var safePadding = MediaQuery.of(context).padding.top;
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+            backgroundColor: testing,
             appBar: AppBar(
                 automaticallyImplyLeading: false,
                 elevation: 4,
                 toolbarHeight: 56,
-                backgroundColor: Colors.white,
+                backgroundColor: darkBlue,
                 actions: [
                   Expanded(
                     child: Container(
@@ -104,19 +104,21 @@ class _StatisticsState extends State<Statistics> {
                                     },
                                   );
                                 },
-                                child: const Icon(Icons.arrow_back,
-                                    color: Colors.black),
+                                child: const Icon(Icons.keyboard_arrow_left,
+                                    color: whiteDialog),
                               ),
                             ),
                           ),
                           const Padding(
                             padding: EdgeInsets.only(left: 16.0),
-                            child: Text('Statistics',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                )),
+                            child: Text(
+                              'Statistics',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: whiteDialog,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -130,13 +132,13 @@ class _StatisticsState extends State<Statistics> {
                   const SizedBox(height: 12),
                   PhysicalModel(
                     elevation: 3,
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    color: darkBlue,
+                    borderRadius: BorderRadius.circular(15),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Column(
                         children: [
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -144,12 +146,20 @@ class _StatisticsState extends State<Statistics> {
                                 children: [
                                   Row(
                                     children: const [
-                                      Icon(Icons.person_outlined, size: 17),
+                                      Icon(
+                                        Icons.person_outlined,
+                                        size: 17,
+                                        color: whiteDialog,
+                                      ),
                                       SizedBox(width: 8),
-                                      Text('Accounts:',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500)),
+                                      Text(
+                                        'Accounts:',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: whiteDialog,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -157,50 +167,79 @@ class _StatisticsState extends State<Statistics> {
                               Text('$getUserCounter',
                                   style: const TextStyle(
                                       fontSize: 16,
+                                      color: whiteDialog,
                                       fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 15),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     border: Border(
+                          //       top:
+                          //           BorderSide(color: Colors.white, width: 0.5),
+                          //     ),
+                          //   ),
+                          // ),
+                          const SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: const [
-                                  Icon(Icons.verified_outlined, size: 17),
+                                  Icon(Icons.verified_outlined,
+                                      color: whiteDialog, size: 17),
                                   SizedBox(width: 8),
-                                  Text('Verified Accounts:',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500)),
+                                  Text(
+                                    'Verified Accounts:',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: whiteDialog,
+                                    ),
+                                  ),
                                 ],
                               ),
                               Text('$getVerifiedCounter',
                                   style: const TextStyle(
                                       fontSize: 16,
+                                      color: whiteDialog,
                                       fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 15),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     border: Border(
+                          //       top:
+                          //           BorderSide(color: Colors.white, width: 0.5),
+                          //     ),
+                          //   ),
+                          // ),
+                          const SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: const [
-                                  Icon(Icons.message_outlined, size: 17),
+                                  Icon(Icons.message_outlined,
+                                      color: whiteDialog, size: 17),
                                   SizedBox(width: 8),
                                   Text('Messages:',
                                       style: TextStyle(
                                           fontSize: 16,
+                                          color: whiteDialog,
                                           fontWeight: FontWeight.w500)),
                                 ],
                               ),
                               Text('$getMessageCounter',
                                   style: const TextStyle(
                                       fontSize: 16,
+                                      color: whiteDialog,
                                       fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 30),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -208,22 +247,25 @@ class _StatisticsState extends State<Statistics> {
                                 children: const [
                                   RotatedBox(
                                     quarterTurns: 1,
-                                    child: Icon(Icons.poll_outlined, size: 17),
+                                    child: Icon(Icons.poll_outlined,
+                                        color: whiteDialog, size: 17),
                                   ),
                                   SizedBox(width: 8),
                                   Text('Polls:',
                                       style: TextStyle(
                                           fontSize: 16,
+                                          color: whiteDialog,
                                           fontWeight: FontWeight.w500)),
                                 ],
                               ),
                               Text('$getPollCounter',
                                   style: const TextStyle(
                                       fontSize: 16,
+                                      color: whiteDialog,
                                       fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),

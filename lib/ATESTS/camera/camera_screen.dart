@@ -134,7 +134,7 @@ class CameraScreenState extends State<CameraScreen> {
                                       color: Colors.white.withOpacity(0.75),
                                       fontSize: widget.add == "two" ? 14 : 18,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                               ],
                             ),

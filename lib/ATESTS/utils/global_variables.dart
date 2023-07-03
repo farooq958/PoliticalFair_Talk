@@ -18,11 +18,13 @@ const Color cardBottom = Color.fromARGB(255, 0, 0, 0);
 
 String version = '1.0.1';
 String year = '2023';
-String email = 'fairtalk.assist@gmail.com';
+String email = 'contact@fairtalk.net';
 
 const Color testing = Color.fromARGB(255, 245, 245, 245);
 
-const Color darkBlue = Color.fromARGB(255, 36, 64, 101);
+// const Color darkBlue = darkBlue;
+// const Color darkBlue = Color.fromARGB(255, 43, 61, 83);
+const Color darkBlue = Color.fromARGB(255, 0, 54, 120);
 
 const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);
 

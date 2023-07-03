@@ -60,7 +60,7 @@ class _FullImageScreenState extends State<FullImageScreen> {
                           ),
                         ),
                       ),
-                      Container(width: 22),
+                      Container(width: 16),
                       const Text('Image Viewer',
                           style: TextStyle(
                               color: Colors.black,

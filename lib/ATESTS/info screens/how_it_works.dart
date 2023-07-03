@@ -60,12 +60,12 @@ class _HowItWorksState extends State<HowItWorks> {
         color: Colors.white,
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: const Color.fromARGB(255, 240, 240, 240),
+            backgroundColor: testing,
             appBar: AppBar(
                 automaticallyImplyLeading: false,
                 elevation: 4,
                 toolbarHeight: 56,
-                backgroundColor: Colors.white,
+                backgroundColor: darkBlue,
                 actions: [
                   Expanded(
                     child: Container(
@@ -95,19 +95,19 @@ class _HowItWorksState extends State<HowItWorks> {
                                   );
                                 },
                                 child: const Icon(
-                                  Icons.arrow_back,
+                                  Icons.keyboard_arrow_left,
                                   size: 24,
-                                  color: Colors.black,
+                                  color: whiteDialog,
                                 ),
                               ),
                             ),
                           ),
-                          Container(width: 22),
+                          Container(width: 16),
                           const Text('How does Fairtalk work?',
                               style: TextStyle(
-                                  color: Colors.black,
+                                  color: whiteDialog,
                                   fontSize: 20,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                   fontWeight: FontWeight.w500)),
                         ],
                       ),
@@ -146,8 +146,8 @@ class _HowItWorksState extends State<HowItWorks> {
                         //           style: const TextStyle(
                         //               fontSize: 12,
                         //               fontWeight: FontWeight.w500,
-                        //               letterSpacing: 0.3,
-                        //               color: Color.fromARGB(255, 36, 64, 101))),
+                        //               letterSpacing: 0,
+                        //               color: darkBlue)),
                         //     ],
                         //   ),
                         // ),
@@ -164,7 +164,7 @@ class _HowItWorksState extends State<HowItWorks> {
                               color: Colors.white,
                               // border: Border.all(
                               //     width: 2,
-                              //     color: const Color.fromARGB(255, 36, 64, 101)),
+                              //     color: const darkBlue),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(bottom: isBrief ? 8 : 0),
@@ -216,7 +216,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "How does it work?",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -228,7 +228,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Message score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -328,7 +328,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               //         text: 'Message score = ',
                                               //         style: TextStyle(
                                               //             color: Colors.black,
-                                              //             letterSpacing: 0.3),
+                                              //             letterSpacing: 0),
                                               //       ),
                                               //       WidgetSpan(
                                               //         child: Icon(
@@ -355,7 +355,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               //       //     text: ' votes.',
                                               //       //     style: TextStyle(
                                               //       //         color: Colors.black,
-                                              //       //         letterSpacing: 0.3)),
+                                              //       //         letterSpacing: 0)),
                                               //     ],
                                               //   ),
                                               // ),
@@ -364,7 +364,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Poll score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -373,14 +373,14 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Poll score = Total votes received.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 "There are 4 different types of posts:",
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -403,7 +403,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     child: Text(
                                                       "Global Messages",
                                                       style: TextStyle(
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                       ),
                                                     ),
                                                   ),
@@ -426,7 +426,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     child: Text(
                                                       "National Messages",
                                                       style: TextStyle(
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                       ),
                                                     ),
                                                   ),
@@ -454,7 +454,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     child: Text(
                                                       "Global Polls",
                                                       style: TextStyle(
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                       ),
                                                     ),
                                                   ),
@@ -480,7 +480,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     child: Text(
                                                       "National Polls",
                                                       style: TextStyle(
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                       ),
                                                     ),
                                                   ),
@@ -491,7 +491,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each & every day.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
@@ -499,7 +499,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Verified accounts",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                    letterSpacing: 0.3,
+                                                    letterSpacing: 0,
                                                     fontWeight:
                                                         FontWeight.w500),
                                               ),
@@ -508,14 +508,14 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "National messages/polls can only be created by verified accounts. Additionally, voting is only allowed for verified accounts.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
                                               const Text(
                                                 'On Fairtalk, the majority votes & decides everything. This includes:',
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -552,7 +552,7 @@ class _HowItWorksState extends State<HowItWorks> {
                               color: Colors.white,
                               // border: Border.all(
                               //     width: 2,
-                              //     color: const Color.fromARGB(255, 36, 64, 101)),
+                              //     color: const darkBlue),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -605,7 +605,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Why do we need a platform like Fairtalk?",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -617,7 +617,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Instead of keeping everyone divided, why not bring everyone together?",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -629,7 +629,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "No more power to only politicians or billionaires.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -641,7 +641,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "All users remain anonymous.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -653,7 +653,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "An argument against Fairtalk",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -669,7 +669,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Response to the argument",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -775,7 +775,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 "Summary",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),

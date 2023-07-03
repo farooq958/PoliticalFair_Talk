@@ -22,10 +22,10 @@ class _AddInfoState extends State<AddInfo> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          backgroundColor: testing,
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -53,19 +53,19 @@ class _AddInfoState extends State<AddInfo> {
                                 );
                               },
                               child: const Icon(
-                                Icons.arrow_back,
+                                Icons.keyboard_arrow_left,
                                 size: 24,
-                                color: Colors.black,
+                                color: whiteDialog,
                               ),
                             ),
                           ),
                         ),
-                        Container(width: 12),
+                        Container(width: 16),
                         const Text('Posting on Fairtalk',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: whiteDialog,
                                 fontSize: 20,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500)),
                       ],
                     ),
@@ -89,8 +89,8 @@ class _AddInfoState extends State<AddInfo> {
                 child: SingleChildScrollView(
                   child: PhysicalModel(
                     elevation: 3,
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
+                    color: darkBlue,
+                    borderRadius: BorderRadius.circular(15),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 16),
@@ -100,25 +100,24 @@ class _AddInfoState extends State<AddInfo> {
                           const Text(
                             "There are 4 different types of posts:",
                             style: TextStyle(
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
+                              color: whiteDialog,
                             ),
                           ),
                           const SizedBox(height: 3),
                           Row(
                             children: const [
                               Icon(MyFlutterApp.globe_americas,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                                  color: whiteDialog, size: 15),
                               SizedBox(width: 3),
-                              Icon(Icons.message,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                              Icon(Icons.message, color: whiteDialog, size: 15),
                               SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   "Global Messages",
                                   style: TextStyle(
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ),
@@ -127,19 +126,16 @@ class _AddInfoState extends State<AddInfo> {
                           const SizedBox(height: 3),
                           Row(
                             children: const [
-                              Icon(Icons.flag,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                              Icon(Icons.flag, color: whiteDialog, size: 15),
                               SizedBox(width: 3),
-                              Icon(Icons.message,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                              Icon(Icons.message, color: whiteDialog, size: 15),
                               SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   "National Messages",
                                   style: TextStyle(
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ),
@@ -149,21 +145,20 @@ class _AddInfoState extends State<AddInfo> {
                           Row(
                             children: const [
                               Icon(MyFlutterApp.globe_americas,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                                  color: whiteDialog, size: 15),
                               SizedBox(width: 3),
                               RotatedBox(
                                 quarterTurns: 1,
                                 child: Icon(Icons.poll,
-                                    color: Color.fromARGB(255, 56, 56, 56),
-                                    size: 15),
+                                    color: whiteDialog, size: 15),
                               ),
                               SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   "Global Polls",
                                   style: TextStyle(
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ),
@@ -172,22 +167,20 @@ class _AddInfoState extends State<AddInfo> {
                           const SizedBox(height: 3),
                           Row(
                             children: const [
-                              Icon(Icons.flag,
-                                  color: Color.fromARGB(255, 56, 56, 56),
-                                  size: 15),
+                              Icon(Icons.flag, color: whiteDialog, size: 15),
                               SizedBox(width: 3),
                               RotatedBox(
                                 quarterTurns: 1,
                                 child: Icon(Icons.poll,
-                                    color: Color.fromARGB(255, 56, 56, 56),
-                                    size: 15),
+                                    color: whiteDialog, size: 15),
                               ),
                               SizedBox(width: 6),
                               Expanded(
                                 child: Text(
                                   "National Polls",
                                   style: TextStyle(
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ),
@@ -197,7 +190,8 @@ class _AddInfoState extends State<AddInfo> {
                           const Text(
                             "Once you create a post, it'll immediately get listed on our Home screen where other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection.",
                             style: TextStyle(
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
+                              color: whiteDialog,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -205,7 +199,8 @@ class _AddInfoState extends State<AddInfo> {
                             "Posts sent on a specific date compete against other posts that were also sent on that same date.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
+                              color: whiteDialog,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -213,7 +208,8 @@ class _AddInfoState extends State<AddInfo> {
                             "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each & every day.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
+                              color: whiteDialog,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -221,7 +217,8 @@ class _AddInfoState extends State<AddInfo> {
                             "National messages/polls can only be created by verified accounts. Additionally, voting is also only allowed for verified accounts.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
+                              color: whiteDialog,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -232,11 +229,11 @@ class _AddInfoState extends State<AddInfo> {
                           //           text: 'For additonal details ',
                           //           style: TextStyle(
                           //               color: Colors.black,
-                          //               letterSpacing: 0.3)),
+                          //               letterSpacing: 0)),
                           //       TextSpan(
                           //           text: 'click here.',
                           //           style: const TextStyle(
-                          //               color: Colors.blue, letterSpacing: 0.3),
+                          //               color: Colors.blue, letterSpacing: 0),
                           //           recognizer: TapGestureRecognizer()
                           //             ..onTap = () {
                           //               Navigator.of(context).push(
@@ -258,15 +255,16 @@ class _AddInfoState extends State<AddInfo> {
                                     children: <TextSpan>[
                                       const TextSpan(
                                           text:
-                                              'To view our rules & restrictions to post on Fairtalk, ',
+                                              'To view our rules & restrictions, ',
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              letterSpacing: 0.3)),
+                                              color: whiteDialog,
+                                              letterSpacing: 0)),
                                       TextSpan(
                                           text: 'click here.',
                                           style: const TextStyle(
-                                              color: Colors.blue,
-                                              letterSpacing: 0.3),
+                                              color: Color.fromARGB(
+                                                  255, 103, 187, 255),
+                                              letterSpacing: 0),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               Navigator.of(context).push(

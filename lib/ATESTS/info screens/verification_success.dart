@@ -75,7 +75,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                         fontSize: 24,
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.3)),
+                                        letterSpacing: 0)),
                                 const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
@@ -113,7 +113,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 15.5,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 // Container(height: 8),
                                 // Padding(
@@ -136,7 +136,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -147,7 +147,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -158,7 +158,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -169,7 +169,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                               ],
                             ),

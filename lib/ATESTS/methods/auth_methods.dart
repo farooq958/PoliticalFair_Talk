@@ -179,7 +179,7 @@ class AuthMethods {
         res = "Too many login attempts, please try again later.";
       } else if (e.code == 'user-disabled') {
         res =
-            "This account has been disabled. If you believe this was a mistake, please contact us at: fairtalk.assist@gmail.com";
+            "This account has been disabled. If you believe this was a mistake, please contact us at: contact@fairtalk.net";
       } else if (e.code == 'user-not-found') {
         res = "No registered user found under these credentials.";
         // } else if (e.code == 'invalid-email') {

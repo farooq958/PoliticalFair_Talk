@@ -194,7 +194,7 @@ class _PollCardState extends State<PollCard> {
     return Padding(
       key: Key(widget.poll.pollId),
       padding: const EdgeInsets.only(
-        top: 10,
+        top: 6,
       ),
       child: PhysicalModel(
         color: tileClick ? testing : whiteDialog,

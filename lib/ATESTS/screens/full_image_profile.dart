@@ -52,7 +52,7 @@ class _FullImageProfileState extends State<FullImageProfile> {
                           ),
                         ),
                       ),
-                      Container(width: 22),
+                      Container(width: 16),
                       const Text('Image Viewer',
                           style: TextStyle(
                               color: Colors.black,

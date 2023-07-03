@@ -23,6 +23,7 @@ import '../models/user.dart';
 import '../provider/create_provider.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'full_image_add.dart';
 import 'my_drawer_list.dart';
@@ -89,7 +90,7 @@ class _AddPostState extends State<AddPost> {
   Uint8List? _file;
   var selected = 0;
   String? videoUrl = '';
-  Color buttonColor = Colors.blue;
+
   int i = 0;
   String proxyurl = 'abc';
   bool emptyTittle = false;
@@ -1339,7 +1340,7 @@ class _AddPostState extends State<AddPost> {
         children: [
           Scaffold(
             key: _key,
-            backgroundColor: Colors.black.withOpacity(0.05),
+            backgroundColor: testing,
             drawer: Drawer(
               child: SingleChildScrollView(
                 child: Column(
@@ -1360,7 +1361,7 @@ class _AddPostState extends State<AddPost> {
               automaticallyImplyLeading: false,
               elevation: 4,
               toolbarHeight: 68,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               actions: [
                 Expanded(
                   child: Container(
@@ -1379,7 +1380,7 @@ class _AddPostState extends State<AddPost> {
                                 height: 35,
                                 child: Material(
                                   shape: const CircleBorder(),
-                                  color: Colors.white,
+                                  color: Colors.transparent,
                                   child: InkWell(
                                     customBorder: const CircleBorder(),
                                     splashColor: Colors.grey.withOpacity(0.5),
@@ -1390,7 +1391,7 @@ class _AddPostState extends State<AddPost> {
                                       });
                                     },
                                     child: const Icon(Icons.settings,
-                                        color: Color.fromARGB(255, 80, 80, 80)),
+                                        color: whiteDialog),
                                   ),
                                 ),
                               ),
@@ -1406,10 +1407,9 @@ class _AddPostState extends State<AddPost> {
                                               ? 'GLOBAL'
                                               : 'NATIONAL',
                                           style: const TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 55, 55, 55),
+                                            color: whiteDialog,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: 13,
                                           ),
                                         ),
                                       ),
@@ -1438,15 +1438,15 @@ class _AddPostState extends State<AddPost> {
                                     elevation: 3,
                                     borderRadius: BorderRadius.circular(25),
                                     child: Container(
-                                        width: 116,
+                                        width: 120,
                                         height: 32.5,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(25),
-                                          // border: Border.all(
-                                          //   width: .75,
-                                          //   color: Colors.grey,
-                                          // ),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                         child: Row(
                                           children: [
@@ -1506,19 +1506,19 @@ class _AddPostState extends State<AddPost> {
                                                           Radius.circular(25),
                                                     ),
                                                     color: global == "true"
-                                                        ? const Color.fromARGB(
-                                                            255, 125, 125, 125)
-                                                        : const Color.fromARGB(
-                                                            255, 228, 228, 228),
+                                                        ? whiteDialog
+                                                        : darkBlue,
                                                   ),
                                                   height: 100,
                                                   width: 58,
                                                   child: Icon(
                                                     MyFlutterApp.globe_americas,
-                                                    color: Colors.white,
+                                                    color: global == "true"
+                                                        ? darkBlue
+                                                        : whiteDialog,
                                                     size: global == "true"
                                                         ? 23
-                                                        : 17,
+                                                        : 15,
                                                   ),
                                                 ),
                                               ),
@@ -1586,20 +1586,18 @@ class _AddPostState extends State<AddPost> {
                                                             Radius.circular(25),
                                                       ),
                                                       color: global != "true"
-                                                          ? const Color
-                                                                  .fromARGB(255,
-                                                              125, 125, 125)
-                                                          : const Color
-                                                                  .fromARGB(255,
-                                                              228, 228, 228),
+                                                          ? whiteDialog
+                                                          : darkBlue,
                                                     ),
                                                     height: 100,
                                                     width: 58,
                                                     child: Icon(Icons.flag,
-                                                        color: Colors.white,
+                                                        color: global != "true"
+                                                            ? darkBlue
+                                                            : whiteDialog,
                                                         size: global != "true"
                                                             ? 23
-                                                            : 17)),
+                                                            : 15)),
                                               ),
                                             )
                                           ],
@@ -1614,9 +1612,9 @@ class _AddPostState extends State<AddPost> {
                                     child: Text(
                                       messages == "true" ? 'MESSAGES' : 'POLLS',
                                       style: const TextStyle(
-                                        color: Color.fromARGB(255, 55, 55, 55),
+                                        color: whiteDialog,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 14,
+                                        fontSize: 13,
                                       ),
                                     ),
                                   ),
@@ -1625,14 +1623,14 @@ class _AddPostState extends State<AddPost> {
                                     elevation: 3,
                                     borderRadius: BorderRadius.circular(25),
                                     child: Container(
-                                      width: 116,
+                                      width: 120,
                                       height: 32.5,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
-                                        // border: Border.all(
-                                        //   width: .75,
-                                        //   color: Colors.grey,
-                                        // ),
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
                                       ),
                                       child: Row(
                                         children: [
@@ -1673,18 +1671,18 @@ class _AddPostState extends State<AddPost> {
                                                         Radius.circular(25),
                                                   ),
                                                   color: messages == "true"
-                                                      ? const Color.fromARGB(
-                                                          255, 125, 125, 125)
-                                                      : const Color.fromARGB(
-                                                          255, 228, 228, 228),
+                                                      ? whiteDialog
+                                                      : darkBlue,
                                                 ),
                                                 height: 100,
                                                 width: 58,
                                                 child: Icon(Icons.message,
-                                                    color: Colors.white,
+                                                    color: messages == "true"
+                                                        ? darkBlue
+                                                        : whiteDialog,
                                                     size: messages == "true"
                                                         ? 23
-                                                        : 17),
+                                                        : 15),
                                               ),
                                             ),
                                           ),
@@ -1731,20 +1729,21 @@ class _AddPostState extends State<AddPost> {
                                                           Radius.circular(25),
                                                     ),
                                                     color: messages != "true"
-                                                        ? const Color.fromARGB(
-                                                            255, 125, 125, 125)
-                                                        : const Color.fromARGB(
-                                                            255, 228, 228, 228),
+                                                        ? whiteDialog
+                                                        : darkBlue,
                                                   ),
                                                   height: 100,
                                                   width: 58,
                                                   child: RotatedBox(
                                                     quarterTurns: 1,
                                                     child: Icon(Icons.poll,
-                                                        color: Colors.white,
+                                                        color:
+                                                            messages != "true"
+                                                                ? darkBlue
+                                                                : whiteDialog,
                                                         size: messages != "true"
                                                             ? 23
-                                                            : 17),
+                                                            : 15),
                                                   )),
                                             ),
                                           )
@@ -1755,12 +1754,11 @@ class _AddPostState extends State<AddPost> {
                                 ],
                               ),
                               SizedBox(
-                                width: 35,
-                                height: 35,
-                                // color: Colors.blue,
+                                width: 36,
+                                height: 36,
                                 child: Material(
                                   shape: const CircleBorder(),
-                                  color: Colors.white,
+                                  color: Colors.transparent,
                                   child: InkWell(
                                       customBorder: const CircleBorder(),
                                       splashColor: Colors.grey.withOpacity(0.5),
@@ -1777,8 +1775,7 @@ class _AddPostState extends State<AddPost> {
                                         });
                                       },
                                       child: const Icon(Icons.info_outline,
-                                          color:
-                                              Color.fromARGB(255, 80, 80, 80))),
+                                          color: whiteDialog)),
                                 ),
                               ),
                             ],
@@ -2851,7 +2848,7 @@ class _AddPostState extends State<AddPost> {
                                                                                           color: Colors.blue,
                                                                                           fontWeight: FontWeight.w500,
                                                                                           fontSize: 13,
-                                                                                          letterSpacing: 0.3,
+                                                                                          letterSpacing: 0,
                                                                                         )),
                                                                                   )),
                                                                             ),
@@ -2926,7 +2923,7 @@ class _AddPostState extends State<AddPost> {
                                                                                           color: Colors.blue,
                                                                                           fontWeight: FontWeight.w500,
                                                                                           fontSize: 13,
-                                                                                          letterSpacing: 0.3,
+                                                                                          letterSpacing: 0,
                                                                                         )),
                                                                                   )),
                                                                             ),
@@ -2988,7 +2985,7 @@ class _AddPostState extends State<AddPost> {
                                     children: [
                                       PhysicalModel(
                                         elevation: 3,
-                                        color: Colors.white,
+                                        color: Colors.blue,
                                         borderRadius: BorderRadius.circular(50),
                                         child: Material(
                                           color: Colors.blue,
@@ -3005,8 +3002,15 @@ class _AddPostState extends State<AddPost> {
                                               });
                                             },
                                             child: SizedBox(
-                                              height: 38,
+                                              height: 42,
                                               child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  // border: Border.all(
+                                                  //     color: Colors.white,
+                                                  //     width: 4),
+                                                ),
                                                 alignment: Alignment.center,
                                                 padding: const EdgeInsets.only(
                                                     left: 20, right: 20),
@@ -3015,7 +3019,7 @@ class _AddPostState extends State<AddPost> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     const Icon(Icons.send,
-                                                        color: Colors.white,
+                                                        color: whiteDialog,
                                                         size: 19),
                                                     const SizedBox(width: 10),
                                                     Text(
@@ -3023,11 +3027,11 @@ class _AddPostState extends State<AddPost> {
                                                           ? 'Send Message Globally'
                                                           : 'Send Message Nationally',
                                                       style: const TextStyle(
-                                                          color: Colors.white,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          fontSize: 15,
-                                                          letterSpacing: 1),
+                                                          fontSize: 16,
+                                                          letterSpacing: 0),
                                                     ),
                                                   ],
                                                 ),
@@ -3045,7 +3049,7 @@ class _AddPostState extends State<AddPost> {
                                         children: [
                                           PhysicalModel(
                                             elevation: 3,
-                                            color: Colors.white,
+                                            color: whiteDialog,
                                             borderRadius:
                                                 BorderRadius.circular(50),
                                             child: Material(
@@ -3067,8 +3071,7 @@ class _AddPostState extends State<AddPost> {
                                                                   widget
                                                                       .durationInDay &&
                                                               global == 'false'
-                                                      ? const Color.fromARGB(
-                                                          255, 180, 180, 180)
+                                                      ? whiteDialog
                                                       : Colors.blue,
                                               borderRadius:
                                                   BorderRadius.circular(50),
@@ -3131,8 +3134,17 @@ class _AddPostState extends State<AddPost> {
                                                   });
                                                 },
                                                 child: SizedBox(
-                                                  height: 40,
+                                                  height: 42,
                                                   child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      // border: Border.all(
+                                                      //   color: darkBlue,
+                                                      //   width: 0,
+                                                      // ),
+                                                    ),
                                                     alignment: Alignment.center,
                                                     padding:
                                                         const EdgeInsets.only(
@@ -3160,7 +3172,22 @@ class _AddPostState extends State<AddPost> {
                                                                             'false'
                                                                 ? Icons.timer
                                                                 : Icons.send,
-                                                            color: Colors.white,
+                                                            color: snap?.pending ==
+                                                                            "true" &&
+                                                                        global ==
+                                                                            'false' ||
+                                                                    snap?.gMessageTime ==
+                                                                            widget
+                                                                                .durationInDay &&
+                                                                        global ==
+                                                                            'true' ||
+                                                                    snap?.nMessageTime ==
+                                                                            widget
+                                                                                .durationInDay &&
+                                                                        global ==
+                                                                            'false'
+                                                                ? darkBlue
+                                                                : whiteDialog,
                                                             size: 18),
                                                         const SizedBox(
                                                             width: 10),
@@ -3183,31 +3210,31 @@ class _AddPostState extends State<AddPost> {
                                                                         .center,
                                                                 children: const [
                                                                   Text(
-                                                                    'WAITING TIME',
+                                                                    'Waiting Time',
                                                                     style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
+                                                                        color:
+                                                                            darkBlue,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .bold,
                                                                         fontSize:
-                                                                            15,
+                                                                            16,
                                                                         letterSpacing:
-                                                                            1),
+                                                                            0),
                                                                   ),
-                                                                  Text(
-                                                                    'Timer refreshes at 12:01AM EST',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize:
-                                                                            9,
-                                                                        letterSpacing:
-                                                                            0.2),
-                                                                  ),
+                                                                  // Text(
+                                                                  //   'Timer refreshes at 12:01AM EST',
+                                                                  //   style: TextStyle(
+                                                                  //       color: Colors
+                                                                  //           .white,
+                                                                  //       fontWeight:
+                                                                  //           FontWeight
+                                                                  //               .bold,
+                                                                  //       fontSize:
+                                                                  //           9,
+                                                                  //       letterSpacing:
+                                                                  //           0.2),
+                                                                  // ),
                                                                 ],
                                                               )
                                                             : Text(
@@ -3226,15 +3253,15 @@ class _AddPostState extends State<AddPost> {
                                                                             ? 'Send Message Globally'
                                                                             : 'Send Message Nationally',
                                                                 style: const TextStyle(
-                                                                    color: Colors
-                                                                        .white,
+                                                                    color:
+                                                                        whiteDialog,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
                                                                     fontSize:
-                                                                        15,
+                                                                        16,
                                                                     letterSpacing:
-                                                                        1),
+                                                                        0),
                                                               ),
                                                       ],
                                                     ),
@@ -5800,7 +5827,7 @@ class _AddPostState extends State<AddPost> {
                                                                                                   color: Colors.blue,
                                                                                                   fontWeight: FontWeight.w500,
                                                                                                   fontSize: 13,
-                                                                                                  letterSpacing: 0.3,
+                                                                                                  letterSpacing: 0,
                                                                                                 )),
                                                                                           )),
                                                                                     ),
@@ -5854,7 +5881,7 @@ class _AddPostState extends State<AddPost> {
                                                                                                   color: Colors.blue,
                                                                                                   fontWeight: FontWeight.w500,
                                                                                                   fontSize: 13,
-                                                                                                  letterSpacing: 0.3,
+                                                                                                  letterSpacing: 0,
                                                                                                 )),
                                                                                           )),
                                                                                     ),
@@ -5911,7 +5938,7 @@ class _AddPostState extends State<AddPost> {
                                 PhysicalModel(
                                   elevation: 3,
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(50),
                                   child: Material(
                                     color: user == null
                                         ? Colors.blue
@@ -5925,8 +5952,7 @@ class _AddPostState extends State<AddPost> {
                                                 snap?.nPollTime ==
                                                         widget.durationInDay &&
                                                     global == 'false'
-                                            ? const Color.fromARGB(
-                                                255, 180, 180, 180)
+                                            ? whiteDialog
                                             : Colors.blue,
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
@@ -6003,7 +6029,7 @@ class _AddPostState extends State<AddPost> {
                                         });
                                       },
                                       child: SizedBox(
-                                        height: 38,
+                                        height: 42,
                                         child: Container(
                                           padding: const EdgeInsets.only(
                                               left: 20, right: 20),
@@ -6022,7 +6048,19 @@ class _AddPostState extends State<AddPost> {
                                                             global == 'false'
                                                     ? Icons.timer
                                                     : Icons.send,
-                                                color: Colors.white,
+                                                color: snap?.pending ==
+                                                                "true" &&
+                                                            global == 'false' ||
+                                                        snap?.gPollTime ==
+                                                                widget
+                                                                    .durationInDay &&
+                                                            global == 'true' ||
+                                                        snap?.nPollTime ==
+                                                                widget
+                                                                    .durationInDay &&
+                                                            global == 'false'
+                                                    ? darkBlue
+                                                    : whiteDialog,
                                                 size: 18,
                                               ),
                                               const SizedBox(width: 10),
@@ -6043,28 +6081,27 @@ class _AddPostState extends State<AddPost> {
                                                               .center,
                                                       children: const [
                                                         Text(
-                                                          'WAITING TIME',
+                                                          'Waiting Time',
                                                           style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
+                                                              color: darkBlue,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              fontSize: 15,
-                                                              letterSpacing: 1),
+                                                              fontSize: 16,
+                                                              letterSpacing: 0),
                                                         ),
-                                                        Text(
-                                                          'Timer refreshes at 12:01AM EST',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 9,
-                                                              letterSpacing:
-                                                                  0.2),
-                                                        ),
+                                                        // Text(
+                                                        //   'Timer refreshes at 12:01AM EST',
+                                                        //   style: TextStyle(
+                                                        //       color:
+                                                        //           Colors.white,
+                                                        //       fontWeight:
+                                                        //           FontWeight
+                                                        //               .bold,
+                                                        //       fontSize: 9,
+                                                        //       letterSpacing:
+                                                        //           0.2),
+                                                        // ),
                                                       ],
                                                     )
                                                   : Text(
@@ -6080,11 +6117,11 @@ class _AddPostState extends State<AddPost> {
                                                                   ? 'Send Poll Globally'
                                                                   : 'Send Poll Nationally',
                                                       style: const TextStyle(
-                                                          color: Colors.white,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          fontSize: 15,
-                                                          letterSpacing: 1),
+                                                          fontSize: 16,
+                                                          letterSpacing: 0),
                                                     )
                                             ],
                                           ),

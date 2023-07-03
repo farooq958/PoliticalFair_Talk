@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/add_post_daily.dart';
 import '../screens/verify_one.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -31,11 +32,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     children: [
                       Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromARGB(255, 36, 64, 101),
-                                  width: 0)),
+                              bottom: BorderSide(color: darkBlue, width: 0)),
                         ),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height:
@@ -93,8 +92,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                     child: const Text(
                                       'A platform built to unite us all.',
                                       style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 36, 64, 101),
+                                          color: darkBlue,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 9,
                                           fontFamily: 'Capitalis'),
@@ -141,7 +139,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         child: Center(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 36, 64, 101),
+                              color: darkBlue,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(75),
                               ),
@@ -202,7 +200,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 18,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -213,7 +211,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                       //     color: Colors.white,
                                       //     fontWeight: FontWeight.w500,
                                       //     fontSize: 18,
-                                      //     letterSpacing: 0.3,
+                                      //     letterSpacing: 0,
                                       //   ),
                                       // ),
                                       Padding(
@@ -239,7 +237,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                       //     color: Colors.white,
                                       //     fontWeight: FontWeight.w500,
                                       //     fontSize: 18,
-                                      //     letterSpacing: 0.3,
+                                      //     letterSpacing: 0,
                                       //   ),
                                       // ),
                                       // Container(height: 8),
@@ -267,7 +265,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 13.5,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                             ),
                                           ),
                                           SizedBox(height: 8),
@@ -277,7 +275,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 13.5,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                             ),
                                           ),
 
@@ -288,7 +286,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           //   style: TextStyle(
                                           //     color: Colors.white,
                                           //     fontSize: 13.5,
-                                          //     letterSpacing: 0.3,
+                                          //     letterSpacing: 0,
                                           //   ),
                                           // ),
 
@@ -299,7 +297,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           //   style: TextStyle(
                                           //     color: Colors.white,
                                           //     fontSize: 13.5,
-                                          //     letterSpacing: 0.3,
+                                          //     letterSpacing: 0,
                                           //   ),
                                           // ),
                                         ],
@@ -541,7 +539,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                                                     36,
                                                                     64,
                                                                     101),
-                                                            letterSpacing: 0.3),
+                                                            letterSpacing: 0),
                                                       ),
                                                     ],
                                                   ),
@@ -562,7 +560,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 11.5,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                     ),

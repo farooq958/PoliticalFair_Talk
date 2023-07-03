@@ -219,9 +219,9 @@ class _CountriesState extends State<Countries> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: testing,
           appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+            backgroundColor: testing,
             elevation: 0,
             automaticallyImplyLeading: false,
             toolbarHeight: 92,
@@ -232,7 +232,7 @@ class _CountriesState extends State<Countries> {
                   child: Column(
                     children: [
                       PhysicalModel(
-                        color: Colors.white,
+                        color: darkBlue,
                         elevation: 4,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 3, top: 3),
@@ -251,7 +251,7 @@ class _CountriesState extends State<Countries> {
                                         height: 40,
                                         child: Material(
                                           shape: const CircleBorder(),
-                                          color: Colors.white,
+                                          color: Colors.transparent,
                                           child: InkWell(
                                             customBorder: const CircleBorder(),
                                             splashColor:
@@ -265,8 +265,9 @@ class _CountriesState extends State<Countries> {
                                                 },
                                               );
                                             },
-                                            child: const Icon(Icons.arrow_back,
-                                                color: Colors.black),
+                                            child: const Icon(
+                                                Icons.keyboard_arrow_left,
+                                                color: whiteDialog),
                                           ),
                                         ),
                                       ),
@@ -277,7 +278,7 @@ class _CountriesState extends State<Countries> {
                                   children: [
                                     Material(
                                       borderRadius: BorderRadius.circular(8),
-                                      color: Colors.white,
+                                      color: Colors.transparent,
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(8),
                                         splashColor:
@@ -297,14 +298,14 @@ class _CountriesState extends State<Countries> {
                                                       style: TextStyle(
                                                           fontSize: 19,
                                                           letterSpacing: 0.5,
-                                                          color: Colors.black,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.w500)),
                                                   Text('Filter',
                                                       style: TextStyle(
                                                           fontSize: 19,
                                                           letterSpacing: 0.5,
-                                                          color: Colors.black,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.w500)),
                                                 ],
@@ -317,14 +318,14 @@ class _CountriesState extends State<Countries> {
                                                       style: TextStyle(
                                                           fontSize: 19,
                                                           letterSpacing: 0.5,
-                                                          color: Colors.black,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.w500)),
                                                   Text('Filter',
                                                       style: TextStyle(
                                                           fontSize: 19,
                                                           letterSpacing: 0.5,
-                                                          color: Colors.black,
+                                                          color: whiteDialog,
                                                           fontWeight:
                                                               FontWeight.w500)),
                                                 ],
@@ -337,8 +338,8 @@ class _CountriesState extends State<Countries> {
                                         padding: EdgeInsets.only(left: 3.0),
                                         child: Icon(
                                           Icons.info_outline,
-                                          color: Colors.black,
-                                          size: 10,
+                                          color: whiteDialog,
+                                          size: 12,
                                         ),
                                       ),
                                     ),
@@ -349,8 +350,7 @@ class _CountriesState extends State<Countries> {
                                       top: 8.0, right: 14, bottom: 8),
                                   child: PhysicalModel(
                                     elevation: 3,
-                                    color: const Color.fromARGB(
-                                        255, 240, 240, 240),
+                                    color: whiteDialog,
                                     borderRadius: const BorderRadius.all(
                                       Radius.circular(8.0),
                                     ),
@@ -385,14 +385,18 @@ class _CountriesState extends State<Countries> {
                                           controller: _countriesController,
                                           decoration: const InputDecoration(
                                             prefixIcon: Icon(Icons.search,
-                                                color: Colors.grey, size: 20),
+                                                color: Color.fromARGB(
+                                                    255, 100, 100, 100),
+                                                size: 20),
                                             hintText: "Search Countries",
                                             labelStyle: TextStyle(
-                                              color: Colors.grey,
+                                              color: Color.fromARGB(
+                                                  255, 100, 100, 100),
                                               fontStyle: FontStyle.normal,
                                             ),
                                             hintStyle: TextStyle(
-                                              color: Colors.grey,
+                                              color: Color.fromARGB(
+                                                  255, 100, 100, 100),
                                             ),
                                             border: InputBorder.none,
                                             contentPadding: EdgeInsets.only(
@@ -444,7 +448,7 @@ class _CountriesState extends State<Countries> {
                                                   'Sorting Order',
                                                   style: TextStyle(
                                                       fontSize: 13.5,
-                                                      letterSpacing: 0.3,
+                                                      letterSpacing: 0,
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.w500),
@@ -480,7 +484,7 @@ class _CountriesState extends State<Countries> {
                                                 child: Text('Voting Cycles',
                                                     style: TextStyle(
                                                         fontSize: 13.5,
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.w500)),
@@ -500,7 +504,7 @@ class _CountriesState extends State<Countries> {
                                         child: Text('Countries',
                                             style: TextStyle(
                                                 fontSize: 13.5,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w500)),
                                       ),
@@ -827,9 +831,7 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
       child: SizedBox(
         height: 41,
         child: PhysicalModel(
-          color: isSelected
-              ? const Color.fromARGB(255, 187, 225, 255)
-              : Colors.white,
+          color: isSelected ? darkBlue : whiteDialog,
           elevation: 2,
           borderRadius: BorderRadius.circular(5),
           child: Container(
@@ -851,7 +853,7 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
                           : widget.leading == 'Most Recent'
                               ? Icons.stars
                               : MyFlutterApp.hourglass_2,
-                      color: isSelected ? Colors.black : Colors.grey,
+                      color: isSelected ? whiteDialog : Colors.grey,
                       size: widget.leading == 'Highest Score' ||
                               widget.leading == 'Most Recent'
                           ? 21
@@ -866,7 +868,7 @@ class _NoRadioListTileState<T> extends State<NoRadioListTile<T>> {
                         widget.leading,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: isSelected ? Colors.black : Colors.grey,
+                          color: isSelected ? whiteDialog : Colors.grey,
                           fontSize: widget.leading == 'Highest Score' ||
                                   widget.leading == 'Most Recent'
                               ? 11
@@ -917,9 +919,7 @@ class MyRadioListTile extends StatelessWidget {
           child: SizedBox(
             height: 41,
             child: PhysicalModel(
-              color: index == selectedIndex
-                  ? const Color.fromARGB(255, 187, 225, 255)
-                  : Colors.white,
+              color: index == selectedIndex ? darkBlue : Colors.white,
               borderRadius: BorderRadius.circular(5),
               elevation: 2,
               child: Container(
@@ -955,7 +955,7 @@ class MyRadioListTile extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: index == selectedIndex
-                                  ? Colors.black
+                                  ? whiteDialog
                                   : Colors.grey,
                               fontSize: 10,
                               fontWeight: FontWeight.w500,

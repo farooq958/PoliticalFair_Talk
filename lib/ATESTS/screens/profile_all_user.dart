@@ -79,11 +79,13 @@ class ProfileAllUserState extends State<ProfileAllUser>
       Icons.message_outlined,
     )),
     const Tab(
-        child: RotatedBox(
-            quarterTurns: 1,
-            child: Icon(
-              Icons.poll_outlined,
-            ))),
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Icon(
+          Icons.poll_outlined,
+        ),
+      ),
+    ),
     // Tab(child: Icon(Icons.check_box_outlined)),
     //new tab for comments and replies by the user
     // if (_userAdmin?.UID == _userProfile?.UID)
@@ -175,20 +177,26 @@ class ProfileAllUserState extends State<ProfileAllUser>
   }
 
   get getTabBar {
-    return TabBar(
-      onTap: (index) {
-        setState(() {
-          currentTab = index;
-        });
-      },
-      // isScrollable: true,
-      // _userAdmin?.UID == _userProfile?.UID,
-      tabs: list,
-      // const [],
-      indicatorColor: Colors.black,
-      indicatorWeight: 4,
-      labelColor: Colors.black,
-      controller: _tabController,
+    return PreferredSize(
+      preferredSize: Size(49.5, 49.5),
+      child: Container(
+        color: darkBlue,
+        child: TabBar(
+          onTap: (index) {
+            setState(() {
+              currentTab = index;
+            });
+          },
+          // isScrollable: true,
+          // _userAdmin?.UID == _userProfile?.UID,
+          tabs: list,
+          // const [],
+          indicatorColor: whiteDialog,
+          indicatorWeight: 4,
+          labelColor: whiteDialog,
+          controller: _tabController,
+        ),
+      ),
     );
   }
 
@@ -246,7 +254,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                   controller: _scrollController,
                   slivers: [
                     SliverAppBar(
-                      backgroundColor: whiteDialog,
+                      backgroundColor: darkBlue,
                       expandedHeight: 200,
                       automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
@@ -282,8 +290,9 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                 },
                                               );
                                             },
-                                            child: const Icon(Icons.arrow_back,
-                                                color: Colors.black),
+                                            child: const Icon(
+                                                Icons.keyboard_arrow_left,
+                                                color: whiteDialog),
                                           ),
                                         ),
                                       ),
@@ -294,8 +303,8 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                         fontSize: 18,
                                         overflow: TextOverflow.ellipsis,
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.3,
-                                        color: Colors.black,
+                                        letterSpacing: 0,
+                                        color: whiteDialog,
                                       ),
                                     ),
                                     _userAdmin?.UID == _userProfile?.UID
@@ -333,7 +342,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                           ? Icons
                                                               .create_outlined
                                                           : Icons.more_vert,
-                                                      color: Colors.black),
+                                                      color: whiteDialog),
                                                 ),
                                               ),
                                             ),
@@ -601,27 +610,19 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                       children: const [
                                                         Icon(
                                                           MyFlutterApp.medal,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              150,
-                                                              150,
-                                                              150),
+                                                          color: Colors.white,
                                                           size: 12,
                                                         ),
                                                         SizedBox(width: 4),
-                                                        Text('Score',
-                                                            style: TextStyle(
-                                                              fontSize: 11,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      150,
-                                                                      150,
-                                                                      150),
-                                                            )),
+                                                        Text(
+                                                          'Score',
+                                                          style: TextStyle(
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
                                                         // const SizedBox(width: 4),
                                                       ],
                                                     ),
@@ -632,7 +633,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                           const BoxDecoration(
                                                         border: Border(
                                                           top: BorderSide(
-                                                            color: Colors.grey,
+                                                            color: whiteDialog,
                                                             width: 0,
                                                           ),
                                                         ),
@@ -648,7 +649,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                             style:
                                                                 const TextStyle(
                                                               color:
-                                                                  Colors.black,
+                                                                  whiteDialog,
                                                               fontSize: 15,
                                                               fontWeight:
                                                                   FontWeight
@@ -662,12 +663,13 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                             style:
                                                                 const TextStyle(
                                                               color:
-                                                                  Colors.black,
+                                                                  whiteDialog,
                                                               fontSize: 15,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                            ))
+                                                            ),
+                                                          )
                                                   ],
                                                 ),
                                               ),
@@ -841,19 +843,18 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                 children: const [
                                                   Icon(
                                                     Icons.perm_contact_calendar,
-                                                    color: Color.fromARGB(
-                                                        255, 150, 150, 150),
+                                                    color: whiteDialog,
                                                     size: 13,
                                                   ),
                                                   SizedBox(width: 4),
-                                                  Text('Joined',
-                                                      style: TextStyle(
+                                                  Text(
+                                                    'Joined',
+                                                    style: TextStyle(
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        color: Color.fromARGB(
-                                                            255, 150, 150, 150),
-                                                      )),
+                                                        color: whiteDialog),
+                                                  ),
                                                 ],
                                               ),
                                               const SizedBox(height: 2),
@@ -862,7 +863,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                 decoration: const BoxDecoration(
                                                   border: Border(
                                                     top: BorderSide(
-                                                      color: Colors.grey,
+                                                      color: whiteDialog,
                                                       width: 0,
                                                     ),
                                                   ),
@@ -878,7 +879,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                         )
                                                       : '',
                                                   style: const TextStyle(
-                                                      color: Colors.black,
+                                                      color: whiteDialog,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontSize: 15)),
@@ -920,109 +921,104 @@ class ProfileAllUserState extends State<ProfileAllUser>
                           child: Column(children: [
                             Visibility(
                               visible: _tabController?.index == 2,
-                              child: Padding(
+                              child: Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: SizedBox(
-                                  // width: 310,
-                                  child: Column(
-                                    children: [
-                                      Material(
-                                        borderRadius: BorderRadius.circular(5),
-                                        elevation: 2,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: testing,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          padding: const EdgeInsets.all(5),
-                                          margin: const EdgeInsets.only(),
-                                          child: StreamBuilder<int>(
-                                              initialData: 0,
-                                              stream:
-                                                  _commentRepliesIndexController
-                                                      .stream,
-                                              builder: (context, snapshot) {
-                                                return Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: GestureDetector(
-                                                          onTap: () {
-                                                            _commentRepliesIndexController
-                                                                .add(0);
-                                                          },
-                                                          child:
-                                                              AnimatedCrossFade(
-                                                            duration:
-                                                                animationDuration,
-                                                            crossFadeState: (snapshot
-                                                                        .data ==
-                                                                    0)
+                                color: darkBlue,
+                                // width: 310,
+                                child: Column(
+                                  children: [
+                                    Material(
+                                      color: darkBlue,
+                                      borderRadius: BorderRadius.circular(5),
+                                      elevation: 2,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: whiteDialog,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        padding: const EdgeInsets.all(5),
+                                        margin: const EdgeInsets.only(),
+                                        child: StreamBuilder<int>(
+                                            initialData: 0,
+                                            stream:
+                                                _commentRepliesIndexController
+                                                    .stream,
+                                            builder: (context, snapshot) {
+                                              return Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        _commentRepliesIndexController
+                                                            .add(0);
+                                                      },
+                                                      child: AnimatedCrossFade(
+                                                        duration:
+                                                            animationDuration,
+                                                        crossFadeState:
+                                                            (snapshot.data == 0)
                                                                 ? CrossFadeState
                                                                     .showFirst
                                                                 : CrossFadeState
                                                                     .showSecond,
-                                                            secondChild:
-                                                                animatedTabContainer(
-                                                                    label:
-                                                                        'Comments',
-                                                                    color: Colors
-                                                                        .transparent),
-                                                            firstChild:
-                                                                animatedTabContainer(
-                                                              label: 'Comments',
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      210,
-                                                                      210,
-                                                                      210),
-                                                            ),
-                                                          )),
-                                                    ),
-                                                    Expanded(
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          _commentRepliesIndexController
-                                                              .add(1);
-                                                        },
-                                                        child:
-                                                            AnimatedCrossFade(
-                                                          duration:
-                                                              animationDuration,
-                                                          crossFadeState:
-                                                              snapshot.data == 1
-                                                                  ? CrossFadeState
-                                                                      .showFirst
-                                                                  : CrossFadeState
-                                                                      .showSecond,
-                                                          secondChild:
-                                                              animatedTabContainer(
-                                                                  label:
-                                                                      'Replies',
-                                                                  color: Colors
-                                                                      .transparent),
-                                                          firstChild:
-                                                              animatedTabContainer(
-                                                            label: 'Replies',
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    210,
-                                                                    210,
-                                                                    210),
-                                                          ),
+                                                        secondChild:
+                                                            animatedTabContainer(
+                                                          label: 'Comments',
+                                                          color: Colors
+                                                              .transparent,
+                                                          labelColor: darkBlue,
+                                                        ),
+                                                        firstChild:
+                                                            animatedTabContainer(
+                                                          label: 'Comments',
+                                                          color: darkBlue,
+                                                          labelColor:
+                                                              whiteDialog,
                                                         ),
                                                       ),
                                                     ),
-                                                  ],
-                                                );
-                                              }),
-                                        ),
+                                                  ),
+                                                  Expanded(
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        _commentRepliesIndexController
+                                                            .add(1);
+                                                      },
+                                                      child: AnimatedCrossFade(
+                                                        duration:
+                                                            animationDuration,
+                                                        crossFadeState:
+                                                            snapshot.data == 1
+                                                                ? CrossFadeState
+                                                                    .showFirst
+                                                                : CrossFadeState
+                                                                    .showSecond,
+                                                        secondChild:
+                                                            animatedTabContainer(
+                                                                label:
+                                                                    'Replies',
+                                                                color: Colors
+                                                                    .transparent,
+                                                                labelColor:
+                                                                    darkBlue),
+                                                        firstChild:
+                                                            animatedTabContainer(
+                                                                label:
+                                                                    'Replies',
+                                                                color: darkBlue,
+                                                                labelColor:
+                                                                    whiteDialog),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            }),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -1095,7 +1091,10 @@ class ProfileAllUserState extends State<ProfileAllUser>
     });
   }
 
-  Widget animatedTabContainer({required String label, required Color color}) {
+  Widget animatedTabContainer(
+      {required String label,
+      required Color color,
+      required Color labelColor}) {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -1104,9 +1103,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Text(label,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 80, 80, 80))),
+          style: TextStyle(fontWeight: FontWeight.bold, color: labelColor)),
     );
   }
 }
@@ -1249,7 +1246,7 @@ class _PostTabScreen extends StatelessWidget {
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 13.5,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                               ),
                                             ),
                                           ],
@@ -1386,7 +1383,7 @@ class _PollTabScreen extends StatelessWidget {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 13.5,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                             ),
                                           ),
                                         ],
@@ -1630,7 +1627,7 @@ class _CommentRepliesTabScreen extends StatelessWidget {
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 13.5,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                     ],
