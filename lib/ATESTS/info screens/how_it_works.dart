@@ -138,7 +138,7 @@ class _HowItWorksState extends State<HowItWorks> {
                         //       SizedBox(
                         //         height: 50,
                         //         child: Image.asset(
-                        //           'assets/fairtalk_blue_transparent.png',
+                        //           'assets/fairtalk_new_blue_transparent.png',
                         //         ),
                         //       ),
                         //       const SizedBox(height: 6),
@@ -152,16 +152,16 @@ class _HowItWorksState extends State<HowItWorks> {
                         //   ),
                         // ),
                         PhysicalModel(
-                          color: Colors.white,
+                          color: darkBlue,
                           elevation: 3,
-                          borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(15),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
+                                horizontal: 12, vertical: 15),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              color: darkBlue,
                               // border: Border.all(
                               //     width: 2,
                               //     color: const darkBlue),
@@ -170,39 +170,39 @@ class _HowItWorksState extends State<HowItWorks> {
                               padding: EdgeInsets.only(bottom: isBrief ? 8 : 0),
                               child: Column(
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        isBrief = !isBrief;
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 6, horizontal: 6),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          const Text(
-                                            "Brief Explanation",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              letterSpacing: 0.5,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Icon(
-                                              isBrief
-                                                  ? Icons.keyboard_arrow_up
-                                                  : Icons.keyboard_arrow_down,
-                                              color: Colors.black,
-                                              size: 28)
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     setState(() {
+                                  //       isBrief = !isBrief;
+                                  //     });
+                                  //   },
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         vertical: 6, horizontal: 6),
+                                  //     child: Row(
+                                  //       mainAxisAlignment:
+                                  //           MainAxisAlignment.spaceBetween,
+                                  //       children: [
+                                  //         const Text(
+                                  //           "Brief Explanation",
+                                  //           textAlign: TextAlign.center,
+                                  //           style: TextStyle(
+                                  //             color: whiteDialog,
+                                  //             letterSpacing: 0.5,
+                                  //             fontWeight: FontWeight.bold,
+                                  //             fontSize: 18,
+                                  //           ),
+                                  //         ),
+                                  //         Icon(
+                                  //             isBrief
+                                  //                 ? Icons.keyboard_arrow_up
+                                  //                 : Icons.keyboard_arrow_down,
+                                  //             color: whiteDialog,
+                                  //             size: 28)
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   isBrief
                                       ? Padding(
                                           padding: const EdgeInsets.symmetric(
@@ -218,18 +218,27 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 style: TextStyle(
                                                   letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
+                                                  color: whiteDialog,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "When you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. Posts sent on a specific date compete against other posts that were also sent on that same date."),
-                                              const SizedBox(height: 15),
+                                                "As soon as you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. Posts sent on a specific date compete against other posts sent on that same date.",
+                                                style: TextStyle(
+                                                  color: whiteDialog,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
                                               const Text(
                                                 "Message score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
+                                                  color: whiteDialog,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
@@ -252,7 +261,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       text:
                                                           " increments the message's score by +1.",
                                                       style: TextStyle(
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],
@@ -264,9 +273,6 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   children: [
                                                     TextSpan(
                                                       text: "",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                      ),
                                                     ),
                                                     WidgetSpan(
                                                       child: Icon(
@@ -279,7 +285,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       text:
                                                           " decrements the message's score by -1.",
                                                       style: TextStyle(
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],
@@ -303,9 +309,9 @@ class _HowItWorksState extends State<HowItWorks> {
                                                               .pause_circle_filled,
                                                           color: Color.fromARGB(
                                                               255,
-                                                              104,
-                                                              104,
-                                                              104),
+                                                              195,
+                                                              195,
+                                                              195),
                                                           size: 15,
                                                         ),
                                                       ),
@@ -314,7 +320,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       text:
                                                           " doesn't change the score at all.",
                                                       style: TextStyle(
-                                                        color: Colors.black,
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],
@@ -359,13 +365,15 @@ class _HowItWorksState extends State<HowItWorks> {
                                               //     ],
                                               //   ),
                                               // ),
-                                              const SizedBox(height: 15),
+                                              const SizedBox(height: 20),
                                               const Text(
                                                 "Poll score calculation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
+                                                  color: whiteDialog,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
@@ -374,14 +382,37 @@ class _HowItWorksState extends State<HowItWorks> {
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0,
+                                                  color: whiteDialog,
                                                 ),
                                               ),
-                                              const SizedBox(height: 15),
+                                              const SizedBox(height: 20),
                                               const Text(
-                                                "There are 4 different types of posts:",
+                                                "Verified accounts",
+                                                textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0,
                                                   fontWeight: FontWeight.w500,
+                                                  color: whiteDialog,
+                                                  fontSize: 17,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                "To eliminate the manipulation of our voting system, only votes from verified accounts increase the score of messages/polls.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  letterSpacing: 0,
+                                                  color: whiteDialog,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
+                                              const Text(
+                                                "There are 4 types of posts:",
+                                                style: TextStyle(
+                                                  letterSpacing: 0,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: whiteDialog,
+                                                  fontSize: 17,
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
@@ -390,13 +421,11 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   Icon(
                                                       MyFlutterApp
                                                           .globe_americas,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 3),
                                                   Icon(Icons.message,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 6),
                                                   Expanded(
@@ -404,6 +433,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       "Global Messages",
                                                       style: TextStyle(
                                                         letterSpacing: 0,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ),
@@ -413,13 +443,11 @@ class _HowItWorksState extends State<HowItWorks> {
                                               Row(
                                                 children: const [
                                                   Icon(Icons.flag,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 3),
                                                   Icon(Icons.message,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 6),
                                                   Expanded(
@@ -427,6 +455,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       "National Messages",
                                                       style: TextStyle(
                                                         letterSpacing: 0,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ),
@@ -438,15 +467,13 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   Icon(
                                                       MyFlutterApp
                                                           .globe_americas,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 3),
                                                   RotatedBox(
                                                     quarterTurns: 1,
                                                     child: Icon(Icons.poll,
-                                                        color: Color.fromARGB(
-                                                            255, 56, 56, 56),
+                                                        color: whiteDialog,
                                                         size: 15),
                                                   ),
                                                   SizedBox(width: 6),
@@ -455,6 +482,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       "Global Polls",
                                                       style: TextStyle(
                                                         letterSpacing: 0,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ),
@@ -464,15 +492,13 @@ class _HowItWorksState extends State<HowItWorks> {
                                               Row(
                                                 children: const [
                                                   Icon(Icons.flag,
-                                                      color: Color.fromARGB(
-                                                          255, 56, 56, 56),
+                                                      color: whiteDialog,
                                                       size: 15),
                                                   SizedBox(width: 3),
                                                   RotatedBox(
                                                     quarterTurns: 1,
                                                     child: Icon(Icons.poll,
-                                                        color: Color.fromARGB(
-                                                            255, 56, 56, 56),
+                                                        color: whiteDialog,
                                                         size: 15),
                                                   ),
                                                   SizedBox(width: 6),
@@ -481,54 +507,40 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       "National Polls",
                                                       style: TextStyle(
                                                         letterSpacing: 0,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              const SizedBox(height: 15),
+                                              const SizedBox(height: 20),
                                               const Text(
-                                                "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each & every day.",
+                                                "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each day.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   letterSpacing: 0,
+                                                  color: whiteDialog,
                                                 ),
                                               ),
-                                              const SizedBox(height: 15),
-                                              const Text(
-                                                "Verified accounts",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    letterSpacing: 0,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                "National messages/polls can only be created by verified accounts. Additionally, voting is only allowed for verified accounts.",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  letterSpacing: 0,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 15),
-                                              const Text(
-                                                'On Fairtalk, the majority votes & decides everything. This includes:',
-                                                style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which messages or polls should be Archived & displayed to everyone else."),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which keywords or subjects should be trending."),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "• Which new features should be implemented or removed from our platform."),
-                                              const SizedBox(height: 3),
+
+                                              // const SizedBox(height: 15),
+                                              // const Text(
+                                              //   'On Fairtalk, the majority votes & decides everything. This includes:',
+                                              //   style: TextStyle(
+                                              //     letterSpacing: 0,
+                                              //     fontWeight: FontWeight.w500,
+                                              //   ),
+                                              // ),
+                                              // const SizedBox(height: 3),
+                                              // const Text(
+                                              //     "• Which messages or polls should be Archived & displayed to everyone else."),
+                                              // const SizedBox(height: 3),
+                                              // const Text(
+                                              //     "• Which keywords or subjects should be trending."),
+                                              // const SizedBox(height: 3),
+                                              // const Text(
+                                              //     "• Which new features should be implemented or removed from our platform."),
+                                              // const SizedBox(height: 3),
                                             ],
                                           ),
                                         )
@@ -540,23 +552,23 @@ class _HowItWorksState extends State<HowItWorks> {
                         ),
                         const SizedBox(height: 12),
                         PhysicalModel(
-                          color: Colors.white,
+                          color: darkBlue,
                           elevation: 3,
-                          borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(15),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
+                                horizontal: 12, vertical: 5),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              color: darkBlue,
                               // border: Border.all(
                               //     width: 2,
                               //     color: const darkBlue),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: isHowDoesItWork ? 8 : 0),
+                                  bottom: isHowDoesItWork ? 15 : 0),
                               child: Column(
                                 children: [
                                   InkWell(
@@ -576,17 +588,17 @@ class _HowItWorksState extends State<HowItWorks> {
                                             "Detailed Explanation",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: whiteDialog,
                                               letterSpacing: 0.5,
                                               fontWeight: FontWeight.w500,
-                                              fontSize: 16,
+                                              fontSize: 18,
                                             ),
                                           ),
                                           Icon(
                                               isHowDoesItWork
                                                   ? Icons.keyboard_arrow_up
                                                   : Icons.keyboard_arrow_down,
-                                              color: Colors.black,
+                                              color: whiteDialog,
                                               size: 28)
                                         ],
                                       ),
@@ -600,83 +612,81 @@ class _HowItWorksState extends State<HowItWorks> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              const SizedBox(height: 3),
+                                              const SizedBox(height: 10),
                                               const Text(
-                                                "Why do we need a platform like Fairtalk?",
+                                                "The majority dictates everything.",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "Unfortunately, we currently live in a time where we can't rely on our leaders or governments to resolve any major issues peacefully. They always play their little games of politics & care more about preserving their positions of power instead of doing what's best for the majority. There's currently more than 13,000 nuclear warheads stockpiled & ready to be launched at any moment. This issue likely won't be solved by starting a protest & releasing our anger on the properties of business owners who are simply trying to earn a living like the rest of us. The world desperately needs a platform where we can all collectively communicate with each other & show to our leaders/governments that we're tired of fighting their wars, we're tired of the political division, we're tired of corruption, we're tired of seeing prices increase faster than our salaries, we're tired of poor leadership, we're tired of being treated like we're mere chess pieces on a board."),
-                                              const SizedBox(height: 15),
+                                                "On Fairtalk, our users make all the decisions, not the CEO. We let our users vote & decide which features they want to see added or removed from the platform. If democracies work better than dictatorships, then why not adopt a similar system when it comes to social media?",
+                                                style: TextStyle(
+                                                  color: whiteDialog,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
                                               const Text(
-                                                "Instead of keeping everyone divided, why not bring everyone together?",
+                                                "Platform manipulation",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "Whether it's Facebook, Instagram, Twitter, YouTube, Reddit or TikTok, all of these platforms use algorithms to suggest content for each individual user. This unfortunately divides everyone into their own little worlds and it simply becomes impossible to have any collective discussion. If we want a social media platform that impersonates a real life discussion where each person sits around a table and take turns exchanging thoughts & ideas, we can't have each user separated into their own worlds. Instead, we need to bring everyone together in the same room. Fairtalk does this by letting users collectively vote & decide which posts should be displayed to everyone else. In other words, the majority becomes the algorithm."),
-                                              const SizedBox(height: 15),
-                                              const Text(
-                                                "No more power to only politicians or billionaires.",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "If we want to give everyone a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the traditional following system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more power than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy."),
-                                              const SizedBox(height: 15),
-                                              const Text(
-                                                "All users remain anonymous.",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 3),
-                                              const Text(
-                                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure), we'll ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing. Everyone has the same opportunity to share their thoughts and ideas with the rest of the world or country. If you want to brag about how great you are as an individual, you already have thousands of other platforms such as Twitter & Instagram that let you do exactly just that. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else."),
-                                              const SizedBox(height: 15),
+                                                  "Since Fairtalk is fully centered around a democratic system, we had to come up with a unique approach to eliminate all forms of voting manipulation. On other platforms, all they do is collect your IP address & device token which is very easy to modify (you can simply use VPNs & hard reset your device). With Fairtalk's account verification system, we ensure that platform manipulation becomes nearly impossible. This finally opens up the gates to online democracy because we finally have a voting system which is nearly impossible to manipulate.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
+                                              const SizedBox(height: 20),
                                               const Text(
                                                 "An argument against Fairtalk",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
                                                 '"Letting the majority vote & decide everything is nothing new. The concept of a democracy has been around ever since Ancient Greece. Looking at the current state of the world and knowing how chaotic it can become even under democracies, why would we ever want a social media platform that mimics such a system"?',
                                                 style: TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                ),
+                                                    fontStyle: FontStyle.italic,
+                                                    color: whiteDialog),
                                               ),
-                                              const SizedBox(height: 15),
+                                              const SizedBox(height: 20),
                                               const Text(
-                                                "Response to the argument",
+                                                "Response to argument",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "Fairtalk's voting system works nothing like a democracy. Our platform gives each user the option to either up-vote, down-vote or neutral-vote (see Fairtalk's voting system below). Modern democracies unfortunately only give participants the option to up-vote leaders. But by also giving an option to down-vote, we can start filtering out the leaders or messages that always seem to divide us. If 51% of participants want a certain leader to be elected but the other 49% do not, why would we still elect this leader knowing that the entire country will be split in half? Why not simply use a voting system that can help us find leaders that people disagree with the least instead of always finding leaders that anger the other half the most?"),
-                                              const SizedBox(height: 15),
+                                                  "Fairtalk's voting system works nothing like a democracy. Our platform gives each user the option to either up-vote, down-vote or neutral-vote (see Fairtalk's voting system below). Modern democracies only give participants the option to \"up-vote\" leaders. But by also giving an option to down-vote, we can easily start filtering out the leaders or messages that always seem to divide us. If 51% of participants want a certain leader to be elected but the other 49% do not, why would we still elect this person knowing that the entire country will be split in half? By not giving an option to down-vote, we're completely hiding the real sentiment towards specific leaders or messages. This can be very dangerous as it can often result in the election of political figures that create division. Fairtalk's voting system helps filter out the messages that divide us so that we can finally pay more attention to the messages that unite us.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
+                                              const SizedBox(height: 20),
+                                              const Text(
+                                                "Fairtalk's voting system",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
+                                              ),
+                                              const SizedBox(height: 3),
                                               RichText(
                                                 text: const TextSpan(
                                                   children: [
@@ -696,7 +706,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       text:
                                                           " increments the message's score by +1.",
                                                       style: TextStyle(
-                                                        color: Colors.black,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ],
@@ -708,9 +718,6 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   children: [
                                                     TextSpan(
                                                       text: "",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                      ),
                                                     ),
                                                     WidgetSpan(
                                                       child: Icon(
@@ -722,9 +729,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     TextSpan(
                                                       text:
                                                           " decrements the message's score by -1.",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                      ),
+                                                      style: TextStyle(),
                                                     ),
                                                   ],
                                                 ),
@@ -735,9 +740,6 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   children: [
                                                     TextSpan(
                                                       text: "",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                      ),
                                                     ),
                                                     WidgetSpan(
                                                       child: RotatedBox(
@@ -747,9 +749,9 @@ class _HowItWorksState extends State<HowItWorks> {
                                                               .pause_circle_filled,
                                                           color: Color.fromARGB(
                                                               255,
-                                                              104,
-                                                              104,
-                                                              104),
+                                                              200,
+                                                              200,
+                                                              200),
                                                           size: 15,
                                                         ),
                                                       ),
@@ -758,7 +760,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                       text:
                                                           " doesn't change the score at all.",
                                                       style: TextStyle(
-                                                        color: Colors.black,
+                                                        color: whiteDialog,
                                                       ),
                                                     ),
                                                   ],
@@ -766,22 +768,70 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "* The score determines which messages should be displayed to everyone else."),
-                                              const SizedBox(height: 15),
+                                                "* The score determines which messages should be displayed to everyone else.",
+                                                style: TextStyle(
+                                                    color: whiteDialog),
+                                              ),
+                                              const SizedBox(height: 20),
                                               const Text(
-                                                  "Since voting plays a crucial role into our platform's functionalities, we had to build a unique account verification system that helps eliminate all forms of voting manipulation. Verifying your account is not mandatory and it's completely free."),
-                                              const SizedBox(height: 15),
+                                                "No more algorithms that divide us.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "Whether it's Facebook, Instagram, Twitter, YouTube, Reddit or TikTok, all of these platforms use algorithms to suggest content for each individual user (a.k.a \"For You\" pages). This may be beneficial in some ways, but it also divides everyone into their own little worlds and it simply becomes impossible to have any collective discussion. Instead of keeping everyone divided, Fairtalk brings everyone together. We do this by displaying the same content for each user on the platform. This content isn't randomly chosen by algorithms but instead it's always chosen by the majority. In other words, the majority becomes the algorithm.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
+                                              const SizedBox(height: 20),
+                                              const Text(
+                                                "All attention no longer given to only public figures.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "If we want to give each user a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the \"following\" system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more attention than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
+                                              const SizedBox(height: 20),
+                                              const Text(
+                                                "All users remain anonymous.",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
+                                              ),
+                                              const SizedBox(height: 3),
+                                              const Text(
+                                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
+                                              const SizedBox(height: 20),
                                               const Text(
                                                 "Summary",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
-                                                  letterSpacing: 0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    letterSpacing: 0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: whiteDialog,
+                                                    fontSize: 17),
                                               ),
                                               const SizedBox(height: 3),
                                               const Text(
-                                                  "Fairtalk's purpose isn't to replace any other social media platform because we simply do not offer the same type of service. It's not a place where you connect with your friends, gain followers, upload video content or start an online business. Instead, Fairtalk is a place where users are voting & creating a historical collection of the best thoughts & ideas shared on a platform purposely built to give every single person a fair chance to participate."),
+                                                  "Fairtalk is the very first platform to introduce democracy to social media. By eliminating platform manipulation & no longer prioritizing certain individuals in discussions (public figures or those that can afford monthly fees for blue checkmarks), we finally have a platform where everyone is on the same footing. With a fair system like this, we can finally let the majority dictate the direction of our platform by letting them choose which functionalities they want to see added or removed from Fairtalk.",
+                                                  style: TextStyle(
+                                                      color: whiteDialog)),
                                             ],
                                           ),
                                         )

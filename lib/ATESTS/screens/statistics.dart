@@ -69,7 +69,6 @@ class _StatisticsState extends State<Statistics> {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = Provider.of<UserProvider>(context).getUser;
     return Container(
       color: Colors.white,
       child: SafeArea(

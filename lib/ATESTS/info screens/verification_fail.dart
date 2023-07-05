@@ -58,7 +58,7 @@ class _VerificationFailState extends State<VerificationFail> {
                         child: Column(
                           children: const [
                             Text(
-                                'Unfortunately, your Fairtalk account has failed to pass the verification process.',
+                                'Unfortunately, your account has failed to pass the verification process.',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 24,

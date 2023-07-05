@@ -20,7 +20,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
           backgroundColor: const Color.fromARGB(255, 240, 240, 240),
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -52,19 +52,22 @@ class _DataPrivacyState extends State<DataPrivacy> {
                                 child: const Icon(
                                   Icons.arrow_back,
                                   size: 24,
-                                  color: Colors.black,
+                                  color: whiteDialog,
                                 ),
                               ),
                             ),
                           ),
                         ),
                         Container(width: 16),
-                        const Text('Data Privacy',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                letterSpacing: 0,
-                                fontWeight: FontWeight.w500)),
+                        const Text(
+                          'Data Privacy',
+                          style: TextStyle(
+                            color: whiteDialog,
+                            fontSize: 20,
+                            letterSpacing: 0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -96,7 +99,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                             SizedBox(
                               height: 50,
                               child: Image.asset(
-                                'assets/fairtalk_blue_transparent.png',
+                                'assets/fairtalk_new_blue_transparent.png',
                               ),
                             ),
                             const SizedBox(height: 6),

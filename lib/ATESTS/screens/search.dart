@@ -1850,8 +1850,7 @@ class _SearchState extends State<Search> {
                                                       0.65 -
                                                   16,
                                               decoration: const BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 245, 245, 245),
+                                                color: whiteDialog,
                                                 // border: Border.all(
                                                 //     width: 0.75, color: Colors.grey),
                                                 borderRadius: BorderRadius.all(

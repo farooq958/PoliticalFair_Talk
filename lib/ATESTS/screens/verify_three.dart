@@ -45,7 +45,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                               customBorder: const CircleBorder(),
                               splashColor: Colors.grey.withOpacity(0.5),
                               child: const Icon(Icons.keyboard_arrow_left,
-                                  color: Color.fromARGB(255, 25, 61, 94)),
+                                  color: darkBlue),
                               onTap: () {
                                 Future.delayed(
                                   const Duration(milliseconds: 50),
@@ -61,7 +61,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                       const Text(
                         'Step 2/2',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 25, 61, 94),
+                            color: darkBlue,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
@@ -163,7 +163,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 10),
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 25, 61, 94),
+                                color: darkBlue,
                                 borderRadius: BorderRadius.circular(15),
                                 border:
                                     Border.all(width: 2, color: Colors.white),
@@ -189,7 +189,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                                       decoration: const BoxDecoration(
                                         border: Border(
                                           top: BorderSide(
-                                              width: 0, color: Colors.white),
+                                              width: 2, color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -249,30 +249,29 @@ class _VerifyThreeState extends State<VerifyThree> {
                                         children: [
                                           Column(
                                             children: const [
-                                              Text('Take picture of yourself',
-                                                  style: TextStyle(
-                                                      fontSize: 16.5,
-                                                      color: Color.fromARGB(
-                                                          255, 25, 61, 94),
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      letterSpacing: 0)),
-                                              Text('holding ID card',
-                                                  style: TextStyle(
-                                                      fontSize: 16.5,
-                                                      color: Color.fromARGB(
-                                                          255, 25, 61, 94),
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      letterSpacing: 0)),
+                                              Text(
+                                                'Take picture of yourself',
+                                                style: TextStyle(
+                                                    fontSize: 16.5,
+                                                    color: darkBlue,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0),
+                                              ),
+                                              Text(
+                                                'holding ID card',
+                                                style: TextStyle(
+                                                    fontSize: 16.5,
+                                                    color: darkBlue,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0),
+                                              ),
                                             ],
                                           ),
                                           Container(width: 8),
                                           const Icon(
                                             Icons.keyboard_arrow_right,
                                             size: 20,
-                                            color:
-                                                Color.fromARGB(255, 25, 61, 94),
+                                            color: darkBlue,
                                           ),
                                         ],
                                       ),

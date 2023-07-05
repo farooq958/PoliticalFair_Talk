@@ -152,8 +152,8 @@ class _SignupScreenState extends State<SignupScreen> {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => WelcomeScreen(
-                username: _usernameController.text.trim(),
-                durationInDay: widget.durationInDay),
+              username: _usernameController.text.trim(),
+            ),
           ),
           (route) => false,
         );
@@ -200,7 +200,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 20),
                       Image.asset(
                         width: MediaQuery.of(context).size.width * 1 - 80,
-                        'assets/fairtalk_blue_transparent.png',
+                        'assets/fairtalk_new_blue_transparent.png',
                       ),
                       const SizedBox(height: 5),
                       SizedBox(

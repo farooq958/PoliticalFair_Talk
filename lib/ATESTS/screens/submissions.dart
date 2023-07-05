@@ -11,6 +11,7 @@ import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../models/user.dart';
 import 'my_drawer_list.dart';
+import 'submissions_create.dart';
 
 class Submissions extends StatefulWidget {
   Submissions({
@@ -59,7 +60,7 @@ class SubmissionsState extends State<Submissions>
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Icon(
               Icons.check_circle_outline,
               size: 14,
@@ -74,7 +75,7 @@ class SubmissionsState extends State<Submissions>
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Icon(
               Icons.update_outlined,
               size: 14,
@@ -334,7 +335,11 @@ class SubmissionsState extends State<Submissions>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const SubmissionInfo()),
+                                                              SubmissionCreate(
+                                                                durationInDay:
+                                                                    widget
+                                                                        .durationInDay,
+                                                              )),
                                                     );
                                                   },
                                                 );

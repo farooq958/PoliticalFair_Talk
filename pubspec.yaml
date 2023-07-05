@@ -78,7 +78,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/logo_version_4.png"
+  image_path: "assets/FAIRTALK_LOGO_NEW.png"
   android: true
   ios: true
 

@@ -1783,7 +1783,7 @@ class _AddPostState extends State<AddPost> {
                         ),
                         const SizedBox(height: 5),
                         _isLoading
-                            ? const LinearProgressIndicator()
+                            ? const LinearProgressIndicator(color: Colors.white)
                             : const Padding(padding: EdgeInsets.only(top: 0)),
                       ],
                     ),
@@ -3176,6 +3176,10 @@ class _AddPostState extends State<AddPost> {
                                                                             "true" &&
                                                                         global ==
                                                                             'false' ||
+                                                                    snap?.aaCountry ==
+                                                                            "" &&
+                                                                        global ==
+                                                                            "false" ||
                                                                     snap?.gMessageTime ==
                                                                             widget
                                                                                 .durationInDay &&
@@ -3252,9 +3256,13 @@ class _AddPostState extends State<AddPost> {
                                                                                 'true'
                                                                             ? 'Send Message Globally'
                                                                             : 'Send Message Nationally',
-                                                                style: const TextStyle(
-                                                                    color:
-                                                                        whiteDialog,
+                                                                style: TextStyle(
+                                                                    color: snap?.pending == "true" && global == 'false' ||
+                                                                            snap?.aaCountry == "" &&
+                                                                                global ==
+                                                                                    "false"
+                                                                        ? darkBlue
+                                                                        : whiteDialog,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -3364,8 +3372,7 @@ class _AddPostState extends State<AddPost> {
                                                       focusedBorder:
                                                           UnderlineInputBorder(
                                                         borderSide: BorderSide(
-                                                            color: Colors
-                                                                .blueAccent,
+                                                            color: Colors.blue,
                                                             width: 2),
                                                       ),
                                                       contentPadding:
@@ -3482,8 +3489,8 @@ class _AddPostState extends State<AddPost> {
                                                           OutlineInputBorder(
                                                         borderSide:
                                                             const BorderSide(
-                                                                color: Colors
-                                                                    .blueAccent,
+                                                                color:
+                                                                    Colors.blue,
                                                                 width: 2.0),
                                                         borderRadius:
                                                             BorderRadius
@@ -6051,6 +6058,8 @@ class _AddPostState extends State<AddPost> {
                                                 color: snap?.pending ==
                                                                 "true" &&
                                                             global == 'false' ||
+                                                        snap?.aaCountry == "" &&
+                                                            global == "false" ||
                                                         snap?.gPollTime ==
                                                                 widget
                                                                     .durationInDay &&
@@ -6116,8 +6125,17 @@ class _AddPostState extends State<AddPost> {
                                                               : global == 'true'
                                                                   ? 'Send Poll Globally'
                                                                   : 'Send Poll Nationally',
-                                                      style: const TextStyle(
-                                                          color: whiteDialog,
+                                                      style: TextStyle(
+                                                          color: snap?.pending ==
+                                                                          "true" &&
+                                                                      global ==
+                                                                          'false' ||
+                                                                  snap?.aaCountry ==
+                                                                          "" &&
+                                                                      global ==
+                                                                          "false"
+                                                              ? darkBlue
+                                                              : whiteDialog,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 16,

@@ -1670,7 +1670,7 @@ verificationRequired({
                     padding:
                         const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     child: const Text(
-                        "Fairtalk wouldn't be considered fair if we allowed individuals to create multiple accounts and vote multiple times. This is why performing this action requires an account verification.",
+                        "Fairtalk wouldn't be considered fair if we allowed users to create multiple accounts and vote multiple times.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -2015,47 +2015,57 @@ scoreDialogProfile({required BuildContext context}) {
                 Column(
                   children: [
                     Column(
-                      children: [
-                        const Text(
-                          'Profile Score Calculation',
+                      children: const [
+                        Text(
+                          'Profile Score',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: darkBlue,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text('Total ',
-                                style: TextStyle(
-                                  color: darkBlue,
-                                  fontSize: 15,
-                                )),
-                            Icon(Icons.add_circle,
-                                color: Colors.green, size: 17),
-                            Text(' votes received ',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: darkBlue,
-                                ))
-                          ],
-                        ),
-                        // const SizedBox(height: 2),
-                        const Text('+',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 16,
-                            )),
-                        // const SizedBox(height: 2),
-                        const Text('Total poll votes received',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 15,
-                            ))
+                        SizedBox(height: 8),
+                        Text(
+                          'Whenever a (verified) user upvotes one of your messages or gives a vote on one of your polls, your profile score increases by +1.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: darkBlue,
+                          ),
+                        )
+                        //     Row(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: const [
+                        //         Text('Total ',
+                        //             style: TextStyle(
+                        //               color: darkBlue,
+                        //               fontSize: 15,
+                        //             )),
+                        //         Icon(Icons.add_circle,
+                        //             color: Colors.green, size: 17),
+                        //         Text(' votes received ',
+                        //             style: TextStyle(
+                        //               fontSize: 15,
+                        //               color: darkBlue,
+                        //             ))
+                        //       ],
+                        //     ),
+                        //     // const SizedBox(height: 2),
+                        //     const Text('+',
+                        //         style: TextStyle(
+                        //           color: darkBlue,
+                        //           fontSize: 16,
+                        //         )),
+                        //     // const SizedBox(height: 2),
+                        //     const Text('Total poll votes received',
+                        //         style: TextStyle(
+                        //           color: darkBlue,
+                        //           fontSize: 15,
+                        //         ))
                       ],
                     ),
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -2285,7 +2295,7 @@ scoreDialogMessage({required BuildContext context}) {
                 Padding(
                   padding: const EdgeInsets.only(top: 0.0),
                   child: PhysicalModel(
-                    color: const Color.fromARGB(255, 240, 240, 240),
+                    color: darkBlue,
                     elevation: 3,
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
@@ -2298,14 +2308,14 @@ scoreDialogMessage({required BuildContext context}) {
                         children: [
                           const SizedBox(height: 6),
                           const Text(
-                            'Message Score  =',
+                            'Message Score =',
                             style: TextStyle(
                                 fontSize: 15,
-                                color: darkBlue,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.w500),
+                                color: whiteDialog,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 6),
+                          // const SizedBox(height: 6),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
@@ -2318,17 +2328,17 @@ scoreDialogMessage({required BuildContext context}) {
                               Text(
                                 'Votes',
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: darkBlue,
-                                ),
+                                    fontSize: 14,
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 8),
                               Text(
                                 '-',
                                 style: TextStyle(
                                     fontSize: 16,
-                                    color: darkBlue,
-                                    fontWeight: FontWeight.w500),
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 8),
                               Icon(Icons.do_not_disturb_on,
@@ -2337,9 +2347,9 @@ scoreDialogMessage({required BuildContext context}) {
                               Text(
                                 'Votes',
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: darkBlue,
-                                ),
+                                    fontSize: 14,
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -2455,7 +2465,7 @@ scoreDialogPoll({required BuildContext context}) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 PhysicalModel(
-                  color: const Color.fromARGB(255, 240, 240, 240),
+                  color: darkBlue,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
@@ -2468,21 +2478,19 @@ scoreDialogPoll({required BuildContext context}) {
                       children: const [
                         SizedBox(height: 6),
                         Text(
-                          'Poll Score  =',
+                          'Poll Score =',
                           style: TextStyle(
                               fontSize: 15,
-                              color: darkBlue,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.w500),
+                              color: whiteDialog,
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 6),
+                        // SizedBox(height: 6),
                         Text(
                           'Total votes received',
                           style: TextStyle(
                               fontSize: 15,
-                              color: darkBlue,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.w500),
+                              color: whiteDialog,
+                              fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 6),
                       ],
@@ -2707,7 +2715,7 @@ timerDialog({
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              "The time left represents the total remaining time before this ${type}'s voting cycle ends. The total duration of a voting cycle is 7 days.",
+                              "Time left represents the total remaining time before this ${type}'s voting cycle ends. The total duration of a voting cycle is 7 days.",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue)),

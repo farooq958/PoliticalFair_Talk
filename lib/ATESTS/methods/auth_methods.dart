@@ -118,6 +118,8 @@ class AuthMethods {
           fcmToken: fcmToken,
           verProcess: false,
           verFailReason: "",
+          submissionTime: 0,
+          bot: 'none',
 
           // timeNow.add(Duration(
           //   minutes: 3,
@@ -199,32 +201,42 @@ class AuthMethods {
     try {
       User currentUser = _auth.currentUser!;
 
-      currentUser.uid == 'CyTDtKzwOabJ3LmaTzNCOjrkBp53' ||
-              currentUser.uid == 'FqS7wZBAwtepk63ebd5ImJ1Xwa82'
-          ? null
-          : type == 'gMessage'
+      // currentUser.uid == 'CyTDtKzwOabJ3LmaTzNCOjrkBp53' ||
+      //         currentUser.uid == 'FqS7wZBAwtepk63ebd5ImJ1Xwa82'
+      //     ? null
+      //     :
+      type == 'gMessage'
+          ? await _firestore.collection('users').doc(currentUser.uid).update(
+              {'gMessageTime': time},
+            )
+          : type == 'nMessage'
               ? await _firestore
                   .collection('users')
                   .doc(currentUser.uid)
-                  .update(
-                  {'gMessageTime': time},
-                )
-              : type == 'nMessage'
+                  .update({'nMessageTime': time})
+              : type == 'gPoll'
                   ? await _firestore
                       .collection('users')
                       .doc(currentUser.uid)
-                      .update({'nMessageTime': time})
-                  : type == 'gPoll'
+                      .update({'gPollTime': time})
+                  : type == 'nPoll'
                       ? await _firestore
                           .collection('users')
                           .doc(currentUser.uid)
-                          .update({'gPollTime': time})
-                      : type == 'nPoll'
-                          ? await _firestore
-                              .collection('users')
-                              .doc(currentUser.uid)
-                              .update({'nPollTime': time})
-                          : null;
+                          .update({'nPollTime': time})
+                      : null;
+    } catch (err) {
+      err.toString();
+    }
+  }
+
+  waitSubmission({required int time}) async {
+    try {
+      User currentUser = _auth.currentUser!;
+
+      await _firestore.collection('users').doc(currentUser.uid).update(
+        {'submissionTime': time},
+      );
     } catch (err) {
       err.toString();
     }

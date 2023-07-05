@@ -14,6 +14,7 @@ import '../models/poll.dart';
 import '../models/post.dart';
 import '../models/reply.dart';
 import '../models/reportedBug.dart';
+import '../models/submission.dart';
 import '../provider/comments_replies_provider.dart';
 import '../provider/poll_provider.dart';
 import '../provider/searchpage_provider.dart';
@@ -240,6 +241,86 @@ class FirestoreMethods {
     }
     return res;
   }
+
+  Future<String> uploadSubmission(String uid, String username, String profImage,
+      String aTitle, bool fairtalk) async {
+    String res = "Some error occurred.";
+    try {
+      var timeNow = await NTP.now();
+      String submissionId = const Uuid().v1();
+      Submission submission = Submission(
+        submissionId: submissionId,
+        UID: uid,
+        bUsername: username,
+        bProfImage: profImage,
+        datePublishedNTP: timeNow,
+        aTitle: aTitle,
+        fairtalk: fairtalk,
+        plusCount: 0,
+        neutralCount: 0,
+        minusCount: 0,
+        plus: [],
+        neutral: [],
+        minus: [],
+        votesUIDs: [],
+        reportChecked: false,
+        reportRemoved: false,
+        reportCounter: 0,
+        commentCount: 0,
+        score: 0,
+      );
+      _firestore.collection('submissions').doc(submissionId).set(
+            submission.toJson(),
+          );
+      res = "success";
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  // Future<String> uploadSubmission(
+  //   // ignore: non_constant_identifier_names
+  //   String UID,
+  //   String bUsername,
+  //   String bProfImage,
+  //   String aTitle,
+  //   // bool fairtalk,
+  // ) async {
+  //   String res = "Some error occurred.";
+  //   try {
+  //     var timeNow = await NTP.now();
+  //     String postId = const Uuid().v1();
+  //     Submission post = Submission(
+  //       postId: postId,
+  //       UID: UID,
+  //       bUsername: bUsername,
+  //       bProfImage: bProfImage,
+  //       datePublishedNTP: timeNow,
+  //       aTitle: aTitle,
+  //       fairtalk: false,
+  //       plusCount: 0,
+  //       neutralCount: 0,
+  //       minusCount: 0,
+  //       plus: [],
+  //       neutral: [],
+  //       minus: [],
+  //       votesUIDs: [],
+  //       reportChecked: false,
+  //       reportRemoved: false,
+  //       reportCounter: 0,
+  //       commentCount: 0,
+  //       score: 0,
+  //     );
+  //     _firestore.collection('submissions').doc(postId).set(
+  //           post.toJson(),
+  //         );
+  //     res = "success";
+  //   } catch (err) {
+  //     res = err.toString();
+  //   }
+  //   return res;
+  // }
 
   //upload post
   Future<String> uploadPost(

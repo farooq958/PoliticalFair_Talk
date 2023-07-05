@@ -20,7 +20,7 @@ class _TermsConditionsState extends State<TermsConditions> {
           backgroundColor: const Color.fromARGB(255, 240, 240, 240),
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -49,14 +49,14 @@ class _TermsConditionsState extends State<TermsConditions> {
                                 );
                               },
                               child: const Icon(Icons.arrow_back,
-                                  size: 24, color: Colors.black),
+                                  size: 24, color: whiteDialog),
                             ),
                           ),
                         ),
                         Container(width: 16),
                         const Text('Terms of Use',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: whiteDialog,
                                 fontSize: 20,
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.w500)),
@@ -89,7 +89,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                               SizedBox(
                                 height: 50,
                                 child: Image.asset(
-                                  'assets/fairtalk_blue_transparent.png',
+                                  'assets/fairtalk_new_blue_transparent.png',
                                 ),
                               ),
                               const SizedBox(height: 6),

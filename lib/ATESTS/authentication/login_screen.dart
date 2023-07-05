@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 1 - 80,
                         child: Image.asset(
-                            'assets/fairtalk_blue_transparent.png')),
+                            'assets/fairtalk_new_blue_transparent.png')),
                     const SizedBox(height: 5),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 1 - 80,

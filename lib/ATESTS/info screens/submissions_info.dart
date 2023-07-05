@@ -83,7 +83,7 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                           child: PhysicalModel(
                             color: darkBlue,
                             elevation: 3,
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(15),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 12.0),
@@ -110,34 +110,34 @@ class _SubmissionInfoState extends State<SubmissionInfo> {
                                   //   ),
                                   // ),
                                   const Text(
-                                    "By voting and/or creating a submission, you're deciding which new features should be implemented or removed from our platform. On other social media platforms, all decisions are mostly taken by a single individual or a handful of individuals during board meetings (dictatorships). On Fairtalk, all decisions are always taken by the majority (democracy).",
+                                    "On Fairtalk, the majority votes & decides everything. This includes the direction of our platform. By creating or giving votes on submissions, you choose what you want to add, remove or modify from Fairtalk.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       letterSpacing: 0,
                                       color: Colors.white,
                                     ),
                                   ),
-                                  const SizedBox(height: 15),
-                                  const Text(
-                                    "How do I create a submission?",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      letterSpacing: 0,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 3),
-                                  const Text(
-                                    "Fairtalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      letterSpacing: 0,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 15),
+                                  // const SizedBox(height: 15),
+                                  // const Text(
+                                  //   "How do I create a submission?",
+                                  //   textAlign: TextAlign.left,
+                                  //   style: TextStyle(
+                                  //     letterSpacing: 0,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     fontSize: 18,
+                                  //     color: Colors.white,
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 3),
+                                  // const Text(
+                                  //   "Fairtalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
+                                  //   textAlign: TextAlign.left,
+                                  //   style: TextStyle(
+                                  //     letterSpacing: 0,
+                                  //     color: Colors.white,
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 15),
                                   PhysicalModel(
                                     elevation: 2.5,
                                     color: Colors.white,

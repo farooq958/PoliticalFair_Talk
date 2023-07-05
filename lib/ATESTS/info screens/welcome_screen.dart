@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/add_post_daily.dart';
@@ -7,15 +8,19 @@ import '../utils/utils.dart';
 
 class WelcomeScreen extends StatefulWidget {
   var username;
-  var durationInDay;
-  WelcomeScreen({Key? key, required this.username, this.durationInDay})
-      : super(key: key);
+
+  WelcomeScreen({
+    Key? key,
+    required this.username,
+  }) : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  bool isVerifyDialog = false;
+
   @override
   Widget build(BuildContext context) {
     var safePadding = MediaQuery.of(context).padding.top;
@@ -81,7 +86,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   SizedBox(
                                     height: 50,
                                     child: Image.asset(
-                                      'assets/fairtalk_blue_transparent.png',
+                                      'assets/fairtalk_new_blue_transparent.png',
                                     ),
                                   ),
                                   const SizedBox(height: 5),
@@ -153,421 +158,542 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                         safePadding) *
                                     0.75
                                 : 450,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(),
-                                // Column(
-                                //   children: [
-                                //     Text(
-                                //       'Welcome to Fairtalk,',
-                                //       textAlign: TextAlign.center,
-                                //       style: TextStyle(
-                                //           fontWeight: FontWeight.w500,
-                                //           fontSize: 22,
-                                //           letterSpacing: 0.5,
-                                //           color: Colors.white),
-                                //     ),
-                                //     SizedBox(height: 3),
-                                //     Text(
-                                //       '${widget.username}!',
-                                //       textAlign: TextAlign.center,
-                                //       style: TextStyle(
-                                //           fontWeight: FontWeight.w500,
-                                //           fontSize: 22,
-                                //           letterSpacing: 0.5,
-                                //           color: Colors.white),
-                                //     ),
-                                //   ],
-                                // ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.85,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        color: Colors.white, width: 2),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Welcome to Fairtalk, ${widget.username}!",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
-                                          letterSpacing: 0,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 0),
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(15),
+                              //   border: Border.all(
+                              //       color: Colors.white, width: 2),
+                              // ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Welcome, ${widget.username}!",
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24,
+                                            letterSpacing: 0,
+                                          ),
                                         ),
-                                      ),
-                                      Container(height: 8),
-                                      // Text(
-                                      //   "Your account is currently unverified.",
-                                      //   textAlign: TextAlign.center,
-                                      //   style: TextStyle(
-                                      //     color: Colors.white,
-                                      //     fontWeight: FontWeight.w500,
-                                      //     fontSize: 18,
-                                      //     letterSpacing: 0,
-                                      //   ),
-                                      // ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
+                                        const SizedBox(height: 8),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.7,
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               top: BorderSide(
-                                                  width: 0,
+                                                  width: 2,
                                                   color: Colors.white),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      // Container(height: 8),
-                                      // const Text(
-                                      //   "Your account is currently unverified.",
-                                      //   textAlign: TextAlign.center,
-                                      //   style: TextStyle(
-                                      //     color: Colors.white,
-                                      //     fontWeight: FontWeight.w500,
-                                      //     fontSize: 18,
-                                      //     letterSpacing: 0,
-                                      //   ),
-                                      // ),
-                                      // Container(height: 8),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.symmetric(
-                                      //       horizontal: 10),
-                                      //   child: Container(
-                                      //     width:
-                                      //         MediaQuery.of(context).size.width,
-                                      //     decoration: const BoxDecoration(
-                                      //       border: Border(
-                                      //         top: BorderSide(
-                                      //             width: 0,
-                                      //             color: Colors.white),
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      Container(height: 8),
-                                      Column(
-                                        children: const [
-                                          Text(
-                                            "You must either: verify your account or continue as an unverified account.",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13.5,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                          SizedBox(height: 8),
-                                          Text(
-                                            "As an unverified account, you'll still have access to most features on the platform but you won't be able to cast any votes. Our account verification system prevents users from manipulating our platform's voting metrics. Verifying your account is completely free.",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13.5,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-
-                                          // SizedBox(height: 8),
-                                          // Text(
-                                          //   "Without a verification system, it would be very easy for anyone to simply create multiple accounts and unfairly manipulate the platform's voting metrics.",
-                                          //   textAlign: TextAlign.center,
-                                          //   style: TextStyle(
-                                          //     color: Colors.white,
-                                          //     fontSize: 13.5,
-                                          //     letterSpacing: 0,
-                                          //   ),
-                                          // ),
-
-                                          // SizedBox(height: 2),
-                                          // Text(
-                                          //   "",
-                                          //   textAlign: TextAlign.center,
-                                          //   style: TextStyle(
-                                          //     color: Colors.white,
-                                          //     fontSize: 13.5,
-                                          //     letterSpacing: 0,
-                                          //   ),
-                                          // ),
-                                        ],
-                                      ),
-                                    ],
+                                        const SizedBox(height: 8),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.85,
+                                          child: Text(
+                                              "Since Fairtalk is fully centered around a democratic system, we had to come up with a unique approach to eliminate all forms of voting manipulation. ",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500)),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Column(
-                                  children: [
-                                    Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 0, bottom: 6),
-                                            child: Material(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              color: Colors.white,
-                                              child: InkWell(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                splashColor: Colors.black
-                                                    .withOpacity(0.3),
-                                                onTap: () {
-                                                  Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 150),
-                                                      () {
-                                                    Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            VerifyOne(
-                                                                durationInDay:
-                                                                    widget
-                                                                        .durationInDay),
-                                                      ),
-                                                    );
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.85,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: 1,
-                                                        color: Colors.black),
-                                                    color: Colors.transparent,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    padding: EdgeInsets.symmetric(vertical: 10),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 2,
+                                        color: Colors.white,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            const Text(
+                                              "Choose an option:",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  letterSpacing: 0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            // const SizedBox(height: 8),
+                                            // Container(
+                                            //   width: MediaQuery.of(context)
+                                            //           .size
+                                            //           .width *
+                                            //       0.7,
+                                            //   decoration: const BoxDecoration(
+                                            //     border: Border(
+                                            //       top: BorderSide(
+                                            //           width: 2,
+                                            //           color: Colors.white),
+                                            //     ),
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Column(
+                                          children: [
+                                            Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Material(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            50),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8,
-                                                            top: 12,
-                                                            bottom: 12,
-                                                            right: 8),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        const Icon(
-                                                            Icons.verified,
-                                                            size: 20,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    36,
-                                                                    64,
-                                                                    101)),
-                                                        Container(width: 8),
-                                                        const Text(
-                                                          'Verify My Account',
-                                                          style: TextStyle(
-                                                              fontSize: 16,
-                                                              letterSpacing:
-                                                                  0.3,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      36,
-                                                                      64,
-                                                                      101)),
+                                                            30),
+                                                    color: Colors.white,
+                                                    child: InkWell(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      splashColor: Colors.black
+                                                          .withOpacity(0.3),
+                                                      onTap: () {
+                                                        Future.delayed(
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    150), () {
+                                                          Navigator.of(context)
+                                                              .push(
+                                                            MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      VerifyOne(),
+                                                            ),
+                                                          );
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .transparent,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
                                                         ),
-                                                      ],
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 8,
+                                                                  top: 12,
+                                                                  bottom: 12,
+                                                                  right: 8),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              const Icon(
+                                                                  Icons
+                                                                      .verified,
+                                                                  size: 20,
+                                                                  color:
+                                                                      darkBlue),
+                                                              Container(
+                                                                  width: 8),
+                                                              const Text(
+                                                                'Verify My Account',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        16,
+                                                                    letterSpacing:
+                                                                        0.3,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color:
+                                                                        darkBlue),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(height: 8),
+                                            // Container(
+                                            //   width: MediaQuery.of(context)
+                                            //           .size
+                                            //           .width *
+                                            //       0.8,
+                                            //   padding:
+                                            //       const EdgeInsets.symmetric(
+                                            //           horizontal: 0,
+                                            //           vertical: 3),
+                                            //   decoration: BoxDecoration(
+                                            //     border: Border.all(
+                                            //         color: Colors.white,
+                                            //         width: 2),
+                                            //     borderRadius:
+                                            //         BorderRadius.circular(10),
+                                            //     color: darkBlue,
+                                            //   ),
+                                            //   child: Padding(
+                                            //     padding: EdgeInsets.only(
+                                            //         bottom:
+                                            //             isVerifyDialog ? 0 : 0),
+                                            //     child: Column(
+                                            //       children: [
+                                            //         InkWell(
+                                            //           onTap: () {
+                                            //             setState(() {
+                                            //               isVerifyDialog =
+                                            //                   !isVerifyDialog;
+                                            //             });
+                                            //           },
+                                            //           child: Padding(
+                                            //             padding:
+                                            //                 const EdgeInsets
+                                            //                         .symmetric(
+                                            //                     vertical: 0,
+                                            //                     horizontal: 0),
+                                            //             child: Row(
+                                            //               mainAxisAlignment:
+                                            //                   MainAxisAlignment
+                                            //                       .center,
+                                            //               children: [
+                                            //                 Icon(
+                                            //                     isVerifyDialog
+                                            //                         ? Icons
+                                            //                             .keyboard_arrow_up
+                                            //                         : Icons
+                                            //                             .keyboard_arrow_down,
+                                            //                     color:
+                                            //                         whiteDialog,
+                                            //                     size: 28),
+                                            //                 const SizedBox(
+                                            //                     width: 4),
+                                            //                 const Text(
+                                            //                   "Benefits of Account Verification",
+                                            //                   textAlign:
+                                            //                       TextAlign
+                                            //                           .center,
+                                            //                   style: TextStyle(
+                                            //                     color:
+                                            //                         whiteDialog,
+                                            //                     letterSpacing:
+                                            //                         0.5,
+                                            //                     fontWeight:
+                                            //                         FontWeight
+                                            //                             .w500,
+                                            //                     fontSize: 15,
+                                            //                   ),
+                                            //                 ),
+                                            //               ],
+                                            //             ),
+                                            //           ),
+                                            //         ),
+                                            //         isVerifyDialog
+                                            //             ? Column(
+                                            //                 mainAxisAlignment:
+                                            //                     MainAxisAlignment
+                                            //                         .start,
+                                            //                 crossAxisAlignment:
+                                            //                     CrossAxisAlignment
+                                            //                         .start,
+                                            //                 children: const [
+                                            //                   Text(
+                                            //                     "• Participate in Fairtalk's democracy.",
+                                            //                     textAlign:
+                                            //                         TextAlign
+                                            //                             .start,
+                                            //                     style: TextStyle(
+                                            //                         fontSize:
+                                            //                             13,
+                                            //                         color:
+                                            //                             whiteDialog,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .w500,
+                                            //                         letterSpacing:
+                                            //                             0),
+                                            //                   ),
+                                            //                   Text(
+                                            //                     "• Send messages & polls Nationally.",
+                                            //                     style: TextStyle(
+                                            //                         fontSize:
+                                            //                             13,
+                                            //                         color:
+                                            //                             whiteDialog,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .w500,
+                                            //                         letterSpacing:
+                                            //                             0),
+                                            //                   ),
+                                            //                   Text(
+                                            //                     "• Give votes that count.",
+                                            //                     style: TextStyle(
+                                            //                         fontSize:
+                                            //                             13,
+                                            //                         color:
+                                            //                             whiteDialog,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .w500,
+                                            //                         letterSpacing:
+                                            //                             0),
+                                            //                   ),
+                                            //                   Text(
+                                            //                     "• Additional personalization options.",
+                                            //                     style: TextStyle(
+                                            //                         fontSize:
+                                            //                             13,
+                                            //                         color:
+                                            //                             whiteDialog,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .w500,
+                                            //                         letterSpacing:
+                                            //                             0),
+                                            //                   ),
+                                            //                   Text(
+                                            //                     "• And much more!",
+                                            //                     style: TextStyle(
+                                            //                         fontSize:
+                                            //                             13,
+                                            //                         color:
+                                            //                             whiteDialog,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .w500,
+                                            //                         letterSpacing:
+                                            //                             0),
+                                            //                   ),
+                                            //                 ],
+                                            //               )
+                                            //             : const SizedBox(),
+                                            //       ],
+                                            //     ),
+                                            //   ),
+                                            // ),
+
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                              .size
+                                                              .width >
+                                                          600
+                                                      ? MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2 -
+                                                          130
+                                                      : MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2 -
+                                                          70,
+                                                  // MediaQuery.of(context).size.width / 2 - 194,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    // color: Colors.red,
+                                                    border: Border(
+                                                      top: BorderSide(
+                                                          width: 2,
+                                                          color: Colors.white),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context)
-                                                          .size
-                                                          .width >
-                                                      600
-                                                  ? MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                          2 -
-                                                      130
-                                                  : MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                          2 -
-                                                      70,
-                                          // MediaQuery.of(context).size.width / 2 - 194,
-                                          decoration: const BoxDecoration(
-                                            // color: Colors.red,
-                                            border: Border(
-                                              top: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 33,
-                                          alignment: Alignment.center,
-                                          child: const Text('or',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white)),
-                                        ),
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context)
-                                                          .size
-                                                          .width >
-                                                      600
-                                                  ? MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                          2 -
-                                                      130
-                                                  : MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                          2 -
-                                                      70,
-                                          decoration: const BoxDecoration(
-                                            // color: Colors.red,
-                                            border: Border(
-                                              top: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 6, bottom: 0),
-                                          child: Material(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            color: Colors.white,
-                                            child: InkWell(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              splashColor:
-                                                  Colors.black.withOpacity(0.3),
-                                              onTap: () {
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 150), () {
-                                                  // widget.durationInDay == null
-                                                  //     ?
-                                                  goToHome(context);
-                                                  // : Navigator.push(
-                                                  //     context,
-                                                  //     MaterialPageRoute(
-                                                  //         builder:
-                                                  //             (context) =>
-                                                  //                 AddPostDaily(
-                                                  //                   durationInDay:
-                                                  //                       widget.durationInDay,
-                                                  //                 )),
-                                                  //   );
-                                                });
-                                              },
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.85,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: Colors.black),
-                                                  color: Colors.transparent,
-                                                  borderRadius:
-                                                      BorderRadius.circular(50),
+                                                Container(
+                                                  width: 33,
+                                                  alignment: Alignment.center,
+                                                  child: const Text('or',
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Colors.white)),
                                                 ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8,
-                                                          top: 12,
-                                                          bottom: 12,
-                                                          right: 8),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: const [
-                                                      Text(
-                                                        'Continue as Unverified',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    36,
-                                                                    64,
-                                                                    101),
-                                                            letterSpacing: 0),
-                                                      ),
-                                                    ],
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                              .size
+                                                              .width >
+                                                          600
+                                                      ? MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2 -
+                                                          130
+                                                      : MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2 -
+                                                          70,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    // color: Colors.red,
+                                                    border: Border(
+                                                      top: BorderSide(
+                                                          width: 2,
+                                                          color: Colors.white),
+                                                    ),
                                                   ),
                                                 ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Material(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  color: Colors.white,
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    splashColor: Colors.black
+                                                        .withOpacity(0.3),
+                                                    onTap: () {
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  150), () {
+                                                        // widget.durationInDay == null
+                                                        //     ?
+                                                        goToHome(context);
+                                                        // : Navigator.push(
+                                                        //     context,
+                                                        //     MaterialPageRoute(
+                                                        //         builder:
+                                                        //             (context) =>
+                                                        //                 AddPostDaily(
+                                                        //                   durationInDay:
+                                                        //                       widget.durationInDay,
+                                                        //                 )),
+                                                        //   );
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.8,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 8,
+                                                                top: 12,
+                                                                bottom: 12,
+                                                                right: 8),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: const [
+                                                            Text(
+                                                              'Continue as Unverified',
+                                                              style: TextStyle(
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color:
+                                                                      darkBlue,
+                                                                  letterSpacing:
+                                                                      0),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 0,
+                                                      horizontal: 10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                // border: Border.all(
+                                                //     color: Colors.white,
+                                                //     width: 2),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: const [
+                                                  Text(
+                                                    "If you wish to continue as an unverified account, you'll still have the option to verify your account at anytime in the future.",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: whiteDialog,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        letterSpacing: 0),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 5),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.75,
-                                      child: const Text(
-                                        "If you wish to continue as an unverified account, you'll always have the option to verify your account at anytime in the future.",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11.5,
-                                          letterSpacing: 0,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox()
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

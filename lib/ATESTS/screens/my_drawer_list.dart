@@ -12,6 +12,7 @@ import '../authentication/signup.dart';
 import '../info screens/data_privacy.dart';
 import '../info screens/how_it_works.dart';
 import '../info screens/terms_conditions.dart';
+import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
@@ -487,11 +488,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                       milliseconds: 150), () {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ReportScreen(
-                                                            durationInDay: widget
-                                                                .durationInDay,
-                                                          )),
+                                                    builder: (context) =>
+                                                        ReportScreen(
+                                                      durationInDay:
+                                                          widget.durationInDay,
+                                                    ),
+                                                  ),
                                                 );
                                               });
                                             },
@@ -1229,28 +1231,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(),
-                      // InkWell(
-                      //   splashColor: Colors.grey.withOpacity(0.3),
-                      //   borderRadius: BorderRadius.circular(25),
-                      //   onTap: () {
-                      //     Future.delayed(const Duration(milliseconds: 150), () {
-                      //       Navigator.of(context).push(
-                      //         MaterialPageRoute(
-                      //           builder: (context) =>
-                      //               const AddPostDaily(durationInDay: 253),
-                      //         ),
-                      //       );
-                      //     });
-                      //   },
-                      // child:
-                      SizedBox(
-                        height: 31,
-                        child: Image.asset(
-                          'assets/bottomIconSettingsBlack(1).png',
-                          opacity: const AlwaysStoppedAnimation(.6),
+                      InkWell(
+                        splashColor: Colors.grey.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    WelcomeScreen(username: "hello"),
+                              ),
+                            );
+                          });
+                        },
+                        child: SizedBox(
+                          height: 31,
+                          child: Image.asset(
+                            'assets/bottomIconSettingsNewBlue.png',
+                            opacity: const AlwaysStoppedAnimation(.9),
+                          ),
                         ),
                       ),
-                      // ),
                       const SizedBox(),
                       SizedBox(
                         width: 85,

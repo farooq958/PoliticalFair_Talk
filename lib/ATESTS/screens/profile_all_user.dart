@@ -489,7 +489,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                                           ? Icons
                                                               .create_outlined
                                                           : Icons.more_vert,
-                                                      color: Colors.black),
+                                                      color: whiteDialog),
                                                 ),
                                               ),
                                             ),
@@ -511,7 +511,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                             MediaQuery.of(context).size.width,
                                         // width: 310,
                                         child: PhysicalModel(
-                                          color: testing,
+                                          color: whiteDialog,
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           elevation: 4,
