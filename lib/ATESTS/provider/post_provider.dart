@@ -14,11 +14,17 @@ class PostProvider extends ChangeNotifier {
   List<Post> _mostLikedPosts = [];
   List<Post> _posts = [];
   List<Post> _userPosts = [];
+  List<Post> _submissionScore = [];
+  List<Post> _submissionDate = [];
+
   int _count = 0;
   bool _last = false;
   bool _userPostLast = false;
+  bool _userPostLastDate = false;
+  bool _userPostLastScore = false;
   bool _getPostBeingCalled = false;
   bool _getUserPostBeingCalled = false;
+  bool _getUserPostBeingCalledScore = false;
   Post? _postSitterValue;
 
   bool _isButtonVisible = false;
@@ -26,6 +32,7 @@ class PostProvider extends ChangeNotifier {
   QuerySnapshot<Map<String, dynamic>>? _mostLikePostsSnapshot;
   QuerySnapshot<Map<String, dynamic>>? _postsSnapshot;
   QuerySnapshot<Map<String, dynamic>>? _userPostSnapshot;
+  QuerySnapshot<Map<String, dynamic>>? _userPostSnapshotScore;
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _snapshotListener;
 
   final _postPollProvider = Provider.of<PostPollProvider>(
@@ -36,6 +43,8 @@ class PostProvider extends ChangeNotifier {
   final bool _loading = false;
   bool _pLoading = false;
   bool _pageLoading = false;
+  bool _pLoadingScore = false;
+  bool _pageLoadingScore = false;
   bool _postPageLoading = false;
   final int _pageSize = 6;
 
@@ -765,6 +774,76 @@ class PostProvider extends ChangeNotifier {
     _snapshotListener?.cancel();
   }
 
+  // getSubmissionsScore() async {
+  //   try {
+  //     _pLoadingScore = true;
+  //     notifyListeners();
+  //     var query = (FirebaseFirestore.instance
+  //         .collection('posts')
+  //         .where('reportRemoved', isEqualTo: false)
+  //         .where('sub', isEqualTo: 'fairtalk')
+  //         .orderBy('score', descending: true));
+  //     var snap = await query.count().get();
+  //     // debugPrint('count is ${snap.count}');
+  //     if (!_getUserPostBeingCalledScore) {
+  //       _getUserPostBeingCalledScore = true;
+  //       Future.delayed(Duration.zero);
+  //       _userPostSnapshotScore = await query.limit(_pageSize).get();
+  //       _submissionScore =
+  //           _userPostSnapshotScore!.docs.map((e) => Post.fromSnap(e)).toList();
+  //       // debugPrint("user post length  : ${_posts.length}");
+  //       _userPostLastScore = false;
+  //       if (_submissionScore.length < _pageSize || _pageSize == snap.count) {
+  //         _userPostLastScore = true;
+  //       }
+  //       // debugPrint('post length ${_userPosts.length}');
+  //     }
+  //   } catch (e) {
+  //     // debugPrint('PostProvider getUserPost error $e $st');
+  //   } finally {
+  //     _getUserPostBeingCalledScore = false;
+  //     _pLoadingScore = false;
+  //     notifyListeners();
+  //   }
+  // }
+
+  // getSubmissionsScoreNext() async {
+  //   try {
+  //     _pageLoadingScore = true;
+  //     notifyListeners();
+  //     var query = (FirebaseFirestore.instance
+  //         .collection('posts')
+  //         .where('reportRemoved', isEqualTo: false)
+  //         .where('sub', isEqualTo: 'fairtalk')
+  //         .orderBy('datePublished', descending: true));
+  //     var snap = await query.count().get();
+  //     // debugPrint('count is ${snap.count}');
+  //     if (!_getUserPostBeingCalledScore) {
+  //       _getUserPostBeingCalledScore = true;
+  //       Future.delayed(Duration.zero);
+  //       _userPostSnapshotScore = await query
+  //           .startAfterDocument(_userPostSnapshotScore!.docs.last)
+  //           .limit(_pageSize)
+  //           .get();
+  //       _submissionScore.addAll(
+  //           _userPostSnapshotScore!.docs.map((e) => Post.fromSnap(e)).toList());
+  //       // debugPrint("user post length  : ${_userPosts.length}");
+  //       _userPostLastScore = false;
+  //       if (_submissionScore.length < _pageSize ||
+  //           _submissionScore.length == snap.count) {
+  //         _userPostLastScore = true;
+  //       }
+  //       // debugPrint('post length ${_userPosts.length}');
+  //     }
+  //   } catch (e) {
+  //     // debugPrint('PostProvider getUserPost error $e $st');
+  //   } finally {
+  //     _getUserPostBeingCalledScore = false;
+  //     _pageLoadingScore = false;
+  //     notifyListeners();
+  //   }
+  // }
+
   // getMostLikedPosts() async {
   //   try {
   //     _loading = true;
@@ -902,39 +981,296 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
-  getSubmissionPosts() async {
+  // getSubmissionsDate() async {
+  //   try {
+  //     _pLoading = true;
+  //     notifyListeners();
+  //     var query = (FirebaseFirestore.instance
+  //         .collection('posts')
+  //         .where('reportRemoved', isEqualTo: false)
+  //         .where('sub', isEqualTo: 'fairtalk')
+  //         .orderBy('datePublished', descending: true));
+  //     var snap = await query.count().get();
+  //     // debugPrint('count is ${snap.count}');
+  //     if (!_getUserPostBeingCalled) {
+  //       _getUserPostBeingCalled = true;
+  //       Future.delayed(Duration.zero);
+  //       _userPostSnapshot = await query.limit(_pageSize).get();
+  //       _submissionDate =
+  //           _userPostSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+  //       // debugPrint("user post length  : ${_posts.length}");
+  //       _userPostLastDate = false;
+  //       if (_submissionDate.length < _pageSize || _pageSize == snap.count) {
+  //         _userPostLastDate = true;
+  //       }
+  //       // debugPrint('post length ${_userPosts.length}');
+  //     }
+  //   } catch (e) {
+  //     // debugPrint('PostProvider getUserPost error $e $st');
+  //   } finally {
+  //     _getUserPostBeingCalled = false;
+  //     _pLoading = false;
+  //     notifyListeners();
+  //   }
+  // }
+
+  // getSubmissionsDateNext() async {
+  //   try {
+  //     _pageLoading = true;
+  //     notifyListeners();
+  //     var query = (FirebaseFirestore.instance
+  //         .collection('posts')
+  //         .where('reportRemoved', isEqualTo: false)
+  //         .where('sub', isEqualTo: 'fairtalk')
+  //         .orderBy('datePublished', descending: true));
+  //     var snap = await query.count().get();
+  //     // debugPrint('count is ${snap.count}');
+  //     if (!_getUserPostBeingCalled) {
+  //       _getUserPostBeingCalled = true;
+  //       Future.delayed(Duration.zero);
+  //       _userPostSnapshot = await query
+  //           .startAfterDocument(_userPostSnapshot!.docs.last)
+  //           .limit(_pageSize)
+  //           .get();
+  //       _submissionDate.addAll(
+  //           _userPostSnapshot!.docs.map((e) => Post.fromSnap(e)).toList());
+  //       // debugPrint("user post length  : ${_userPosts.length}");
+  //       _userPostLastDate = false;
+  //       if (_submissionDate.length < _pageSize ||
+  //           _submissionDate.length == snap.count) {
+  //         _userPostLastDate = true;
+  //       }
+  //       // debugPrint('post length ${_userPosts.length}');
+  //     }
+  //   } catch (e) {
+  //     // debugPrint('PostProvider getUserPost error $e $st');
+  //   } finally {
+  //     _getUserPostBeingCalled = false;
+  //     _pageLoading = false;
+  //     notifyListeners();
+  //   }
+  // }
+
+  getSubmissionsScore() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       _pLoading = true;
       notifyListeners();
       var query = (FirebaseFirestore.instance
           .collection('posts')
-          .where('time', isEqualTo: 0));
+          .where('reportRemoved', isEqualTo: false)
+          .where('sub', isEqualTo: 'fairtalk')
+          .orderBy('score', descending: true));
       var snap = await query.count().get();
-      // debugPrint('count is ${snap.count}');
-      if (!_getUserPostBeingCalled) {
-        _getUserPostBeingCalled = true;
+      if (!_getPostBeingCalled) {
+        _getPostBeingCalled = true;
+        notifyListeners();
         Future.delayed(Duration.zero);
-        _userPostSnapshot = await query.limit(_pageSize).get();
-        _userPosts =
-            _userPostSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
-        // debugPrint("user post length  : ${_posts.length}");
-        _userPostLast = false;
-        if (_userPosts.length < _pageSize || _pageSize == snap.count) {
-          _userPostLast = true;
+        _postsSnapshot = await query.limit(_pageSize).get();
+        _posts = _postsSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+
+        _count = 1;
+        _last = false;
+        if (_posts.length < _pageSize || _pageSize == snap.count) {
+          _last = true;
         }
-        // debugPrint('post length ${_userPosts.length}');
       }
     } catch (e) {
-      // debugPrint('PostProvider getUserPost error $e $st');
+      // debugPrint('PostProvider getPosts error $e $st');
     } finally {
-      _getUserPostBeingCalled = false;
+      _getPostBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getSubmissionsDate() async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
+          .where('sub', isEqualTo: 'fairtalk')
+          .orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+      if (!_getPostBeingCalled) {
+        _getPostBeingCalled = true;
+        notifyListeners();
+        Future.delayed(Duration.zero);
+        _postsSnapshot = await query.limit(_pageSize).get();
+        _posts = _postsSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+        _count = 1;
+        _last = false;
+        if (_posts.length < _pageSize || _pageSize == snap.count) {
+          _last = true;
+        }
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getPosts error $e $st');
+    } finally {
+      _getPostBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getNextSubmissions() async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_postsSnapshot != null &&
+          _postsSnapshot!.docs.isNotEmpty &&
+          _pLoading != true &&
+          _postPageLoading != true) {
+        {
+          _postPageLoading = true;
+          _pLoading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'fairtalk')
+                .orderBy('score', descending: true))
+            .startAfterDocument(_postsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _postPageLoading = false;
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getNextSubmissionsDate() async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_postsSnapshot != null &&
+          _postsSnapshot!.docs.isNotEmpty &&
+          _pLoading != true &&
+          _postPageLoading != true) {
+        {
+          _postPageLoading = true;
+          _pLoading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'fairtalk')
+                .orderBy('datePublished', descending: true))
+            .startAfterDocument(_postsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _postPageLoading = false;
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousSubmissions() async {
+    try {
+      if (_postsSnapshot != null) {
+        _pLoading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'fairtalk')
+                .orderBy('score', descending: true))
+            .endBeforeDocument(_postsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousSubmissionsDate() async {
+    try {
+      if (_postsSnapshot != null) {
+        _pLoading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'fairtalk')
+                .orderBy('datePublished', descending: true))
+            .endBeforeDocument(_postsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
       _pLoading = false;
       notifyListeners();
     }
   }
 
   deleteUserPost(String postId) {
-    // debugPrint("Post Id ::: $postId");
     try {
       _userPosts.removeWhere((element) => element.postId == postId);
       _posts.removeWhere((element) => element.postId == postId);
@@ -960,11 +1296,18 @@ class PostProvider extends ChangeNotifier {
 
   List<Post> get userProfilePost => _userPosts;
 
+  List<Post> get submissionPostScore => _submissionScore;
+
+  List<Post> get submissionPostDate => _submissionDate;
+
   bool get loading => _loading;
 
   bool get pageLoading => _pageLoading;
 
+  bool get pageLoadingScore => _pageLoadingScore;
+
   bool get pLoading => _pLoading;
+  bool get pLoadingScore => _pLoadingScore;
 
   bool get postLoading => _postsLoading;
 
@@ -979,8 +1322,12 @@ class PostProvider extends ChangeNotifier {
   bool get isButtonVisible => _isButtonVisible;
 
   bool get isLastUserPost => _userPostLast;
+  bool get isLastUserPostDate => _userPostLastDate;
+  bool get isLastUserPostScore => _userPostLastScore;
 
   ScrollController get postScrollController => _postScrollController;
 
   get canUserPostLoadMore => !(_userPostLast);
+  get canUserPostLoadMoreDate => !(_userPostLastDate);
+  get canUserPostLoadMoreScore => !(_userPostLastScore);
 }

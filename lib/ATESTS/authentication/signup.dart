@@ -119,9 +119,9 @@ class _SignupScreenState extends State<SignupScreen> {
         showSnackBarError(userNameValid, context);
         return;
       }
-      setState(() {
-        _isLoading = true;
-      });
+      // setState(() {
+      //   _isLoading = true;
+      // });
       String res = await AuthMethods().signUpUser(
         username: _usernameController.text.trim(),
         aEmail: _emailController.text.trim(),
@@ -145,19 +145,17 @@ class _SignupScreenState extends State<SignupScreen> {
         if (!mounted) return;
         showSnackBarError(res, context);
       } else {
-        // if (!mounted) return;
-        // showSnackBar("Welcome ${_usernameController.text.trim()}!", context);
-        goToHome(context);
+        // goToHome(context);
 
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => WelcomeScreen(
-              username: _usernameController.text.trim(),
-            ),
-          ),
-          (route) => false,
-        );
-        FirestoreMethods().postCounter('user');
+        // Navigator.of(context).pushAndRemoveUntil(
+        //   MaterialPageRoute(
+        //     builder: (context) => WelcomeScreen(
+        //       username: _usernameController.text.trim(),
+        //     ),
+        //   ),
+        //   (route) => false,
+        // );
+        // FirestoreMethods().postCounter('user');
       }
     } catch (e) {
       // debugPrint('signup error $e $st');
@@ -471,7 +469,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 8.0, right: 12, left: 12),

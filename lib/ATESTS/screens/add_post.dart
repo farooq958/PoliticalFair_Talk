@@ -401,19 +401,21 @@ class _AddPostState extends State<AddPost> {
       String res1 = await _loadMessageCounter();
 
       String res = await FirestoreMethods().uploadPost(
-          uid,
-          username,
-          profImage,
-          mCountry,
-          global,
-          _titleController.text,
-          _bodyController.text,
-          videoUrl!,
-          photoUrl,
-          // selected,
-          getCounterPost,
-          widget.durationInDay,
-          myTagsLowerCase);
+        uid,
+        username,
+        profImage,
+        mCountry,
+        global,
+        _titleController.text,
+        _bodyController.text,
+        videoUrl!,
+        photoUrl,
+        // selected,
+        getCounterPost,
+        widget.durationInDay,
+        'none',
+        myTagsLowerCase,
+      );
 
       if (res1 == "success" && res == "success") {
         Future.delayed(const Duration(milliseconds: 1500), () {

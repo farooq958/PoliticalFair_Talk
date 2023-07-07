@@ -2026,7 +2026,7 @@ scoreDialogProfile({required BuildContext context}) {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Whenever a (verified) user upvotes one of your messages or gives a vote on one of your polls, your profile score increases by +1.',
+                          "Everytime a verified user upvotes a message or poll that you've created, your profile score increases by +1.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 15,

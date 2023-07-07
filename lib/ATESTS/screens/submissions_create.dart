@@ -42,8 +42,8 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
   User? user;
   var snap;
   bool _isLoading = false;
-
   bool isFairtalk = false;
+  int getCounterPost = 0;
 
   // @override
   // void initState() {
@@ -72,24 +72,47 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
     }
   }
 
+  final CollectionReference firestoreInstance =
+      FirebaseFirestore.instance.collection('postCounter');
+
+  Future<String> _loadMessageCounter() async {
+    String res1 = "Some error occurred.";
+    try {
+      await firestoreInstance.doc('messageCounter').get().then((event) {
+        setState(() {
+          getCounterPost = event['counter'];
+        });
+      });
+      res1 = "success";
+    } catch (e) {
+      //
+    }
+    return res1;
+  }
+
   void postImage(
-    String uid,
-    String username,
-    String profImage,
-  ) async {
+      String uid, String username, String profImage, String sub) async {
     try {
       setState(() {
         _isLoading = true;
       });
-      String res = await FirestoreMethods().uploadSubmission(
+      String res1 = await _loadMessageCounter();
+      String res = await FirestoreMethods().uploadPost(
         uid,
         username,
         profImage,
+        '',
+        'true',
         _titleController.text,
-        isFairtalk ? true : false,
+        '',
+        '',
+        '',
+        getCounterPost,
+        1,
+        sub,
+        null,
       );
-
-      if (res == "success") {
+      if (res == "success" && res1 == "success") {
         Future.delayed(const Duration(milliseconds: 1500), () {
           FocusScope.of(context).unfocus();
           _titleController.clear();
@@ -98,7 +121,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
             _isLoading = false;
           });
 
-          waitSubmission(time: widget.durationInDay);
+          sub == 'fairtalk' ? null : waitSubmission(time: widget.durationInDay);
           showSnackBar(
             'Submission successfully created.',
             context,
@@ -156,11 +179,11 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
               actions: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8, top: 8),
                         width: MediaQuery.of(context).size.width,
                         child: Row(
                           children: [
@@ -202,7 +225,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                       // const SizedBox(height: 5),
                       _isLoading
                           ? const LinearProgressIndicator(color: Colors.white)
-                          : const Padding(padding: EdgeInsets.only(top: 0)),
+                          : const Padding(padding: EdgeInsets.only(top: 0))
                     ],
                   ),
                 ),
@@ -485,7 +508,9 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                                               '',
                                                                           user?.photoUrl ??
                                                                               '',
-                                                                        );
+                                                                          user?.username == 'Fairtalk'
+                                                                              ? 'fairtalk'
+                                                                              : 'sub');
                                                     });
                                               });
                                             },
