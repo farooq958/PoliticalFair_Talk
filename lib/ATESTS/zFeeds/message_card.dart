@@ -255,7 +255,7 @@ class _PostCardTestState extends State<PostCardTest> {
       controller: controller,
       child: Padding(
         padding: const EdgeInsets.only(
-          top: 10,
+          top: 6,
         ),
         child: PhysicalModel(
           color: tileClick ? testing : whiteDialog,
@@ -970,8 +970,8 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                   : ' View Additional Text',
                                                               style:
                                                                   const TextStyle(
-                                                                color: Colors
-                                                                    .blueAccent,
+                                                                color:
+                                                                    Colors.blue,
                                                                 fontSize: 14,
                                                                 fontWeight:
                                                                     FontWeight

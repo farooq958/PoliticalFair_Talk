@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../info screens/how_it_works.dart';
+import '../utils/global_variables.dart';
 import 'verify_two.dart';
 
 class VerifyOne extends StatefulWidget {
@@ -12,6 +13,8 @@ class VerifyOne extends StatefulWidget {
 }
 
 class _VerifyOneState extends State<VerifyOne> {
+  bool isVerifyDialog = false;
+
   @override
   Widget build(BuildContext context) {
     var safePadding = MediaQuery.of(context).padding.top;
@@ -42,7 +45,7 @@ class _VerifyOneState extends State<VerifyOne> {
                               customBorder: const CircleBorder(),
                               splashColor: Colors.grey.withOpacity(0.5),
                               child: const Icon(Icons.keyboard_arrow_left,
-                                  color: Color.fromARGB(255, 25, 61, 94)),
+                                  color: darkBlue),
                               onTap: () {
                                 Future.delayed(
                                   const Duration(milliseconds: 50),
@@ -58,7 +61,7 @@ class _VerifyOneState extends State<VerifyOne> {
                       const Text(
                         'Account Verification',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 25, 61, 94),
+                            color: darkBlue,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
@@ -74,11 +77,9 @@ class _VerifyOneState extends State<VerifyOne> {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 36, 64, 101),
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 0)),
+                      color: darkBlue,
+                      border:
+                          Border(bottom: BorderSide(color: darkBlue, width: 0)),
                     ),
                     width: MediaQuery.of(context).size.width * 0.5,
                     height:
@@ -137,7 +138,7 @@ class _VerifyOneState extends State<VerifyOne> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
@@ -159,9 +160,9 @@ class _VerifyOneState extends State<VerifyOne> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.85,
                               padding: const EdgeInsets.only(
-                                  right: 12, left: 12, top: 10, bottom: 6),
+                                  right: 12, left: 12, top: 10, bottom: 10),
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 25, 61, 94),
+                                color: darkBlue,
                                 borderRadius: BorderRadius.circular(15),
                                 border:
                                     Border.all(width: 2, color: Colors.white),
@@ -175,7 +176,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                         fontSize: 18,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.3),
+                                        letterSpacing: 0),
                                   ),
                                   Container(height: 8),
                                   Padding(
@@ -186,82 +187,148 @@ class _VerifyOneState extends State<VerifyOne> {
                                       decoration: const BoxDecoration(
                                         border: Border(
                                           top: BorderSide(
-                                              width: 0, color: Colors.white),
+                                              width: 2, color: Colors.white),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Container(height: 8),
                                   const Text(
-                                    "Without an account verification system, anyone could simply create multiple accounts and unfairly manipulate our platform's voting metrics.",
+                                    "Without a verification system, anyone could simply create multiple accounts and unfairly manipulate our voting metrics. Verifying your account is completely free. Data collected during the verification process is encrypted and will never be shared or sold.",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
-                                        letterSpacing: 0.3),
+                                        letterSpacing: 0),
                                   ),
-                                  const SizedBox(height: 8),
-                                  const Text(
-                                    "Additionally, it also allows us to validate your Nationality. Once verified, you'll gain full access to the National section of the app.",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        letterSpacing: 0.3),
-                                  ),
-                                  // Container(height: 8),
+                                  // const SizedBox(height: 8),
                                   // const Text(
-                                  //   "Without a verification system, it would be very easy for anyone to simply create multiple accounts and unfairly manipulate the platform's voting metrics.",
+                                  //   "Verifying your account is completely free. Data collected during the verification process is encrypted and will never be shared or sold.",
                                   //   textAlign: TextAlign.center,
                                   //   style: TextStyle(
                                   //       color: Colors.white,
                                   //       fontSize: 14,
-                                  //       letterSpacing: 0.3),
+                                  //       letterSpacing: 0),
                                   // ),
-                                  Container(height: 4),
-                                  // Row(
-                                  //   mainAxisAlignment: MainAxisAlignment.center,
-                                  //   children: [
-                                  //     Material(
-                                  //       color: Colors.transparent,
-                                  //       borderRadius: BorderRadius.circular(5),
-                                  //       child: InkWell(
-                                  //         borderRadius:
-                                  //             BorderRadius.circular(50),
-                                  //         splashColor:
-                                  //             Colors.blue.withOpacity(0.5),
-                                  //         onTap: () {
-                                  //           Future.delayed(
-                                  //               const Duration(
-                                  //                   milliseconds: 150), () {
-                                  //             Navigator.push(
-                                  //               context,
-                                  //               MaterialPageRoute(
-                                  //                   builder: (context) =>
-                                  //                       const HowItWorks()),
-                                  //             );
-                                  //           });
-                                  //         },
-                                  //         child: Container(
-                                  //           padding: const EdgeInsets.all(4),
-                                  //           child: Row(
-                                  //             children: [
-                                  //               const Icon(Icons.info_outline,
-                                  //                   color: Colors.blue,
-                                  //                   size: 14),
-                                  //               Container(width: 4),
-                                  //               const Text(
-                                  //                   'Learn more about Fairtalk',
-                                  //                   style: TextStyle(
-                                  //                       color: Colors.blue,
-                                  //                       fontSize: 14)),
-                                  //             ],
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // ),
+                                  const SizedBox(height: 8),
+                                  PhysicalModel(
+                                    color:
+                                        const Color.fromARGB(255, 0, 81, 181),
+                                    elevation: 3,
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.75,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 6, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: const Color.fromARGB(
+                                            255, 0, 81, 181),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                isVerifyDialog =
+                                                    !isVerifyDialog;
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 0,
+                                                      horizontal: 0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                      isVerifyDialog
+                                                          ? Icons
+                                                              .keyboard_arrow_up
+                                                          : Icons
+                                                              .keyboard_arrow_down,
+                                                      color: whiteDialog,
+                                                      size: 28),
+                                                  const SizedBox(width: 2),
+                                                  const Text(
+                                                    "Perks for verifying account",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: whiteDialog,
+                                                      letterSpacing: 0.5,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          isVerifyDialog
+                                              ? Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: const [
+                                                    Text(
+                                                      "• Participate in Fairtalk's democracy.",
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: whiteDialog,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          letterSpacing: 0),
+                                                    ),
+                                                    Text(
+                                                      "• Send messages & polls Nationally.",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: whiteDialog,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          letterSpacing: 0),
+                                                    ),
+                                                    Text(
+                                                      "• Give votes that count.",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: whiteDialog,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          letterSpacing: 0),
+                                                    ),
+                                                    Text(
+                                                      "• Additional personalization options.",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: whiteDialog,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          letterSpacing: 0),
+                                                    ),
+                                                    Text(
+                                                      "• And much more!",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: whiteDialog,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          letterSpacing: 0),
+                                                    ),
+                                                  ],
+                                                )
+                                              : const SizedBox(),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -293,20 +360,17 @@ class _VerifyOneState extends State<VerifyOne> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          const Text(
-                                              'Start Account Verification',
+                                          Text('Start Account Verification',
                                               style: TextStyle(
                                                   fontSize: 16.5,
-                                                  color: Color.fromARGB(
-                                                      255, 25, 61, 94),
+                                                  color: darkBlue,
                                                   fontWeight: FontWeight.bold,
-                                                  letterSpacing: 0.3)),
+                                                  letterSpacing: 0)),
                                           Container(width: 6),
-                                          const Icon(
+                                          Icon(
                                             Icons.keyboard_arrow_right,
                                             size: 20,
-                                            color:
-                                                Color.fromARGB(255, 25, 61, 94),
+                                            color: darkBlue,
                                           ),
                                         ],
                                       ),

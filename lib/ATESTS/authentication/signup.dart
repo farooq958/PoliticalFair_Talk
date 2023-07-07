@@ -10,6 +10,7 @@ import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
 import '../provider/google_sign_in.dart';
 import '../services/auth_service.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'google_username.dart';
 import 'login_screen.dart';
@@ -151,8 +152,8 @@ class _SignupScreenState extends State<SignupScreen> {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => WelcomeScreen(
-                username: _usernameController.text.trim(),
-                durationInDay: widget.durationInDay),
+              username: _usernameController.text.trim(),
+            ),
           ),
           (route) => false,
         );
@@ -199,7 +200,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 20),
                       Image.asset(
                         width: MediaQuery.of(context).size.width * 1 - 80,
-                        'assets/fairtalk_blue_transparent.png',
+                        'assets/fairtalk_new_blue_transparent.png',
                       ),
                       const SizedBox(height: 5),
                       SizedBox(
@@ -207,7 +208,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: const Text(
                           'A platform built to unite us all.',
                           style: TextStyle(
-                              color: Color.fromARGB(255, 36, 64, 101),
+                              color: darkBlue,
                               fontWeight: FontWeight.bold,
                               fontSize: 9,
                               fontFamily: 'Capitalis'),
@@ -225,7 +226,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               prefixIconColor: MaterialStateColor.resolveWith(
                                   (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.focused)) {
-                                  return const Color.fromARGB(255, 36, 64, 101);
+                                  return darkBlue;
                                 }
 
                                 return Colors.grey;
@@ -240,8 +241,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25),
                                     borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 36, 64, 101),
-                                        width: 2),
+                                        color: darkBlue, width: 2),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25),
@@ -270,7 +270,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           prefixIconColor: MaterialStateColor.resolveWith(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.focused)) {
-                              return const Color.fromARGB(255, 36, 64, 101);
+                              return darkBlue;
                             }
 
                             return Colors.grey;
@@ -287,9 +287,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 36, 64, 101),
-                                    width: 2),
+                                borderSide:
+                                    const BorderSide(color: darkBlue, width: 2),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
@@ -316,7 +315,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           prefixIconColor: MaterialStateColor.resolveWith(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.focused)) {
-                              return const Color.fromARGB(255, 36, 64, 101);
+                              return darkBlue;
                             }
 
                             return Colors.grey;
@@ -328,9 +327,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
-                              borderSide: const BorderSide(
-                                  color: Color.fromARGB(255, 36, 64, 101),
-                                  width: 2),
+                              borderSide:
+                                  const BorderSide(color: darkBlue, width: 2),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
@@ -367,7 +365,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       const SizedBox(height: 24),
                       PhysicalModel(
-                        color: const Color.fromARGB(255, 36, 64, 101),
+                        color: darkBlue,
                         elevation: 3,
                         borderRadius: BorderRadius.circular(50),
                         child: Material(

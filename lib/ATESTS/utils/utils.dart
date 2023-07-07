@@ -468,7 +468,7 @@ Future<dynamic> openCamera({
 //               height: 258,
 //               decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(25),
-//                   color: const Color.fromARGB(255, 36, 64, 101)),
+//                   color: const darkBlue),
 //               padding: const EdgeInsets.fromLTRB(20, 54, 20, 30),
 //               child: Column(
 //                 children: [
@@ -515,14 +515,14 @@ Future<dynamic> openCamera({
 //                                 const Text('Login',
 //                                     style: TextStyle(
 //                                       fontSize: 16,
-//                                       color: Color.fromARGB(255, 36, 64, 101),
+//                                       color: darkBlue,
 //                                       fontWeight: FontWeight.bold,
 //                                       letterSpacing: 0.25,
 //                                     )),
 //                                 Container(width: 10),
 //                                 const Icon(Icons.login,
 //                                     size: 20,
-//                                     color: Color.fromARGB(255, 36, 64, 101))
+//                                     color: darkBlue)
 //                               ],
 //                             ),
 //                           ),
@@ -589,13 +589,13 @@ Future<dynamic> openCamera({
 //                                     style: TextStyle(
 //                                       fontSize: 16,
 //                                       letterSpacing: 0.25,
-//                                       color: Color.fromARGB(255, 36, 64, 101),
+//                                       color: darkBlue,
 //                                       fontWeight: FontWeight.bold,
 //                                     )),
 //                                 Container(width: 10),
 //                                 const Icon(Icons.verified_user,
 //                                     size: 20,
-//                                     color: Color.fromARGB(255, 36, 64, 101))
+//                                     color: darkBlue)
 //                               ],
 //                             ),
 //                           ),
@@ -610,7 +610,7 @@ Future<dynamic> openCamera({
 //               top: -50,
 //               child: CircleAvatar(
 //                 radius: 50,
-//                 backgroundColor: Color.fromARGB(255, 36, 64, 101),
+//                 backgroundColor: darkBlue,
 //                 child: PhysicalModel(
 //                   color: Colors.white,
 //                   elevation: 4,
@@ -621,7 +621,7 @@ Future<dynamic> openCamera({
 //                     child: Icon(
 //                       Icons.info,
 //                       size: 45,
-//                       color: Color.fromARGB(255, 36, 64, 101),
+//                       color: darkBlue,
 //                     ),
 //                   ),
 //                 ),
@@ -660,7 +660,7 @@ Future<dynamic> openCamera({
 //                 const Text('Are you sure?',
 //                     style: TextStyle(
 //                         fontSize: 19,
-//                         letterSpacing: 0.3,
+//                         letterSpacing: 0,
 //                         fontWeight: FontWeight.w500,
 //                         color: whiteDialog)),
 //                 Padding(
@@ -700,7 +700,7 @@ Future<dynamic> openCamera({
 //                           type,
 //                           style: const TextStyle(
 //                               fontSize: 15,
-//                               letterSpacing: 0.3,
+//                               letterSpacing: 0,
 //                               fontWeight: FontWeight.w500,
 //                               color: Colors.red),
 //                         ),
@@ -732,7 +732,7 @@ Future<dynamic> openCamera({
 //                           'Cancel',
 //                           style: TextStyle(
 //                               fontSize: 15,
-//                               letterSpacing: 0.3,
+//                               letterSpacing: 0,
 //                               fontWeight: FontWeight.w500,
 //                               color: whiteDialog),
 //                         ),
@@ -791,7 +791,7 @@ Future<dynamic> openCamera({
 //             height: 236,
 //             decoration: BoxDecoration(
 //                 borderRadius: BorderRadius.circular(25),
-//                 color: const Color.fromARGB(255, 36, 64, 101)),
+//                 color: const darkBlue),
 //             padding: const EdgeInsets.fromLTRB(6, 52, 6, 6),
 //             child: Column(
 //               children: [
@@ -862,7 +862,7 @@ Future<dynamic> openCamera({
 //                                       "View rules",
 //                                       style: TextStyle(
 //                                         fontSize: 13,
-//                                         color: Color.fromARGB(255, 36, 64, 101),
+//                                         color: darkBlue,
 //                                         fontWeight: FontWeight.w500,
 //                                       ),
 //                                     ),
@@ -924,7 +924,7 @@ Future<dynamic> openCamera({
 //                             child: Text(
 //                               'Report $typeCapital',
 //                               style: const TextStyle(
-//                                   color: Color.fromARGB(255, 36, 64, 101),
+//                                   color: darkBlue,
 //                                   fontSize: 16,
 //                                   fontWeight: FontWeight.w500),
 //                             ),
@@ -980,7 +980,7 @@ Future<dynamic> openCamera({
 //                             child: const Text(
 //                               'Cancel',
 //                               style: TextStyle(
-//                                   color: Color.fromARGB(255, 36, 64, 101),
+//                                   color: darkBlue,
 //                                   fontSize: 16,
 //                                   fontWeight: FontWeight.w500),
 //                             ),
@@ -996,7 +996,7 @@ Future<dynamic> openCamera({
 //           const Positioned(
 //             top: -50,
 //             child: CircleAvatar(
-//               backgroundColor: Color.fromARGB(255, 36, 64, 101),
+//               backgroundColor: darkBlue,
 //               radius: 50,
 //               child: PhysicalModel(
 //                 color: Colors.white,
@@ -1009,7 +1009,7 @@ Future<dynamic> openCamera({
 //                     child: Icon(
 //                       Icons.report,
 //                       size: 70,
-//                       color: Color.fromARGB(255, 36, 64, 101),
+//                       color: darkBlue,
 //                     ),
 //                   ),
 //                 ),
@@ -1042,7 +1042,7 @@ Future<dynamic> openCamera({
 //             height: 230,
 //             decoration: BoxDecoration(
 //                 borderRadius: BorderRadius.circular(25),
-//                 color: const Color.fromARGB(255, 36, 64, 101)),
+//                 color: const darkBlue),
 //             padding: const EdgeInsets.fromLTRB(6, 52, 6, 6),
 //             child: Column(
 //               children: [
@@ -1130,7 +1130,7 @@ Future<dynamic> openCamera({
 //                               // isBlocked ? 'Unblock' :
 //                               'Block',
 //                               style: TextStyle(
-//                                   color: Color.fromARGB(255, 36, 64, 101),
+//                                   color: darkBlue,
 //                                   fontSize: 16,
 //                                   fontWeight: FontWeight.w500),
 //                             ),
@@ -1191,7 +1191,7 @@ Future<dynamic> openCamera({
 //                             child: const Text(
 //                               'Cancel',
 //                               style: TextStyle(
-//                                   color: Color.fromARGB(255, 36, 64, 101),
+//                                   color: darkBlue,
 //                                   fontSize: 16,
 //                                   fontWeight: FontWeight.w500),
 //                             ),
@@ -1207,7 +1207,7 @@ Future<dynamic> openCamera({
 //           const Positioned(
 //             top: -50,
 //             child: CircleAvatar(
-//               backgroundColor: Color.fromARGB(255, 36, 64, 101),
+//               backgroundColor: darkBlue,
 //               radius: 50,
 //               child: PhysicalModel(
 //                 color: Colors.white,
@@ -1220,7 +1220,7 @@ Future<dynamic> openCamera({
 //                     child: Icon(
 //                       Icons.block,
 //                       size: 70,
-//                       color: Color.fromARGB(255, 36, 64, 101),
+//                       color: darkBlue,
 //                     ),
 //                   ),
 //                 ),
@@ -1260,7 +1260,7 @@ Future<dynamic> openCamera({
 //                       style: TextStyle(
 //                           fontSize: 19,
 //                           fontWeight: FontWeight.w500,
-//                           letterSpacing: 0.3)),
+//                           letterSpacing: 0)),
 //                   RichText(
 //                     text: const TextSpan(
 //                       children: <TextSpan>[
@@ -1298,7 +1298,7 @@ Future<dynamic> openCamera({
 //                       'Close',
 //                       style: TextStyle(
 //                           fontSize: 15,
-//                           letterSpacing: 0.3,
+//                           letterSpacing: 0,
 //                           fontWeight: FontWeight.w500,
 //                           color: Colors.blue),
 //                     ),
@@ -1336,7 +1336,7 @@ Future<dynamic> openCamera({
 //                 const Text('Are you sure?',
 //                     style: TextStyle(
 //                         fontSize: 19,
-//                         letterSpacing: 0.3,
+//                         letterSpacing: 0,
 //                         fontWeight: FontWeight.w500,
 //                         color: whiteDialog)),
 //                 Padding(
@@ -1375,7 +1375,7 @@ Future<dynamic> openCamera({
 //                           'hi again',
 //                           style: TextStyle(
 //                               fontSize: 15,
-//                               letterSpacing: 0.3,
+//                               letterSpacing: 0,
 //                               fontWeight: FontWeight.w500,
 //                               color: Colors.red),
 //                         ),
@@ -1407,7 +1407,7 @@ Future<dynamic> openCamera({
 //                           'Cancel',
 //                           style: TextStyle(
 //                               fontSize: 15,
-//                               letterSpacing: 0.3,
+//                               letterSpacing: 0,
 //                               fontWeight: FontWeight.w500,
 //                               color: whiteDialog),
 //                         ),
@@ -1478,7 +1478,7 @@ performLoggedUserAction({
                   const Text('Action Failed',
                       style: TextStyle(
                           fontSize: 19,
-                          letterSpacing: 0.3,
+                          letterSpacing: 0,
                           fontWeight: FontWeight.w500,
                           color: darkBlue)),
                   const Padding(
@@ -1486,7 +1486,7 @@ performLoggedUserAction({
                     child: Text('A registered account is required.',
                         style: TextStyle(
                           fontSize: 15,
-                          letterSpacing: 0.3,
+                          letterSpacing: 0,
                           color: darkBlue,
                         )),
                   ),
@@ -1522,7 +1522,7 @@ performLoggedUserAction({
                                       fontSize: 16,
                                       color: whiteDialog,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                     )),
                                 Container(width: 10),
                                 const Icon(Icons.login,
@@ -1549,7 +1549,7 @@ performLoggedUserAction({
                             const Text('or',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                   color: darkBlue,
                                 )),
                             Container(width: 4),
@@ -1591,7 +1591,7 @@ performLoggedUserAction({
                                 const Text('Sign Up',
                                     style: TextStyle(
                                       fontSize: 16,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                       color: whiteDialog,
                                       fontWeight: FontWeight.w500,
                                     )),
@@ -1661,7 +1661,7 @@ verificationRequired({
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                         fontWeight: FontWeight.w500,
                         color: darkBlue)),
                 Padding(
@@ -1670,7 +1670,7 @@ verificationRequired({
                     padding:
                         const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     child: const Text(
-                        "Fairtalk wouldn't be considered fair if we allowed individuals to create multiple accounts and vote multiple times. This is why performing this action requires an account verification.",
+                        "Fairtalk wouldn't be considered fair if we allowed users to create multiple accounts and vote multiple times.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -1785,7 +1785,7 @@ voteIfPending({
                 const Text('Verification Pending',
                     style: TextStyle(
                       fontSize: 19,
-                      letterSpacing: 0.3,
+                      letterSpacing: 0,
                       fontWeight: FontWeight.w500,
                       color: darkBlue,
                     )),
@@ -1836,7 +1836,7 @@ voteIfPending({
                                   fontSize: 16,
                                   color: whiteDialog,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                 )),
                           ],
                         ),
@@ -1898,7 +1898,7 @@ nationalityUnknown({required BuildContext context}) {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                         fontWeight: FontWeight.w500,
                         color: darkBlue)),
                 Padding(
@@ -1953,7 +1953,7 @@ nationalityUnknown({required BuildContext context}) {
                                   fontSize: 16,
                                   color: whiteDialog,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                 )),
                           ],
                         ),
@@ -2015,47 +2015,57 @@ scoreDialogProfile({required BuildContext context}) {
                 Column(
                   children: [
                     Column(
-                      children: [
-                        const Text(
-                          'Profile Score Calculation',
+                      children: const [
+                        Text(
+                          'Profile Score',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: darkBlue,
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text('Total ',
-                                style: TextStyle(
-                                  color: darkBlue,
-                                  fontSize: 15,
-                                )),
-                            Icon(Icons.add_circle,
-                                color: Colors.green, size: 17),
-                            Text(' votes received ',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: darkBlue,
-                                ))
-                          ],
-                        ),
-                        // const SizedBox(height: 2),
-                        const Text('+',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 16,
-                            )),
-                        // const SizedBox(height: 2),
-                        const Text('Total poll votes received',
-                            style: TextStyle(
-                              color: darkBlue,
-                              fontSize: 15,
-                            ))
+                        SizedBox(height: 8),
+                        Text(
+                          'Whenever a (verified) user upvotes one of your messages or gives a vote on one of your polls, your profile score increases by +1.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: darkBlue,
+                          ),
+                        )
+                        //     Row(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: const [
+                        //         Text('Total ',
+                        //             style: TextStyle(
+                        //               color: darkBlue,
+                        //               fontSize: 15,
+                        //             )),
+                        //         Icon(Icons.add_circle,
+                        //             color: Colors.green, size: 17),
+                        //         Text(' votes received ',
+                        //             style: TextStyle(
+                        //               fontSize: 15,
+                        //               color: darkBlue,
+                        //             ))
+                        //       ],
+                        //     ),
+                        //     // const SizedBox(height: 2),
+                        //     const Text('+',
+                        //         style: TextStyle(
+                        //           color: darkBlue,
+                        //           fontSize: 16,
+                        //         )),
+                        //     // const SizedBox(height: 2),
+                        //     const Text('Total poll votes received',
+                        //         style: TextStyle(
+                        //           color: darkBlue,
+                        //           fontSize: 15,
+                        //         ))
                       ],
                     ),
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -2090,7 +2100,7 @@ scoreDialogProfile({required BuildContext context}) {
                                 'Learn more about Fairtalk',
                                 style: TextStyle(
                                   fontSize: 13,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                   color: whiteDialog,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -2163,7 +2173,7 @@ earnedDialogProfile({required BuildContext context}) {
                             'Coming Soon',
                             style: TextStyle(
                               fontSize: 19,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500,
                               color: darkBlue,
                             ),
@@ -2214,7 +2224,7 @@ earnedDialogProfile({required BuildContext context}) {
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: whiteDialog,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -2278,14 +2288,14 @@ scoreDialogMessage({required BuildContext context}) {
                 // const Text('Message Score',
                 //     textAlign: TextAlign.center,
                 //     style: TextStyle(
-                //         letterSpacing: 0.3,
+                //         letterSpacing: 0,
                 //         fontSize: 19,
                 //         fontWeight: FontWeight.w500,
                 //         color: darkBlue)),
                 Padding(
                   padding: const EdgeInsets.only(top: 0.0),
                   child: PhysicalModel(
-                    color: const Color.fromARGB(255, 240, 240, 240),
+                    color: darkBlue,
                     elevation: 3,
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
@@ -2298,14 +2308,14 @@ scoreDialogMessage({required BuildContext context}) {
                         children: [
                           const SizedBox(height: 6),
                           const Text(
-                            'Message Score  =',
+                            'Message Score =',
                             style: TextStyle(
                                 fontSize: 15,
-                                color: darkBlue,
-                                letterSpacing: 0.2,
-                                fontWeight: FontWeight.w500),
+                                color: whiteDialog,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(height: 6),
+                          // const SizedBox(height: 6),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
@@ -2318,17 +2328,17 @@ scoreDialogMessage({required BuildContext context}) {
                               Text(
                                 'Votes',
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: darkBlue,
-                                ),
+                                    fontSize: 14,
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 8),
                               Text(
                                 '-',
                                 style: TextStyle(
                                     fontSize: 16,
-                                    color: darkBlue,
-                                    fontWeight: FontWeight.w500),
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                               SizedBox(width: 8),
                               Icon(Icons.do_not_disturb_on,
@@ -2337,9 +2347,9 @@ scoreDialogMessage({required BuildContext context}) {
                               Text(
                                 'Votes',
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: darkBlue,
-                                ),
+                                    fontSize: 14,
+                                    color: whiteDialog,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -2391,7 +2401,7 @@ scoreDialogMessage({required BuildContext context}) {
                                 'Learn more about Fairtalk',
                                 style: TextStyle(
                                   fontSize: 13,
-                                  letterSpacing: 0.3,
+                                  letterSpacing: 0,
                                   color: whiteDialog,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -2455,7 +2465,7 @@ scoreDialogPoll({required BuildContext context}) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 PhysicalModel(
-                  color: const Color.fromARGB(255, 240, 240, 240),
+                  color: darkBlue,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
@@ -2468,21 +2478,19 @@ scoreDialogPoll({required BuildContext context}) {
                       children: const [
                         SizedBox(height: 6),
                         Text(
-                          'Poll Score  =',
+                          'Poll Score =',
                           style: TextStyle(
                               fontSize: 15,
-                              color: darkBlue,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.w500),
+                              color: whiteDialog,
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 6),
+                        // SizedBox(height: 6),
                         Text(
                           'Total votes received',
                           style: TextStyle(
                               fontSize: 15,
-                              color: darkBlue,
-                              letterSpacing: 0.2,
-                              fontWeight: FontWeight.w500),
+                              color: whiteDialog,
+                              fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 6),
                       ],
@@ -2600,7 +2608,7 @@ contactInfo({required BuildContext context}) {
                         const Text('Contact Information',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontSize: 19,
                                 fontWeight: FontWeight.w500,
                                 color: darkBlue)),
@@ -2627,7 +2635,7 @@ contactInfo({required BuildContext context}) {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
-                            letterSpacing: 0.3,
+                            letterSpacing: 0,
                             fontSize: 16,
                             color: darkBlue,
                           ),
@@ -2701,13 +2709,13 @@ timerDialog({
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 19,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500,
                                 color: darkBlue)),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              "The time left represents the total remaining time before this ${type}'s voting cycle ends. The total duration of a voting cycle is 7 days.",
+                              "Time left represents the total remaining time before this ${type}'s voting cycle ends. The total duration of a voting cycle is 7 days.",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue)),
@@ -2722,7 +2730,7 @@ timerDialog({
                         //           'Voting has already ended.',
                         //           style: TextStyle(
                         //             fontSize: 15,
-                        //             letterSpacing: 0.3,
+                        //             letterSpacing: 0,
                         //             fontWeight: FontWeight.w500,
                         //             color: darkBlue,
                         //           ),
@@ -2772,7 +2780,7 @@ timerDialog({
                                       'Learn more about Fairtalk',
                                       style: TextStyle(
                                         fontSize: 13,
-                                        letterSpacing: 0.3,
+                                        letterSpacing: 0,
                                         color: whiteDialog,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -2845,7 +2853,7 @@ sendTimerDialog({
                   children: [
                     Column(
                       children: [
-                        const Text('Wait Time',
+                        const Text('Waiting Time',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 19,
@@ -2892,7 +2900,7 @@ sendTimerDialog({
                                       'Learn more about Fairtalk',
                                       style: TextStyle(
                                         fontSize: 13,
-                                        letterSpacing: 0.3,
+                                        letterSpacing: 0,
                                         color: whiteDialog,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -3009,7 +3017,7 @@ sendTimerDialogSubmission({
                                       'Learn more about Fairtalk',
                                       style: TextStyle(
                                         fontSize: 13,
-                                        letterSpacing: 0.3,
+                                        letterSpacing: 0,
                                         color: whiteDialog,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -3082,7 +3090,7 @@ deleteConfirmation(
                 const Text('Are you sure?',
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                         fontWeight: FontWeight.w500,
                         color: whiteDialog)),
                 Padding(
@@ -3122,7 +3130,7 @@ deleteConfirmation(
                           type,
                           style: const TextStyle(
                               fontSize: 15,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500,
                               color: Colors.red),
                         ),
@@ -3154,7 +3162,7 @@ deleteConfirmation(
                           'Cancel',
                           style: TextStyle(
                               fontSize: 15,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500,
                               color: whiteDialog),
                         ),
@@ -3217,7 +3225,7 @@ keywordsDialog({
                 const Text('Keywords',
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                         fontWeight: FontWeight.w500,
                         color: darkBlue)),
                 Padding(
@@ -3263,7 +3271,7 @@ keywordsDialog({
                               'Learn more about Fairtalk',
                               style: TextStyle(
                                 fontSize: 13,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 color: whiteDialog,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -3335,7 +3343,7 @@ percentageBarDialog({
                     //     : 'Current Voting Results',
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                         fontWeight: FontWeight.w500,
                         color: darkBlue)),
                 Padding(
@@ -3539,7 +3547,7 @@ percentageBarDialog({
                               'Learn more about Fairtalk',
                               style: TextStyle(
                                 fontSize: 13,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 color: whiteDialog,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -3614,7 +3622,7 @@ reportDialog(
                       Text('Report $typeCapital',
                           style: const TextStyle(
                               fontSize: 19,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500,
                               color: darkBlue)),
                       Padding(
@@ -3668,7 +3676,7 @@ reportDialog(
                                     "View Rules",
                                     style: TextStyle(
                                       fontSize: 14,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                       color: whiteDialog,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -3732,7 +3740,7 @@ reportDialog(
                                 style: const TextStyle(
                                     color: whiteDialog,
                                     fontSize: 15,
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -3790,7 +3798,7 @@ reportDialog(
                                 'Cancel',
                                 style: TextStyle(
                                     color: whiteDialog,
-                                    letterSpacing: 0.3,
+                                    letterSpacing: 0,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -3864,7 +3872,7 @@ blockDialog({
                       const Text('Block this user?',
                           style: TextStyle(
                               fontSize: 19,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontWeight: FontWeight.w500,
                               color: darkBlue)),
                       Padding(
@@ -3937,7 +3945,7 @@ blockDialog({
                                     color: whiteDialog,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.3),
+                                    letterSpacing: 0),
                               ),
                             ),
                           ),
@@ -3995,7 +4003,7 @@ blockDialog({
                                     color: whiteDialog,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.3),
+                                    letterSpacing: 0),
                               ),
                             ),
                           ),
@@ -4428,7 +4436,7 @@ suspensionDialog({
                       style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.w500,
-                          letterSpacing: 0.3)),
+                          letterSpacing: 0)),
                   const SizedBox(
                     height: 15,
                   ),
@@ -4437,7 +4445,7 @@ suspensionDialog({
                       children: <TextSpan>[
                         const TextSpan(
                           text:
-                              "If you believe this was a mistake, you can reach out to us by email: fairtalk.assist@gmail.com and we'll further investigate the reason behind your suspension. If you can prove to us that you have read and understood our ",
+                              "If you believe this was a mistake, you can reach out to us by email: contact@fairtalk.net and we'll further investigate the reason behind your suspension. If you can prove to us that you have read and understood our ",
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         TextSpan(
@@ -4472,7 +4480,7 @@ suspensionDialog({
                       'Close',
                       style: TextStyle(
                           fontSize: 15,
-                          letterSpacing: 0.3,
+                          letterSpacing: 0,
                           fontWeight: FontWeight.w500,
                           color: Colors.blue),
                     ),
@@ -4528,7 +4536,7 @@ filterDialog({
                         const Text('Sort & Filter',
                             style: TextStyle(
                                 fontSize: 20,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500,
                                 color: darkBlue)),
                         Padding(
@@ -4570,7 +4578,7 @@ filterDialog({
                                                 color: whiteDialog,
                                                 fontSize: 14.5,
                                                 fontWeight: FontWeight.w500,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                               ),
                                             ),
                                           ],
@@ -4597,7 +4605,7 @@ filterDialog({
                                                 fontSize: 13,
                                                 color: whiteDialog,
                                                 fontWeight: FontWeight.w500,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                               ),
                                             ),
                                           )
@@ -4650,7 +4658,7 @@ filterDialog({
                                                 color: whiteDialog,
                                                 fontSize: 14.5,
                                                 fontWeight: FontWeight.w500,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                               ),
                                             ),
                                           ],
@@ -4677,7 +4685,7 @@ filterDialog({
                                                 fontSize: 13,
                                                 color: whiteDialog,
                                                 fontWeight: FontWeight.w500,
-                                                letterSpacing: 0.3,
+                                                letterSpacing: 0,
                                               ),
                                             ),
                                           )
@@ -4727,7 +4735,7 @@ filterDialog({
                                               color: whiteDialog,
                                               fontSize: 14.5,
                                               fontWeight: FontWeight.w500,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                             ),
                                           ),
                                         ],
@@ -4754,7 +4762,7 @@ filterDialog({
                                               fontSize: 13,
                                               color: whiteDialog,
                                               fontWeight: FontWeight.w500,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                             ),
                                           ),
                                         )

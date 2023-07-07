@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../provider/poll_provider.dart';
 import '../provider/post_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
 import 'filter_screen.dart';
@@ -74,7 +75,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
       children: [
         Scaffold(
           key: _key,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: testing,
           drawer: Drawer(
             child: SingleChildScrollView(
               child: Column(
@@ -94,7 +95,8 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
           appBar: AppBar(
             elevation: 4,
             toolbarHeight: 68,
-            backgroundColor: Colors.white,
+            backgroundColor: darkBlue,
+            automaticallyImplyLeading: false,
             actions: [
               Expanded(
                 child: SizedBox(
@@ -118,7 +120,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                   height: 35,
                                   child: Material(
                                     shape: const CircleBorder(),
-                                    color: Colors.white,
+                                    color: Colors.transparent,
                                     child: InkWell(
                                       customBorder: const CircleBorder(),
                                       splashColor: Colors.grey.withOpacity(0.5),
@@ -130,8 +132,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         });
                                       },
                                       child: const Icon(Icons.settings,
-                                          color:
-                                              Color.fromARGB(255, 80, 80, 80)),
+                                          color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -147,10 +148,9 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 ? 'GLOBAL'
                                                 : 'NATIONAL',
                                             style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 55, 55, 55),
+                                              color: Colors.white,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 14,
+                                              fontSize: 13,
                                             ),
                                           ),
                                         ),
@@ -180,11 +180,15 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                       elevation: 3,
                                       borderRadius: BorderRadius.circular(25),
                                       child: Container(
-                                          width: 116,
+                                          width: 120,
                                           height: 32.5,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(25),
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                           child: Row(
                                             children: [
@@ -269,24 +273,24 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                       color: filterProvider
                                                                   .global ==
                                                               "true"
-                                                          ? const Color
-                                                                  .fromARGB(255,
-                                                              125, 125, 125)
-                                                          : const Color
-                                                                  .fromARGB(255,
-                                                              228, 228, 228),
+                                                          ? whiteDialog
+                                                          : darkBlue,
                                                     ),
                                                     height: 100,
                                                     width: 58,
                                                     child: Icon(
                                                         MyFlutterApp
                                                             .globe_americas,
-                                                        color: Colors.white,
+                                                        color: filterProvider
+                                                                    .global ==
+                                                                "true"
+                                                            ? darkBlue
+                                                            : whiteDialog,
                                                         size: filterProvider
                                                                     .global ==
                                                                 "true"
                                                             ? 23
-                                                            : 17),
+                                                            : 15),
                                                   ),
                                                 ),
                                               ),
@@ -360,42 +364,35 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                     }
                                                   },
                                                   child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                        ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topRight:
+                                                            Radius.circular(25),
+                                                        bottomRight:
+                                                            Radius.circular(25),
+                                                      ),
+                                                      color: filterProvider
+                                                                  .global !=
+                                                              "true"
+                                                          ? whiteDialog
+                                                          : darkBlue,
+                                                    ),
+                                                    height: 100,
+                                                    width: 58,
+                                                    child: Icon(Icons.flag,
                                                         color: filterProvider
                                                                     .global !=
                                                                 "true"
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                125,
-                                                                125,
-                                                                125)
-                                                            : const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                228,
-                                                                228,
-                                                                228),
-                                                      ),
-                                                      height: 100,
-                                                      width: 58,
-                                                      child: Icon(Icons.flag,
-                                                          color: Colors.white,
-                                                          size: filterProvider
-                                                                      .global !=
-                                                                  "true"
-                                                              ? 23
-                                                              : 17)),
+                                                            ? darkBlue
+                                                            : whiteDialog,
+                                                        size: filterProvider
+                                                                    .global !=
+                                                                "true"
+                                                            ? 23
+                                                            : 15),
+                                                  ),
                                                 ),
                                               )
                                             ],
@@ -413,10 +410,9 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                             ? 'MESSAGES'
                                             : 'POLLS',
                                         style: const TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 55, 55, 55),
+                                          color: whiteDialog,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14,
+                                          fontSize: 13,
                                         ),
                                       ),
                                     ),
@@ -424,7 +420,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                       elevation: 3,
                                       borderRadius: BorderRadius.circular(25),
                                       child: Container(
-                                        width: 116,
+                                        width: 120,
                                         height: 32.5,
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -433,6 +429,10 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                           //   width: .75,
                                           //   color: Colors.grey,
                                           // ),
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 2,
+                                          ),
                                         ),
                                         child: Row(
                                           children: [
@@ -519,20 +519,22 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                     color: filterProvider
                                                                 .messages ==
                                                             "true"
-                                                        ? const Color.fromARGB(
-                                                            255, 125, 125, 125)
-                                                        : const Color.fromARGB(
-                                                            255, 228, 228, 228),
+                                                        ? whiteDialog
+                                                        : darkBlue,
                                                   ),
                                                   height: 100,
                                                   width: 58,
                                                   child: Icon(Icons.message,
-                                                      color: Colors.white,
+                                                      color: filterProvider
+                                                                  .messages ==
+                                                              "true"
+                                                          ? darkBlue
+                                                          : whiteDialog,
                                                       size: filterProvider
                                                                   .messages ==
                                                               "true"
                                                           ? 23
-                                                          : 17),
+                                                          : 15),
                                                 ),
                                               ),
                                             ),
@@ -618,24 +620,24 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                       color: filterProvider
                                                                   .messages !=
                                                               "true"
-                                                          ? const Color
-                                                                  .fromARGB(255,
-                                                              125, 125, 125)
-                                                          : const Color
-                                                                  .fromARGB(255,
-                                                              228, 228, 228),
+                                                          ? whiteDialog
+                                                          : darkBlue,
                                                     ),
                                                     height: 100,
                                                     width: 58,
                                                     child: RotatedBox(
                                                       quarterTurns: 1,
                                                       child: Icon(Icons.poll,
-                                                          color: Colors.white,
+                                                          color: filterProvider
+                                                                      .messages !=
+                                                                  "true"
+                                                              ? darkBlue
+                                                              : whiteDialog,
                                                           size: filterProvider
                                                                       .messages !=
                                                                   "true"
                                                               ? 23
-                                                              : 17),
+                                                              : 15),
                                                     )),
                                               ),
                                             )
@@ -650,7 +652,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                   height: 35,
                                   child: Material(
                                     shape: const CircleBorder(),
-                                    color: Colors.white,
+                                    color: Colors.transparent,
                                     child: InkWell(
                                       customBorder: const CircleBorder(),
                                       splashColor: Colors.grey.withOpacity(0.5),
@@ -676,8 +678,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                         });
                                       },
                                       child: const Icon(Icons.filter_list,
-                                          color:
-                                              Color.fromARGB(255, 80, 80, 80)),
+                                          color: whiteDialog),
                                     ),
                                   ),
                                 ),
@@ -715,9 +716,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                             mostLikedProvider.loading
                         ? const SizedBox()
                         : Padding(
-                            padding: const EdgeInsets.only(
-                              top: 10,
-                            ),
+                            padding: const EdgeInsets.only(top: 10, bottom: 4),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -766,7 +765,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.5,
-                                                    letterSpacing: 0.3,
+                                                    letterSpacing: 0,
                                                   )),
                                             ],
                                           ),
@@ -844,7 +843,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                             ],
@@ -878,9 +877,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                             mostLikedProvider.loading
                         ? const SizedBox()
                         : Padding(
-                            padding: const EdgeInsets.only(
-                              top: 10,
-                            ),
+                            padding: const EdgeInsets.only(top: 10, bottom: 4),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -929,7 +926,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.5,
-                                                    letterSpacing: 0.3,
+                                                    letterSpacing: 0,
                                                   )),
                                             ],
                                           ),
@@ -1007,7 +1004,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 ),
                                               ),
                                             ],

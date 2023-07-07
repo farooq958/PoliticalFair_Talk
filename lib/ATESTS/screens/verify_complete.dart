@@ -12,6 +12,7 @@ import '../info screens/data_privacy.dart';
 import '../methods/storage_methods.dart';
 import '../provider/user_provider.dart';
 import '../methods/auth_methods.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'add_post_daily.dart';
 
@@ -92,7 +93,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                   customBorder: const CircleBorder(),
                                   splashColor: Colors.grey.withOpacity(0.5),
                                   child: const Icon(Icons.keyboard_arrow_left,
-                                      color: Color.fromARGB(255, 25, 61, 94)),
+                                      color: darkBlue),
                                   onTap: () {
                                     Future.delayed(
                                       const Duration(milliseconds: 50),
@@ -108,7 +109,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                           const Text(
                             'Verification Completed',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 25, 61, 94),
+                                color: darkBlue,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -124,11 +125,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                     children: [
                       Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromARGB(255, 36, 64, 101),
-                                  width: 0)),
+                              bottom: BorderSide(color: darkBlue, width: 0)),
                         ),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: MediaQuery.of(context).size.height -
@@ -191,7 +190,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                         child: Center(
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 36, 64, 101),
+                              color: darkBlue,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(75),
                               ),
@@ -216,8 +215,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 10),
                                   decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 25, 61, 94),
+                                    color: darkBlue,
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(
                                         width: 2, color: Colors.white),
@@ -231,7 +229,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                             fontSize: 18,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: 0.3),
+                                            letterSpacing: 0),
                                       ),
                                       Container(height: 8),
                                       Padding(
@@ -243,7 +241,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               top: BorderSide(
-                                                  width: 0,
+                                                  width: 2,
                                                   color: Colors.white),
                                             ),
                                           ),
@@ -255,9 +253,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         // "Once you click on continue, it'll only take a few minutes to a few hours before you'll receive an email informing you whether you've passed or failed the verification process.",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 13.5,
+                                          fontSize: 14,
                                           color: Colors.white,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -265,9 +263,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         "The personal data you've provided by verifying your account is 100% secure and will never be shared or sold.",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 13.5,
+                                          fontSize: 14,
                                           color: Colors.white,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -279,15 +277,16 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                     "For more information, feel free to read our ",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  fontSize: 14,
+                                                  letterSpacing: 0,
                                                 )),
                                             TextSpan(
                                                 text: 'Privacy Policy',
                                                 style: const TextStyle(
-                                                  color: Colors.blue,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  color: Color.fromARGB(
+                                                      255, 85, 178, 255),
+                                                  fontSize: 14,
+                                                  letterSpacing: 0,
                                                 ),
                                                 recognizer:
                                                     TapGestureRecognizer()
@@ -305,7 +304,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 13.5,
-                                                  letterSpacing: 0.3,
+                                                  letterSpacing: 0,
                                                 )),
                                             // TextSpan(
                                             //     text:
@@ -313,7 +312,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                             //     style: TextStyle(
                                             //       color: Colors.white,
                                             //       fontSize: 13.5,
-                                            //       letterSpacing: 0.3,
+                                            //       letterSpacing: 0,
                                             //     )),
                                           ],
                                         ),
@@ -434,17 +433,15 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                               const Text('Continue',
                                                   style: TextStyle(
                                                       fontSize: 16.5,
-                                                      color: Color.fromARGB(
-                                                          255, 25, 61, 94),
+                                                      color: darkBlue,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      letterSpacing: 0.3)),
+                                                      letterSpacing: 0)),
                                               Container(width: 8),
                                               const Icon(
                                                 Icons.keyboard_arrow_right,
                                                 size: 20,
-                                                color: Color.fromARGB(
-                                                    255, 25, 61, 94),
+                                                color: darkBlue,
                                               ),
                                             ],
                                           ),

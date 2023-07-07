@@ -59,7 +59,7 @@
 //           appBar: AppBar(
 //               automaticallyImplyLeading: false,
 //               elevation: 0,
-//               backgroundColor: const Color.fromARGB(255, 36, 64, 101),
+//               backgroundColor: const darkBlue,
 //               actions: [
 //                 Container(
 //                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -261,6 +261,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 class BlockedList extends StatefulWidget {
@@ -326,12 +327,12 @@ class _BlockedListState extends State<BlockedList> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          backgroundColor: testing,
           appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 4,
               toolbarHeight: 56,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               actions: [
                 Expanded(
                   child: Container(
@@ -356,8 +357,8 @@ class _BlockedListState extends State<BlockedList> {
                                   },
                                 );
                               },
-                              child: const Icon(Icons.arrow_back,
-                                  color: Colors.black),
+                              child: const Icon(Icons.keyboard_arrow_left,
+                                  color: Colors.white),
                             ),
                           ),
                         ),
@@ -367,7 +368,7 @@ class _BlockedListState extends State<BlockedList> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                                color: Colors.white,
                               )),
                         ),
                       ],

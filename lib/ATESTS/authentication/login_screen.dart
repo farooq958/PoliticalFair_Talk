@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'forgot_password.dart';
 import 'signup.dart';
@@ -116,14 +117,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 1 - 80,
                         child: Image.asset(
-                            'assets/fairtalk_blue_transparent.png')),
+                            'assets/fairtalk_new_blue_transparent.png')),
                     const SizedBox(height: 5),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 1 - 80,
                       child: const Text(
                         'A platform built to unite us all.',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 36, 64, 101),
+                            color: darkBlue,
                             fontWeight: FontWeight.bold,
                             fontSize: 9,
                             fontFamily: 'Capitalis'),
@@ -137,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIconColor: MaterialStateColor.resolveWith(
                             (Set<MaterialState> states) {
                           if (states.contains(MaterialState.focused)) {
-                            return const Color.fromARGB(255, 36, 64, 101);
+                            return darkBlue;
                           }
 
                           return Colors.grey;
@@ -149,9 +150,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: const BorderSide(
-                                color: Color.fromARGB(255, 36, 64, 101),
-                                width: 2),
+                            borderSide:
+                                const BorderSide(color: darkBlue, width: 2),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -177,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIconColor: MaterialStateColor.resolveWith(
                             (Set<MaterialState> states) {
                           if (states.contains(MaterialState.focused)) {
-                            return const Color.fromARGB(255, 36, 64, 101);
+                            return darkBlue;
                           }
 
                           return Colors.grey;
@@ -189,9 +189,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
-                            borderSide: const BorderSide(
-                                color: Color.fromARGB(255, 36, 64, 101),
-                                width: 2),
+                            borderSide:
+                                const BorderSide(color: darkBlue, width: 2),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -228,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 24),
                     PhysicalModel(
-                      color: const Color.fromARGB(255, 36, 64, 101),
+                      color: darkBlue,
                       elevation: 3,
                       borderRadius: BorderRadius.circular(50),
                       child: Material(

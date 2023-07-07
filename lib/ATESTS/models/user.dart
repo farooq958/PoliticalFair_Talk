@@ -31,6 +31,8 @@ class User {
   String? fcmTopic;
   bool verProcess;
   String verFailReason;
+  int submissionTime;
+  String bot;
 
   User({
     required this.aEmail,
@@ -63,6 +65,8 @@ class User {
     required this.photoTwo,
     required this.verProcess,
     required this.verFailReason,
+    required this.submissionTime,
+    required this.bot,
   });
 
   Map<String, dynamic> toJson() => {
@@ -96,6 +100,8 @@ class User {
         "photoTwo": photoTwo,
         "verProcess": verProcess,
         "verFailReason": verFailReason,
+        "submissionTime": submissionTime,
+        "bot": bot,
       };
 
   static User fromSnap(DocumentSnapshot snap) {
@@ -131,6 +137,8 @@ class User {
       photoTwo: snapshot['photoTwo'],
       verProcess: snapshot['verProcess'],
       verFailReason: snapshot['verFailReason'],
+      submissionTime: snapshot['submissionTime'],
+      bot: snapshot['bot'],
     );
   }
 
@@ -166,6 +174,8 @@ class User {
       photoTwo: map['photoTwo'],
       verProcess: map['verProcess'],
       verFailReason: map['verFailReason'],
+      submissionTime: map['submissionTime'],
+      bot: map['bot'],
     );
   }
 

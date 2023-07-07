@@ -58,13 +58,13 @@ class _VerificationFailState extends State<VerificationFail> {
                         child: Column(
                           children: const [
                             Text(
-                                'Unfortunately, your Fairtalk account has failed to pass the verification process.',
+                                'Unfortunately, your account has failed to pass the verification process.',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 24,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.3)),
+                                    letterSpacing: 0)),
                             SizedBox(height: 10),
                             Icon(Icons.cancel, size: 60, color: Colors.red),
                           ],
@@ -89,7 +89,7 @@ class _VerificationFailState extends State<VerificationFail> {
                                   fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.3),
+                                  letterSpacing: 0),
                             ),
                             const SizedBox(height: 8),
                             Padding(
@@ -125,7 +125,7 @@ class _VerificationFailState extends State<VerificationFail> {
                                   fontSize: 14,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.3),
+                                  letterSpacing: 0),
                             ),
                             const SizedBox(height: 8),
                             Padding(
@@ -149,7 +149,7 @@ class _VerificationFailState extends State<VerificationFail> {
                                   fontSize: 11,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.3),
+                                  letterSpacing: 0),
                             ),
                           ],
                         ),

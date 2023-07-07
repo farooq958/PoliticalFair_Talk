@@ -6,10 +6,12 @@ import '../info screens/submissions_info.dart';
 import '../provider/post_provider.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../models/user.dart';
 import 'my_drawer_list.dart';
+import 'submissions_create.dart';
 
 class Submissions extends StatefulWidget {
   Submissions({
@@ -58,7 +60,7 @@ class SubmissionsState extends State<Submissions>
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Icon(
               Icons.check_circle_outline,
               size: 14,
@@ -73,7 +75,7 @@ class SubmissionsState extends State<Submissions>
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Icon(
               Icons.update_outlined,
               size: 14,
@@ -157,8 +159,8 @@ class SubmissionsState extends State<Submissions>
                             ),
                             appBar: AppBar(
                               elevation: 4,
-                              toolbarHeight: 38,
-                              backgroundColor: Colors.white,
+                              toolbarHeight: 44,
+                              backgroundColor: darkBlue,
                               bottom: PreferredSize(
                                 preferredSize: Size(40, 37),
                                 child: Container(
@@ -172,10 +174,9 @@ class SubmissionsState extends State<Submissions>
                                     },
                                     // isScrollable: true,
                                     tabs: list,
-                                    indicatorColor:
-                                        Color.fromARGB(255, 55, 55, 55),
+                                    indicatorColor: Colors.white,
                                     indicatorWeight: 2,
-                                    labelColor: Color.fromARGB(255, 55, 55, 55),
+                                    labelColor: Colors.white,
                                     controller: _tabController,
                                   ),
                                 ),
@@ -191,13 +192,13 @@ class SubmissionsState extends State<Submissions>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 10.0),
+                                              const EdgeInsets.only(top: 5.0),
                                           child: SizedBox(
                                             width: 36,
                                             height: 35,
                                             child: Material(
                                               shape: const CircleBorder(),
-                                              color: Colors.white,
+                                              color: darkBlue,
                                               child: InkWell(
                                                 customBorder:
                                                     const CircleBorder(),
@@ -214,54 +215,103 @@ class SubmissionsState extends State<Submissions>
                                                 },
                                                 child: const Icon(
                                                     Icons.settings,
-                                                    color: Color.fromARGB(
-                                                        255, 80, 80, 80)),
+                                                    color: Colors.white),
                                               ),
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 14.0),
+                                              const EdgeInsets.only(top: 10.0),
                                           child: Column(
                                             children: [
                                               Stack(
                                                 clipBehavior: Clip.none,
                                                 children: [
-                                                  Text(
-                                                    "FAIRTALK'S DEMOCRACY",
-                                                    style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 55, 55, 55),
-                                                      fontSize: 17,
-                                                      letterSpacing: 0.3,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                  InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0),
+                                                    onTap: () {
+                                                      Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 50),
+                                                        () {
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const SubmissionInfo()),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: 220,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                      ),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 6,
+                                                              horizontal: 4),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "FAIRTALK'S DEMOCRACY",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 17,
+                                                            letterSpacing: 0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
+                                                  // Positioned(
+                                                  //   right: -4,
+                                                  //   top: 10.5,
+                                                  //   child: Icon(
+                                                  //       Icons.info_outlined,
+                                                  //       color: Colors.white,
+                                                  //       size: 12),
+                                                  // ),
                                                   Positioned(
-                                                    right: -16,
-                                                    top: 3,
-                                                    child: Icon(
-                                                        Icons.info_outlined,
-                                                        color: Colors.black,
-                                                        size: 13),
+                                                    bottom: 3,
+                                                    right: 0,
+                                                    child: Container(
+                                                      // height: 1,
+                                                      width: 225,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.grey,
+                                                        border: Border(
+                                                          top: BorderSide(
+                                                              width: 1,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 2),
-                                              Container(
-                                                // height: 1,
-                                                width: 230,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey,
-                                                  border: Border(
-                                                    top: BorderSide(
-                                                        width: 0,
-                                                        color: Colors.grey),
-                                                  ),
-                                                ),
-                                              ),
+                                              // SizedBox(height: 2),
+                                              // Container(
+                                              //   // height: 1,
+                                              //   width: 220,
+                                              //   decoration: BoxDecoration(
+                                              //     color: Colors.grey,
+                                              //     border: Border(
+                                              //       top: BorderSide(
+                                              //           width: 0,
+                                              //           color: Colors.grey),
+                                              //     ),
+                                              //   ),
+                                              // ),
                                             ],
                                           ),
                                         ),
@@ -270,7 +320,7 @@ class SubmissionsState extends State<Submissions>
                                               const EdgeInsets.only(top: 5.0),
                                           child: Material(
                                             shape: const CircleBorder(),
-                                            color: Colors.white,
+                                            color: darkBlue,
                                             child: InkWell(
                                               customBorder:
                                                   const CircleBorder(),
@@ -285,7 +335,11 @@ class SubmissionsState extends State<Submissions>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const SubmissionInfo()),
+                                                              SubmissionCreate(
+                                                                durationInDay:
+                                                                    widget
+                                                                        .durationInDay,
+                                                              )),
                                                     );
                                                   },
                                                 );
@@ -299,18 +353,16 @@ class SubmissionsState extends State<Submissions>
                                                       left: 7,
                                                       top: 7,
                                                       child: Icon(Icons.create,
-                                                          color: Color.fromARGB(
-                                                              255, 80, 80, 80),
+                                                          color: Colors.white,
                                                           size: 26),
                                                     ),
                                                     Positioned(
-                                                      top: 19,
-                                                      left: 19,
+                                                      top: 20,
+                                                      left: 20,
                                                       child: Icon(
                                                         Icons.add,
                                                         size: 13,
-                                                        color: Color.fromARGB(
-                                                            255, 80, 80, 80),
+                                                        color: Colors.white,
                                                       ),
                                                     ),
                                                   ],

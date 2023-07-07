@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:aft/ATESTS/screens/verify_complete.dart';
 import 'package:flutter/material.dart';
 import '../camera/camera_screen.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'verify_three.dart';
 
@@ -45,7 +46,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                               customBorder: const CircleBorder(),
                               splashColor: Colors.grey.withOpacity(0.5),
                               child: const Icon(Icons.keyboard_arrow_left,
-                                  color: Color.fromARGB(255, 25, 61, 94)),
+                                  color: darkBlue),
                               onTap: () {
                                 Future.delayed(
                                   const Duration(milliseconds: 50),
@@ -61,7 +62,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                       const Text(
                         'Step 1/2',
                         style: TextStyle(
-                            color: Color.fromARGB(255, 25, 61, 94),
+                            color: darkBlue,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
@@ -77,11 +78,9 @@ class _VerifyTwoState extends State<VerifyTwo> {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 36, 64, 101),
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 0)),
+                      color: darkBlue,
+                      border:
+                          Border(bottom: BorderSide(color: darkBlue, width: 0)),
                     ),
                     width: MediaQuery.of(context).size.width * 0.5,
                     height:
@@ -137,7 +136,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
@@ -161,7 +160,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 10),
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 25, 61, 94),
+                                color: darkBlue,
                                 borderRadius: BorderRadius.circular(15),
                                 border:
                                     Border.all(width: 2, color: Colors.white),
@@ -176,12 +175,12 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           horizontal: 12.0),
                                       child: Text(
                                         'What are the few requirements needed to successfully complete the account verification process?',
-                                        textAlign: TextAlign.left,
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 18,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: 0.3,
+                                          letterSpacing: 0,
                                         ),
                                       ),
                                     ),
@@ -195,7 +194,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                       decoration: const BoxDecoration(
                                         border: Border(
                                           top: BorderSide(
-                                              width: 0, color: Colors.white),
+                                              width: 2, color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -212,8 +211,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           "• You must have a valid identification card with a photo. Example: Driver's License, Passport, Government Issued ID, etc.",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            fontSize: 14,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -222,8 +221,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            fontSize: 14,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -232,8 +231,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14.5,
-                                            letterSpacing: 0.3,
+                                            fontSize: 14,
+                                            letterSpacing: 0,
                                           ),
                                         ),
                                         // Container(height: 8),
@@ -243,7 +242,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                         //   style: TextStyle(
                                         //     color: Colors.white,
                                         //     fontSize: 14.5,
-                                        //     letterSpacing: 0.3,
+                                        //     letterSpacing: 0,
                                         //   ),
                                         // ),
                                       ],
@@ -295,15 +294,13 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                                 'Take picture of ID card',
                                                 style: TextStyle(
                                                     fontSize: 16.5,
-                                                    color: Color.fromARGB(
-                                                        255, 25, 61, 94),
+                                                    color: darkBlue,
                                                     fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0.3)),
+                                                    letterSpacing: 0)),
                                             Container(width: 6),
                                             const Icon(
                                               Icons.keyboard_arrow_right,
-                                              color: Color.fromARGB(
-                                                  255, 25, 61, 94),
+                                              color: darkBlue,
                                               size: 20,
                                             ),
                                           ],

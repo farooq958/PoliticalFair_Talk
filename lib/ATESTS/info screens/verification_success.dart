@@ -69,13 +69,13 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                             child: Column(
                               children: [
                                 const Text(
-                                    'Congratulations, your Fairtalk account has been successfully verified!',
+                                    'Congratulations, your account has been successfully verified!',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 24,
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: 0.3)),
+                                        letterSpacing: 0)),
                                 const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
@@ -113,7 +113,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 15.5,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 // Container(height: 8),
                                 // Padding(
@@ -131,12 +131,23 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                 // ),
                                 SizedBox(height: 10),
                                 Text(
-                                  " • Voting on posts.",
+                                  " • Participating in Fairtalk's democracy.",
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                Text(
+                                  " • Voting on posts will now count.",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -147,8 +158,9 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
+
                                 SizedBox(
                                   height: 2,
                                 ),
@@ -158,7 +170,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                                 SizedBox(
                                   height: 2,
@@ -169,7 +181,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                       fontSize: 14,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3),
+                                      letterSpacing: 0),
                                 ),
                               ],
                             ),

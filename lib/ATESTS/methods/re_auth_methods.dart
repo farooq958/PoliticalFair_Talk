@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 import 'auth_methods.dart';
@@ -136,7 +137,7 @@ class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(25),
-                        color: const Color.fromARGB(255, 36, 64, 101),
+                        color: darkBlue,
                         elevation: 3,
                         child: InkWell(
                           splashColor: Colors.black.withOpacity(0.3),
@@ -229,12 +230,12 @@ class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
               radius: 50,
               backgroundColor: Colors.white,
               child: PhysicalModel(
-                color: Color.fromARGB(255, 36, 64, 101),
+                color: darkBlue,
                 elevation: 4,
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   radius: 43.5,
-                  backgroundColor: Color.fromARGB(255, 36, 64, 101),
+                  backgroundColor: darkBlue,
                   child: Icon(
                     MyFlutterApp.exclamation,
                     size: 45,

@@ -14,6 +14,7 @@ import '../provider/most_liked_key_provider.dart';
 import '../provider/search_userList.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
@@ -265,7 +266,7 @@ class _SearchState extends State<Search> {
         children: [
           Scaffold(
             key: _key,
-            backgroundColor: Colors.black.withOpacity(0.05),
+            backgroundColor: testing,
             drawer: Drawer(
               child: SingleChildScrollView(
                 child: Column(
@@ -285,7 +286,8 @@ class _SearchState extends State<Search> {
             appBar: AppBar(
               elevation: 4,
               toolbarHeight: 145,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
+              automaticallyImplyLeading: false,
               actions: [
                 Expanded(
                   child: SizedBox(
@@ -314,7 +316,7 @@ class _SearchState extends State<Search> {
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
-                                            color: Colors.white,
+                                            color: Colors.transparent,
                                             child: InkWell(
                                               customBorder:
                                                   const CircleBorder(),
@@ -329,8 +331,7 @@ class _SearchState extends State<Search> {
                                                 });
                                               },
                                               child: const Icon(Icons.settings,
-                                                  color: Color.fromARGB(
-                                                      255, 80, 80, 80)),
+                                                  color: whiteDialog),
                                             ),
                                           ),
                                         ),
@@ -348,11 +349,10 @@ class _SearchState extends State<Search> {
                                                         ? 'GLOBAL'
                                                         : 'NATIONAL',
                                                     style: const TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 55, 55, 55),
+                                                      color: whiteDialog,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 14,
+                                                      fontSize: 13,
                                                     ),
                                                   ),
                                                 ),
@@ -387,921 +387,904 @@ class _SearchState extends State<Search> {
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                               child: Container(
-                                                  width: 116,
-                                                  height: 32.5,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    // border: Border.all(
-                                                    //   width: .75,
-                                                    //   color: Colors.grey,
-                                                    // ),
+                                                width: 120,
+                                                height: 32.5,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  border: Border.all(
+                                                    width: 2,
+                                                    color: Colors.white,
                                                   ),
-                                                  child: Row(
-                                                    children: [
-                                                      ClipRRect(
-                                                        child: InkWell(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    25),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    25),
-                                                          ),
-                                                          onTap: () async {
-                                                            filterProvider
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    ClipRRect(
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25),
+                                                        ),
+                                                        onTap: () async {
+                                                          filterProvider
+                                                                      .global ==
+                                                                  "true"
+                                                              ? null
+                                                              : Provider.of<
+                                                                          FilterProvider>(
+                                                                      context,
+                                                                      listen:
+                                                                          false)
+                                                                  .setGlobal(
+                                                                      'true');
+                                                          if (filterProvider
+                                                                      .messages ==
+                                                                  'true' &&
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getkeywordList(
+                                                                    filterProvider
+                                                                        .global,
+                                                                    filterProvider
+                                                                        .countryCode,
+                                                                    filterProvider
+                                                                        .durationInDay,
+                                                                    filterProvider
+                                                                        .twoValueSearch);
+                                                          } else if (filterProvider
+                                                                      .messages !=
+                                                                  'true' &&
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initPollList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getpollKeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider.messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                  .isHome &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchDataPoll(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider.messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                  .isHome &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchData(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchDataPoll(
+                                                                    filterProvider
+                                                                        .searchController
+                                                                        .text,
+                                                                    filterProvider
+                                                                        .global,
+                                                                    filterProvider
+                                                                        .countryCode);
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getpollKeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchData(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getkeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider.isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .trendkeystore !=
+                                                                  null &&
+                                                              filterProvider
+                                                                      .showMessages ==
+                                                                  true) {
+                                                            // await Provider.of<
+                                                            //             MostLikedKeyProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPostKeyData(
+                                                            //   filterProvider
+                                                            //           .trendkeystore ??
+                                                            //       "",
+                                                            //   filterProvider.global,
+                                                            //   filterProvider
+                                                            //       .countryCode,
+                                                            // );
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ? await filterProvider.setListPostPollId(Provider.of<
+                                                            //                     MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList[
+                                                            //                 0]
+                                                            //             .post_id ??
+                                                            //         [])
+                                                            //     : null;
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ?
+                                                            await Provider.of<
+                                                                        MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                            );
+                                                            // : null;
+                                                          }
+                                                          if (filterProvider.isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .trendkeystore !=
+                                                                  null &&
+                                                              filterProvider
+                                                                      .showMessages ==
+                                                                  true) {
+                                                            // await Provider.of<
+                                                            //             MostLikedKeyProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPollKeyData(
+                                                            //   filterProvider
+                                                            //           .trendkeystore ??
+                                                            //       "",
+                                                            //   filterProvider.global,
+                                                            //   filterProvider
+                                                            //       .countryCode,
+                                                            // );
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypollList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ? await filterProvider.setListPostPollId(Provider.of<
+                                                            //                     MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypollList[
+                                                            //                 0]
+                                                            //             .pollId ??
+                                                            //         [])
+                                                            //     : null;
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypollList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ?
+
+                                                            await Provider.of<
+                                                                        MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initPollList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                            );
+                                                            // : null;
+                                                          }
+                                                        },
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(25),
+                                                              bottomLeft: Radius
+                                                                  .circular(25),
+                                                            ),
+                                                            color: filterProvider
                                                                         .global ==
                                                                     "true"
-                                                                ? null
-                                                                : Provider.of<
-                                                                            FilterProvider>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .setGlobal(
-                                                                        'true');
-                                                            if (filterProvider
-                                                                        .messages ==
-                                                                    'true' &&
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getkeywordList(
-                                                                      filterProvider
-                                                                          .global,
-                                                                      filterProvider
-                                                                          .countryCode,
-                                                                      filterProvider
-                                                                          .durationInDay,
-                                                                      filterProvider
-                                                                          .twoValueSearch);
-                                                            } else if (filterProvider
-                                                                        .messages !=
-                                                                    'true' &&
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initPollList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getpollKeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                    .isHome &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchDataPoll(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                    .isHome &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchData(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchDataPoll(
-                                                                      filterProvider
-                                                                          .searchController
-                                                                          .text,
-                                                                      filterProvider
-                                                                          .global,
-                                                                      filterProvider
-                                                                          .countryCode);
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getpollKeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchData(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getkeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider.isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .trendkeystore !=
-                                                                    null &&
-                                                                filterProvider
-                                                                        .showMessages ==
-                                                                    true) {
-                                                              // await Provider.of<
-                                                              //             MostLikedKeyProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPostKeyData(
-                                                              //   filterProvider
-                                                              //           .trendkeystore ??
-                                                              //       "",
-                                                              //   filterProvider.global,
-                                                              //   filterProvider
-                                                              //       .countryCode,
-                                                              // );
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ? await filterProvider.setListPostPollId(Provider.of<
-                                                              //                     MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList[
-                                                              //                 0]
-                                                              //             .post_id ??
-                                                              //         [])
-                                                              //     : null;
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ?
-                                                              await Provider.of<
-                                                                          MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                              );
-                                                              // : null;
-                                                            }
-                                                            if (filterProvider.isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .trendkeystore !=
-                                                                    null &&
-                                                                filterProvider
-                                                                        .showMessages ==
-                                                                    true) {
-                                                              // await Provider.of<
-                                                              //             MostLikedKeyProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPollKeyData(
-                                                              //   filterProvider
-                                                              //           .trendkeystore ??
-                                                              //       "",
-                                                              //   filterProvider.global,
-                                                              //   filterProvider
-                                                              //       .countryCode,
-                                                              // );
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypollList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ? await filterProvider.setListPostPollId(Provider.of<
-                                                              //                     MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypollList[
-                                                              //                 0]
-                                                              //             .pollId ??
-                                                              //         [])
-                                                              //     : null;
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypollList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ?
-
-                                                              await Provider.of<
-                                                                          MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initPollList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                              );
-                                                              // : null;
-                                                            }
-                                                          },
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25),
-                                                              ),
+                                                                ? whiteDialog
+                                                                : darkBlue,
+                                                          ),
+                                                          height: 100,
+                                                          width: 58,
+                                                          child: Icon(
+                                                              MyFlutterApp
+                                                                  .globe_americas,
                                                               color: filterProvider
                                                                           .global ==
                                                                       "true"
-                                                                  ? const Color
-                                                                          .fromARGB(
-                                                                      255,
-                                                                      125,
-                                                                      125,
-                                                                      125)
-                                                                  : const Color
-                                                                          .fromARGB(
-                                                                      255,
-                                                                      228,
-                                                                      228,
-                                                                      228),
-                                                            ),
-                                                            height: 100,
-                                                            width: 58,
-                                                            child: Icon(
-                                                                MyFlutterApp
-                                                                    .globe_americas,
-                                                                color: Colors
-                                                                    .white,
-                                                                size: filterProvider
-                                                                            .global ==
-                                                                        "true"
-                                                                    ? 23
-                                                                    : 17),
-                                                          ),
+                                                                  ? darkBlue
+                                                                  : whiteDialog,
+                                                              size: filterProvider
+                                                                          .global ==
+                                                                      "true"
+                                                                  ? 23
+                                                                  : 15),
                                                         ),
                                                       ),
-                                                      ClipRRect(
-                                                        child: InkWell(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                          ),
-                                                          onTap: () async {
-                                                            filterProvider
+                                                    ),
+                                                    ClipRRect(
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                        ),
+                                                        onTap: () async {
+                                                          filterProvider
+                                                                      .global !=
+                                                                  "true"
+                                                              ? null
+                                                              : Provider.of<
+                                                                          FilterProvider>(
+                                                                      context,
+                                                                      listen:
+                                                                          false)
+                                                                  .setGlobal(
+                                                                      'false');
+                                                          if (filterProvider
+                                                                      .messages ==
+                                                                  'true' &&
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getkeywordList(
+                                                                    filterProvider
+                                                                        .global,
+                                                                    filterProvider
+                                                                        .countryCode,
+                                                                    filterProvider
+                                                                        .durationInDay,
+                                                                    filterProvider
+                                                                        .twoValueSearch);
+                                                            // Provider.of<PostProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPosts(
+                                                            //         filterProvider.twoValue,
+                                                            //         filterProvider.global,
+                                                            //         filterProvider
+                                                            //             .countryCode,
+                                                            //         widget.durationInDay,
+                                                            //         filterProvider
+                                                            //             .oneValueSearch);
+                                                          } else if (filterProvider
+                                                                      .messages !=
+                                                                  'true' &&
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initPollList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getpollKeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                            );
+                                                            // Provider.of<PollsProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPolls(
+                                                            //         filterProvider.twoValue,
+                                                            //         filterProvider.global,
+                                                            //         filterProvider
+                                                            //             .countryCode,
+                                                            //         widget.durationInDay,
+                                                            //         filterProvider
+                                                            //             .oneValue);
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchDataPoll(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true &&
+                                                              filterProvider
+                                                                  .isHome) {
+                                                            Provider.of<SearchPageProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchData(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .twoValueSearch,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                            );
+                                                          }
+
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchDataPoll(
+                                                                    filterProvider
+                                                                        .searchController
+                                                                        .text,
+                                                                    filterProvider
+                                                                        .global,
+                                                                    filterProvider
+                                                                        .countryCode);
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getpollKeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getsearchData(
+                                                              filterProvider
+                                                                  .searchController
+                                                                  .text,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider
+                                                                  .searchController
+                                                                  .text
+                                                                  .isEmpty &&
+                                                              filterProvider
+                                                                  .isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .showMessages !=
+                                                                  true) {
+                                                            Provider.of<MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .getkeywordList(
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                            );
+                                                          }
+                                                          if (filterProvider.isMostLiked &&
+                                                              filterProvider
+                                                                      .messages ==
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .trendkeystore !=
+                                                                  null &&
+                                                              filterProvider
+                                                                      .showMessages ==
+                                                                  true) {
+                                                            // await Provider.of<
+                                                            //             MostLikedKeyProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPostKeyData(
+                                                            //   filterProvider
+                                                            //           .trendkeystore ??
+                                                            //       "",
+                                                            //   filterProvider.global,
+                                                            //   filterProvider
+                                                            //       .countryCode,
+                                                            // );
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ? filterProvider.setListPostPollId(Provider.of<
+                                                            //                     MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList[
+                                                            //                 0]
+                                                            //             .post_id ??
+                                                            //         [])
+                                                            //     : null;
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypostList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ?
+                                                            await Provider.of<
+                                                                        MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                            );
+                                                            // : null;
+                                                          }
+                                                          if (filterProvider.isMostLiked &&
+                                                              filterProvider
+                                                                      .messages !=
+                                                                  "true" &&
+                                                              filterProvider
+                                                                      .trendkeystore !=
+                                                                  null &&
+                                                              filterProvider
+                                                                      .showMessages ==
+                                                                  true) {
+                                                            // await Provider.of<
+                                                            //             MostLikedKeyProvider>(
+                                                            //         context,
+                                                            //         listen: false)
+                                                            //     .getPollKeyData(
+                                                            //   filterProvider
+                                                            //           .trendkeystore ??
+                                                            //       "",
+                                                            //   filterProvider.global,
+                                                            //   filterProvider
+                                                            //       .countryCode,
+                                                            // );
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypollList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ?
+                                                            //  filterProvider.setListPostPollId(Provider.of<
+                                                            //                 MostLikedKeyProvider>(
+                                                            //             context,
+                                                            //             listen:
+                                                            //                 false)
+                                                            //         .keypollList[
+                                                            //             0]
+                                                            //         .post_id ??
+                                                            //     [])
+                                                            // : null;
+                                                            // Provider.of<MostLikedKeyProvider>(
+                                                            //                 context,
+                                                            //                 listen:
+                                                            //                     false)
+                                                            //             .keypollList
+                                                            //             .length >
+                                                            //         0
+                                                            //     ?
+                                                            await Provider.of<
+                                                                        MostLikedKeyProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .initPollList(
+                                                              filterProvider
+                                                                      .trendkeystore ??
+                                                                  "",
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .oneValueSearch,
+                                                            );
+                                                            // : null;
+                                                          }
+                                                        },
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topRight: Radius
+                                                                  .circular(25),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          25),
+                                                            ),
+                                                            color: filterProvider
                                                                         .global !=
                                                                     "true"
-                                                                ? null
-                                                                : Provider.of<
-                                                                            FilterProvider>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .setGlobal(
-                                                                        'false');
-                                                            if (filterProvider
-                                                                        .messages ==
-                                                                    'true' &&
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getkeywordList(
-                                                                      filterProvider
-                                                                          .global,
-                                                                      filterProvider
-                                                                          .countryCode,
-                                                                      filterProvider
-                                                                          .durationInDay,
-                                                                      filterProvider
-                                                                          .twoValueSearch);
-                                                              // Provider.of<PostProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPosts(
-                                                              //         filterProvider.twoValue,
-                                                              //         filterProvider.global,
-                                                              //         filterProvider
-                                                              //             .countryCode,
-                                                              //         widget.durationInDay,
-                                                              //         filterProvider
-                                                              //             .oneValueSearch);
-                                                            } else if (filterProvider
-                                                                        .messages !=
-                                                                    'true' &&
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initPollList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getpollKeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                              );
-                                                              // Provider.of<PollsProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPolls(
-                                                              //         filterProvider.twoValue,
-                                                              //         filterProvider.global,
-                                                              //         filterProvider
-                                                              //             .countryCode,
-                                                              //         widget.durationInDay,
-                                                              //         filterProvider
-                                                              //             .oneValue);
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchDataPoll(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true &&
-                                                                filterProvider
-                                                                    .isHome) {
-                                                              Provider.of<SearchPageProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchData(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .twoValueSearch,
-                                                                filterProvider
-                                                                    .durationInDay,
-                                                              );
-                                                            }
-
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchDataPoll(
-                                                                      filterProvider
-                                                                          .searchController
-                                                                          .text,
-                                                                      filterProvider
-                                                                          .global,
-                                                                      filterProvider
-                                                                          .countryCode);
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getpollKeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isNotEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getsearchData(
-                                                                filterProvider
-                                                                    .searchController
-                                                                    .text,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider
-                                                                    .searchController
-                                                                    .text
-                                                                    .isEmpty &&
-                                                                filterProvider
-                                                                    .isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .showMessages !=
-                                                                    true) {
-                                                              Provider.of<MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getkeywordList(
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                              );
-                                                            }
-                                                            if (filterProvider.isMostLiked &&
-                                                                filterProvider
-                                                                        .messages ==
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .trendkeystore !=
-                                                                    null &&
-                                                                filterProvider
-                                                                        .showMessages ==
-                                                                    true) {
-                                                              // await Provider.of<
-                                                              //             MostLikedKeyProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPostKeyData(
-                                                              //   filterProvider
-                                                              //           .trendkeystore ??
-                                                              //       "",
-                                                              //   filterProvider.global,
-                                                              //   filterProvider
-                                                              //       .countryCode,
-                                                              // );
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ? filterProvider.setListPostPollId(Provider.of<
-                                                              //                     MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList[
-                                                              //                 0]
-                                                              //             .post_id ??
-                                                              //         [])
-                                                              //     : null;
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypostList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ?
-                                                              await Provider.of<
-                                                                          MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                              );
-                                                              // : null;
-                                                            }
-                                                            if (filterProvider.isMostLiked &&
-                                                                filterProvider
-                                                                        .messages !=
-                                                                    "true" &&
-                                                                filterProvider
-                                                                        .trendkeystore !=
-                                                                    null &&
-                                                                filterProvider
-                                                                        .showMessages ==
-                                                                    true) {
-                                                              // await Provider.of<
-                                                              //             MostLikedKeyProvider>(
-                                                              //         context,
-                                                              //         listen: false)
-                                                              //     .getPollKeyData(
-                                                              //   filterProvider
-                                                              //           .trendkeystore ??
-                                                              //       "",
-                                                              //   filterProvider.global,
-                                                              //   filterProvider
-                                                              //       .countryCode,
-                                                              // );
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypollList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ?
-                                                              //  filterProvider.setListPostPollId(Provider.of<
-                                                              //                 MostLikedKeyProvider>(
-                                                              //             context,
-                                                              //             listen:
-                                                              //                 false)
-                                                              //         .keypollList[
-                                                              //             0]
-                                                              //         .post_id ??
-                                                              //     [])
-                                                              // : null;
-                                                              // Provider.of<MostLikedKeyProvider>(
-                                                              //                 context,
-                                                              //                 listen:
-                                                              //                     false)
-                                                              //             .keypollList
-                                                              //             .length >
-                                                              //         0
-                                                              //     ?
-                                                              await Provider.of<
-                                                                          MostLikedKeyProvider>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .initPollList(
-                                                                filterProvider
-                                                                        .trendkeystore ??
-                                                                    "",
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                filterProvider
-                                                                    .oneValueSearch,
-                                                              );
-                                                              // : null;
-                                                            }
-                                                          },
-                                                          child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .only(
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          25),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          25),
-                                                                ),
-                                                                color: filterProvider
-                                                                            .global !=
-                                                                        "true"
-                                                                    ? const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        125,
-                                                                        125,
-                                                                        125)
-                                                                    : const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        228,
-                                                                        228,
-                                                                        228),
-                                                              ),
-                                                              height: 100,
-                                                              width: 58,
-                                                              child: Icon(
-                                                                  Icons.flag,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: filterProvider
-                                                                              .global !=
-                                                                          "true"
-                                                                      ? 23
-                                                                      : 17)),
+                                                                ? whiteDialog
+                                                                : darkBlue,
+                                                          ),
+                                                          height: 100,
+                                                          width: 58,
+                                                          child: Icon(
+                                                              Icons.flag,
+                                                              color: filterProvider
+                                                                          .global !=
+                                                                      "true"
+                                                                  ? darkBlue
+                                                                  : whiteDialog,
+                                                              size: filterProvider
+                                                                          .global !=
+                                                                      "true"
+                                                                  ? 23
+                                                                  : 15),
                                                         ),
-                                                      )
-                                                    ],
-                                                  )),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -1316,10 +1299,9 @@ class _SearchState extends State<Search> {
                                                     ? 'MESSAGES'
                                                     : 'POLLS',
                                                 style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 55, 55, 55),
+                                                  color: whiteDialog,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
+                                                  fontSize: 13,
                                                 ),
                                               ),
                                             ),
@@ -1329,15 +1311,15 @@ class _SearchState extends State<Search> {
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                               child: Container(
-                                                width: 116,
+                                                width: 120,
                                                 height: 32.5,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(25),
-                                                  // border: Border.all(
-                                                  //   width: .75,
-                                                  //   color: Colors.grey,
-                                                  // ),
+                                                  border: Border.all(
+                                                    color: Colors.white,
+                                                    width: 2,
+                                                  ),
                                                 ),
                                                 child: Row(
                                                   children: [
@@ -1532,30 +1514,23 @@ class _SearchState extends State<Search> {
                                                             color: filterProvider
                                                                         .messages ==
                                                                     "true"
-                                                                ? const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    125,
-                                                                    125,
-                                                                    125)
-                                                                : const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    228,
-                                                                    228,
-                                                                    228),
+                                                                ? whiteDialog
+                                                                : darkBlue,
                                                           ),
                                                           height: 100,
                                                           width: 58,
                                                           child: Icon(
                                                               Icons.message,
-                                                              color:
-                                                                  Colors.white,
+                                                              color: filterProvider
+                                                                          .messages ==
+                                                                      "true"
+                                                                  ? darkBlue
+                                                                  : whiteDialog,
                                                               size: filterProvider
                                                                           .messages ==
                                                                       "true"
                                                                   ? 23
-                                                                  : 17),
+                                                                  : 15),
                                                         ),
                                                       ),
                                                     ),
@@ -1754,18 +1729,8 @@ class _SearchState extends State<Search> {
                                                               color: filterProvider
                                                                           .messages !=
                                                                       "true"
-                                                                  ? const Color
-                                                                          .fromARGB(
-                                                                      255,
-                                                                      125,
-                                                                      125,
-                                                                      125)
-                                                                  : const Color
-                                                                          .fromARGB(
-                                                                      255,
-                                                                      228,
-                                                                      228,
-                                                                      228),
+                                                                  ? whiteDialog
+                                                                  : darkBlue,
                                                             ),
                                                             height: 100,
                                                             width: 58,
@@ -1773,13 +1738,16 @@ class _SearchState extends State<Search> {
                                                               quarterTurns: 1,
                                                               child: Icon(
                                                                   Icons.poll,
-                                                                  color: Colors
-                                                                      .white,
+                                                                  color: filterProvider
+                                                                              .messages !=
+                                                                          "true"
+                                                                      ? darkBlue
+                                                                      : whiteDialog,
                                                                   size: filterProvider
                                                                               .messages !=
                                                                           "true"
                                                                       ? 23
-                                                                      : 17),
+                                                                      : 15),
                                                             )),
                                                       ),
                                                     )
@@ -1794,7 +1762,7 @@ class _SearchState extends State<Search> {
                                           height: 35,
                                           child: Material(
                                             shape: const CircleBorder(),
-                                            color: Colors.white,
+                                            color: Colors.transparent,
                                             child: InkWell(
                                               customBorder:
                                                   const CircleBorder(),
@@ -1837,8 +1805,7 @@ class _SearchState extends State<Search> {
                                               },
                                               child: const Icon(
                                                   Icons.filter_list,
-                                                  color: Color.fromARGB(
-                                                      255, 80, 80, 80)),
+                                                  color: whiteDialog),
                                             ),
                                           ),
                                         ),
@@ -1883,8 +1850,7 @@ class _SearchState extends State<Search> {
                                                       0.65 -
                                                   16,
                                               decoration: const BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 245, 245, 245),
+                                                color: whiteDialog,
                                                 // border: Border.all(
                                                 //     width: 0.75, color: Colors.grey),
                                                 borderRadius: BorderRadius.all(
@@ -2101,7 +2067,8 @@ class _SearchState extends State<Search> {
                                                   decoration: InputDecoration(
                                                     prefixIcon: const Icon(
                                                         Icons.search,
-                                                        color: Colors.grey,
+                                                        color: Color.fromARGB(
+                                                            255, 100, 100, 100),
                                                         size: 25),
                                                     hintText: filterProvider
                                                             .isHome
@@ -2109,14 +2076,16 @@ class _SearchState extends State<Search> {
                                                         : filterProvider
                                                                 .isMostLiked
                                                             ? "Search Archives"
-                                                            : "Search User",
+                                                            : "Search Users",
                                                     labelStyle: const TextStyle(
-                                                      color: Colors.grey,
+                                                      color: Color.fromARGB(
+                                                          255, 100, 100, 100),
                                                       fontStyle:
                                                           FontStyle.normal,
                                                     ),
                                                     hintStyle: const TextStyle(
-                                                      color: Colors.grey,
+                                                      color: Color.fromARGB(
+                                                          255, 100, 100, 100),
                                                       fontStyle:
                                                           FontStyle.normal,
                                                       fontWeight:
@@ -2261,10 +2230,8 @@ class _SearchState extends State<Search> {
                                             },
                                             child: PhysicalModel(
                                               color: filterProvider.isHome
-                                                  ? const Color.fromARGB(
-                                                      255, 187, 225, 255)
-                                                  : const Color.fromARGB(
-                                                      255, 245, 245, 245),
+                                                  ? whiteDialog
+                                                  : darkBlue,
                                               elevation: 3,
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -2280,10 +2247,16 @@ class _SearchState extends State<Search> {
                                                     bottom: 6,
                                                   ),
                                                   decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: filterProvider
+                                                              .isHome
+                                                          ? null
+                                                          : Border.all(
+                                                              width: 2,
+                                                              color:
+                                                                  whiteDialog)),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -2292,13 +2265,8 @@ class _SearchState extends State<Search> {
                                                       Icon(Icons.home,
                                                           color: filterProvider
                                                                   .isHome
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  75,
-                                                                  75,
-                                                                  75)
-                                                              : Colors.grey,
+                                                              ? darkBlue
+                                                              : whiteDialog,
                                                           size: 27),
                                                     ],
                                                   )),
@@ -2488,10 +2456,8 @@ class _SearchState extends State<Search> {
                                             },
                                             child: PhysicalModel(
                                               color: filterProvider.isMostLiked
-                                                  ? const Color.fromARGB(
-                                                      255, 187, 225, 255)
-                                                  : const Color.fromARGB(
-                                                      255, 245, 245, 245),
+                                                  ? whiteDialog
+                                                  : darkBlue,
                                               elevation: 3,
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -2507,10 +2473,16 @@ class _SearchState extends State<Search> {
                                                     bottom: 6,
                                                   ),
                                                   decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: filterProvider
+                                                              .isMostLiked
+                                                          ? null
+                                                          : Border.all(
+                                                              width: 2,
+                                                              color:
+                                                                  whiteDialog)),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -2521,13 +2493,8 @@ class _SearchState extends State<Search> {
                                                               .university,
                                                           color: filterProvider
                                                                   .isMostLiked
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  75,
-                                                                  75,
-                                                                  75)
-                                                              : Colors.grey,
+                                                              ? darkBlue
+                                                              : whiteDialog,
                                                           size: 22),
                                                     ],
                                                   )),
@@ -2551,10 +2518,8 @@ class _SearchState extends State<Search> {
                                             },
                                             child: PhysicalModel(
                                               color: filterProvider.isUser
-                                                  ? const Color.fromARGB(
-                                                      255, 187, 225, 255)
-                                                  : const Color.fromARGB(
-                                                      255, 245, 245, 245),
+                                                  ? whiteDialog
+                                                  : darkBlue,
                                               elevation: 3,
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -2570,9 +2535,16 @@ class _SearchState extends State<Search> {
                                                     left: 0,
                                                     right: 0),
                                                 decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    border: filterProvider
+                                                            .isUser
+                                                        ? null
+                                                        : Border.all(
+                                                            width: 2,
+                                                            color:
+                                                                whiteDialog)),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -2581,10 +2553,8 @@ class _SearchState extends State<Search> {
                                                     Icon(Icons.person,
                                                         color: filterProvider
                                                                 .isUser
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255, 75, 75, 75)
-                                                            : Colors.grey,
+                                                            ? darkBlue
+                                                            : whiteDialog,
                                                         size: 27),
                                                   ],
                                                 ),
@@ -2635,7 +2605,7 @@ class _SearchState extends State<Search> {
                                                       : filterProvider.isUser
                                                           ? Icons.group
                                                           : Icons.search,
-                                              color: Colors.grey,
+                                              color: whiteDialog,
                                               size: 18,
                                             ),
                                       const SizedBox(width: 6),
@@ -2700,9 +2670,9 @@ class _SearchState extends State<Search> {
                                                                   ? 'Searching for users: "${filterProvider.searchController.text}"'
                                                                   : '',
                                           style: const TextStyle(
-                                              color: Colors.grey,
+                                              color: whiteDialog,
                                               fontSize: 11.5,
-                                              letterSpacing: 0.3,
+                                              letterSpacing: 0,
                                               fontWeight: FontWeight.w500,
                                               overflow: TextOverflow.ellipsis),
                                         ),
@@ -3238,7 +3208,7 @@ class _SearchState extends State<Search> {
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
                                                                                         fontSize: 13.5,
-                                                                                        letterSpacing: 0.3,
+                                                                                        letterSpacing: 0,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -3303,7 +3273,7 @@ class _SearchState extends State<Search> {
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
                                                                                         fontSize: 13,
-                                                                                        letterSpacing: 0.3,
+                                                                                        letterSpacing: 0,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -3491,7 +3461,7 @@ class _SearchState extends State<Search> {
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
                                                                                         fontSize: 13.5,
-                                                                                        letterSpacing: 0.3,
+                                                                                        letterSpacing: 0,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -3564,7 +3534,7 @@ class _SearchState extends State<Search> {
                                                                                       style: const TextStyle(
                                                                                         color: Colors.black,
                                                                                         fontSize: 13.5,
-                                                                                        letterSpacing: 0.3,
+                                                                                        letterSpacing: 0,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -3634,7 +3604,8 @@ class _SearchState extends State<Search> {
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
-                                                                  top: 10),
+                                                                  top: 10,
+                                                                  bottom: 4),
                                                           child: Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -3728,7 +3699,7 @@ class _SearchState extends State<Search> {
                                                                                 const TextStyle(
                                                                               color: Colors.black,
                                                                               fontSize: 13.5,
-                                                                              letterSpacing: 0.3,
+                                                                              letterSpacing: 0,
                                                                             ),
                                                                           ),
                                                                         ],
@@ -3748,7 +3719,8 @@ class _SearchState extends State<Search> {
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
-                                                                  top: 10),
+                                                                  top: 10,
+                                                                  bottom: 4),
                                                           child: Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -3842,7 +3814,7 @@ class _SearchState extends State<Search> {
                                                                                 const TextStyle(
                                                                               color: Colors.black,
                                                                               fontSize: 13.5,
-                                                                              letterSpacing: 0.3,
+                                                                              letterSpacing: 0,
                                                                             ),
                                                                           ),
                                                                         ],
@@ -4009,7 +3981,7 @@ class _SearchState extends State<Search> {
                                                                                 const TextStyle(
                                                                               color: Colors.black,
                                                                               fontSize: 13.5,
-                                                                              letterSpacing: 0.3,
+                                                                              letterSpacing: 0,
                                                                             ),
                                                                           ),
                                                                         ],
@@ -4124,7 +4096,7 @@ class _SearchState extends State<Search> {
                                                                                 const TextStyle(
                                                                               color: Colors.black,
                                                                               fontSize: 13.5,
-                                                                              letterSpacing: 0.3,
+                                                                              letterSpacing: 0,
                                                                             ),
                                                                           ),
                                                                         ],
@@ -4312,7 +4284,7 @@ class _SearchState extends State<Search> {
                                                                                                           style: const TextStyle(
                                                                                                             color: Colors.black,
                                                                                                             fontSize: 13.5,
-                                                                                                            letterSpacing: 0.3,
+                                                                                                            letterSpacing: 0,
                                                                                                           ),
                                                                                                         ),
                                                                                                       ],
@@ -4362,7 +4334,7 @@ class _SearchState extends State<Search> {
                                                                                                           style: const TextStyle(
                                                                                                             color: Colors.black,
                                                                                                             fontSize: 13.5,
-                                                                                                            letterSpacing: 0.3,
+                                                                                                            letterSpacing: 0,
                                                                                                           ),
                                                                                                         ),
                                                                                                       ],
@@ -4481,7 +4453,7 @@ class _SearchState extends State<Search> {
                                                                                                           style: const TextStyle(
                                                                                                             color: Colors.black,
                                                                                                             fontSize: 13.5,
-                                                                                                            letterSpacing: 0.3,
+                                                                                                            letterSpacing: 0,
                                                                                                           ),
                                                                                                         ),
                                                                                                       ],
@@ -4540,7 +4512,7 @@ class _SearchState extends State<Search> {
                                                                                                         style: const TextStyle(
                                                                                                           color: Colors.black,
                                                                                                           fontSize: 13.5,
-                                                                                                          letterSpacing: 0.3,
+                                                                                                          letterSpacing: 0,
                                                                                                         ),
                                                                                                       ),
                                                                                                     ],
@@ -4661,7 +4633,7 @@ class _SearchState extends State<Search> {
                                                                                                               style: const TextStyle(
                                                                                                                 color: Colors.black,
                                                                                                                 fontSize: 13.5,
-                                                                                                                letterSpacing: 0.3,
+                                                                                                                letterSpacing: 0,
                                                                                                               ),
                                                                                                             ),
                                                                                                           ],
@@ -4713,7 +4685,7 @@ class _SearchState extends State<Search> {
                                                                                                               style: const TextStyle(
                                                                                                                 color: Colors.black,
                                                                                                                 fontSize: 13.5,
-                                                                                                                letterSpacing: 0.3,
+                                                                                                                letterSpacing: 0,
                                                                                                               ),
                                                                                                             ),
                                                                                                           ],
@@ -4818,7 +4790,7 @@ class _SearchState extends State<Search> {
                                                                                                               style: const TextStyle(
                                                                                                                 color: Colors.black,
                                                                                                                 fontSize: 13.5,
-                                                                                                                letterSpacing: 0.3,
+                                                                                                                letterSpacing: 0,
                                                                                                               ),
                                                                                                             ),
                                                                                                           ],
@@ -4876,7 +4848,7 @@ class _SearchState extends State<Search> {
                                                                                                               style: const TextStyle(
                                                                                                                 color: Colors.black,
                                                                                                                 fontSize: 13.5,
-                                                                                                                letterSpacing: 0.3,
+                                                                                                                letterSpacing: 0,
                                                                                                               ),
                                                                                                             ),
                                                                                                           ],
@@ -4964,7 +4936,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5014,7 +4986,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5109,7 +5081,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5160,7 +5132,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5274,7 +5246,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5324,7 +5296,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5424,7 +5396,7 @@ class _SearchState extends State<Search> {
                                                                                                                       style: const TextStyle(
                                                                                                                         color: Colors.black,
                                                                                                                         fontSize: 13.5,
-                                                                                                                        letterSpacing: 0.3,
+                                                                                                                        letterSpacing: 0,
                                                                                                                       ),
                                                                                                                     ),
                                                                                                                   ],
@@ -5483,7 +5455,7 @@ class _SearchState extends State<Search> {
                                                                                                                     style: const TextStyle(
                                                                                                                       color: Colors.black,
                                                                                                                       fontSize: 13.5,
-                                                                                                                      letterSpacing: 0.3,
+                                                                                                                      letterSpacing: 0,
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                 ],
@@ -5517,7 +5489,7 @@ class _SearchState extends State<Search> {
                                                                                             ? Visibility(
                                                                                                 visible: mostLikedKeyProvider.previousButtonVisible,
                                                                                                 child: Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 10),
+                                                                                                  padding: const EdgeInsets.only(top: 10, bottom: 4),
                                                                                                   child: Row(
                                                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                                                     children: [
@@ -5562,7 +5534,7 @@ class _SearchState extends State<Search> {
                                                                                                                     style: const TextStyle(
                                                                                                                       color: Colors.black,
                                                                                                                       fontSize: 13.5,
-                                                                                                                      letterSpacing: 0.3,
+                                                                                                                      letterSpacing: 0,
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                 ],
@@ -5578,7 +5550,7 @@ class _SearchState extends State<Search> {
                                                                                             : Visibility(
                                                                                                 visible: mostLikedKeyProvider.previousButtonVisible,
                                                                                                 child: Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 10),
+                                                                                                  padding: const EdgeInsets.only(top: 10, bottom: 4),
                                                                                                   child: Row(
                                                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                                                     children: [
@@ -5623,7 +5595,7 @@ class _SearchState extends State<Search> {
                                                                                                                     style: const TextStyle(
                                                                                                                       color: Colors.black,
                                                                                                                       fontSize: 13.5,
-                                                                                                                      letterSpacing: 0.3,
+                                                                                                                      letterSpacing: 0,
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                 ],
@@ -5707,7 +5679,7 @@ class _SearchState extends State<Search> {
                                                                                                                     style: const TextStyle(
                                                                                                                       color: Colors.black,
                                                                                                                       fontSize: 13.5,
-                                                                                                                      letterSpacing: 0.3,
+                                                                                                                      letterSpacing: 0,
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                 ],
@@ -5769,7 +5741,7 @@ class _SearchState extends State<Search> {
                                                                                                                     style: const TextStyle(
                                                                                                                       color: Colors.black,
                                                                                                                       fontSize: 13.5,
-                                                                                                                      letterSpacing: 0.3,
+                                                                                                                      letterSpacing: 0,
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                 ],

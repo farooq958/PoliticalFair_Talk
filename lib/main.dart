@@ -155,7 +155,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData().copyWith(
           scaffoldBackgroundColor: Colors.white,
           colorScheme: ThemeData().colorScheme.copyWith(
-              // primary: const Color.fromARGB(255, 36, 64, 101),
+              // primary: const darkBlue,
               primary: const Color.fromARGB(255, 70, 70, 70)),
         ),
         title: '0',

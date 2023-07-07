@@ -104,7 +104,7 @@ class _EditProfileState extends State<EditProfile> {
                       toolbarHeight: 56,
                       backgroundColor:
                           // isLoading ? Colors.black.withOpacity(0.2) :
-                          Colors.white,
+                          darkBlue,
                       actions: [
                         Expanded(
                           child: Container(
@@ -130,18 +130,18 @@ class _EditProfileState extends State<EditProfile> {
                                         );
                                       },
                                       child: const Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.black,
+                                        Icons.keyboard_arrow_left,
+                                        color: whiteDialog,
                                       ),
                                     ),
                                   ),
                                 ),
-                                Container(width: 22),
+                                Container(width: 16),
                                 const Text('Edit Profile',
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: whiteDialog,
                                         fontSize: 20,
-                                        letterSpacing: 0.3,
+                                        letterSpacing: 0,
                                         fontWeight: FontWeight.w500)),
                               ],
                             ),

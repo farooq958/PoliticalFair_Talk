@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Methods/firestore_methods.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 
 class ReportBug extends StatefulWidget {
@@ -55,10 +56,10 @@ class _ReportBugState extends State<ReportBug> {
             // showSnackBar(res, context);
           }
         } else {
-          showSnackBar('Device type cannot be empty.', context);
+          showSnackBar('Device type field cannot be empty.', context);
         }
       } else {
-        showSnackBar('Report a bug cannot be empty.', context);
+        showSnackBar('Report a bug Field cannot be empty.', context);
       }
     } catch (e) {
       // showSnackBar(e.toString(), context);
@@ -71,10 +72,10 @@ class _ReportBugState extends State<ReportBug> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 240, 240, 240),
+          backgroundColor: testing,
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -105,19 +106,19 @@ class _ReportBugState extends State<ReportBug> {
                                 );
                               },
                               child: const Icon(
-                                Icons.arrow_back,
+                                Icons.keyboard_arrow_left,
                                 size: 24,
-                                color: Colors.black,
+                                color: whiteDialog,
                               ),
                             ),
                           ),
                         ),
-                        Container(width: 12),
+                        Container(width: 16),
                         const Text('Report a Bug',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: whiteDialog,
                                 fontSize: 20,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500)),
                       ],
                     ),
@@ -135,7 +136,7 @@ class _ReportBugState extends State<ReportBug> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 17,
-                          letterSpacing: 0.3,
+                          letterSpacing: 0,
                           fontWeight: FontWeight.w500)),
                   const SizedBox(height: 10),
                   const Text(
@@ -143,7 +144,7 @@ class _ReportBugState extends State<ReportBug> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12.5,
-                        letterSpacing: 0.3,
+                        letterSpacing: 0,
                       )),
                   const SizedBox(height: 12),
                   PhysicalModel(
@@ -254,7 +255,7 @@ class _ReportBugState extends State<ReportBug> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(50),
                         child: Material(
-                          color: const Color.fromARGB(255, 36, 64, 101),
+                          color: darkBlue,
                           borderRadius: BorderRadius.circular(30),
                           child: InkWell(
                             borderRadius: BorderRadius.circular(50),
@@ -279,8 +280,8 @@ class _ReportBugState extends State<ReportBug> {
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            letterSpacing: 1),
+                                            fontSize: 16,
+                                            letterSpacing: 0),
                                       ),
                               ),
                             ),

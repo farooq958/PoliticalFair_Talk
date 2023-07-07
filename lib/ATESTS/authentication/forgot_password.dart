@@ -37,7 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             // title: Text('Back'),
             elevation: 4,
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.white,
+            backgroundColor: darkBlue,
             actions: [
               Expanded(
                 child: SizedBox(
@@ -56,7 +56,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               customBorder: const CircleBorder(),
                               splashColor: Colors.grey.withOpacity(0.5),
                               child: const Icon(Icons.keyboard_arrow_left,
-                                  color: Colors.black),
+                                  color: whiteDialog),
                               onTap: () {
                                 Future.delayed(const Duration(milliseconds: 50),
                                     () {
@@ -70,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       const Text(
                         'User Credential Recovery',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: whiteDialog,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
@@ -102,7 +102,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 15.5,
-                        color: Colors.black)),
+                        color: darkBlue)),
                 const SizedBox(height: 12),
                 Theme(
                   data: themeData.copyWith(inputDecorationTheme:
@@ -110,7 +110,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     prefixIconColor: MaterialStateColor.resolveWith(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.focused)) {
-                        return const Color.fromARGB(255, 36, 64, 101);
+                        return darkBlue;
                       }
 
                       return Colors.grey;
@@ -122,9 +122,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
-                          borderSide: const BorderSide(
-                              color: Color.fromARGB(255, 36, 64, 101),
-                              width: 2),
+                          borderSide:
+                              const BorderSide(color: darkBlue, width: 2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
@@ -134,7 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         labelText: 'Email',
                         labelStyle: const TextStyle(
                             fontSize: 16,
-                            letterSpacing: 0.3,
+                            letterSpacing: 0,
                             color: Colors.grey,
                             fontWeight: FontWeight.w500),
                         // labelText: 'Username',
@@ -148,7 +147,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(height: 12),
                 UnconstrainedBox(
                   child: Material(
-                    color: const Color.fromARGB(255, 36, 64, 101),
+                    color: darkBlue,
                     borderRadius: BorderRadius.circular(50),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(50),
@@ -191,14 +190,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 15.5,
-                        color: Colors.black)),
+                        color: darkBlue)),
                 const SizedBox(height: 12),
                 const Text('Contact us by email:',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 15.5,
-                        color: Colors.black)),
+                        color: darkBlue)),
                 Text(
                   '$email ',
                   textAlign: TextAlign.center,

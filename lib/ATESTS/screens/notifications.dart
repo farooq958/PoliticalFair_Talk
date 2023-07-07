@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
+import '../utils/global_variables.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({
@@ -101,12 +102,12 @@ class _NotificationsState extends State<Notifications> {
           child: Stack(
             children: [
               Scaffold(
-                backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+                backgroundColor: testing,
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
                   elevation: 4,
                   toolbarHeight: 56,
-                  backgroundColor: Colors.white,
+                  backgroundColor: darkBlue,
                   actions: [
                     Expanded(
                       child: Container(
@@ -132,19 +133,21 @@ class _NotificationsState extends State<Notifications> {
                                     );
                                   },
                                   child: const Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.black,
+                                    Icons.keyboard_arrow_left,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ),
                             ),
-                            Container(width: 22),
-                            const Text('Notification Preferences',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    letterSpacing: 0.3,
-                                    fontWeight: FontWeight.w500)),
+                            Container(width: 16),
+                            const Text(
+                              'Notification Preferences',
+                              style: TextStyle(
+                                  color: whiteDialog,
+                                  fontSize: 20,
+                                  letterSpacing: 0,
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ],
                         ),
                       ),

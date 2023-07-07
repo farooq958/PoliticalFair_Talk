@@ -12,9 +12,11 @@ import '../authentication/signup.dart';
 import '../info screens/data_privacy.dart';
 import '../info screens/how_it_works.dart';
 import '../info screens/terms_conditions.dart';
+import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'automate.dart';
 import 'blocked_list.dart';
@@ -76,41 +78,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final User? user = Provider.of<UserProvider>(context).getUser;
     return IntrinsicHeight(
       child: Container(
-        color: Colors.white,
+        color: testing,
         width: double.infinity,
         child: Column(
           children: [
             Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: testing,
               ),
               width: double.infinity,
-              height: country == "" && pending == "false" ? 222 : 166,
-              padding: const EdgeInsets.only(
-                  right: 10.0, left: 16, top: 8, bottom: 4),
+              height: country == "" && pending == "false" ? 234 : 176,
+              padding:
+                  const EdgeInsets.only(right: 0, left: 0, top: 0, bottom: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 35,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Settings',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
+                  PhysicalModel(
+                    color: darkBlue,
+                    elevation: 3,
+                    child: Container(
+                      height: 56,
+                      padding: const EdgeInsets.only(left: 16, right: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Settings',
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0,
+                              color: whiteDialog,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 36,
-                          height: 35,
-                          child: Material(
-                            shape: const CircleBorder(),
-                            color: Colors.white,
-                            child: InkWell(
+                          SizedBox(
+                            width: 36,
+                            height: 35,
+                            child: Material(
+                              shape: const CircleBorder(),
+                              color: Colors.transparent,
+                              child: InkWell(
                                 customBorder: const CircleBorder(),
                                 splashColor: Colors.grey.withOpacity(0.5),
                                 onTap: () {
@@ -122,15 +129,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 child: const Icon(
                                   Icons.close,
                                   size: 28,
-                                  color: Colors.black,
-                                )),
+                                  color: whiteDialog,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                      bottom: 10,
+                      left: 16,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               user?.photoUrl != null
                                   ? Material(
                                       color: Colors.grey,
-                                      elevation: 2.0,
+                                      elevation: 4.0,
                                       shape: const CircleBorder(),
                                       clipBehavior: Clip.hardEdge,
                                       child: Ink.image(
@@ -153,8 +166,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           '${user?.photoUrl}',
                                         ),
                                         fit: BoxFit.cover,
-                                        width: 75,
-                                        height: 75,
+                                        width: 80,
+                                        height: 80,
                                         child: InkWell(
                                           splashColor:
                                               Colors.grey.withOpacity(0.5),
@@ -185,15 +198,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     )
                                   : Material(
                                       color: Colors.grey,
-                                      elevation: 2.0,
+                                      elevation: 4.0,
                                       shape: const CircleBorder(),
                                       clipBehavior: Clip.hardEdge,
                                       child: Ink.image(
                                         image: const AssetImage(
                                             'assets/avatarFT.jpg'),
                                         fit: BoxFit.cover,
-                                        width: 75,
-                                        height: 75,
+                                        width: 80,
+                                        height: 80,
                                         child: InkWell(
                                           splashColor:
                                               Colors.grey.withOpacity(0.5),
@@ -230,8 +243,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   children: [
                                     country != "" && profileFlag
                                         ? SizedBox(
-                                            width: 25,
-                                            height: 12.5,
+                                            width: 30,
+                                            height: 15,
                                             child: Image.asset(
                                                 'icons/flags/png/${snap?.aaCountry}.png',
                                                 package: 'country_icons'))
@@ -241,15 +254,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                               Positioned(
                                   bottom: 0,
-                                  right: 4,
+                                  right: 2,
                                   child: country != "" && profileBadge
                                       ? Stack(
                                           children: const [
                                             Positioned(
-                                              right: 3,
-                                              top: 3,
+                                              right: 4,
+                                              top: 4,
                                               child: CircleAvatar(
-                                                radius: 7,
+                                                radius: 8,
                                                 backgroundColor: Colors.white,
                                               ),
                                             ),
@@ -257,7 +270,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               child: Icon(Icons.verified,
                                                   color: Color.fromARGB(
                                                       255, 113, 191, 255),
-                                                  size: 20),
+                                                  size: 25),
                                             ),
                                           ],
                                         )
@@ -267,7 +280,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         const SizedBox(width: 14),
                         Container(
-                            height: 75,
+                            height: 80,
                             alignment: Alignment.center,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -278,17 +291,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ? 'Logged in as'
                                         : 'Logged in as a',
                                     style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13,
+                                      color: darkBlue,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.3,
+                                      letterSpacing: 0,
                                     )),
                                 const SizedBox(height: 2),
                                 Text(
                                   user != null ? user.username : 'Guest',
                                   style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18.5,
+                                      color: darkBlue,
+                                      fontSize: 19.5,
                                       fontWeight: FontWeight.w500),
                                 ),
                               ],
@@ -302,9 +315,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ? Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
+                              padding: const EdgeInsets.only(
+                                  bottom: 10, left: 16, top: 10),
                               child: PhysicalModel(
-                                color: const Color.fromARGB(255, 245, 245, 245),
+                                color: whiteDialog,
                                 borderRadius: BorderRadius.circular(50),
                                 elevation: 2,
                                 child: Material(
@@ -344,8 +358,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           children: [
                                             const Icon(
                                               Icons.verified,
-                                              color: Color.fromARGB(
-                                                  255, 70, 70, 70),
+                                              color: darkBlue,
                                               size: 20,
                                             ),
                                             Container(width: 8),
@@ -355,7 +368,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w500,
                                                   letterSpacing: 0.2,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                             ),
                                           ],
                                         ),
@@ -392,9 +405,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 12),
                                 child: PhysicalModel(
-                                  color:
-                                      const Color.fromARGB(255, 245, 245, 245),
+                                  color: whiteDialog,
                                   elevation: 2,
+                                  borderRadius: BorderRadius.circular(5),
                                   child: Column(
                                     children: [
                                       Material(
@@ -412,7 +425,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               1,
                                           child: const Text('Admin',
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: darkBlue,
                                                   fontWeight: FontWeight.w500)),
                                         ),
                                       ),
@@ -446,13 +459,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   const Icon(
                                                       Icons.lock_outlined,
                                                       size: 23,
-                                                      color: Colors.black),
+                                                      color: darkBlue),
                                                   Container(width: 15),
                                                   const Text(
                                                     'Verification System',
                                                     style: TextStyle(
                                                         fontSize: 16.5,
-                                                        color: Colors.black),
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),
@@ -475,11 +488,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                       milliseconds: 150), () {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          ReportScreen(
-                                                            durationInDay: widget
-                                                                .durationInDay,
-                                                          )),
+                                                    builder: (context) =>
+                                                        ReportScreen(
+                                                      durationInDay:
+                                                          widget.durationInDay,
+                                                    ),
+                                                  ),
                                                 );
                                               });
                                             },
@@ -493,13 +507,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   const Icon(
                                                       Icons.lock_outlined,
                                                       size: 23,
-                                                      color: Colors.black),
+                                                      color: darkBlue),
                                                   Container(width: 15),
                                                   const Text(
                                                     'Content Moderation',
                                                     style: TextStyle(
                                                         fontSize: 16.5,
-                                                        color: Colors.black),
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),
@@ -537,13 +551,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   const Icon(
                                                       Icons.lock_outlined,
                                                       size: 23,
-                                                      color: Colors.black),
+                                                      color: darkBlue),
                                                   Container(width: 15),
                                                   const Text(
                                                     'Change User Values',
                                                     style: TextStyle(
                                                         fontSize: 16.5,
-                                                        color: Colors.black),
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),
@@ -581,13 +595,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   const Icon(
                                                       Icons.lock_outlined,
                                                       size: 23,
-                                                      color: Colors.black),
+                                                      color: darkBlue),
                                                   Container(width: 15),
                                                   const Text(
                                                     'Reported Bugs',
                                                     style: TextStyle(
                                                         fontSize: 16.5,
-                                                        color: Colors.black),
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),
@@ -603,7 +617,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 12),
                           child: PhysicalModel(
-                            color: const Color.fromARGB(255, 245, 245, 245),
+                            borderRadius: BorderRadius.circular(5),
+                            color: whiteDialog,
                             elevation: 2,
                             child: Column(
                               children: [
@@ -620,7 +635,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         MediaQuery.of(context).size.width * 1,
                                     child: const Text('Personalization',
                                         style: TextStyle(
-                                            color: Colors.black,
+                                            color: darkBlue,
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),
@@ -647,13 +662,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         child: Row(
                                           children: [
                                             const Icon(Icons.person_outline,
-                                                size: 23, color: Colors.black),
+                                                size: 23, color: darkBlue),
                                             Container(width: 15),
                                             const Text(
                                               'Automate',
                                               style: TextStyle(
                                                   fontSize: 16.5,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                             ),
                                           ],
                                         ),
@@ -688,13 +703,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         child: Row(
                                           children: [
                                             const Icon(Icons.person_outline,
-                                                size: 23, color: Colors.black),
+                                                size: 23, color: darkBlue),
                                             Container(width: 15),
                                             const Text(
                                               'Edit Profile',
                                               style: TextStyle(
-                                                  fontSize: 16.5,
-                                                  color: Colors.black),
+                                                fontSize: 16.5,
+                                                color: darkBlue,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -736,13 +752,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                   Icons
                                                       .notifications_active_outlined,
                                                   size: 23,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                               Container(width: 15),
                                               const Text(
                                                 'Notification Preferences',
                                                 style: TextStyle(
                                                     fontSize: 16.5,
-                                                    color: Colors.black),
+                                                    color: darkBlue),
                                               ),
                                             ],
                                           ),
@@ -778,13 +794,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         child: Row(
                                           children: [
                                             const Icon(Icons.block,
-                                                size: 23, color: Colors.black),
+                                                size: 23, color: darkBlue),
                                             Container(width: 15),
                                             const Text(
                                               'Blocked List',
                                               style: TextStyle(
                                                   fontSize: 16.5,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                             ),
                                           ],
                                         ),
@@ -808,12 +824,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       //     // top: BorderSide(width: 1, color: Colors.black),
                       //     bottom: BorderSide(width: 1, color: Colors.black),
                       //     ),
-                      color: Colors.white,
+                      color: testing,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: PhysicalModel(
-                        color: const Color.fromARGB(255, 245, 245, 245),
+                        borderRadius: BorderRadius.circular(5),
+                        color: whiteDialog,
                         elevation: 2,
                         child: Column(
                           children: [
@@ -822,7 +839,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               width: MediaQuery.of(context).size.width * 1,
                               child: const Text('Other',
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: darkBlue,
                                       fontWeight: FontWeight.w500)),
                             ),
                             SizedBox(
@@ -847,13 +864,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.info_outline,
-                                            size: 23, color: Colors.black),
+                                            size: 23, color: darkBlue),
                                         Container(width: 15),
                                         const Text(
                                           'How does Fairtalk work?',
                                           style: TextStyle(
-                                              fontSize: 16.5,
-                                              color: Colors.black),
+                                              fontSize: 16.5, color: darkBlue),
                                         ),
                                       ],
                                     ),
@@ -883,13 +899,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.insert_chart_outlined,
-                                            size: 23, color: Colors.black),
+                                            size: 23, color: darkBlue),
                                         Container(width: 15),
                                         const Text(
                                           'Statistics',
                                           style: TextStyle(
-                                              fontSize: 16.5,
-                                              color: Colors.black),
+                                              fontSize: 16.5, color: darkBlue),
                                         ),
                                       ],
                                     ),
@@ -929,13 +944,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.bug_report_outlined,
-                                            color: Colors.black, size: 23),
+                                            color: darkBlue, size: 23),
                                         Container(width: 15),
                                         const Text(
                                           'Report a Bug',
                                           style: TextStyle(
-                                              fontSize: 16.5,
-                                              color: Colors.black),
+                                              fontSize: 16.5, color: darkBlue),
                                         ),
                                       ],
                                     ),
@@ -961,13 +975,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.email_outlined,
-                                            color: Colors.black, size: 23),
+                                            color: darkBlue, size: 23),
                                         Container(width: 15),
                                         const Text(
                                           'Contact Information',
                                           style: TextStyle(
                                             fontSize: 16.5,
-                                            color: Colors.black,
+                                            color: darkBlue,
                                           ),
                                         ),
                                       ],
@@ -992,13 +1006,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       //     //     color: Colors.black),
                       //     bottom: BorderSide(width: 1, color: Colors.black),
                       //     ),
-                      color: Colors.white,
+                      color: testing,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 12.0),
                       child: PhysicalModel(
-                        color: const Color.fromARGB(255, 245, 245, 245),
+                        color: whiteDialog,
                         elevation: 2,
+                        borderRadius: BorderRadius.circular(5),
                         child: Column(
                           children: [
                             Container(
@@ -1006,7 +1021,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               width: MediaQuery.of(context).size.width * 1,
                               child: const Text('Account Controls',
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: darkBlue,
                                       fontWeight: FontWeight.w500)),
                             ),
                             SizedBox(
@@ -1042,13 +1057,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 ? Icons.login
                                                 : Icons.logout,
                                             size: 23,
-                                            color: Colors.black),
+                                            color: darkBlue),
                                         Container(width: 15),
                                         Text(
                                           user == null ? 'Login' : 'Logout',
                                           style: const TextStyle(
-                                              fontSize: 16.5,
-                                              color: Colors.black),
+                                              fontSize: 16.5, color: darkBlue),
                                         ),
                                       ],
                                     ),
@@ -1088,13 +1102,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               const Icon(
                                                   Icons.verified_user_outlined,
                                                   size: 23,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                               Container(width: 15),
                                               const Text(
                                                 'Sign Up',
                                                 style: TextStyle(
                                                     fontSize: 16.5,
-                                                    color: Colors.black),
+                                                    color: darkBlue),
                                               ),
                                             ],
                                           ),
@@ -1148,13 +1162,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                               const Icon(
                                                   Icons.delete_forever_outlined,
                                                   size: 23,
-                                                  color: Colors.black),
+                                                  color: darkBlue),
                                               Container(width: 15),
                                               const Text(
                                                 'Delete Account',
                                                 style: TextStyle(
                                                     fontSize: 16.5,
-                                                    color: Colors.black),
+                                                    color: darkBlue),
                                               ),
                                             ],
                                           ),
@@ -1173,7 +1187,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Padding(
               padding: const EdgeInsets.only(bottom: 12, right: 12, left: 12),
               child: PhysicalModel(
-                color: const Color.fromARGB(255, 245, 245, 245),
+                color: whiteDialog,
+                borderRadius: BorderRadius.circular(5),
                 elevation: 2,
                 child: Container(
                   height: 40,
@@ -1207,8 +1222,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 11.5,
-                                    color: Colors.black,
-                                    letterSpacing: 0.3,
+                                    color: darkBlue,
+                                    letterSpacing: 0,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -1216,28 +1231,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(),
-                      // InkWell(
-                      //   splashColor: Colors.grey.withOpacity(0.3),
-                      //   borderRadius: BorderRadius.circular(25),
-                      //   onTap: () {
-                      //     Future.delayed(const Duration(milliseconds: 150), () {
-                      //       Navigator.of(context).push(
-                      //         MaterialPageRoute(
-                      //           builder: (context) =>
-                      //               const AddPostDaily(durationInDay: 253),
-                      //         ),
-                      //       );
-                      //     });
-                      //   },
-                      // child:
-                      SizedBox(
-                        height: 31,
-                        child: Image.asset(
-                          'assets/bottomIconSettingsBlack(1).png',
-                          opacity: const AlwaysStoppedAnimation(.6),
+                      InkWell(
+                        splashColor: Colors.grey.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 150), () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    WelcomeScreen(username: "hello"),
+                              ),
+                            );
+                          });
+                        },
+                        child: SizedBox(
+                          height: 31,
+                          child: Image.asset(
+                            'assets/bottomIconSettingsNewBlue.png',
+                            opacity: const AlwaysStoppedAnimation(.9),
+                          ),
                         ),
                       ),
-                      // ),
                       const SizedBox(),
                       SizedBox(
                         width: 85,
@@ -1265,8 +1279,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 11.5,
-                                    color: Colors.black,
-                                    letterSpacing: 0.3,
+                                    color: darkBlue,
+                                    letterSpacing: 0,
                                     fontWeight: FontWeight.w500),
                               ),
                             ),

@@ -169,7 +169,8 @@ class _FeedScreenState extends State<FeedScreen> {
             appBar: AppBar(
               elevation: 4,
               toolbarHeight: 68,
-              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: darkBlue,
+              automaticallyImplyLeading: false,
               // flexibleSpace: Container(
               //   decoration: const BoxDecoration(
               //     gradient: LinearGradient(
@@ -222,8 +223,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                           });
                                         },
                                         child: const Icon(Icons.settings,
-                                            color: Color.fromARGB(
-                                                255, 80, 80, 80)),
+                                            color: Colors.white),
                                       ),
                                     ),
                                   ),
@@ -239,10 +239,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                                   ? 'GLOBAL'
                                                   : 'NATIONAL',
                                               style: const TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 55, 55, 55),
+                                                color: whiteDialog,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 14,
+                                                fontSize: 13,
                                               ),
                                             ),
                                           ),
@@ -273,15 +272,15 @@ class _FeedScreenState extends State<FeedScreen> {
                                         elevation: 3,
                                         borderRadius: BorderRadius.circular(25),
                                         child: Container(
-                                            width: 116,
+                                            width: 120,
                                             height: 32.5,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(25),
-                                              // border: Border.all(
-                                              //   width: .75,
-                                              //   color: Colors.grey,
-                                              // ),
+                                              border: Border.all(
+                                                width: 2,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                             child: Row(
                                               children: [
@@ -355,30 +354,24 @@ class _FeedScreenState extends State<FeedScreen> {
                                                         color: filterProvider
                                                                     .global ==
                                                                 "true"
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                125,
-                                                                125,
-                                                                125)
-                                                            : const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                228,
-                                                                228,
-                                                                228),
+                                                            ? whiteDialog
+                                                            : darkBlue,
                                                       ),
                                                       height: 100,
                                                       width: 58,
                                                       child: Icon(
                                                           MyFlutterApp
                                                               .globe_americas,
-                                                          color: Colors.white,
+                                                          color: filterProvider
+                                                                      .global ==
+                                                                  "true"
+                                                              ? darkBlue
+                                                              : whiteDialog,
                                                           size: filterProvider
                                                                       .global ==
                                                                   "true"
                                                               ? 23
-                                                              : 17),
+                                                              : 15),
                                                     ),
                                                   ),
                                                 ),
@@ -451,28 +444,22 @@ class _FeedScreenState extends State<FeedScreen> {
                                                           color: filterProvider
                                                                       .global !=
                                                                   "true"
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  125,
-                                                                  125,
-                                                                  125)
-                                                              : const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  228,
-                                                                  228,
-                                                                  228),
+                                                              ? whiteDialog
+                                                              : darkBlue,
                                                         ),
                                                         height: 100,
                                                         width: 58,
                                                         child: Icon(Icons.flag,
-                                                            color: Colors.white,
+                                                            color: filterProvider
+                                                                        .global !=
+                                                                    "true"
+                                                                ? darkBlue
+                                                                : whiteDialog,
                                                             size: filterProvider
                                                                         .global !=
                                                                     "true"
                                                                 ? 23
-                                                                : 17)),
+                                                                : 15)),
                                                   ),
                                                 )
                                               ],
@@ -490,10 +477,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                               ? 'MESSAGES'
                                               : 'POLLS',
                                           style: const TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 55, 55, 55),
+                                            color: whiteDialog,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: 13,
                                           ),
                                         ),
                                       ),
@@ -502,11 +488,15 @@ class _FeedScreenState extends State<FeedScreen> {
                                         elevation: 3,
                                         borderRadius: BorderRadius.circular(25),
                                         child: Container(
-                                          width: 116,
+                                          width: 120,
                                           height: 32.5,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(25),
+                                            border: Border.all(
+                                              color: Colors.white,
+                                              width: 2,
+                                            ),
                                           ),
                                           child: Row(
                                             children: [
@@ -548,22 +538,22 @@ class _FeedScreenState extends State<FeedScreen> {
                                                       color: filterProvider
                                                                   .messages ==
                                                               "true"
-                                                          ? const Color
-                                                                  .fromARGB(255,
-                                                              125, 125, 125)
-                                                          : const Color
-                                                                  .fromARGB(255,
-                                                              228, 228, 228),
+                                                          ? whiteDialog
+                                                          : darkBlue,
                                                     ),
                                                     height: 100,
                                                     width: 58,
                                                     child: Icon(Icons.message,
-                                                        color: Colors.white,
+                                                        color: filterProvider
+                                                                    .messages ==
+                                                                "true"
+                                                            ? darkBlue
+                                                            : whiteDialog,
                                                         size: filterProvider
                                                                     .messages ==
                                                                 "true"
                                                             ? 23
-                                                            : 17),
+                                                            : 15),
                                                   ),
                                                 ),
                                               ),
@@ -593,45 +583,38 @@ class _FeedScreenState extends State<FeedScreen> {
                                                             filterProvider);
                                                   },
                                                   child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                        ),
-                                                        color: filterProvider
-                                                                    .messages !=
-                                                                "true"
-                                                            ? const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                125,
-                                                                125,
-                                                                125)
-                                                            : const Color
-                                                                    .fromARGB(
-                                                                255,
-                                                                228,
-                                                                228,
-                                                                228),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topRight:
+                                                            Radius.circular(25),
+                                                        bottomRight:
+                                                            Radius.circular(25),
                                                       ),
-                                                      height: 100,
-                                                      width: 58,
-                                                      child: RotatedBox(
-                                                        quarterTurns: 1,
-                                                        child: Icon(Icons.poll,
-                                                            color: Colors.white,
-                                                            size: filterProvider
-                                                                        .messages !=
-                                                                    "true"
-                                                                ? 23
-                                                                : 17),
-                                                      )),
+                                                      color: filterProvider
+                                                                  .messages !=
+                                                              "true"
+                                                          ? whiteDialog
+                                                          : darkBlue,
+                                                    ),
+                                                    height: 100,
+                                                    width: 58,
+                                                    child: RotatedBox(
+                                                      quarterTurns: 1,
+                                                      child: Icon(Icons.poll,
+                                                          color: filterProvider
+                                                                      .messages !=
+                                                                  "true"
+                                                              ? darkBlue
+                                                              : whiteDialog,
+                                                          size: filterProvider
+                                                                      .messages !=
+                                                                  "true"
+                                                              ? 23
+                                                              : 15),
+                                                    ),
+                                                  ),
                                                 ),
                                               )
                                             ],
@@ -672,8 +655,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                           });
                                         },
                                         child: const Icon(Icons.filter_list,
-                                            color: Color.fromARGB(
-                                                255, 80, 80, 80)),
+                                            color: Colors.white),
                                       ),
                                     ),
                                   ),
@@ -714,6 +696,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                   : Padding(
                                       padding: const EdgeInsets.only(
                                         top: 10,
+                                        bottom: 4,
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
@@ -891,14 +874,14 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 Colors.black),
                                                         SizedBox(width: 8),
                                                         Text(
-                                                          'View More',
+                                                          'View Next',
                                                           // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             // fontWeight:
                                                             //     FontWeight.w500,
                                                             fontSize: 13.5,
-                                                            letterSpacing: 0.3,
+                                                            letterSpacing: 0,
                                                           ),
                                                         ),
                                                       ],
@@ -941,7 +924,10 @@ class _FeedScreenState extends State<FeedScreen> {
                             pollsProvider.count <= 1 || pollsProvider.loading
                                 ? const SizedBox()
                                 : Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
+                                    padding: const EdgeInsets.only(
+                                      top: 10.0,
+                                      bottom: 4,
+                                    ),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -1003,7 +989,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                                       style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 13.5,
-                                                        letterSpacing: 0.3,
+                                                        letterSpacing: 0,
                                                       ),
                                                     ),
                                                   ],
@@ -1098,12 +1084,12 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                 Colors.black),
                                                         SizedBox(width: 8),
                                                         Text(
-                                                          'View More',
+                                                          'View Next',
                                                           // '${pollsProvider.count * pollsProvider.pageSize + 1} - ${(pollsProvider.count + 1) * pollsProvider.pageSize}',
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 13.5,
-                                                            letterSpacing: 0.3,
+                                                            letterSpacing: 0,
                                                           ),
                                                         ),
                                                       ],

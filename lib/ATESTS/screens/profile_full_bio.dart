@@ -23,10 +23,10 @@ class _ProfileBioState extends State<ProfileBio> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: whiteDialog,
+          backgroundColor: testing,
           appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: whiteDialog,
+              backgroundColor: darkBlue,
               elevation: 4,
               toolbarHeight: 56,
               actions: [
@@ -54,19 +54,19 @@ class _ProfileBioState extends State<ProfileBio> {
                                 );
                               },
                               child: const Icon(
-                                Icons.arrow_back,
+                                Icons.keyboard_arrow_left,
                                 size: 24,
-                                color: Colors.black,
+                                color: whiteDialog,
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Text('About ${widget.username}',
+                        Text("${widget.username}",
                             style: const TextStyle(
-                                color: Colors.black,
+                                color: whiteDialog,
                                 fontSize: 20,
-                                letterSpacing: 0.3,
+                                letterSpacing: 0,
                                 fontWeight: FontWeight.w500)),
                       ],
                     ),
@@ -84,8 +84,8 @@ class _ProfileBioState extends State<ProfileBio> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: PhysicalModel(
                         elevation: 3,
-                        color: testing,
-                        borderRadius: BorderRadius.circular(10),
+                        color: darkBlue,
+                        borderRadius: BorderRadius.circular(15),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 12),
@@ -94,8 +94,9 @@ class _ProfileBioState extends State<ProfileBio> {
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                               fontStyle: FontStyle.italic,
-                              letterSpacing: 0.3,
+                              letterSpacing: 0,
                               fontSize: 16,
+                              color: whiteDialog,
                             ),
                           ),
                         ),
