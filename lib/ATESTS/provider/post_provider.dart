@@ -1060,6 +1060,41 @@ class PostProvider extends ChangeNotifier {
       var query = (FirebaseFirestore.instance
           .collection('posts')
           .where('reportRemoved', isEqualTo: false)
+          .where('sub', isEqualTo: 'sub')
+          .orderBy('score', descending: true));
+      var snap = await query.count().get();
+      if (!_getPostBeingCalled) {
+        _getPostBeingCalled = true;
+        notifyListeners();
+        Future.delayed(Duration.zero);
+        _postsSnapshot = await query.limit(_pageSize).get();
+        _posts = _postsSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+
+        _count = 1;
+        _last = false;
+        if (_posts.length < _pageSize || _pageSize == snap.count) {
+          _last = true;
+        }
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getPosts error $e $st');
+    } finally {
+      _getPostBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getUpdatesScore() async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
           .where('sub', isEqualTo: 'fairtalk')
           .orderBy('score', descending: true));
       var snap = await query.count().get();
@@ -1095,6 +1130,40 @@ class PostProvider extends ChangeNotifier {
       var query = (FirebaseFirestore.instance
           .collection('posts')
           .where('reportRemoved', isEqualTo: false)
+          .where('sub', isEqualTo: 'sub')
+          .orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+      if (!_getPostBeingCalled) {
+        _getPostBeingCalled = true;
+        notifyListeners();
+        Future.delayed(Duration.zero);
+        _postsSnapshot = await query.limit(_pageSize).get();
+        _posts = _postsSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+        _count = 1;
+        _last = false;
+        if (_posts.length < _pageSize || _pageSize == snap.count) {
+          _last = true;
+        }
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getPosts error $e $st');
+    } finally {
+      _getPostBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getUpdatesDate() async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
           .where('sub', isEqualTo: 'fairtalk')
           .orderBy('datePublished', descending: true));
       var snap = await query.count().get();
@@ -1121,6 +1190,51 @@ class PostProvider extends ChangeNotifier {
   }
 
   getNextSubmissions() async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_postsSnapshot != null &&
+          _postsSnapshot!.docs.isNotEmpty &&
+          _pLoading != true &&
+          _postPageLoading != true) {
+        {
+          _postPageLoading = true;
+          _pLoading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'sub')
+                .orderBy('score', descending: true))
+            .startAfterDocument(_postsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _postPageLoading = false;
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getNextUpdates() async {
     try {
       if (_last) {
         return;
@@ -1184,7 +1298,7 @@ class PostProvider extends ChangeNotifier {
         var query = (FirebaseFirestore.instance
                 .collection('posts')
                 .where('reportRemoved', isEqualTo: false)
-                .where('sub', isEqualTo: 'fairtalk')
+                .where('sub', isEqualTo: 'sub')
                 .orderBy('datePublished', descending: true))
             .startAfterDocument(_postsSnapshot!.docs.last);
         var snap = await query.count().get();
@@ -1219,6 +1333,81 @@ class PostProvider extends ChangeNotifier {
         var data = await (FirebaseFirestore.instance
                 .collection('posts')
                 .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'sub')
+                .orderBy('score', descending: true))
+            .endBeforeDocument(_postsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getNextUpdatesDate() async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_postsSnapshot != null &&
+          _postsSnapshot!.docs.isNotEmpty &&
+          _pLoading != true &&
+          _postPageLoading != true) {
+        {
+          _postPageLoading = true;
+          _pLoading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'fairtalk')
+                .orderBy('datePublished', descending: true))
+            .startAfterDocument(_postsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _postPageLoading = false;
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousUpdates() async {
+    try {
+      if (_postsSnapshot != null) {
+        _pLoading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
                 .where('sub', isEqualTo: 'fairtalk')
                 .orderBy('score', descending: true))
             .endBeforeDocument(_postsSnapshot!.docs.first)
@@ -1241,6 +1430,36 @@ class PostProvider extends ChangeNotifier {
   }
 
   getPreviousSubmissionsDate() async {
+    try {
+      if (_postsSnapshot != null) {
+        _pLoading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('sub', isEqualTo: 'sub')
+                .orderBy('datePublished', descending: true))
+            .endBeforeDocument(_postsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousUpdatesDate() async {
     try {
       if (_postsSnapshot != null) {
         _pLoading = true;

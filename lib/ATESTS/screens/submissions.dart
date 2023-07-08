@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:aft/ATESTS/screens/statistics.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../info screens/submissions_info.dart';
 import '../provider/post_provider.dart';
@@ -34,7 +35,7 @@ class SubmissionsState extends State<Submissions>
   bool isMostRecent = false;
   bool isFilter = false;
   bool isLoading = false;
-
+  int _selectedIndex = 0;
   int currentTab = 0;
   User? _userProfile;
   User? _userAdmin;
@@ -68,7 +69,7 @@ class SubmissionsState extends State<Submissions>
               size: 14,
             ),
             SizedBox(width: 6),
-            Text('SUBMISSIONS', style: TextStyle(fontSize: 12)),
+            Text('BALLOTS', style: TextStyle(fontSize: 12)),
           ],
         ),
       ),
@@ -79,12 +80,12 @@ class SubmissionsState extends State<Submissions>
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Icon(
-              Icons.update_outlined,
+              Icons.check_circle,
               size: 14,
             ),
             SizedBox(width: 6),
             Text(
-              'UPDATES',
+              'WINNING BALLOTS',
               style: TextStyle(fontSize: 12),
             ),
           ],
@@ -97,7 +98,15 @@ class SubmissionsState extends State<Submissions>
   void initState() {
     super.initState();
     isLoading = true;
+    _tabController = TabController(vsync: this, length: list.length);
+
+    _tabController?.addListener(() {
+      setState(() {
+        _selectedIndex = _tabController!.index;
+      });
+    });
     _getPosts();
+
     // initScrollControllerListener();
     // Future.delayed(Duration.zero, () async {
     //   postProvider = Provider.of<PostProvider>(context, listen: false);
@@ -146,13 +155,13 @@ class SubmissionsState extends State<Submissions>
     User? user =
         userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
 
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Builder(
-          builder: (BuildContext context) => DefaultTabController(
-            length: 2,
-            child: Stack(
+    return DefaultTabController(
+      length: 2,
+      child: Container(
+        color: Colors.white,
+        child: SafeArea(
+          child: Builder(builder: (BuildContext context) {
+            return Stack(
               children: [
                 Scaffold(
                     key: _key,
@@ -191,6 +200,7 @@ class SubmissionsState extends State<Submissions>
                             onTap: (index) {
                               setState(() {
                                 currentTab = index;
+                                _getPosts();
                               });
                             },
                             // isScrollable: true,
@@ -206,7 +216,7 @@ class SubmissionsState extends State<Submissions>
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                right: 8.0, left: 8, top: 10),
+                                right: 8.0, left: 8, top: 12),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -234,72 +244,57 @@ class SubmissionsState extends State<Submissions>
                                 ),
                                 Column(
                                   children: [
-                                    Stack(
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        InkWell(
-                                          borderRadius:
-                                              BorderRadius.circular(0),
-                                          onTap: () {
-                                            Future.delayed(
-                                              const Duration(milliseconds: 50),
-                                              () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const SubmissionInfo()),
-                                                );
-                                              },
-                                            );
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(0),
+                                      onTap: () {
+                                        Future.delayed(
+                                          const Duration(milliseconds: 50),
+                                          () {
+                                            Navigator.of(context)
+                                                .push(PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 600),
+                                              child: SubmissionCreate(
+                                                durationInDay:
+                                                    widget.durationInDay,
+                                              ),
+                                            ));
                                           },
-                                          child: Container(
-                                            // width: 220,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 6, horizontal: 4),
-                                            child: Center(
-                                              child: Row(
-                                                children: const [
-                                                  Text(
-                                                    "FAIRTALK'S DEMOCRACY",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 17,
-                                                      letterSpacing: 0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 3),
-                                                  Icon(Icons.info_outline,
-                                                      color: whiteDialog,
-                                                      size: 13),
-                                                ],
-                                              ),
+                                        );
+                                      },
+                                      child: Container(
+                                        // width: 220,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4, horizontal: 4),
+                                        child: const Center(
+                                          child: Text(
+                                            "FAIRTALK'S DEMOCRACY",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 17,
+                                              letterSpacing: 0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ),
-                                        Positioned(
-                                          bottom: 3,
-                                          right: 0,
-                                          child: Container(
-                                            // height: 1,
-                                            width: 225,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.grey,
-                                              border: Border(
-                                                top: BorderSide(
-                                                    width: 1,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
+                                      ),
+                                    ),
+                                    Container(
+                                      // height: 1,
+                                      width: 215,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.grey,
+                                        border: Border(
+                                          top: BorderSide(
+                                              width: 1, color: Colors.white),
                                         ),
-                                      ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -387,10 +382,12 @@ class SubmissionsState extends State<Submissions>
                           );
                         } else {
                           if (postProvider.posts.isEmpty) {
-                            return const Center(
+                            return Center(
                               child: Text(
-                                'No submissions yet.',
-                                style: TextStyle(
+                                _tabController?.index == 0
+                                    ? 'No ballots yet.'
+                                    : 'No winning ballots yet.',
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 114, 114, 114),
                                     fontSize: 18),
                               ),
@@ -429,27 +426,30 @@ class SubmissionsState extends State<Submissions>
                                                           const Duration(
                                                               milliseconds:
                                                                   100), () {
-                                                        isMostPopular
+                                                        isMostPopular == true &&
+                                                                _tabController
+                                                                        ?.index ==
+                                                                    0
                                                             ? postProvider
                                                                 .getPreviousSubmissions()
-                                                            : postProvider
-                                                                .getPreviousSubmissionsDate();
+                                                            : isMostRecent ==
+                                                                        true &&
+                                                                    _tabController
+                                                                            ?.index ==
+                                                                        0
+                                                                ? postProvider
+                                                                    .getPreviousSubmissionsDate()
+                                                                : isMostPopular ==
+                                                                            true &&
+                                                                        _tabController?.index ==
+                                                                            1
+                                                                    ? postProvider
+                                                                        .getPreviousUpdates()
+                                                                    : postProvider
+                                                                        .getPreviousUpdatesDate();
+
                                                         _postScrollController
                                                             .jumpTo(0);
-                                                        // postProvider
-                                                        //     .getPreviousPosts(
-                                                        //         filterProvider
-                                                        //             .twoValueHome,
-                                                        //         filterProvider
-                                                        //             .global,
-                                                        //         filterProvider
-                                                        //             .countryCode,
-                                                        //         filterProvider
-                                                        //             .durationInDay,
-                                                        //         filterProvider
-                                                        //             .oneValueHome);
-                                                        // _postScrollController
-                                                        //     .jumpTo(0);
                                                       });
                                                     },
                                                     child: Container(
@@ -536,12 +536,32 @@ class SubmissionsState extends State<Submissions>
                                                         const Duration(
                                                             milliseconds: 100),
                                                         () {
-                                                          isMostPopular
+                                                          isMostPopular ==
+                                                                      true &&
+                                                                  _tabController
+                                                                          ?.index ==
+                                                                      0
                                                               ? postProvider
                                                                   .getNextSubmissions()
-                                                              : postProvider
-                                                                  .getNextSubmissionsDate();
-
+                                                              : isMostRecent ==
+                                                                          true &&
+                                                                      _tabController
+                                                                              ?.index ==
+                                                                          0
+                                                                  ? postProvider
+                                                                      .getNextSubmissionsDate()
+                                                                  : isMostPopular ==
+                                                                              true &&
+                                                                          _tabController?.index ==
+                                                                              1
+                                                                      ? postProvider
+                                                                          .getNextUpdates()
+                                                                      : isMostRecent == true &&
+                                                                              _tabController?.index ==
+                                                                                  1
+                                                                          ? postProvider
+                                                                              .getNextUpdatesDate()
+                                                                          : null;
                                                           _postScrollController
                                                               .jumpTo(0);
                                                         },
@@ -875,13 +895,21 @@ class SubmissionsState extends State<Submissions>
                             Future.delayed(
                               const Duration(milliseconds: 50),
                               () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SubmissionCreate(
-                                            durationInDay: widget.durationInDay,
-                                          )),
-                                );
+                                // Navigator.push(
+                                //   context,
+
+                                //   MaterialPageRoute(
+                                //       builder: (context) => SubmissionCreate(
+                                //             durationInDay: widget.durationInDay,
+                                //           )),
+                                // );
+                                Navigator.of(context).push(PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  duration: Duration(milliseconds: 600),
+                                  child: SubmissionCreate(
+                                    durationInDay: widget.durationInDay,
+                                  ),
+                                ));
                               },
                             );
                           },
@@ -914,8 +942,8 @@ class SubmissionsState extends State<Submissions>
                   ),
                 )
               ],
-            ),
-          ),
+            );
+          }),
         ),
       ),
     );
@@ -923,11 +951,16 @@ class SubmissionsState extends State<Submissions>
 
   Future<void> _getPosts() async {
     await Future.delayed(Duration.zero);
-    if (isMostPopular == true) {
+    if (isMostPopular == true && _tabController?.index == 0) {
       Provider.of<PostProvider>(context, listen: false).getSubmissionsScore();
-    } else {
+    } else if (isMostRecent == true && _tabController?.index == 0) {
       Provider.of<PostProvider>(context, listen: false).getSubmissionsDate();
+    } else if (isMostPopular == true && _tabController?.index == 1) {
+      Provider.of<PostProvider>(context, listen: false).getUpdatesScore();
+    } else {
+      Provider.of<PostProvider>(context, listen: false).getUpdatesDate();
     }
+    ;
   }
 }
 

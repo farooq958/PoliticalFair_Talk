@@ -26,6 +26,7 @@ import '../responsive/AWebScreenLayout.dart';
 import '../authentication/login_screen.dart';
 import '../responsive/my_flutter_app_icons.dart';
 
+import '../screens/statistics.dart';
 import '../screens/verify_one.dart';
 import 'global_variables.dart';
 
@@ -1993,6 +1994,148 @@ nationalityUnknown({required BuildContext context}) {
   );
 }
 
+ballotMessage({required BuildContext context}) {
+  return showDialog(
+    context: context,
+    builder: (_) => Dialog(
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            // width: 295,
+            // height: 220,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25), color: whiteDialog),
+            padding: const EdgeInsets.fromLTRB(20, 55, 20, 25),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Waiting Period',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 19,
+                        letterSpacing: 0,
+                        fontWeight: FontWeight.w500,
+                        color: darkBlue)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 12),
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 10),
+                      child: Column(children: [
+                        Center(
+                          child: RichText(
+                            softWrap: true,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                const TextSpan(
+                                  text:
+                                      "Fairtalk's democracy will only begin once we reach 1,000 verified users. This will ensure there's enough people that can vote & participate. To view the current amount of verified users, ",
+                                  style: TextStyle(
+                                    color: darkBlue,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                TextSpan(
+                                    text: 'click here.',
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 103, 187, 255),
+                                      fontSize: 13,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Statistics(),
+                                          ),
+                                        );
+                                      }),
+                                const TextSpan(
+                                    text:
+                                        " In the meantime, you can still create ballots to suggest features and we'll make sure to implement the ones that receive the highest scores. We thank everyone for staying patient.",
+                                    style: TextStyle(
+                                      color: darkBlue,
+                                      fontSize: 13,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ])),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Material(
+                    elevation: 3,
+                    color: darkBlue,
+                    borderRadius: BorderRadius.circular(25),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(25),
+                      splashColor: Colors.black.withOpacity(0.3),
+                      onTap: () {
+                        Future.delayed(const Duration(milliseconds: 150), () {
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.transparent,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text('Continue',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: whiteDialog,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 0,
+                                )),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            top: -50,
+            child: CircleAvatar(
+              backgroundColor: whiteDialog,
+              radius: 50,
+              child: PhysicalModel(
+                color: darkBlue,
+                elevation: 4,
+                shape: BoxShape.circle,
+                child: CircleAvatar(
+                  backgroundColor: darkBlue,
+                  radius: 43.5,
+                  child: FittedBox(
+                    child: Icon(
+                      Icons.timer,
+                      size: 50,
+                      color: whiteDialog,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
 scoreDialogProfile({required BuildContext context}) {
   return showDialog(
     context: context,
@@ -2862,7 +3005,7 @@ sendTimerDialog({
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              'Every user is limited to one $type2 $type for every voting cycle. A new voting cycle begins every 24 hours.',
+                              'Every user is limited to one $type2 $type for every voting cycle. A new voting cycle begins every 24 hours (at 12:01 AM EST).',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue)),
@@ -4441,6 +4584,8 @@ suspensionDialog({
                     height: 15,
                   ),
                   RichText(
+                    softWrap: true,
+                    textAlign: TextAlign.center,
                     text: TextSpan(
                       children: <TextSpan>[
                         const TextSpan(
