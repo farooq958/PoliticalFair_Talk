@@ -242,63 +242,20 @@ class FirestoreMethods {
     return res;
   }
 
-  Future<String> uploadSubmission(String uid, String username, String profImage,
-      String aTitle, bool fairtalk) async {
-    String res = "Some error occurred.";
-    try {
-      var timeNow = await NTP.now();
-      String submissionId = const Uuid().v1();
-      Submission submission = Submission(
-        submissionId: submissionId,
-        UID: uid,
-        bUsername: username,
-        bProfImage: profImage,
-        datePublishedNTP: timeNow,
-        aTitle: aTitle,
-        fairtalk: fairtalk,
-        plusCount: 0,
-        neutralCount: 0,
-        minusCount: 0,
-        plus: [],
-        neutral: [],
-        minus: [],
-        votesUIDs: [],
-        reportChecked: false,
-        reportRemoved: false,
-        reportCounter: 0,
-        commentCount: 0,
-        score: 0,
-      );
-      _firestore.collection('submissions').doc(submissionId).set(
-            submission.toJson(),
-          );
-      res = "success";
-    } catch (err) {
-      res = err.toString();
-    }
-    return res;
-  }
-
-  // Future<String> uploadSubmission(
-  //   // ignore: non_constant_identifier_names
-  //   String UID,
-  //   String bUsername,
-  //   String bProfImage,
-  //   String aTitle,
-  //   // bool fairtalk,
-  // ) async {
+  // Future<String> uploadSubmission(String uid, String username, String profImage,
+  //     String aTitle, bool fairtalk) async {
   //   String res = "Some error occurred.";
   //   try {
   //     var timeNow = await NTP.now();
-  //     String postId = const Uuid().v1();
-  //     Submission post = Submission(
-  //       postId: postId,
-  //       UID: UID,
-  //       bUsername: bUsername,
-  //       bProfImage: bProfImage,
+  //     String submissionId = const Uuid().v1();
+  //     Submission submission = Submission(
+  //       submissionId: submissionId,
+  //       UID: uid,
+  //       bUsername: username,
+  //       bProfImage: profImage,
   //       datePublishedNTP: timeNow,
   //       aTitle: aTitle,
-  //       fairtalk: false,
+  //       fairtalk: fairtalk,
   //       plusCount: 0,
   //       neutralCount: 0,
   //       minusCount: 0,
@@ -312,8 +269,8 @@ class FirestoreMethods {
   //       commentCount: 0,
   //       score: 0,
   //     );
-  //     _firestore.collection('submissions').doc(postId).set(
-  //           post.toJson(),
+  //     _firestore.collection('submissions').doc(submissionId).set(
+  //           submission.toJson(),
   //         );
   //     res = "success";
   //   } catch (err) {
@@ -338,6 +295,7 @@ class FirestoreMethods {
       // int selected,
       int datePublishedCounter,
       int time,
+      String sub,
       List<String>? tagsLowerCase) async {
     String res = "Some error occurred.";
     try {
@@ -387,7 +345,8 @@ class FirestoreMethods {
           //   // hours: 0,
           //   // minutes: 1,
           // )),
-          tagsLowerCase: tagsLowerCase);
+          tagsLowerCase: tagsLowerCase,
+          sub: sub);
 
       _firestore.collection('posts').doc(postId).set(
             post.toJson(),

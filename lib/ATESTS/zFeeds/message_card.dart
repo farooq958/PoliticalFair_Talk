@@ -696,182 +696,199 @@ class _PostCardTestState extends State<PostCardTest> {
                                                         );
                                                       },
                                                     ),
-                                              SimpleDialogOption(
-                                                onPressed: () {
-                                                  Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 150),
-                                                      () {
-                                                    keywordsDialog(
-                                                        context: context);
-                                                  });
-                                                },
-                                                padding:
-                                                    const EdgeInsets.all(20),
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        const SizedBox(
-                                                          width: 25,
-                                                          child: Icon(Icons.key,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                        Container(width: 10),
-                                                        _post.tagsLowerCase
-                                                                    ?.length ==
-                                                                0
-                                                            ? const Text(
-                                                                'No keywords used.',
-                                                                style: TextStyle(
-                                                                    letterSpacing:
-                                                                        0.2,
-                                                                    fontSize:
-                                                                        15,
-                                                                    color: Colors
-                                                                        .black),
-                                                              )
-                                                            : const Text(
-                                                                'Keywords:',
-                                                                style: TextStyle(
-                                                                    letterSpacing:
-                                                                        0.2,
-                                                                    fontSize:
-                                                                        15),
-                                                              ),
-                                                      ],
+                                              _post.time == 1 &&
+                                                      _post.UID != user?.UID
+                                                  ? const SizedBox()
+                                                  : SimpleDialogOption(
+                                                      onPressed: () {
+                                                        Future.delayed(
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    150), () {
+                                                          _post.time == 1 &&
+                                                                  _post.UID ==
+                                                                      user?.UID
+                                                              ? null
+                                                              : keywordsDialog(
+                                                                  context:
+                                                                      context);
+                                                        });
+                                                      },
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              20),
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              _post.time == 1 &&
+                                                                      _post.UID ==
+                                                                          user?.UID
+                                                                  ? SizedBox()
+                                                                  : const SizedBox(
+                                                                      width: 25,
+                                                                      child: Icon(
+                                                                          Icons
+                                                                              .key,
+                                                                          color:
+                                                                              Colors.black),
+                                                                    ),
+                                                              Container(
+                                                                  width: 10),
+                                                              _post.time == 1 &&
+                                                                      _post.UID ==
+                                                                          user
+                                                                              ?.UID
+                                                                  ? const Text(
+                                                                      'Nothing to see here.',
+                                                                      style: TextStyle(
+                                                                          letterSpacing:
+                                                                              0.2,
+                                                                          fontSize:
+                                                                              15,
+                                                                          color:
+                                                                              Colors.black),
+                                                                    )
+                                                                  : _post.tagsLowerCase
+                                                                              ?.length ==
+                                                                          0
+                                                                      ? const Text(
+                                                                          'No keywords used.',
+                                                                          style: TextStyle(
+                                                                              letterSpacing: 0.2,
+                                                                              fontSize: 15,
+                                                                              color: Colors.black),
+                                                                        )
+                                                                      : const Text(
+                                                                          'Keywords:',
+                                                                          style: TextStyle(
+                                                                              letterSpacing: 0.2,
+                                                                              fontSize: 15),
+                                                                        ),
+                                                            ],
+                                                          ),
+                                                          Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              _post.tagsLowerCase?.length == 1 ||
+                                                                      _post.tagsLowerCase
+                                                                              ?.length ==
+                                                                          2 ||
+                                                                      _post.tagsLowerCase
+                                                                              ?.length ==
+                                                                          3
+                                                                  ? Row(
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            width:
+                                                                                35),
+                                                                        const Text(
+                                                                          '•',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Colors.black,
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              6,
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            '${_post.tagsLowerCase?[0]}',
+                                                                            overflow:
+                                                                                TextOverflow.ellipsis,
+                                                                            style:
+                                                                                const TextStyle(letterSpacing: 0.2, fontSize: 15),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    )
+                                                                  : Row(),
+                                                              _post.tagsLowerCase
+                                                                              ?.length ==
+                                                                          2 ||
+                                                                      _post.tagsLowerCase
+                                                                              ?.length ==
+                                                                          3
+                                                                  ? Row(
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            width:
+                                                                                35),
+                                                                        const Text(
+                                                                          '•',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Colors.black,
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              6,
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            '${_post.tagsLowerCase?[1]}',
+                                                                            overflow:
+                                                                                TextOverflow.ellipsis,
+                                                                            style:
+                                                                                const TextStyle(letterSpacing: 0.2, fontSize: 15),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    )
+                                                                  : Row(),
+                                                              _post.tagsLowerCase
+                                                                          ?.length ==
+                                                                      3
+                                                                  ? Row(
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            width:
+                                                                                35),
+                                                                        const Text(
+                                                                          '•',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                20,
+                                                                            color:
+                                                                                Colors.black,
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              6,
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            '${_post.tagsLowerCase?[2]}',
+                                                                            overflow:
+                                                                                TextOverflow.ellipsis,
+                                                                            style:
+                                                                                const TextStyle(letterSpacing: 0.2, fontSize: 15),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    )
+                                                                  : Row(),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        _post.tagsLowerCase
-                                                                        ?.length ==
-                                                                    1 ||
-                                                                _post.tagsLowerCase
-                                                                        ?.length ==
-                                                                    2 ||
-                                                                _post.tagsLowerCase
-                                                                        ?.length ==
-                                                                    3
-                                                            ? Row(
-                                                                children: [
-                                                                  const SizedBox(
-                                                                      width:
-                                                                          35),
-                                                                  const Text(
-                                                                    '•',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          20,
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    width: 6,
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Text(
-                                                                      '${_post.tagsLowerCase?[0]}',
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      style: const TextStyle(
-                                                                          letterSpacing:
-                                                                              0.2,
-                                                                          fontSize:
-                                                                              15),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )
-                                                            : Row(),
-                                                        _post.tagsLowerCase
-                                                                        ?.length ==
-                                                                    2 ||
-                                                                _post.tagsLowerCase
-                                                                        ?.length ==
-                                                                    3
-                                                            ? Row(
-                                                                children: [
-                                                                  const SizedBox(
-                                                                      width:
-                                                                          35),
-                                                                  const Text(
-                                                                    '•',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          20,
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    width: 6,
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Text(
-                                                                      '${_post.tagsLowerCase?[1]}',
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      style: const TextStyle(
-                                                                          letterSpacing:
-                                                                              0.2,
-                                                                          fontSize:
-                                                                              15),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )
-                                                            : Row(),
-                                                        _post.tagsLowerCase
-                                                                    ?.length ==
-                                                                3
-                                                            ? Row(
-                                                                children: [
-                                                                  const SizedBox(
-                                                                      width:
-                                                                          35),
-                                                                  const Text(
-                                                                    '•',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          20,
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                    width: 6,
-                                                                  ),
-                                                                  Expanded(
-                                                                    child: Text(
-                                                                      '${_post.tagsLowerCase?[2]}',
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      style: const TextStyle(
-                                                                          letterSpacing:
-                                                                              0.2,
-                                                                          fontSize:
-                                                                              15),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )
-                                                            : Row(),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
                                             ],
                                           );
                                         });
@@ -1369,7 +1386,8 @@ class _PostCardTestState extends State<PostCardTest> {
                                                     //   } else {
                                                     //     return
                                                     Text(
-                                                      _post.time == 0
+                                                      _post.time == 0 ||
+                                                              _post.time == 1
                                                           ? 'Unlimited'
                                                           : widget.durationInDay ==
                                                                   (_post.time)
@@ -1619,23 +1637,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                 context,
                                                                             action:
                                                                                 () async {
-                                                                              _isPostEnded
-                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                  : snap?.pending == 'true'
-                                                                                      ? unverifiedPlusVote(true)
-                                                                                      : snap?.aaCountry == ""
-                                                                                          ? unverifiedPlusVote(false)
-                                                                                          : _post.time == 0
-                                                                                              ? await FirestoreMethods().plusMessage(
-                                                                                                  _post.postId,
-                                                                                                  user?.UID ?? '',
-                                                                                                  _post.plus,
-                                                                                                  _post.neutral,
-                                                                                                  _post.minus,
-                                                                                                  _post,
-                                                                                                  _post.global,
-                                                                                                  _post.country,
-                                                                                                )
+                                                                              snap?.pending == 'true'
+                                                                                  ? unverifiedPlusVote(true)
+                                                                                  : snap?.aaCountry == ""
+                                                                                      ? unverifiedPlusVote(false)
+                                                                                      : _post.time == 1 || _post.time == 0
+                                                                                          ? await FirestoreMethods().plusMessage(
+                                                                                              _post.postId,
+                                                                                              user?.UID ?? '',
+                                                                                              _post.plus,
+                                                                                              _post.neutral,
+                                                                                              _post.minus,
+                                                                                              _post,
+                                                                                              _post.global,
+                                                                                              _post.country,
+                                                                                            )
+                                                                                          : _isPostEnded
+                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
                                                                                               : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                   ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                   : widget.archives == true
@@ -1756,23 +1774,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                 context,
                                                                             action:
                                                                                 () async {
-                                                                              _isPostEnded
-                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                  : snap?.pending == 'true'
-                                                                                      ? unverifiedNeutralVote(true)
-                                                                                      : snap?.aaCountry == ""
-                                                                                          ? unverifiedNeutralVote(false)
-                                                                                          : _post.time == 0
-                                                                                              ? await FirestoreMethods().neutralMessage(
-                                                                                                  _post.postId,
-                                                                                                  user?.UID ?? '',
-                                                                                                  _post.plus,
-                                                                                                  _post.neutral,
-                                                                                                  _post.minus,
-                                                                                                  _post,
-                                                                                                  _post.global,
-                                                                                                  _post.country,
-                                                                                                )
+                                                                              snap?.pending == 'true'
+                                                                                  ? unverifiedNeutralVote(true)
+                                                                                  : snap?.aaCountry == ""
+                                                                                      ? unverifiedNeutralVote(false)
+                                                                                      : _post.time == 0 || _post.time == 1
+                                                                                          ? await FirestoreMethods().neutralMessage(
+                                                                                              _post.postId,
+                                                                                              user?.UID ?? '',
+                                                                                              _post.plus,
+                                                                                              _post.neutral,
+                                                                                              _post.minus,
+                                                                                              _post,
+                                                                                              _post.global,
+                                                                                              _post.country,
+                                                                                            )
+                                                                                          : _isPostEnded
+                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
                                                                                               : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                   ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                   : widget.archives == true
@@ -1899,23 +1917,23 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                 context,
                                                                             action:
                                                                                 () async {
-                                                                              _isPostEnded
-                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                  : snap?.pending == 'true'
-                                                                                      ? unverifiedMinusVote(true)
-                                                                                      : snap?.aaCountry == ""
-                                                                                          ? unverifiedMinusVote(false)
-                                                                                          : _post.time == 0
-                                                                                              ? await FirestoreMethods().minusMessage(
-                                                                                                  _post.postId,
-                                                                                                  user?.UID ?? '',
-                                                                                                  _post.plus,
-                                                                                                  _post.neutral,
-                                                                                                  _post.minus,
-                                                                                                  _post,
-                                                                                                  _post.global,
-                                                                                                  _post.country,
-                                                                                                )
+                                                                              snap?.pending == 'true'
+                                                                                  ? unverifiedMinusVote(true)
+                                                                                  : snap?.aaCountry == ""
+                                                                                      ? unverifiedMinusVote(false)
+                                                                                      : _post.time == 0 || _post.time == 1
+                                                                                          ? await FirestoreMethods().minusMessage(
+                                                                                              _post.postId,
+                                                                                              user?.UID ?? '',
+                                                                                              _post.plus,
+                                                                                              _post.neutral,
+                                                                                              _post.minus,
+                                                                                              _post,
+                                                                                              _post.global,
+                                                                                              _post.country,
+                                                                                            )
+                                                                                          : _isPostEnded
+                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
                                                                                               : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
                                                                                                   ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
                                                                                                   : widget.archives == true

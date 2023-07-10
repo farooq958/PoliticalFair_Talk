@@ -12,6 +12,7 @@ class Post {
   final String aBody;
   final String aVideoUrl;
   final String aPostUrl;
+  final String sub;
   int score;
   int time;
   final List<dynamic> plus;
@@ -63,6 +64,7 @@ class Post {
       required this.commentCount,
       required this.reportChecked,
       required this.reportRemoved,
+      required this.sub,
 
       //  this.updatingStream,
       this.tagsLowerCase});
@@ -110,6 +112,7 @@ class Post {
         "reportChecked": reportChecked,
         "tagsLowerCase": tagsLowerCase,
         "reportRemoved": reportRemoved,
+        "sub": sub,
         // "endDate": endDate
       };
 
@@ -154,6 +157,7 @@ class Post {
       reportRemoved: snapshot['reportRemoved'] ?? false,
       // endDate: snapshot['endDate'],
       score: snapshot['score'],
+      sub: snapshot['sub'] ?? '',
       // updatingStream: snapshot['updatingStream'],
       tagsLowerCase: (snapshot['tagsLowerCase'] ?? []).cast<String>(),
     );

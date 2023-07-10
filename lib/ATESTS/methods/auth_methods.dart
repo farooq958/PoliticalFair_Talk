@@ -119,7 +119,7 @@ class AuthMethods {
           verProcess: false,
           verFailReason: "",
           submissionTime: 0,
-          bot: 'none',
+          bot: 'recycle',
 
           // timeNow.add(Duration(
           //   minutes: 3,

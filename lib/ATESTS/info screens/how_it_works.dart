@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/global_variables.dart';
@@ -22,19 +23,20 @@ class _HowItWorksState extends State<HowItWorks> {
 
   YoutubePlayerController? controller;
 
-  String? videoUrl = '1N5JtsLr4l4';
+  String? videoUrl = 'b9JQWJ7B1Go';
 
   @override
   void initState() {
     super.initState();
     controller = YoutubePlayerController(
-      initialVideoId: '1N5JtsLr4l4',
+      initialVideoId: 'b9JQWJ7B1Go',
       params: const YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,
         desktopMode: false,
         privacyEnhanced: true,
         useHybridComposition: true,
+        loop: true,
       ),
     );
     controller!.onEnterFullscreen = () {
@@ -131,26 +133,79 @@ class _HowItWorksState extends State<HowItWorks> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.only(bottom: 15, top: 24.0),
-                        //   child: Column(
-                        //     children: [
-                        //       SizedBox(
-                        //         height: 50,
-                        //         child: Image.asset(
-                        //           'assets/fairtalk_new_blue_transparent.png',
-                        //         ),
-                        //       ),
-                        //       const SizedBox(height: 6),
-                        //       Text('$version  •  $year',
-                        //           style: const TextStyle(
-                        //               fontSize: 12,
-                        //               fontWeight: FontWeight.w500,
-                        //               letterSpacing: 0,
-                        //               color: darkBlue)),
-                        //     ],
-                        //   ),
-                        // ),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            // if (kIsWeb &&
+                            //     constraints.maxWidth >
+                            //         800) {
+                            //   return Row(
+                            //     crossAxisAlignment:
+                            //         CrossAxisAlignment
+                            //             .start,
+                            //     children: const [
+                            //       Expanded(
+                            //           child: player),
+                            //       SizedBox(
+                            //         width: 500,
+                            //       ),
+                            //     ],
+                            //   );
+                            // }
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width > 600
+                                  ? 598
+                                  : MediaQuery.of(context).size.width,
+                              child: Stack(
+                                children: [
+                                  player,
+                                  Positioned.fill(
+                                    child: YoutubeValueBuilder(
+                                      controller: controller,
+                                      builder: (context, value) {
+                                        return AnimatedCrossFade(
+                                          crossFadeState: value.isReady
+                                              ? CrossFadeState.showSecond
+                                              : CrossFadeState.showFirst,
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          secondChild: const SizedBox(),
+                                          firstChild: Material(
+                                              child: Stack(
+                                            children: [
+                                              const Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                color: Colors.black,
+                                              )),
+                                              FadeInImage.memoryNetwork(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  placeholder:
+                                                      kTransparentImage,
+                                                  fadeInDuration:
+                                                      const Duration(
+                                                          milliseconds: 200),
+                                                  image: YoutubePlayerController
+                                                      .getThumbnail(
+                                                    videoId: controller
+                                                            ?.initialVideoId ??
+                                                        '',
+                                                    quality:
+                                                        ThumbnailQuality.medium,
+                                                  )),
+                                            ],
+                                          )),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 16),
                         PhysicalModel(
                           color: darkBlue,
                           elevation: 3,

@@ -17,6 +17,7 @@ import '../provider/searchpage_provider.dart';
 import '../provider/timer_provider.dart';
 import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
+import '../utils/global_variables.dart';
 import '../zFeeds/comment_card_poll.dart';
 import '../models/poll.dart';
 import '../models/user.dart';
@@ -117,13 +118,13 @@ class _FullMessagePollState extends State<FullMessagePoll> {
         value: true,
         icon: const Icon(Icons.trending_up, size: 17, color: Colors.grey),
         iconSelected:
-            const Icon(Icons.trending_up, size: 17, color: Colors.black)),
+            const Icon(Icons.trending_up, size: 17, color: whiteDialog)),
     CommentSort(
         label: 'Most Recent',
         key: 'datePublished',
         value: true,
         icon: const Icon(Icons.stars, size: 17, color: Colors.grey),
-        iconSelected: const Icon(Icons.stars, size: 17, color: Colors.black)),
+        iconSelected: const Icon(Icons.stars, size: 17, color: whiteDialog)),
   ];
 
   ScrollController _scrollController = ScrollController();
@@ -141,7 +142,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done_all,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ));
@@ -159,7 +160,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
           ),
           prefixIconSelected: const Icon(
             Icons.done,
-            color: Colors.black,
+            color: whiteDialog,
             size: 15,
           ),
         ));
@@ -183,7 +184,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done_all,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -198,7 +199,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -213,7 +214,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -228,7 +229,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done_all,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -243,7 +244,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -258,7 +259,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -273,7 +274,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -288,7 +289,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -303,7 +304,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -318,7 +319,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -333,7 +334,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
       ),
       prefixIconSelected: const Icon(
         Icons.done,
-        color: Colors.black,
+        color: whiteDialog,
         size: 15,
       ),
     ),
@@ -2021,7 +2022,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                               Row(
                                                                             children: [
                                                                               PhysicalModel(
-                                                                                color: _selectedCommentSort == commentSort ? const Color.fromARGB(255, 187, 225, 255) : const Color.fromARGB(255, 245, 245, 245),
+                                                                                color: _selectedCommentSort == commentSort ? darkBlue : const Color.fromARGB(255, 245, 245, 245),
                                                                                 elevation: 2,
                                                                                 borderRadius: BorderRadius.circular(5),
                                                                                 child: Padding(
@@ -2030,7 +2031,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                                     children: [
                                                                                       _selectedCommentSort == commentSort ? commentSort.iconSelected : commentSort.icon,
                                                                                       const SizedBox(width: 5),
-                                                                                      Text(commentSort.label, style: TextStyle(color: _selectedCommentSort == commentSort ? Colors.black : Colors.grey)),
+                                                                                      Text(commentSort.label, style: TextStyle(color: _selectedCommentSort == commentSort ? whiteDialog : Colors.grey, fontWeight: FontWeight.w500)),
                                                                                     ],
                                                                                   ),
                                                                                 ),
@@ -2102,7 +2103,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                               Row(
                                                                             children: [
                                                                               PhysicalModel(
-                                                                                color: _selectedCommentFilter == commentFilter ? const Color.fromARGB(255, 187, 225, 255) : const Color.fromARGB(255, 245, 245, 245),
+                                                                                color: _selectedCommentFilter == commentFilter ? darkBlue : const Color.fromARGB(255, 245, 245, 245),
                                                                                 elevation: 2,
                                                                                 borderRadius: BorderRadius.circular(5),
                                                                                 child: Padding(
@@ -2113,9 +2114,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                                       const SizedBox(width: 5),
                                                                                       Text(
                                                                                         commentFilter.label == 'Show All' ? commentFilter.label : 'Voted: ${commentFilter.label}',
-                                                                                        style: TextStyle(
-                                                                                          color: _selectedCommentFilter == commentFilter ? Colors.black : Colors.grey,
-                                                                                        ),
+                                                                                        style: TextStyle(color: _selectedCommentFilter == commentFilter ? whiteDialog : Colors.grey, fontWeight: FontWeight.w500),
                                                                                       ),
                                                                                       commentFilter.icon ??
                                                                                           // Container(),
