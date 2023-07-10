@@ -34,3 +34,11 @@ class FirestoreValues {
 
 String twoValue1H = 'selected_radio1Home';
 String twoValue11 = 'selected_radio1Search';
+
+
+/// Firebase real time db constants
+class RealTimeDBValues {
+  static const String initialScore = 'initialScore';
+  static const String admins = 'admins';
+
+}

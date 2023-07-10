@@ -639,7 +639,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),
-                                SizedBox(
+                                user?.admin == true ?   SizedBox(
                                   width: MediaQuery.of(context).size.width * 1,
                                   child: Material(
                                     color: Colors.transparent,
@@ -675,7 +675,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ) : const SizedBox(),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * 1,
                                   child: Material(
