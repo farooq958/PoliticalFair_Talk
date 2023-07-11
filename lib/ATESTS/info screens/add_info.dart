@@ -66,7 +66,7 @@ class _AddInfoState extends State<AddInfo> {
                                 color: whiteDialog,
                                 fontSize: 20,
                                 letterSpacing: 0,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -100,8 +100,9 @@ class _AddInfoState extends State<AddInfo> {
                           const Text(
                             "There are 4 different types of posts:",
                             style: TextStyle(
-                              letterSpacing: 0,
                               color: whiteDialog,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: 3),
@@ -116,8 +117,9 @@ class _AddInfoState extends State<AddInfo> {
                                 child: Text(
                                   "Global Messages",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                               ),
@@ -134,8 +136,9 @@ class _AddInfoState extends State<AddInfo> {
                                 child: Text(
                                   "National Messages",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                               ),
@@ -157,8 +160,9 @@ class _AddInfoState extends State<AddInfo> {
                                 child: Text(
                                   "Global Polls",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                               ),
@@ -179,8 +183,9 @@ class _AddInfoState extends State<AddInfo> {
                                 child: Text(
                                   "National Polls",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                               ),
@@ -190,17 +195,19 @@ class _AddInfoState extends State<AddInfo> {
                           const Text(
                             "Once you create a post, it'll immediately get listed on our Home screen where other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection.",
                             style: TextStyle(
-                              letterSpacing: 0,
                               color: whiteDialog,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: 15),
                           const Text(
-                            "Posts sent on a specific date compete against other posts that were also sent on that same date.",
+                            "Posts sent on a specific date compete against other posts sent on that same date.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0,
                               color: whiteDialog,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -208,17 +215,19 @@ class _AddInfoState extends State<AddInfo> {
                             "You can only create one post of each type every 24 hours. This helps prevent spam and gives each user the same chance of getting their post archived. The cycle refreshes at 12:01AM EST each & every day.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0,
                               color: whiteDialog,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: 15),
                           const Text(
-                            "National messages/polls can only be created by verified accounts. Additionally, voting is also only allowed for verified accounts.",
+                            "To eliminate the manipulation of our voting system, only votes from verified accounts are counted.",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              letterSpacing: 0,
                               color: whiteDialog,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -257,14 +266,18 @@ class _AddInfoState extends State<AddInfo> {
                                           text:
                                               'To view our rules & restrictions, ',
                                           style: TextStyle(
-                                              color: whiteDialog,
-                                              letterSpacing: 0)),
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          )),
                                       TextSpan(
                                           text: 'click here.',
                                           style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 103, 187, 255),
-                                              letterSpacing: 0),
+                                            color: Color.fromARGB(
+                                                255, 103, 187, 255),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               Navigator.of(context).push(

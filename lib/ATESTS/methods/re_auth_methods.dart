@@ -190,7 +190,7 @@ class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
                               color: Colors.transparent,
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 12),
+                                horizontal: 26, vertical: 14),
                             child: _isLoading
                                 ? const Center(
                                     child: SizedBox(
@@ -209,7 +209,7 @@ class _ReAuthenticationDialogState extends State<ReAuthenticationDialog> {
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.white,
-                                          letterSpacing: 0.2,
+                                          // letterSpacing: 0.2,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),

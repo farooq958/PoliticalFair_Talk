@@ -1201,16 +1201,16 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                       color: Colors
                                                                           .black,
                                                                     )),
-                                                                    FadeInImage.memoryNetwork(
-                                                                        width: MediaQuery.of(context).size.width,
-                                                                        placeholder: kTransparentImage,
-                                                                        fadeInDuration: const Duration(milliseconds: 200),
-                                                                        image: YoutubePlayerController.getThumbnail(
-                                                                          videoId:
-                                                                              controller.initialVideoId,
-                                                                          quality:
-                                                                              ThumbnailQuality.medium,
-                                                                        )),
+                                                                    // FadeInImage.memoryNetwork(
+                                                                    //     width: MediaQuery.of(context).size.width,
+                                                                    //     placeholder: kTransparentImage,
+                                                                    //     fadeInDuration: const Duration(milliseconds: 200),
+                                                                    //     image: YoutubePlayerController.getThumbnail(
+                                                                    //       videoId:
+                                                                    //           controller.initialVideoId,
+                                                                    //       quality:
+                                                                    //           ThumbnailQuality.high,
+                                                                    //     )),
                                                                   ],
                                                                 )),
                                                               );
@@ -1641,35 +1641,37 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                   ? unverifiedPlusVote(true)
                                                                                   : snap?.aaCountry == ""
                                                                                       ? unverifiedPlusVote(false)
-                                                                                      : _post.time == 1 || _post.time == 0
-                                                                                          ? await FirestoreMethods().plusMessage(
-                                                                                              _post.postId,
-                                                                                              user?.UID ?? '',
-                                                                                              _post.plus,
-                                                                                              _post.neutral,
-                                                                                              _post.minus,
-                                                                                              _post,
-                                                                                              _post.global,
-                                                                                              _post.country,
-                                                                                            )
-                                                                                          : _isPostEnded
-                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                              : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
-                                                                                                  ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
-                                                                                                  : widget.archives == true
-                                                                                                      ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                                      : user?.admin == true
-                                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'plus', _post)
-                                                                                                          : await FirestoreMethods().plusMessage(
-                                                                                                              _post.postId,
-                                                                                                              user?.UID ?? '',
-                                                                                                              _post.plus,
-                                                                                                              _post.neutral,
-                                                                                                              _post.minus,
-                                                                                                              _post,
-                                                                                                              _post.global,
-                                                                                                              _post.country,
-                                                                                                            );
+                                                                                      : user?.admin == true && (_post.time == 0 || _post.time == 1)
+                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'plus', _post)
+                                                                                          : _post.time == 1 || _post.time == 0
+                                                                                              ? await FirestoreMethods().plusMessage(
+                                                                                                  _post.postId,
+                                                                                                  user?.UID ?? '',
+                                                                                                  _post.plus,
+                                                                                                  _post.neutral,
+                                                                                                  _post.minus,
+                                                                                                  _post,
+                                                                                                  _post.global,
+                                                                                                  _post.country,
+                                                                                                )
+                                                                                              : _isPostEnded
+                                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                  : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
+                                                                                                      ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
+                                                                                                      : widget.archives == true
+                                                                                                          ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                          : user?.admin == true
+                                                                                                              ? await FirestoreMethods().messageScore(_post.postId, 'plus', _post)
+                                                                                                              : await FirestoreMethods().plusMessage(
+                                                                                                                  _post.postId,
+                                                                                                                  user?.UID ?? '',
+                                                                                                                  _post.plus,
+                                                                                                                  _post.neutral,
+                                                                                                                  _post.minus,
+                                                                                                                  _post,
+                                                                                                                  _post.global,
+                                                                                                                  _post.country,
+                                                                                                                );
                                                                               // FirestoreMethods()
                                                                               //     .scoreMessage(
                                                                               //   _post.postId,
@@ -1778,35 +1780,37 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                   ? unverifiedNeutralVote(true)
                                                                                   : snap?.aaCountry == ""
                                                                                       ? unverifiedNeutralVote(false)
-                                                                                      : _post.time == 0 || _post.time == 1
-                                                                                          ? await FirestoreMethods().neutralMessage(
-                                                                                              _post.postId,
-                                                                                              user?.UID ?? '',
-                                                                                              _post.plus,
-                                                                                              _post.neutral,
-                                                                                              _post.minus,
-                                                                                              _post,
-                                                                                              _post.global,
-                                                                                              _post.country,
-                                                                                            )
-                                                                                          : _isPostEnded
-                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                              : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
-                                                                                                  ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
-                                                                                                  : widget.archives == true
-                                                                                                      ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                                      : user?.admin == true
-                                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'neutral', _post)
-                                                                                                          : await FirestoreMethods().neutralMessage(
-                                                                                                              _post.postId,
-                                                                                                              user?.UID ?? '',
-                                                                                                              _post.plus,
-                                                                                                              _post.neutral,
-                                                                                                              _post.minus,
-                                                                                                              _post,
-                                                                                                              _post.global,
-                                                                                                              _post.country,
-                                                                                                            );
+                                                                                      : user?.admin == true && (_post.time == 0 || _post.time == 1)
+                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'neutral', _post)
+                                                                                          : _post.time == 0 || _post.time == 1
+                                                                                              ? await FirestoreMethods().neutralMessage(
+                                                                                                  _post.postId,
+                                                                                                  user?.UID ?? '',
+                                                                                                  _post.plus,
+                                                                                                  _post.neutral,
+                                                                                                  _post.minus,
+                                                                                                  _post,
+                                                                                                  _post.global,
+                                                                                                  _post.country,
+                                                                                                )
+                                                                                              : _isPostEnded
+                                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                  : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
+                                                                                                      ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
+                                                                                                      : widget.archives == true
+                                                                                                          ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                          : user?.admin == true
+                                                                                                              ? await FirestoreMethods().messageScore(_post.postId, 'neutral', _post)
+                                                                                                              : await FirestoreMethods().neutralMessage(
+                                                                                                                  _post.postId,
+                                                                                                                  user?.UID ?? '',
+                                                                                                                  _post.plus,
+                                                                                                                  _post.neutral,
+                                                                                                                  _post.minus,
+                                                                                                                  _post,
+                                                                                                                  _post.global,
+                                                                                                                  _post.country,
+                                                                                                                );
 
                                                                               setState(() {});
                                                                             });
@@ -1921,26 +1925,28 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                   ? unverifiedMinusVote(true)
                                                                                   : snap?.aaCountry == ""
                                                                                       ? unverifiedMinusVote(false)
-                                                                                      : _post.time == 0 || _post.time == 1
-                                                                                          ? await FirestoreMethods().minusMessage(
-                                                                                              _post.postId,
-                                                                                              user?.UID ?? '',
-                                                                                              _post.plus,
-                                                                                              _post.neutral,
-                                                                                              _post.minus,
-                                                                                              _post,
-                                                                                              _post.global,
-                                                                                              _post.country,
-                                                                                            )
-                                                                                          : _isPostEnded
-                                                                                              ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                              : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
-                                                                                                  ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
-                                                                                                  : widget.archives == true
-                                                                                                      ? showSnackBarError("This message's voting cycle has already ended.", context)
-                                                                                                      : user?.admin == true
-                                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'minus', _post)
-                                                                                                          : await FirestoreMethods().minusMessage(_post.postId, user?.UID ?? '', _post.plus, _post.neutral, _post.minus, _post, _post.global, _post.country);
+                                                                                      : user?.admin == true && (_post.time == 0 || _post.time == 1)
+                                                                                          ? await FirestoreMethods().messageScore(_post.postId, 'minus', _post)
+                                                                                          : _post.time == 0 || _post.time == 1
+                                                                                              ? await FirestoreMethods().minusMessage(
+                                                                                                  _post.postId,
+                                                                                                  user?.UID ?? '',
+                                                                                                  _post.plus,
+                                                                                                  _post.neutral,
+                                                                                                  _post.minus,
+                                                                                                  _post,
+                                                                                                  _post.global,
+                                                                                                  _post.country,
+                                                                                                )
+                                                                                              : _isPostEnded
+                                                                                                  ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                  : _post.country != "" && _post.global == "false" && _post.country != snap.aaCountry
+                                                                                                      ? showSnackBar("Action failed. Voting nationally is only available for your specific country.", context)
+                                                                                                      : widget.archives == true
+                                                                                                          ? showSnackBarError("This message's voting cycle has already ended.", context)
+                                                                                                          : user?.admin == true
+                                                                                                              ? await FirestoreMethods().messageScore(_post.postId, 'minus', _post)
+                                                                                                              : await FirestoreMethods().minusMessage(_post.postId, user?.UID ?? '', _post.plus, _post.neutral, _post.minus, _post, _post.global, _post.country);
 
                                                                               setState(() {});
                                                                             });

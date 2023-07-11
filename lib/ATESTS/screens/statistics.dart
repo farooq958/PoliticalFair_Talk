@@ -114,7 +114,7 @@ class _StatisticsState extends State<Statistics> {
                               'Statistics',
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.bold,
                                 color: whiteDialog,
                               ),
                             ),

@@ -35,6 +35,8 @@ class SubmissionsState extends State<Submissions>
   bool isMostRecent = false;
   bool isFilter = false;
   bool isLoading = false;
+  bool isDetailed = false;
+  bool isPoster = true;
   int _selectedIndex = 0;
   int currentTab = 0;
   User? _userProfile;
@@ -164,63 +166,65 @@ class SubmissionsState extends State<Submissions>
             return Stack(
               children: [
                 Scaffold(
-                    key: _key,
-                    backgroundColor: testing,
-                    drawer: Drawer(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            SettingsScreen(
-                              durationInDay: widget.durationInDay,
-                              onLoading: (isLoading) {
-                                setState(() {
-                                  _logoutLoading = isLoading;
-                                });
-                              },
-                            )
-                          ],
+                  key: _key,
+                  backgroundColor: testing,
+                  drawer: Drawer(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SettingsScreen(
+                            durationInDay: widget.durationInDay,
+                            onLoading: (isLoading) {
+                              setState(() {
+                                _logoutLoading = isLoading;
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    elevation: 4,
+                    toolbarHeight:
+                        // isFilter ? 96 :
+                        50,
+                    backgroundColor: darkBlue,
+                    bottom: PreferredSize(
+                      preferredSize: Size(40, 37),
+                      child: SizedBox(
+                        height:
+                            // isFilter ? 96 :
+                            42,
+                        // color: Color.fromARGB(255, 245, 245, 245),
+                        child: TabBar(
+                          onTap: (index) {
+                            setState(() {
+                              currentTab = index;
+                              _getPosts();
+                            });
+                          },
+                          // isScrollable: true,
+                          tabs: list,
+                          indicatorColor: Colors.white,
+                          indicatorWeight: 2,
+                          labelColor: Colors.white,
+                          controller: _tabController,
                         ),
                       ),
                     ),
-                    appBar: AppBar(
-                      automaticallyImplyLeading: false,
-                      elevation: 4,
-                      toolbarHeight:
-                          // isFilter ? 96 :
-                          50,
-                      backgroundColor: darkBlue,
-                      bottom: PreferredSize(
-                        preferredSize: Size(40, 37),
-                        child: SizedBox(
-                          height:
-                              // isFilter ? 96 :
-                              42,
-                          // color: Color.fromARGB(255, 245, 245, 245),
-                          child: TabBar(
-                            onTap: (index) {
-                              setState(() {
-                                currentTab = index;
-                                _getPosts();
-                              });
-                            },
-                            // isScrollable: true,
-                            tabs: list,
-                            indicatorColor: Colors.white,
-                            indicatorWeight: 2,
-                            labelColor: Colors.white,
-                            controller: _tabController,
-                          ),
-                        ),
-                      ),
-                      actions: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                right: 8.0, left: 8, top: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
+                    actions: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 8.0, left: 8, top: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 3.0),
+                                child: SizedBox(
                                   width: 36,
                                   height: 35,
                                   child: Material(
@@ -242,63 +246,65 @@ class SubmissionsState extends State<Submissions>
                                     ),
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                      borderRadius: BorderRadius.circular(0),
-                                      onTap: () {
-                                        Future.delayed(
-                                          const Duration(milliseconds: 50),
-                                          () {
-                                            Navigator.of(context)
-                                                .push(PageTransition(
-                                              type: PageTransitionType
-                                                  .bottomToTop,
-                                              duration:
-                                                  Duration(milliseconds: 600),
-                                              child: SubmissionCreate(
-                                                durationInDay:
-                                                    widget.durationInDay,
-                                              ),
-                                            ));
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        // width: 220,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 4, horizontal: 4),
-                                        child: const Center(
-                                          child: Text(
-                                            "FAIRTALK'S DEMOCRACY",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              letterSpacing: 0,
-                                              fontWeight: FontWeight.bold,
+                              ),
+                              Column(
+                                children: [
+                                  InkWell(
+                                    borderRadius: BorderRadius.circular(0),
+                                    onTap: () {
+                                      Future.delayed(
+                                        const Duration(milliseconds: 50),
+                                        () {
+                                          Navigator.of(context)
+                                              .push(PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 600),
+                                            child: SubmissionCreate(
+                                              durationInDay:
+                                                  widget.durationInDay,
                                             ),
+                                          ));
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      // width: 220,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 4),
+                                      child: const Center(
+                                        child: Text(
+                                          "FAIRTALK'S DEMOCRACY",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            letterSpacing: 0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      // height: 1,
-                                      width: 215,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                        border: Border(
-                                          top: BorderSide(
-                                              width: 1, color: Colors.white),
-                                        ),
+                                  ),
+                                  Container(
+                                    // height: 1,
+                                    width: 215,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1, color: Colors.white),
                                       ),
                                     ),
-                                  ],
-                                ),
-                                SizedBox(
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 3.0),
+                                child: SizedBox(
                                   width: 36,
                                   height: 35,
                                   child: Material(
@@ -317,92 +323,458 @@ class SubmissionsState extends State<Submissions>
                                     ),
                                   ),
                                 ),
-                                // Padding(
-                                //   padding: const EdgeInsets.only(top: 5.0),
-                                //   child: Material(
-                                //     shape: const CircleBorder(),
-                                //     color: darkBlue,
-                                //     child: InkWell(
-                                //       customBorder: const CircleBorder(),
-                                //       splashColor: Colors.grey.withOpacity(0.5),
-                                //       onTap: () {
-                                //         Future.delayed(
-                                //           const Duration(milliseconds: 50),
-                                //           () {
-                                //             Navigator.push(
-                                //               context,
-                                //               MaterialPageRoute(
-                                //                   builder: (context) =>
-                                //                       SubmissionCreate(
-                                //                         durationInDay: widget
-                                //                             .durationInDay,
-                                //                       )),
-                                //             );
-                                //           },
-                                //         );
-                                //       },
-                                //       child: SizedBox(
-                                //         width: 40,
-                                //         height: 40,
-                                //         child: Stack(
-                                //           children: const [
-                                //             Positioned(
-                                //               left: 7,
-                                //               top: 7,
-                                //               child: Icon(Icons.create,
-                                //                   color: Colors.white,
-                                //                   size: 26),
-                                //             ),
-                                //             Positioned(
-                                //               top: 20,
-                                //               left: 20,
-                                //               child: Icon(
-                                //                 Icons.add,
-                                //                 size: 13,
-                                //                 color: Colors.white,
-                                //               ),
-                                //             ),
-                                //           ],
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
-                            ),
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(top: 5.0),
+                              //   child: Material(
+                              //     shape: const CircleBorder(),
+                              //     color: darkBlue,
+                              //     child: InkWell(
+                              //       customBorder: const CircleBorder(),
+                              //       splashColor: Colors.grey.withOpacity(0.5),
+                              //       onTap: () {
+                              //         Future.delayed(
+                              //           const Duration(milliseconds: 50),
+                              //           () {
+                              //             Navigator.push(
+                              //               context,
+                              //               MaterialPageRoute(
+                              //                   builder: (context) =>
+                              //                       SubmissionCreate(
+                              //                         durationInDay: widget
+                              //                             .durationInDay,
+                              //                       )),
+                              //             );
+                              //           },
+                              //         );
+                              //       },
+                              //       child: SizedBox(
+                              //         width: 40,
+                              //         height: 40,
+                              //         child: Stack(
+                              //           children: const [
+                              //             Positioned(
+                              //               left: 7,
+                              //               top: 7,
+                              //               child: Icon(Icons.create,
+                              //                   color: Colors.white,
+                              //                   size: 26),
+                              //             ),
+                              //             Positioned(
+                              //               top: 20,
+                              //               left: 20,
+                              //               child: Icon(
+                              //                 Icons.add,
+                              //                 size: 13,
+                              //                 color: Colors.white,
+                              //               ),
+                              //             ),
+                              //           ],
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    body: Consumer<PostProvider>(
-                      builder: (context, postProvider, child) {
-                        if (postProvider.pLoading) {
-                          return const SizedBox(
-                            child: Center(child: CircularProgressIndicator()),
-                          );
-                        } else {
-                          if (postProvider.posts.isEmpty) {
-                            return Center(
-                              child: Text(
-                                _tabController?.index == 0
-                                    ? 'No ballots yet.'
-                                    : 'No winning ballots yet.',
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 114, 114, 114),
-                                    fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  body: Consumer<PostProvider>(
+                    builder: (context, postProvider, child) {
+                      if (postProvider.pLoading) {
+                        return const SizedBox(
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      } else {
+                        // if (postProvider.posts.isEmpty) {
+                        //   return Center(
+                        //     child: Text(
+                        //       _tabController?.index == 0
+                        //           ? 'No ballots yet.'
+                        //           : 'No winning ballots yet.',
+                        //       style: const TextStyle(
+                        //           color:
+                        //               Color.fromARGB(255, 114, 114, 114),
+                        //           fontSize: 18),
+                        //     ),
+                        //   );
+                        // } else
+                        {
+                          return ListView(
+                            controller: _postScrollController,
+                            children: [
+                              postProvider.count <= 1 || postProvider.pLoading
+                                  ? const SizedBox()
+                                  : Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 10,
+                                        bottom: 4,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          PhysicalModel(
+                                            color: Colors.white,
+                                            elevation: 2,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  splashColor:
+                                                      const Color.fromARGB(
+                                                          255, 245, 245, 245),
+                                                  onTap: () {
+                                                    Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 100),
+                                                        () {
+                                                      isMostPopular == true &&
+                                                              _tabController
+                                                                      ?.index ==
+                                                                  0
+                                                          ? postProvider
+                                                              .getPreviousSubmissions()
+                                                          : isMostRecent ==
+                                                                      true &&
+                                                                  _tabController
+                                                                          ?.index ==
+                                                                      0
+                                                              ? postProvider
+                                                                  .getPreviousSubmissionsDate()
+                                                              : isMostPopular ==
+                                                                          true &&
+                                                                      _tabController
+                                                                              ?.index ==
+                                                                          1
+                                                                  ? postProvider
+                                                                      .getPreviousUpdates()
+                                                                  : postProvider
+                                                                      .getPreviousUpdatesDate();
+
+                                                      _postScrollController
+                                                          .jumpTo(0);
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 8),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.transparent,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: const [
+                                                        Icon(
+                                                          Icons.arrow_upward,
+                                                          size: 16,
+                                                          color: Colors.black,
+                                                        ),
+                                                        SizedBox(width: 8),
+                                                        Text('View Previous',
+                                                            // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 13.5,
+                                                              letterSpacing:
+                                                                  0.3,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                              Column(
+                                children: [
+                                  isPoster
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(
+                                            right: 12,
+                                            left: 12,
+                                            top: 12,
+                                            bottom: 2,
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              PhysicalModel(
+                                                color: darkBlue,
+                                                elevation: 3,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 6,
+                                                              right: 12,
+                                                              left: 12),
+                                                      decoration: BoxDecoration(
+                                                        color: whiteDialog,
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        25),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        25)),
+                                                        border: Border.all(
+                                                            width: 5,
+                                                            color: darkBlue),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          const Text(
+                                                            'Tired of these guys dictating the direction of social media?',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              color: darkBlue,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            child: Image.asset(
+                                                              'assets/musk-zuck.png',
+                                                              opacity:
+                                                                  const AlwaysStoppedAnimation(
+                                                                      .9),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          bottom: isDetailed
+                                                              ? 15
+                                                              : 0),
+                                                      child: Column(
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                isDetailed =
+                                                                    !isDetailed;
+                                                              });
+                                                            },
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          12,
+                                                                      top: 8,
+                                                                      right: 12,
+                                                                      left: 12),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Icon(
+                                                                      isDetailed
+                                                                          ? Icons
+                                                                              .keyboard_arrow_up
+                                                                          : Icons
+                                                                              .keyboard_arrow_down,
+                                                                      color:
+                                                                          whiteDialog,
+                                                                      size: 28),
+                                                                  SizedBox(
+                                                                      width:
+                                                                          10),
+                                                                  Flexible(
+                                                                    child:
+                                                                        const Text(
+                                                                      "Learn how Fairtalk is replacing CEO's with a democratic system.",
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .left,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color:
+                                                                            whiteDialog,
+                                                                        letterSpacing:
+                                                                            0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontSize:
+                                                                            16,
+                                                                        overflow:
+                                                                            TextOverflow.visible,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          isDetailed
+                                                              ? Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          16),
+                                                                  child: Column(
+                                                                    children: [
+                                                                      Container(
+                                                                        decoration:
+                                                                            const BoxDecoration(
+                                                                          border:
+                                                                              Border(
+                                                                            top:
+                                                                                BorderSide(color: whiteDialog, width: 0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      const SizedBox(
+                                                                          height:
+                                                                              10),
+                                                                      Text(
+                                                                        "Creating Ballots",
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            letterSpacing:
+                                                                                0,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            color: whiteDialog.withOpacity(0.8),
+                                                                            fontSize: 16),
+                                                                      ),
+                                                                      Text(
+                                                                        "When you create a ballot, you're deciding which new features you want us to add, remove or modify from our platform. The ballot that receives the highest score every month will be added to the \"Winning Ballots\" list & will also become the newest feature that we will develop.",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              whiteDialog.withOpacity(0.8),
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontSize:
+                                                                              13,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                      ),
+                                                                      const SizedBox(
+                                                                          height:
+                                                                              8),
+                                                                      Text(
+                                                                        "Rules",
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: TextStyle(
+                                                                            letterSpacing:
+                                                                                0,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            color: whiteDialog.withOpacity(0.8),
+                                                                            fontSize: 16),
+                                                                      ),
+                                                                      Text(
+                                                                        "We want to give as much power & freedom as possible to our users. And for this reason, there are no rules. As long as your feature complies with both major App Stores, we'll do our very best to implement it.",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              whiteDialog.withOpacity(0.8),
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontSize:
+                                                                              13,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              : const SizedBox(),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 2),
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    isPoster = false;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 2,
+                                                      horizontal: 8),
+                                                  child: const Text(
+                                                    'Hide',
+                                                    style: TextStyle(
+                                                      color: Colors.blue,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : const SizedBox(),
+                                  ListView.builder(
+                                    itemCount: postProvider.posts.length,
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          PostCardTest(
+                                              key: Key(postProvider
+                                                  .posts[index].postId),
+                                              post: postProvider.posts[index],
+                                              profileScreen: false,
+                                              archives: false,
+                                              durationInDay: durationInDay),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
-                            );
-                          } else {
-                            return ListView(
-                              controller: _postScrollController,
-                              children: [
-                                postProvider.count <= 1 || postProvider.pLoading
-                                    ? const SizedBox()
-                                    : Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 10,
-                                          bottom: 4,
-                                        ),
+                              postProvider.last || postProvider.pLoading
+                                  ? const SizedBox()
+                                  : Visibility(
+                                      visible: postProvider.isButtonVisible,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -415,231 +787,119 @@ class SubmissionsState extends State<Submissions>
                                               child: Material(
                                                 color: Colors.transparent,
                                                 child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () {
-                                                      Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  100), () {
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  splashColor:
+                                                      const Color.fromARGB(
+                                                          255, 245, 245, 245),
+                                                  onTap: () {
+                                                    Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
                                                         isMostPopular == true &&
                                                                 _tabController
                                                                         ?.index ==
                                                                     0
                                                             ? postProvider
-                                                                .getPreviousSubmissions()
+                                                                .getNextSubmissions()
                                                             : isMostRecent ==
                                                                         true &&
                                                                     _tabController
                                                                             ?.index ==
                                                                         0
                                                                 ? postProvider
-                                                                    .getPreviousSubmissionsDate()
+                                                                    .getNextSubmissionsDate()
                                                                 : isMostPopular ==
                                                                             true &&
                                                                         _tabController?.index ==
                                                                             1
                                                                     ? postProvider
-                                                                        .getPreviousUpdates()
-                                                                    : postProvider
-                                                                        .getPreviousUpdatesDate();
-
+                                                                        .getNextUpdates()
+                                                                    : isMostRecent ==
+                                                                                true &&
+                                                                            _tabController?.index ==
+                                                                                1
+                                                                        ? postProvider
+                                                                            .getNextUpdatesDate()
+                                                                        : null;
                                                         _postScrollController
                                                             .jumpTo(0);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 16,
-                                                          vertical: 8),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                            Icons.arrow_upward,
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 8),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.transparent,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                      // border: Border.all(
+                                                      //   width: 1,
+                                                      //   color: Colors.black,
+                                                      // ),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: const [
+                                                        Icon(
+                                                            Icons
+                                                                .arrow_downward,
                                                             size: 16,
+                                                            color:
+                                                                Colors.black),
+                                                        SizedBox(width: 8),
+                                                        Text(
+                                                          'View Next',
+                                                          // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
+                                                          style: TextStyle(
                                                             color: Colors.black,
+                                                            // fontWeight:
+                                                            //     FontWeight.w500,
+                                                            fontSize: 13.5,
+                                                            letterSpacing: 0,
                                                           ),
-                                                          SizedBox(width: 8),
-                                                          Text('View Previous',
-                                                              // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 13.5,
-                                                                letterSpacing:
-                                                                    0.3,
-                                                              )),
-                                                        ],
-                                                      ),
-                                                    )),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                ListView.builder(
-                                  itemCount: postProvider.posts.length,
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return PostCardTest(
-                                        key: Key(
-                                            postProvider.posts[index].postId),
-                                        post: postProvider.posts[index],
-                                        profileScreen: false,
-                                        archives: false,
-                                        durationInDay: durationInDay);
-                                  },
-                                ),
-                                postProvider.last || postProvider.pLoading
-                                    ? const SizedBox()
-                                    : Visibility(
-                                        visible: postProvider.isButtonVisible,
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              PhysicalModel(
-                                                color: Colors.white,
-                                                elevation: 2,
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () {
-                                                      Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 100),
-                                                        () {
-                                                          isMostPopular ==
-                                                                      true &&
-                                                                  _tabController
-                                                                          ?.index ==
-                                                                      0
-                                                              ? postProvider
-                                                                  .getNextSubmissions()
-                                                              : isMostRecent ==
-                                                                          true &&
-                                                                      _tabController
-                                                                              ?.index ==
-                                                                          0
-                                                                  ? postProvider
-                                                                      .getNextSubmissionsDate()
-                                                                  : isMostPopular ==
-                                                                              true &&
-                                                                          _tabController?.index ==
-                                                                              1
-                                                                      ? postProvider
-                                                                          .getNextUpdates()
-                                                                      : isMostRecent == true &&
-                                                                              _tabController?.index ==
-                                                                                  1
-                                                                          ? postProvider
-                                                                              .getNextUpdatesDate()
-                                                                          : null;
-                                                          _postScrollController
-                                                              .jumpTo(0);
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 16,
-                                                          vertical: 8),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                        // border: Border.all(
-                                                        //   width: 1,
-                                                        //   color: Colors.black,
-                                                        // ),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                              Icons
-                                                                  .arrow_downward,
-                                                              size: 16,
-                                                              color:
-                                                                  Colors.black),
-                                                          SizedBox(width: 8),
-                                                          Text(
-                                                            'View Next',
-                                                            // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              // fontWeight:
-                                                              //     FontWeight.w500,
-                                                              fontSize: 13.5,
-                                                              letterSpacing: 0,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                const SizedBox(height: 10),
-                              ],
-                            );
-                          }
+                                    ),
+                              const SizedBox(height: 10),
+                            ],
+                          );
                         }
-                      },
-                    )
-                    // CustomScrollView(
-                    //   controller: _scrollController,
-                    //   slivers: [
-                    //     SliverList(
-                    //       delegate: SliverChildListDelegate(
-                    //         [
-                    //           _PostTabScreen(
-                    //               filter: filter,
-                    //               onLoadMore: initScrollControllerListener,
-                    //               durationInDay: durationInDay)
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    ),
+                      }
+                    },
+                  ),
+
+                  // CustomScrollView(
+                  //   controller: _scrollController,
+                  //   slivers: [
+                  //     SliverList(
+                  //       delegate: SliverChildListDelegate(
+                  //         [
+                  //           _PostTabScreen(
+                  //               filter: filter,
+                  //               onLoadMore: initScrollControllerListener,
+                  //               durationInDay: durationInDay)
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                ),
                 Visibility(
                   visible: _logoutLoading,
                   child: Container(
@@ -877,8 +1137,8 @@ class SubmissionsState extends State<Submissions>
                       : const SizedBox(),
                 ),
                 Positioned(
-                  bottom: 6,
-                  right: 6,
+                  bottom: 7,
+                  right: 7,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: PhysicalModel(

@@ -41,7 +41,6 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
                     'DELETE ACCOUNT',
                     style: TextStyle(
                         fontSize: 17,
-                        letterSpacing: 0.2,
                         fontWeight: FontWeight.bold,
                         color: whiteDialog),
                   ),
@@ -51,7 +50,6 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 13,
-                          letterSpacing: 0.2,
                           fontWeight: FontWeight.w500,
                           color: whiteDialog)),
                   // SizedBox(height: 4),

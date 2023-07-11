@@ -64,7 +64,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                         style: TextStyle(
                             color: darkBlue,
                             fontSize: 20,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -140,6 +140,14 @@ class _VerifyTwoState extends State<VerifyTwo> {
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              darkBlue,
+                              testColor,
+                            ],
+                          ),
                         ),
                         padding: const EdgeInsets.only(top: 20, bottom: 0),
                         width: MediaQuery.of(context).size.width,
@@ -160,7 +168,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 10),
                               decoration: BoxDecoration(
-                                color: darkBlue,
+                                color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(15),
                                 border:
                                     Border.all(width: 2, color: Colors.white),
@@ -177,10 +185,9 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                         'What are the few requirements needed to successfully complete the account verification process?',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing: 0,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
@@ -211,8 +218,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           "• You must have a valid identification card with a photo. Example: Driver's License, Passport, Government Issued ID, etc.",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14,
-                                            letterSpacing: 0,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -221,8 +228,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14,
-                                            letterSpacing: 0,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                         Container(height: 8),
@@ -231,8 +238,8 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14,
-                                            letterSpacing: 0,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                         // Container(height: 8),
@@ -255,67 +262,74 @@ class _VerifyTwoState extends State<VerifyTwo> {
                               width: MediaQuery.of(context).size.width * 0.85,
                               child: Column(
                                 children: [
-                                  Material(
-                                    borderRadius: BorderRadius.circular(50),
+                                  PhysicalModel(
+                                    elevation: 3,
                                     color: Colors.white,
-                                    child: InkWell(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Material(
                                       borderRadius: BorderRadius.circular(50),
-                                      splashColor: Colors.grey.withOpacity(0.5),
-                                      onTap: () {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 150),
-                                            () async {
-                                          Uint8List? file = await openCamera(
-                                            context: context,
-                                            cameraFileType:
-                                                CameraFileType.image,
-                                            add: "one",
-                                          );
-                                          if (file != null) {
-                                            emailAttachmentPhotos.clear();
-                                            emailAttachmentPhotos.add(file);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      VerifyThree(
-                                                          durationInDay: widget
-                                                              .durationInDay)),
+                                      color: Colors.white,
+                                      child: InkWell(
+                                        borderRadius: BorderRadius.circular(50),
+                                        splashColor:
+                                            Colors.grey.withOpacity(0.5),
+                                        onTap: () {
+                                          Future.delayed(
+                                              const Duration(milliseconds: 150),
+                                              () async {
+                                            Uint8List? file = await openCamera(
+                                              context: context,
+                                              cameraFileType:
+                                                  CameraFileType.image,
+                                              add: "one",
                                             );
-                                          }
-                                        });
-                                      },
-                                      child: Container(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const Text(
-                                                'Take picture of ID card',
-                                                style: TextStyle(
-                                                    fontSize: 16.5,
-                                                    color: darkBlue,
-                                                    fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0)),
-                                            Container(width: 6),
-                                            const Icon(
-                                              Icons.keyboard_arrow_right,
-                                              color: darkBlue,
-                                              size: 20,
-                                            ),
-                                          ],
-                                        ),
-                                        width: double.infinity,
-                                        alignment: Alignment.center,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 14),
-                                        decoration: const ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25),
-                                            ),
+                                            if (file != null) {
+                                              emailAttachmentPhotos.clear();
+                                              emailAttachmentPhotos.add(file);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        VerifyThree(
+                                                            durationInDay: widget
+                                                                .durationInDay)),
+                                              );
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                  'Take picture of ID card',
+                                                  style: TextStyle(
+                                                      fontSize: 16.5,
+                                                      color: darkBlue,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      letterSpacing: 0)),
+                                              Container(width: 6),
+                                              const Icon(
+                                                Icons.keyboard_arrow_right,
+                                                color: darkBlue,
+                                                size: 20,
+                                              ),
+                                            ],
                                           ),
-                                          color: Colors.transparent,
+                                          width: double.infinity,
+                                          alignment: Alignment.center,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 14),
+                                          decoration: const ShapeDecoration(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(25),
+                                              ),
+                                            ),
+                                            color: Colors.transparent,
+                                          ),
                                         ),
                                       ),
                                     ),

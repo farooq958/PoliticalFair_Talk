@@ -445,6 +445,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
+                                                          const Automate()),
+                                                );
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12,
+                                                  top: 17,
+                                                  bottom: 17),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                      Icons.lock_outlined,
+                                                      size: 23,
+                                                      color: darkBlue),
+                                                  Container(width: 15),
+                                                  const Text(
+                                                    'Automate',
+                                                    style: TextStyle(
+                                                      fontSize: 16.5,
+                                                      color: darkBlue,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                1,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                            splashColor:
+                                                Colors.grey.withOpacity(0.3),
+                                            onTap: () {
+                                              Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 150), () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
                                                           const AdminVerification()),
                                                 );
                                               });
@@ -649,43 +694,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         Future.delayed(
                                             const Duration(milliseconds: 150),
                                             () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const Automate()),
-                                          );
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 12, top: 17, bottom: 17),
-                                        child: Row(
-                                          children: [
-                                            const Icon(Icons.person_outline,
-                                                size: 23, color: darkBlue),
-                                            Container(width: 15),
-                                            const Text(
-                                              'Automate',
-                                              style: TextStyle(
-                                                  fontSize: 16.5,
-                                                  color: darkBlue),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width * 1,
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      splashColor: Colors.grey.withOpacity(0.3),
-                                      onTap: () {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 150),
-                                            () {
                                           performLoggedUserAction(
                                               context: context,
                                               action: () {
@@ -867,7 +875,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             size: 23, color: darkBlue),
                                         Container(width: 15),
                                         const Text(
-                                          'How does Fairtalk work?',
+                                          'Fairtalk Explainer',
                                           style: TextStyle(
                                               fontSize: 16.5, color: darkBlue),
                                         ),
@@ -1221,7 +1229,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 'Privacy',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 11.5,
+                                    fontSize: 12,
                                     color: darkBlue,
                                     letterSpacing: 0,
                                     fontWeight: FontWeight.w500),
@@ -1231,27 +1239,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       const SizedBox(),
-                      InkWell(
-                        splashColor: Colors.grey.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(25),
-                        onTap: () {
-                          Future.delayed(const Duration(milliseconds: 150), () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    WelcomeScreen(username: "hello"),
-                              ),
-                            );
-                          });
-                        },
-                        child: SizedBox(
-                          height: 31,
-                          child: Image.asset(
-                            'assets/bottomIconSettingsNewBlue.png',
-                            opacity: const AlwaysStoppedAnimation(.9),
-                          ),
+                      // InkWell(
+                      //   splashColor: Colors.grey.withOpacity(0.3),
+                      //   borderRadius: BorderRadius.circular(25),
+                      //   onTap: () {
+                      //     Future.delayed(const Duration(milliseconds: 150), () {
+                      //       Navigator.of(context).push(
+                      //         MaterialPageRoute(
+                      //           builder: (context) =>
+                      //               WelcomeScreen(username: "hello"),
+                      //         ),
+                      //       );
+                      //     });
+                      //   },
+                      // child:
+                      SizedBox(
+                        height: 31,
+                        child: Image.asset(
+                          'assets/bottomIconSettingsNewBlue.png',
+                          opacity: const AlwaysStoppedAnimation(.9),
                         ),
                       ),
+                      // ),
                       const SizedBox(),
                       SizedBox(
                         width: 85,
@@ -1278,7 +1287,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 'Terms',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 11.5,
+                                    fontSize: 12,
                                     color: darkBlue,
                                     letterSpacing: 0,
                                     fontWeight: FontWeight.w500),

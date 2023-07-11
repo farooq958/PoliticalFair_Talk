@@ -27,6 +27,9 @@ const Color testing = Color.fromARGB(255, 245, 245, 245);
 const Color darkBlue = Color.fromARGB(255, 0, 54, 120);
 
 const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);
+// const Color testColor = Color.fromARGB(255, 0, 91, 202);
+const Color testColor = Color.fromARGB(255, 0, 97, 216);
+const Color testColor2 = Color.fromARGB(255, 26, 91, 172);
 
 class FirestoreValues {
   static const String userCollection = 'users';

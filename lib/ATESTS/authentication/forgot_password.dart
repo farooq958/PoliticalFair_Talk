@@ -72,7 +72,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         style: TextStyle(
                             color: whiteDialog,
                             fontSize: 20,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
