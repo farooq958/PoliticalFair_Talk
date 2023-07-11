@@ -9,6 +9,7 @@ import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../camera/camera_screen.dart';
+import '../provider/automate_provider.dart';
 import '../provider/create_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
@@ -124,6 +125,8 @@ class _AutomateState extends State<Automate> {
   void initState() {
     super.initState();
 
+    Provider.of<AutomateProvider>(context, listen:false);
+
     keywordMessageController = TextfieldTagsController();
 
     controller = YoutubePlayerController(
@@ -150,6 +153,7 @@ class _AutomateState extends State<Automate> {
   }
 
   Widget _icon(int index, {required IconData icon}) {
+    final automateProvider = Provider.of<AutomateProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: SizedBox(
@@ -616,6 +620,7 @@ class _AutomateState extends State<Automate> {
   @override
   Widget build(BuildContext context) {
     const player = YoutubePlayerIFrame();
+    final automateProvider = Provider.of<AutomateProvider>(context, listen: false);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -1072,7 +1077,10 @@ class _AutomateState extends State<Automate> {
                                         height: 45,
                                         child: TextField(
                                           onEditingComplete: () {},
-                                          onTap: () {},
+                                          onTap: () {
+
+                                          },
+                                          keyboardType: TextInputType.number,
                                           maxLines: 1,
                                           controller: initialScoreController,
                                           decoration: const InputDecoration(
@@ -1096,20 +1104,25 @@ class _AutomateState extends State<Automate> {
                                     ),
                                   ),
                                   const SizedBox(width: 6),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 12),
-                                      child: Text(
-                                        'Save',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
+                                  GestureDetector(
+                                    onTap: () {
+                                      automateProvider.saveInitialScore(initialScoreController.text);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 12),
+                                        child: Text(
+                                          'Save',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),

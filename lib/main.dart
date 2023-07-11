@@ -1,3 +1,4 @@
+import 'package:aft/ATESTS/provider/automate_provider.dart';
 import 'package:aft/ATESTS/provider/block_list_provider.dart';
 import 'package:aft/ATESTS/provider/comments_replies_provider.dart';
 import 'package:aft/ATESTS/provider/filter_provider.dart';
@@ -117,6 +118,7 @@ void main() async {
     ChangeNotifierProvider(
       create: (_) => GoogleSignInProvider(),
     ),
+    ChangeNotifierProvider(create: (_) => AutomateProvider()),
 
     // ChangeNotifierProvider(
     //   create: (_) => ChangeCountryProvider(),
