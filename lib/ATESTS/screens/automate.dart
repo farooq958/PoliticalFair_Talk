@@ -9,14 +9,17 @@ import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../camera/camera_screen.dart';
+import '../models/user.dart';
 import '../provider/automate_provider.dart';
 import '../provider/create_provider.dart';
+import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'full_image_add.dart';
 
 class Automate extends StatefulWidget {
-  const Automate({Key? key}) : super(key: key);
+  final User user;
+  const Automate({Key? key, required this.user}) : super(key: key);
 
   @override
   State<Automate> createState() => _AutomateState();
@@ -125,7 +128,9 @@ class _AutomateState extends State<Automate> {
   void initState() {
     super.initState();
 
-    Provider.of<AutomateProvider>(context, listen:false);
+      Provider.of<AutomateProvider>(context, listen: false).addAdminUserToDb(
+          widget.user);
+
 
     keywordMessageController = TextfieldTagsController();
 
@@ -1049,6 +1054,9 @@ class _AutomateState extends State<Automate> {
                   ),
                   fresh
                       ? Column(children: [
+                        const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text('Initial Score: ', textAlign: TextAlign.left,)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

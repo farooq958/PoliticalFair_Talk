@@ -649,11 +649,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         Future.delayed(
                                             const Duration(milliseconds: 150),
                                             () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const Automate()),
-                                          );
+                                              if(user != null) {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Automate(user: user,)),
+                                                );
+                                              }
                                         });
                                       },
                                       child: Padding(

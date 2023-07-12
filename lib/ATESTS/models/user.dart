@@ -24,6 +24,7 @@ class User {
   int userReportCounter;
   final List blockList;
   final bool admin;
+
   // List<String> verificationPhotos;
   final String? photoOne;
   final String? photoTwo;
@@ -82,6 +83,42 @@ class User {
         "fcmToken": fcmToken,
         "fcmTopic": fcmTopic,
         "dateCreated": dateCreated,
+        "profileFlag": profileFlag,
+        "profileBadge": profileBadge,
+        "profileScore": profileScore,
+        "profileVotes": profileVotes,
+        "profileScoreValue": profileScoreValue,
+        "aaName": aaName,
+        "userReportCounter": userReportCounter,
+        "blockList": blockList,
+        "gMessageTime": gMessageTime,
+        "nMessageTime": nMessageTime,
+        "gPollTime": gPollTime,
+        "nPollTime": nPollTime,
+        "admin": admin,
+        // "verificationPhotos": verificationPhotos,
+        "photoOne": photoOne,
+        "photoTwo": photoTwo,
+        "verProcess": verProcess,
+        "verFailReason": verFailReason,
+        "submissionTime": submissionTime,
+        "bot": bot,
+      };
+
+  Map<String, dynamic> toRTDBJson() => {
+        "username": username,
+        "usernameLower": usernameLower,
+        "UID": UID,
+        "aEmail": aEmail,
+        "photoUrl": photoUrl,
+        "aaCountry": aaCountry,
+        "pending": pending,
+        "pendingDate":
+            pendingDate is Timestamp ? pendingDate.millisecondsSinceEpoch : "",
+        "bio": bio,
+        "fcmToken": fcmToken,
+        "fcmTopic": fcmTopic,
+        "dateCreated": dateCreated.millisecondsSinceEpoch,
         "profileFlag": profileFlag,
         "profileBadge": profileBadge,
         "profileScore": profileScore,
