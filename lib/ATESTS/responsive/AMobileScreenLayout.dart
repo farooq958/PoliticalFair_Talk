@@ -79,6 +79,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   bool _passwordVisible = false;
   String oneValue = '';
   bool isGuest = false;
+  bool _isLoadingGoogle = false;
   ///////signup///////
 
   final RateMyApp rateMyApp = RateMyApp(
@@ -417,21 +418,28 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     User? user;
     user = Provider.of<UserProvider>(context).getUser;
     final ThemeData themeData = Theme.of(context);
-    return isLoading == true
-        ? Stack(
-            children: [
-              Scaffold(
-                backgroundColor: Colors.white,
-                body: Container(
-                  color: Colors.transparent,
+    return isLoading
+        ? Scaffold(
+            body: Stack(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      darkBlue,
+                      testColor,
+                    ],
+                  )),
                   child: SafeArea(
                     child: Container(
-                      color: Colors.white,
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 1,
+                      // width: double.infinity,
+                      // height: MediaQuery.of(context).size.height * 1,
                       child: Center(
                         child: ListView(
                           shrinkWrap: true,
+                          // reverse: true,
                           children: [
                             Container(
                               padding: EdgeInsets.symmetric(
@@ -440,188 +448,284 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                           ? 100
                                           : 32),
                               child: Column(children: [
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 30),
                                 Image.asset(
                                   width: MediaQuery.of(context).size.width * 1 -
-                                      80,
-                                  'assets/fairtalk_new_blue_transparent.png',
+                                      40,
+                                  'assets/fairtalk_new_white_transparent.png',
                                 ),
                                 const SizedBox(height: 5),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * 1 -
-                                      80,
+                                      40,
                                   child: const Text(
                                     'A platform built to unite us all.',
                                     style: TextStyle(
-                                        color: darkBlue,
+                                        color: whiteDialog,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 9,
+                                        fontSize: 10,
                                         fontFamily: 'Capitalis'),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
-                                const SizedBox(height: 24),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 0.0),
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: Theme(
-                                      data: themeData.copyWith(
-                                          inputDecorationTheme: themeData
-                                              .inputDecorationTheme
-                                              .copyWith(
-                                        prefixIconColor:
-                                            MaterialStateColor.resolveWith(
-                                                (Set<MaterialState> states) {
-                                          if (states.contains(
-                                              MaterialState.focused)) {
-                                            return const Color.fromARGB(
-                                                255, 36, 64, 101);
-                                          }
-
-                                          return Colors.grey;
-                                        }),
-                                      )),
-                                      child: TextField(
-                                        textInputAction: TextInputAction.next,
-                                        controller: _usernameController,
-                                        maxLength: 16,
-                                        decoration: InputDecoration(
-                                            counterText: '',
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              borderSide: const BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 36, 64, 101),
-                                                  width: 2),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey, width: 1),
-                                            ),
-                                            labelText: 'Username',
-                                            labelStyle: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.grey),
-                                            hintStyle: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.grey),
-                                            fillColor: const Color.fromARGB(
-                                                255, 245, 245, 245),
-                                            filled: true,
-                                            prefixIcon: const Icon(
-                                              Icons.person_outlined,
-                                            )),
+                                const SizedBox(height: 36),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
+                                  child: TextField(
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
+                                    textInputAction: TextInputAction.next,
+                                    controller: _usernameController,
+                                    maxLength: 16,
+                                    decoration: InputDecoration(
+                                      counterText: '',
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: whiteDialog, width: 2),
                                       ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: testColor, width: 0),
+                                      ),
+                                      labelText: 'Username',
+                                      labelStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      hintStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      fillColor: testColor,
+                                      filled: true,
+                                      prefixIcon: const Icon(
+                                          Icons.person_outlined,
+                                          color: whiteDialog),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 24),
-                                Theme(
-                                  data: themeData.copyWith(inputDecorationTheme:
-                                      themeData.inputDecorationTheme.copyWith(
-                                    prefixIconColor:
-                                        MaterialStateColor.resolveWith(
-                                            (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.focused)) {
-                                        return const Color.fromARGB(
-                                            255, 36, 64, 101);
-                                      }
-
-                                      return Colors.grey;
-                                    }),
-                                  )),
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
                                   child: TextField(
                                     textInputAction: TextInputAction.next,
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
                                     controller: _emailController,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        // emptyPollQuestion = false;
+                                      });
+                                    },
                                     decoration: InputDecoration(
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
                                           borderSide: const BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 36, 64, 101),
-                                              width: 2),
+                                              color: whiteDialog, width: 2),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(25),
                                           borderSide: const BorderSide(
-                                              color: Colors.grey, width: 1),
+                                              color: testColor, width: 0),
                                         ),
                                         labelText: 'Email Address',
                                         labelStyle: const TextStyle(
-                                            fontSize: 14, color: Colors.grey),
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold),
                                         hintStyle: const TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                        fillColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold),
+                                        fillColor: testColor,
                                         filled: true,
                                         prefixIcon: const Icon(
-                                          Icons.email_outlined,
-                                        )),
+                                            Icons.email_outlined,
+                                            color: whiteDialog)),
                                   ),
                                 ),
-                                const SizedBox(height: 24),
-                                Theme(
-                                  data: themeData.copyWith(inputDecorationTheme:
-                                      themeData.inputDecorationTheme.copyWith(
-                                    prefixIconColor:
-                                        MaterialStateColor.resolveWith(
-                                            (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.focused)) {
-                                        return const Color.fromARGB(
-                                            255, 36, 64, 101);
-                                      }
-
-                                      return Colors.grey;
-                                    }),
-                                  )),
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
                                   child: TextField(
                                     controller: _passwordController,
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
                                     textInputAction: TextInputAction.done,
                                     decoration: InputDecoration(
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(25),
                                         borderSide: const BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 36, 64, 101),
-                                            width: 2),
+                                            color: whiteDialog, width: 2),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(25),
                                         borderSide: const BorderSide(
-                                            color: Colors.grey, width: 1),
+                                            color: testColor, width: 0),
                                       ),
                                       labelText: 'Password',
                                       labelStyle: const TextStyle(
-                                          fontSize: 14, color: Colors.grey),
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
                                       hintStyle: const TextStyle(
-                                          fontSize: 14, color: Colors.grey),
-                                      fillColor: const Color.fromARGB(
-                                          255, 245, 245, 245),
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      fillColor: testColor,
                                       filled: true,
-                                      prefixIcon: const Icon(
-                                        Icons.lock_outline,
+                                      prefixIcon: const Icon(Icons.lock_outline,
+                                          color: whiteDialog),
+                                      suffixIcon: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            _passwordVisible =
+                                                !_passwordVisible;
+                                          });
+                                        },
+                                        child: Icon(
+                                          _passwordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: whiteDialog,
+                                          size: 22,
+                                        ),
                                       ),
-                                      suffixIcon: Icon(
-                                        _passwordVisible
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: Colors.grey,
-                                        size: 22,
+                                    ),
+                                    obscureText: !_passwordVisible,
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  color: whiteDialog,
+                                  elevation: 3,
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(25),
+                                      splashColor:
+                                          Colors.black.withOpacity(0.3),
+                                      onTap: signUpUser,
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 45,
+                                        alignment: Alignment.center,
+                                        // padding: const EdgeInsets.symmetric(vertical: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          // border: Border.all(
+                                          //     color: Colors.white, width: 2),
+                                        ),
+
+                                        child: _isLoading
+                                            ? const Center(
+                                                child: SizedBox(
+                                                  height: 18,
+                                                  width: 18,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: darkBlue,
+                                                  ),
+                                                ),
+                                              )
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text('Sign up',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: darkBlue,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      )),
+                                                ],
+                                              ),
                                       ),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: 7),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    130
+                                                : MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    70,
+                                        // MediaQuery.of(context).size.width / 2 - 194,
+                                        decoration: const BoxDecoration(
+                                          // color: Colors.red,
+                                          border: Border(
+                                            top: BorderSide(
+                                                width: 1, color: whiteDialog),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 33,
+                                      alignment: Alignment.center,
+                                      child: const Text('or',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    130
+                                                : MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    70,
+                                        decoration: const BoxDecoration(
+                                          // color: Colors.red,
+                                          border: Border(
+                                            top: BorderSide(
+                                                width: 1, color: whiteDialog),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 7),
                                 PhysicalModel(
-                                  color: darkBlue,
+                                  color: whiteDialog,
                                   elevation: 3,
                                   borderRadius: BorderRadius.circular(50),
                                   child: Material(
@@ -629,92 +733,117 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                     borderRadius: BorderRadius.circular(25),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(50),
-                                      splashColor:
-                                          Colors.black.withOpacity(0.3),
+                                      splashColor: Colors.grey.withOpacity(0.3),
+                                      onTap: () async {
+                                        // await signInWithGoogle();
+                                        // if (mounted) {
+                                        //   Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //       builder: (_) => CreateUsernameGoogle(),
+                                        //     ),
+                                        //   );
+                                        // }
+                                      },
                                       child: Container(
                                         width: double.infinity,
+                                        height: 45,
                                         alignment: Alignment.center,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 12),
-                                        decoration: const ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25),
-                                            ),
-                                          ),
-                                          color: Colors.transparent,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          // border: Border.all(
+                                          //     color: Colors.white, width: 2),
                                         ),
-                                        child: _isLoading
+                                        child: _isLoadingGoogle
                                             ? const Center(
                                                 child: SizedBox(
                                                     height: 18,
                                                     width: 18,
                                                     child:
                                                         CircularProgressIndicator(
-                                                      color: Colors.white,
+                                                      color: darkBlue,
                                                     )),
                                               )
-                                            : const Text('Sign Up',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w500,
-                                                    letterSpacing: 0.5)),
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                      'assets/google-logo.png',
+                                                      height: 23),
+                                                  const SizedBox(width: 12),
+                                                  const Text(
+                                                    'Sign up with Google',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: darkBlue,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                       ),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, right: 12, left: 12),
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        const TextSpan(
-                                            text:
-                                                'By signing up, you agree to our ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12)),
-                                        TextSpan(
-                                            text: 'Terms of Use',
-                                            style: const TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 12),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const TermsConditions(),
-                                                  ),
-                                                );
-                                              }),
-                                        const TextSpan(
-                                            text:
-                                                ' and confirm that you have read and understood our ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12)),
-                                        TextSpan(
-                                            text: 'Privacy Policy.',
-                                            style: const TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 12),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const DataPrivacy(),
-                                                  ),
-                                                );
-                                              }),
-                                      ],
-                                    ),
+                                const SizedBox(height: 7),
+                                RichText(
+                                  softWrap: true,
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: <TextSpan>[
+                                      const TextSpan(
+                                          text:
+                                              'By signing up, you agree to our ',
+                                          style: TextStyle(
+                                              color: whiteDialog,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'Terms of Use',
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 103, 187, 255),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const TermsConditions(),
+                                                ),
+                                              );
+                                            }),
+                                      const TextSpan(
+                                          text:
+                                              ' and confirm that you have read and understood our ',
+                                          style: TextStyle(
+                                              color: whiteDialog,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'Privacy Policy.',
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 103, 187, 255),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const DataPrivacy(),
+                                                ),
+                                              );
+                                            }),
+                                    ],
                                   ),
                                 ),
-                                const SizedBox(height: 12),
+                                const SizedBox(height: 30),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -723,26 +852,35 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(25),
                                         splashColor:
-                                            Colors.grey.withOpacity(0.3),
+                                            Colors.white.withOpacity(0.3),
                                         onTap: navigateToLogin,
-                                        child: SizedBox(
-                                          height: 45,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Text("Already have an account?",
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: SizedBox(
+                                            height: 45,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Text("Already have an account?",
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 230, 230, 230),
+                                                      fontSize: 11,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                                Text(
+                                                  "Log in",
                                                   style: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 13)),
-                                              Text(
-                                                "Log In",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: darkBlue,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: whiteDialog,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -758,815 +896,1294 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                     ),
                   ),
                 ),
-              ),
-              Positioned.fill(
-                child: Visibility(
-                  visible: isLoading,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.3),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
+                Positioned.fill(
+                  child: Visibility(
+                    visible: isLoading,
+                    child: Container(
+                      color: Colors.black.withOpacity(0.4),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
-
-        // Stack(
-        //     children: [
-        //       Container(
-        //         color: Colors.white,
-        //         child: SafeArea(
-        //           child: Scaffold(
-        //             backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-        //             appBar: AppBar(
-        //               elevation: 4,
-        //               toolbarHeight: 68,
-        //               backgroundColor: Colors.white,
-        //               actions: [
-        //                 Expanded(
-        //                   child: SizedBox(
-        //                     width: MediaQuery.of(context).size.width * 1,
-        //                     child: Column(
-        //                       children: [
-        //                         Padding(
-        //                           padding: const EdgeInsets.only(
-        //                               top: 8, right: 8, left: 8),
-        //                           child: Row(
-        //                             mainAxisAlignment:
-        //                                 MainAxisAlignment.spaceBetween,
-        //                             children: [
-        //                               const SizedBox(
-        //                                 width: 36,
-        //                                 height: 35,
-        //                                 child: Material(
-        //                                   shape: CircleBorder(),
-        //                                   color: Colors.white,
-        //                                   child: Icon(Icons.settings,
-        //                                       color: Color.fromARGB(
-        //                                           255, 80, 80, 80)),
-        //                                 ),
-        //                               ),
-        //                               Column(
-        //                                 children: [
-        //                                   Row(
-        //                                     children: const [
-        //                                       Padding(
-        //                                         padding: EdgeInsets.only(
-        //                                             bottom: 1.0),
-        //                                         child: Text(
-        //                                           'GLOBAL',
-        //                                           style: TextStyle(
-        //                                             color: Color.fromARGB(
-        //                                                 255, 55, 55, 55),
-        //                                             fontWeight: FontWeight.bold,
-        //                                             fontSize: 14,
-        //                                           ),
-        //                                         ),
-        //                                       ),
-        //                                     ],
-        //                                   ),
-        //                                   PhysicalModel(
-        //                                     color: Colors.transparent,
-        //                                     elevation: 3,
-        //                                     borderRadius:
-        //                                         BorderRadius.circular(25),
-        //                                     child: Container(
-        //                                         width: 116,
-        //                                         height: 32.5,
-        //                                         decoration: BoxDecoration(
-        //                                           borderRadius:
-        //                                               BorderRadius.circular(25),
-        //                                         ),
-        //                                         child: Row(
-        //                                           children: [
-        //                                             ClipRRect(
-        //                                               child: Container(
-        //                                                 decoration:
-        //                                                     const BoxDecoration(
-        //                                                         borderRadius:
-        //                                                             BorderRadius
-        //                                                                 .only(
-        //                                                           topLeft: Radius
-        //                                                               .circular(
-        //                                                                   25),
-        //                                                           bottomLeft: Radius
-        //                                                               .circular(
-        //                                                                   25),
-        //                                                         ),
-        //                                                         color: Color
-        //                                                             .fromARGB(
-        //                                                                 255,
-        //                                                                 125,
-        //                                                                 125,
-        //                                                                 125)),
-        //                                                 height: 100,
-        //                                                 width: 58,
-        //                                                 child: const Icon(
-        //                                                     MyFlutterApp
-        //                                                         .globe_americas,
-        //                                                     color: Colors.white,
-        //                                                     size: 23),
-        //                                               ),
-        //                                             ),
-        //                                             ClipRRect(
-        //                                               child: Container(
-        //                                                   decoration:
-        //                                                       const BoxDecoration(
-        //                                                     borderRadius:
-        //                                                         BorderRadius
-        //                                                             .only(
-        //                                                       topRight: Radius
-        //                                                           .circular(25),
-        //                                                       bottomRight:
-        //                                                           Radius
-        //                                                               .circular(
-        //                                                                   25),
-        //                                                     ),
-        //                                                     color:
-        //                                                         Color.fromARGB(
-        //                                                             255,
-        //                                                             228,
-        //                                                             228,
-        //                                                             228),
-        //                                                   ),
-        //                                                   height: 100,
-        //                                                   width: 58,
-        //                                                   child: const Icon(
-        //                                                       Icons.flag,
-        //                                                       color:
-        //                                                           Colors.white,
-        //                                                       size: 17)),
-        //                                             )
-        //                                           ],
-        //                                         )),
-        //                                   ),
-        //                                 ],
-        //                               ),
-        //                               Column(
-        //                                 children: [
-        //                                   const Padding(
-        //                                     padding:
-        //                                         EdgeInsets.only(bottom: 1.0),
-        //                                     child: Text(
-        //                                       'MESSAGES',
-        //                                       style: TextStyle(
-        //                                         color: Color.fromARGB(
-        //                                             255, 55, 55, 55),
-        //                                         fontWeight: FontWeight.bold,
-        //                                         fontSize: 14,
-        //                                       ),
-        //                                     ),
-        //                                   ),
-        //                                   PhysicalModel(
-        //                                     color: Colors.transparent,
-        //                                     elevation: 3,
-        //                                     borderRadius:
-        //                                         BorderRadius.circular(25),
-        //                                     child: Container(
-        //                                       width: 116,
-        //                                       height: 32.5,
-        //                                       decoration: BoxDecoration(
-        //                                         borderRadius:
-        //                                             BorderRadius.circular(25),
-        //                                       ),
-        //                                       child: Row(
-        //                                         children: [
-        //                                           ClipRRect(
-        //                                             child: Container(
-        //                                               decoration:
-        //                                                   const BoxDecoration(
-        //                                                       borderRadius:
-        //                                                           BorderRadius
-        //                                                               .only(
-        //                                                         topLeft: Radius
-        //                                                             .circular(
-        //                                                                 25),
-        //                                                         bottomLeft: Radius
-        //                                                             .circular(
-        //                                                                 25),
-        //                                                       ),
-        //                                                       color: Color
-        //                                                           .fromARGB(
-        //                                                               255,
-        //                                                               125,
-        //                                                               125,
-        //                                                               125)),
-        //                                               height: 100,
-        //                                               width: 58,
-        //                                               child: const Icon(
-        //                                                   Icons.message,
-        //                                                   color: Colors.white,
-        //                                                   size: 23),
-        //                                             ),
-        //                                           ),
-        //                                           ClipRRect(
-        //                                             child: Container(
-        //                                                 decoration:
-        //                                                     const BoxDecoration(
-        //                                                   borderRadius:
-        //                                                       BorderRadius.only(
-        //                                                     topRight:
-        //                                                         Radius.circular(
-        //                                                             25),
-        //                                                     bottomRight:
-        //                                                         Radius.circular(
-        //                                                             25),
-        //                                                   ),
-        //                                                   color: Color.fromARGB(
-        //                                                       255,
-        //                                                       228,
-        //                                                       228,
-        //                                                       228),
-        //                                                 ),
-        //                                                 height: 100,
-        //                                                 width: 58,
-        //                                                 child: const RotatedBox(
-        //                                                   quarterTurns: 1,
-        //                                                   child: Icon(
-        //                                                       Icons.poll,
-        //                                                       color:
-        //                                                           Colors.white,
-        //                                                       size: 17),
-        //                                                 )),
-        //                                           )
-        //                                         ],
-        //                                       ),
-        //                                     ),
-        //                                   ),
-        //                                 ],
-        //                               ),
-        //                               const SizedBox(
-        //                                 width: 36,
-        //                                 height: 35,
-        //                                 child: Icon(Icons.filter_list,
-        //                                     color: Color.fromARGB(
-        //                                         255, 80, 80, 80)),
-        //                               ),
-        //                             ],
-        //                           ),
-        //                         ),
-        //                       ],
-        //                     ),
-        //                   ),
-        //                 ),
-        //               ],
-        //             ),
-        //             bottomNavigationBar: CupertinoTabBar(
-        //                 inactiveColor: Colors.grey,
-        //                 activeColor: Colors.black,
-        //                 height: 50,
-        //                 backgroundColor: Colors.white,
-        //                 items: [
-        //                   const BottomNavigationBarItem(
-        //                     icon: Padding(
-        //                         padding: EdgeInsets.only(top: 3.0, right: 0),
-        //                         child: Icon(
-        //                           Icons.home,
-        //                         )),
-        //                     label: 'Home',
-        //                   ),
-        //                   const BottomNavigationBarItem(
-        //                     icon: Padding(
-        //                       padding: EdgeInsets.only(top: 4.0),
-        //                       child: Icon(MyFlutterApp.university, size: 25),
-        //                     ),
-        //                     label: 'Archives',
-        //                   ),
-        //                   const BottomNavigationBarItem(
-        //                     icon: Padding(
-        //                       padding: EdgeInsets.only(top: 3.0),
-        //                       child: Icon(
-        //                         Icons.search,
-        //                       ),
-        //                     ),
-        //                     label: 'Search',
-        //                   ),
-        //                   BottomNavigationBarItem(
-        //                     icon: Stack(
-        //                       children: const [
-        //                         Padding(
-        //                           padding: EdgeInsets.only(top: 3.0),
-        //                           child: Icon(
-        //                             Icons.create,
-        //                           ),
-        //                         ),
-        //                         Positioned(
-        //                           top: 15,
-        //                           left: 13,
-        //                           child: Padding(
-        //                             padding: EdgeInsets.only(top: 3.0),
-        //                             child: Icon(
-        //                               Icons.add,
-        //                               size: 14,
-        //                             ),
-        //                           ),
-        //                         ),
-        //                       ],
-        //                     ),
-        //                     label: 'Create',
-        //                   ),
-        //                   const BottomNavigationBarItem(
-        //                     icon: Padding(
-        //                       padding: EdgeInsets.only(top: 3.0),
-        //                       child: Icon(
-        //                         Icons.phone_iphone,
-        //                       ),
-        //                     ),
-        //                     label: 'Submissions',
-        //                   ),
-        //                 ],
-        //                 currentIndex: _page,
-        //                 onTap: navigationTapped),
-        //           ),
-        //         ),
-        //       ),
-        //       Positioned.fill(
-        //         child: Visibility(
-        //           visible: isLoading,
-        //           child: Container(
-        //             color: Colors.black.withOpacity(0.3),
-        //             child: const Center(
-        //               child: CircularProgressIndicator(
-        //                 color: Colors.white,
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   )
-        // : user == null && isGuest == false
-        //     ? Scaffold(
-        //         backgroundColor: Colors.white,
-        //         body: Container(
-        //           color: Colors.transparent,
-        //           child: SafeArea(
-        //             child: Container(
-        //               color: Colors.white,
-        //               width: double.infinity,
-        //               height: MediaQuery.of(context).size.height * 1,
-        //               child: Center(
-        //                 child: ListView(
-        //                   shrinkWrap: true,
-        //                   // reverse: true,
-        //                   children: [
-        //                     Container(
-        //                       padding: EdgeInsets.symmetric(
-        //                           horizontal:
-        //                               MediaQuery.of(context).size.width > 600
-        //                                   ? 100
-        //                                   : 32),
-        //                       child: Column(children: [
-        //                         const SizedBox(height: 20),
-        //                         Image.asset(
-        //                           width: MediaQuery.of(context).size.width * 1 -
-        //                               80,
-        //                           'assets/fairtalk_new_blue_transparent.png',
-        //                         ),
-        //                         const SizedBox(height: 5),
-        //                         SizedBox(
-        //                           width: MediaQuery.of(context).size.width * 1 -
-        //                               80,
-        //                           child: const Text(
-        //                             'A platform built to unite us all.',
-        //                             style: TextStyle(
-        //                                 color: darkBlue,
-        //                                 fontWeight: FontWeight.bold,
-        //                                 fontSize: 9,
-        //                                 fontFamily: 'Capitalis'),
-        //                             textAlign: TextAlign.center,
-        //                           ),
-        //                         ),
-        //                         const SizedBox(height: 24),
-        //                         Padding(
-        //                           padding: const EdgeInsets.only(top: 0.0),
-        //                           child: SizedBox(
-        //                             height: 60,
-        //                             child: Theme(
-        //                               data: themeData.copyWith(
-        //                                   inputDecorationTheme: themeData
-        //                                       .inputDecorationTheme
-        //                                       .copyWith(
-        //                                 prefixIconColor:
-        //                                     MaterialStateColor.resolveWith(
-        //                                         (Set<MaterialState> states) {
-        //                                   if (states.contains(
-        //                                       MaterialState.focused)) {
-        //                                     return const Color.fromARGB(
-        //                                         255, 36, 64, 101);
-        //                                   }
-
-        //                                   return Colors.grey;
-        //                                 }),
-        //                               )),
-        //                               child: TextField(
-        //                                 textInputAction: TextInputAction.next,
-        //                                 controller: _usernameController,
-        //                                 maxLength: 16,
-        //                                 decoration: InputDecoration(
-        //                                     counterText: '',
-        //                                     focusedBorder: OutlineInputBorder(
-        //                                       borderRadius:
-        //                                           BorderRadius.circular(25),
-        //                                       borderSide: const BorderSide(
-        //                                           color: Color.fromARGB(
-        //                                               255, 36, 64, 101),
-        //                                           width: 2),
-        //                                     ),
-        //                                     enabledBorder: OutlineInputBorder(
-        //                                       borderRadius:
-        //                                           BorderRadius.circular(25),
-        //                                       borderSide: const BorderSide(
-        //                                           color: Colors.grey, width: 1),
-        //                                     ),
-        //                                     labelText: 'Username',
-        //                                     labelStyle: const TextStyle(
-        //                                         fontSize: 14,
-        //                                         color: Colors.grey),
-        //                                     hintStyle: const TextStyle(
-        //                                         fontSize: 14,
-        //                                         color: Colors.grey),
-        //                                     fillColor: const Color.fromARGB(
-        //                                         255, 245, 245, 245),
-        //                                     filled: true,
-        //                                     prefixIcon: const Icon(
-        //                                       Icons.person_outlined,
-        //                                     )),
-        //                               ),
-        //                             ),
-        //                           ),
-        //                         ),
-        //                         const SizedBox(height: 24),
-        //                         Theme(
-        //                           data: themeData.copyWith(inputDecorationTheme:
-        //                               themeData.inputDecorationTheme.copyWith(
-        //                             prefixIconColor:
-        //                                 MaterialStateColor.resolveWith(
-        //                                     (Set<MaterialState> states) {
-        //                               if (states
-        //                                   .contains(MaterialState.focused)) {
-        //                                 return const Color.fromARGB(
-        //                                     255, 36, 64, 101);
-        //                               }
-
-        //                               return Colors.grey;
-        //                             }),
-        //                           )),
-        //                           child: TextField(
-        //                             textInputAction: TextInputAction.next,
-        //                             controller: _emailController,
-        //                             onChanged: (val) {
-        //                               setState(() {
-        //                                 // emptyPollQuestion = false;
-        //                               });
-        //                             },
-        //                             decoration: InputDecoration(
-        //                                 focusedBorder: OutlineInputBorder(
-        //                                   borderRadius:
-        //                                       BorderRadius.circular(25),
-        //                                   borderSide: const BorderSide(
-        //                                       color: Color.fromARGB(
-        //                                           255, 36, 64, 101),
-        //                                       width: 2),
-        //                                 ),
-        //                                 enabledBorder: OutlineInputBorder(
-        //                                   borderRadius:
-        //                                       BorderRadius.circular(25),
-        //                                   borderSide: const BorderSide(
-        //                                       color: Colors.grey, width: 1),
-        //                                 ),
-        //                                 labelText: 'Email Address',
-        //                                 labelStyle: const TextStyle(
-        //                                     fontSize: 14, color: Colors.grey),
-        //                                 hintStyle: const TextStyle(
-        //                                     fontSize: 14, color: Colors.grey),
-        //                                 fillColor: const Color.fromARGB(
-        //                                     255, 245, 245, 245),
-        //                                 filled: true,
-        //                                 prefixIcon: const Icon(
-        //                                   Icons.email_outlined,
-        //                                 )),
-        //                           ),
-        //                         ),
-        //                         const SizedBox(height: 24),
-        //                         Theme(
-        //                           data: themeData.copyWith(inputDecorationTheme:
-        //                               themeData.inputDecorationTheme.copyWith(
-        //                             prefixIconColor:
-        //                                 MaterialStateColor.resolveWith(
-        //                                     (Set<MaterialState> states) {
-        //                               if (states
-        //                                   .contains(MaterialState.focused)) {
-        //                                 return const Color.fromARGB(
-        //                                     255, 36, 64, 101);
-        //                               }
-
-        //                               return Colors.grey;
-        //                             }),
-        //                           )),
-        //                           child: TextField(
-        //                             controller: _passwordController,
-        //                             textInputAction: TextInputAction.done,
-        //                             decoration: InputDecoration(
-        //                               focusedBorder: OutlineInputBorder(
-        //                                 borderRadius: BorderRadius.circular(25),
-        //                                 borderSide: const BorderSide(
-        //                                     color: Color.fromARGB(
-        //                                         255, 36, 64, 101),
-        //                                     width: 2),
-        //                               ),
-        //                               enabledBorder: OutlineInputBorder(
-        //                                 borderRadius: BorderRadius.circular(25),
-        //                                 borderSide: const BorderSide(
-        //                                     color: Colors.grey, width: 1),
-        //                               ),
-        //                               labelText: 'Password',
-        //                               labelStyle: const TextStyle(
-        //                                   fontSize: 14, color: Colors.grey),
-        //                               hintStyle: const TextStyle(
-        //                                   fontSize: 14, color: Colors.grey),
-        //                               fillColor: const Color.fromARGB(
-        //                                   255, 245, 245, 245),
-        //                               filled: true,
-        //                               prefixIcon: const Icon(
-        //                                 Icons.lock_outline,
-        //                               ),
-        //                               suffixIcon: InkWell(
-        //                                 onTap: () {
-        //                                   setState(() {
-        //                                     _passwordVisible =
-        //                                         !_passwordVisible;
-        //                                   });
-        //                                 },
-        //                                 child: Icon(
-        //                                   _passwordVisible
-        //                                       ? Icons.visibility
-        //                                       : Icons.visibility_off,
-        //                                   color: Colors.grey,
-        //                                   size: 22,
-        //                                 ),
-        //                               ),
-        //                             ),
-        //                             obscureText: !_passwordVisible,
-        //                           ),
-        //                         ),
-        //                         const SizedBox(height: 24),
-        //                         PhysicalModel(
-        //                           color: const darkBlue,
-        //                           elevation: 3,
-        //                           borderRadius: BorderRadius.circular(50),
-        //                           child: Material(
-        //                             color: Colors.transparent,
-        //                             borderRadius: BorderRadius.circular(25),
-        //                             child: InkWell(
-        //                               borderRadius: BorderRadius.circular(50),
-        //                               splashColor:
-        //                                   Colors.black.withOpacity(0.3),
-        //                               onTap: signUpUser,
-        //                               child: Container(
-        //                                 width: double.infinity,
-        //                                 alignment: Alignment.center,
-        //                                 padding: const EdgeInsets.symmetric(
-        //                                     vertical: 12),
-        //                                 decoration: const ShapeDecoration(
-        //                                   shape: RoundedRectangleBorder(
-        //                                     borderRadius: BorderRadius.all(
-        //                                       Radius.circular(25),
-        //                                     ),
-        //                                   ),
-        //                                   color: Colors.transparent,
-        //                                 ),
-        //                                 child: _isLoading
-        //                                     ? const Center(
-        //                                         child: SizedBox(
-        //                                             height: 18,
-        //                                             width: 18,
-        //                                             child:
-        //                                                 CircularProgressIndicator(
-        //                                               color: Colors.white,
-        //                                             )),
-        //                                       )
-        //                                     : const Text('Sign Up',
-        //                                         style: TextStyle(
-        //                                             fontSize: 16,
-        //                                             color: Colors.white,
-        //                                             fontWeight: FontWeight.w500,
-        //                                             letterSpacing: 0.5)),
-        //                               ),
-        //                             ),
-        //                           ),
-        //                         ),
-        //                         Padding(
-        //                           padding: const EdgeInsets.only(
-        //                               top: 8.0, right: 12, left: 12),
-        //                           child: RichText(
-        //                             text: TextSpan(
-        //                               children: <TextSpan>[
-        //                                 const TextSpan(
-        //                                     text:
-        //                                         'By signing up, you agree to our ',
-        //                                     style: TextStyle(
-        //                                         color: Colors.black,
-        //                                         fontSize: 12)),
-        //                                 TextSpan(
-        //                                     text: 'Terms of Use',
-        //                                     style: const TextStyle(
-        //                                         color: Colors.blue,
-        //                                         fontSize: 12),
-        //                                     recognizer: TapGestureRecognizer()
-        //                                       ..onTap = () {
-        //                                         Navigator.of(context).push(
-        //                                           MaterialPageRoute(
-        //                                             builder: (context) =>
-        //                                                 const TermsConditions(),
-        //                                           ),
-        //                                         );
-        //                                       }),
-        //                                 const TextSpan(
-        //                                     text:
-        //                                         ' and confirm that you have read and understood our ',
-        //                                     style: TextStyle(
-        //                                         color: Colors.black,
-        //                                         fontSize: 12)),
-        //                                 TextSpan(
-        //                                     text: 'Privacy Policy.',
-        //                                     style: const TextStyle(
-        //                                         color: Colors.blue,
-        //                                         fontSize: 12),
-        //                                     recognizer: TapGestureRecognizer()
-        //                                       ..onTap = () {
-        //                                         Navigator.of(context).push(
-        //                                           MaterialPageRoute(
-        //                                             builder: (context) =>
-        //                                                 const DataPrivacy(),
-        //                                           ),
-        //                                         );
-        //                                       }),
-        //                               ],
-        //                             ),
-        //                           ),
-        //                         ),
-        //                         const SizedBox(height: 12),
-        //                         Column(
-        //                           mainAxisAlignment: MainAxisAlignment.end,
-        //                           children: [
-        //                             Material(
-        //                               color: Colors.transparent,
-        //                               child: InkWell(
-        //                                 borderRadius: BorderRadius.circular(25),
-        //                                 splashColor:
-        //                                     Colors.grey.withOpacity(0.3),
-        //                                 onTap: navigateToLogin,
-        //                                 child: SizedBox(
-        //                                   height: 45,
-        //                                   child: Column(
-        //                                     mainAxisAlignment:
-        //                                         MainAxisAlignment.center,
-        //                                     children: const [
-        //                                       Text("Already have an account?",
-        //                                           style: TextStyle(
-        //                                               color: Colors.grey,
-        //                                               fontSize: 13)),
-        //                                       Text(
-        //                                         "Log In",
-        //                                         style: TextStyle(
-        //                                             fontWeight: FontWeight.w500,
-        //                                             color: Color.fromARGB(
-        //                                                 255, 81, 81, 81),
-        //                                             fontSize: 14),
-        //                                       ),
-        //                                     ],
-        //                                   ),
-        //                                 ),
-        //                               ),
-        //                             ),
-        //                           ],
-        //                         ),
-        //                         const SizedBox(height: 20),
-        //                       ]),
-        //                     ),
-        //                   ],
-        //                 ),
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        //       )
-        : ChangeNotifierProvider<ChangeCountryProvider>(
-            create: (context) => ChangeCountryProvider(),
-            lazy: false,
-            child: ChangeNotifierProvider<UserReportProvider>(
-              create: (context) => UserReportProvider(),
-              lazy: false,
-              child: Container(
-                color: Colors.white,
-                child: SafeArea(
-                  child: Scaffold(
-                    body: PageView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        controller: pageController,
-                        onPageChanged: onPageChanged,
-                        children: [
-                          FeedScreen(
-                            durationInDay: durationInDay,
-                          ),
-                          MostLikedScreen(durationInDay: durationInDay),
-                          AddPost(
-                            durationInDay: durationInDay,
-                          ),
-                          Search(
-                            durationInDay: durationInDay,
-                          ),
-                          Submissions(
-                            durationInDay: durationInDay,
-                          ),
-                        ]),
-                    bottomNavigationBar: CupertinoTabBar(
-                        inactiveColor: Colors.white.withOpacity(0.6),
-                        activeColor: Colors.white,
-                        height: 50,
-                        backgroundColor: darkBlue,
-                        items: [
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                                padding: EdgeInsets.only(top: 3.0, right: 0),
-                                child: Icon(
-                                  Icons.home,
-                                )),
-                            label: 'Home',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(MyFlutterApp.university, size: 23),
-                            ),
-                            label: 'Archives',
-                          ),
-
-                          BottomNavigationBarItem(
-                            icon: Stack(
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Icon(
-                                    Icons.create,
+        : user == null && isGuest == false
+            ? Scaffold(
+                body: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      darkBlue,
+                      testColor,
+                    ],
+                  )),
+                  child: SafeArea(
+                    child: Container(
+                      // width: double.infinity,
+                      // height: MediaQuery.of(context).size.height * 1,
+                      child: Center(
+                        child: ListView(
+                          shrinkWrap: true,
+                          // reverse: true,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      MediaQuery.of(context).size.width > 600
+                                          ? 100
+                                          : 32),
+                              child: Column(children: [
+                                const SizedBox(height: 30),
+                                Image.asset(
+                                  width: MediaQuery.of(context).size.width * 1 -
+                                      40,
+                                  'assets/fairtalk_new_white_transparent.png',
+                                ),
+                                const SizedBox(height: 5),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 1 -
+                                      40,
+                                  child: const Text(
+                                    'A platform built to unite us all.',
+                                    style: TextStyle(
+                                        color: whiteDialog,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10,
+                                        fontFamily: 'Capitalis'),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
-                                Positioned(
-                                  top: 15,
-                                  left: 13,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 3.0),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 14,
+                                const SizedBox(height: 36),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
+                                  child: TextField(
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
+                                    textInputAction: TextInputAction.next,
+                                    controller: _usernameController,
+                                    maxLength: 16,
+                                    decoration: InputDecoration(
+                                      counterText: '',
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: whiteDialog, width: 2),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: testColor, width: 0),
+                                      ),
+                                      labelText: 'Username',
+                                      labelStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      hintStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      fillColor: testColor,
+                                      filled: true,
+                                      prefixIcon: const Icon(
+                                          Icons.person_outlined,
+                                          color: whiteDialog),
                                     ),
                                   ),
                                 ),
-                              ],
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
+                                  child: TextField(
+                                    textInputAction: TextInputAction.next,
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
+                                    controller: _emailController,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        // emptyPollQuestion = false;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          borderSide: const BorderSide(
+                                              color: whiteDialog, width: 2),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          borderSide: const BorderSide(
+                                              color: testColor, width: 0),
+                                        ),
+                                        labelText: 'Email Address',
+                                        labelStyle: const TextStyle(
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold),
+                                        hintStyle: const TextStyle(
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold),
+                                        fillColor: testColor,
+                                        filled: true,
+                                        prefixIcon: const Icon(
+                                            Icons.email_outlined,
+                                            color: whiteDialog)),
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: testColor,
+                                  elevation: 3,
+                                  child: TextField(
+                                    controller: _passwordController,
+                                    cursorColor: Colors.white,
+                                    style: const TextStyle(color: whiteDialog),
+                                    textInputAction: TextInputAction.done,
+                                    decoration: InputDecoration(
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: whiteDialog, width: 2),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                        borderSide: const BorderSide(
+                                            color: testColor, width: 0),
+                                      ),
+                                      labelText: 'Password',
+                                      labelStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      hintStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.bold),
+                                      fillColor: testColor,
+                                      filled: true,
+                                      prefixIcon: const Icon(Icons.lock_outline,
+                                          color: whiteDialog),
+                                      suffixIcon: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            _passwordVisible =
+                                                !_passwordVisible;
+                                          });
+                                        },
+                                        child: Icon(
+                                          _passwordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: whiteDialog,
+                                          size: 22,
+                                        ),
+                                      ),
+                                    ),
+                                    obscureText: !_passwordVisible,
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                PhysicalModel(
+                                  color: whiteDialog,
+                                  elevation: 3,
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(25),
+                                      splashColor:
+                                          Colors.black.withOpacity(0.3),
+                                      onTap: signUpUser,
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 45,
+                                        alignment: Alignment.center,
+                                        // padding: const EdgeInsets.symmetric(vertical: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          // border: Border.all(
+                                          //     color: Colors.white, width: 2),
+                                        ),
+
+                                        child: _isLoading
+                                            ? const Center(
+                                                child: SizedBox(
+                                                  height: 18,
+                                                  width: 18,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: darkBlue,
+                                                  ),
+                                                ),
+                                              )
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  const Text('Sign up',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: darkBlue,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      )),
+                                                ],
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 7),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    130
+                                                : MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    70,
+                                        // MediaQuery.of(context).size.width / 2 - 194,
+                                        decoration: const BoxDecoration(
+                                          // color: Colors.red,
+                                          border: Border(
+                                            top: BorderSide(
+                                                width: 1, color: whiteDialog),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 33,
+                                      alignment: Alignment.center,
+                                      child: const Text('or',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: whiteDialog,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    130
+                                                : MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2 -
+                                                    70,
+                                        decoration: const BoxDecoration(
+                                          // color: Colors.red,
+                                          border: Border(
+                                            top: BorderSide(
+                                                width: 1, color: whiteDialog),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 7),
+                                PhysicalModel(
+                                  color: whiteDialog,
+                                  elevation: 3,
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(50),
+                                      splashColor: Colors.grey.withOpacity(0.3),
+                                      onTap: () async {
+                                        // await signInWithGoogle();
+                                        // if (mounted) {
+                                        //   Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //       builder: (_) => CreateUsernameGoogle(),
+                                        //     ),
+                                        //   );
+                                        // }
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 45,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          // border: Border.all(
+                                          //     color: Colors.white, width: 2),
+                                        ),
+                                        child: _isLoadingGoogle
+                                            ? const Center(
+                                                child: SizedBox(
+                                                    height: 18,
+                                                    width: 18,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: darkBlue,
+                                                    )),
+                                              )
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                      'assets/google-logo.png',
+                                                      height: 23),
+                                                  const SizedBox(width: 12),
+                                                  const Text(
+                                                    'Sign up with Google',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: darkBlue,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 7),
+                                RichText(
+                                  softWrap: true,
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    children: <TextSpan>[
+                                      const TextSpan(
+                                          text:
+                                              'By signing up, you agree to our ',
+                                          style: TextStyle(
+                                              color: whiteDialog,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'Terms of Use',
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 103, 187, 255),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const TermsConditions(),
+                                                ),
+                                              );
+                                            }),
+                                      const TextSpan(
+                                          text:
+                                              ' and confirm that you have read and understood our ',
+                                          style: TextStyle(
+                                              color: whiteDialog,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: 'Privacy Policy.',
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 103, 187, 255),
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const DataPrivacy(),
+                                                ),
+                                              );
+                                            }),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 30),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        borderRadius: BorderRadius.circular(25),
+                                        splashColor:
+                                            Colors.white.withOpacity(0.3),
+                                        onTap: navigateToLogin,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: SizedBox(
+                                            height: 45,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Text("Already have an account?",
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 230, 230, 230),
+                                                      fontSize: 11,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    )),
+                                                Text(
+                                                  "Log in",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: whiteDialog,
+                                                      fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                              ]),
                             ),
-                            label: 'Create',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.search,
-                              ),
-                            ),
-                            label: 'Search',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 6.0),
-                              child: Icon(
-                                MyFlutterApp.users,
-                                size: 24,
-                              ),
-                            ),
-                            label: 'Democracy',
-                          ),
-                          // BottomNavigationBarItem(
-                          //   icon: Padding(
-                          //     padding: const EdgeInsets.only(top: 3.0),
-                          //     child: Icon(
-                          //       Icons.notifications,
-                          //     ),
-                          //   ),
-                          //   label: 'Notifications',
-                          // ),
-                        ],
-                        currentIndex: _page,
-                        onTap: navigationTapped),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          );
+              )
+
+            // Stack(
+            //     children: [
+            //       Container(
+            //         color: Colors.white,
+            //         child: SafeArea(
+            //           child: Scaffold(
+            //             backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+            //             appBar: AppBar(
+            //               elevation: 4,
+            //               toolbarHeight: 68,
+            //               backgroundColor: Colors.white,
+            //               actions: [
+            //                 Expanded(
+            //                   child: SizedBox(
+            //                     width: MediaQuery.of(context).size.width * 1,
+            //                     child: Column(
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               top: 8, right: 8, left: 8),
+            //                           child: Row(
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.spaceBetween,
+            //                             children: [
+            //                               const SizedBox(
+            //                                 width: 36,
+            //                                 height: 35,
+            //                                 child: Material(
+            //                                   shape: CircleBorder(),
+            //                                   color: Colors.white,
+            //                                   child: Icon(Icons.settings,
+            //                                       color: Color.fromARGB(
+            //                                           255, 80, 80, 80)),
+            //                                 ),
+            //                               ),
+            //                               Column(
+            //                                 children: [
+            //                                   Row(
+            //                                     children: const [
+            //                                       Padding(
+            //                                         padding: EdgeInsets.only(
+            //                                             bottom: 1.0),
+            //                                         child: Text(
+            //                                           'GLOBAL',
+            //                                           style: TextStyle(
+            //                                             color: Color.fromARGB(
+            //                                                 255, 55, 55, 55),
+            //                                             fontWeight: FontWeight.bold,
+            //                                             fontSize: 14,
+            //                                           ),
+            //                                         ),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                   PhysicalModel(
+            //                                     color: Colors.transparent,
+            //                                     elevation: 3,
+            //                                     borderRadius:
+            //                                         BorderRadius.circular(25),
+            //                                     child: Container(
+            //                                         width: 116,
+            //                                         height: 32.5,
+            //                                         decoration: BoxDecoration(
+            //                                           borderRadius:
+            //                                               BorderRadius.circular(25),
+            //                                         ),
+            //                                         child: Row(
+            //                                           children: [
+            //                                             ClipRRect(
+            //                                               child: Container(
+            //                                                 decoration:
+            //                                                     const BoxDecoration(
+            //                                                         borderRadius:
+            //                                                             BorderRadius
+            //                                                                 .only(
+            //                                                           topLeft: Radius
+            //                                                               .circular(
+            //                                                                   25),
+            //                                                           bottomLeft: Radius
+            //                                                               .circular(
+            //                                                                   25),
+            //                                                         ),
+            //                                                         color: Color
+            //                                                             .fromARGB(
+            //                                                                 255,
+            //                                                                 125,
+            //                                                                 125,
+            //                                                                 125)),
+            //                                                 height: 100,
+            //                                                 width: 58,
+            //                                                 child: const Icon(
+            //                                                     MyFlutterApp
+            //                                                         .globe_americas,
+            //                                                     color: Colors.white,
+            //                                                     size: 23),
+            //                                               ),
+            //                                             ),
+            //                                             ClipRRect(
+            //                                               child: Container(
+            //                                                   decoration:
+            //                                                       const BoxDecoration(
+            //                                                     borderRadius:
+            //                                                         BorderRadius
+            //                                                             .only(
+            //                                                       topRight: Radius
+            //                                                           .circular(25),
+            //                                                       bottomRight:
+            //                                                           Radius
+            //                                                               .circular(
+            //                                                                   25),
+            //                                                     ),
+            //                                                     color:
+            //                                                         Color.fromARGB(
+            //                                                             255,
+            //                                                             228,
+            //                                                             228,
+            //                                                             228),
+            //                                                   ),
+            //                                                   height: 100,
+            //                                                   width: 58,
+            //                                                   child: const Icon(
+            //                                                       Icons.flag,
+            //                                                       color:
+            //                                                           Colors.white,
+            //                                                       size: 17)),
+            //                                             )
+            //                                           ],
+            //                                         )),
+            //                                   ),
+            //                                 ],
+            //                               ),
+            //                               Column(
+            //                                 children: [
+            //                                   const Padding(
+            //                                     padding:
+            //                                         EdgeInsets.only(bottom: 1.0),
+            //                                     child: Text(
+            //                                       'MESSAGES',
+            //                                       style: TextStyle(
+            //                                         color: Color.fromARGB(
+            //                                             255, 55, 55, 55),
+            //                                         fontWeight: FontWeight.bold,
+            //                                         fontSize: 14,
+            //                                       ),
+            //                                     ),
+            //                                   ),
+            //                                   PhysicalModel(
+            //                                     color: Colors.transparent,
+            //                                     elevation: 3,
+            //                                     borderRadius:
+            //                                         BorderRadius.circular(25),
+            //                                     child: Container(
+            //                                       width: 116,
+            //                                       height: 32.5,
+            //                                       decoration: BoxDecoration(
+            //                                         borderRadius:
+            //                                             BorderRadius.circular(25),
+            //                                       ),
+            //                                       child: Row(
+            //                                         children: [
+            //                                           ClipRRect(
+            //                                             child: Container(
+            //                                               decoration:
+            //                                                   const BoxDecoration(
+            //                                                       borderRadius:
+            //                                                           BorderRadius
+            //                                                               .only(
+            //                                                         topLeft: Radius
+            //                                                             .circular(
+            //                                                                 25),
+            //                                                         bottomLeft: Radius
+            //                                                             .circular(
+            //                                                                 25),
+            //                                                       ),
+            //                                                       color: Color
+            //                                                           .fromARGB(
+            //                                                               255,
+            //                                                               125,
+            //                                                               125,
+            //                                                               125)),
+            //                                               height: 100,
+            //                                               width: 58,
+            //                                               child: const Icon(
+            //                                                   Icons.message,
+            //                                                   color: Colors.white,
+            //                                                   size: 23),
+            //                                             ),
+            //                                           ),
+            //                                           ClipRRect(
+            //                                             child: Container(
+            //                                                 decoration:
+            //                                                     const BoxDecoration(
+            //                                                   borderRadius:
+            //                                                       BorderRadius.only(
+            //                                                     topRight:
+            //                                                         Radius.circular(
+            //                                                             25),
+            //                                                     bottomRight:
+            //                                                         Radius.circular(
+            //                                                             25),
+            //                                                   ),
+            //                                                   color: Color.fromARGB(
+            //                                                       255,
+            //                                                       228,
+            //                                                       228,
+            //                                                       228),
+            //                                                 ),
+            //                                                 height: 100,
+            //                                                 width: 58,
+            //                                                 child: const RotatedBox(
+            //                                                   quarterTurns: 1,
+            //                                                   child: Icon(
+            //                                                       Icons.poll,
+            //                                                       color:
+            //                                                           Colors.white,
+            //                                                       size: 17),
+            //                                                 )),
+            //                                           )
+            //                                         ],
+            //                                       ),
+            //                                     ),
+            //                                   ),
+            //                                 ],
+            //                               ),
+            //                               const SizedBox(
+            //                                 width: 36,
+            //                                 height: 35,
+            //                                 child: Icon(Icons.filter_list,
+            //                                     color: Color.fromARGB(
+            //                                         255, 80, 80, 80)),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //             bottomNavigationBar: CupertinoTabBar(
+            //                 inactiveColor: Colors.grey,
+            //                 activeColor: Colors.black,
+            //                 height: 50,
+            //                 backgroundColor: Colors.white,
+            //                 items: [
+            //                   const BottomNavigationBarItem(
+            //                     icon: Padding(
+            //                         padding: EdgeInsets.only(top: 3.0, right: 0),
+            //                         child: Icon(
+            //                           Icons.home,
+            //                         )),
+            //                     label: 'Home',
+            //                   ),
+            //                   const BottomNavigationBarItem(
+            //                     icon: Padding(
+            //                       padding: EdgeInsets.only(top: 4.0),
+            //                       child: Icon(MyFlutterApp.university, size: 25),
+            //                     ),
+            //                     label: 'Archives',
+            //                   ),
+            //                   const BottomNavigationBarItem(
+            //                     icon: Padding(
+            //                       padding: EdgeInsets.only(top: 3.0),
+            //                       child: Icon(
+            //                         Icons.search,
+            //                       ),
+            //                     ),
+            //                     label: 'Search',
+            //                   ),
+            //                   BottomNavigationBarItem(
+            //                     icon: Stack(
+            //                       children: const [
+            //                         Padding(
+            //                           padding: EdgeInsets.only(top: 3.0),
+            //                           child: Icon(
+            //                             Icons.create,
+            //                           ),
+            //                         ),
+            //                         Positioned(
+            //                           top: 15,
+            //                           left: 13,
+            //                           child: Padding(
+            //                             padding: EdgeInsets.only(top: 3.0),
+            //                             child: Icon(
+            //                               Icons.add,
+            //                               size: 14,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                     label: 'Create',
+            //                   ),
+            //                   const BottomNavigationBarItem(
+            //                     icon: Padding(
+            //                       padding: EdgeInsets.only(top: 3.0),
+            //                       child: Icon(
+            //                         Icons.phone_iphone,
+            //                       ),
+            //                     ),
+            //                     label: 'Submissions',
+            //                   ),
+            //                 ],
+            //                 currentIndex: _page,
+            //                 onTap: navigationTapped),
+            //           ),
+            //         ),
+            //       ),
+            //       Positioned.fill(
+            //         child: Visibility(
+            //           visible: isLoading,
+            //           child: Container(
+            //             color: Colors.black.withOpacity(0.3),
+            //             child: const Center(
+            //               child: CircularProgressIndicator(
+            //                 color: Colors.white,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   )
+            // : user == null && isGuest == false
+            //     ? Scaffold(
+            //         backgroundColor: Colors.white,
+            //         body: Container(
+            //           color: Colors.transparent,
+            //           child: SafeArea(
+            //             child: Container(
+            //               color: Colors.white,
+            //               width: double.infinity,
+            //               height: MediaQuery.of(context).size.height * 1,
+            //               child: Center(
+            //                 child: ListView(
+            //                   shrinkWrap: true,
+            //                   // reverse: true,
+            //                   children: [
+            //                     Container(
+            //                       padding: EdgeInsets.symmetric(
+            //                           horizontal:
+            //                               MediaQuery.of(context).size.width > 600
+            //                                   ? 100
+            //                                   : 32),
+            //                       child: Column(children: [
+            //                         const SizedBox(height: 20),
+            //                         Image.asset(
+            //                           width: MediaQuery.of(context).size.width * 1 -
+            //                               80,
+            //                           'assets/fairtalk_new_blue_transparent.png',
+            //                         ),
+            //                         const SizedBox(height: 5),
+            //                         SizedBox(
+            //                           width: MediaQuery.of(context).size.width * 1 -
+            //                               80,
+            //                           child: const Text(
+            //                             'A platform built to unite us all.',
+            //                             style: TextStyle(
+            //                                 color: darkBlue,
+            //                                 fontWeight: FontWeight.bold,
+            //                                 fontSize: 9,
+            //                                 fontFamily: 'Capitalis'),
+            //                             textAlign: TextAlign.center,
+            //                           ),
+            //                         ),
+            //                         const SizedBox(height: 24),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 0.0),
+            //                           child: SizedBox(
+            //                             height: 60,
+            //                             child: Theme(
+            //                               data: themeData.copyWith(
+            //                                   inputDecorationTheme: themeData
+            //                                       .inputDecorationTheme
+            //                                       .copyWith(
+            //                                 prefixIconColor:
+            //                                     MaterialStateColor.resolveWith(
+            //                                         (Set<MaterialState> states) {
+            //                                   if (states.contains(
+            //                                       MaterialState.focused)) {
+            //                                     return const Color.fromARGB(
+            //                                         255, 36, 64, 101);
+            //                                   }
+
+            //                                   return Colors.grey;
+            //                                 }),
+            //                               )),
+            //                               child: TextField(
+            //                                 textInputAction: TextInputAction.next,
+            //                                 controller: _usernameController,
+            //                                 maxLength: 16,
+            //                                 decoration: InputDecoration(
+            //                                     counterText: '',
+            //                                     focusedBorder: OutlineInputBorder(
+            //                                       borderRadius:
+            //                                           BorderRadius.circular(25),
+            //                                       borderSide: const BorderSide(
+            //                                           color: Color.fromARGB(
+            //                                               255, 36, 64, 101),
+            //                                           width: 2),
+            //                                     ),
+            //                                     enabledBorder: OutlineInputBorder(
+            //                                       borderRadius:
+            //                                           BorderRadius.circular(25),
+            //                                       borderSide: const BorderSide(
+            //                                           color: Colors.grey, width: 1),
+            //                                     ),
+            //                                     labelText: 'Username',
+            //                                     labelStyle: const TextStyle(
+            //                                         fontSize: 14,
+            //                                         color: Colors.grey),
+            //                                     hintStyle: const TextStyle(
+            //                                         fontSize: 14,
+            //                                         color: Colors.grey),
+            //                                     fillColor: const Color.fromARGB(
+            //                                         255, 245, 245, 245),
+            //                                     filled: true,
+            //                                     prefixIcon: const Icon(
+            //                                       Icons.person_outlined,
+            //                                     )),
+            //                               ),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         const SizedBox(height: 24),
+            //                         Theme(
+            //                           data: themeData.copyWith(inputDecorationTheme:
+            //                               themeData.inputDecorationTheme.copyWith(
+            //                             prefixIconColor:
+            //                                 MaterialStateColor.resolveWith(
+            //                                     (Set<MaterialState> states) {
+            //                               if (states
+            //                                   .contains(MaterialState.focused)) {
+            //                                 return const Color.fromARGB(
+            //                                     255, 36, 64, 101);
+            //                               }
+
+            //                               return Colors.grey;
+            //                             }),
+            //                           )),
+            //                           child: TextField(
+            //                             textInputAction: TextInputAction.next,
+            //                             controller: _emailController,
+            //                             onChanged: (val) {
+            //                               setState(() {
+            //                                 // emptyPollQuestion = false;
+            //                               });
+            //                             },
+            //                             decoration: InputDecoration(
+            //                                 focusedBorder: OutlineInputBorder(
+            //                                   borderRadius:
+            //                                       BorderRadius.circular(25),
+            //                                   borderSide: const BorderSide(
+            //                                       color: Color.fromARGB(
+            //                                           255, 36, 64, 101),
+            //                                       width: 2),
+            //                                 ),
+            //                                 enabledBorder: OutlineInputBorder(
+            //                                   borderRadius:
+            //                                       BorderRadius.circular(25),
+            //                                   borderSide: const BorderSide(
+            //                                       color: Colors.grey, width: 1),
+            //                                 ),
+            //                                 labelText: 'Email Address',
+            //                                 labelStyle: const TextStyle(
+            //                                     fontSize: 14, color: Colors.grey),
+            //                                 hintStyle: const TextStyle(
+            //                                     fontSize: 14, color: Colors.grey),
+            //                                 fillColor: const Color.fromARGB(
+            //                                     255, 245, 245, 245),
+            //                                 filled: true,
+            //                                 prefixIcon: const Icon(
+            //                                   Icons.email_outlined,
+            //                                 )),
+            //                           ),
+            //                         ),
+            //                         const SizedBox(height: 24),
+            //                         Theme(
+            //                           data: themeData.copyWith(inputDecorationTheme:
+            //                               themeData.inputDecorationTheme.copyWith(
+            //                             prefixIconColor:
+            //                                 MaterialStateColor.resolveWith(
+            //                                     (Set<MaterialState> states) {
+            //                               if (states
+            //                                   .contains(MaterialState.focused)) {
+            //                                 return const Color.fromARGB(
+            //                                     255, 36, 64, 101);
+            //                               }
+
+            //                               return Colors.grey;
+            //                             }),
+            //                           )),
+            //                           child: TextField(
+            //                             controller: _passwordController,
+            //                             textInputAction: TextInputAction.done,
+            //                             decoration: InputDecoration(
+            //                               focusedBorder: OutlineInputBorder(
+            //                                 borderRadius: BorderRadius.circular(25),
+            //                                 borderSide: const BorderSide(
+            //                                     color: Color.fromARGB(
+            //                                         255, 36, 64, 101),
+            //                                     width: 2),
+            //                               ),
+            //                               enabledBorder: OutlineInputBorder(
+            //                                 borderRadius: BorderRadius.circular(25),
+            //                                 borderSide: const BorderSide(
+            //                                     color: Colors.grey, width: 1),
+            //                               ),
+            //                               labelText: 'Password',
+            //                               labelStyle: const TextStyle(
+            //                                   fontSize: 14, color: Colors.grey),
+            //                               hintStyle: const TextStyle(
+            //                                   fontSize: 14, color: Colors.grey),
+            //                               fillColor: const Color.fromARGB(
+            //                                   255, 245, 245, 245),
+            //                               filled: true,
+            //                               prefixIcon: const Icon(
+            //                                 Icons.lock_outline,
+            //                               ),
+            //                               suffixIcon: InkWell(
+            //                                 onTap: () {
+            //                                   setState(() {
+            //                                     _passwordVisible =
+            //                                         !_passwordVisible;
+            //                                   });
+            //                                 },
+            //                                 child: Icon(
+            //                                   _passwordVisible
+            //                                       ? Icons.visibility
+            //                                       : Icons.visibility_off,
+            //                                   color: Colors.grey,
+            //                                   size: 22,
+            //                                 ),
+            //                               ),
+            //                             ),
+            //                             obscureText: !_passwordVisible,
+            //                           ),
+            //                         ),
+            //                         const SizedBox(height: 24),
+            //                         PhysicalModel(
+            //                           color: const darkBlue,
+            //                           elevation: 3,
+            //                           borderRadius: BorderRadius.circular(50),
+            //                           child: Material(
+            //                             color: Colors.transparent,
+            //                             borderRadius: BorderRadius.circular(25),
+            //                             child: InkWell(
+            //                               borderRadius: BorderRadius.circular(50),
+            //                               splashColor:
+            //                                   Colors.black.withOpacity(0.3),
+            //                               onTap: signUpUser,
+            //                               child: Container(
+            //                                 width: double.infinity,
+            //                                 alignment: Alignment.center,
+            //                                 padding: const EdgeInsets.symmetric(
+            //                                     vertical: 12),
+            //                                 decoration: const ShapeDecoration(
+            //                                   shape: RoundedRectangleBorder(
+            //                                     borderRadius: BorderRadius.all(
+            //                                       Radius.circular(25),
+            //                                     ),
+            //                                   ),
+            //                                   color: Colors.transparent,
+            //                                 ),
+            //                                 child: _isLoading
+            //                                     ? const Center(
+            //                                         child: SizedBox(
+            //                                             height: 18,
+            //                                             width: 18,
+            //                                             child:
+            //                                                 CircularProgressIndicator(
+            //                                               color: Colors.white,
+            //                                             )),
+            //                                       )
+            //                                     : const Text('Sign Up',
+            //                                         style: TextStyle(
+            //                                             fontSize: 16,
+            //                                             color: Colors.white,
+            //                                             fontWeight: FontWeight.w500,
+            //                                             letterSpacing: 0.5)),
+            //                               ),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               top: 8.0, right: 12, left: 12),
+            //                           child: RichText(
+            //                             text: TextSpan(
+            //                               children: <TextSpan>[
+            //                                 const TextSpan(
+            //                                     text:
+            //                                         'By signing up, you agree to our ',
+            //                                     style: TextStyle(
+            //                                         color: Colors.black,
+            //                                         fontSize: 12)),
+            //                                 TextSpan(
+            //                                     text: 'Terms of Use',
+            //                                     style: const TextStyle(
+            //                                         color: Colors.blue,
+            //                                         fontSize: 12),
+            //                                     recognizer: TapGestureRecognizer()
+            //                                       ..onTap = () {
+            //                                         Navigator.of(context).push(
+            //                                           MaterialPageRoute(
+            //                                             builder: (context) =>
+            //                                                 const TermsConditions(),
+            //                                           ),
+            //                                         );
+            //                                       }),
+            //                                 const TextSpan(
+            //                                     text:
+            //                                         ' and confirm that you have read and understood our ',
+            //                                     style: TextStyle(
+            //                                         color: Colors.black,
+            //                                         fontSize: 12)),
+            //                                 TextSpan(
+            //                                     text: 'Privacy Policy.',
+            //                                     style: const TextStyle(
+            //                                         color: Colors.blue,
+            //                                         fontSize: 12),
+            //                                     recognizer: TapGestureRecognizer()
+            //                                       ..onTap = () {
+            //                                         Navigator.of(context).push(
+            //                                           MaterialPageRoute(
+            //                                             builder: (context) =>
+            //                                                 const DataPrivacy(),
+            //                                           ),
+            //                                         );
+            //                                       }),
+            //                               ],
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         const SizedBox(height: 12),
+            //                         Column(
+            //                           mainAxisAlignment: MainAxisAlignment.end,
+            //                           children: [
+            //                             Material(
+            //                               color: Colors.transparent,
+            //                               child: InkWell(
+            //                                 borderRadius: BorderRadius.circular(25),
+            //                                 splashColor:
+            //                                     Colors.grey.withOpacity(0.3),
+            //                                 onTap: navigateToLogin,
+            //                                 child: SizedBox(
+            //                                   height: 45,
+            //                                   child: Column(
+            //                                     mainAxisAlignment:
+            //                                         MainAxisAlignment.center,
+            //                                     children: const [
+            //                                       Text("Already have an account?",
+            //                                           style: TextStyle(
+            //                                               color: Colors.grey,
+            //                                               fontSize: 13)),
+            //                                       Text(
+            //                                         "Log In",
+            //                                         style: TextStyle(
+            //                                             fontWeight: FontWeight.w500,
+            //                                             color: Color.fromARGB(
+            //                                                 255, 81, 81, 81),
+            //                                             fontSize: 14),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ),
+            //                           ],
+            //                         ),
+            //                         const SizedBox(height: 20),
+            //                       ]),
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            : ChangeNotifierProvider<ChangeCountryProvider>(
+                create: (context) => ChangeCountryProvider(),
+                lazy: false,
+                child: ChangeNotifierProvider<UserReportProvider>(
+                  create: (context) => UserReportProvider(),
+                  lazy: false,
+                  child: Container(
+                    color: Colors.white,
+                    child: SafeArea(
+                      child: Scaffold(
+                        body: PageView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            controller: pageController,
+                            onPageChanged: onPageChanged,
+                            children: [
+                              FeedScreen(
+                                durationInDay: durationInDay,
+                              ),
+                              MostLikedScreen(durationInDay: durationInDay),
+                              AddPost(
+                                durationInDay: durationInDay,
+                              ),
+                              Search(
+                                durationInDay: durationInDay,
+                              ),
+                              Submissions(
+                                durationInDay: durationInDay,
+                              ),
+                            ]),
+                        bottomNavigationBar: CupertinoTabBar(
+                            inactiveColor: Colors.white.withOpacity(0.6),
+                            activeColor: Colors.white,
+                            height: 50,
+                            backgroundColor: darkBlue,
+                            items: [
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 3.0, right: 0),
+                                    child: Icon(
+                                      Icons.home,
+                                    )),
+                                label: 'Home',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child:
+                                      Icon(MyFlutterApp.university, size: 23),
+                                ),
+                                label: 'Archives',
+                              ),
+
+                              BottomNavigationBarItem(
+                                icon: Stack(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 3.0),
+                                      child: Icon(
+                                        Icons.create,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 15,
+                                      left: 13,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 3.0),
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                label: 'Create',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 3.0),
+                                  child: Icon(
+                                    Icons.search,
+                                  ),
+                                ),
+                                label: 'Search',
+                              ),
+                              const BottomNavigationBarItem(
+                                icon: Padding(
+                                  padding: EdgeInsets.only(top: 6.0),
+                                  child: Icon(
+                                    MyFlutterApp.users,
+                                    size: 24,
+                                  ),
+                                ),
+                                label: 'Democracy',
+                              ),
+                              // BottomNavigationBarItem(
+                              //   icon: Padding(
+                              //     padding: const EdgeInsets.only(top: 3.0),
+                              //     child: Icon(
+                              //       Icons.notifications,
+                              //     ),
+                              //   ),
+                              //   label: 'Notifications',
+                              // ),
+                            ],
+                            currentIndex: _page,
+                            onTap: navigationTapped),
+                      ),
+                    ),
+                  ),
+                ),
+              );
   }
 
   _getStartTime() {

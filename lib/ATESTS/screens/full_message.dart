@@ -2407,15 +2407,15 @@ class _FullMessageState extends State<FullMessage> {
                                                                                   child: CircularProgressIndicator(
                                                                                 color: Colors.black,
                                                                               )),
-                                                                              FadeInImage.memoryNetwork(
-                                                                                  width: MediaQuery.of(context).size.width,
-                                                                                  // height: MediaQuery.of(context).size.width * 0.5,
-                                                                                  placeholder: kTransparentImage,
-                                                                                  fadeInDuration: const Duration(milliseconds: 200),
-                                                                                  image: YoutubePlayerController.getThumbnail(
-                                                                                    videoId: controller.initialVideoId,
-                                                                                    quality: ThumbnailQuality.medium,
-                                                                                  )),
+                                                                              // FadeInImage.memoryNetwork(
+                                                                              //     width: MediaQuery.of(context).size.width,
+                                                                              //     // height: MediaQuery.of(context).size.width * 0.5,
+                                                                              //     placeholder: kTransparentImage,
+                                                                              //     fadeInDuration: const Duration(milliseconds: 200),
+                                                                              //     image: YoutubePlayerController.getThumbnail(
+                                                                              //       videoId: controller.initialVideoId,
+                                                                              //       quality: ThumbnailQuality.high,
+                                                                              //     )),
                                                                             ],
                                                                           )),
                                                                         );

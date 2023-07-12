@@ -2262,25 +2262,9 @@ class _AddPostState extends State<AddPost> {
                                                                       firstChild:
                                                                           Material(
                                                                         child:
-                                                                            DecoratedBox(
-                                                                          // ignore: sort_child_properties_last
+                                                                            const Center(
                                                                           child:
-                                                                              const Center(
-                                                                            child:
-                                                                                CircularProgressIndicator(),
-                                                                          ),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            image:
-                                                                                DecorationImage(
-                                                                              image: NetworkImage(
-                                                                                YoutubePlayerController.getThumbnail(
-                                                                                  videoId: controller!.initialVideoId,
-                                                                                  quality: ThumbnailQuality.medium,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
+                                                                              CircularProgressIndicator(),
                                                                         ),
                                                                       ),
                                                                     );

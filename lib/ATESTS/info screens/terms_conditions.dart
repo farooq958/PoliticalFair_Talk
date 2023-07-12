@@ -59,7 +59,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                                 color: whiteDialog,
                                 fontSize: 20,
                                 letterSpacing: 0,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -201,7 +201,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 15),
                             const Text(
-                              "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure), we'll ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing. Everyone has the same opportunity to share their thoughts and ideas with the rest of the world or country. If you want to brag about how great you are as an individual, you already have thousands of other platforms such as Twitter & Instagram that let you do exactly just that. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                              "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),

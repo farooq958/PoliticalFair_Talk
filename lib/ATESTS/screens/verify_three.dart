@@ -63,7 +63,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                         style: TextStyle(
                             color: darkBlue,
                             fontSize: 20,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -143,6 +143,14 @@ class _VerifyThreeState extends State<VerifyThree> {
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(75),
                           ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              darkBlue,
+                              testColor,
+                            ],
+                          ),
                         ),
                         padding: const EdgeInsets.only(top: 20, bottom: 0),
                         width: MediaQuery.of(context).size.width,
@@ -163,7 +171,7 @@ class _VerifyThreeState extends State<VerifyThree> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 10),
                               decoration: BoxDecoration(
-                                color: darkBlue,
+                                color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(15),
                                 border:
                                     Border.all(width: 2, color: Colors.white),
@@ -174,9 +182,9 @@ class _VerifyThreeState extends State<VerifyThree> {
                                     'Now we need to verify that the person on the ID card is you.',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 17,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.bold,
                                       letterSpacing: 0,
                                     ),
                                   ),
@@ -199,9 +207,9 @@ class _VerifyThreeState extends State<VerifyThree> {
                                     "For this step, you'll need to take a picture of yourself holding your ID card. Please make sure that your ID card isn't blocking any parts of your face.",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       color: Colors.white,
-                                      letterSpacing: 0,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ],
@@ -209,84 +217,92 @@ class _VerifyThreeState extends State<VerifyThree> {
                             ),
                             Column(
                               children: [
-                                Material(
-                                  borderRadius: BorderRadius.circular(50),
+                                PhysicalModel(
+                                  elevation: 3,
                                   color: Colors.white,
-                                  child: InkWell(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Material(
                                     borderRadius: BorderRadius.circular(50),
-                                    splashColor: Colors.grey.withOpacity(0.5),
-                                    onTap: () {
-                                      Future.delayed(
-                                          const Duration(milliseconds: 150),
-                                          () async {
-                                        Uint8List? file = await openCamera(
-                                          context: context,
-                                          cameraFileType: CameraFileType.image,
-                                          add: "two",
-                                        );
-                                        if (file != null) {
-                                          if (emailAttachmentPhotos.length ==
-                                              2) {
-                                            emailAttachmentPhotos.removeAt(1);
-                                          }
-                                          emailAttachmentPhotos.insert(1, file);
-
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    VerifyComplete(
-                                                        durationInDay: widget
-                                                            .durationInDay)),
+                                    color: Colors.white,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(50),
+                                      splashColor: Colors.grey.withOpacity(0.5),
+                                      onTap: () {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 150),
+                                            () async {
+                                          Uint8List? file = await openCamera(
+                                            context: context,
+                                            cameraFileType:
+                                                CameraFileType.image,
+                                            add: "two",
                                           );
-                                        }
-                                      });
-                                    },
-                                    child: Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(
-                                            children: const [
-                                              Text(
-                                                'Take picture of yourself',
-                                                style: TextStyle(
+                                          if (file != null) {
+                                            if (emailAttachmentPhotos.length ==
+                                                2) {
+                                              emailAttachmentPhotos.removeAt(1);
+                                            }
+                                            emailAttachmentPhotos.insert(
+                                                1, file);
+
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      VerifyComplete(
+                                                          durationInDay: widget
+                                                              .durationInDay)),
+                                            );
+                                          }
+                                        });
+                                      },
+                                      child: Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              children: const [
+                                                Text(
+                                                  'Take picture of yourself',
+                                                  style: TextStyle(
                                                     fontSize: 16.5,
                                                     color: darkBlue,
                                                     fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0),
-                                              ),
-                                              Text(
-                                                'holding ID card',
-                                                style: TextStyle(
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'holding ID card',
+                                                  style: TextStyle(
                                                     fontSize: 16.5,
                                                     color: darkBlue,
                                                     fontWeight: FontWeight.bold,
-                                                    letterSpacing: 0),
-                                              ),
-                                            ],
-                                          ),
-                                          Container(width: 8),
-                                          const Icon(
-                                            Icons.keyboard_arrow_right,
-                                            size: 20,
-                                            color: darkBlue,
-                                          ),
-                                        ],
-                                      ),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.85,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      decoration: const ShapeDecoration(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(25),
-                                          ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(width: 8),
+                                            const Icon(
+                                              Icons.keyboard_arrow_right,
+                                              size: 20,
+                                              color: darkBlue,
+                                            ),
+                                          ],
                                         ),
-                                        color: Colors.transparent,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.85,
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 12),
+                                        decoration: const ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(25),
+                                            ),
+                                          ),
+                                          color: Colors.transparent,
+                                        ),
                                       ),
                                     ),
                                   ),

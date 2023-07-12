@@ -445,6 +445,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
+                                                          const Automate(user: user!,)),
+                                                );
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12,
+                                                  top: 17,
+                                                  bottom: 17),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                      Icons.lock_outlined,
+                                                      size: 23,
+                                                      color: darkBlue),
+                                                  Container(width: 15),
+                                                  const Text(
+                                                    'Automate',
+                                                    style: TextStyle(
+                                                      fontSize: 16.5,
+                                                      color: darkBlue,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                1,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                            splashColor:
+                                                Colors.grey.withOpacity(0.3),
+                                            onTap: () {
+                                              Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 150), () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
                                                           const AdminVerification()),
                                                 );
                                               });

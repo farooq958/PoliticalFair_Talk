@@ -268,21 +268,6 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                         children: [
                           Stack(
                             children: [
-                              Container(
-                                padding:
-                                    const EdgeInsets.only(left: 0, top: 15),
-                                width: MediaQuery.of(context).size.width,
-                                child: const Center(
-                                  child: Text(
-                                    "Create a Ballot",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        letterSpacing: 0,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
                               Positioned(
                                 left: 5,
                                 top: 8,
@@ -308,7 +293,22 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.only(left: 0, top: 16.5),
+                                width: MediaQuery.of(context).size.width,
+                                child: const Center(
+                                  child: Text(
+                                    "Create a Ballot",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        letterSpacing: 0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           // const SizedBox(height: 5),
@@ -335,432 +335,522 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                               ),
                               child: Column(
                                 children: [
-                                  const Text(
-                                    'Tired of these guys dictating the direction of social media?',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 250,
-                                    child: Image.asset(
-                                      'assets/musk-zuck.png',
-                                      opacity: const AlwaysStoppedAnimation(.9),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   padding: const EdgeInsets.only(
+                                  //       top: 6, right: 8, left: 8),
+                                  //   decoration: BoxDecoration(
+                                  //     color: whiteDialog,
+                                  //     borderRadius: const BorderRadius.only(
+                                  //         topRight: Radius.circular(25),
+                                  //         topLeft: Radius.circular(25)),
+                                  //     border:
+                                  //         Border.all(width: 5, color: darkBlue),
+                                  //   ),
+                                  //   child: Column(
+                                  //     children: [
+                                  //       const Text(
+                                  //         'Tired of these guys dictating the direction of social media?',
+                                  //         textAlign: TextAlign.center,
+                                  //         style: TextStyle(
+                                  //           color: darkBlue,
+                                  //           fontSize: 18,
+                                  //           fontWeight: FontWeight.bold,
+                                  //         ),
+                                  //       ),
+                                  //       SizedBox(
+                                  //         width: 280,
+                                  //         child: Image.asset(
+                                  //           'assets/musk-zuck.png',
+                                  //           opacity:
+                                  //               const AlwaysStoppedAnimation(
+                                  //                   .9),
+                                  //         ),
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // PhysicalModel(
+                                  //   color: darkBlue,
+                                  //   elevation: 3,
+                                  //   borderRadius: const BorderRadius.only(
+                                  //       bottomRight: Radius.circular(25),
+                                  //       bottomLeft: Radius.circular(25)),
+                                  //   child: Container(
+                                  //     width: MediaQuery.of(context).size.width,
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         horizontal: 12, vertical: 5),
+                                  //     decoration: const BoxDecoration(
+                                  //       borderRadius: BorderRadius.only(
+                                  //           bottomRight: Radius.circular(25),
+                                  //           bottomLeft: Radius.circular(25)),
+                                  //       color: darkBlue,
+                                  //     ),
+                                  //     child: Padding(
+                                  //       padding: EdgeInsets.only(
+                                  //           bottom: isDetailed ? 15 : 0),
+                                  //       child: Column(
+                                  //         children: [
+                                  //           InkWell(
+                                  //             onTap: () {
+                                  //               setState(() {
+                                  //                 isDetailed = !isDetailed;
+                                  //               });
+                                  //             },
+                                  //             child: Padding(
+                                  //               padding: const EdgeInsets.only(
+                                  //                   bottom: 4,
+                                  //                   top: 8,
+                                  //                   right: 10,
+                                  //                   left: 10),
+                                  //               child: Container(
+                                  //                 width: MediaQuery.of(context)
+                                  //                     .size
+                                  //                     .width,
+                                  //                 child: Column(
+                                  //                   mainAxisAlignment:
+                                  //                       MainAxisAlignment
+                                  //                           .spaceBetween,
+                                  //                   children: [
+                                  //                    const Text(
+                                  //                       "Learn how Fairtalk is replacing CEO's with a democratic system.",
+                                  //                       textAlign:
+                                  //                           TextAlign.center,
+                                  //                       style: TextStyle(
+                                  //                         color: whiteDialog,
+                                  //                         letterSpacing: 0,
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold,
+                                  //                         fontSize: 16,
+                                  //                         overflow: TextOverflow
+                                  //                             .visible,
+                                  //                       ),
+                                  //                     ),
+                                  //                     Icon(
+                                  //                         isDetailed
+                                  //                             ? Icons
+                                  //                                 .keyboard_arrow_up
+                                  //                             : Icons
+                                  //                                 .keyboard_arrow_down,
+                                  //                         color: whiteDialog,
+                                  //                         size: 28),
+                                  //                     // const SizedBox(height: 8),
+                                  //                   ],
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //           isDetailed
+                                  //               ? Padding(
+                                  //                   padding: const EdgeInsets
+                                  //                           .symmetric(
+                                  //                       horizontal: 10),
+                                  //                   child: Column(
+                                  //                     // crossAxisAlignment:
+                                  //                     //     CrossAxisAlignment
+                                  //                     //         .start,
+                                  //                     children: [
+                                  //                       Container(
+                                  //                         decoration:
+                                  //                             const BoxDecoration(
+                                  //                           border: Border(
+                                  //                             top: BorderSide(
+                                  //                                 color:
+                                  //                                     whiteDialog,
+                                  //                                 width: 0),
+                                  //                           ),
+                                  //                         ),
+                                  //                       ),
+                                  //                       const SizedBox(
+                                  //                           height: 10),
+                                  //                       Text(
+                                  //                         "Creating Ballots",
+                                  //                         textAlign:
+                                  //                             TextAlign.center,
+                                  //                         style: TextStyle(
+                                  //                             letterSpacing: 0,
+                                  //                             fontWeight:
+                                  //                                 FontWeight
+                                  //                                     .bold,
+                                  //                             color: whiteDialog
+                                  //                                 .withOpacity(
+                                  //                                     0.8),
+                                  //                             fontSize: 16),
+                                  //                       ),
+                                  //                       Text(
+                                  //                         "When you create a ballot, you're deciding which new features you want us to add, remove or modify from our platform. The ballot that receives the highest score every month will be added to the \"Winning Ballots\" list & will also become the newest feature that we will develop.",
+                                  //                         style: TextStyle(
+                                  //                           color: whiteDialog
+                                  //                               .withOpacity(
+                                  //                                   0.8),
+                                  //                           fontWeight:
+                                  //                               FontWeight.w500,
+                                  //                           fontSize: 13,
+                                  //                         ),
+                                  //                         textAlign:
+                                  //                             TextAlign.center,
+                                  //                       ),
+                                  //                       const SizedBox(
+                                  //                           height: 8),
+                                  //                       Text(
+                                  //                         "Rules",
+                                  //                         textAlign:
+                                  //                             TextAlign.center,
+                                  //                         style: TextStyle(
+                                  //                             letterSpacing: 0,
+                                  //                             fontWeight:
+                                  //                                 FontWeight
+                                  //                                     .bold,
+                                  //                             color: whiteDialog
+                                  //                                 .withOpacity(
+                                  //                                     0.8),
+                                  //                             fontSize: 16),
+                                  //                       ),
+                                  //                       Text(
+                                  //                         "We want to give as much power & freedom as possible to our users. And for this reason, there are no rules. As long as your feature complies with both major App Stores, we'll do our very best to implement it.",
+                                  //                         style: TextStyle(
+                                  //                           color: whiteDialog
+                                  //                               .withOpacity(
+                                  //                                   0.8),
+                                  //                           fontWeight:
+                                  //                               FontWeight.w500,
+                                  //                           fontSize: 13,
+                                  //                         ),
+                                  //                         textAlign:
+                                  //                             TextAlign.center,
+                                  //                       ),
+                                  //                     ],
+                                  //                   ),
+                                  //                 )
+                                  //               : const SizedBox(),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 12),
                                   PhysicalModel(
-                                    color: darkBlue,
                                     elevation: 3,
-                                    borderRadius: BorderRadius.circular(5),
+                                    color: darkBlue,
+                                    borderRadius: BorderRadius.circular(25),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12, vertical: 5),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
+                                      decoration: const BoxDecoration(
                                         color: darkBlue,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0),
+                                        ),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: isDetailed ? 15 : 0),
-                                        child: Column(
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  isDetailed = !isDetailed;
-                                                });
-                                              },
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          PhysicalModel(
+                                            elevation: 0,
+                                            color: Colors.white,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(25),
+                                                    topLeft:
+                                                        Radius.circular(25)),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                        topRight:
+                                                            Radius.circular(25),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                25)),
+                                                border: Border.all(
+                                                    color: darkBlue, width: 5),
+                                              ),
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                        vertical: 6,
-                                                        horizontal: 6),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Flexible(
-                                                        child: Text(
-                                                          "Learn how Fairtalk is democratizing social media",
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                            color: whiteDialog
-                                                                .withOpacity(
-                                                                    0.7),
-                                                            letterSpacing: 0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 16,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .visible,
-                                                          ),
-                                                        ),
+                                                        horizontal: 12.0,
+                                                        vertical: 8),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    // Icon(Icons.info_outline,
+                                                    //     color: Colors.grey,
+                                                    //     size: 18),
+                                                    const Text(
+                                                      "A guide for creating Ballots.",
+                                                      textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                        color: darkBlue,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
-                                                      const SizedBox(width: 10),
-                                                      Icon(
-                                                          isDetailed
-                                                              ? Icons
-                                                                  .keyboard_arrow_up
-                                                              : Icons
-                                                                  .keyboard_arrow_down,
-                                                          color: whiteDialog
-                                                              .withOpacity(0.7),
-                                                          size: 28)
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            isDetailed
-                                                ? Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 6),
-                                                    child: Column(
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Column(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: const [
-                                                        SizedBox(height: 10),
-                                                        Text(
-                                                          "Ballots",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              letterSpacing: 0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color:
-                                                                  whiteDialog,
-                                                              fontSize: 16),
-                                                        ),
-                                                        SizedBox(height: 3),
-                                                        Text(
-                                                          "When you create a ballot, you're deciding which new features you want us to add, remove or modify from our platform. The ballot that receives the highest score every month will be added to the \"Winning Ballots\" page and will also become the newest feature implemented into our platform.",
-                                                          style: TextStyle(
-                                                            color: whiteDialog,
-                                                            fontSize: 13,
-                                                          ),
-                                                        ),
-
-                                                        SizedBox(height: 15),
-                                                        Text(
-                                                          "Rules",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              letterSpacing: 0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color:
-                                                                  whiteDialog,
-                                                              fontSize: 16),
-                                                        ),
-                                                        SizedBox(height: 3),
-                                                        Text(
-                                                          "We want to give as much power & freedom as possible to our users. And for this reason, there are no rules. As long as your feature complies with both major App Stores, we'll do our very best to implement it.",
-                                                          style: TextStyle(
-                                                            color: whiteDialog,
-                                                            fontSize: 13,
-                                                          ),
-                                                        ),
-                                                        // const SizedBox(height: 15),
-                                                        // const Text(
-                                                        //   "Waiting period",
-                                                        //   textAlign: TextAlign.left,
+                                                        // Text(
+                                                        //   "1. Be creative. This is finally your chance to control the direction of a social media platform, do we really want to follow the same path of ?",
+                                                        //   textAlign:
+                                                        //       TextAlign.left,
                                                         //   style: TextStyle(
-                                                        //       letterSpacing: 0,
-                                                        //       fontWeight:
-                                                        //           FontWeight.w500,
-                                                        //       color: whiteDialog,
-                                                        //       fontSize: 16),
-                                                        // ),
-                                                        // const SizedBox(height: 3),
-                                                        // RichText(
-                                                        //   text: TextSpan(
-                                                        //     children: <TextSpan>[
-                                                        //       const TextSpan(
-                                                        //           text:
-                                                        //               "Since Fairtalk is a completely new platform, this system will only enroll once we've reached 1,000 verified users. This will ensure there's enough people that can vote & participate. To view the current amount of verified users, ",
-                                                        //           style: TextStyle(
-                                                        //             color:
-                                                        //                 whiteDialog,
-                                                        //             fontSize: 13,
-                                                        //           )),
-                                                        //       TextSpan(
-                                                        //           text:
-                                                        //               'click here.',
-                                                        //           style:
-                                                        //               const TextStyle(
-                                                        //             color: Color
-                                                        //                 .fromARGB(
-                                                        //                     255,
-                                                        //                     103,
-                                                        //                     187,
-                                                        //                     255),
-                                                        //             fontSize: 13,
-                                                        //           ),
-                                                        //           recognizer:
-                                                        //               TapGestureRecognizer()
-                                                        //                 ..onTap =
-                                                        //                     () {
-                                                        //                   Navigator.of(
-                                                        //                           context)
-                                                        //                       .push(
-                                                        //                     MaterialPageRoute(
-                                                        //                       builder: (context) =>
-                                                        //                           const Statistics(),
-                                                        //                     ),
-                                                        //                   );
-                                                        //                 }),
-                                                        //       const TextSpan(
-                                                        //           text:
-                                                        //               " In the meantime, you can still create ballots as early suggestions and we will do our very best to develop the ones that receive the highest scores. We thank everyone for their patience.",
-                                                        //           style: TextStyle(
-                                                        //             color:
-                                                        //                 whiteDialog,
-                                                        //             fontSize: 13,
-                                                        //           )),
-
-                                                        //     ],
+                                                        //     color: darkBlue,
+                                                        //     fontSize: 13,
+                                                        //     fontWeight:
+                                                        //         FontWeight.w500,
                                                         //   ),
                                                         // ),
+                                                        // SizedBox(height: 6),
+                                                        Text(
+                                                          "1. Be descriptive. The goal is to implement your vision, not ours. Share as many details as you possibly can.",
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            color: darkBlue,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 6),
+                                                        Text(
+                                                          "2. Be realistic. Running Fairtalk isn't free, server operations can be very expensive.",
+                                                          // If it is financially impossible to implement certain features, we'll propose several alternatives. If the majority declines all alternatives, we'll simply have to move on.
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            color: darkBlue,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 6),
+                                                        Text(
+                                                          "3. Be creative. You can add, remove or modify just about anything. You can modify our Privacy/Terms statements, you can replace Fairtalk's current CEO, etc.",
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            color: darkBlue,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
-                                                  )
-                                                : const SizedBox(),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Icon(Icons.arrow_downward,
-                                      color: darkBlue, size: 25),
-                                  // const SizedBox(height: 12),
-                                  // Container(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       0.85,
-                                  //   decoration: const BoxDecoration(
-                                  //     border: Border(
-                                  //       top: BorderSide(
-                                  //           width: 2, color: darkBlue),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  const SizedBox(height: 6),
-                                  PhysicalModel(
-                                    elevation: 3,
-                                    color: darkBlue,
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 6),
-                                      // width: MediaQuery.of(context).size.width - 20,
-                                      decoration: const BoxDecoration(
-                                        color: darkBlue,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5.0),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(height: 20),
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 2),
-                                              child: WillPopScope(
-                                                onWillPop: () async {
-                                                  return false;
-                                                },
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      cursorColor: Colors.white,
-                                                      style: const TextStyle(
-                                                          color: whiteDialog),
-                                                      maxLength:
-                                                          _messageTitleTextfieldMaxLength,
-                                                      onChanged: (val) {
-                                                        setState(() {});
-                                                      },
-                                                      controller:
-                                                          _titleController,
-                                                      onTap: () {},
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText:
-                                                            "Create a ballot",
-                                                        enabledBorder:
-                                                            UnderlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color: whiteDialog
-                                                                  .withOpacity(
-                                                                      0.7),
-                                                              width: 2),
-                                                        ),
-                                                        focusedBorder:
-                                                            const UnderlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color:
-                                                                  whiteDialog,
-                                                              width: 2),
-                                                        ),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                top: 0,
-                                                                left: 4,
-                                                                right: 45,
-                                                                bottom: 8),
-                                                        isDense: true,
-                                                        hintStyle: TextStyle(
-                                                          color: whiteDialog
-                                                              .withOpacity(0.7),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                        labelStyle:
-                                                            const TextStyle(
-                                                                color:
-                                                                    whiteDialog),
-                                                        counterText: '',
-                                                      ),
-                                                      maxLines: null,
-                                                    ),
-                                                    Positioned(
-                                                      bottom: 5,
-                                                      right: 0,
-                                                      child: Text(
-                                                        '${_titleController.text.length}/$_messageTitleTextfieldMaxLength',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: _titleController
-                                                                      .text
-                                                                      .length ==
-                                                                  _messageTitleTextfieldMaxLength
-                                                              ? const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  220,
-                                                                  105,
-                                                                  96)
-                                                              : whiteDialog
-                                                                  .withOpacity(
-                                                                      0.7),
-                                                        ),
-                                                      ),
-                                                    ),
                                                   ],
                                                 ),
                                               ),
                                             ),
-                                            Container(height: 30),
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 2),
-                                              child: WillPopScope(
-                                                onWillPop: () async {
-                                                  return false;
-                                                },
-                                                child: Stack(
-                                                  children: [
-                                                    TextField(
-                                                      cursorColor: Colors.white,
-                                                      style: const TextStyle(
-                                                          color: whiteDialog),
-                                                      onChanged: (val) {
-                                                        setState(() {
-                                                          // emptyPollQuestion = false;
-                                                        });
-                                                      },
-                                                      controller:
-                                                          _bodyController,
-                                                      onTap: () {},
-                                                      decoration:
-                                                          InputDecoration(
-                                                        hintText:
-                                                            "Additional text (optional)",
-                                                        enabledBorder:
-                                                            UnderlineInputBorder(
-                                                          borderSide: BorderSide(
+                                          ),
+                                          const SizedBox(height: 20),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
+                                                  child: WillPopScope(
+                                                    onWillPop: () async {
+                                                      return false;
+                                                    },
+                                                    child: Stack(
+                                                      children: [
+                                                        TextField(
+                                                          cursorColor:
+                                                              whiteDialog,
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  whiteDialog),
+                                                          maxLength:
+                                                              _messageTitleTextfieldMaxLength,
+                                                          onChanged: (val) {
+                                                            setState(() {});
+                                                          },
+                                                          controller:
+                                                              _titleController,
+                                                          onTap: () {},
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "Create a ballot",
+                                                            enabledBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                  color: whiteDialog
+                                                                      .withOpacity(
+                                                                          0.7),
+                                                                  width: 2),
+                                                            ),
+                                                            focusedBorder:
+                                                                const UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                      color:
+                                                                          whiteDialog,
+                                                                      width: 2),
+                                                            ),
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 0,
+                                                                    left: 4,
+                                                                    right: 45,
+                                                                    bottom: 8),
+                                                            isDense: true,
+                                                            hintStyle:
+                                                                TextStyle(
                                                               color: whiteDialog
                                                                   .withOpacity(
                                                                       0.7),
-                                                              width: 2),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                            labelStyle:
+                                                                const TextStyle(
+                                                                    color:
+                                                                        whiteDialog),
+                                                            counterText: '',
+                                                          ),
+                                                          maxLines: null,
                                                         ),
-                                                        focusedBorder:
-                                                            const UnderlineInputBorder(
-                                                          borderSide: BorderSide(
+                                                        Positioned(
+                                                          bottom: 5,
+                                                          right: 0,
+                                                          child: Text(
+                                                            '${_titleController.text.length}/$_messageTitleTextfieldMaxLength',
+                                                            style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: _titleController
+                                                                          .text
+                                                                          .length ==
+                                                                      _messageTitleTextfieldMaxLength
+                                                                  ? const Color
+                                                                          .fromARGB(
+                                                                      255,
+                                                                      220,
+                                                                      105,
+                                                                      96)
+                                                                  : whiteDialog
+                                                                      .withOpacity(
+                                                                          0.7),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(height: 30),
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
+                                                  child: WillPopScope(
+                                                    onWillPop: () async {
+                                                      return false;
+                                                    },
+                                                    child: Stack(
+                                                      children: [
+                                                        TextField(
+                                                          cursorColor:
+                                                              whiteDialog,
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  whiteDialog),
+                                                          onChanged: (val) {
+                                                            setState(() {
+                                                              // emptyPollQuestion = false;
+                                                            });
+                                                          },
+                                                          controller:
+                                                              _bodyController,
+                                                          onTap: () {},
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "Additional text (optional)",
+                                                            enabledBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                  color: whiteDialog
+                                                                      .withOpacity(
+                                                                          0.7),
+                                                                  width: 2),
+                                                            ),
+                                                            focusedBorder:
+                                                                const UnderlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                      color:
+                                                                          whiteDialog,
+                                                                      width: 2),
+                                                            ),
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 0,
+                                                                    left: 4,
+                                                                    right: 45,
+                                                                    bottom: 8),
+                                                            isDense: true,
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              color: whiteDialog
+                                                                  .withOpacity(
+                                                                      0.7),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                            labelStyle:
+                                                                const TextStyle(
                                                               color:
                                                                   whiteDialog,
-                                                              width: 2),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                            counterText: '',
+                                                          ),
+                                                          maxLines: null,
                                                         ),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                top: 0,
-                                                                left: 4,
-                                                                right: 45,
-                                                                bottom: 8),
-                                                        isDense: true,
-                                                        hintStyle: TextStyle(
-                                                          color: whiteDialog
-                                                              .withOpacity(0.7),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                                        Positioned(
+                                                          bottom: 5,
+                                                          right: 0,
+                                                          child: Text(
+                                                            'unlimited',
+                                                            style: TextStyle(
+                                                              fontSize: 12,
+                                                              color: whiteDialog
+                                                                  .withOpacity(
+                                                                      0.7),
+                                                            ),
+                                                          ),
                                                         ),
-                                                        labelStyle:
-                                                            const TextStyle(
-                                                          color: whiteDialog,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                        counterText: '',
-                                                      ),
-                                                      maxLines: null,
+                                                      ],
                                                     ),
-                                                    Positioned(
-                                                      bottom: 5,
-                                                      right: 0,
-                                                      child: Text(
-                                                        'unlimited',
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: whiteDialog
-                                                              .withOpacity(0.7),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
+                                                Container(height: 30),
+                                              ],
                                             ),
-                                            Container(height: 27),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),

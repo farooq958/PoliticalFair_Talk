@@ -64,7 +64,7 @@ class _AddPostRulesState extends State<AddPostRules> {
                                 color: whiteDialog,
                                 fontSize: 20,
                                 letterSpacing: 0,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -103,24 +103,27 @@ class _AddPostRulesState extends State<AddPostRules> {
                                 const Text(
                                   "Fairtalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
                                 const Text(
-                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure), we'll ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing. Everyone has the same opportunity to share their thoughts and ideas with the rest of the world or country. If you want to brag about how great you are as an individual, you already have thousands of other platforms such as Twitter & Instagram that let you do exactly just that. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
                                 const Text(
                                   "In order for us to provide our service, we are obliged to follow Apple App Store & Google Play Store user-generated content rules & policies. For more information on those rules & policies, we suggest that you read & understand them by clicking on the two links below:",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -143,9 +146,11 @@ class _AddPostRulesState extends State<AddPostRules> {
                                         child: const Text(
                                           "Apple App Store's Rules & Policies",
                                           style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 103, 187, 255),
-                                              letterSpacing: 0),
+                                            color: Color.fromARGB(
+                                                255, 103, 187, 255),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -171,9 +176,11 @@ class _AddPostRulesState extends State<AddPostRules> {
                                         child: const Text(
                                           "Google Play Store's Rules & Policies",
                                           style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 103, 187, 255),
-                                              letterSpacing: 0),
+                                            color: Color.fromARGB(
+                                                255, 103, 187, 255),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -183,8 +190,9 @@ class _AddPostRulesState extends State<AddPostRules> {
                                 const Text(
                                   "These rules apply to all forms of posts. This includes messages, polls, comments, replies, visual content such as profile pictures, shared images & videos, etc. If we find any evidence that any rules or restrictions have been broken, your account will face consequences.",
                                   style: TextStyle(
-                                    letterSpacing: 0,
                                     color: whiteDialog,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -195,15 +203,19 @@ class _AddPostRulesState extends State<AddPostRules> {
                                         text:
                                             'For more details on our rules and restrictions, you can read our ',
                                         style: TextStyle(
-                                            color: whiteDialog,
-                                            letterSpacing: 0),
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                        ),
                                       ),
                                       TextSpan(
                                           text: 'Terms of Use',
                                           style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 103, 187, 255),
-                                              letterSpacing: 0),
+                                            color: Color.fromARGB(
+                                                255, 103, 187, 255),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               Navigator.of(context).push(
@@ -217,8 +229,10 @@ class _AddPostRulesState extends State<AddPostRules> {
                                         text:
                                             ' statement or simply reach out to us by email: contact@fairtalk.net',
                                         style: TextStyle(
-                                            color: whiteDialog,
-                                            letterSpacing: 0),
+                                          color: whiteDialog,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                        ),
                                       ),
                                     ],
                                   ),

@@ -367,7 +367,7 @@ class _BlockedListState extends State<BlockedList> {
                           child: Text('Blocked List',
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               )),
                         ),

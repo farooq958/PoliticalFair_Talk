@@ -147,139 +147,366 @@ class _FeedScreenState extends State<FeedScreen> {
     return SafeArea(
       child: Stack(
         children: [
-          Scaffold(
-            key: _key,
-            backgroundColor: testing,
-            drawer: Drawer(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SettingsScreen(
-                      durationInDay: widget.durationInDay,
-                      onLoading: (isLoading) {
-                        setState(() {
-                          _logoutLoading = isLoading;
-                        });
-                      },
-                    )
-                  ],
+          SafeArea(
+            child: Scaffold(
+              key: _key,
+              backgroundColor: testing,
+              drawer: Drawer(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SettingsScreen(
+                        durationInDay: widget.durationInDay,
+                        onLoading: (isLoading) {
+                          setState(() {
+                            _logoutLoading = isLoading;
+                          });
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            appBar: AppBar(
-              elevation: 4,
-              toolbarHeight: 68,
-              backgroundColor: darkBlue,
-              automaticallyImplyLeading: false,
-              // flexibleSpace: Container(
-              //   decoration: const BoxDecoration(
-              //     gradient: LinearGradient(
-              //       begin: Alignment.topCenter,
-              //       end: Alignment.bottomCenter,
-              //       stops: [0.05, 0.35, 0.65, 0.95],
-              //       colors: [
-              //         Color.fromARGB(255, 255, 248, 226),
-              //         Color.fromARGB(255, 255, 248, 226),
-              //         Color.fromARGB(255, 255, 248, 226),
-              //         Color.fromARGB(255, 255, 248, 226),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              actions: [
-                Expanded(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 1,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8, right: 8, left: 8),
-                            child: Consumer<FilterProvider>(
-                                builder: (context, filterProvider, child) {
-                              // debugPrint(
-                              // 'Feed Screen value of messages ${filterProvider.messages}');
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 36,
-                                    height: 35,
-                                    child: Material(
-                                      shape: const CircleBorder(),
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        customBorder: const CircleBorder(),
-                                        splashColor:
-                                            Colors.grey.withOpacity(0.5),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 50),
-                                              () {
-                                            _key.currentState?.openDrawer();
-                                          });
-                                        },
-                                        child: const Icon(Icons.settings,
-                                            color: Colors.white),
+              appBar: AppBar(
+                elevation: 4,
+                toolbarHeight: 68,
+                backgroundColor: darkBlue,
+
+                automaticallyImplyLeading: false,
+                // flexibleSpace: Container(
+                //   decoration: const BoxDecoration(
+                //     gradient: LinearGradient(
+                //       begin: Alignment.topCenter,
+                //       end: Alignment.bottomCenter,
+                //       stops: [0.05, 0.35, 0.65, 0.95],
+                //       colors: [
+                //         Color.fromARGB(255, 255, 248, 226),
+                //         Color.fromARGB(255, 255, 248, 226),
+                //         Color.fromARGB(255, 255, 248, 226),
+                //         Color.fromARGB(255, 255, 248, 226),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                actions: [
+                  Expanded(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8, right: 8, left: 8),
+                              child: Consumer<FilterProvider>(
+                                  builder: (context, filterProvider, child) {
+                                // debugPrint(
+                                // 'Feed Screen value of messages ${filterProvider.messages}');
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 36,
+                                      height: 35,
+                                      child: Material(
+                                        shape: const CircleBorder(),
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          customBorder: const CircleBorder(),
+                                          splashColor:
+                                              Colors.grey.withOpacity(0.5),
+                                          onTap: () {
+                                            Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 50), () {
+                                              _key.currentState?.openDrawer();
+                                            });
+                                          },
+                                          child: const Icon(Icons.settings,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 1.0),
-                                            child: Text(
-                                              filterProvider.global == "true"
-                                                  ? 'GLOBAL'
-                                                  : 'NATIONAL',
-                                              style: const TextStyle(
-                                                color: whiteDialog,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13,
+                                    Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 1.0),
+                                              child: Text(
+                                                filterProvider.global == "true"
+                                                    ? 'GLOBAL'
+                                                    : 'NATIONAL',
+                                                style: const TextStyle(
+                                                  color: whiteDialog,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                              width: filterProvider.global ==
-                                                      "true"
-                                                  ? 0
-                                                  : 4),
-                                          filterProvider.global == "true"
-                                              ? Row()
-                                              : SizedBox(
-                                                  width: 24,
-                                                  height: 16,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 2.0),
-                                                    child: Image.asset(
-                                                      'icons/flags/png/${filterProvider.countryCode}.png',
-                                                      package: 'country_icons',
+                                            SizedBox(
+                                                width: filterProvider.global ==
+                                                        "true"
+                                                    ? 0
+                                                    : 4),
+                                            filterProvider.global == "true"
+                                                ? Row()
+                                                : SizedBox(
+                                                    width: 24,
+                                                    height: 16,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              bottom: 2.0),
+                                                      child: Image.asset(
+                                                        'icons/flags/png/${filterProvider.countryCode}.png',
+                                                        package:
+                                                            'country_icons',
+                                                      ),
+                                                    ),
+                                                  )
+                                          ],
+                                        ),
+                                        PhysicalModel(
+                                          color: Colors.transparent,
+                                          elevation: 3,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Container(
+                                              width: 120,
+                                              height: 32.5,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                border: Border.all(
+                                                  width: 2,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  ClipRRect(
+                                                    child: InkWell(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(25),
+                                                        bottomLeft:
+                                                            Radius.circular(25),
+                                                      ),
+                                                      onTap: () {
+                                                        filterProvider.global ==
+                                                                "true"
+                                                            ? null
+                                                            : Provider.of<
+                                                                        FilterProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .setGlobal(
+                                                                    'true');
+                                                        if (filterProvider
+                                                                .messages ==
+                                                            'true') {
+                                                          Provider.of<PostProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .getPosts(
+                                                                  filterProvider
+                                                                      .twoValueHome,
+                                                                  filterProvider
+                                                                      .global,
+                                                                  filterProvider
+                                                                      .countryCode,
+                                                                  widget
+                                                                      .durationInDay,
+                                                                  filterProvider
+                                                                      .oneValueHome);
+                                                        } else {
+                                                          Provider.of<PollsProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .getPolls(
+                                                                  filterProvider
+                                                                      .twoValueHome,
+                                                                  filterProvider
+                                                                      .global,
+                                                                  filterProvider
+                                                                      .countryCode,
+                                                                  widget
+                                                                      .durationInDay,
+                                                                  filterProvider
+                                                                      .oneValueHome);
+                                                        }
+                                                        // initList();
+                                                        // initPollList();
+                                                      },
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    25),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    25),
+                                                          ),
+                                                          color: filterProvider
+                                                                      .global ==
+                                                                  "true"
+                                                              ? whiteDialog
+                                                              : darkBlue,
+                                                        ),
+                                                        height: 100,
+                                                        width: 58,
+                                                        child: Icon(
+                                                            MyFlutterApp
+                                                                .globe_americas,
+                                                            color: filterProvider
+                                                                        .global ==
+                                                                    "true"
+                                                                ? darkBlue
+                                                                : whiteDialog,
+                                                            size: filterProvider
+                                                                        .global ==
+                                                                    "true"
+                                                                ? 23
+                                                                : 15),
+                                                      ),
                                                     ),
                                                   ),
-                                                )
-                                        ],
-                                      ),
-                                      PhysicalModel(
-                                        color: Colors.transparent,
-                                        elevation: 3,
-                                        borderRadius: BorderRadius.circular(25),
-                                        child: Container(
+                                                  ClipRRect(
+                                                    child: InkWell(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topRight:
+                                                            Radius.circular(25),
+                                                        bottomRight:
+                                                            Radius.circular(25),
+                                                      ),
+                                                      onTap: () {
+                                                        filterProvider.global !=
+                                                                "true"
+                                                            ? null
+                                                            : Provider.of<
+                                                                        FilterProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .setGlobal(
+                                                                    'false');
+                                                        if (filterProvider
+                                                                .messages ==
+                                                            'true') {
+                                                          Provider.of<PostProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .getPosts(
+                                                                  filterProvider
+                                                                      .twoValueHome,
+                                                                  filterProvider
+                                                                      .global,
+                                                                  filterProvider
+                                                                      .countryCode,
+                                                                  widget
+                                                                      .durationInDay,
+                                                                  filterProvider
+                                                                      .oneValueHome);
+                                                        } else {
+                                                          Provider.of<PollsProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .getPolls(
+                                                                  filterProvider
+                                                                      .twoValueHome,
+                                                                  filterProvider
+                                                                      .global,
+                                                                  filterProvider
+                                                                      .countryCode,
+                                                                  widget
+                                                                      .durationInDay,
+                                                                  filterProvider
+                                                                      .oneValueHome);
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topRight: Radius
+                                                                  .circular(25),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          25),
+                                                            ),
+                                                            color: filterProvider
+                                                                        .global !=
+                                                                    "true"
+                                                                ? whiteDialog
+                                                                : darkBlue,
+                                                          ),
+                                                          height: 100,
+                                                          width: 58,
+                                                          child: Icon(
+                                                              Icons.flag,
+                                                              color: filterProvider
+                                                                          .global !=
+                                                                      "true"
+                                                                  ? darkBlue
+                                                                  : whiteDialog,
+                                                              size: filterProvider
+                                                                          .global !=
+                                                                      "true"
+                                                                  ? 23
+                                                                  : 15)),
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 1.0),
+                                          child: Text(
+                                            filterProvider.messages == "true"
+                                                ? 'MESSAGES'
+                                                : 'POLLS',
+                                            style: const TextStyle(
+                                              color: whiteDialog,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                        PhysicalModel(
+                                          color: Colors.transparent,
+                                          elevation: 3,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Container(
                                             width: 120,
                                             height: 32.5,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                               border: Border.all(
-                                                width: 2,
                                                 color: Colors.white,
+                                                width: 2,
                                               ),
                                             ),
                                             child: Row(
@@ -294,50 +521,21 @@ class _FeedScreenState extends State<FeedScreen> {
                                                           Radius.circular(25),
                                                     ),
                                                     onTap: () {
-                                                      filterProvider.global ==
+                                                      // debugPrint(
+                                                      // 'filter value ${filterProvider.messages}');
+                                                      filterProvider.messages ==
                                                               "true"
                                                           ? null
                                                           : Provider.of<
                                                                       FilterProvider>(
                                                                   context,
                                                                   listen: false)
-                                                              .setGlobal(
+                                                              .setMessage(
                                                                   'true');
-                                                      if (filterProvider
-                                                              .messages ==
-                                                          'true') {
-                                                        Provider.of<PostProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .getPosts(
-                                                                filterProvider
-                                                                    .twoValueHome,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                widget
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .oneValueHome);
-                                                      } else {
-                                                        Provider.of<PollsProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .getPolls(
-                                                                filterProvider
-                                                                    .twoValueHome,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                widget
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .oneValueHome);
-                                                      }
-                                                      // initList();
-                                                      // initPollList();
+
+                                                      _getPosts(
+                                                          filterProvider:
+                                                              filterProvider);
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(
@@ -352,23 +550,21 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                   25),
                                                         ),
                                                         color: filterProvider
-                                                                    .global ==
+                                                                    .messages ==
                                                                 "true"
                                                             ? whiteDialog
                                                             : darkBlue,
                                                       ),
                                                       height: 100,
                                                       width: 58,
-                                                      child: Icon(
-                                                          MyFlutterApp
-                                                              .globe_americas,
+                                                      child: Icon(Icons.message,
                                                           color: filterProvider
-                                                                      .global ==
+                                                                      .messages ==
                                                                   "true"
                                                               ? darkBlue
                                                               : whiteDialog,
                                                           size: filterProvider
-                                                                      .global ==
+                                                                      .messages ==
                                                                   "true"
                                                               ? 23
                                                               : 15),
@@ -385,303 +581,360 @@ class _FeedScreenState extends State<FeedScreen> {
                                                           Radius.circular(25),
                                                     ),
                                                     onTap: () {
-                                                      filterProvider.global !=
+                                                      // debugPrint(
+                                                      // 'Feed Screen message value ${messages}');
+                                                      filterProvider.messages !=
                                                               "true"
                                                           ? null
                                                           : Provider.of<
                                                                       FilterProvider>(
                                                                   context,
                                                                   listen: false)
-                                                              .setGlobal(
+                                                              .setMessage(
                                                                   'false');
-                                                      if (filterProvider
-                                                              .messages ==
-                                                          'true') {
-                                                        Provider.of<PostProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .getPosts(
-                                                                filterProvider
-                                                                    .twoValueHome,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                widget
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .oneValueHome);
-                                                      } else {
-                                                        Provider.of<PollsProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .getPolls(
-                                                                filterProvider
-                                                                    .twoValueHome,
-                                                                filterProvider
-                                                                    .global,
-                                                                filterProvider
-                                                                    .countryCode,
-                                                                widget
-                                                                    .durationInDay,
-                                                                filterProvider
-                                                                    .oneValueHome);
-                                                      }
+                                                      _getPosts(
+                                                          filterProvider:
+                                                              filterProvider);
                                                     },
                                                     child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    25),
-                                                          ),
-                                                          color: filterProvider
-                                                                      .global !=
-                                                                  "true"
-                                                              ? whiteDialog
-                                                              : darkBlue,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
                                                         ),
-                                                        height: 100,
-                                                        width: 58,
-                                                        child: Icon(Icons.flag,
+                                                        color: filterProvider
+                                                                    .messages !=
+                                                                "true"
+                                                            ? whiteDialog
+                                                            : darkBlue,
+                                                      ),
+                                                      height: 100,
+                                                      width: 58,
+                                                      child: RotatedBox(
+                                                        quarterTurns: 1,
+                                                        child: Icon(Icons.poll,
                                                             color: filterProvider
-                                                                        .global !=
+                                                                        .messages !=
                                                                     "true"
                                                                 ? darkBlue
                                                                 : whiteDialog,
                                                             size: filterProvider
-                                                                        .global !=
+                                                                        .messages !=
                                                                     "true"
                                                                 ? 23
-                                                                : 15)),
+                                                                : 15),
+                                                      ),
+                                                    ),
                                                   ),
                                                 )
                                               ],
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 1.0),
-                                        child: Text(
-                                          filterProvider.messages == "true"
-                                              ? 'MESSAGES'
-                                              : 'POLLS',
-                                          style: const TextStyle(
-                                            color: whiteDialog,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
-                                      PhysicalModel(
-                                        color: Colors.transparent,
-                                        elevation: 3,
-                                        borderRadius: BorderRadius.circular(25),
-                                        child: Container(
-                                          width: 120,
-                                          height: 32.5,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            border: Border.all(
-                                              color: Colors.white,
-                                              width: 2,
                                             ),
                                           ),
-                                          child: Row(
-                                            children: [
-                                              ClipRRect(
-                                                child: InkWell(
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(25),
-                                                    bottomLeft:
-                                                        Radius.circular(25),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 36,
+                                      height: 35,
+                                      child: Material(
+                                        shape: const CircleBorder(),
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          customBorder: const CircleBorder(),
+                                          splashColor:
+                                              Colors.grey.withOpacity(0.5),
+                                          onTap: () {
+                                            Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 50), () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Countries(
+                                                    durationInDay:
+                                                        widget.durationInDay,
+                                                    removeFilterOptions: 0,
+                                                    pageIndex: 0,
                                                   ),
-                                                  onTap: () {
-                                                    // debugPrint(
-                                                    // 'filter value ${filterProvider.messages}');
-                                                    filterProvider.messages ==
-                                                            "true"
-                                                        ? null
-                                                        : Provider.of<
-                                                                    FilterProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .setMessage('true');
-
-                                                    _getPosts(
-                                                        filterProvider:
-                                                            filterProvider);
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .only(
-                                                        topLeft:
-                                                            Radius.circular(25),
-                                                        bottomLeft:
-                                                            Radius.circular(25),
+                                                ),
+                                              ).then((value) async {
+                                                await loadCountryFilterValue();
+                                                //  initList();
+                                                // initPollList();
+                                              });
+                                            });
+                                          },
+                                          child: const Icon(Icons.filter_list,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              body: Consumer<FilterProvider>(
+                  builder: (context, filterProvider, child) {
+                return filterProvider.messages == "true"
+                    ? Consumer<PostProvider>(
+                        builder: (context, postProvider, child) {
+                        if (postProvider.pLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else {
+                          if (postProvider.posts.isEmpty) {
+                            return const Center(
+                              child: Text(
+                                'No messages yet.',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 114, 114, 114),
+                                    fontSize: 18),
+                              ),
+                            );
+                          } else {
+                            return ListView(
+                              controller: _postScrollController,
+                              children: [
+                                postProvider.count <= 1 || postProvider.pLoading
+                                    ? const SizedBox()
+                                    : Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 10,
+                                          bottom: 4,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            PhysicalModel(
+                                              color: Colors.white,
+                                              elevation: 2,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    splashColor:
+                                                        const Color.fromARGB(
+                                                            255, 245, 245, 245),
+                                                    onTap: () {
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  100), () {
+                                                        postProvider.getPreviousPosts(
+                                                            filterProvider
+                                                                .twoValueHome,
+                                                            filterProvider
+                                                                .global,
+                                                            filterProvider
+                                                                .countryCode,
+                                                            filterProvider
+                                                                .durationInDay,
+                                                            filterProvider
+                                                                .oneValueHome);
+                                                        _postScrollController
+                                                            .jumpTo(0);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 16,
+                                                          vertical: 8),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
                                                       ),
-                                                      color: filterProvider
-                                                                  .messages ==
-                                                              "true"
-                                                          ? whiteDialog
-                                                          : darkBlue,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Icon(
+                                                            Icons.arrow_upward,
+                                                            size: 16,
+                                                            color: Colors.black,
+                                                          ),
+                                                          SizedBox(width: 8),
+                                                          Text('View Previous',
+                                                              // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 13.5,
+                                                                letterSpacing:
+                                                                    0.3,
+                                                              )),
+                                                        ],
+                                                      ),
+                                                    )),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                ListView.builder(
+                                  itemCount: postProvider.posts.length,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return PostCardTest(
+                                        key: Key(
+                                            postProvider.posts[index].postId),
+                                        post: postProvider.posts[index],
+                                        profileScreen: false,
+                                        archives: false,
+                                        durationInDay: widget.durationInDay);
+                                  },
+                                ),
+                                postProvider.last || postProvider.pLoading
+                                    ? const SizedBox()
+                                    : Visibility(
+                                        visible: postProvider.isButtonVisible,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              PhysicalModel(
+                                                color: Colors.white,
+                                                elevation: 2,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    splashColor:
+                                                        const Color.fromARGB(
+                                                            255, 245, 245, 245),
+                                                    onTap: () {
+                                                      Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 100),
+                                                        () {
+                                                          // print(
+                                                          //     "filterProvider.twoValue: ${filterProvider.twoValue}");
+                                                          // print(
+                                                          //     "filterProvider.global: ${filterProvider.global}");
+                                                          // print(
+                                                          //     "filterProvider.countryCode: ${filterProvider.countryCode}");
+                                                          // print(
+                                                          //     "filterProvider.durationInDay: ${filterProvider.durationInDay}");
+                                                          // print(
+                                                          //     "filterProvider.oneValue: ${filterProvider.oneValue}");
+
+                                                          postProvider
+                                                              .getNextPosts(
+                                                            filterProvider
+                                                                .twoValueHome,
+                                                            filterProvider
+                                                                .global,
+                                                            filterProvider
+                                                                .countryCode,
+                                                            filterProvider
+                                                                .durationInDay,
+                                                            filterProvider
+                                                                .oneValueHome,
+                                                          );
+                                                          _postScrollController
+                                                              .jumpTo(0);
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 16,
+                                                          vertical: 8),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        // border: Border.all(
+                                                        //   width: 1,
+                                                        //   color: Colors.black,
+                                                        // ),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Icon(
+                                                              Icons
+                                                                  .arrow_downward,
+                                                              size: 16,
+                                                              color:
+                                                                  Colors.black),
+                                                          SizedBox(width: 8),
+                                                          Text(
+                                                            'View Next',
+                                                            // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              // fontWeight:
+                                                              //     FontWeight.w500,
+                                                              fontSize: 13.5,
+                                                              letterSpacing: 0,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    height: 100,
-                                                    width: 58,
-                                                    child: Icon(Icons.message,
-                                                        color: filterProvider
-                                                                    .messages ==
-                                                                "true"
-                                                            ? darkBlue
-                                                            : whiteDialog,
-                                                        size: filterProvider
-                                                                    .messages ==
-                                                                "true"
-                                                            ? 23
-                                                            : 15),
                                                   ),
                                                 ),
                                               ),
-                                              ClipRRect(
-                                                child: InkWell(
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(25),
-                                                    bottomRight:
-                                                        Radius.circular(25),
-                                                  ),
-                                                  onTap: () {
-                                                    // debugPrint(
-                                                    // 'Feed Screen message value ${messages}');
-                                                    filterProvider.messages !=
-                                                            "true"
-                                                        ? null
-                                                        : Provider.of<
-                                                                    FilterProvider>(
-                                                                context,
-                                                                listen: false)
-                                                            .setMessage(
-                                                                'false');
-                                                    _getPosts(
-                                                        filterProvider:
-                                                            filterProvider);
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .only(
-                                                        topRight:
-                                                            Radius.circular(25),
-                                                        bottomRight:
-                                                            Radius.circular(25),
-                                                      ),
-                                                      color: filterProvider
-                                                                  .messages !=
-                                                              "true"
-                                                          ? whiteDialog
-                                                          : darkBlue,
-                                                    ),
-                                                    height: 100,
-                                                    width: 58,
-                                                    child: RotatedBox(
-                                                      quarterTurns: 1,
-                                                      child: Icon(Icons.poll,
-                                                          color: filterProvider
-                                                                      .messages !=
-                                                                  "true"
-                                                              ? darkBlue
-                                                              : whiteDialog,
-                                                          size: filterProvider
-                                                                      .messages !=
-                                                                  "true"
-                                                              ? 23
-                                                              : 15),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
                                             ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 36,
-                                    height: 35,
-                                    child: Material(
-                                      shape: const CircleBorder(),
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        customBorder: const CircleBorder(),
-                                        splashColor:
-                                            Colors.grey.withOpacity(0.5),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 50),
-                                              () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => Countries(
-                                                  durationInDay:
-                                                      widget.durationInDay,
-                                                  removeFilterOptions: 0,
-                                                  pageIndex: 0,
-                                                ),
-                                              ),
-                                            ).then((value) async {
-                                              await loadCountryFilterValue();
-                                              //  initList();
-                                              // initPollList();
-                                            });
-                                          });
-                                        },
-                                        child: const Icon(Icons.filter_list,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            body: Consumer<FilterProvider>(
-                builder: (context, filterProvider, child) {
-              return filterProvider.messages == "true"
-                  ? Consumer<PostProvider>(
-                      builder: (context, postProvider, child) {
-                      if (postProvider.pLoading) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else {
-                        if (postProvider.posts.isEmpty) {
+                                const SizedBox(
+                                  height: 10,
+                                )
+                              ],
+                            );
+                          }
+                        }
+                      })
+                    : Consumer<PollsProvider>(
+                        builder: (context, pollsProvider, child) {
+                        if (pollsProvider.loading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (pollsProvider.polls.isEmpty) {
                           return const Center(
                             child: Text(
-                              'No messages yet.',
+                              'No polls yet.',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 114, 114, 114),
                                   fontSize: 18),
@@ -689,13 +942,13 @@ class _FeedScreenState extends State<FeedScreen> {
                           );
                         } else {
                           return ListView(
-                            controller: _postScrollController,
+                            controller: _pollsScrollController,
                             children: [
-                              postProvider.count <= 1 || postProvider.pLoading
+                              pollsProvider.count <= 1 || pollsProvider.loading
                                   ? const SizedBox()
                                   : Padding(
                                       padding: const EdgeInsets.only(
-                                        top: 10,
+                                        top: 10.0,
                                         bottom: 4,
                                       ),
                                       child: Row(
@@ -710,18 +963,18 @@ class _FeedScreenState extends State<FeedScreen> {
                                             child: Material(
                                               color: Colors.transparent,
                                               child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () {
-                                                    Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 100),
-                                                        () {
-                                                      postProvider
-                                                          .getPreviousPosts(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                splashColor:
+                                                    const Color.fromARGB(
+                                                        255, 245, 245, 245),
+                                                onTap: () {
+                                                  Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 100),
+                                                    () {
+                                                      pollsProvider
+                                                          .getPreviousPolls(
                                                               filterProvider
                                                                   .twoValueHome,
                                                               filterProvider
@@ -732,67 +985,66 @@ class _FeedScreenState extends State<FeedScreen> {
                                                                   .durationInDay,
                                                               filterProvider
                                                                   .oneValueHome);
-                                                      _postScrollController
-                                                          .jumpTo(0);
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                          Icons.arrow_upward,
+                                                    },
+                                                  );
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    horizontal: 16,
+                                                    vertical: 8,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: const [
+                                                      Icon(Icons.arrow_upward,
                                                           size: 16,
+                                                          color: Colors.black),
+                                                      SizedBox(width: 8),
+                                                      Text(
+                                                        'View Previous',
+                                                        // '${(pollsProvider.count - 2) * pollsProvider.pageSize + 1} - ${(pollsProvider.count - 1) * pollsProvider.pageSize}',
+                                                        style: TextStyle(
                                                           color: Colors.black,
+                                                          fontSize: 13.5,
+                                                          letterSpacing: 0,
                                                         ),
-                                                        SizedBox(width: 8),
-                                                        Text('View Previous',
-                                                            // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 13.5,
-                                                              letterSpacing:
-                                                                  0.3,
-                                                            )),
-                                                      ],
-                                                    ),
-                                                  )),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                              ListView.builder(
-                                itemCount: postProvider.posts.length,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return PostCardTest(
-                                      key:
-                                          Key(postProvider.posts[index].postId),
-                                      post: postProvider.posts[index],
-                                      profileScreen: false,
-                                      archives: false,
-                                      durationInDay: widget.durationInDay);
-                                },
+                              Column(
+                                children: [
+                                  ...List.generate(pollsProvider.polls.length,
+                                      (index) {
+                                    return PollCard(
+                                        key: Key(
+                                            pollsProvider.polls[index].pollId),
+                                        poll: pollsProvider.polls[index],
+                                        profileScreen: false,
+                                        archives: false,
+                                        durationInDay: widget.durationInDay);
+                                  })
+                                ],
                               ),
-                              postProvider.last || postProvider.pLoading
+                              pollsProvider.last || pollsProvider.loading
                                   ? const SizedBox()
                                   : Visibility(
-                                      visible: postProvider.isButtonVisible,
+                                      visible: pollsProvider.isButtonVisible,
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(top: 10.0),
@@ -808,86 +1060,71 @@ class _FeedScreenState extends State<FeedScreen> {
                                               child: Material(
                                                 color: Colors.transparent,
                                                 child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () {
-                                                    Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 100),
-                                                      () {
-                                                        // print(
-                                                        //     "filterProvider.twoValue: ${filterProvider.twoValue}");
-                                                        // print(
-                                                        //     "filterProvider.global: ${filterProvider.global}");
-                                                        // print(
-                                                        //     "filterProvider.countryCode: ${filterProvider.countryCode}");
-                                                        // print(
-                                                        //     "filterProvider.durationInDay: ${filterProvider.durationInDay}");
-                                                        // print(
-                                                        //     "filterProvider.oneValue: ${filterProvider.oneValue}");
-
-                                                        postProvider
-                                                            .getNextPosts(
-                                                          filterProvider
-                                                              .twoValueHome,
-                                                          filterProvider.global,
-                                                          filterProvider
-                                                              .countryCode,
-                                                          filterProvider
-                                                              .durationInDay,
-                                                          filterProvider
-                                                              .oneValueHome,
-                                                        );
-                                                        _postScrollController
-                                                            .jumpTo(0);
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    splashColor:
+                                                        const Color.fromARGB(
+                                                            255, 245, 245, 245),
+                                                    onTap: () async {
+                                                      Future.delayed(
+                                                        const Duration(
+                                                            milliseconds: 100),
+                                                        () {
+                                                          pollsProvider.getNextPolls(
+                                                              filterProvider
+                                                                  .twoValueHome,
+                                                              filterProvider
+                                                                  .global,
+                                                              filterProvider
+                                                                  .countryCode,
+                                                              filterProvider
+                                                                  .durationInDay,
+                                                              filterProvider
+                                                                  .oneValueHome);
+                                                          _pollsScrollController
+                                                              .jumpTo(0);
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
                                                         horizontal: 16,
-                                                        vertical: 8),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      // border: Border.all(
-                                                      //   width: 1,
-                                                      //   color: Colors.black,
-                                                      // ),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                            Icons
-                                                                .arrow_downward,
-                                                            size: 16,
-                                                            color:
-                                                                Colors.black),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'View Next',
-                                                          // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            // fontWeight:
-                                                            //     FontWeight.w500,
-                                                            fontSize: 13.5,
-                                                            letterSpacing: 0,
+                                                        vertical: 8,
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Icon(
+                                                              Icons
+                                                                  .arrow_downward,
+                                                              size: 16,
+                                                              color:
+                                                                  Colors.black),
+                                                          SizedBox(width: 8),
+                                                          Text(
+                                                            'View Next',
+                                                            // '${pollsProvider.count * pollsProvider.pageSize + 1} - ${(pollsProvider.count + 1) * pollsProvider.pageSize}',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 13.5,
+                                                              letterSpacing: 0,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
+                                                        ],
+                                                      ),
+                                                    )),
                                               ),
                                             ),
                                           ],
@@ -900,215 +1137,9 @@ class _FeedScreenState extends State<FeedScreen> {
                             ],
                           );
                         }
-                      }
-                    })
-                  : Consumer<PollsProvider>(
-                      builder: (context, pollsProvider, child) {
-                      if (pollsProvider.loading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (pollsProvider.polls.isEmpty) {
-                        return const Center(
-                          child: Text(
-                            'No polls yet.',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 114, 114, 114),
-                                fontSize: 18),
-                          ),
-                        );
-                      } else {
-                        return ListView(
-                          controller: _pollsScrollController,
-                          children: [
-                            pollsProvider.count <= 1 || pollsProvider.loading
-                                ? const SizedBox()
-                                : Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 10.0,
-                                      bottom: 4,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        PhysicalModel(
-                                          color: Colors.white,
-                                          elevation: 2,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              splashColor: const Color.fromARGB(
-                                                  255, 245, 245, 245),
-                                              onTap: () {
-                                                Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 100),
-                                                  () {
-                                                    pollsProvider
-                                                        .getPreviousPolls(
-                                                            filterProvider
-                                                                .twoValueHome,
-                                                            filterProvider
-                                                                .global,
-                                                            filterProvider
-                                                                .countryCode,
-                                                            filterProvider
-                                                                .durationInDay,
-                                                            filterProvider
-                                                                .oneValueHome);
-                                                  },
-                                                );
-                                              },
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 16,
-                                                  vertical: 8,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: const [
-                                                    Icon(Icons.arrow_upward,
-                                                        size: 16,
-                                                        color: Colors.black),
-                                                    SizedBox(width: 8),
-                                                    Text(
-                                                      'View Previous',
-                                                      // '${(pollsProvider.count - 2) * pollsProvider.pageSize + 1} - ${(pollsProvider.count - 1) * pollsProvider.pageSize}',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 13.5,
-                                                        letterSpacing: 0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                            Column(
-                              children: [
-                                ...List.generate(pollsProvider.polls.length,
-                                    (index) {
-                                  return PollCard(
-                                      key: Key(
-                                          pollsProvider.polls[index].pollId),
-                                      poll: pollsProvider.polls[index],
-                                      profileScreen: false,
-                                      archives: false,
-                                      durationInDay: widget.durationInDay);
-                                })
-                              ],
-                            ),
-                            pollsProvider.last || pollsProvider.loading
-                                ? const SizedBox()
-                                : Visibility(
-                                    visible: pollsProvider.isButtonVisible,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          PhysicalModel(
-                                            color: Colors.white,
-                                            elevation: 2,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () async {
-                                                    Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 100),
-                                                      () {
-                                                        pollsProvider.getNextPolls(
-                                                            filterProvider
-                                                                .twoValueHome,
-                                                            filterProvider
-                                                                .global,
-                                                            filterProvider
-                                                                .countryCode,
-                                                            filterProvider
-                                                                .durationInDay,
-                                                            filterProvider
-                                                                .oneValueHome);
-                                                        _pollsScrollController
-                                                            .jumpTo(0);
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                            Icons
-                                                                .arrow_downward,
-                                                            size: 16,
-                                                            color:
-                                                                Colors.black),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'View Next',
-                                                          // '${pollsProvider.count * pollsProvider.pageSize + 1} - ${(pollsProvider.count + 1) * pollsProvider.pageSize}',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 13.5,
-                                                            letterSpacing: 0,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  )),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                            const SizedBox(
-                              height: 10,
-                            )
-                          ],
-                        );
-                      }
-                    });
-            }),
+                      });
+              }),
+            ),
           ),
           Visibility(
             visible: _logoutLoading,

@@ -2033,7 +2033,7 @@ ballotMessage({required BuildContext context}) {
                               children: <TextSpan>[
                                 const TextSpan(
                                   text:
-                                      "Fairtalk's democracy will only begin once we reach 1,000 verified users. This will ensure there's enough people that can vote & participate. To view the current amount of verified users, ",
+                                      "Fairtalk's democracy will only begin once we reach 1,000 verified users. This will ensure that there's enough people that can vote & participate. To view the current amount of verified users, ",
                                   style: TextStyle(
                                     color: darkBlue,
                                     fontSize: 13,
@@ -3005,7 +3005,7 @@ sendTimerDialog({
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              'Every user is limited to one $type2 $type for every voting cycle. A new voting cycle begins every 24 hours (at 12:01 AM EST).',
+                              'Every user is limited to one $type2 $type for every voting cycle. A new voting cycle begins every 24 hours (12:01 AM EST).',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue)),
@@ -4577,9 +4577,9 @@ suspensionDialog({
                 children: [
                   const Text('Account Suspended',
                       style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 0)),
+                        fontSize: 19,
+                        fontWeight: FontWeight.w500,
+                      )),
                   const SizedBox(
                     height: 15,
                   ),

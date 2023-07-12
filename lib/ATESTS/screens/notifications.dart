@@ -146,7 +146,7 @@ class _NotificationsState extends State<Notifications> {
                                   color: whiteDialog,
                                   fontSize: 20,
                                   letterSpacing: 0,
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),

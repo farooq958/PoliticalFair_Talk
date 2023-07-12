@@ -111,7 +111,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                             style: TextStyle(
                                 color: darkBlue,
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -194,6 +194,14 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(75),
                               ),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  darkBlue,
+                                  testColor,
+                                ],
+                              ),
                             ),
                             padding: const EdgeInsets.only(top: 20, bottom: 0),
                             width: MediaQuery.of(context).size.width,
@@ -215,7 +223,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12, vertical: 10),
                                   decoration: BoxDecoration(
-                                    color: darkBlue,
+                                    color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(
                                         width: 2, color: Colors.white),
@@ -226,9 +234,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         "All Done!",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 17,
                                             color: Colors.white,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.bold,
                                             letterSpacing: 0),
                                       ),
                                       Container(height: 8),
@@ -253,9 +261,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         // "Once you click on continue, it'll only take a few minutes to a few hours before you'll receive an email informing you whether you've passed or failed the verification process.",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           color: Colors.white,
-                                          letterSpacing: 0,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -263,9 +271,9 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                         "The personal data you've provided by verifying your account is 100% secure and will never be shared or sold.",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           color: Colors.white,
-                                          letterSpacing: 0,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                       Container(height: 8),
@@ -277,16 +285,16 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                     "For more information, feel free to read our ",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 14,
-                                                  letterSpacing: 0,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
                                                 )),
                                             TextSpan(
                                                 text: 'Privacy Policy',
                                                 style: const TextStyle(
                                                   color: Color.fromARGB(
                                                       255, 85, 178, 255),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                                 recognizer:
                                                     TapGestureRecognizer()
@@ -303,8 +311,8 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                                 text: ".",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
                                                 )),
                                             // TextSpan(
                                             //     text:
@@ -323,127 +331,135 @@ class _VerifyCompleteState extends State<VerifyComplete> {
                                 ),
                                 Column(
                                   children: [
-                                    Material(
+                                    PhysicalModel(
+                                      color: whiteDialog,
+                                      elevation: 3,
                                       borderRadius: BorderRadius.circular(50),
-                                      color: Colors.white,
-                                      child: InkWell(
+                                      child: Material(
                                         borderRadius: BorderRadius.circular(50),
-                                        splashColor:
-                                            Colors.grey.withOpacity(0.5),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 150),
-                                              () async {
-                                            if (emailAttachmentPhotos.length ==
-                                                2) {
-                                              setState(() {
-                                                isLoading = true;
-                                              });
+                                        color: Colors.white,
+                                        child: InkWell(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          splashColor:
+                                              Colors.grey.withOpacity(0.5),
+                                          onTap: () {
+                                            Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 150),
+                                                () async {
+                                              if (emailAttachmentPhotos
+                                                      .length ==
+                                                  2) {
+                                                setState(() {
+                                                  isLoading = true;
+                                                });
 
-                                              List<String> photoUrls = [];
-                                              for (Uint8List file
-                                                  in emailAttachmentPhotos) {
-                                                // Upload image to Firestorage
-                                                String photoUrl =
-                                                    await StorageMethods()
-                                                        .uploadImageToStorage(
-                                                            'email_attachment_photos',
-                                                            file,
-                                                            true);
-                                                photoUrls.add(photoUrl);
+                                                List<String> photoUrls = [];
+                                                for (Uint8List file
+                                                    in emailAttachmentPhotos) {
+                                                  // Upload image to Firestorage
+                                                  String photoUrl =
+                                                      await StorageMethods()
+                                                          .uploadImageToStorage(
+                                                              'email_attachment_photos',
+                                                              file,
+                                                              true);
+                                                  photoUrls.add(photoUrl);
+                                                }
+
+                                                // Update download url in Firestore database
+                                                var res = await AuthMethods()
+                                                    .addEmailAttachmentPhotos(
+                                                  photoOne: photoUrls[0],
+                                                  photoTwo: photoUrls[1],
+                                                );
+
+                                                var res1 =
+                                                    await _loadVerifiedCounter();
+                                                // var ntpTime = await NTP.now();
+                                                setState(()
+
+                                                    // async
+                                                    {
+                                                  FirestoreMethods()
+                                                      .postCounter('verified');
+                                                  AuthMethods().changeIsPending(
+                                                      pending: 'true');
+                                                  AuthMethods().addPendingDate(
+                                                      pendingDate:
+                                                          getVerifiedCounter);
+                                                  UserProvider userProvider =
+                                                      Provider.of(context,
+                                                          listen: false);
+                                                  userProvider.refreshUser();
+                                                  isLoading = false;
+                                                });
+
+                                                String res2 =
+                                                    await sendEmailMessage();
+
+                                                if (res == 'success' &&
+                                                    res1 == 'success' &&
+                                                    res2 == 'success') {
+                                                  emailAttachmentPhotos.clear();
+
+                                                  showSnackBar(
+                                                      "Verification successfully completed.",
+                                                      context);
+
+                                                  // widget.durationInDay == null
+                                                  //     ?
+                                                  goToHome(context);
+                                                  // : Navigator.push(
+                                                  //     context,
+                                                  //     MaterialPageRoute(
+                                                  //         builder: (context) =>
+                                                  //             AddPostDaily(
+                                                  //               durationInDay:
+                                                  //                   widget
+                                                  //                       .durationInDay,
+                                                  //             )),
+                                                  //   );
+                                                }
                                               }
-
-                                              // Update download url in Firestore database
-                                              var res = await AuthMethods()
-                                                  .addEmailAttachmentPhotos(
-                                                photoOne: photoUrls[0],
-                                                photoTwo: photoUrls[1],
-                                              );
-
-                                              var res1 =
-                                                  await _loadVerifiedCounter();
-                                              // var ntpTime = await NTP.now();
-                                              setState(()
-
-                                                  // async
-                                                  {
-                                                FirestoreMethods()
-                                                    .postCounter('verified');
-                                                AuthMethods().changeIsPending(
-                                                    pending: 'true');
-                                                AuthMethods().addPendingDate(
-                                                    pendingDate:
-                                                        getVerifiedCounter);
-                                                UserProvider userProvider =
-                                                    Provider.of(context,
-                                                        listen: false);
-                                                userProvider.refreshUser();
-                                                isLoading = false;
-                                              });
-
-                                              String res2 =
-                                                  await sendEmailMessage();
-
-                                              if (res == 'success' &&
-                                                  res1 == 'success' &&
-                                                  res2 == 'success') {
-                                                emailAttachmentPhotos.clear();
-
-                                                showSnackBar(
-                                                    "Verification successfully completed.",
-                                                    context);
-
-                                                // widget.durationInDay == null
-                                                //     ?
-                                                goToHome(context);
-                                                // : Navigator.push(
-                                                //     context,
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             AddPostDaily(
-                                                //               durationInDay:
-                                                //                   widget
-                                                //                       .durationInDay,
-                                                //             )),
-                                                //   );
-                                              }
-                                            }
-                                          });
-                                        },
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.85,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 14),
-                                          decoration: const ShapeDecoration(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(25),
+                                            });
+                                          },
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.85,
+                                            alignment: Alignment.center,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 14),
+                                            decoration: const ShapeDecoration(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(25),
+                                                ),
                                               ),
+                                              color: Colors.transparent,
                                             ),
-                                            color: Colors.transparent,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text('Continue',
-                                                  style: TextStyle(
-                                                      fontSize: 16.5,
-                                                      color: darkBlue,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      letterSpacing: 0)),
-                                              Container(width: 8),
-                                              const Icon(
-                                                Icons.keyboard_arrow_right,
-                                                size: 20,
-                                                color: darkBlue,
-                                              ),
-                                            ],
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text('Continue',
+                                                    style: TextStyle(
+                                                        fontSize: 16.5,
+                                                        color: darkBlue,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        letterSpacing: 0)),
+                                                Container(width: 8),
+                                                const Icon(
+                                                  Icons.keyboard_arrow_right,
+                                                  size: 20,
+                                                  color: darkBlue,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
