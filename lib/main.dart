@@ -51,6 +51,8 @@ void main() async {
         const Settings(persistenceEnabled: true);
   }
 
+  final firebaseApp = Firebase.app();
+
   /// Notification setup
   await FirebaseNotification.grantNotificationPermission();
 
@@ -118,7 +120,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (_) => GoogleSignInProvider(),
     ),
-    ChangeNotifierProvider(create: (_) => AutomateProvider()),
+    ChangeNotifierProvider(
+      create: (_) => AutomateProvider(firebaseApp),
+    ),
 
     // ChangeNotifierProvider(
     //   create: (_) => ChangeCountryProvider(),

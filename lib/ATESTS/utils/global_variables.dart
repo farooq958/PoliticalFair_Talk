@@ -40,6 +40,7 @@ String twoValue11 = 'selected_radio1Search';
 
 /// Firebase real time db constants
 class RealTimeDBValues {
+  static const automateAdminDbUrl = 'https://aft-flutter-admin.firebaseio.com';
   static const String initialScore = 'initialScore';
   static const String admins = 'admins';
 }

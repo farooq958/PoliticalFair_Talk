@@ -9,14 +9,18 @@ import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart' as ytplayer;
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../camera/camera_screen.dart';
+import '../models/user.dart';
 import '../provider/automate_provider.dart';
 import '../provider/create_provider.dart';
+import '../provider/user_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/utils.dart';
 import 'full_image_add.dart';
 
 class Automate extends StatefulWidget {
-  const Automate({Key? key}) : super(key: key);
+  final User user;
+
+  const Automate({Key? key, required this.user}) : super(key: key);
 
   @override
   State<Automate> createState() => _AutomateState();
@@ -62,6 +66,7 @@ class _AutomateState extends State<Automate> {
   final TextEditingController _optionEight = TextEditingController();
   final TextEditingController _optionNine = TextEditingController();
   final TextEditingController _optionTen = TextEditingController();
+
   // final AuthMethods _authMethods = AuthMethods();
   int visibleOptions = 2;
   bool disableButton = false;
@@ -73,6 +78,7 @@ class _AutomateState extends State<Automate> {
 
   bool _isVideoFile = false;
   bool done = false;
+
   // File? _videoFile;
   bool _isLoading = false;
   var snap;
@@ -125,7 +131,20 @@ class _AutomateState extends State<Automate> {
   void initState() {
     super.initState();
 
-    Provider.of<AutomateProvider>(context, listen:false);
+    Provider.of<AutomateProvider>(context, listen: false)
+        .addAdminUserToDb(widget.user);
+    Provider.of<AutomateProvider>(context, listen: false).setValues(
+        global: global,
+        messages: messages,
+        ca: ca,
+        us: us,
+        one: one,
+        two: two,
+        three: three,
+        four: four,
+        five: five,
+        six: six,
+        seven: seven);
 
     keywordMessageController = TextfieldTagsController();
 
@@ -153,7 +172,8 @@ class _AutomateState extends State<Automate> {
   }
 
   Widget _icon(int index, {required IconData icon}) {
-    final automateProvider = Provider.of<AutomateProvider>(context, listen: false);
+    final automateProvider =
+        Provider.of<AutomateProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: SizedBox(
@@ -620,7 +640,8 @@ class _AutomateState extends State<Automate> {
   @override
   Widget build(BuildContext context) {
     const player = YoutubePlayerIFrame();
-    final automateProvider = Provider.of<AutomateProvider>(context, listen: false);
+    final automateProvider =
+        Provider.of<AutomateProvider>(context, listen: false);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -689,6 +710,18 @@ class _AutomateState extends State<Automate> {
                             global = !global;
                             us ? us = !us : null;
                             ca ? ca = !ca : null;
+                            automateProvider.setValues(
+                                global: global,
+                                messages: messages,
+                                ca: ca,
+                                us: us,
+                                one: one,
+                                two: two,
+                                three: three,
+                                four: four,
+                                five: five,
+                                six: six,
+                                seven: seven);
                           });
                         },
                         child: Container(
@@ -714,6 +747,18 @@ class _AutomateState extends State<Automate> {
                             global ? global = !global : null;
                             ca ? ca = !ca : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -743,6 +788,18 @@ class _AutomateState extends State<Automate> {
                             global ? global = !global : null;
                             us ? us = !us : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -776,6 +833,18 @@ class _AutomateState extends State<Automate> {
                             messages = !messages;
                             polls = !polls;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -805,6 +874,18 @@ class _AutomateState extends State<Automate> {
                             messages = !messages;
                             polls = !polls;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -848,6 +929,18 @@ class _AutomateState extends State<Automate> {
                             six ? six = !six : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -873,6 +966,18 @@ class _AutomateState extends State<Automate> {
                             six ? six = !six : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -898,6 +1003,18 @@ class _AutomateState extends State<Automate> {
                             six ? six = !six : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -923,6 +1040,18 @@ class _AutomateState extends State<Automate> {
                             six ? six = !six : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -948,6 +1077,18 @@ class _AutomateState extends State<Automate> {
                             six ? six = !six : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -957,9 +1098,10 @@ class _AutomateState extends State<Automate> {
                                   color: five ? Colors.blue : Colors.white,
                                   width: five ? 2 : 0)),
                           child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('5')),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 8),
+                            child: Text('5'),
+                          ),
                         ),
                       ),
                       InkWell(
@@ -973,6 +1115,18 @@ class _AutomateState extends State<Automate> {
                             one ? one = !one : null;
                             seven ? seven = !seven : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -998,6 +1152,18 @@ class _AutomateState extends State<Automate> {
                             one ? one = !one : null;
                             six ? six = !six : null;
                           });
+                          automateProvider.setValues(
+                              global: global,
+                              messages: messages,
+                              ca: ca,
+                              us: us,
+                              one: one,
+                              two: two,
+                              three: three,
+                              four: four,
+                              five: five,
+                              six: six,
+                              seven: seven);
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -1024,6 +1190,20 @@ class _AutomateState extends State<Automate> {
                     ),
                   ),
                   const SizedBox(height: 8),
+                  Consumer<AutomateProvider>(
+                    builder: (context, automateProvider, child) {
+                      return Column(
+                        children: [
+                          Text('G: ${automateProvider.global}'),
+                          Text('Day :${automateProvider.day}'),
+                          Text('Type: ${automateProvider.postType}')
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   InkWell(
                     onTap: () {
                       setState(() {
@@ -1049,6 +1229,12 @@ class _AutomateState extends State<Automate> {
                   ),
                   fresh
                       ? Column(children: [
+                          const Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Initial Score: ',
+                                textAlign: TextAlign.left,
+                              )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -1077,9 +1263,7 @@ class _AutomateState extends State<Automate> {
                                         height: 45,
                                         child: TextField(
                                           onEditingComplete: () {},
-                                          onTap: () {
-
-                                          },
+                                          onTap: () {},
                                           keyboardType: TextInputType.number,
                                           maxLines: 1,
                                           controller: initialScoreController,
@@ -1106,7 +1290,8 @@ class _AutomateState extends State<Automate> {
                                   const SizedBox(width: 6),
                                   GestureDetector(
                                     onTap: () {
-                                      automateProvider.saveInitialScore(initialScoreController.text);
+                                      automateProvider.saveInitialScore(
+                                          initialScoreController.text);
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
