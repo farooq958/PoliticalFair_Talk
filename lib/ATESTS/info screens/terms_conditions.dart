@@ -194,14 +194,14 @@ class _TermsConditionsState extends State<TermsConditions> {
                             // ),
 
                             const Text(
-                              "Fairtalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
+                              "FairTalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),
                             ),
                             const SizedBox(height: 15),
                             const Text(
-                              "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                              "If for any reason users find out that a specific username on FairTalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on FairTalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in FairTalk's discussions but they must remain anonymous just like everybody else.",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),
@@ -329,7 +329,7 @@ class _TermsConditionsState extends State<TermsConditions> {
 
                             const SizedBox(height: 15),
                             const Text(
-                              "What happens when you violate Fairtalk’s rules or restrictions?",
+                              "What happens when you violate FairTalk’s rules or restrictions?",
                               style: TextStyle(
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.w500,
@@ -337,7 +337,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 2),
                             const Text(
-                              "If we find clear evidence that any of our rules or restrictions have been breached, your account will face consequences. Depending on the severity, your account will either face a temporary suspension or permanent termination. In most cases, breaching our rules will result in a temporary suspension but if they're continuously being violated, we will have no choice but to terminate your account. If you believe the suspension or termination has been made in error, you can always contact us by email and we can further investigate the reason behind your suspension or termination. You'll also have the opportunity to ask us to provide some evidence & show you the reason(s) for your account suspension/termination. If we're unable to provide any evidence, your account will be immediately re-instated. If your account gets temporarily suspended, you will need to prove to us that you have read and understood our Terms of Use statement. Until then, your account will remain suspended. We also keep track of each user's violations and suspensions and if your account reaches a certain threshold, it will result in a permanent termination of your account. If you wish to help Fairtalk sustain its healthy community and give every user the best possible experience, we recommend that you report/flag any content that breached our user engagement rules. Reported content will be picked up by our moderators and if the content has indeed breached any of our rules, it will be removed from our platform. If you believe your content has been wrongfully removed by our moderators, you may contact us by email and we'll do our best to resolve the issue.",
+                              "If we find clear evidence that any of our rules or restrictions have been breached, your account will face consequences. Depending on the severity, your account will either face a temporary suspension or permanent termination. In most cases, breaching our rules will result in a temporary suspension but if they're continuously being violated, we will have no choice but to terminate your account. If you believe the suspension or termination has been made in error, you can always contact us by email and we can further investigate the reason behind your suspension or termination. You'll also have the opportunity to ask us to provide some evidence & show you the reason(s) for your account suspension/termination. If we're unable to provide any evidence, your account will be immediately re-instated. If your account gets temporarily suspended, you will need to prove to us that you have read and understood our Terms of Use statement. Until then, your account will remain suspended. We also keep track of each user's violations and suspensions and if your account reaches a certain threshold, it will result in a permanent termination of your account. If you wish to help FairTalk sustain its healthy community and give every user the best possible experience, we recommend that you report/flag any content that breached our user engagement rules. Reported content will be picked up by our moderators and if the content has indeed breached any of our rules, it will be removed from our platform. If you believe your content has been wrongfully removed by our moderators, you may contact us by email and we'll do our best to resolve the issue.",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),
@@ -351,7 +351,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 2),
                             const Text(
-                              "To use Fairtalk, you must be at least 13 years old. However, if enabled by a parent or legal guardian, a child aged 12 years or younger can use the platform. If you are under 18, you must have your parent or guardian’s permission to use the platform. Please have them read this Agreement with you. Additionally, in order to successfully pass our account verification process, you must be at least 18 years or older. ",
+                              "To use FairTalk, you must be at least 13 years old. However, if enabled by a parent or legal guardian, a child aged 12 years or younger can use the platform. If you are under 18, you must have your parent or guardian’s permission to use the platform. Please have them read this Agreement with you. Additionally, in order to successfully pass our account verification process, you must be at least 18 years or older. ",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),
@@ -366,7 +366,7 @@ class _TermsConditionsState extends State<TermsConditions> {
                             ),
                             const SizedBox(height: 2),
                             const Text(
-                              "Our platform may contain links to third-party websites and online services that are not owned or controlled by Fairtalk. We have no control over, and assume no responsibility for, such websites and online services. Be aware when you leave the Service; we suggest you read the terms and Data Privacy of each third-party website and online service that you visit.",
+                              "Our platform may contain links to third-party websites and online services that are not owned or controlled by FairTalk. We have no control over, and assume no responsibility for, such websites and online services. Be aware when you leave the Service; we suggest you read the terms and Data Privacy of each third-party website and online service that you visit.",
                               style: TextStyle(
                                 letterSpacing: 0,
                               ),

@@ -59,7 +59,7 @@ class _AddPostRulesState extends State<AddPostRules> {
                           ),
                         ),
                         Container(width: 16),
-                        const Text('Rules for posting on Fairtalk',
+                        const Text('Rules for posting on FairTalk',
                             style: TextStyle(
                                 color: whiteDialog,
                                 fontSize: 20,
@@ -101,7 +101,7 @@ class _AddPostRulesState extends State<AddPostRules> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "Fairtalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
+                                  "FairTalk has a simple commitment that we will faithfully defend & follow. We fully recognize the importance of freedom of expression and for this reason, we will never censor anyone for any reason whatsoever. In return, we ask you to follow simple rules that are set in place to sustain a healthy community & improve the user experience.",
                                   style: TextStyle(
                                     color: whiteDialog,
                                     fontWeight: FontWeight.w500,
@@ -110,7 +110,7 @@ class _AddPostRulesState extends State<AddPostRules> {
                                 ),
                                 const SizedBox(height: 15),
                                 const Text(
-                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                                  "If for any reason users find out that a specific username on FairTalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on FairTalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in FairTalk's discussions but they must remain anonymous just like everybody else.",
                                   style: TextStyle(
                                     color: whiteDialog,
                                     fontWeight: FontWeight.w500,

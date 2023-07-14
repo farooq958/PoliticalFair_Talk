@@ -29,7 +29,7 @@ const Color darkBlue = Color.fromARGB(255, 0, 54, 120);
 const Color whiteDialog = Color.fromARGB(255, 255, 255, 255);
 // const Color testColor = Color.fromARGB(255, 0, 91, 202);
 const Color testColor = Color.fromARGB(255, 0, 97, 216);
-const Color testColor2 = Color.fromARGB(255, 26, 91, 172);
+// const Color testColor2 = Color.fromARGB(255, 26, 91, 172);
 
 class FirestoreValues {
   static const String userCollection = 'users';
@@ -38,10 +38,8 @@ class FirestoreValues {
 String twoValue1H = 'selected_radio1Home';
 String twoValue11 = 'selected_radio1Search';
 
-
 /// Firebase real time db constants
 class RealTimeDBValues {
   static const String initialScore = 'initialScore';
   static const String admins = 'admins';
-
 }

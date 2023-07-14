@@ -418,23 +418,25 @@ class _AddPostState extends State<AddPost> {
       );
 
       if (res1 == "success" && res == "success") {
-        Future.delayed(const Duration(milliseconds: 1500), () {
-          _showInterstitialAd();
-          FocusScope.of(context).unfocus();
-          _titleController.clear();
-          _bodyController.clear();
+        username == 'Fairtalk'
+            ? null
+            : Future.delayed(const Duration(milliseconds: 1500), () {
+                _showInterstitialAd();
+                FocusScope.of(context).unfocus();
+                _titleController.clear();
+                _bodyController.clear();
 
-          clearImage();
-          clearVideoUrl();
-          setState(() {
-            _isLoading = false;
-            selected = 0;
-          });
+                clearImage();
+                clearVideoUrl();
+                setState(() {
+                  _isLoading = false;
+                  selected = 0;
+                });
 
-          global == 'true'
-              ? waitTimer(time: widget.durationInDay, type: 'gMessage')
-              : waitTimer(time: widget.durationInDay, type: 'nMessage');
-        });
+                global == 'true'
+                    ? waitTimer(time: widget.durationInDay, type: 'gMessage')
+                    : waitTimer(time: widget.durationInDay, type: 'nMessage');
+              });
       } else {
         showSnackBar(res, context);
       }
@@ -495,29 +497,31 @@ class _AddPostState extends State<AddPost> {
           getCounterPoll,
           myTagsPollLowerCase);
       if (res1 == "success" && res == "success") {
-        Future.delayed(const Duration(milliseconds: 1500), () {
-          _showInterstitialAd();
+        username == 'Fairtalk'
+            ? null
+            : Future.delayed(const Duration(milliseconds: 1500), () {
+                _showInterstitialAd();
 
-          setState(() {
-            _isLoading = false;
-            _pollController.clear();
-            _optionOne.clear();
-            _optionTwo.clear();
-            _optionThree.clear();
-            _optionFour.clear();
-            _optionFive.clear();
-            _optionSix.clear();
-            _optionSeven.clear();
-            _optionEight.clear();
-            _optionNine.clear();
-            _optionTen.clear();
-            FocusScope.of(context).unfocus();
-          });
+                setState(() {
+                  _isLoading = false;
+                  _pollController.clear();
+                  _optionOne.clear();
+                  _optionTwo.clear();
+                  _optionThree.clear();
+                  _optionFour.clear();
+                  _optionFive.clear();
+                  _optionSix.clear();
+                  _optionSeven.clear();
+                  _optionEight.clear();
+                  _optionNine.clear();
+                  _optionTen.clear();
+                  FocusScope.of(context).unfocus();
+                });
 
-          global == 'true'
-              ? waitTimer(time: widget.durationInDay, type: 'gPoll')
-              : waitTimer(time: widget.durationInDay, type: 'nPoll');
-        });
+                global == 'true'
+                    ? waitTimer(time: widget.durationInDay, type: 'gPoll')
+                    : waitTimer(time: widget.durationInDay, type: 'nPoll');
+              });
       } else {
         showSnackBar(res, context);
       }
@@ -1188,6 +1192,7 @@ class _AddPostState extends State<AddPost> {
                             if (file != null) {
                               setState(() {
                                 _file = file;
+
                                 _isVideoFile = false;
                               });
                             }
@@ -1783,10 +1788,10 @@ class _AddPostState extends State<AddPost> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 7),
                         _isLoading
                             ? const LinearProgressIndicator(color: Colors.white)
-                            : const Padding(padding: EdgeInsets.only(top: 0)),
+                            : const Padding(padding: EdgeInsets.only(top: 0))
                       ],
                     ),
                   ),
@@ -2015,100 +2020,48 @@ class _AddPostState extends State<AddPost> {
                                                                 )),
                                                       );
                                                     },
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        color: const Color
-                                                                .fromARGB(
-                                                            255, 248, 248, 248),
-                                                        border: Border.all(
-                                                            color: Colors.grey,
-                                                            width: 0.5),
-                                                      ),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.36,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.72,
+                                                    child: PhysicalModel(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              245,
+                                                              245,
+                                                              245,
+                                                              245),
+                                                      elevation: 2,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: const Color
+                                                                  .fromARGB(245,
+                                                              245, 245, 245),
+                                                          // border: Border.all(
+                                                          //     color: Colors.grey,
+                                                          //     width: 0.5),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                        ),
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.36,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.72,
 
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(3.0),
-                                                        child:
-                                                            // _isVideoFile &&
-                                                            //         _videoFile != null
-                                                            //     ? FutureBuilder(
-                                                            //         future:
-                                                            //             _getVideoThumbnail(
-                                                            //           file: _videoFile!,
-                                                            //         ),
-                                                            //         builder: (BuildContext
-                                                            //                 context,
-                                                            //             AsyncSnapshot<File>
-                                                            //                 snapshot) {
-                                                            //           switch (snapshot
-                                                            //               .connectionState) {
-                                                            //             case ConnectionState
-                                                            //                 .none:
-                                                            //               print(
-                                                            //                   'ConnectionState.none');
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .waiting:
-                                                            //               return const Center(
-                                                            //                 child:
-                                                            //                     CircularProgressIndicator(),
-                                                            //               );
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .active:
-                                                            //               print(
-                                                            //                   'ConnectionState.active');
-                                                            //               break;
-                                                            //             case ConnectionState
-                                                            //                 .done:
-                                                            //               print(
-                                                            //                   'ConnectionState.done');
-                                                            //               break;
-                                                            //           }
-
-                                                            //           return snapshot
-                                                            //                       .data !=
-                                                            //                   null
-                                                            //               ? Stack(
-                                                            //                   alignment:
-                                                            //                       Alignment
-                                                            //                           .center,
-                                                            //                   children: [
-                                                            //                     Image.file(
-                                                            //                         snapshot
-                                                            //                             .data!),
-                                                            //                     const Center(
-                                                            //                       child:
-                                                            //                           Icon(
-                                                            //                         Icons
-                                                            //                             .play_circle_outline,
-                                                            //                         color: Colors
-                                                            //                             .white,
-                                                            //                       ),
-                                                            //                     ),
-                                                            //                   ],
-                                                            //                 )
-                                                            //               : const Center(
-                                                            //                   child:
-                                                            //                       CircularProgressIndicator(),
-                                                            //                 );
-                                                            //         },
-                                                            //       )
-                                                            // :
-                                                            Container(
+                                                        child: Container(
                                                           decoration:
                                                               BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
                                                             image:
                                                                 DecorationImage(
                                                               image:
@@ -2120,8 +2073,8 @@ class _AddPostState extends State<AddPost> {
                                                             ),
                                                           ),
                                                         ),
+                                                        // ),
                                                       ),
-                                                      // ),
                                                     ),
                                                   ),
                                                   Column(
@@ -2204,154 +2157,162 @@ class _AddPostState extends State<AddPost> {
                                           )
                                         : _videoUrlController.text.isEmpty
                                             ? Container()
-                                            : LayoutBuilder(
-                                                builder:
-                                                    (context, constraints) {
-                                                  // if (kIsWeb &&
-                                                  //     constraints.maxWidth > 800) {
-                                                  //   return Row(
-                                                  //     crossAxisAlignment:
-                                                  //         CrossAxisAlignment.start,
-                                                  //     children: const [
-                                                  //       Expanded(child: player),
-                                                  //       SizedBox(
-                                                  //         width: 500,
-                                                  //       ),
-                                                  //     ],
-                                                  //   );
-                                                  // }
-                                                  return SizedBox(
-                                                    // width: MediaQuery.of(context)
-                                                    //         .size
-                                                    //         .width *
-                                                    //     0.9,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                            :
+                                            // if (kIsWeb &&
+                                            //     constraints.maxWidth > 800) {
+                                            //   return Row(
+                                            //     crossAxisAlignment:
+                                            //         CrossAxisAlignment.start,
+                                            //     children: const [
+                                            //       Expanded(child: player),
+                                            //       SizedBox(
+                                            //         width: 500,
+                                            //       ),
+                                            //     ],
+                                            //   );
+                                            // }
+                                            SizedBox(
+                                                // width: MediaQuery.of(context)
+                                                //         .size
+                                                //         .width *
+                                                //     0.9,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      child: LayoutBuilder(
+                                                        builder: (context,
+                                                            constraints) {
+                                                          return SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width -
+                                                                100,
+                                                            child: Stack(
+                                                              children: [
+                                                                player,
+                                                                Positioned.fill(
+                                                                  child:
+                                                                      YoutubeValueBuilder(
+                                                                    controller:
+                                                                        controller,
+                                                                    builder:
+                                                                        (context,
+                                                                            value) {
+                                                                      return AnimatedCrossFade(
+                                                                        crossFadeState: value.isReady
+                                                                            ? CrossFadeState.showSecond
+                                                                            : CrossFadeState.showFirst,
+                                                                        duration:
+                                                                            const Duration(milliseconds: 300),
+                                                                        secondChild:
+                                                                            const SizedBox.shrink(),
+                                                                        firstChild:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Container(
+                                                                              child: CircularProgressIndicator(
+                                                                                color: whiteDialog,
+                                                                              ),
+                                                                              height: 25,
+                                                                              width: 25,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                    Column(
                                                       children: [
                                                         SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width -
-                                                              100,
-                                                          child: Stack(
-                                                            children: [
-                                                              player,
-                                                              Positioned.fill(
-                                                                child:
-                                                                    YoutubeValueBuilder(
-                                                                  controller:
-                                                                      controller,
-                                                                  builder:
-                                                                      (context,
-                                                                          value) {
-                                                                    return AnimatedCrossFade(
-                                                                      crossFadeState: value.isReady
-                                                                          ? CrossFadeState
-                                                                              .showSecond
-                                                                          : CrossFadeState
-                                                                              .showFirst,
-                                                                      duration: const Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      secondChild:
-                                                                          const SizedBox
-                                                                              .shrink(),
-                                                                      firstChild:
-                                                                          Material(
-                                                                        child:
-                                                                            const Center(
-                                                                          child:
-                                                                              CircularProgressIndicator(),
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
+                                                          height: 40,
+                                                          width: 40,
+                                                          child: Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            shape:
+                                                                const CircleBorder(),
+                                                            child: InkWell(
+                                                              customBorder:
+                                                                  const CircleBorder(),
+                                                              splashColor: Colors
+                                                                  .grey
+                                                                  .withOpacity(
+                                                                      0.3),
+                                                              onTap: () {
+                                                                Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            50),
+                                                                    () {
+                                                                  _selectYoutube(
+                                                                      context);
+                                                                });
+                                                              },
+                                                              child: const Icon(
+                                                                  Icons
+                                                                      .change_circle,
+                                                                  color: Colors
+                                                                      .grey),
+                                                            ),
                                                           ),
                                                         ),
-                                                        Column(
-                                                          children: [
-                                                            SizedBox(
-                                                              height: 40,
-                                                              width: 40,
-                                                              child: Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child: InkWell(
-                                                                  customBorder:
-                                                                      const CircleBorder(),
-                                                                  splashColor: Colors
-                                                                      .grey
-                                                                      .withOpacity(
-                                                                          0.3),
-                                                                  onTap: () {
-                                                                    Future.delayed(
-                                                                        const Duration(
-                                                                            milliseconds:
-                                                                                50),
-                                                                        () {
-                                                                      _selectYoutube(
-                                                                          context);
-                                                                    });
-                                                                  },
-                                                                  child: const Icon(
-                                                                      Icons
-                                                                          .change_circle,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ),
+                                                        SizedBox(
+                                                          width: 40,
+                                                          height: 40,
+                                                          child: Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            shape:
+                                                                const CircleBorder(),
+                                                            child: InkWell(
+                                                              customBorder:
+                                                                  const CircleBorder(),
+                                                              splashColor: Colors
+                                                                  .grey
+                                                                  .withOpacity(
+                                                                      0.3),
+                                                              onTap: () {
+                                                                Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            50),
+                                                                    () {
+                                                                  clearVideoUrl();
+                                                                  setState(() {
+                                                                    selected =
+                                                                        0;
+                                                                  });
+                                                                });
+                                                              },
+                                                              child: const Icon(
+                                                                  Icons.delete,
+                                                                  color: Colors
+                                                                      .grey),
                                                             ),
-                                                            SizedBox(
-                                                              width: 40,
-                                                              height: 40,
-                                                              child: Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child: InkWell(
-                                                                  customBorder:
-                                                                      const CircleBorder(),
-                                                                  splashColor: Colors
-                                                                      .grey
-                                                                      .withOpacity(
-                                                                          0.3),
-                                                                  onTap: () {
-                                                                    Future.delayed(
-                                                                        const Duration(
-                                                                            milliseconds:
-                                                                                50),
-                                                                        () {
-                                                                      clearVideoUrl();
-                                                                      setState(
-                                                                          () {
-                                                                        selected =
-                                                                            0;
-                                                                      });
-                                                                    });
-                                                                  },
-                                                                  child: const Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      color: Colors
-                                                                          .grey),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
-                                                  );
-                                                },
+                                                  ],
+                                                ),
                                               ),
                                     SizedBox(
                                         height: _videoUrlController
@@ -2377,576 +2338,572 @@ class _AddPostState extends State<AddPost> {
                                 //     color: const Color.fromARGB(255, 210, 210, 210),
                                 //     width: 1.5),
                               ),
-                              child: Consumer<CreatePageProvider>(
-                                  builder: (context, createProvider, child) {
-                                return Column(
-                                  children: [
-                                    const SizedBox(height: 20),
-                                    Autocomplete<String>(
-                                      optionsViewBuilder:
-                                          (context, onSelected, options) {
-                                        return Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 10.0, vertical: 4.0),
-                                          child: Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Material(
-                                              elevation: 4.0,
-                                              child: ConstrainedBox(
-                                                constraints:
-                                                    const BoxConstraints(
-                                                        maxHeight: 200),
-                                                child: ListView.builder(
-                                                  shrinkWrap: true,
-                                                  itemCount: options.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    final dynamic option =
-                                                        options
-                                                            .elementAt(index);
-                                                    return TextButton(
-                                                      onPressed: () {
-                                                        onSelected(option);
-                                                      },
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical:
-                                                                      15.0),
-                                                          child: Text(
-                                                            '$option',
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style:
-                                                                const TextStyle(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      74,
-                                                                      137,
-                                                                      92),
-                                                            ),
+                              child:
+
+                                  // Consumer<CreatePageProvider>(
+                                  //     builder: (context, createProvider, child) {
+                                  //   return
+                                  Column(
+                                children: [
+                                  const SizedBox(height: 3),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 0),
+                                    child: Material(
+                                      color: Colors.white,
+                                      shape: const CircleBorder(),
+                                      child: InkWell(
+                                        customBorder: const CircleBorder(),
+                                        splashColor:
+                                            Colors.grey.withOpacity(0.5),
+                                        onTap: () {
+                                          Future.delayed(
+                                            const Duration(milliseconds: 50),
+                                            () {
+                                              keywordsDialog(context: context);
+                                            },
+                                          );
+                                        },
+                                        child: const SizedBox(
+                                          height: 32,
+                                          width: 38,
+                                          child: Icon(Icons.help_outline,
+                                              size: 20, color: Colors.grey),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 3),
+                                  Autocomplete<String>(
+                                    optionsViewBuilder:
+                                        (context, onSelected, options) {
+                                      return Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 10.0, vertical: 4.0),
+                                        child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Material(
+                                            elevation: 4.0,
+                                            child: ConstrainedBox(
+                                              constraints: const BoxConstraints(
+                                                  maxHeight: 200),
+                                              child: ListView.builder(
+                                                shrinkWrap: true,
+                                                itemCount: options.length,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  final dynamic option =
+                                                      options.elementAt(index);
+                                                  return TextButton(
+                                                    onPressed: () {
+                                                      onSelected(option);
+                                                    },
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15.0),
+                                                        child: Text(
+                                                          '$option',
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style:
+                                                              const TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    74,
+                                                                    137,
+                                                                    92),
                                                           ),
                                                         ),
                                                       ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      optionsBuilder:
-                                          (TextEditingValue textEditingValue) {
-                                        if (textEditingValue.text == '') {
-                                          return const Iterable<String>.empty();
-                                        }
-                                        return _pickLanguage
-                                            .where((String option) {
-                                          return option.contains(
-                                              textEditingValue.text
-                                                  .toLowerCase());
-                                        });
-                                      },
-                                      onSelected: (String selectedTag) {
-                                        keywordMessageController.addTag =
-                                            selectedTag;
-                                      },
-                                      fieldViewBuilder: (context, ttec, tfn,
-                                          onFieldSubmitted) {
-                                        return Stack(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 14.0),
-                                              child: Container(
-                                                height: 46,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(5.0),
-                                                  ),
-                                                  border: Border.all(
-                                                      color: Colors.grey,
-                                                      width: 1),
-                                                ),
-                                                child: TextFieldTags(
-                                                  textEditingController: ttec,
-                                                  focusNode: tfn,
-                                                  // textfieldTagsController:
-                                                  //     keywordMessageController,
-                                                  initialTags: const [],
-                                                  textSeparators: const [
-                                                    ' ',
-                                                    ',',
-                                                  ],
-                                                  letterCase: LetterCase.normal,
-                                                  inputfieldBuilder: (context,
-                                                      tec,
-                                                      fn,
-                                                      error,
-                                                      onChanged,
-                                                      onSubmitted) {
-                                                    return ((context, sc, tags,
-                                                        onTagDelete) {
-                                                      myTags = tags;
-                                                      List<String> tagsLower =
-                                                          tags;
-                                                      tagsLower = tagsLower
-                                                          .map((tagLower) =>
-                                                              tagLower
-                                                                  .toLowerCase())
-                                                          .toList();
-                                                      myTagsLowerCase =
-                                                          tagsLower;
-                                                      return Row(
-                                                        children: [
-                                                          Container(
-                                                            constraints: BoxConstraints(
-                                                                maxWidth: tags
-                                                                            .length <
-                                                                        3
-                                                                    ? MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        2
-                                                                    : MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        1.4),
-                                                            child:
-                                                                SingleChildScrollView(
-                                                              controller: sc,
-                                                              scrollDirection:
-                                                                  Axis.horizontal,
-                                                              child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  children: tags
-                                                                      .map((String
-                                                                          tag) {
-                                                                    return Container(
-                                                                      height:
-                                                                          28,
-                                                                      decoration: const BoxDecoration(
-                                                                          borderRadius: BorderRadius.all(
-                                                                            Radius.circular(20.0),
-                                                                          ),
-                                                                          color: Colors.grey),
-                                                                      margin: const EdgeInsets
-                                                                              .only(
-                                                                          left:
-                                                                              3,
-                                                                          right:
-                                                                              3),
-                                                                      padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          horizontal:
-                                                                              10.0,
-                                                                          vertical:
-                                                                              4.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          InkWell(
-                                                                            child:
-                                                                                Text(
-                                                                              tag,
-                                                                              style: const TextStyle(color: Colors.white),
-                                                                            ),
-                                                                          ),
-                                                                          const SizedBox(
-                                                                              width: 4.0),
-                                                                          InkWell(
-                                                                            child:
-                                                                                const Icon(
-                                                                              Icons.cancel,
-                                                                              size: 17.0,
-                                                                              color: Colors.white,
-                                                                            ),
-                                                                            onTap:
-                                                                                () {
-                                                                              onTagDelete(tag);
-                                                                            },
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                                  }).toList()),
-                                                            ),
-                                                          ),
-                                                          Flexible(
-                                                            child: TextField(
-                                                              controller: tec,
-                                                              focusNode: fn,
-                                                              enabled:
-                                                                  tags.length <
-                                                                      3,
-                                                              onTap: () {},
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            10.0,
-                                                                        left:
-                                                                            10,
-                                                                        right:
-                                                                            0,
-                                                                        bottom:
-                                                                            10),
-                                                                hintText: tags
-                                                                        .isNotEmpty
-                                                                    ? ''
-                                                                    : "Add up to 3 keywords (optional)",
-                                                                hintStyle: const TextStyle(
-                                                                    // fontStyle:
-                                                                    //     FontStyle
-                                                                    //         .italic,
-                                                                    color: Colors.grey,
-                                                                    fontSize: 15),
-                                                                errorText:
-                                                                    error,
-                                                                border:
-                                                                    InputBorder
-                                                                        .none,
-                                                              ),
-                                                              onChanged:
-                                                                  onChanged,
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 5,
-                                                                    right: 5),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                const Icon(
-                                                                    Icons.key,
-                                                                    color: Colors
-                                                                        .grey),
-                                                                tags.length == 3
-                                                                    ? Text(
-                                                                        '${tags.length}/3',
-                                                                        style: const TextStyle(
-                                                                            // fontStyle: FontStyle.italic,
-                                                                            fontSize: 12,
-                                                                            color: Color.fromARGB(255, 220, 105, 96)),
-                                                                      )
-                                                                    : Text(
-                                                                        '${tags.length}/3',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          // fontStyle: FontStyle.italic,
-                                                                          fontSize:
-                                                                              12,
-                                                                          color:
-                                                                              Colors.grey,
-                                                                        ),
-                                                                      )
-                                                              ],
-                                                            ),
-                                                          )
-                                                        ],
-                                                      );
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                    Container(height: 3.5),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 14.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            width: 30,
-                                          ),
-                                          Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              splashColor:
-                                                  Colors.grey.withOpacity(0.3),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              onTap: () {
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 100),
-                                                    () async {
-                                                  // setState(() {
-                                                  //   showTrendingMessage =
-                                                  //       !showTrendingMessage;
-                                                  // });
-                                                  await createProvider
-                                                      .setShowTrendingMessage(
-                                                          !createProvider
-                                                              .showTrendingMessage);
-                                                  if (createProvider
-                                                          .showTrendingMessage ==
-                                                      true) {
-                                                    createProvider
-                                                        .getkeywordList(
-                                                      global,
-                                                      user?.aaCountry ?? "",
-                                                      widget.durationInDay,
-                                                    );
-                                                  }
-                                                });
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const SizedBox(width: 10),
-                                                  const Text(
-                                                      'View trending keywords',
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 13)),
-                                                  Icon(
-                                                    createProvider
-                                                            .showTrendingMessage
-                                                        ? Icons.arrow_drop_up
-                                                        : Icons.arrow_drop_down,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 0),
-                                            child: Material(
-                                              color: Colors.white,
-                                              shape: const CircleBorder(),
-                                              child: InkWell(
-                                                customBorder:
-                                                    const CircleBorder(),
-                                                splashColor: Colors.grey
-                                                    .withOpacity(0.5),
-                                                onTap: () {
-                                                  Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 50),
-                                                    () {
-                                                      keywordsDialog(
-                                                          context: context);
-                                                    },
+                                                    ),
                                                   );
                                                 },
-                                                child: const SizedBox(
-                                                  height: 32,
-                                                  width: 38,
-                                                  child: Icon(
-                                                      Icons.help_outline,
-                                                      size: 20,
-                                                      color: Colors.grey),
-                                                ),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    // SizedBox(
-                                    //     height: createProvider.showTrendingMessage
-                                    //         ? 0
-                                    //         : 3.5),
-                                    createProvider.showTrendingMessage
-                                        ? createProvider.Loading == true
-                                            ? const SizedBox(
-                                                height: 223,
-                                                child: Center(
-                                                    child:
-                                                        CircularProgressIndicator()),
-                                              )
-                                            : Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10),
-                                                child: SizedBox(
-                                                  height: createProvider
-                                                              .postKeywordListCount ==
-                                                          1
-                                                      ? 200
-                                                      : 223,
-                                                  child: FutureBuilder(
-                                                    builder:
-                                                        (BuildContext context,
-                                                            snapshot) {
-                                                      return createProvider
-                                                              .list.isNotEmpty
-                                                          ? SingleChildScrollView(
-                                                              child: Column(
-                                                                children: [
-                                                                  createProvider
-                                                                              .postKeywordListCount >
-                                                                          1
-                                                                      ? Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Material(
-                                                                              color: Colors.transparent,
-                                                                              child: InkWell(
-                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                  splashColor: Colors.blue.withOpacity(0.2),
-                                                                                  onTap: () {
-                                                                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                      createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: false);
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    padding: const EdgeInsets.symmetric(
-                                                                                      vertical: 4,
-                                                                                      horizontal: 8,
-                                                                                    ),
-                                                                                    child: Text('View ${((createProvider.postKeywordListCount - 2) * 10) + 1} - ${(createProvider.postKeywordListCount - 1) * 10}',
-                                                                                        style: const TextStyle(
-                                                                                          color: Colors.blue,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0,
-                                                                                        )),
-                                                                                  )),
-                                                                            ),
-                                                                          ],
-                                                                        )
-                                                                      : const SizedBox(),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          4),
-                                                                  ListView
-                                                                      .builder(
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    physics:
-                                                                        const NeverScrollableScrollPhysics(),
-                                                                    itemCount:
-                                                                        createProvider
-                                                                            .list
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                                index) =>
-                                                                            Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          vertical:
-                                                                              1),
-                                                                      child: NoRadioListTile<
-                                                                              String>(
-                                                                          start: ((((createProvider.postKeywordListCount - 1) * 10) + 1) + index)
-                                                                              .toString(),
-                                                                          center: createProvider
-                                                                              .list[
-                                                                                  index]
-                                                                              .keyName
-                                                                          //     ??
-                                                                          // ""
-                                                                          ,
-                                                                          end: createProvider
-                                                                              .list[index]
-                                                                              .length
-                                                                              .toString()),
-                                                                    ),
-                                                                  ),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          4),
-                                                                  createProvider
-                                                                              .postKeywordLast ==
-                                                                          false
-                                                                      ? Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Material(
-                                                                              color: Colors.transparent,
-                                                                              child: InkWell(
-                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                  splashColor: Colors.blue.withOpacity(0.2),
-                                                                                  onTap: () {
-                                                                                    Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                      createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: true);
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    padding: const EdgeInsets.symmetric(
-                                                                                      vertical: 4,
-                                                                                      horizontal: 8,
-                                                                                    ),
-                                                                                    child: Text("View ${(createProvider.postKeywordListCount * 10) + 1} - ${(createProvider.postKeywordListCount + 1) * 10}",
-                                                                                        style: const TextStyle(
-                                                                                          color: Colors.blue,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          fontSize: 13,
-                                                                                          letterSpacing: 0,
-                                                                                        )),
-                                                                                  )),
-                                                                            ),
-                                                                          ],
-                                                                        )
-                                                                      : Container(),
-                                                                  const SizedBox(
-                                                                    height: 6,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          : const Center(
-                                                              child: Text(
-                                                                'No trending keywords yet.',
-                                                                style: TextStyle(
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            183,
-                                                                            183,
-                                                                            183),
-                                                                    fontSize:
-                                                                        16),
-                                                              ),
-                                                            );
-                                                    },
-                                                  ),
+                                        ),
+                                      );
+                                    },
+                                    optionsBuilder:
+                                        (TextEditingValue textEditingValue) {
+                                      if (textEditingValue.text == '') {
+                                        return const Iterable<String>.empty();
+                                      }
+                                      return _pickLanguage
+                                          .where((String option) {
+                                        return option.contains(textEditingValue
+                                            .text
+                                            .toLowerCase());
+                                      });
+                                    },
+                                    onSelected: (String selectedTag) {
+                                      keywordMessageController.addTag =
+                                          selectedTag;
+                                    },
+                                    fieldViewBuilder:
+                                        (context, ttec, tfn, onFieldSubmitted) {
+                                      return Stack(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 14.0),
+                                            child: Container(
+                                              height: 46,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(5.0),
                                                 ),
-                                              )
-                                        : Row(),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                  ],
-                                );
-                              }),
+                                                border: Border.all(
+                                                    color: Colors.grey,
+                                                    width: 1),
+                                              ),
+                                              child: TextFieldTags(
+                                                textEditingController: ttec,
+                                                focusNode: tfn,
+                                                // textfieldTagsController:
+                                                //     keywordMessageController,
+                                                initialTags: const [],
+                                                textSeparators: const [
+                                                  ' ',
+                                                  ',',
+                                                ],
+                                                letterCase: LetterCase.normal,
+                                                inputfieldBuilder: (context,
+                                                    tec,
+                                                    fn,
+                                                    error,
+                                                    onChanged,
+                                                    onSubmitted) {
+                                                  return ((context, sc, tags,
+                                                      onTagDelete) {
+                                                    myTags = tags;
+                                                    List<String> tagsLower =
+                                                        tags;
+                                                    tagsLower = tagsLower
+                                                        .map((tagLower) =>
+                                                            tagLower
+                                                                .toLowerCase())
+                                                        .toList();
+                                                    myTagsLowerCase = tagsLower;
+                                                    return Row(
+                                                      children: [
+                                                        Container(
+                                                          constraints: BoxConstraints(
+                                                              maxWidth: tags
+                                                                          .length <
+                                                                      3
+                                                                  ? MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width /
+                                                                      2
+                                                                  : MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width /
+                                                                      1.4),
+                                                          child:
+                                                              SingleChildScrollView(
+                                                            controller: sc,
+                                                            scrollDirection:
+                                                                Axis.horizontal,
+                                                            child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: tags
+                                                                    .map((String
+                                                                        tag) {
+                                                                  return Container(
+                                                                    height: 28,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.all(
+                                                                              Radius.circular(20.0),
+                                                                            ),
+                                                                            color: Colors.grey),
+                                                                    margin: const EdgeInsets
+                                                                            .only(
+                                                                        left: 3,
+                                                                        right:
+                                                                            3),
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        horizontal:
+                                                                            10.0,
+                                                                        vertical:
+                                                                            4.0),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        InkWell(
+                                                                          child:
+                                                                              Text(
+                                                                            tag,
+                                                                            style:
+                                                                                const TextStyle(color: Colors.white),
+                                                                          ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            width:
+                                                                                4.0),
+                                                                        InkWell(
+                                                                          child:
+                                                                              const Icon(
+                                                                            Icons.cancel,
+                                                                            size:
+                                                                                17.0,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                          onTap:
+                                                                              () {
+                                                                            onTagDelete(tag);
+                                                                          },
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  );
+                                                                }).toList()),
+                                                          ),
+                                                        ),
+                                                        Flexible(
+                                                          child: TextField(
+                                                            controller: tec,
+                                                            focusNode: fn,
+                                                            enabled:
+                                                                tags.length < 3,
+                                                            onTap: () {},
+                                                            decoration:
+                                                                InputDecoration(
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 10.0,
+                                                                      left: 10,
+                                                                      right: 0,
+                                                                      bottom:
+                                                                          10),
+                                                              hintText: tags
+                                                                      .isNotEmpty
+                                                                  ? ''
+                                                                  : "Add up to 3 keywords (optional)",
+                                                              hintStyle: const TextStyle(
+                                                                  // fontStyle:
+                                                                  //     FontStyle
+                                                                  //         .italic,
+                                                                  color: Colors.grey,
+                                                                  fontSize: 15),
+                                                              errorText: error,
+                                                              border:
+                                                                  InputBorder
+                                                                      .none,
+                                                            ),
+                                                            onChanged:
+                                                                onChanged,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 5,
+                                                                  right: 5),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              const Icon(
+                                                                  Icons.key,
+                                                                  color: Colors
+                                                                      .grey),
+                                                              tags.length == 3
+                                                                  ? Text(
+                                                                      '${tags.length}/3',
+                                                                      style: const TextStyle(
+                                                                          // fontStyle: FontStyle.italic,
+                                                                          fontSize: 12,
+                                                                          color: Color.fromARGB(255, 220, 105, 96)),
+                                                                    )
+                                                                  : Text(
+                                                                      '${tags.length}/3',
+                                                                      style:
+                                                                          const TextStyle(
+                                                                        // fontStyle: FontStyle.italic,
+                                                                        fontSize:
+                                                                            12,
+                                                                        color: Colors
+                                                                            .grey,
+                                                                      ),
+                                                                    )
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    );
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(height: 20),
+                                  // Container(height: 3.5),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //       horizontal: 14.0),
+                                  //   child: Row(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.spaceBetween,
+                                  //     children: [
+                                  //       Container(
+                                  //         width: 30,
+                                  //       ),
+                                  //       Material(
+                                  //         color: Colors.transparent,
+                                  //         child: InkWell(
+                                  //           splashColor:
+                                  //               Colors.grey.withOpacity(0.3),
+                                  //           borderRadius:
+                                  //               BorderRadius.circular(25),
+                                  //           onTap: () {
+                                  //             Future.delayed(
+                                  //                 const Duration(
+                                  //                     milliseconds: 100),
+                                  //                 () async {
+                                  //               // setState(() {
+                                  //               //   showTrendingMessage =
+                                  //               //       !showTrendingMessage;
+                                  //               // });
+                                  //               await createProvider
+                                  //                   .setShowTrendingMessage(
+                                  //                       !createProvider
+                                  //                           .showTrendingMessage);
+                                  //               if (createProvider
+                                  //                       .showTrendingMessage ==
+                                  //                   true) {
+                                  //                 createProvider
+                                  //                     .getkeywordList(
+                                  //                   global,
+                                  //                   user?.aaCountry ?? "",
+                                  //                   widget.durationInDay,
+                                  //                 );
+                                  //               }
+                                  //             });
+                                  //           },
+                                  //           child: Row(
+                                  //             mainAxisAlignment:
+                                  //                 MainAxisAlignment.center,
+                                  //             children: [
+                                  //               const SizedBox(width: 10),
+                                  //               const Text(
+                                  //                   'View trending keywords',
+                                  //                   style: TextStyle(
+                                  //                       color: Colors.grey,
+                                  //                       fontWeight:
+                                  //                           FontWeight.w500,
+                                  //                       fontSize: 13)),
+                                  //               Icon(
+                                  //                 createProvider
+                                  //                         .showTrendingMessage
+                                  //                     ? Icons.arrow_drop_up
+                                  //                     : Icons.arrow_drop_down,
+                                  //                 color: Colors.grey,
+                                  //               ),
+                                  //             ],
+                                  //           ),
+                                  //         ),
+                                  //       ),
+
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // // SizedBox(
+                                  // //     height: createProvider.showTrendingMessage
+                                  // //         ? 0
+                                  // //         : 3.5),
+                                  // createProvider.showTrendingMessage
+                                  //     ? createProvider.Loading == true
+                                  //         ? const SizedBox(
+                                  //             height: 223,
+                                  //             child: Center(
+                                  //                 child:
+                                  //                     CircularProgressIndicator()),
+                                  //           )
+                                  //         : Padding(
+                                  //             padding:
+                                  //                 const EdgeInsets.symmetric(
+                                  //                     horizontal: 10),
+                                  //             child: SizedBox(
+                                  //               height: createProvider
+                                  //                           .postKeywordListCount ==
+                                  //                       1
+                                  //                   ? 200
+                                  //                   : 223,
+                                  //               child: FutureBuilder(
+                                  //                 builder:
+                                  //                     (BuildContext context,
+                                  //                         snapshot) {
+                                  //                   return createProvider
+                                  //                           .list.isNotEmpty
+                                  //                       ? SingleChildScrollView(
+                                  //                           child: Column(
+                                  //                             children: [
+                                  //                               createProvider
+                                  //                                           .postKeywordListCount >
+                                  //                                       1
+                                  //                                   ? Row(
+                                  //                                       mainAxisAlignment:
+                                  //                                           MainAxisAlignment.center,
+                                  //                                       children: [
+                                  //                                         Material(
+                                  //                                           color: Colors.transparent,
+                                  //                                           child: InkWell(
+                                  //                                               borderRadius: BorderRadius.circular(25),
+                                  //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                  //                                               onTap: () {
+                                  //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                  //                                                   createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: false);
+                                  //                                                 });
+                                  //                                               },
+                                  //                                               child: Container(
+                                  //                                                 padding: const EdgeInsets.symmetric(
+                                  //                                                   vertical: 4,
+                                  //                                                   horizontal: 8,
+                                  //                                                 ),
+                                  //                                                 child: Text('View ${((createProvider.postKeywordListCount - 2) * 10) + 1} - ${(createProvider.postKeywordListCount - 1) * 10}',
+                                  //                                                     style: const TextStyle(
+                                  //                                                       color: Colors.blue,
+                                  //                                                       fontWeight: FontWeight.w500,
+                                  //                                                       fontSize: 13,
+                                  //                                                       letterSpacing: 0,
+                                  //                                                     )),
+                                  //                                               )),
+                                  //                                         ),
+                                  //                                       ],
+                                  //                                     )
+                                  //                                   : const SizedBox(),
+                                  //                               const SizedBox(
+                                  //                                   height:
+                                  //                                       4),
+                                  //                               ListView
+                                  //                                   .builder(
+                                  //                                 shrinkWrap:
+                                  //                                     true,
+                                  //                                 physics:
+                                  //                                     const NeverScrollableScrollPhysics(),
+                                  //                                 itemCount:
+                                  //                                     createProvider
+                                  //                                         .list
+                                  //                                         .length,
+                                  //                                 itemBuilder:
+                                  //                                     (context,
+                                  //                                             index) =>
+                                  //                                         Padding(
+                                  //                                   padding: const EdgeInsets
+                                  //                                           .symmetric(
+                                  //                                       vertical:
+                                  //                                           1),
+                                  //                                   child: NoRadioListTile<
+                                  //                                           String>(
+                                  //                                       start: ((((createProvider.postKeywordListCount - 1) * 10) + 1) + index)
+                                  //                                           .toString(),
+                                  //                                       center: createProvider
+                                  //                                           .list[
+                                  //                                               index]
+                                  //                                           .keyName
+                                  //                                       //     ??
+                                  //                                       // ""
+                                  //                                       ,
+                                  //                                       end: createProvider
+                                  //                                           .list[index]
+                                  //                                           .length
+                                  //                                           .toString()),
+                                  //                                 ),
+                                  //                               ),
+                                  //                               const SizedBox(
+                                  //                                   height:
+                                  //                                       4),
+                                  //                               createProvider
+                                  //                                           .postKeywordLast ==
+                                  //                                       false
+                                  //                                   ? Row(
+                                  //                                       mainAxisAlignment:
+                                  //                                           MainAxisAlignment.center,
+                                  //                                       children: [
+                                  //                                         Material(
+                                  //                                           color: Colors.transparent,
+                                  //                                           child: InkWell(
+                                  //                                               borderRadius: BorderRadius.circular(25),
+                                  //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                  //                                               onTap: () {
+                                  //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                  //                                                   createProvider.getkeywordList(global, user!.aaCountry, widget.durationInDay, getNextList1: true);
+                                  //                                                 });
+                                  //                                               },
+                                  //                                               child: Container(
+                                  //                                                 padding: const EdgeInsets.symmetric(
+                                  //                                                   vertical: 4,
+                                  //                                                   horizontal: 8,
+                                  //                                                 ),
+                                  //                                                 child: Text("View ${(createProvider.postKeywordListCount * 10) + 1} - ${(createProvider.postKeywordListCount + 1) * 10}",
+                                  //                                                     style: const TextStyle(
+                                  //                                                       color: Colors.blue,
+                                  //                                                       fontWeight: FontWeight.w500,
+                                  //                                                       fontSize: 13,
+                                  //                                                       letterSpacing: 0,
+                                  //                                                     )),
+                                  //                                               )),
+                                  //                                         ),
+                                  //                                       ],
+                                  //                                     )
+                                  //                                   : Container(),
+                                  //                               const SizedBox(
+                                  //                                 height: 6,
+                                  //                               ),
+                                  //                             ],
+                                  //                           ),
+                                  //                         )
+                                  //                       : const Center(
+                                  //                           child: Text(
+                                  //                             'No trending keywords yet.',
+                                  //                             style: TextStyle(
+                                  //                                 color: Color
+                                  //                                     .fromARGB(
+                                  //                                         255,
+                                  //                                         183,
+                                  //                                         183,
+                                  //                                         183),
+                                  //                                 fontSize:
+                                  //                                     16),
+                                  //                           ),
+                                  //                         );
+                                  //                 },
+                                  //               ),
+                                  //             ),
+                                  //           )
+                                  //     : Row(),
+                                  // const SizedBox(
+                                  //   height: 4,
+                                  // ),
+                                ],
+                              ),
+                              // }),
                             ),
                           ),
 
@@ -5321,31 +5278,39 @@ class _AddPostState extends State<AddPost> {
                                                             });
                                                           });
                                                         },
-                                                        child: SizedBox(
-                                                          height: 45,
-                                                          child: Row(
-                                                            children: const [
-                                                              Icon(
-                                                                Icons
-                                                                    .add_circle_outline,
-                                                                color:
-                                                                    Colors.blue,
-                                                                size: 27,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Text('ADD OPTION',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .blue,
-                                                                    fontSize:
-                                                                        15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  )),
-                                                            ],
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      8.0),
+                                                          child: SizedBox(
+                                                            height: 45,
+                                                            child: Row(
+                                                              children: const [
+                                                                Icon(
+                                                                  Icons
+                                                                      .add_circle_outline,
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  size: 24,
+                                                                ),
+                                                                SizedBox(
+                                                                    width: 5),
+                                                                Text(
+                                                                    'ADD OPTION',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .blue,
+                                                                      fontSize:
+                                                                          15,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    )),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -5358,564 +5323,590 @@ class _AddPostState extends State<AddPost> {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 0.0),
-                                  child: PhysicalModel(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    elevation: 3,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Consumer<CreatePageProvider>(
-                                          builder:
-                                              (context, createProvider, child) {
-                                        return Column(
-                                          children: [
-                                            const SizedBox(height: 20),
-                                            Autocomplete<String>(
-                                              optionsViewBuilder: (context,
-                                                  onSelected, options) {
-                                                return Container(
-                                                  margin: const EdgeInsets
-                                                          .symmetric(
+                                PhysicalModel(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  elevation: 3,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child:
+                                        // Consumer<CreatePageProvider>(
+                                        //     builder:
+                                        //         (context, createProvider, child) {
+                                        Column(
+                                      children: [
+                                        const SizedBox(height: 2),
+                                        Material(
+                                          color: Colors.white,
+                                          shape: const CircleBorder(),
+                                          child: InkWell(
+                                            customBorder: const CircleBorder(),
+                                            splashColor:
+                                                Colors.grey.withOpacity(0.5),
+                                            onTap: () {
+                                              Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 50),
+                                                () {
+                                                  keywordsDialog(
+                                                      context: context);
+                                                },
+                                              );
+                                            },
+                                            child: const SizedBox(
+                                              height: 32,
+                                              width: 38,
+                                              child: Icon(Icons.help_outline,
+                                                  size: 20, color: Colors.grey),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Autocomplete<String>(
+                                          optionsViewBuilder:
+                                              (context, onSelected, options) {
+                                            return Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 4.0),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topCenter,
-                                                    child: Material(
-                                                      elevation: 4.0,
-                                                      child: ConstrainedBox(
-                                                        constraints:
-                                                            const BoxConstraints(
-                                                                maxHeight: 200),
-                                                        child: ListView.builder(
-                                                          shrinkWrap: true,
-                                                          itemCount:
-                                                              options.length,
-                                                          itemBuilder:
-                                                              (BuildContext
-                                                                      context,
-                                                                  int index) {
-                                                            final dynamic
-                                                                option = options
-                                                                    .elementAt(
-                                                                        index);
-                                                            return TextButton(
-                                                              onPressed: () {
-                                                                onSelected(
-                                                                    option);
-                                                              },
-                                                              child: Align(
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets
+                                              child: Align(
+                                                alignment: Alignment.topCenter,
+                                                child: Material(
+                                                  elevation: 4.0,
+                                                  child: ConstrainedBox(
+                                                    constraints:
+                                                        const BoxConstraints(
+                                                            maxHeight: 200),
+                                                    child: ListView.builder(
+                                                      shrinkWrap: true,
+                                                      itemCount: options.length,
+                                                      itemBuilder:
+                                                          (BuildContext context,
+                                                              int index) {
+                                                        final dynamic option =
+                                                            options.elementAt(
+                                                                index);
+                                                        return TextButton(
+                                                          onPressed: () {
+                                                            onSelected(option);
+                                                          },
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .centerLeft,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
                                                                           .symmetric(
                                                                       vertical:
                                                                           15.0),
-                                                                  child: Text(
-                                                                    '$option',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .left,
-                                                                  ),
-                                                                ),
+                                                              child: Text(
+                                                                '$option',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
                                                               ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                              optionsBuilder: (TextEditingValue
-                                                  textEditingValue) {
-                                                if (textEditingValue.text ==
-                                                    '') {
-                                                  return const Iterable<
-                                                      String>.empty();
-                                                }
-                                                return _pickLanguage
-                                                    .where((String option) {
-                                                  return option.contains(
-                                                      textEditingValue.text
-                                                          .toLowerCase());
-                                                });
-                                              },
-                                              onSelected: (String selectedTag) {
-                                                keywordMessageController
-                                                    .addTag = selectedTag;
-                                              },
-                                              fieldViewBuilder: (context, ttec,
-                                                  tfn, onFieldSubmitted) {
-                                                return Stack(
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 14),
-                                                      child: Container(
-                                                        height: 46,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .all(
-                                                            Radius.circular(
-                                                                5.0),
-                                                          ),
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.grey,
-                                                              width: 1),
-                                                        ),
-                                                        child: TextFieldTags(
-                                                          textEditingController:
-                                                              ttec,
-                                                          focusNode: tfn,
-                                                          // textfieldTagsController:
-                                                          //     keywordMessageController,
-                                                          initialTags: const [],
-                                                          textSeparators: const [
-                                                            ' ',
-                                                            ','
-                                                          ],
-                                                          letterCase:
-                                                              LetterCase.normal,
-                                                          inputfieldBuilder:
-                                                              (context,
-                                                                  tec,
-                                                                  fn,
-                                                                  error,
-                                                                  onChanged,
-                                                                  onSubmitted) {
-                                                            return ((context,
-                                                                sc,
-                                                                tags,
-                                                                onTagDelete) {
-                                                              myTagsPoll = tags;
-                                                              List<String>
-                                                                  tagsLower =
-                                                                  tags;
-                                                              tagsLower = tagsLower
-                                                                  .map((tagLower) =>
-                                                                      tagLower
-                                                                          .toLowerCase())
-                                                                  .toList();
-                                                              myTagsPollLowerCase =
-                                                                  tagsLower;
-                                                              return Row(
-                                                                children: [
-                                                                  Container(
-                                                                    constraints: BoxConstraints(
-                                                                        maxWidth: tags.length < 3
-                                                                            ? MediaQuery.of(context).size.width /
-                                                                                2
-                                                                            : MediaQuery.of(context).size.width /
-                                                                                1.4),
-                                                                    child:
-                                                                        SingleChildScrollView(
-                                                                      controller:
-                                                                          sc,
-                                                                      scrollDirection:
-                                                                          Axis.horizontal,
-                                                                      child: Row(
-                                                                          mainAxisSize: MainAxisSize.min,
-                                                                          children: tags.map((String tag) {
-                                                                            return Container(
-                                                                              height: 28,
-                                                                              decoration: const BoxDecoration(
-                                                                                  borderRadius: BorderRadius.all(
-                                                                                    Radius.circular(20.0),
-                                                                                  ),
-                                                                                  color: Colors.grey),
-                                                                              margin: const EdgeInsets.only(left: 3, right: 3),
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
-                                                                              child: Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  InkWell(
-                                                                                    child: Text(
-                                                                                      tag,
-                                                                                      style: const TextStyle(color: Colors.white),
-                                                                                    ),
-                                                                                  ),
-                                                                                  const SizedBox(width: 4.0),
-                                                                                  InkWell(
-                                                                                    child: const Icon(
-                                                                                      Icons.cancel,
-                                                                                      size: 17.0,
-                                                                                      color: Colors.white,
-                                                                                    ),
-                                                                                    onTap: () {
-                                                                                      onTagDelete(tag);
-                                                                                    },
-                                                                                  )
-                                                                                ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          optionsBuilder: (TextEditingValue
+                                              textEditingValue) {
+                                            if (textEditingValue.text == '') {
+                                              return const Iterable<
+                                                  String>.empty();
+                                            }
+                                            return _pickLanguage
+                                                .where((String option) {
+                                              return option.contains(
+                                                  textEditingValue.text
+                                                      .toLowerCase());
+                                            });
+                                          },
+                                          onSelected: (String selectedTag) {
+                                            keywordMessageController.addTag =
+                                                selectedTag;
+                                          },
+                                          fieldViewBuilder: (context, ttec, tfn,
+                                              onFieldSubmitted) {
+                                            return Stack(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 14),
+                                                  child: Container(
+                                                    height: 46,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .all(
+                                                        Radius.circular(5.0),
+                                                      ),
+                                                      border: Border.all(
+                                                          color: Colors.grey,
+                                                          width: 1),
+                                                    ),
+                                                    child: TextFieldTags(
+                                                      textEditingController:
+                                                          ttec,
+                                                      focusNode: tfn,
+                                                      // textfieldTagsController:
+                                                      //     keywordMessageController,
+                                                      initialTags: const [],
+                                                      textSeparators: const [
+                                                        ' ',
+                                                        ','
+                                                      ],
+                                                      letterCase:
+                                                          LetterCase.normal,
+                                                      inputfieldBuilder:
+                                                          (context,
+                                                              tec,
+                                                              fn,
+                                                              error,
+                                                              onChanged,
+                                                              onSubmitted) {
+                                                        return ((context, sc,
+                                                            tags, onTagDelete) {
+                                                          myTagsPoll = tags;
+                                                          List<String>
+                                                              tagsLower = tags;
+                                                          tagsLower = tagsLower
+                                                              .map((tagLower) =>
+                                                                  tagLower
+                                                                      .toLowerCase())
+                                                              .toList();
+                                                          myTagsPollLowerCase =
+                                                              tagsLower;
+                                                          return Row(
+                                                            children: [
+                                                              Container(
+                                                                constraints: BoxConstraints(
+                                                                    maxWidth: tags.length < 3
+                                                                        ? MediaQuery.of(context).size.width /
+                                                                            2
+                                                                        : MediaQuery.of(context).size.width /
+                                                                            1.4),
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  controller:
+                                                                      sc,
+                                                                  scrollDirection:
+                                                                      Axis.horizontal,
+                                                                  child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: tags.map(
+                                                                          (String
+                                                                              tag) {
+                                                                        return Container(
+                                                                          height:
+                                                                              28,
+                                                                          decoration: const BoxDecoration(
+                                                                              borderRadius: BorderRadius.all(
+                                                                                Radius.circular(20.0),
                                                                               ),
-                                                                            );
-                                                                          }).toList()),
-                                                                    ),
+                                                                              color: Colors.grey),
+                                                                          margin: const EdgeInsets.only(
+                                                                              left: 3,
+                                                                              right: 3),
+                                                                          padding: const EdgeInsets.symmetric(
+                                                                              horizontal: 10.0,
+                                                                              vertical: 4.0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            children: [
+                                                                              InkWell(
+                                                                                child: Text(
+                                                                                  tag,
+                                                                                  style: const TextStyle(color: Colors.white),
+                                                                                ),
+                                                                              ),
+                                                                              const SizedBox(width: 4.0),
+                                                                              InkWell(
+                                                                                child: const Icon(
+                                                                                  Icons.cancel,
+                                                                                  size: 17.0,
+                                                                                  color: Colors.white,
+                                                                                ),
+                                                                                onTap: () {
+                                                                                  onTagDelete(tag);
+                                                                                },
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        );
+                                                                      }).toList()),
+                                                                ),
+                                                              ),
+                                                              Flexible(
+                                                                child:
+                                                                    TextField(
+                                                                  controller:
+                                                                      tec,
+                                                                  focusNode: fn,
+                                                                  enabled:
+                                                                      tags.length <
+                                                                          3,
+                                                                  onTap: () {},
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    contentPadding: const EdgeInsets
+                                                                            .only(
+                                                                        top:
+                                                                            10.0,
+                                                                        left:
+                                                                            10,
+                                                                        right:
+                                                                            0,
+                                                                        bottom:
+                                                                            10),
+                                                                    hintText: tags
+                                                                            .isNotEmpty
+                                                                        ? ''
+                                                                        : "Add up to 3 keywords (optional)",
+                                                                    hintStyle: const TextStyle(
+                                                                        // fontStyle:
+                                                                        //     FontStyle
+                                                                        //         .italic,
+                                                                        color: Colors.grey,
+                                                                        fontSize: 15),
+                                                                    errorText:
+                                                                        error,
+                                                                    border:
+                                                                        InputBorder
+                                                                            .none,
                                                                   ),
-                                                                  Flexible(
-                                                                    child:
-                                                                        TextField(
-                                                                      controller:
-                                                                          tec,
-                                                                      focusNode:
-                                                                          fn,
-                                                                      enabled:
-                                                                          tags.length <
-                                                                              3,
-                                                                      onTap:
-                                                                          () {},
-                                                                      decoration:
-                                                                          InputDecoration(
-                                                                        contentPadding: const EdgeInsets.only(
-                                                                            top:
-                                                                                10.0,
-                                                                            left:
-                                                                                10,
-                                                                            right:
-                                                                                0,
-                                                                            bottom:
-                                                                                10),
-                                                                        hintText: tags.isNotEmpty
-                                                                            ? ''
-                                                                            : "Add up to 3 keywords (optional)",
-                                                                        hintStyle: const TextStyle(
-                                                                            // fontStyle:
-                                                                            //     FontStyle
-                                                                            //         .italic,
-                                                                            color: Colors.grey,
-                                                                            fontSize: 15),
-                                                                        errorText:
-                                                                            error,
-                                                                        border:
-                                                                            InputBorder.none,
-                                                                      ),
-                                                                      onChanged:
-                                                                          onChanged,
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
+                                                                  onChanged:
+                                                                      onChanged,
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
                                                                             .only(
                                                                         left: 5,
                                                                         right:
                                                                             5),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        const Icon(
-                                                                            Icons
-                                                                                .key,
-                                                                            color:
-                                                                                Colors.grey),
-                                                                        tags.length ==
-                                                                                3
-                                                                            ? Text(
-                                                                                '${tags.length}/3',
-                                                                                style: const TextStyle(
-                                                                                  fontSize: 12,
-                                                                                  color: Colors.red,
-                                                                                ),
-                                                                              )
-                                                                            : Text(
-                                                                                '${tags.length}/3',
-                                                                                style: const TextStyle(
-                                                                                  fontSize: 12,
-                                                                                  color: Colors.grey,
-                                                                                ),
-                                                                              )
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              );
-                                                            });
-                                                          },
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                            Container(height: 3.5),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 12.0),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Container(width: 30),
-                                                  Material(
-                                                    color: Colors.transparent,
-                                                    child: InkWell(
-                                                      splashColor: Colors.grey
-                                                          .withOpacity(0.3),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      onTap: () {
-                                                        Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    100),
-                                                            () async {
-                                                          await createProvider
-                                                              .setShowTrendingPoll(
-                                                            !createProvider
-                                                                .showTrendingPoll,
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  children: [
+                                                                    const Icon(
+                                                                        Icons
+                                                                            .key,
+                                                                        color: Colors
+                                                                            .grey),
+                                                                    tags.length ==
+                                                                            3
+                                                                        ? Text(
+                                                                            '${tags.length}/3',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.red,
+                                                                            ),
+                                                                          )
+                                                                        : Text(
+                                                                            '${tags.length}/3',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.grey,
+                                                                            ),
+                                                                          )
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            ],
                                                           );
-                                                          if (createProvider
-                                                                  .showTrendingPoll ==
-                                                              true) {
-                                                            await createProvider
-                                                                .getpollKeywordList(
-                                                                    global,
-                                                                    user!
-                                                                        .aaCountry,
-                                                                    widget
-                                                                        .durationInDay);
-                                                          }
                                                         });
                                                       },
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          const SizedBox(
-                                                              width: 10),
-                                                          const Text(
-                                                              'View trending keywords',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      13)),
-                                                          Icon(
-                                                            showTrendingPoll
-                                                                ? Icons
-                                                                    .arrow_drop_up
-                                                                : Icons
-                                                                    .arrow_drop_down,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ],
-                                                      ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 0),
-                                                    child: Material(
-                                                      color: Colors.white,
-                                                      shape:
-                                                          const CircleBorder(),
-                                                      child: InkWell(
-                                                        customBorder:
-                                                            const CircleBorder(),
-                                                        splashColor: Colors.grey
-                                                            .withOpacity(0.5),
-                                                        onTap: () {
-                                                          Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    50),
-                                                            () {
-                                                              keywordsDialog(
-                                                                  context:
-                                                                      context);
-                                                            },
-                                                          );
-                                                        },
-                                                        child: const SizedBox(
-                                                          height: 32,
-                                                          width: 38,
-                                                          child: Icon(
-                                                              Icons
-                                                                  .help_outline,
-                                                              size: 20,
-                                                              color:
-                                                                  Colors.grey),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            createProvider.showTrendingPoll
-                                                ? createProvider.Loading == true
-                                                    ? const SizedBox(
-                                                        height: 223,
-                                                        child: Center(
-                                                            child:
-                                                                CircularProgressIndicator()),
-                                                      )
-                                                    : Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 10),
-                                                        child: SizedBox(
-                                                          height: createProvider
-                                                                      .pollKeywordListCount ==
-                                                                  1
-                                                              ? 200
-                                                              : 223,
-                                                          child: FutureBuilder(
-                                                            builder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    snapshot) {
-                                                              return createProvider
-                                                                      .listPoll
-                                                                      .isNotEmpty
-                                                                  ? SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                        children: [
-                                                                          createProvider.pollKeywordListCount > 1
-                                                                              ? Row(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: InkWell(
-                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                          splashColor: Colors.blue.withOpacity(0.2),
-                                                                                          onTap: () {
-                                                                                            Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                              createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: false);
-                                                                                            });
-                                                                                          },
-                                                                                          child: Container(
-                                                                                            padding: const EdgeInsets.symmetric(
-                                                                                              vertical: 4,
-                                                                                              horizontal: 8,
-                                                                                            ),
-                                                                                            child: Text('View ${((createProvider.pollKeywordListCount - 2) * 10) + 1} - ${(createProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                style: const TextStyle(
-                                                                                                  color: Colors.blue,
-                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                  fontSize: 13,
-                                                                                                  letterSpacing: 0,
-                                                                                                )),
-                                                                                          )),
-                                                                                    ),
-                                                                                  ],
-                                                                                )
-                                                                              : const SizedBox(),
-                                                                          const SizedBox(
-                                                                              height: 4),
-                                                                          ListView
-                                                                              .builder(
-                                                                            shrinkWrap:
-                                                                                true,
-                                                                            physics:
-                                                                                const NeverScrollableScrollPhysics(),
-                                                                            itemCount:
-                                                                                createProvider.listPoll.length,
-                                                                            itemBuilder: (context, index) =>
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.symmetric(vertical: 1),
-                                                                              child: NoRadioListTile<String>(
-                                                                                  start: ((((createProvider.pollKeywordListCount - 1) * 10) + 1) + index).toString(),
-                                                                                  center: createProvider.listPoll[index].keyName
-                                                                                  // ?? ""
-                                                                                  ,
-                                                                                  end: createProvider.listPoll[index].length.toString()),
-                                                                            ),
-                                                                          ),
-                                                                          const SizedBox(
-                                                                              height: 4),
-                                                                          createProvider.pollKeywordLast == false
-                                                                              ? Row(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: InkWell(
-                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                          splashColor: Colors.blue.withOpacity(0.2),
-                                                                                          onTap: () {
-                                                                                            Future.delayed(const Duration(milliseconds: 100), () {
-                                                                                              createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: true);
-                                                                                            });
-                                                                                          },
-                                                                                          child: Container(
-                                                                                            padding: const EdgeInsets.symmetric(
-                                                                                              vertical: 4,
-                                                                                              horizontal: 8,
-                                                                                            ),
-                                                                                            child: Text("View ${(createProvider.pollKeywordListCount * 10) + 1} - ${(createProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                style: const TextStyle(
-                                                                                                  color: Colors.blue,
-                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                  fontSize: 13,
-                                                                                                  letterSpacing: 0,
-                                                                                                )),
-                                                                                          )),
-                                                                                    ),
-                                                                                  ],
-                                                                                )
-                                                                              : Container(),
-                                                                          const SizedBox(
-                                                                            height:
-                                                                                6,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    )
-                                                                  : const Center(
-                                                                      child:
-                                                                          Text(
-                                                                        'No trending keywords yet.',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color: Color.fromARGB(
-                                                                              255,
-                                                                              183,
-                                                                              183,
-                                                                              183),
-                                                                          fontSize:
-                                                                              16,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                            },
-                                                          ),
-                                                        ),
-                                                      )
-                                                : const SizedBox(),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                          ],
-                                        );
-                                      }),
+                                                )
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        // Container(height: 3.5),
+                                        // Padding(
+                                        //   padding:
+                                        //       const EdgeInsets.symmetric(
+                                        //           horizontal: 12.0),
+                                        //   child: Row(
+                                        //     mainAxisAlignment:
+                                        //         MainAxisAlignment
+                                        //             .spaceBetween,
+                                        //     children: [
+                                        //       Container(width: 30),
+                                        //       Material(
+                                        //         color: Colors.transparent,
+                                        //         child: InkWell(
+                                        //           splashColor: Colors.grey
+                                        //               .withOpacity(0.3),
+                                        //           borderRadius:
+                                        //               BorderRadius.circular(
+                                        //                   25),
+                                        //           onTap: () {
+                                        //             Future.delayed(
+                                        //                 const Duration(
+                                        //                     milliseconds:
+                                        //                         100),
+                                        //                 () async {
+                                        //               await createProvider
+                                        //                   .setShowTrendingPoll(
+                                        //                 !createProvider
+                                        //                     .showTrendingPoll,
+                                        //               );
+                                        //               if (createProvider
+                                        //                       .showTrendingPoll ==
+                                        //                   true) {
+                                        //                 await createProvider
+                                        //                     .getpollKeywordList(
+                                        //                         global,
+                                        //                         user!
+                                        //                             .aaCountry,
+                                        //                         widget
+                                        //                             .durationInDay);
+                                        //               }
+                                        //             });
+                                        //           },
+                                        //           child: Row(
+                                        //             mainAxisAlignment:
+                                        //                 MainAxisAlignment
+                                        //                     .center,
+                                        //             children: [
+                                        //               const SizedBox(
+                                        //                   width: 10),
+                                        //               const Text(
+                                        //                   'View trending keywords',
+                                        //                   style: TextStyle(
+                                        //                       color: Colors
+                                        //                           .grey,
+                                        //                       fontWeight:
+                                        //                           FontWeight
+                                        //                               .w500,
+                                        //                       fontSize:
+                                        //                           13)),
+                                        //               Icon(
+                                        //                 showTrendingPoll
+                                        //                     ? Icons
+                                        //                         .arrow_drop_up
+                                        //                     : Icons
+                                        //                         .arrow_drop_down,
+                                        //                 color: Colors.grey,
+                                        //               ),
+                                        //             ],
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //       Padding(
+                                        //         padding:
+                                        //             const EdgeInsets.only(
+                                        //                 right: 0),
+                                        //         child: Material(
+                                        //           color: Colors.white,
+                                        //           shape:
+                                        //               const CircleBorder(),
+                                        //           child: InkWell(
+                                        //             customBorder:
+                                        //                 const CircleBorder(),
+                                        //             splashColor: Colors.grey
+                                        //                 .withOpacity(0.5),
+                                        //             onTap: () {
+                                        //               Future.delayed(
+                                        //                 const Duration(
+                                        //                     milliseconds:
+                                        //                         50),
+                                        //                 () {
+                                        //                   keywordsDialog(
+                                        //                       context:
+                                        //                           context);
+                                        //                 },
+                                        //               );
+                                        //             },
+                                        //             child: const SizedBox(
+                                        //               height: 32,
+                                        //               width: 38,
+                                        //               child: Icon(
+                                        //                   Icons
+                                        //                       .help_outline,
+                                        //                   size: 20,
+                                        //                   color:
+                                        //                       Colors.grey),
+                                        //             ),
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
+                                        // createProvider.showTrendingPoll
+                                        //     ? createProvider.Loading == true
+                                        //         ? const SizedBox(
+                                        //             height: 223,
+                                        //             child: Center(
+                                        //                 child:
+                                        //                     CircularProgressIndicator()),
+                                        //           )
+                                        //         : Padding(
+                                        //             padding:
+                                        //                 const EdgeInsets
+                                        //                         .symmetric(
+                                        //                     horizontal: 10),
+                                        //             child: SizedBox(
+                                        //               height: createProvider
+                                        //                           .pollKeywordListCount ==
+                                        //                       1
+                                        //                   ? 200
+                                        //                   : 223,
+                                        //               child: FutureBuilder(
+                                        //                 builder:
+                                        //                     (BuildContext
+                                        //                             context,
+                                        //                         snapshot) {
+                                        //                   return createProvider
+                                        //                           .listPoll
+                                        //                           .isNotEmpty
+                                        //                       ? SingleChildScrollView(
+                                        //                           child:
+                                        //                               Column(
+                                        //                             children: [
+                                        //                               createProvider.pollKeywordListCount > 1
+                                        //                                   ? Row(
+                                        //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                        //                                       children: [
+                                        //                                         Material(
+                                        //                                           color: Colors.transparent,
+                                        //                                           child: InkWell(
+                                        //                                               borderRadius: BorderRadius.circular(25),
+                                        //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                        //                                               onTap: () {
+                                        //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                        //                                                   createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: false);
+                                        //                                                 });
+                                        //                                               },
+                                        //                                               child: Container(
+                                        //                                                 padding: const EdgeInsets.symmetric(
+                                        //                                                   vertical: 4,
+                                        //                                                   horizontal: 8,
+                                        //                                                 ),
+                                        //                                                 child: Text('View ${((createProvider.pollKeywordListCount - 2) * 10) + 1} - ${(createProvider.pollKeywordListCount - 1) * 10}',
+                                        //                                                     style: const TextStyle(
+                                        //                                                       color: Colors.blue,
+                                        //                                                       fontWeight: FontWeight.w500,
+                                        //                                                       fontSize: 13,
+                                        //                                                       letterSpacing: 0,
+                                        //                                                     )),
+                                        //                                               )),
+                                        //                                         ),
+                                        //                                       ],
+                                        //                                     )
+                                        //                                   : const SizedBox(),
+                                        //                               const SizedBox(
+                                        //                                   height: 4),
+                                        //                               ListView
+                                        //                                   .builder(
+                                        //                                 shrinkWrap:
+                                        //                                     true,
+                                        //                                 physics:
+                                        //                                     const NeverScrollableScrollPhysics(),
+                                        //                                 itemCount:
+                                        //                                     createProvider.listPoll.length,
+                                        //                                 itemBuilder: (context, index) =>
+                                        //                                     Padding(
+                                        //                                   padding: const EdgeInsets.symmetric(vertical: 1),
+                                        //                                   child: NoRadioListTile<String>(
+                                        //                                       start: ((((createProvider.pollKeywordListCount - 1) * 10) + 1) + index).toString(),
+                                        //                                       center: createProvider.listPoll[index].keyName
+                                        //                                       // ?? ""
+                                        //                                       ,
+                                        //                                       end: createProvider.listPoll[index].length.toString()),
+                                        //                                 ),
+                                        //                               ),
+                                        //                               const SizedBox(
+                                        //                                   height: 4),
+                                        //                               createProvider.pollKeywordLast == false
+                                        //                                   ? Row(
+                                        //                                       mainAxisAlignment: MainAxisAlignment.center,
+                                        //                                       children: [
+                                        //                                         Material(
+                                        //                                           color: Colors.transparent,
+                                        //                                           child: InkWell(
+                                        //                                               borderRadius: BorderRadius.circular(25),
+                                        //                                               splashColor: Colors.blue.withOpacity(0.2),
+                                        //                                               onTap: () {
+                                        //                                                 Future.delayed(const Duration(milliseconds: 100), () {
+                                        //                                                   createProvider.getpollKeywordList(global, user!.aaCountry, widget.durationInDay, getNextListPoll: true);
+                                        //                                                 });
+                                        //                                               },
+                                        //                                               child: Container(
+                                        //                                                 padding: const EdgeInsets.symmetric(
+                                        //                                                   vertical: 4,
+                                        //                                                   horizontal: 8,
+                                        //                                                 ),
+                                        //                                                 child: Text("View ${(createProvider.pollKeywordListCount * 10) + 1} - ${(createProvider.pollKeywordListCount + 1) * 10}",
+                                        //                                                     style: const TextStyle(
+                                        //                                                       color: Colors.blue,
+                                        //                                                       fontWeight: FontWeight.w500,
+                                        //                                                       fontSize: 13,
+                                        //                                                       letterSpacing: 0,
+                                        //                                                     )),
+                                        //                                               )),
+                                        //                                         ),
+                                        //                                       ],
+                                        //                                     )
+                                        //                                   : Container(),
+                                        //                               const SizedBox(
+                                        //                                 height:
+                                        //                                     6,
+                                        //                               ),
+                                        //                             ],
+                                        //                           ),
+                                        //                         )
+                                        //                       : const Center(
+                                        //                           child:
+                                        //                               Text(
+                                        //                             'No trending keywords yet.',
+                                        //                             style:
+                                        //                                 TextStyle(
+                                        //                               color: Color.fromARGB(
+                                        //                                   255,
+                                        //                                   183,
+                                        //                                   183,
+                                        //                                   183),
+                                        //                               fontSize:
+                                        //                                   16,
+                                        //                             ),
+                                        //                           ),
+                                        //                         );
+                                        //                 },
+                                        //               ),
+                                        //             ),
+                                        //           )
+                                        //     : const SizedBox(),
+                                      ],
                                     ),
+                                    // }),
                                   ),
                                 ),
                               ],

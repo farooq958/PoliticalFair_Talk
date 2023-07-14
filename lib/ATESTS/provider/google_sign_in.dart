@@ -10,7 +10,10 @@ class GoogleSignInProvider extends ChangeNotifier {
   GoogleSignInAccount? _user;
   GoogleSignInAccount get user => _user!;
 
-  Future googleLogin() async {
+  googleLogin() async {
+    // String res = "Some error occured";
+    // String res1 = "Some error occured";
+
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) return;
     _user = googleUser;

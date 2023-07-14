@@ -234,7 +234,7 @@ class _VerifyTwoState extends State<VerifyTwo> {
                                         ),
                                         Container(height: 8),
                                         const Text(
-                                          "• You do not already have another verified account on Fairtalk.",
+                                          "• You do not already have another verified account on FairTalk.",
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                             color: Colors.white,

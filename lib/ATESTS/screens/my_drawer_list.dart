@@ -875,7 +875,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             size: 23, color: darkBlue),
                                         Container(width: 15),
                                         const Text(
-                                          'Fairtalk Explainer',
+                                          'FairTalk Explainer',
                                           style: TextStyle(
                                               fontSize: 16.5, color: darkBlue),
                                         ),

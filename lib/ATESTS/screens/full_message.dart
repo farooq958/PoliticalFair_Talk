@@ -2298,134 +2298,176 @@ class _FullMessageState extends State<FullMessage> {
                                               //     ?
 
                                               _post.aPostUrl != ""
-                                                  ? InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  FullImageScreen(
-                                                                    post: _post,
-                                                                  )),
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width >=
-                                                                600
-                                                            ? 298
-                                                            : MediaQuery.of(context)
-                                                                        .size
-                                                                        .width /
-                                                                    2 -
-                                                                2,
-                                                        width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width >=
-                                                                600
-                                                            ? 598
-                                                            : MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width -
-                                                                2,
+                                                  ? Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 12),
+                                                      child: PhysicalModel(
+                                                        elevation: 2,
                                                         color: const Color
                                                                 .fromARGB(
                                                             255, 245, 245, 245),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              const CircularProgressIndicator(),
-                                                          imageUrl:
-                                                              _post.aPostUrl,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          FullImageScreen(
+                                                                            post:
+                                                                                _post,
+                                                                          )),
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width >=
+                                                                    600
+                                                                ? 298
+                                                                : MediaQuery.of(context)
+                                                                            .size
+                                                                            .width /
+                                                                        2 -
+                                                                    2,
+                                                            width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width >=
+                                                                    600
+                                                                ? 598
+                                                                : MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width -
+                                                                    2,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: const Color
+                                                                      .fromARGB(
+                                                                  245,
+                                                                  245,
+                                                                  245,
+                                                                  245),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15),
+                                                              // border: Border.all(
+                                                              //     width: 0,
+                                                              //     color: Colors.grey),
+                                                            ),
+                                                            child:
+                                                                CachedNetworkImage(
+                                                              placeholder:
+                                                                  (context,
+                                                                          url) =>
+                                                                      Center(
+                                                                child:
+                                                                    Container(
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    color:
+                                                                        darkBlue,
+                                                                  ),
+                                                                  height: 25,
+                                                                  width: 25,
+                                                                ),
+                                                              ),
+                                                              imageUrl: _post
+                                                                  .aPostUrl,
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     )
                                                   // : _post.selected == 3
                                                   //     ?
                                                   : _post.aVideoUrl != ""
-                                                      ? LayoutBuilder(
-                                                          builder: (context,
-                                                              constraints) {
-                                                            // if (kIsWeb &&
-                                                            //     constraints
-                                                            //             .maxWidth >
-                                                            //         800) {
-                                                            //   return Row(
-                                                            //     crossAxisAlignment:
-                                                            //         CrossAxisAlignment
-                                                            //             .start,
-                                                            //     children: const [
-                                                            //       Expanded(
-                                                            //           child:
-                                                            //               player),
-                                                            //       SizedBox(
-                                                            //         width: 500,
-                                                            //       ),
-                                                            //     ],
-                                                            //   );
-                                                            // }
-                                                            return SizedBox(
-                                                              width: MediaQuery.of(
+                                                      ? Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      12.0),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            child:
+                                                                LayoutBuilder(
+                                                              builder: (context,
+                                                                  constraints) {
+                                                                // if (kIsWeb &&
+                                                                //     constraints
+                                                                //             .maxWidth >
+                                                                //         800) {
+                                                                //   return Row(
+                                                                //     crossAxisAlignment:
+                                                                //         CrossAxisAlignment
+                                                                //             .start,
+                                                                //     children: const [
+                                                                //       Expanded(
+                                                                //           child:
+                                                                //               player),
+                                                                //       SizedBox(
+                                                                //         width: 500,
+                                                                //       ),
+                                                                //     ],
+                                                                //   );
+                                                                // }
+                                                                return SizedBox(
+                                                                  width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width >
+                                                                          600
+                                                                      ? 598
+                                                                      : MediaQuery.of(
                                                                               context)
                                                                           .size
-                                                                          .width >
-                                                                      600
-                                                                  ? 598
-                                                                  : MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              child: Stack(
-                                                                children: [
-                                                                  player,
-                                                                  Positioned
-                                                                      .fill(
-                                                                    child:
-                                                                        YoutubeValueBuilder(
-                                                                      controller:
-                                                                          controller,
-                                                                      builder:
-                                                                          (context,
-                                                                              value) {
-                                                                        return AnimatedCrossFade(
-                                                                          crossFadeState: value.isReady
-                                                                              ? CrossFadeState.showSecond
-                                                                              : CrossFadeState.showFirst,
-                                                                          duration:
-                                                                              const Duration(milliseconds: 300),
-                                                                          secondChild:
-                                                                              const SizedBox(),
-                                                                          firstChild: Material(
-                                                                              child: Stack(
-                                                                            children: [
-                                                                              const Center(
-                                                                                  child: CircularProgressIndicator(
-                                                                                color: Colors.black,
-                                                                              )),
-                                                                              // FadeInImage.memoryNetwork(
-                                                                              //     width: MediaQuery.of(context).size.width,
-                                                                              //     // height: MediaQuery.of(context).size.width * 0.5,
-                                                                              //     placeholder: kTransparentImage,
-                                                                              //     fadeInDuration: const Duration(milliseconds: 200),
-                                                                              //     image: YoutubePlayerController.getThumbnail(
-                                                                              //       videoId: controller.initialVideoId,
-                                                                              //       quality: ThumbnailQuality.high,
-                                                                              //     )),
-                                                                            ],
-                                                                          )),
-                                                                        );
-                                                                      },
-                                                                    ),
+                                                                          .width,
+                                                                  child: Stack(
+                                                                    children: [
+                                                                      player,
+                                                                      Positioned
+                                                                          .fill(
+                                                                        child:
+                                                                            YoutubeValueBuilder(
+                                                                          controller:
+                                                                              controller,
+                                                                          builder:
+                                                                              (context, value) {
+                                                                            return AnimatedCrossFade(
+                                                                              crossFadeState: value.isReady ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                                                                              duration: const Duration(milliseconds: 300),
+                                                                              secondChild: const SizedBox(),
+                                                                              firstChild: Material(
+                                                                                  color: Colors.black,
+                                                                                  child: Center(
+                                                                                    child: Container(
+                                                                                      child: CircularProgressIndicator(
+                                                                                        color: whiteDialog,
+                                                                                      ),
+                                                                                      height: 25,
+                                                                                      width: 25,
+                                                                                    ),
+                                                                                  )),
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ],
-                                                              ),
-                                                            );
-                                                          },
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
                                                         )
                                                       : Row(),
 
@@ -3143,65 +3185,42 @@ class _FullMessageState extends State<FullMessage> {
                                           !commentReplyProvider
                                               .postPollPaginationLoader,
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            PhysicalModel(
-                                              color: Colors.white,
-                                              elevation: 2,
+                                        padding: const EdgeInsets.only(
+                                            bottom: 8.0, right: 12, left: 12),
+                                        child: PhysicalModel(
+                                          color: Colors.white,
+                                          elevation: 2,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
                                               borderRadius:
                                                   BorderRadius.circular(25),
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () {
-                                                    initScrollControllerListener();
-                                                  },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 8,
-                                                        horizontal: 16),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                          Icons.arrow_downward,
-                                                          size: 16,
-                                                          color: Colors.black,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'View More',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 13.5,
-                                                            letterSpacing: 0,
-                                                          ),
-                                                        ),
-                                                      ],
+                                              splashColor: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              onTap: () {
+                                                initScrollControllerListener();
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    'View More',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13.5,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                     ),

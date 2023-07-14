@@ -16,6 +16,7 @@ import '../methods/auth_methods.dart';
 import '../methods/firestore_methods.dart';
 import '../screens/full_message.dart';
 import '../screens/profile_all_user.dart';
+import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import '../utils/like_animation.dart';
 import 'dart:ui' as ui;
@@ -1666,63 +1667,43 @@ class _CommentCardPollState extends State<CommentCardPoll> {
                                         widget.snap['commentId']] ??
                                     true),
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  PhysicalModel(
-                                    color: Colors.white,
-                                    elevation: 2,
+                              padding: const EdgeInsets.only(
+                                  bottom: 8, right: 12, left: 12),
+                              child: PhysicalModel(
+                                color: testing,
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(25),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
                                     borderRadius: BorderRadius.circular(25),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        onTap: () {
-                                          commentReplyProvider
-                                              .getPollOrPostReplyList(
-                                            postId: widget.pollId,
-                                            commentId:
-                                                widget.snap['commentId'] ?? "",
-                                            isNext: true,
-                                          );
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 8, horizontal: 16),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Icon(
-                                                Icons.arrow_downward,
-                                                size: 16,
-                                                color: Colors.black,
-                                              ),
-                                              SizedBox(width: 8),
-                                              Text(
-                                                'View More Replies',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0,
-                                                ),
-                                              ),
-                                            ],
+                                    splashColor: whiteDialog,
+                                    onTap: () {
+                                      commentReplyProvider
+                                          .getPollOrPostReplyList(
+                                        postId: widget.pollId,
+                                        commentId:
+                                            widget.snap['commentId'] ?? "",
+                                        isNext: true,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'View More Replies',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.5,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),

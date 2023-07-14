@@ -15,11 +15,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "424538767306-1qamkmi7tlmm41hql26umr0fkdd70sn0.apps.googleusercontent.com",
+          "client_id": "424538767306-3ltsv1j95atipd3dh06s2k69cvrn6u4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aft",
+            "certificate_hash": "ad0d1f166417e370ad367aafb528d5f7ae3c067c"
+          }
+        },
+        {
+          "client_id": "424538767306-4mgfipo4moq02lupb1d0j45annk3n1fv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.aft",
             "certificate_hash": "95de1a99384fa11f3a46bcc2b6a5664c5f71e70d"
+          }
+        },
+        {
+          "client_id": "424538767306-8ncrpmg2ibf069lak3bo84otv26r0tub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aft",
+            "certificate_hash": "2cccc38f71a321b4ce0098ef4b684b1244e88820"
           }
         },
         {
@@ -59,6 +75,30 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "424538767306-kiblvkihd9ff53ccc68088273f85dgoh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.fairtalk.fairtalk",
+            "certificate_hash": "ad0d1f166417e370ad367aafb528d5f7ae3c067c"
+          }
+        },
+        {
+          "client_id": "424538767306-t9f8ltor9e056u55bolkvp7njav702r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.fairtalk.fairtalk",
+            "certificate_hash": "95de1a99384fa11f3a46bcc2b6a5664c5f71e70d"
+          }
+        },
+        {
+          "client_id": "424538767306-uinrsv96j4iedklcccvtor0f4747a84v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.fairtalk.fairtalk",
+            "certificate_hash": "2cccc38f71a321b4ce0098ef4b684b1244e88820"
+          }
+        },
         {
           "client_id": "424538767306-nv4oiaid7bfm1gc21bhls9utuosf0jvv.apps.googleusercontent.com",
           "client_type": 3

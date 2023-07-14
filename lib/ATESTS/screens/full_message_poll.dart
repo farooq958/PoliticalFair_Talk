@@ -2459,8 +2459,9 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                   return Column(
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10.0),
+                                        padding: const EdgeInsets.only(
+                                          bottom: 10.0,
+                                        ),
                                         child: PhysicalModel(
                                           elevation: 2,
                                           color: Colors.transparent,
@@ -2500,69 +2501,42 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                 .postPollPaginationLoader,
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              bottom: 8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              PhysicalModel(
-                                                color: Colors.white,
-                                                elevation: 2,
+                                              bottom: 8.0, right: 12, left: 12),
+                                          child: PhysicalModel(
+                                            color: Colors.white,
+                                            elevation: 2,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
                                                 borderRadius:
                                                     BorderRadius.circular(25),
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () {
-                                                      initScrollControllerListener();
-                                                    },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          vertical: 8,
-                                                          horizontal: 16),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                            Icons
-                                                                .arrow_downward,
-                                                            size: 16,
-                                                            color: Colors.black,
-                                                          ),
-                                                          SizedBox(width: 8),
-                                                          Text(
-                                                            'View More',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 13.5,
-                                                              letterSpacing:
-                                                                  0.3,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                splashColor:
+                                                    const Color.fromARGB(
+                                                        255, 245, 245, 245),
+                                                onTap: () {
+                                                  initScrollControllerListener();
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 10,
+                                                  ),
+                                                  child: const Center(
+                                                    child: Text(
+                                                      'View More',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 13.5,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
                                       ),

@@ -140,7 +140,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Our Data Privacy statement describes the policies and procedures on the collection, use and disclosure of your information whenever you use our service and tells you about your privacy rights and how the law protects you. All information and data collected is strictly used for maintaining the app’s functionalities. We are not interested in collecting any additional data that has no relevance to the service we provide. Fairtalk will not distribute or sell personal information to third-party organizations. Fairtalk will not disclose, without your consent, personal information collected about you, except for certain explicit circumstances in which disclosure is required by law.",
+                            "Our Data Privacy statement describes the policies and procedures on the collection, use and disclosure of your information whenever you use our service and tells you about your privacy rights and how the law protects you. All information and data collected is strictly used for maintaining the app’s functionalities. We are not interested in collecting any additional data that has no relevance to the service we provide. FairTalk will not distribute or sell personal information to third-party organizations. FairTalk will not disclose, without your consent, personal information collected about you, except for certain explicit circumstances in which disclosure is required by law.",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -239,7 +239,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "To facilitate Fairtalk's operations, we're currently making use of third-party services such as: AdMob & Google Play Services. Each third-party service collects different types of data and/or information about you. To learn more information about the collection of data for each third-party service, we strongly recommend that you read and understand their data collection policies. The links below will navigate you to each third-party services data collection policies:",
+                            "To facilitate FairTalk's operations, we're currently making use of third-party services such as: AdMob & Google Play Services. Each third-party service collects different types of data and/or information about you. To learn more information about the collection of data for each third-party service, we strongly recommend that you read and understand their data collection policies. The links below will navigate you to each third-party services data collection policies:",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -296,7 +296,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Fairtalk allows users to access their device's camera and also upload pictures from their device's gallery. Personal pictures are considered sensitive user data and we always ask your permission before accessing that data. Your device's gallery isn't collected on our servers. The only pictures collected on our servers are: ",
+                            "FairTalk allows users to access their device's camera and also upload pictures from their device's gallery. Personal pictures are considered sensitive user data and we always ask your permission before accessing that data. Your device's gallery isn't collected on our servers. The only pictures collected on our servers are: ",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -332,7 +332,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory. Fairtalk does not use cookies explicitly. However, third-party services may use cookies to collect information and improve their services.",
+                            "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory. FairTalk does not use cookies explicitly. However, third-party services may use cookies to collect information and improve their services.",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -362,7 +362,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Fairtalk will retain your Personal Data only for as long as is necessary for the purposes set out in this Data Privacy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.",
+                            "FairTalk will retain your Personal Data only for as long as is necessary for the purposes set out in this Data Privacy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -377,7 +377,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Your information, including Personal Data, is processed at Fairtalk’s main operating office and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Fairtalk will take all steps necessary to ensure that your data is treated securely and in accordance with this Data Privacy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.",
+                            "Your information, including Personal Data, is processed at FairTalk’s main operating office and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. FairTalk will take all steps necessary to ensure that your data is treated securely and in accordance with this Data Privacy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),
@@ -407,7 +407,7 @@ class _DataPrivacyState extends State<DataPrivacy> {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            "Under certain circumstances, Fairtalk may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).",
+                            "Under certain circumstances, FairTalk may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).",
                             style: TextStyle(
                               letterSpacing: 0,
                             ),

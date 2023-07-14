@@ -107,7 +107,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
                                 Text(
-                                  "With a verified account, you now have full access to all of Fairtalk's features, this includes:",
+                                  "With a verified account, you now have full access to all of FairTalk's features, this includes:",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       fontSize: 15.5,
@@ -131,7 +131,7 @@ class _VerificationSuccessState extends State<VerificationSuccess> {
                                 // ),
                                 SizedBox(height: 10),
                                 Text(
-                                  " • Participating in Fairtalk's democracy.",
+                                  " • Participating in FairTalk's democracy.",
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.black,

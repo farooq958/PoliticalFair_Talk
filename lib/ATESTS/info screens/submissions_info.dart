@@ -58,7 +58,7 @@
 //                           ),
 //                         ),
 //                         const SizedBox(width: 16),
-//                         const Text("Fairtalk's Democracy",
+//                         const Text("FairTalk's Democracy",
 //                             style: TextStyle(
 //                                 color: Colors.white,
 //                                 fontSize: 20,
@@ -110,7 +110,7 @@
 //                                   //   ),
 //                                   // ),
 //                                   const Text(
-//                                     "On Fairtalk, the majority votes & decides everything. This includes the direction of our platform. By creating or giving votes on submissions, you choose what you want to add, remove or modify from Fairtalk.",
+//                                     "On FairTalk, the majority votes & decides everything. This includes the direction of our platform. By creating or giving votes on submissions, you choose what you want to add, remove or modify from FairTalk.",
 //                                     textAlign: TextAlign.left,
 //                                     style: TextStyle(
 //                                       letterSpacing: 0,
@@ -130,7 +130,7 @@
 //                                   // ),
 //                                   // const SizedBox(height: 3),
 //                                   // const Text(
-//                                   //   "Fairtalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
+//                                   //   "FairTalk is a completely new platform & submissions will only be made available once the platform reaches 500 verified users. We want to make sure there's enough people to participate. You can always track the current amount of verified users by clicking on the button below.",
 //                                   //   textAlign: TextAlign.left,
 //                                   //   style: TextStyle(
 //                                   //     letterSpacing: 0,

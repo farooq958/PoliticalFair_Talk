@@ -412,7 +412,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                   //                           .spaceBetween,
                                   //                   children: [
                                   //                    const Text(
-                                  //                       "Learn how Fairtalk is replacing CEO's with a democratic system.",
+                                  //                       "Learn how FairTalk is replacing CEO's with a democratic system.",
                                   //                       textAlign:
                                   //                           TextAlign.center,
                                   //                       style: TextStyle(
@@ -595,20 +595,8 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: const [
-                                                        // Text(
-                                                        //   "1. Be creative. This is finally your chance to control the direction of a social media platform, do we really want to follow the same path of ?",
-                                                        //   textAlign:
-                                                        //       TextAlign.left,
-                                                        //   style: TextStyle(
-                                                        //     color: darkBlue,
-                                                        //     fontSize: 13,
-                                                        //     fontWeight:
-                                                        //         FontWeight.w500,
-                                                        //   ),
-                                                        // ),
-                                                        // SizedBox(height: 6),
                                                         Text(
-                                                          "1. Be descriptive. The goal is to implement your vision, not ours. Share as many details as you possibly can.",
+                                                          "1. Be creative. This is finally your chance to control the direction of a social media platform, do we want FairTalk to be unique or resemble other platforms?",
                                                           textAlign:
                                                               TextAlign.left,
                                                           style: TextStyle(
@@ -620,7 +608,19 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                         ),
                                                         SizedBox(height: 6),
                                                         Text(
-                                                          "2. Be realistic. Running Fairtalk isn't free, server operations can be very expensive.",
+                                                          "2. Be descriptive. The goal is to implement your vision, not ours. Share as many details as you possibly can.",
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                            color: darkBlue,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 6),
+                                                        Text(
+                                                          "3. Be realistic. Running FairTalk isn't free, server operations can be very expensive.",
                                                           // If it is financially impossible to implement certain features, we'll propose several alternatives. If the majority declines all alternatives, we'll simply have to move on.
                                                           textAlign:
                                                               TextAlign.left,
@@ -633,7 +633,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                         ),
                                                         SizedBox(height: 6),
                                                         Text(
-                                                          "3. Be creative. You can add, remove or modify just about anything. You can modify our Privacy/Terms statements, you can replace Fairtalk's current CEO, etc.",
+                                                          "4. Be wild. You can modify our Privacy/Terms statements, you can replace FairTalk's current CEO. You can add, remove or modify just about anything.",
                                                           textAlign:
                                                               TextAlign.left,
                                                           style: TextStyle(
@@ -971,7 +971,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                                       user?.photoUrl ??
                                                                           '',
                                                                       user?.username ==
-                                                                              'Fairtalk'
+                                                                              'FairTalk'
                                                                           ? 'fairtalk'
                                                                           : 'sub');
                                                         });

@@ -80,15 +80,15 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "assets/political_logo.png"
+  image_path: "assets/FAIRTALK-LOGO-FINAL.png"
   android: true
   ios: true
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/fairtalk_splash_screen.png
+  image: assets/fairtalk_splash.png
   android_12:
-    image: assets/fairtalk_splash_screen.png
+    image: assets/fairtalk_splash.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

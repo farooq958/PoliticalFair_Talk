@@ -563,9 +563,9 @@ Future sendEmail() async {
       'template_id': 'template_ln69u1g',
       'user_id': 'Kil1lduE_7f94fMy1',
       'template_params': {
-        'sender_name': 'Fairtalk',
+        'sender_name': 'FairTalk',
         'sender_email': 'fairtalk.assist@gmail.com',
-        'receiver_name': 'Fairtalk',
+        'receiver_name': 'FairTalk',
         'receiver_email': 'fairtalk.assist@gmail.com',
         // 'sender_name': senderName,
         // 'sender_email': senderEmail,

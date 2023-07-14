@@ -132,10 +132,6 @@ class _SignupScreenState extends State<SignupScreen> {
         aaCountry: '',
         pending: 'false',
         bio: '',
-        gMessageTime: 0,
-        nMessageTime: 0,
-        gPollTime: 0,
-        nPollTime: 0,
       );
 
       if (res != "success") {
@@ -153,6 +149,65 @@ class _SignupScreenState extends State<SignupScreen> {
           MaterialPageRoute(
             builder: (context) => WelcomeScreen(
               username: _usernameController.text.trim(),
+            ),
+          ),
+          (route) => false,
+        );
+        FirestoreMethods().postCounter('user');
+      }
+    } catch (e) {
+      // debugPrint('signup error $e $st');
+    }
+  }
+
+  void signUpUserGoogle() async {
+    try {
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      final user = FirebaseAuth.instance.currentUser!;
+      final provider =
+          Provider.of<GoogleSignInProvider>(context, listen: false);
+      // Validates username
+      // String? userNameValid =
+      //     await usernameValidator(username: _usernameController.text);
+      // if (userNameValid != null) {
+      //   if (!mounted) return;
+      //   showSnackBarError(userNameValid, context);
+      //   return;
+      // }
+      await AuthMethods().signOut();
+
+      setState(() {
+        _isLoadingGoogle = true;
+      });
+
+      provider.googleLogin();
+
+      String res = await AuthMethods().signUpUserGoogle(
+        UID: user.uid!,
+        username: '?',
+        aEmail: user.email!,
+        password: '',
+        profilePicFile: _image,
+        aaCountry: '',
+        pending: 'false',
+        bio: '',
+      );
+
+      if (res != "success") {
+        Future.delayed(const Duration(milliseconds: 1500), () {
+          setState(() {
+            _isLoading = false;
+          });
+        });
+        if (!mounted) return;
+        showSnackBarError(res, context);
+      } else {
+        // goToHome(context);
+
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => WelcomeScreen(
+              username: user.displayName!,
             ),
           ),
           (route) => false,
@@ -207,7 +262,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 30),
                       Image.asset(
                         width: MediaQuery.of(context).size.width * 1 - 40,
-                        'assets/fairtalk_new_white_transparent.png',
+                        'assets/fairtalk_white.png',
                       ),
                       const SizedBox(height: 5),
                       SizedBox(
@@ -390,8 +445,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                   : Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: [
-                                        const Text('Sign up',
+                                      children: const [
+                                        Text('Sign up',
                                             style: TextStyle(
                                               fontSize: 16,
                                               color: darkBlue,
@@ -457,22 +512,32 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(50),
                             splashColor: Colors.grey.withOpacity(0.3),
-                            onTap: () async {
+                            onTap: () {
+                              signUpUserGoogle();
                               // final provider =
                               //     Provider.of<GoogleSignInProvider>(context,
                               //         listen: false);
-
                               // provider.googleLogin();
-                              await signInWithGoogle();
-                              if (mounted) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => CreateUsernameGoogle(),
-                                  ),
-                                );
-                              }
                             },
+                            //   // () => AuthService().signInWithGoogle(),
+                            //   () async {
+                            // // final provider =
+                            // //     Provider.of<GoogleSignInProvider>(context,
+                            // //         listen: false);
+
+                            // // provider.googleLogin();
+                            // await signInWithGoogle();
+                            // if (mounted) {
+                            //   Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (_) => CreateUsernameGoogle(),
+                            //     ),
+                            //   );
+                            // }
+
+                            // FirestoreMethods().postCounter('user');
+                            // },
                             child: Container(
                               width: double.infinity,
                               height: 45,

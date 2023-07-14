@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../models/post.dart';
+import '../utils/global_variables.dart';
 
 class FullImageScreen extends StatefulWidget {
   final Post post;
@@ -92,8 +93,15 @@ class _FullImageScreenState extends State<FullImageScreen> {
                       ),
                     ),
                     child: CachedNetworkImage(
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
+                      placeholder: (context, url) => Center(
+                        child: Container(
+                          child: CircularProgressIndicator(
+                            color: darkBlue,
+                          ),
+                          height: 25,
+                          width: 25,
+                        ),
+                      ),
                       imageUrl: _post.aPostUrl,
                     ),
                   ),

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
+import '../provider/google_sign_in.dart';
 import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'forgot_password.dart';
@@ -132,8 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(
                                 width:
                                     MediaQuery.of(context).size.width * 1 - 40,
-                                child: Image.asset(
-                                    'assets/fairtalk_new_white_transparent.png')),
+                                child:
+                                    Image.asset('assets/fairtalk_white.png')),
                             const SizedBox(height: 5),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 1 - 40,
@@ -339,7 +340,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(50),
                                   splashColor: Colors.grey.withOpacity(0.3),
-                                  onTap: () {},
+                                  onTap: () {
+                                    // final provider =
+                                    //     Provider.of<GoogleSignInProvider>(
+                                    //         context,
+                                    //         listen: false);
+                                    // provider.googleLogin();
+                                    // goToHome(context);
+                                    // showSnackBar(
+                                    //     "Successfully logged in.", context);
+                                  },
                                   child: Container(
                                     width: double.infinity,
                                     height: 45,

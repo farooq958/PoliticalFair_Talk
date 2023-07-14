@@ -110,7 +110,7 @@ class _VerificationFailState extends State<VerificationFail> {
                               widget.reason == "unclearPictures"
                                   ? "One or both pictures taken were unclear. Please make sure that the quality of the pictures taken are clear and all of the information on your ID card can easily be read. You'll always have the opportunity to try the verification process again."
                                   : widget.reason == "alreadyHaveAnotherAccount"
-                                      ? "Our dataset showed us that you've already created and verified another account on Fairtalk. It wouldn't be fair for other users if you had access to multiple verified accounts and had the ability to vote multiple times. This is why this rule is stricly reinforced."
+                                      ? "Our dataset showed us that you've already created and verified another account on FairTalk. It wouldn't be fair for other users if you had access to multiple verified accounts and had the ability to vote multiple times. This is why this rule is stricly reinforced."
                                       : widget.reason == "twoPicturesDontMatch"
                                           ? "With the help of our facial recognition technology, the person on the ID card did not match the person holding the ID card. These results are not always 100% accurate and you'll always have the opportunity to try the verification process again."
                                           : widget.reason == "fakeId"
@@ -184,7 +184,7 @@ class _VerificationFailState extends State<VerificationFail> {
                                   children: [
                                     Container(width: 8),
                                     const Text(
-                                      'Return to Fairtalk',
+                                      'Return to FairTalk',
                                       style: TextStyle(
                                           fontSize: 18,
                                           letterSpacing: 0.8,

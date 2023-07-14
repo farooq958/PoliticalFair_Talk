@@ -1210,52 +1210,38 @@ class _PostTabScreen extends StatelessWidget {
                             const SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PhysicalModel(
-                                  color: Colors.white,
-                                  elevation: 2,
-                                  borderRadius: BorderRadius.circular(25),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      borderRadius: BorderRadius.circular(25),
-                                      splashColor: const Color.fromARGB(
-                                          255, 245, 245, 245),
-                                      onTap: onLoadMore,
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 8,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Icon(Icons.arrow_downward,
-                                                size: 16, color: Colors.black),
-                                            SizedBox(width: 8),
-                                            Text(
-                                              'View More',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13.5,
-                                                letterSpacing: 0,
-                                              ),
-                                            ),
-                                          ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: PhysicalModel(
+                                color: Colors.white,
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(25),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(25),
+                                    splashColor: const Color.fromARGB(
+                                        255, 245, 245, 245),
+                                    onTap: onLoadMore,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'View More',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.5,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
@@ -1345,54 +1331,37 @@ class _PollTabScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              PhysicalModel(
-                                color: Colors.white,
-                                elevation: 2,
-                                borderRadius: BorderRadius.circular(25),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    borderRadius: BorderRadius.circular(25),
-                                    splashColor: const Color.fromARGB(
-                                        255, 245, 245, 245),
-                                    onTap: onLoadMore,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const [
-                                          Icon(
-                                            Icons.arrow_downward,
-                                            size: 16,
-                                            color: Colors.black,
-                                          ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            'View More',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 13.5,
-                                              letterSpacing: 0,
-                                            ),
-                                          ),
-                                        ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: PhysicalModel(
+                              color: Colors.white,
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(25),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(25),
+                                  splashColor:
+                                      const Color.fromARGB(255, 245, 245, 245),
+                                  onTap: onLoadMore,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'View More',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13.5,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
@@ -1590,53 +1559,37 @@ class _CommentRepliesTabScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PhysicalModel(
-                            color: Colors.white,
-                            elevation: 2,
-                            borderRadius: BorderRadius.circular(25),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(25),
-                                splashColor:
-                                    const Color.fromARGB(255, 245, 245, 245),
-                                onTap: onLoadMore,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Icons.arrow_downward,
-                                        size: 16,
-                                        color: Colors.black,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        'View More',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.5,
-                                          letterSpacing: 0,
-                                        ),
-                                      ),
-                                    ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: PhysicalModel(
+                          color: Colors.white,
+                          elevation: 2,
+                          borderRadius: BorderRadius.circular(25),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              splashColor:
+                                  const Color.fromARGB(255, 245, 245, 245),
+                              onTap: onLoadMore,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 10,
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'View More',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13.5,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),

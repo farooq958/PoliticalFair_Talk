@@ -61,7 +61,7 @@ class _AddInfoState extends State<AddInfo> {
                           ),
                         ),
                         Container(width: 16),
-                        const Text('Posting on Fairtalk',
+                        const Text('Posting on FairTalk',
                             style: TextStyle(
                                 color: whiteDialog,
                                 fontSize: 20,
@@ -193,7 +193,7 @@ class _AddInfoState extends State<AddInfo> {
                           ),
                           const SizedBox(height: 15),
                           const Text(
-                            "Once you create a post, it'll immediately get listed on our Home screen where other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection.",
+                            "Once you create a post, it'll immediately get listed on our Home screen where other users are given a total of 7 days to cast votes on it. Once the 7 days have passed, the post that received the highest score will be saved and added to FairTalk's Archives collection.",
                             style: TextStyle(
                               color: whiteDialog,
                               fontWeight: FontWeight.w500,

@@ -27,11 +27,11 @@ class _AdminVerificationState extends State<AdminVerification> {
   var streamData;
 
   // String verificationSuccess =
-  //     "Congratulations, your Fairtalk account has been successfully verified!\n With a verified account, you have full access to all of Fairtalk's features. This includes voting, creating National message/polls, more profile personalization options & much more!";
+  //     "Congratulations, your FairTalk account has been successfully verified!\n With a verified account, you have full access to all of FairTalk's features. This includes voting, creating National message/polls, more profile personalization options & much more!";
   // String unclearPictures =
   //     "Unfortunately your account did not pass the verification process.\n Here's why:\n One or both pictures taken were unclear. Please make sure that the quality of the pictures taken are clear and that the information on your ID card can easily be read.";
   // String alreadyHaveAnotherAccount =
-  //     "Unfortunately your account did not pass the verification process.\n Here's why:\n Our dataset showed us that you've already created and verified another account on Fairtalk. It wouldn't be fair for other users if you had access to multiple verified accounts and had the ability to vote multiple times. This is why this rule is stricly reinforced.";
+  //     "Unfortunately your account did not pass the verification process.\n Here's why:\n Our dataset showed us that you've already created and verified another account on FairTalk. It wouldn't be fair for other users if you had access to multiple verified accounts and had the ability to vote multiple times. This is why this rule is stricly reinforced.";
   // String twoPicturesDontMatch =
   //     "Unfortunately your account did not pass the verification process.\n Here's why:\n With the help of our facial recognition technology, the person on the ID card did not match the person holding the ID card. These results are not always 100% accurate and you'll always have the opportunity to try the verification process again.";
   // String fakeId =
@@ -159,7 +159,7 @@ class _AdminVerificationState extends State<AdminVerification> {
   //         // receiverEmail: email,
   //         // // receiverEmail: 'seb.doyon21@gmail.com',
   //         // senderEmail: 'fairtalk.assist@gmail.com',
-  //         // senderName: 'Fairtalk',
+  //         // senderName: 'FairTalk',
   //         // subject: 'Account Verification',
   //         // message: isAccept
   //         //     ? verificationSuccess
@@ -1162,9 +1162,9 @@ class _AdminVerificationState extends State<AdminVerification> {
 //       'template_id': 'template_ln69u1g',
 //       'user_id': 'Kil1lduE_7f94fMy1',
 //       'template_params': {
-//         'sender_name': 'Fairtalk',
+//         'sender_name': 'FairTalk',
 //         'sender_email': 'fairtalk.assist@gmail.com',
-//         'receiver_name': 'Fairtalk',
+//         'receiver_name': 'FairTalk',
 //         'receiver_email': 'fairtalk.assist@gmail.com',
 //         // 'sender_name': senderName,
 //         // 'sender_email': senderEmail,

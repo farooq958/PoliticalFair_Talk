@@ -15,9 +15,9 @@ class HowItWorks extends StatefulWidget {
 }
 
 class _HowItWorksState extends State<HowItWorks> {
-  bool isBrief = false;
+  bool isBrief = true;
   bool isDetailed = false;
-  bool isShortVideo = false;
+  bool isShortVideo = true;
 
   bool isHowDoesItWork = false;
   bool isCompare = false;
@@ -113,7 +113,7 @@ class _HowItWorksState extends State<HowItWorks> {
                             ),
                           ),
                           Container(width: 16),
-                          const Text('Fairtalk Explainer',
+                          const Text('FairTalk Explainer',
                               style: TextStyle(
                                   color: whiteDialog,
                                   fontSize: 20,
@@ -161,7 +161,7 @@ class _HowItWorksState extends State<HowItWorks> {
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: isShortVideo ? 15 : 0),
+                                  bottom: isShortVideo ? 12 : 0),
                               child: Column(
                                 children: [
                                   InkWell(
@@ -207,68 +207,75 @@ class _HowItWorksState extends State<HowItWorks> {
                                   ),
                                   SizedBox(height: isShortVideo ? 3 : 0),
                                   isShortVideo
-                                      ? LayoutBuilder(
-                                          builder: (context, constraints) {
-                                            return SizedBox(
-                                              width: MediaQuery.of(context)
-                                                          .size
-                                                          .width >
-                                                      600
-                                                  ? 598
-                                                  : MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                              child: Stack(
-                                                children: [
-                                                  Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        color: darkBlue,
-                                                      ),
-                                                      child: player),
-                                                  Positioned.fill(
-                                                    child: YoutubeValueBuilder(
-                                                      controller: controller,
-                                                      builder:
-                                                          (context, value) {
-                                                        return AnimatedCrossFade(
-                                                          crossFadeState: value
-                                                                  .isReady
-                                                              ? CrossFadeState
-                                                                  .showSecond
-                                                              : CrossFadeState
-                                                                  .showFirst,
-                                                          duration:
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      300),
-                                                          secondChild:
-                                                              const SizedBox(),
-                                                          firstChild: Material(
-                                                            color: Colors
-                                                                .transparent,
-                                                            child: Stack(
-                                                              children: const [
-                                                                Center(
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    color: Colors
-                                                                        .white,
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          child: LayoutBuilder(
+                                            builder: (context, constraints) {
+                                              return SizedBox(
+                                                width: MediaQuery.of(context)
+                                                            .size
+                                                            .width >
+                                                        600
+                                                    ? 598
+                                                    : MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          color: darkBlue,
+                                                        ),
+                                                        child: player),
+                                                    Positioned.fill(
+                                                      child:
+                                                          YoutubeValueBuilder(
+                                                        controller: controller,
+                                                        builder:
+                                                            (context, value) {
+                                                          return AnimatedCrossFade(
+                                                            crossFadeState: value
+                                                                    .isReady
+                                                                ? CrossFadeState
+                                                                    .showSecond
+                                                                : CrossFadeState
+                                                                    .showFirst,
+                                                            duration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                            secondChild:
+                                                                const SizedBox(),
+                                                            firstChild:
+                                                                Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              child: Stack(
+                                                                children: const [
+                                                                  Center(
+                                                                    child:
+                                                                        CircularProgressIndicator(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         )
                                       : const SizedBox(),
                                 ],
@@ -353,7 +360,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                               ),
                                               // const SizedBox(height: 3),
                                               const Text(
-                                                "As soon as you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to Fairtalk's Archives collection. Posts sent on a specific date compete against other posts sent on that same date.",
+                                                "As soon as you create a post, it'll immediately get listed on the Home screen where other users are given a total of 7 days to vote on it. Once the 7 days have passed, the post that received the highest score will be saved and added to FairTalk's Archives collection. Posts sent on a specific date compete against other posts sent on that same date.",
                                                 style: TextStyle(
                                                   color: whiteDialog,
                                                   fontWeight: FontWeight.w500,
@@ -674,7 +681,7 @@ class _HowItWorksState extends State<HowItWorks> {
 
                                               // const SizedBox(height: 15),
                                               // const Text(
-                                              //   'On Fairtalk, the majority votes & decides everything. This includes:',
+                                              //   'On FairTalk, the majority votes & decides everything. This includes:',
                                               //   style: TextStyle(
                                               //     letterSpacing: 0,
                                               //     fontWeight: FontWeight.w500,
@@ -775,7 +782,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                "On Fairtalk, our users make all the decisions, not the CEO. We let our users vote & decide which features they want to see added or removed from the platform. If democracies work better than dictatorships, then why not adopt a similar system when it comes to social media?",
+                                                "On FairTalk, our users make all the decisions, not the CEO. We let our users vote & decide which features they want to see added or removed from the platform. If democracies work better than dictatorships, then why not adopt a similar system when it comes to social media?",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w500,
                                                   color: whiteDialog,
@@ -793,7 +800,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "Since Fairtalk is fully centered around a democratic system, we had to come up with a unique approach to eliminate all forms of voting manipulation. On other platforms, all they do is collect your IP address & device token which is very easy to modify (you can simply use VPNs & hard reset your device). With Fairtalk's account verification system, we ensure that platform manipulation becomes nearly impossible. This finally opens up the gates to online democracy because we finally have a voting system which is nearly impossible to manipulate.",
+                                                  "Since FairTalk is fully centered around a democratic system, we had to come up with a unique approach to eliminate all forms of voting manipulation. On other platforms, all they do is collect your IP address & device token which is very easy to modify (you can simply use VPNs & hard reset your device). With FairTalk's account verification system, we ensure that platform manipulation becomes nearly impossible. This finally opens up the gates to online democracy because we finally have a voting system which is nearly impossible to manipulate.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,
@@ -801,7 +808,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   )),
                                               const SizedBox(height: 20),
                                               const Text(
-                                                "An argument against Fairtalk",
+                                                "An argument against FairTalk",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                     letterSpacing: 0,
@@ -829,7 +836,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "Fairtalk's voting system works nothing like a democracy. Our platform gives each user the option to either up-vote, down-vote or neutral-vote (see Fairtalk's voting system below). Modern democracies only give participants the option to \"up-vote\" leaders. But by also giving an option to down-vote, we can easily start filtering out the leaders or messages that always seem to divide us. If 51% of participants want a certain leader to be elected but the other 49% do not, why would we still elect this person knowing that the entire country will be split in half? By not giving an option to down-vote, we're completely hiding the real sentiment towards specific leaders or messages. This can be very dangerous as it can often result in the election of political figures that create division. Fairtalk's voting system helps filter out the messages that divide us so that we can finally pay more attention to the messages that unite us.",
+                                                  "FairTalk's voting system works nothing like a democracy. Our platform gives each user the option to either up-vote, down-vote or neutral-vote (see FairTalk's voting system below). Modern democracies only give participants the option to \"up-vote\" leaders. But by also giving an option to down-vote, we can easily start filtering out the leaders or messages that always seem to divide us. If 51% of participants want a certain leader to be elected but the other 49% do not, why would we still elect this person knowing that the entire country will be split in half? By not giving an option to down-vote, we're completely hiding the real sentiment towards specific leaders or messages. This can be very dangerous as it can often result in the election of political figures that create division. FairTalk's voting system helps filter out the messages that divide us so that we can finally pay more attention to the messages that unite us.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,
@@ -837,7 +844,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                   )),
                                               const SizedBox(height: 20),
                                               const Text(
-                                                "Fairtalk's voting system",
+                                                "FairTalk's voting system",
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                     letterSpacing: 0,
@@ -953,7 +960,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "Whether it's Facebook, Instagram, Twitter, YouTube, Reddit or TikTok, all of these platforms use algorithms to suggest content for each individual user (a.k.a \"For You\" pages). This may be beneficial in some ways, but it also divides everyone into their own little worlds and it simply becomes impossible to have any collective discussion. Instead of keeping everyone divided, Fairtalk brings everyone together. We do this by displaying the same content for each user on the platform. This content isn't randomly chosen by algorithms but instead it's always chosen by the majority. In other words, the majority becomes the algorithm.",
+                                                  "Whether it's Facebook, Instagram, Twitter, YouTube, Reddit or TikTok, all of these platforms use algorithms to suggest content for each individual user (a.k.a \"For You\" pages). This may be beneficial in some ways, but it also divides everyone into their own little worlds and it simply becomes impossible to have any collective discussion. Instead of keeping everyone divided, FairTalk brings everyone together. We do this by displaying the same content for each user on the platform. This content isn't randomly chosen by algorithms but instead it's always chosen by the majority. In other words, the majority becomes the algorithm.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,
@@ -970,7 +977,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "If we want to give each user a fair chance to participate in Fairtalk's discussions, we had no choice but to remove the \"following\" system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more attention than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy.",
+                                                  "If we want to give each user a fair chance to participate in FairTalk's discussions, we had no choice but to remove the \"following\" system often found on other platforms. Although this system may have advantages, it unfortunately gives all the power/attention to only a small percentage of individuals (politicians, billionaires, celebrities, etc.) and if you're not apart of this small group of people, you'll almost certainly be ignored. Giving public figures more attention than what they already have is like slapping everyone else in the face and telling you that your voice doesn't matter unless you sit at the very top of the social hierarchy.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,
@@ -986,7 +993,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "If for any reason users find out that a specific username on Fairtalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on Fairtalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in Fairtalk's discussions but they must remain anonymous just like everybody else.",
+                                                  "If for any reason users find out that a specific username on FairTalk is related to a specific individual (public figure) where they gain an unfair advantage in discussions, we'll simply ask them to delete their current account & create a new one. Everyone on FairTalk is on the same footing, everyone has the same opportunity to fairly participate in discussions. Public figures are more than welcome to participate in FairTalk's discussions but they must remain anonymous just like everybody else.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,
@@ -1002,7 +1009,7 @@ class _HowItWorksState extends State<HowItWorks> {
                                                     fontSize: 16),
                                               ),
                                               const Text(
-                                                  "Fairtalk is the very first platform to introduce democracy to social media. By eliminating platform manipulation & no longer prioritizing certain individuals in discussions (public figures or those that can afford monthly fees for blue checkmarks), we finally have a platform where everyone is on the same footing. With a fair system like this, we can finally let the majority dictate the direction of our platform by letting them choose which functionalities they want to see added or removed from Fairtalk.",
+                                                  "FairTalk is the very first platform to introduce democracy to social media. By eliminating platform manipulation & no longer prioritizing certain individuals in discussions (public figures or those that can afford monthly fees for blue checkmarks), we finally have a platform where everyone is on the same footing. With a fair system like this, we can finally let the majority dictate the direction of our platform by letting them choose which functionalities they want to see added or removed from FairTalk.",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: whiteDialog,

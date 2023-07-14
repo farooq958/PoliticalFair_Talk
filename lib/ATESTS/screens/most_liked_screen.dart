@@ -716,63 +716,45 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                             mostLikedProvider.loading
                         ? const SizedBox()
                         : Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 4),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PhysicalModel(
-                                  color: Colors.white,
-                                  elevation: 2,
+                            padding: const EdgeInsets.only(
+                                top: 10, bottom: 4, right: 12, left: 12),
+                            child: PhysicalModel(
+                              color: Colors.white,
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(25),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
                                   borderRadius: BorderRadius.circular(25),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 100),
-                                              () {
-                                            mostLikedProvider
-                                                .getPreviousMostLikedPosts(
-                                                    filterProvider.global,
-                                                    filterProvider.countryCode,
-                                                    filterProvider
-                                                        .oneValueHome);
-                                          });
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Icon(
-                                                Icons.arrow_upward,
-                                                size: 16,
-                                                color: Colors.black,
-                                              ),
-                                              SizedBox(width: 8),
-                                              Text('View Previous',
-                                                  // '${(mostLikedProvider.postPageCount - 2) * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.postPageCount - 1) * mostLikedProvider.pageSize}',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 13.5,
-                                                    letterSpacing: 0,
-                                                  )),
-                                            ],
-                                          ),
-                                        )),
+                                  splashColor:
+                                      const Color.fromARGB(255, 245, 245, 245),
+                                  onTap: () {
+                                    Future.delayed(
+                                        const Duration(milliseconds: 100), () {
+                                      mostLikedProvider
+                                          .getPreviousMostLikedPosts(
+                                              filterProvider.global,
+                                              filterProvider.countryCode,
+                                              filterProvider.oneValueHome);
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'View Previous',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13.5,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                     ListView.builder(
@@ -792,67 +774,48 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                         : Visibility(
                             visible: mostLikedProvider.isButtonVisible,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  PhysicalModel(
-                                    color: Colors.white,
-                                    elevation: 2,
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 12, left: 12),
+                              child: PhysicalModel(
+                                color: Colors.white,
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(25),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
                                     borderRadius: BorderRadius.circular(25),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        onTap: () {
-                                          Future.delayed(
-                                            const Duration(milliseconds: 100),
-                                            () {
-                                              mostLikedProvider
-                                                  .getNextMostLikedPosts(
-                                                filterProvider.global,
-                                                filterProvider.countryCode,
-                                                filterProvider.oneValueHome,
-                                              );
-                                            },
+                                    splashColor: const Color.fromARGB(
+                                        255, 245, 245, 245),
+                                    onTap: () {
+                                      Future.delayed(
+                                        const Duration(milliseconds: 100),
+                                        () {
+                                          mostLikedProvider
+                                              .getNextMostLikedPosts(
+                                            filterProvider.global,
+                                            filterProvider.countryCode,
+                                            filterProvider.oneValueHome,
                                           );
                                         },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Icon(
-                                                Icons.arrow_downward,
-                                                size: 16,
-                                                color: Colors.black,
-                                              ),
-                                              SizedBox(width: 8),
-                                              Text(
-                                                'View Next',
-                                                // '${mostLikedProvider.postPageCount * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.postPageCount + 1) * mostLikedProvider.pageSize}',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0,
-                                                ),
-                                              ),
-                                            ],
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'View More',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.5,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -877,63 +840,45 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                             mostLikedProvider.loading
                         ? const SizedBox()
                         : Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 4),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PhysicalModel(
-                                  color: Colors.white,
-                                  elevation: 2,
+                            padding: const EdgeInsets.only(
+                                top: 10, bottom: 4, right: 12, left: 12),
+                            child: PhysicalModel(
+                              color: Colors.white,
+                              elevation: 2,
+                              borderRadius: BorderRadius.circular(25),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
                                   borderRadius: BorderRadius.circular(25),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        onTap: () {
-                                          Future.delayed(
-                                              const Duration(milliseconds: 100),
-                                              () {
-                                            mostLikedProvider
-                                                .getPreviousMostLikedPolls(
-                                                    filterProvider.global,
-                                                    filterProvider.countryCode,
-                                                    filterProvider
-                                                        .oneValueHome);
-                                          });
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Icon(
-                                                Icons.arrow_upward,
-                                                size: 16,
-                                                color: Colors.black,
-                                              ),
-                                              SizedBox(width: 8),
-                                              Text('View Previous',
-                                                  // '${(mostLikedProvider.pollPageCount - 2) * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.pollPageCount - 1) * mostLikedProvider.pageSize}',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 13.5,
-                                                    letterSpacing: 0,
-                                                  )),
-                                            ],
-                                          ),
-                                        )),
+                                  splashColor:
+                                      const Color.fromARGB(255, 245, 245, 245),
+                                  onTap: () {
+                                    Future.delayed(
+                                        const Duration(milliseconds: 100), () {
+                                      mostLikedProvider
+                                          .getPreviousMostLikedPolls(
+                                              filterProvider.global,
+                                              filterProvider.countryCode,
+                                              filterProvider.oneValueHome);
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'View Previous',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13.5,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                     ListView.builder(
@@ -953,67 +898,48 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                         : Visibility(
                             visible: mostLikedProvider.isPollButtonVisible,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  PhysicalModel(
-                                    color: Colors.white,
-                                    elevation: 2,
+                              padding: const EdgeInsets.only(
+                                  top: 10.0, right: 12, left: 12),
+                              child: PhysicalModel(
+                                color: Colors.white,
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(25),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
                                     borderRadius: BorderRadius.circular(25),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(25),
-                                        splashColor: const Color.fromARGB(
-                                            255, 245, 245, 245),
-                                        onTap: () {
-                                          Future.delayed(
-                                            const Duration(milliseconds: 100),
-                                            () {
-                                              mostLikedProvider
-                                                  .getNextMostLikedPolls(
-                                                filterProvider.global,
-                                                filterProvider.countryCode,
-                                                filterProvider.oneValueHome,
-                                              );
-                                            },
+                                    splashColor: const Color.fromARGB(
+                                        255, 245, 245, 245),
+                                    onTap: () {
+                                      Future.delayed(
+                                        const Duration(milliseconds: 100),
+                                        () {
+                                          mostLikedProvider
+                                              .getNextMostLikedPolls(
+                                            filterProvider.global,
+                                            filterProvider.countryCode,
+                                            filterProvider.oneValueHome,
                                           );
                                         },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Icon(
-                                                Icons.arrow_downward,
-                                                size: 16,
-                                                color: Colors.black,
-                                              ),
-                                              SizedBox(width: 8),
-                                              Text(
-                                                'View Next',
-                                                // '${mostLikedProvider.pollPageCount * mostLikedProvider.pageSize + 1} - ${(mostLikedProvider.pollPageCount + 1) * mostLikedProvider.pageSize}',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13.5,
-                                                  letterSpacing: 0,
-                                                ),
-                                              ),
-                                            ],
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'View More',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.5,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),

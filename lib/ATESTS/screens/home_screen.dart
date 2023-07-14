@@ -713,85 +713,59 @@ class _FeedScreenState extends State<FeedScreen> {
                                     ? const SizedBox()
                                     : Padding(
                                         padding: const EdgeInsets.only(
-                                          top: 10,
-                                          bottom: 4,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            PhysicalModel(
-                                              color: Colors.white,
-                                              elevation: 2,
+                                            top: 10,
+                                            bottom: 4,
+                                            right: 12,
+                                            left: 12),
+                                        child: PhysicalModel(
+                                          color: Colors.white,
+                                          elevation: 2,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
                                               borderRadius:
                                                   BorderRadius.circular(25),
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () {
-                                                      Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  100), () {
-                                                        postProvider.getPreviousPosts(
-                                                            filterProvider
-                                                                .twoValueHome,
-                                                            filterProvider
-                                                                .global,
-                                                            filterProvider
-                                                                .countryCode,
-                                                            filterProvider
-                                                                .durationInDay,
-                                                            filterProvider
-                                                                .oneValueHome);
-                                                        _postScrollController
-                                                            .jumpTo(0);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 16,
-                                                          vertical: 8),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                            Icons.arrow_upward,
-                                                            size: 16,
-                                                            color: Colors.black,
-                                                          ),
-                                                          SizedBox(width: 8),
-                                                          Text('View Previous',
-                                                              // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 13.5,
-                                                                letterSpacing:
-                                                                    0.3,
-                                                              )),
-                                                        ],
-                                                      ),
-                                                    )),
+                                              splashColor: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              onTap: () {
+                                                Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 100), () {
+                                                  postProvider.getPreviousPosts(
+                                                      filterProvider
+                                                          .twoValueHome,
+                                                      filterProvider.global,
+                                                      filterProvider
+                                                          .countryCode,
+                                                      filterProvider
+                                                          .durationInDay,
+                                                      filterProvider
+                                                          .oneValueHome);
+                                                  _postScrollController
+                                                      .jumpTo(0);
+                                                });
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    'View Previous',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13.5,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                 ListView.builder(
@@ -813,107 +787,75 @@ class _FeedScreenState extends State<FeedScreen> {
                                     : Visibility(
                                         visible: postProvider.isButtonVisible,
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              PhysicalModel(
-                                                color: Colors.white,
-                                                elevation: 2,
+                                          padding: const EdgeInsets.only(
+                                            top: 10.0,
+                                            right: 12,
+                                            left: 12,
+                                          ),
+                                          child: PhysicalModel(
+                                            color: Colors.white,
+                                            elevation: 2,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
                                                 borderRadius:
                                                     BorderRadius.circular(25),
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () {
-                                                      Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 100),
-                                                        () {
-                                                          // print(
-                                                          //     "filterProvider.twoValue: ${filterProvider.twoValue}");
-                                                          // print(
-                                                          //     "filterProvider.global: ${filterProvider.global}");
-                                                          // print(
-                                                          //     "filterProvider.countryCode: ${filterProvider.countryCode}");
-                                                          // print(
-                                                          //     "filterProvider.durationInDay: ${filterProvider.durationInDay}");
-                                                          // print(
-                                                          //     "filterProvider.oneValue: ${filterProvider.oneValue}");
+                                                splashColor:
+                                                    const Color.fromARGB(
+                                                        255, 245, 245, 245),
+                                                onTap: () {
+                                                  Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 100),
+                                                    () {
+                                                      // print(
+                                                      //     "filterProvider.twoValue: ${filterProvider.twoValue}");
+                                                      // print(
+                                                      //     "filterProvider.global: ${filterProvider.global}");
+                                                      // print(
+                                                      //     "filterProvider.countryCode: ${filterProvider.countryCode}");
+                                                      // print(
+                                                      //     "filterProvider.durationInDay: ${filterProvider.durationInDay}");
+                                                      // print(
+                                                      //     "filterProvider.oneValue: ${filterProvider.oneValue}");
 
-                                                          postProvider
-                                                              .getNextPosts(
-                                                            filterProvider
-                                                                .twoValueHome,
-                                                            filterProvider
-                                                                .global,
-                                                            filterProvider
-                                                                .countryCode,
-                                                            filterProvider
-                                                                .durationInDay,
-                                                            filterProvider
-                                                                .oneValueHome,
-                                                          );
-                                                          _postScrollController
-                                                              .jumpTo(0);
-                                                        },
+                                                      postProvider.getNextPosts(
+                                                        filterProvider
+                                                            .twoValueHome,
+                                                        filterProvider.global,
+                                                        filterProvider
+                                                            .countryCode,
+                                                        filterProvider
+                                                            .durationInDay,
+                                                        filterProvider
+                                                            .oneValueHome,
                                                       );
+                                                      _postScrollController
+                                                          .jumpTo(0);
                                                     },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 16,
-                                                          vertical: 8),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                        // border: Border.all(
-                                                        //   width: 1,
-                                                        //   color: Colors.black,
-                                                        // ),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                              Icons
-                                                                  .arrow_downward,
-                                                              size: 16,
-                                                              color:
-                                                                  Colors.black),
-                                                          SizedBox(width: 8),
-                                                          Text(
-                                                            'View Next',
-                                                            // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              // fontWeight:
-                                                              //     FontWeight.w500,
-                                                              fontSize: 13.5,
-                                                              letterSpacing: 0,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                  );
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    vertical: 10,
+                                                  ),
+                                                  child: const Center(
+                                                    child: Text(
+                                                      'View More',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 13.5,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -948,83 +890,58 @@ class _FeedScreenState extends State<FeedScreen> {
                                   ? const SizedBox()
                                   : Padding(
                                       padding: const EdgeInsets.only(
-                                        top: 10.0,
-                                        bottom: 4,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          PhysicalModel(
-                                            color: Colors.white,
-                                            elevation: 2,
+                                          top: 10.0,
+                                          bottom: 4,
+                                          right: 12,
+                                          left: 12),
+                                      child: PhysicalModel(
+                                        color: Colors.white,
+                                        elevation: 2,
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
                                             borderRadius:
                                                 BorderRadius.circular(25),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                                splashColor:
-                                                    const Color.fromARGB(
-                                                        255, 245, 245, 245),
-                                                onTap: () {
-                                                  Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 100),
-                                                    () {
-                                                      pollsProvider
-                                                          .getPreviousPolls(
-                                                              filterProvider
-                                                                  .twoValueHome,
-                                                              filterProvider
-                                                                  .global,
-                                                              filterProvider
-                                                                  .countryCode,
-                                                              filterProvider
-                                                                  .durationInDay,
-                                                              filterProvider
-                                                                  .oneValueHome);
-                                                    },
-                                                  );
+                                            splashColor: const Color.fromARGB(
+                                                255, 245, 245, 245),
+                                            onTap: () {
+                                              Future.delayed(
+                                                const Duration(
+                                                    milliseconds: 100),
+                                                () {
+                                                  pollsProvider
+                                                      .getPreviousPolls(
+                                                          filterProvider
+                                                              .twoValueHome,
+                                                          filterProvider.global,
+                                                          filterProvider
+                                                              .countryCode,
+                                                          filterProvider
+                                                              .durationInDay,
+                                                          filterProvider
+                                                              .oneValueHome);
                                                 },
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.transparent,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: const [
-                                                      Icon(Icons.arrow_upward,
-                                                          size: 16,
-                                                          color: Colors.black),
-                                                      SizedBox(width: 8),
-                                                      Text(
-                                                        'View Previous',
-                                                        // '${(pollsProvider.count - 2) * pollsProvider.pageSize + 1} - ${(pollsProvider.count - 1) * pollsProvider.pageSize}',
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 13.5,
-                                                          letterSpacing: 0,
-                                                        ),
-                                                      ),
-                                                    ],
+                                              );
+                                            },
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 10,
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  'View Previous',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 13.5,
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                               Column(
@@ -1046,88 +963,59 @@ class _FeedScreenState extends State<FeedScreen> {
                                   : Visibility(
                                       visible: pollsProvider.isButtonVisible,
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            PhysicalModel(
-                                              color: Colors.white,
-                                              elevation: 2,
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0, right: 12, left: 12),
+                                        child: PhysicalModel(
+                                          color: Colors.white,
+                                          elevation: 2,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
                                               borderRadius:
                                                   BorderRadius.circular(25),
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: InkWell(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    splashColor:
-                                                        const Color.fromARGB(
-                                                            255, 245, 245, 245),
-                                                    onTap: () async {
-                                                      Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 100),
-                                                        () {
-                                                          pollsProvider.getNextPolls(
-                                                              filterProvider
-                                                                  .twoValueHome,
-                                                              filterProvider
-                                                                  .global,
-                                                              filterProvider
-                                                                  .countryCode,
-                                                              filterProvider
-                                                                  .durationInDay,
-                                                              filterProvider
-                                                                  .oneValueHome);
-                                                          _pollsScrollController
-                                                              .jumpTo(0);
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8,
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Icon(
-                                                              Icons
-                                                                  .arrow_downward,
-                                                              size: 16,
-                                                              color:
-                                                                  Colors.black),
-                                                          SizedBox(width: 8),
-                                                          Text(
-                                                            'View Next',
-                                                            // '${pollsProvider.count * pollsProvider.pageSize + 1} - ${(pollsProvider.count + 1) * pollsProvider.pageSize}',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 13.5,
-                                                              letterSpacing: 0,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )),
+                                              splashColor: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              onTap: () async {
+                                                Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 100),
+                                                  () {
+                                                    pollsProvider.getNextPolls(
+                                                        filterProvider
+                                                            .twoValueHome,
+                                                        filterProvider.global,
+                                                        filterProvider
+                                                            .countryCode,
+                                                        filterProvider
+                                                            .durationInDay,
+                                                        filterProvider
+                                                            .oneValueHome);
+                                                    _pollsScrollController
+                                                        .jumpTo(0);
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                ),
+                                                child: const Center(
+                                                  child: Text(
+                                                    'View More',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13.5,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                     ),

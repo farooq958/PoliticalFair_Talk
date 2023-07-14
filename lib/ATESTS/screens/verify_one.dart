@@ -178,7 +178,7 @@ class _VerifyOneState extends State<VerifyOne> {
                               child: Column(
                                 children: [
                                   const Text(
-                                    'Why does Fairtalk have an account verification system?',
+                                    'Why does FairTalk have an account verification system?',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontSize: 17,
@@ -276,7 +276,7 @@ class _VerifyOneState extends State<VerifyOne> {
                                                   children: const [
                                                     SizedBox(height: 2),
                                                     Text(
-                                                      "• Participate in Fairtalk's democracy.",
+                                                      "• Participate in FairTalk's democracy.",
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: TextStyle(

@@ -54,8 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         const SizedBox(height: 30),
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 1 - 40,
-                            child: Image.asset(
-                                'assets/fairtalk_new_white_transparent.png')),
+                            child: Image.asset('assets/fairtalk_white.png')),
                         const SizedBox(height: 5),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 1 - 40,
@@ -87,7 +86,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 child: Column(
                                   children: [
                                     const Text(
-                                      "Welcome to Fairtalk,",
+                                      "Welcome to FairTalk,",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -429,7 +428,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               child: Column(
                                 children: [
                                   const Text(
-                                    'Want to learn how Fairtalk works?',
+                                    'Want to learn how FairTalk works?',
                                     style: TextStyle(
                                       color: whiteDialog,
                                       fontWeight: FontWeight.w500,
@@ -504,7 +503,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                                           color: whiteDialog),
                                                       Container(width: 8),
                                                       const Text(
-                                                        'Fairtalk Explainer',
+                                                        'FairTalk Explainer',
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             letterSpacing: 0,

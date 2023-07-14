@@ -1028,53 +1028,89 @@ class _PostCardTestState extends State<PostCardTest> {
                                     // _post.selected == 1
                                     //     ?
                                     _post.aPostUrl != ""
-                                        ? InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        FullImageScreen(
-                                                          post: _post,
-                                                        )),
-                                              );
-                                            },
-                                            child: Container(
-                                                height: MediaQuery.of(context)
-                                                            .size
-                                                            .width >=
-                                                        600
-                                                    ? 298
-                                                    : MediaQuery.of(context)
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 12),
+                                            child: PhysicalModel(
+                                              elevation: 2,
+                                              color: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            FullImageScreen(
+                                                              post: _post,
+                                                            )),
+                                                  );
+                                                },
+                                                child: Container(
+                                                    height: MediaQuery.of(
+                                                                    context)
                                                                 .size
-                                                                .width /
-                                                            2 -
-                                                        2,
-                                                width: MediaQuery.of(context)
-                                                            .size
-                                                            .width >=
-                                                        600
-                                                    ? 598
-                                                    : MediaQuery
-                                                                .of(context)
-                                                            .size
-                                                            .width -
-                                                        2,
-                                                color: const Color.fromARGB(
-                                                    255, 245, 245, 245),
-                                                child: Stack(
-                                                  children: [
-                                                    Center(
-                                                      child: CachedNetworkImage(
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            const CircularProgressIndicator(),
-                                                        imageUrl:
-                                                            _post.aPostUrl,
-                                                      ),
+                                                                .width >=
+                                                            600
+                                                        ? 298
+                                                        : MediaQuery.of(context)
+                                                                    .size
+                                                                    .width /
+                                                                2 -
+                                                            2,
+                                                    width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width >=
+                                                            600
+                                                        ? 598
+                                                        : MediaQuery.of(context)
+                                                                .size
+                                                                .width -
+                                                            2,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              245,
+                                                              245,
+                                                              245,
+                                                              245),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      // border: Border.all(
+                                                      //     width: 0,
+                                                      //     color: Colors.grey),
                                                     ),
-                                                  ],
-                                                )),
+                                                    child: Stack(
+                                                      children: [
+                                                        Center(
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    Center(
+                                                              child: Container(
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  color:
+                                                                      darkBlue,
+                                                                ),
+                                                                height: 25,
+                                                                width: 25,
+                                                              ),
+                                                            ),
+                                                            imageUrl:
+                                                                _post.aPostUrl,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )),
+                                              ),
+                                            ),
                                           )
                                         // : _post.selected == 2
                                         //     ? FutureBuilder(
@@ -1158,66 +1194,81 @@ class _PostCardTestState extends State<PostCardTest> {
                                                   //     ],
                                                   //   );
                                                   // }
-                                                  return SizedBox(
-                                                    width: MediaQuery.of(
+                                                  return Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 12),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                      child: SizedBox(
+                                                        width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width >
+                                                                600
+                                                            ? 598
+                                                            : MediaQuery.of(
                                                                     context)
                                                                 .size
-                                                                .width >
-                                                            600
-                                                        ? 598
-                                                        : MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: Stack(
-                                                      children: [
-                                                        player,
-                                                        Positioned.fill(
-                                                          child:
-                                                              YoutubeValueBuilder(
-                                                            controller:
-                                                                controller,
-                                                            builder: (context,
-                                                                value) {
-                                                              return AnimatedCrossFade(
-                                                                crossFadeState: value.isReady
-                                                                    ? CrossFadeState
-                                                                        .showSecond
-                                                                    : CrossFadeState
-                                                                        .showFirst,
-                                                                duration:
-                                                                    const Duration(
+                                                                .width,
+                                                        child: Stack(
+                                                          children: [
+                                                            player,
+                                                            Positioned.fill(
+                                                              child:
+                                                                  YoutubeValueBuilder(
+                                                                controller:
+                                                                    controller,
+                                                                builder:
+                                                                    (context,
+                                                                        value) {
+                                                                  return AnimatedCrossFade(
+                                                                    crossFadeState: value.isReady
+                                                                        ? CrossFadeState
+                                                                            .showSecond
+                                                                        : CrossFadeState
+                                                                            .showFirst,
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             300),
-                                                                secondChild:
-                                                                    const SizedBox(),
-                                                                firstChild:
-                                                                    Material(
-                                                                        child:
-                                                                            Stack(
-                                                                  children: [
-                                                                    const Center(
-                                                                        child:
-                                                                            CircularProgressIndicator(
-                                                                      color: Colors
-                                                                          .black,
-                                                                    )),
-                                                                    // FadeInImage.memoryNetwork(
-                                                                    //     width: MediaQuery.of(context).size.width,
-                                                                    //     placeholder: kTransparentImage,
-                                                                    //     fadeInDuration: const Duration(milliseconds: 200),
-                                                                    //     image: YoutubePlayerController.getThumbnail(
-                                                                    //       videoId:
-                                                                    //           controller.initialVideoId,
-                                                                    //       quality:
-                                                                    //           ThumbnailQuality.high,
-                                                                    //     )),
-                                                                  ],
-                                                                )),
-                                                              );
-                                                            },
-                                                          ),
+                                                                    secondChild:
+                                                                        const SizedBox(),
+                                                                    firstChild:
+                                                                        Material(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            child: Stack(
+                                                                              children: [
+                                                                                Center(
+                                                                                  child: Container(
+                                                                                    child: CircularProgressIndicator(
+                                                                                      color: whiteDialog,
+                                                                                    ),
+                                                                                    height: 25,
+                                                                                    width: 25,
+                                                                                  ),
+                                                                                ),
+                                                                                // FadeInImage.memoryNetwork(
+                                                                                //     width: MediaQuery.of(context).size.width,
+                                                                                //     placeholder: kTransparentImage,
+                                                                                //     fadeInDuration: const Duration(milliseconds: 200),
+                                                                                //     image: YoutubePlayerController.getThumbnail(
+                                                                                //       videoId:
+                                                                                //           controller.initialVideoId,
+                                                                                //       quality:
+                                                                                //           ThumbnailQuality.high,
+                                                                                //     )),
+                                                                              ],
+                                                                            )),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
                                                   );
                                                 },

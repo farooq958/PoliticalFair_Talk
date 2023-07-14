@@ -62,10 +62,6 @@ class AuthMethods {
     required Uint8List? profilePicFile,
     required String aaCountry,
     required String pending,
-    required int gMessageTime,
-    required int nMessageTime,
-    required int gPollTime,
-    required int nPollTime,
   }) async {
     String res = "Some error occured";
     try {
@@ -106,10 +102,10 @@ class AuthMethods {
           aaName: '',
           userReportCounter: 0,
           blockList: [],
-          gMessageTime: gMessageTime,
-          nMessageTime: nMessageTime,
-          gPollTime: gPollTime,
-          nPollTime: nPollTime,
+          gMessageTime: 0,
+          nMessageTime: 0,
+          gPollTime: 0,
+          nPollTime: 0,
           admin: false,
           photoOne: '',
           photoTwo: '',
@@ -119,7 +115,7 @@ class AuthMethods {
           verProcess: false,
           verFailReason: "",
           submissionTime: 0,
-          bot: 'recycle',
+          bot: 'none',
 
           // timeNow.add(Duration(
           //   minutes: 3,
@@ -150,6 +146,76 @@ class AuthMethods {
       // debugPrint('singup error $err');
       res = err.toString();
     }
+    return res;
+  }
+
+  Future<String> signUpUserGoogle({
+    required String aEmail,
+    required String password,
+    required String username,
+    required String? bio,
+
+    // required Uint8List file,
+    required Uint8List? profilePicFile,
+    required String aaCountry,
+    required String pending,
+    required String UID,
+  }) async {
+    String res = "Some error occured";
+
+    var timeNow = await NTP.now();
+    String trimmedBio = trimText(text: '');
+
+    final fcmToken = await FirebaseNotification.getToken();
+
+    //add user to our database
+    model.User user = model.User(
+      username: username,
+      usernameLower: username.toLowerCase(),
+      UID: UID,
+      dateCreated: timeNow,
+      photoUrl: null,
+      aEmail: aEmail,
+      aaCountry: aaCountry,
+      pending: pending,
+      bio: trimmedBio,
+      profileFlag: false,
+      profileBadge: false,
+      profileScore: true,
+      profileVotes: false,
+      profileScoreValue: 0,
+      aaName: '',
+      userReportCounter: 0,
+      blockList: [],
+      gMessageTime: 0,
+      nMessageTime: 0,
+      gPollTime: 0,
+      nPollTime: 0,
+      admin: false,
+      photoOne: '',
+      photoTwo: '',
+      pendingDate: '',
+      fcmTopic: 'gm',
+      fcmToken: fcmToken,
+      verProcess: false,
+      verFailReason: "",
+      submissionTime: 0,
+      bot: 'none',
+
+      // timeNow.add(Duration(
+      //   minutes: 3,
+      // )),
+    );
+
+    await _firestore.collection('users').doc(UID).set(
+          user.toJson(),
+        );
+    await FirebaseNotification.subscribeTopic('gm');
+
+    res = "success";
+
+    //IF YOU WANT TO PUT MORE DETAILS IN ERRORS
+
     return res;
   }
 

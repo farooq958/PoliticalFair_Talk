@@ -1671,7 +1671,7 @@ verificationRequired({
                     padding:
                         const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     child: const Text(
-                        "Fairtalk wouldn't be considered fair if we allowed users to create multiple accounts and vote multiple times.",
+                        "FairTalk wouldn't be considered fair if we allowed users to create multiple accounts and vote multiple times.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -2033,7 +2033,7 @@ ballotMessage({required BuildContext context}) {
                               children: <TextSpan>[
                                 const TextSpan(
                                   text:
-                                      "Fairtalk's democracy will only begin once we reach 1,000 verified users. This will ensure that there's enough people that can vote & participate. To view the current amount of verified users, ",
+                                      "FairTalk's democracy will only begin once we reach 1,000 verified users. This will ensure that there's enough people that can vote & participate. To view the current amount of verified users, ",
                                   style: TextStyle(
                                     color: darkBlue,
                                     fontSize: 13,
@@ -2240,7 +2240,7 @@ scoreDialogProfile({required BuildContext context}) {
                                   color: whiteDialog, size: 16),
                               SizedBox(width: 4),
                               Text(
-                                'Learn more about Fairtalk',
+                                'Learn more about FairTalk',
                                 style: TextStyle(
                                   fontSize: 13,
                                   letterSpacing: 0,
@@ -2363,7 +2363,7 @@ earnedDialogProfile({required BuildContext context}) {
                                   color: whiteDialog, size: 16),
                               SizedBox(width: 4),
                               Text(
-                                'Learn more about Fairtalk',
+                                'Learn more about FairTalk',
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: whiteDialog,
@@ -2506,7 +2506,7 @@ scoreDialogMessage({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The message that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
+                      "The message that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2541,7 +2541,7 @@ scoreDialogMessage({required BuildContext context}) {
                                   color: whiteDialog, size: 16),
                               SizedBox(width: 4),
                               Text(
-                                'Learn more about Fairtalk',
+                                'Learn more about FairTalk',
                                 style: TextStyle(
                                   fontSize: 13,
                                   letterSpacing: 0,
@@ -2644,7 +2644,7 @@ scoreDialogPoll({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The poll that receives the highest score by the end of its voting cycle will be added to Fairtalk's Archives collection.",
+                      "The poll that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2679,7 +2679,7 @@ scoreDialogPoll({required BuildContext context}) {
                                   color: whiteDialog, size: 16),
                               SizedBox(width: 4),
                               Text(
-                                'Learn more about Fairtalk',
+                                'Learn more about FairTalk',
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: whiteDialog,
@@ -2920,7 +2920,7 @@ timerDialog({
                                         color: whiteDialog, size: 16),
                                     SizedBox(width: 4),
                                     Text(
-                                      'Learn more about Fairtalk',
+                                      'Learn more about FairTalk',
                                       style: TextStyle(
                                         fontSize: 13,
                                         letterSpacing: 0,
@@ -3040,7 +3040,7 @@ sendTimerDialog({
                                         color: whiteDialog, size: 16),
                                     SizedBox(width: 4),
                                     Text(
-                                      'Learn more about Fairtalk',
+                                      'Learn more about FairTalk',
                                       style: TextStyle(
                                         fontSize: 13,
                                         letterSpacing: 0,
@@ -3157,7 +3157,7 @@ sendTimerDialogSubmission({
                                         color: whiteDialog, size: 16),
                                     SizedBox(width: 4),
                                     Text(
-                                      'Learn more about Fairtalk',
+                                      'Learn more about FairTalk',
                                       style: TextStyle(
                                         fontSize: 13,
                                         letterSpacing: 0,
@@ -3376,7 +3376,7 @@ keywordsDialog({
                   child: Column(
                     children: const [
                       Text(
-                        "Keywords should always represent the topic of your message or poll. They're used as a searching tool to help users find subjects or discussions that interests them.",
+                        "Keywords should always represent the topic of your message or poll. They're used as a searching tool to help users find subjects or topics that interests them.",
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 15, color: darkBlue),
                       ),
@@ -3411,7 +3411,7 @@ keywordsDialog({
                                 color: whiteDialog, size: 16),
                             SizedBox(width: 4),
                             Text(
-                              'Learn more about Fairtalk',
+                              'Learn more about FairTalk',
                               style: TextStyle(
                                 fontSize: 13,
                                 letterSpacing: 0,
@@ -3687,7 +3687,7 @@ percentageBarDialog({
                                 color: whiteDialog, size: 16),
                             SizedBox(width: 4),
                             Text(
-                              'Learn more about Fairtalk',
+                              'Learn more about FairTalk',
                               style: TextStyle(
                                 fontSize: 13,
                                 letterSpacing: 0,
@@ -3774,8 +3774,8 @@ reportDialog(
                           children: [
                             Text(
                               user
-                                  ? "If you believe this user broke any of Fairtalk's rules, please report them and we'll carefully review their content & actions."
-                                  : "If you believe this $type broke any of Fairtalk's rules, please report it and we'll carefully review its content.",
+                                  ? "If you believe this user broke any of FairTalk's rules, please report them and we'll carefully review their content & actions."
+                                  : "If you believe this $type broke any of FairTalk's rules, please report it and we'll carefully review its content.",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue),

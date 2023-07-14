@@ -192,7 +192,7 @@ class SubmissionsState extends State<Submissions>
                         50,
                     backgroundColor: darkBlue,
                     bottom: PreferredSize(
-                      preferredSize: Size(40, 37),
+                      preferredSize: const Size(40, 37),
                       child: SizedBox(
                         height:
                             // isFilter ? 96 :
@@ -259,8 +259,8 @@ class SubmissionsState extends State<Submissions>
                                               .push(PageTransition(
                                             type:
                                                 PageTransitionType.bottomToTop,
-                                            duration:
-                                                Duration(milliseconds: 600),
+                                            duration: const Duration(
+                                                milliseconds: 600),
                                             child: SubmissionCreate(
                                               durationInDay:
                                                   widget.durationInDay,
@@ -274,8 +274,9 @@ class SubmissionsState extends State<Submissions>
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 3, horizontal: 4),
+                                      padding: const EdgeInsets.only(
+                                        top: 4,
+                                      ),
                                       child: const Center(
                                         child: Text(
                                           "FAIRTALK'S DEMOCRACY",
@@ -303,7 +304,7 @@ class SubmissionsState extends State<Submissions>
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 3.0),
+                                padding: const EdgeInsets.only(bottom: 4.0),
                                 child: SizedBox(
                                   width: 36,
                                   height: 35,
@@ -409,95 +410,65 @@ class SubmissionsState extends State<Submissions>
                                   ? const SizedBox()
                                   : Padding(
                                       padding: const EdgeInsets.only(
-                                        top: 10,
-                                        bottom: 4,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          PhysicalModel(
-                                            color: Colors.white,
-                                            elevation: 2,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () {
-                                                    Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 100),
-                                                        () {
-                                                      isMostPopular == true &&
+                                          top: 10,
+                                          bottom: 4,
+                                          right: 12,
+                                          left: 12),
+                                      child: PhysicalModel(
+                                        color: Colors.white,
+                                        elevation: 2,
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              splashColor: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              onTap: () {
+                                                Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 100), () {
+                                                  isMostPopular == true &&
+                                                          _tabController
+                                                                  ?.index ==
+                                                              0
+                                                      ? postProvider
+                                                          .getPreviousSubmissions()
+                                                      : isMostRecent == true &&
                                                               _tabController
                                                                       ?.index ==
                                                                   0
                                                           ? postProvider
-                                                              .getPreviousSubmissions()
-                                                          : isMostRecent ==
+                                                              .getPreviousSubmissionsDate()
+                                                          : isMostPopular ==
                                                                       true &&
                                                                   _tabController
                                                                           ?.index ==
-                                                                      0
+                                                                      1
                                                               ? postProvider
-                                                                  .getPreviousSubmissionsDate()
-                                                              : isMostPopular ==
-                                                                          true &&
-                                                                      _tabController
-                                                                              ?.index ==
-                                                                          1
-                                                                  ? postProvider
-                                                                      .getPreviousUpdates()
-                                                                  : postProvider
-                                                                      .getPreviousUpdatesDate();
+                                                                  .getPreviousUpdates()
+                                                              : postProvider
+                                                                  .getPreviousUpdatesDate();
 
-                                                      _postScrollController
-                                                          .jumpTo(0);
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                          Icons.arrow_upward,
-                                                          size: 16,
-                                                          color: Colors.black,
-                                                        ),
-                                                        SizedBox(width: 8),
-                                                        Text('View Previous',
-                                                            // '${(postProvider.count - 2) * postProvider.pageSize + 1} - ${(postProvider.count - 1) * postProvider.pageSize}',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 13.5,
-                                                              letterSpacing:
-                                                                  0.3,
-                                                            )),
-                                                      ],
-                                                    ),
-                                                  )),
-                                            ),
-                                          ),
-                                        ],
+                                                  _postScrollController
+                                                      .jumpTo(0);
+                                                });
+                                              },
+                                              child: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 10),
+                                                child: Center(
+                                                  child: Text('View Previous',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13.5,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      )),
+                                                ),
+                                              )),
+                                        ),
                                       ),
                                     ),
                               Column(
@@ -519,55 +490,62 @@ class SubmissionsState extends State<Submissions>
                                                     BorderRadius.circular(25),
                                                 child: Column(
                                                   children: [
-                                                    Container(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 6,
-                                                              right: 12,
-                                                              left: 12),
-                                                      decoration: BoxDecoration(
-                                                        color: whiteDialog,
-                                                        borderRadius:
-                                                            const BorderRadius
+                                                    InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          isDetailed =
+                                                              !isDetailed;
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                        padding:
+                                                            const EdgeInsets
                                                                     .only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        25),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        border: Border.all(
-                                                            width: 5,
-                                                            color: darkBlue),
-                                                      ),
-                                                      child: Column(
-                                                        children: [
-                                                          const Text(
-                                                            'Tired of these guys dictating the direction of social media?',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: TextStyle(
-                                                              color: darkBlue,
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                                top: 6,
+                                                                right: 12,
+                                                                left: 12),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: whiteDialog,
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                      .only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          25),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          25)),
+                                                          border: Border.all(
+                                                              width: 5,
+                                                              color: darkBlue),
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+                                                            const Text(
+                                                              'Tired of these guys dictating the direction of social media?',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                color: darkBlue,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
                                                             ),
-                                                          ),
-                                                          SizedBox(
-                                                            width:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                            child: Image.asset(
-                                                              'assets/musk-zuck.png',
-                                                              opacity:
-                                                                  const AlwaysStoppedAnimation(
-                                                                      .9),
+                                                            SizedBox(
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/musk-zuck.png',
+                                                                opacity:
+                                                                    const AlwaysStoppedAnimation(
+                                                                        .9),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                     Padding(
@@ -589,8 +567,8 @@ class SubmissionsState extends State<Submissions>
                                                                   const EdgeInsets
                                                                           .only(
                                                                       bottom:
-                                                                          12,
-                                                                      top: 8,
+                                                                          14,
+                                                                      top: 10,
                                                                       right: 12,
                                                                       left: 12),
                                                               child: Row(
@@ -607,13 +585,12 @@ class SubmissionsState extends State<Submissions>
                                                                       color:
                                                                           whiteDialog,
                                                                       size: 28),
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                       width:
                                                                           10),
-                                                                  Flexible(
-                                                                    child:
-                                                                        const Text(
-                                                                      "Learn how Fairtalk is replacing CEO's with a democratic system.",
+                                                                  const Flexible(
+                                                                    child: Text(
+                                                                      "Learn how FairTalk is replacing CEO's with a democratic system.",
                                                                       textAlign:
                                                                           TextAlign
                                                                               .left,
@@ -773,106 +750,76 @@ class SubmissionsState extends State<Submissions>
                                   : Visibility(
                                       visible: postProvider.isButtonVisible,
                                       child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            PhysicalModel(
-                                              color: Colors.white,
-                                              elevation: 2,
+                                        padding: const EdgeInsets.only(
+                                          top: 10.0,
+                                          right: 12,
+                                          left: 12,
+                                        ),
+                                        child: PhysicalModel(
+                                          color: whiteDialog,
+                                          elevation: 2,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
                                               borderRadius:
                                                   BorderRadius.circular(25),
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  splashColor:
-                                                      const Color.fromARGB(
-                                                          255, 245, 245, 245),
-                                                  onTap: () {
-                                                    Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 100),
-                                                      () {
-                                                        isMostPopular == true &&
+                                              splashColor: testing,
+                                              onTap: () {
+                                                Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 100),
+                                                  () {
+                                                    isMostPopular == true &&
+                                                            _tabController
+                                                                    ?.index ==
+                                                                0
+                                                        ? postProvider
+                                                            .getNextSubmissions()
+                                                        : isMostRecent ==
+                                                                    true &&
                                                                 _tabController
                                                                         ?.index ==
                                                                     0
                                                             ? postProvider
-                                                                .getNextSubmissions()
-                                                            : isMostRecent ==
+                                                                .getNextSubmissionsDate()
+                                                            : isMostPopular ==
                                                                         true &&
                                                                     _tabController
                                                                             ?.index ==
-                                                                        0
+                                                                        1
                                                                 ? postProvider
-                                                                    .getNextSubmissionsDate()
-                                                                : isMostPopular ==
+                                                                    .getNextUpdates()
+                                                                : isMostRecent ==
                                                                             true &&
                                                                         _tabController?.index ==
                                                                             1
                                                                     ? postProvider
-                                                                        .getNextUpdates()
-                                                                    : isMostRecent ==
-                                                                                true &&
-                                                                            _tabController?.index ==
-                                                                                1
-                                                                        ? postProvider
-                                                                            .getNextUpdatesDate()
-                                                                        : null;
-                                                        _postScrollController
-                                                            .jumpTo(0);
-                                                      },
-                                                    );
+                                                                        .getNextUpdatesDate()
+                                                                    : null;
+                                                    _postScrollController
+                                                        .jumpTo(0);
                                                   },
-                                                  child: Container(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      // border: Border.all(
-                                                      //   width: 1,
-                                                      //   color: Colors.black,
-                                                      // ),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Icon(
-                                                            Icons
-                                                                .arrow_downward,
-                                                            size: 16,
-                                                            color:
-                                                                Colors.black),
-                                                        SizedBox(width: 8),
-                                                        Text(
-                                                          'View Next',
-                                                          // 'View ${postProvider.count * postProvider.pageSize + 1} - ${(postProvider.count + 1) * postProvider.pageSize}',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            // fontWeight:
-                                                            //     FontWeight.w500,
-                                                            fontSize: 13.5,
-                                                            letterSpacing: 0,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                );
+                                              },
+                                              child: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 10),
+                                                child: Center(
+                                                  child: Text(
+                                                    'View More',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13.5,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -1165,7 +1112,7 @@ class SubmissionsState extends State<Submissions>
                                 // );
                                 Navigator.of(context).push(PageTransition(
                                   type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 600),
+                                  duration: const Duration(milliseconds: 600),
                                   child: SubmissionCreate(
                                     durationInDay: widget.durationInDay,
                                   ),

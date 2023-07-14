@@ -270,7 +270,7 @@ class _StatisticsState extends State<Statistics> {
                     ),
                   ),
                   // const SizedBox(height: 12),
-                  // const Text('Fairtalk was launched in April 2023.',
+                  // const Text('FairTalk was launched in April 2023.',
                   //     textAlign: TextAlign.center,
                   //     style: TextStyle(
                   //         fontSize: 12,
