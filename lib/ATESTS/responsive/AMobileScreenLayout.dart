@@ -2144,25 +2144,25 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             ),
                             label: 'Create',
                           ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.search,
-                              ),
-                            ),
-                            label: 'Search',
-                          ),
-                          const BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: EdgeInsets.only(top: 6.0),
-                              child: Icon(
-                                MyFlutterApp.users,
-                                size: 24,
-                              ),
-                            ),
-                            label: 'Democracy',
-                          ),
+                          // const BottomNavigationBarItem(
+                          //   icon: Padding(
+                          //     padding: EdgeInsets.only(top: 3.0),
+                          //     child: Icon(
+                          //       Icons.search,
+                          //     ),
+                          //   ),
+                          //   label: 'Search',
+                          // ),
+                          // const BottomNavigationBarItem(
+                          //   icon: Padding(
+                          //     padding: EdgeInsets.only(top: 6.0),
+                          //     child: Icon(
+                          //       MyFlutterApp.users,
+                          //       size: 24,
+                          //     ),
+                          //   ),
+                          //   label: 'Democracy',
+                          // ),
                           // BottomNavigationBarItem(
                           //   icon: Padding(
                           //     padding: const EdgeInsets.only(top: 3.0),

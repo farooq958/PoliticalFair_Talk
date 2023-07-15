@@ -905,41 +905,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       color: darkBlue,
                                       fontWeight: FontWeight.w500)),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 1,
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: Colors.grey.withOpacity(0.3),
-                                  onTap: () {
-                                    Future.delayed(
-                                        const Duration(milliseconds: 150), () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const HowItWorks()),
-                                      );
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 12, top: 17, bottom: 17),
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.info_outline,
-                                            size: 23, color: darkBlue),
-                                        Container(width: 15),
-                                        const Text(
-                                          'FairTalk Explainer',
-                                          style: TextStyle(
-                                              fontSize: 16.5, color: darkBlue),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // SizedBox(
+                            //   width: MediaQuery.of(context).size.width * 1,
+                            //   child: Material(
+                            //     color: Colors.transparent,
+                            //     child: InkWell(
+                            //       splashColor: Colors.grey.withOpacity(0.3),
+                            //       onTap: () {
+                            //         Future.delayed(
+                            //             const Duration(milliseconds: 150), () {
+                            //           Navigator.of(context).push(
+                            //             MaterialPageRoute(
+                            //                 builder: (context) =>
+                            //                     const HowItWorks()),
+                            //           );
+                            //         });
+                            //       },
+                            //       child: Padding(
+                            //         padding: const EdgeInsets.only(
+                            //             left: 12, top: 17, bottom: 17),
+                            //         child: Row(
+                            //           children: [
+                            //             const Icon(Icons.info_outline,
+                            //                 size: 23, color: darkBlue),
+                            //             Container(width: 15),
+                            //             const Text(
+                            //               'FairTalk Explainer',
+                            //               style: TextStyle(
+                            //                   fontSize: 16.5, color: darkBlue),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 1,
                               child: Material(
