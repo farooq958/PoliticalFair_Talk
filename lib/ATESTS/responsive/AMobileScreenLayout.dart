@@ -20,6 +20,7 @@ import '../provider/user_report_provider.dart';
 import '../screens/add_post.dart';
 import '../screens/add_post_daily.dart';
 import '../screens/home_screen.dart';
+import '../screens/notifications.dart';
 import '../screens/search.dart';
 import '../screens/submissions.dart';
 import '../utils/global_variables.dart';
@@ -2093,6 +2094,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           AddPost(
                             durationInDay: durationInDay,
                           ),
+                          NotificationsTab(),
+
                           // Search(
                           //   durationInDay: durationInDay,
                           // ),
@@ -2146,6 +2149,15 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             ),
                             label: 'Create',
                           ),
+                          BottomNavigationBarItem(
+                            icon: Padding(
+                              padding: const EdgeInsets.only(top: 3.0),
+                              child: Icon(
+                                Icons.notifications,
+                              ),
+                            ),
+                            label: 'Notifications',
+                          ),
                           // const BottomNavigationBarItem(
                           //   icon: Padding(
                           //     padding: EdgeInsets.only(top: 3.0),
@@ -2164,15 +2176,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           //     ),
                           //   ),
                           //   label: 'Democracy',
-                          // ),
-                          // BottomNavigationBarItem(
-                          //   icon: Padding(
-                          //     padding: const EdgeInsets.only(top: 3.0),
-                          //     child: Icon(
-                          //       Icons.notifications,
-                          //     ),
-                          //   ),
-                          //   label: 'Notifications',
                           // ),
                         ],
                         currentIndex: _page,

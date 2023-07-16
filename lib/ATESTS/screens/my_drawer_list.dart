@@ -21,7 +21,7 @@ import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'automate.dart';
 import 'blocked_list.dart';
-import 'notifications.dart';
+import 'notifications_pref.dart';
 import 'profile_all_user.dart';
 import 'profile_screen_edit.dart';
 import 'report_bug.dart';
@@ -738,56 +738,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),
-                                user?.admin == true
-                                    ? SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                1,
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                            splashColor:
-                                                Colors.grey.withOpacity(0.3),
-                                            onTap: () {
-                                              Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 150), () {
-                                                if (user != null) {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Automate(
-                                                              user: user,
-                                                            )),
-                                                  );
-                                                }
-                                              });
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 12,
-                                                  top: 17,
-                                                  bottom: 17),
-                                              child: Row(
-                                                children: [
-                                                  const Icon(
-                                                      Icons.person_outline,
-                                                      size: 23,
-                                                      color: darkBlue),
-                                                  Container(width: 15),
-                                                  const Text(
-                                                    'Automate',
-                                                    style: TextStyle(
-                                                        fontSize: 16.5,
-                                                        color: darkBlue),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : const SizedBox(),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * 1,
                                   child: Material(

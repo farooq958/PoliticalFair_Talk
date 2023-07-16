@@ -342,6 +342,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: BorderRadius.circular(50),
                                   splashColor: Colors.grey.withOpacity(0.3),
                                   onTap: () async {
+                                    setState(() {
+                                      _isLoadingGoogle = true;
+                                    });
                                     final provider =
                                         Provider.of<GoogleSignInProvider>(
                                             context,
@@ -373,6 +376,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         }
                                       }
                                     }
+                                    setState(() {
+                                      _isLoadingGoogle = false;
+                                    });
                                   },
                                   child: Container(
                                     width: double.infinity,
