@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:aft/ATESTS/provider/user_provider.dart';
 import 'package:animate_gradient/animate_gradient.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -181,49 +182,71 @@ class _SignupScreenState extends State<SignupScreen> {
       });
 
     final user=await provider.googleLogin();
+      final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 if(user!=null) {
-  String res = await AuthMethods().signUpUserGoogle(
-        UID: user.uid,
-        username: user.displayName.toString(),
-        aEmail: user.email!,
-        password: '',
-        profilePicFile: _image,
-        aaCountry: '',
-        pending: 'false',
-        bio: '',
-      );
-  print("responseee");
-print(res);
+  DocumentSnapshot snap =
+  await _firestore.collection('users').doc(user.uid).get();
+  if(snap.data() != null)
+  {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
-      // if (res != "success") {
-      //   Future.delayed(const Duration(milliseconds: 1500), () {
-      //     setState(() {
-      //       _isLoading = false;
-      //     });
-      //   });
-      //   if (!mounted) return;
-      //   showSnackBarError(res, context);
-      // } else {
-      //   // goToHome(context);
-      //
-      //   Navigator.of(context).pushAndRemoveUntil(
-      //     MaterialPageRoute(
-      //       builder: (context) => WelcomeScreen(
-      //         username: user.displayName!,
-      //       ),
-      //     ),
-      //     (route) => false,
-      //   );
-      //   FirestoreMethods().postCounter('user');
-      // }
+    googleSignIn.signOut();
 
-  if (res == "success") {
+
+
+
+    showSnackBar(
+        "User is already Signed Up", context);
     setState(() {
       _isLoadingGoogle = false;
     });
-    goToHome(context);
 
-    FirestoreMethods().postCounter('user');
+
+  }
+  else {
+    String res = await AuthMethods().signUpUserGoogle(
+      UID: user.uid,
+      username: user.displayName.toString(),
+      aEmail: user.email!,
+      password: '',
+      profilePicFile: _image,
+      aaCountry: '',
+      pending: 'false',
+      bio: '',
+    );
+    print("responseee");
+    print(res);
+
+    // if (res != "success") {
+    //   Future.delayed(const Duration(milliseconds: 1500), () {
+    //     setState(() {
+    //       _isLoading = false;
+    //     });
+    //   });
+    //   if (!mounted) return;
+    //   showSnackBarError(res, context);
+    // } else {
+    //   // goToHome(context);
+    //
+    //   Navigator.of(context).pushAndRemoveUntil(
+    //     MaterialPageRoute(
+    //       builder: (context) => WelcomeScreen(
+    //         username: user.displayName!,
+    //       ),
+    //     ),
+    //     (route) => false,
+    //   );
+    //   FirestoreMethods().postCounter('user');
+    // }
+
+    if (res == "success") {
+      setState(() {
+        _isLoadingGoogle = false;
+      });
+      goToHome(context);
+
+      FirestoreMethods().postCounter('user');
+    }
   }
 }
 else
