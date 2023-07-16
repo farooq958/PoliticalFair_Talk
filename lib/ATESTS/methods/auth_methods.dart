@@ -206,7 +206,7 @@ class AuthMethods {
       //   minutes: 3,
       // )),
     );
-
+    print("responseee");
     await _firestore.collection('users').doc(UID).set(
           user.toJson(),
         );

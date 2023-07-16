@@ -2,6 +2,7 @@ import 'package:aft/ATESTS/provider/user_provider.dart';
 import 'package:aft/ATESTS/services/firebase_notification.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../methods/auth_methods.dart';
@@ -340,15 +341,38 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(50),
                                   splashColor: Colors.grey.withOpacity(0.3),
-                                  onTap: () {
-                                    // final provider =
-                                    //     Provider.of<GoogleSignInProvider>(
-                                    //         context,
-                                    //         listen: false);
-                                    // provider.googleLogin();
-                                    // goToHome(context);
-                                    // showSnackBar(
-                                    //     "Successfully logged in.", context);
+                                  onTap: () async {
+                                    final provider =
+                                        Provider.of<GoogleSignInProvider>(
+                                            context,
+                                            listen: false);
+                                    final user = await provider.googleLogin();
+                                    final FirebaseFirestore _firestore =
+                                        FirebaseFirestore.instance;
+                                    if (user != null) {
+                                      {
+                                        DocumentSnapshot snap = await _firestore
+                                            .collection('users')
+                                            .doc(user.uid)
+                                            .get();
+                                        if (snap.data() == null) {
+                                          final GoogleSignIn googleSignIn =
+                                              GoogleSignIn();
+
+                                          googleSignIn.signOut();
+
+                                          showSnackBarError(
+                                              "This email hasn't been signed up yet.",
+                                              context);
+                                        } else {
+                                          goToHome(context);
+
+                                          showSnackBar(
+                                              "Successfully logged in.",
+                                              context);
+                                        }
+                                      }
+                                    }
                                   },
                                   child: Container(
                                     width: double.infinity,

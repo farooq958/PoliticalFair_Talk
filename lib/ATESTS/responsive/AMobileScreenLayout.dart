@@ -3,6 +3,7 @@ import 'package:aft/ATESTS/provider/filter_provider.dart';
 import 'package:aft/ATESTS/provider/poll_provider.dart';
 import 'package:aft/ATESTS/provider/post_provider.dart';
 import 'package:aft/ATESTS/screens/most_liked_screen.dart';
+import 'package:aft/ATESTS/services/auth_service.dart';
 import 'package:aft/ATESTS/services/firebase_notification.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -732,6 +733,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                       borderRadius: BorderRadius.circular(50),
                                       splashColor: Colors.grey.withOpacity(0.3),
                                       onTap: () async {
+                                        //  await  AuthService().signInWithGoogle();
                                         // await signInWithGoogle();
                                         // if (mounted) {
                                         //   Navigator.push(
@@ -852,14 +854,14 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                             Colors.white.withOpacity(0.3),
                                         onTap: navigateToLogin,
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: SizedBox(
                                             height: 45,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: const [
+                                              children: [
                                                 Text("Already have an account?",
                                                     style: TextStyle(
                                                       color: Color.fromARGB(

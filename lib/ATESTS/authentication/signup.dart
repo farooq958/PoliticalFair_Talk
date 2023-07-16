@@ -162,65 +162,84 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void signUpUserGoogle() async {
     try {
-      final userProvider = Provider.of<UserProvider>(context, listen: false);
-      final user = FirebaseAuth.instance.currentUser!;
+      //  final userProvider = Provider.of<UserProvider>(context, listen: false);
+      //final user = FirebaseAuth.instance.currentUser!;
       final provider =
           Provider.of<GoogleSignInProvider>(context, listen: false);
-
-      await AuthMethods().signOut();
+      // Validates username
+      // String? userNameValid =
+      //     await usernameValidator(username: _usernameController.text);
+      // if (userNameValid != null) {
+      //   if (!mounted) return;
+      //   showSnackBarError(userNameValid, context);
+      //   return;
+      // }
+      // await AuthMethods().signOut();
 
       setState(() {
         _isLoadingGoogle = true;
       });
 
-      provider.googleLogin();
-
-      String res = await AuthMethods().signUpUserGoogle(
-        UID: user.uid,
-        username: '?',
-        aEmail: user.email!,
-        password: '',
-        profilePicFile: _image,
-        aaCountry: '',
-        pending: 'false',
-        bio: '',
-      );
-
-      if (res != "success") {
-        Future.delayed(const Duration(milliseconds: 1500), () {
-          setState(() {
-            _isLoading = false;
-          });
-        });
-        if (!mounted) return;
-        showSnackBarError(res, context);
-      } else {
-        // goToHome(context);
-
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => WelcomeScreen(
-              username: user.displayName!,
-            ),
-          ),
-          (route) => false,
+      final user = await provider.googleLogin();
+      if (user != null) {
+        String res = await AuthMethods().signUpUserGoogle(
+          UID: user.uid,
+          username: user.displayName.toString(),
+          aEmail: user.email!,
+          password: '',
+          profilePicFile: _image,
+          aaCountry: '',
+          pending: 'false',
+          bio: '',
         );
-        FirestoreMethods().postCounter('user');
+        print("responseee");
+        print(res);
+
+        // if (res != "success") {
+        //   Future.delayed(const Duration(milliseconds: 1500), () {
+        //     setState(() {
+        //       _isLoading = false;
+        //     });
+        //   });
+        //   if (!mounted) return;
+        //   showSnackBarError(res, context);
+        // } else {
+        //   // goToHome(context);
+        //
+        //   Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(
+        //       builder: (context) => WelcomeScreen(
+        //         username: user.displayName!,
+        //       ),
+        //     ),
+        //     (route) => false,
+        //   );
+        //   FirestoreMethods().postCounter('user');
+        // }
+
+        if (res == "success") {
+          setState(() {
+            _isLoadingGoogle = false;
+          });
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => WelcomeScreen(
+                username: user.displayName.toString(),
+              ),
+            ),
+            (route) => false,
+          );
+
+          FirestoreMethods().postCounter('user');
+        }
+      } else {
+        setState(() {
+          _isLoadingGoogle = false;
+        });
       }
     } catch (e) {
       // debugPrint('signup error $e $st');
     }
-  }
-
-  void navigateToLogin() {
-    Future.delayed(const Duration(milliseconds: 150), () {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) =>
-              LoginScreen(durationInDay: widget.durationInDay),
-        ),
-      );
-    });
   }
 
   @override
@@ -631,7 +650,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(25),
                               splashColor: Colors.white.withOpacity(0.3),
-                              onTap: navigateToLogin,
+                              // onTap:
+                              // () {
+
+                              // navigateToLogin;
+                              // },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
