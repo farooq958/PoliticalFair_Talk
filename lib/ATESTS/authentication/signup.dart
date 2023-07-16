@@ -166,14 +166,7 @@ class _SignupScreenState extends State<SignupScreen> {
       final user = FirebaseAuth.instance.currentUser!;
       final provider =
           Provider.of<GoogleSignInProvider>(context, listen: false);
-      // Validates username
-      // String? userNameValid =
-      //     await usernameValidator(username: _usernameController.text);
-      // if (userNameValid != null) {
-      //   if (!mounted) return;
-      //   showSnackBarError(userNameValid, context);
-      //   return;
-      // }
+
       await AuthMethods().signOut();
 
       setState(() {
@@ -183,7 +176,7 @@ class _SignupScreenState extends State<SignupScreen> {
       provider.googleLogin();
 
       String res = await AuthMethods().signUpUserGoogle(
-        UID: user.uid!,
+        UID: user.uid,
         username: '?',
         aEmail: user.email!,
         password: '',

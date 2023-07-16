@@ -16,6 +16,7 @@ class Comment {
   int reportCounter;
   bool reportChecked;
   bool reportRemoved;
+  bool bot;
   StreamController<Comment>? updatingStreamComment;
 
   Comment({
@@ -33,6 +34,7 @@ class Comment {
     required this.reportCounter,
     required this.reportChecked,
     required this.reportRemoved,
+    required this.bot,
     this.updatingStreamComment,
   }) {
     if (updatingStreamComment != null) {
@@ -57,6 +59,7 @@ class Comment {
         "reportCounter": reportCounter,
         "reportChecked": reportChecked,
         "reportRemoved": reportRemoved,
+        "bot": bot,
       };
 
   static Comment fromSnap(
@@ -86,6 +89,7 @@ class Comment {
       dislikeCount: snapshot['dislikeCount'],
       reportChecked: snapshot['reportChecked'],
       reportRemoved: snapshot['reportRemoved'],
+      bot: snapshot['bot'],
       updatingStreamComment: snapshot['updatingStreamComment'],
     );
   }

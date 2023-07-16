@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../admin/admin_verification.dart';
 import '../admin/bug_screen.dart';
 import '../admin/change_user_field_values.dart';
+import '../admin/organic.dart';
 import '../admin/reported_screen.dart';
 import '../authentication/signup.dart';
 import '../info screens/data_privacy.dart';
@@ -472,6 +473,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                       fontSize: 16.5,
                                                       color: darkBlue,
                                                     ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                1,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                            splashColor:
+                                                Colors.grey.withOpacity(0.3),
+                                            onTap: () {
+                                              Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 150), () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) => Organic(
+                                                          durationInDay: widget
+                                                              .durationInDay)),
+                                                );
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12,
+                                                  top: 17,
+                                                  bottom: 17),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                      Icons.lock_outlined,
+                                                      size: 23,
+                                                      color: darkBlue),
+                                                  Container(width: 15),
+                                                  const Text(
+                                                    'Organic Content',
+                                                    style: TextStyle(
+                                                        fontSize: 16.5,
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),

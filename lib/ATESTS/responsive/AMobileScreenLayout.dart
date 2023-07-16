@@ -641,7 +641,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                             : Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: [
+                                                children: const [
                                                   Text('Sign up',
                                                       style: TextStyle(
                                                         fontSize: 16,
@@ -2091,12 +2091,12 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           AddPost(
                             durationInDay: durationInDay,
                           ),
-                          Search(
-                            durationInDay: durationInDay,
-                          ),
-                          Submissions(
-                            durationInDay: durationInDay,
-                          ),
+                          // Search(
+                          //   durationInDay: durationInDay,
+                          // ),
+                          // Submissions(
+                          //   durationInDay: durationInDay,
+                          // ),
                         ]),
                     bottomNavigationBar: CupertinoTabBar(
                         inactiveColor: Colors.white.withOpacity(0.6),

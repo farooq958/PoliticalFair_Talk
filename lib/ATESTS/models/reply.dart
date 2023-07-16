@@ -17,6 +17,7 @@ class Reply {
   int reportCounter;
   bool reportChecked;
   bool reportRemoved;
+  bool bot;
   StreamController<Reply>? updatingStreamReply;
 
   Reply({
@@ -35,6 +36,7 @@ class Reply {
     required this.reportCounter,
     required this.reportChecked,
     required this.reportRemoved,
+    required this.bot,
     this.updatingStreamReply,
   }) {
     if (updatingStreamReply != null) {
@@ -60,6 +62,7 @@ class Reply {
         "reportCounter": reportCounter,
         "reportChecked": reportChecked,
         "reportRemoved": reportRemoved,
+        "bot": bot,
       };
 
   static Reply fromSnap(
@@ -90,6 +93,7 @@ class Reply {
       dislikeCount: snapshot['dislikeCount'],
       reportChecked: snapshot['reportChecked'],
       reportRemoved: snapshot['reportRemoved'],
+      bot: snapshot['bot'],
       updatingStreamReply: snapshot['updatingStreamReply'],
     );
   }

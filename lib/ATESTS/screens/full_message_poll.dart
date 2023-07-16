@@ -365,11 +365,11 @@ class _FullMessagePollState extends State<FullMessagePoll> {
   }
 
   void pollComment(
-      String pollId, String text, String uid, String username) async {
+      String pollId, String text, String uid, String username, bool bot) async {
     try {
       String res1 = await _loadCommentCounter();
       String res = await FirestoreMethods()
-          .comment(pollId, text, uid, username, getCounterComment);
+          .comment(pollId, text, uid, username, getCounterComment, bot);
       if (res1 == "success" && res == "success") {
         FirestoreMethods().commentCounter(_poll.pollId, 'poll', true);
         // _showInterstitialAd();
@@ -2386,7 +2386,11 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                   .text,
                                                               user?.UID ?? '',
                                                               user?.username ??
-                                                                  '');
+                                                                  '',
+                                                              user?.admin ==
+                                                                      true
+                                                                  ? true
+                                                                  : false);
                                                           setState(() {
                                                             _commentController
                                                                 .text = "";

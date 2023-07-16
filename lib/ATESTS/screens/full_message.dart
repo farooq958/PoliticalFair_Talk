@@ -155,20 +155,11 @@ class _FullMessageState extends State<FullMessage> {
   }
 
   void messageComment(
-    String postId,
-    String text,
-    String uid,
-    String name,
-  ) async {
+      String postId, String text, String uid, String name, bool bot) async {
     try {
       String res1 = await _loadCommentCounter();
-      String res = await FirestoreMethods().comment(
-        postId,
-        text,
-        uid,
-        name,
-        getCounterComment,
-      );
+      String res = await FirestoreMethods()
+          .comment(postId, text, uid, name, getCounterComment, bot);
       if (res1 == "success" && res == "success") {
         // _showInterstitialAd();
         FirestoreMethods().commentCounter(_post.postId, 'message', true);
@@ -3008,6 +2999,9 @@ class _FullMessageState extends State<FullMessage> {
                                                               .text,
                                                           user?.UID ?? '',
                                                           user?.username ?? '',
+                                                          user?.admin == true
+                                                              ? true
+                                                              : false,
                                                         );
 
                                                         setState(() {

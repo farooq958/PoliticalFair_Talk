@@ -363,6 +363,7 @@ class _AddPostState extends State<AddPost> {
     String username,
     String profImage,
     String mCountry,
+    bool bot,
   ) async {
     try {
       if (selected == 3) {
@@ -414,11 +415,12 @@ class _AddPostState extends State<AddPost> {
         getCounterPost,
         widget.durationInDay,
         'none',
+        bot,
         myTagsLowerCase,
       );
 
       if (res1 == "success" && res == "success") {
-        username == 'Fairtalk'
+        username == 'FairTalk' || username == 'Phil22'
             ? null
             : Future.delayed(const Duration(milliseconds: 1500), () {
                 _showInterstitialAd();
@@ -450,8 +452,8 @@ class _AddPostState extends State<AddPost> {
 //POLL
 //
 
-  void postImagePoll(
-      String uid, String username, String profImage, String mCountry) async {
+  void postImagePoll(String uid, String username, String profImage,
+      String mCountry, bool bot) async {
     try {
       // Validates poll question text field
 
@@ -495,9 +497,10 @@ class _AddPostState extends State<AddPost> {
           _optionTen.text.trim(),
           widget.durationInDay,
           getCounterPoll,
+          bot,
           myTagsPollLowerCase);
       if (res1 == "success" && res == "success") {
-        username == 'Fairtalk'
+        username == 'FairTalk' || username == 'Phil22'
             ? null
             : Future.delayed(const Duration(milliseconds: 1500), () {
                 _showInterstitialAd();
@@ -3045,9 +3048,7 @@ class _AddPostState extends State<AddPost> {
                                                                   ? nationalityUnknown(
                                                                       context:
                                                                           context)
-                                                                  : snap?.gMessageTime == widget.durationInDay &&
-                                                                              global ==
-                                                                                  'true' ||
+                                                                  : snap?.gMessageTime == widget.durationInDay && global == 'true' ||
                                                                           snap?.nMessageTime == widget.durationInDay &&
                                                                               global ==
                                                                                   'false'
@@ -3072,7 +3073,7 @@ class _AddPostState extends State<AddPost> {
                                                                               user?.username ?? '',
                                                                               user?.photoUrl ?? '',
                                                                               global == 'true' ? '' : snap?.aaCountry ?? '',
-                                                                            );
+                                                                              user?.admin == true ? true : false);
                                                         });
                                                   });
                                                 },
@@ -6008,6 +6009,9 @@ class _AddPostState extends State<AddPost> {
                                                                             global == 'true'
                                                                                 ? ''
                                                                                 : snap?.aaCountry ?? '',
+                                                                            user?.admin == true
+                                                                                ? true
+                                                                                : false,
                                                                           );
                                               });
                                         });

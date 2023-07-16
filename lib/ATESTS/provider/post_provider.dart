@@ -1489,6 +1489,140 @@ class PostProvider extends ChangeNotifier {
     }
   }
 
+  getOrganicMessages(int durationInDay) async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
+          .where('bot', isEqualTo: false)
+          .where('time', whereIn: [
+        durationInDay - 0,
+        durationInDay - 1,
+        durationInDay - 2,
+        durationInDay - 3,
+        durationInDay - 4,
+        durationInDay - 5,
+        durationInDay - 6,
+      ]).orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+      if (!_getPostBeingCalled) {
+        _getPostBeingCalled = true;
+        notifyListeners();
+        Future.delayed(Duration.zero);
+        _postsSnapshot = await query.limit(_pageSize).get();
+        _posts = _postsSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+
+        _count = 1;
+        _last = false;
+        if (_posts.length < _pageSize || _pageSize == snap.count) {
+          _last = true;
+        }
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getPosts error $e $st');
+    } finally {
+      _getPostBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getNextOrganicMessages(int durationInDay) async {
+    try {
+      if (_postsSnapshot != null) {
+        _pLoading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('bot', isEqualTo: false)
+                .where('time', whereIn: [
+          durationInDay - 0,
+          durationInDay - 1,
+          durationInDay - 2,
+          durationInDay - 3,
+          durationInDay - 4,
+          durationInDay - 5,
+          durationInDay - 6,
+        ]).orderBy('datePublished', descending: true))
+            .endBeforeDocument(_postsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousOrganicMessages(int durationInDay) async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_postsSnapshot != null &&
+          _postsSnapshot!.docs.isNotEmpty &&
+          _pLoading != true &&
+          _postPageLoading != true) {
+        {
+          _postPageLoading = true;
+          _pLoading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('posts')
+                .where('reportRemoved', isEqualTo: false)
+                .where('bot', isEqualTo: false)
+                .where('time', whereIn: [
+          durationInDay - 0,
+          durationInDay - 1,
+          durationInDay - 2,
+          durationInDay - 3,
+          durationInDay - 4,
+          durationInDay - 5,
+          durationInDay - 6,
+        ]).orderBy('datePublished', descending: true))
+            .startAfterDocument(_postsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _postsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _posts =
+            _postsSnapshot!.docs.map((e) => Post.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _postPageLoading = false;
+      _pLoading = false;
+      notifyListeners();
+    }
+  }
+
   deleteUserPost(String postId) {
     try {
       _userPosts.removeWhere((element) => element.postId == postId);

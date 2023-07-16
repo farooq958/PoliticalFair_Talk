@@ -691,6 +691,7 @@ class CommentReplyProvider extends ChangeNotifier {
     required String commentId,
     required int datePublished,
     required DateTime datePublishedNTP,
+    required bool bot,
   }) {
     // String trimmedText = trimText(text: text);
     // var timeNow = dateEST;
@@ -703,6 +704,7 @@ class CommentReplyProvider extends ChangeNotifier {
       commentId: commentId,
       datePublished: datePublished,
       datePublishedNTP: Timestamp.fromDate(datePublishedNTP),
+      bot: bot,
       likes: [],
       likeCount: 0,
       dislikes: [],
@@ -718,16 +720,16 @@ class CommentReplyProvider extends ChangeNotifier {
     );
   }
 
-  addNewReplyInPostPoll({
-    required String postId,
-    required String text,
-    required String uid,
-    required String username,
-    required String commentId,
-    required String replyId,
-    required int insertAt,
-    required DateTime datePublishedNTP,
-  }) {
+  addNewReplyInPostPoll(
+      {required String postId,
+      required String text,
+      required String uid,
+      required String username,
+      required String commentId,
+      required String replyId,
+      required int insertAt,
+      required DateTime datePublishedNTP,
+      required bool bot}) {
     // String trimmedText = trimText(text: text);
     // var timeNow = await NTP.now();
     Reply reply = Reply(
@@ -739,6 +741,7 @@ class CommentReplyProvider extends ChangeNotifier {
       replyId: replyId,
       datePublished: Timestamp.fromDate(datePublishedNTP),
       datePublishedNTP: Timestamp.fromDate(datePublishedNTP),
+      bot: bot,
       likes: [],
       likeCount: 0,
       dislikes: [],

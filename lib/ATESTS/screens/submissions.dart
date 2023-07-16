@@ -39,9 +39,7 @@ class SubmissionsState extends State<Submissions>
   bool isPoster = true;
   int _selectedIndex = 0;
   int currentTab = 0;
-  User? _userProfile;
-  User? _userAdmin;
-  User? _userP;
+
   final ScrollController _scrollController = ScrollController();
   final _postScrollController = ScrollController();
 
@@ -139,23 +137,23 @@ class SubmissionsState extends State<Submissions>
 
   @override
   Widget build(BuildContext context) {
-    _userAdmin = Provider.of<UserProvider>(context).getUser;
-    _userProfile = Provider.of<UserProvider>(context).getAllUser;
-    String data = _userAdmin?.UID ?? "";
-    String userProfiledata = _userProfile?.UID ?? "";
-    User? user =
-        userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
-    // return buildProfileScreen(context);
+    // _userAdmin = Provider.of<UserProvider>(context).getUser;
+    // _userProfile = Provider.of<UserProvider>(context).getAllUser;
+    // String data = _userAdmin?.UID ?? "";
+    // String userProfiledata = _userProfile?.UID ?? "";
+    // User? user =
+    //     userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
+    // // return buildProfileScreen(context);
     return buildProfileScreen(context);
   }
 
   Widget buildProfileScreen(BuildContext context) {
-    _userAdmin = Provider.of<UserProvider>(context).getUser;
-    _userProfile = Provider.of<UserProvider>(context).getAllUser;
-    String data = _userAdmin?.UID ?? "";
-    String userProfiledata = _userProfile?.UID ?? "";
-    User? user =
-        userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
+    // _userAdmin = Provider.of<UserProvider>(context).getUser;
+    // _userProfile = Provider.of<UserProvider>(context).getAllUser;
+    // String data = _userAdmin?.UID ?? "";
+    // String userProfiledata = _userProfile?.UID ?? "";
+    // User? user =
+    //     userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
 
     return DefaultTabController(
       length: 2,
@@ -487,7 +485,7 @@ class SubmissionsState extends State<Submissions>
                                                 color: darkBlue,
                                                 elevation: 3,
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(15),
                                                 child: Column(
                                                   children: [
                                                     InkWell(
@@ -512,10 +510,10 @@ class SubmissionsState extends State<Submissions>
                                                                       .only(
                                                                   topRight: Radius
                                                                       .circular(
-                                                                          25),
+                                                                          15),
                                                                   topLeft: Radius
                                                                       .circular(
-                                                                          25)),
+                                                                          15)),
                                                           border: Border.all(
                                                               width: 5,
                                                               color: darkBlue),

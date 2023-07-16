@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../methods/firestore_methods.dart';
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
@@ -39,6 +40,11 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
 
   String searchUsernameValue = '';
   String searchEmailValue = '';
+
+  //SET//
+  String collection = 'posts';
+  String field = 'new1';
+  String value = 'test';
 
   final TextEditingController _searchEmailController = TextEditingController();
   final TextEditingController _searchUsernameController =
@@ -2087,7 +2093,43 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
                                         ),
                                 ],
                               )
-                            : const SizedBox()
+                            : const SizedBox(),
+                        const SizedBox(height: 20),
+
+                        // const Text(
+                        //     "In order to work correctly, you'll need to change Firebase rules.",
+                        //     textAlign: TextAlign.start),
+                        PhysicalModel(
+                          color: Colors.red,
+                          elevation: 3,
+                          borderRadius: BorderRadius.circular(5),
+                          child: Material(
+                            color: const Color.fromARGB(0, 2, 1, 1),
+                            child: InkWell(
+                              splashColor: Colors.white.withOpacity(0.4),
+                              onTap: () async {
+                                await FirestoreMethods()
+                                    .setField(collection, field, value);
+                              },
+                              child: const SizedBox(
+                                height: 45,
+                                child: Center(
+                                  child: Text(
+                                    'SET',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                            "In order to set new fields in documents, you'll need to change the Firebase rules.",
+                            textAlign: TextAlign.center),
                       ],
                     ),
             ),

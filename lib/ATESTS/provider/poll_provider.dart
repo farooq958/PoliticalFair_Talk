@@ -495,6 +495,137 @@ class PollsProvider extends ChangeNotifier {
     }
   }
 
+  getOrganicPolls(int durationInDay) async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _loading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('polls')
+          .where('reportRemoved', isEqualTo: false)
+          .where('bot', isEqualTo: false)
+          .where('time', whereIn: [
+        durationInDay - 0,
+        durationInDay - 1,
+        durationInDay - 2,
+        durationInDay - 3,
+        durationInDay - 4,
+        durationInDay - 5,
+        durationInDay - 6,
+      ]).orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+
+      notifyListeners();
+      Future.delayed(Duration.zero);
+      _pollsSnapshot = await query.limit(_pageSize).get();
+      _pollsList = _pollsSnapshot!.docs.map((e) => Poll.fromSnap(e)).toList();
+
+      _count = 1;
+      _last = false;
+      if (_pollsList.length < _pageSize || _pageSize == snap.count) {
+        _last = true;
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getPosts error $e $st');
+    } finally {
+      _loading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getNextOrganicPolls(int durationInDay) async {
+    try {
+      if (_pollsSnapshot != null) {
+        _loading = true;
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var data = await (FirebaseFirestore.instance
+                .collection('polls')
+                .where('reportRemoved', isEqualTo: false)
+                .where('bot', isEqualTo: false)
+                .where('time', whereIn: [
+          durationInDay - 0,
+          durationInDay - 1,
+          durationInDay - 2,
+          durationInDay - 3,
+          durationInDay - 4,
+          durationInDay - 5,
+          durationInDay - 6,
+        ]).orderBy('datePublished', descending: true))
+            .endBeforeDocument(_pollsSnapshot!.docs.first)
+            .limitToLast(_pageSize)
+            .get();
+        if (data.docs.isNotEmpty) {
+          _pollsSnapshot = data;
+          _count--;
+          _last = false;
+        }
+        _pollsList =
+            _pollsSnapshot!.docs.map((e) => Poll.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      //
+    } finally {
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
+  getPreviousOrganicPolls(int durationInDay) async {
+    try {
+      if (_last) {
+        return;
+      }
+
+      if (_pollsSnapshot != null &&
+          _pollsSnapshot!.docs.isNotEmpty &&
+          _loading != true &&
+          _pollPageLoading != true) {
+        {
+          _pollPageLoading = true;
+          _loading = true;
+        }
+        notifyListeners();
+        await Future.delayed(Duration.zero);
+        var query = (FirebaseFirestore.instance
+                .collection('polls')
+                .where('reportRemoved', isEqualTo: false)
+                .where('bot', isEqualTo: false)
+                .where('time', whereIn: [
+          durationInDay - 0,
+          durationInDay - 1,
+          durationInDay - 2,
+          durationInDay - 3,
+          durationInDay - 4,
+          durationInDay - 5,
+          durationInDay - 6,
+        ]).orderBy('datePublished', descending: true))
+            .startAfterDocument(_pollsSnapshot!.docs.last);
+        var snap = await query.count().get();
+        var data = await query.limit(_pageSize).get();
+        if (data.docs.isNotEmpty) {
+          _pollsSnapshot = data;
+          _count++;
+          if (data.docs.length < _pageSize || _pageSize == snap.count) {
+            _last = true;
+          }
+        } else {
+          _last = false;
+        }
+        _pollsList =
+            _pollsSnapshot!.docs.map((e) => Poll.fromMap(e.data())).toList();
+      }
+    } catch (e) {
+      // debugPrint('getNextMostPosts error $e $st');
+    } finally {
+      _pollPageLoading = false;
+      _loading = false;
+      notifyListeners();
+    }
+  }
+
   deleteUserPoll(String pollId) {
     // debugPrint("Post Id ::: $pollId");
     try {

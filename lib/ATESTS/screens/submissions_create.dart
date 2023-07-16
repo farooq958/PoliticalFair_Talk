@@ -172,8 +172,8 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
     interstitialAd?.show();
   }
 
-  void postImage(
-      String uid, String username, String profImage, String sub) async {
+  void postImage(String uid, String username, String profImage, String sub,
+      bool bot) async {
     try {
       setState(() {
         _isLoading = true;
@@ -192,6 +192,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
         getCounterPost,
         1,
         sub,
+        bot,
         null,
       );
       if (res == "success" && res1 == "success") {
@@ -973,7 +974,11 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                                       user?.username ==
                                                                               'FairTalk'
                                                                           ? 'fairtalk'
-                                                                          : 'sub');
+                                                                          : 'sub',
+                                                                      user?.admin ==
+                                                                              true
+                                                                          ? true
+                                                                          : false);
                                                         });
                                                   });
                                                 },

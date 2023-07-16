@@ -145,7 +145,8 @@ class _CommentCardState extends State<CommentCard> {
     String commentId,
     String text,
     String uid,
-    String name, {
+    String name,
+    bool bot, {
     required int insertAt,
   }) async {
     try {
@@ -155,6 +156,7 @@ class _CommentCardState extends State<CommentCard> {
         text,
         uid,
         name,
+        bot,
         widget.isReply,
         insertAt: insertAt,
       );
@@ -1748,6 +1750,7 @@ class _CommentCardState extends State<CommentCard> {
                                       _replyController.text,
                                       user?.UID ?? '',
                                       user?.username ?? '',
+                                      user?.admin == true ? true : false,
                                       insertAt: widget.isReply
                                           ? ((widget.index ?? 0) + 1)
                                           : 0,

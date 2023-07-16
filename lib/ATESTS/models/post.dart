@@ -27,6 +27,7 @@ class Post {
   final dynamic reportCounter;
   bool reportChecked;
   bool reportRemoved;
+  bool bot;
   // final int? selected;
   final datePublished;
   final datePublishedNTP;
@@ -65,6 +66,7 @@ class Post {
       required this.reportChecked,
       required this.reportRemoved,
       required this.sub,
+      required this.bot,
 
       //  this.updatingStream,
       this.tagsLowerCase});
@@ -113,6 +115,7 @@ class Post {
         "tagsLowerCase": tagsLowerCase,
         "reportRemoved": reportRemoved,
         "sub": sub,
+        "bot": bot,
         // "endDate": endDate
       };
 
@@ -157,7 +160,8 @@ class Post {
       reportRemoved: snapshot['reportRemoved'] ?? false,
       // endDate: snapshot['endDate'],
       score: snapshot['score'],
-      sub: snapshot['sub'] ?? '',
+      sub: snapshot['sub'],
+      bot: snapshot['bot'],
       // updatingStream: snapshot['updatingStream'],
       tagsLowerCase: (snapshot['tagsLowerCase'] ?? []).cast<String>(),
     );

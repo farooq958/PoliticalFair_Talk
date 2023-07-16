@@ -140,16 +140,11 @@ class _CommentCardPollState extends State<CommentCardPoll> {
   // /***/
   // /***/
 
-  void pollReply(
-    String pollId,
-    String commentId,
-    String text,
-    String uid,
-    String username,
-  ) async {
+  void pollReply(String pollId, String commentId, String text, String uid,
+      String username, bool bot) async {
     try {
       String res = await FirestoreMethods().reply(
-          pollId, commentId, text, uid, username, widget.isReply,
+          pollId, commentId, text, uid, username, bot, widget.isReply,
           insertAt: widget.isReply ? ((widget.index ?? 0) + 1) : 0);
       if (res == "success") {
         // _showInterstitialAd();
@@ -1955,6 +1950,7 @@ class _CommentCardPollState extends State<CommentCardPoll> {
                                       _replyController.text,
                                       user?.UID ?? '',
                                       user?.username ?? '',
+                                      user?.admin == true ? true : false,
                                     );
                                     setState(() {
                                       _replyController.text = "";

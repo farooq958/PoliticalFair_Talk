@@ -57,6 +57,7 @@ class Poll {
   final int reportCounter;
   bool reportChecked;
   bool reportRemoved;
+  bool bot;
   dynamic comments;
   List<String>? tagsLowerCase;
 
@@ -109,6 +110,7 @@ class Poll {
     required this.reportRemoved,
     required this.time,
     required this.commentCount,
+    required this.bot,
     this.updatingStreamPoll,
     // this.tags,
     this.tagsLowerCase,
@@ -193,6 +195,7 @@ class Poll {
         "reportRemoved": reportRemoved,
         "time": time,
         "commentCount": commentCount,
+        "bot": bot,
         // "tags": tags,
         "tagsLowerCase": tagsLowerCase
       };
@@ -280,6 +283,7 @@ class Poll {
       voteCount9: snapshot['voteCount9'],
       voteCount10: snapshot['voteCount10'],
       time: snapshot['time'],
+      bot: snapshot['bot'],
 
       reportCounter: snapshot['reportCounter'],
       commentCount: snapshot['commentCount'],
