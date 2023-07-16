@@ -162,8 +162,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void signUpUserGoogle() async {
     try {
-      final userProvider = Provider.of<UserProvider>(context, listen: false);
-      final user = FirebaseAuth.instance.currentUser!;
+    //  final userProvider = Provider.of<UserProvider>(context, listen: false);
+      //final user = FirebaseAuth.instance.currentUser!;
       final provider =
           Provider.of<GoogleSignInProvider>(context, listen: false);
       // Validates username
@@ -174,17 +174,17 @@ class _SignupScreenState extends State<SignupScreen> {
       //   showSnackBarError(userNameValid, context);
       //   return;
       // }
-      await AuthMethods().signOut();
+     // await AuthMethods().signOut();
 
       setState(() {
         _isLoadingGoogle = true;
       });
 
-      provider.googleLogin();
-
-      String res = await AuthMethods().signUpUserGoogle(
-        UID: user.uid!,
-        username: '?',
+    final user=await provider.googleLogin();
+if(user!=null) {
+  String res = await AuthMethods().signUpUserGoogle(
+        UID: user.uid,
+        username: user.displayName.toString(),
         aEmail: user.email!,
         password: '',
         profilePicFile: _image,
@@ -192,28 +192,46 @@ class _SignupScreenState extends State<SignupScreen> {
         pending: 'false',
         bio: '',
       );
+  print("responseee");
+print(res);
 
-      if (res != "success") {
-        Future.delayed(const Duration(milliseconds: 1500), () {
-          setState(() {
-            _isLoading = false;
-          });
-        });
-        if (!mounted) return;
-        showSnackBarError(res, context);
-      } else {
-        // goToHome(context);
+      // if (res != "success") {
+      //   Future.delayed(const Duration(milliseconds: 1500), () {
+      //     setState(() {
+      //       _isLoading = false;
+      //     });
+      //   });
+      //   if (!mounted) return;
+      //   showSnackBarError(res, context);
+      // } else {
+      //   // goToHome(context);
+      //
+      //   Navigator.of(context).pushAndRemoveUntil(
+      //     MaterialPageRoute(
+      //       builder: (context) => WelcomeScreen(
+      //         username: user.displayName!,
+      //       ),
+      //     ),
+      //     (route) => false,
+      //   );
+      //   FirestoreMethods().postCounter('user');
+      // }
 
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => WelcomeScreen(
-              username: user.displayName!,
-            ),
-          ),
-          (route) => false,
-        );
-        FirestoreMethods().postCounter('user');
-      }
+  if (res == "success") {
+    setState(() {
+      _isLoadingGoogle = false;
+    });
+    goToHome(context);
+
+    FirestoreMethods().postCounter('user');
+  }
+}
+else
+  {
+    setState(() {
+      _isLoadingGoogle = false;
+    });
+  }
     } catch (e) {
       // debugPrint('signup error $e $st');
     }

@@ -52,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final User? user = Provider.of<UserProvider>(context).getUser;
+
     return user == null
         ? buildSettings(context, "null", "null", false, false)
         : StreamBuilder(
@@ -77,6 +78,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget buildSettings(BuildContext context, String country, String pending,
       bool profileFlag, bool profileBadge) {
     final User? user = Provider.of<UserProvider>(context).getUser;
+    print(user);
+    print("user logged");
     return IntrinsicHeight(
       child: Container(
         color: testing,

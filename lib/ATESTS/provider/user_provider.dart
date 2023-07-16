@@ -3,6 +3,7 @@ import 'package:aft/ATESTS/services/firebase_notification.dart';
 import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user.dart';
 import '../methods/auth_methods.dart';
 
@@ -37,6 +38,8 @@ class UserProvider with ChangeNotifier {
 
   Future<void> logoutUser() async {
     _user = null;
+    final GoogleSignIn googleSignIn=GoogleSignIn();
+   await googleSignIn.signOut();
     notifyListeners();
   }
 
