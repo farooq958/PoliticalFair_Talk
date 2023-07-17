@@ -2,7 +2,6 @@ import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../models/user.dart';
 
 class AutomateProvider extends ChangeNotifier {
@@ -12,10 +11,13 @@ class AutomateProvider extends ChangeNotifier {
   }
 
   late FirebaseDatabase database;
-  int _initialScore = 0;
+
+  int? _initialScore;
   String? _day;
   String? _global;
   String? _postType;
+
+  bool _initialScoreLoading = false;
 
   Future<void> saveInitialScore(String score) async {
     final int? s = int.tryParse(score);
@@ -28,6 +30,7 @@ class AutomateProvider extends ChangeNotifier {
         .child(_postType!)
         .child(_day!)
         .set({RealTimeDBValues.initialScore: s});
+    getInitialScore();
   }
 
   Future<void> addAdminUserToDb(User user) async {
@@ -83,11 +86,48 @@ class AutomateProvider extends ChangeNotifier {
     } else {
       _postType = null;
     }
+
+    getInitialScore();
   }
 
-  int get initialScore => _initialScore;
+  Future<void> getInitialScore() async {
+    try {
+      await Future.delayed(Duration.zero);
+      _initialScoreLoading = true;
+      notifyListeners();
+
+      debugPrint('G: $_global type $_postType day $_day');
+      final snapshot = await database
+          .ref(RealTimeDBValues.initialScore)
+          .child(_global!)
+          .child(_postType!)
+          .child(_day!)
+          .get();
+      if (snapshot.exists && snapshot.value != null) {
+        debugPrint('Data received ${snapshot.value}');
+
+          Map values = snapshot.value! as dynamic;
+          _initialScore = values[RealTimeDBValues.initialScore];
+      }
+      else {
+        _initialScore = null;
+      }
+    } catch (e, st) {
+      debugPrint('getInitialScore $e $st');
+      _initialScore = null;
+    } finally {
+      _initialScoreLoading = false;
+      notifyListeners();
+    }
+  }
+
+  int? get initialScore => _initialScore;
 
   String? get global => _global;
+
   String? get day => _day;
+
   String? get postType => _postType;
+
+  bool get initialScoreLoading => _initialScoreLoading;
 }
