@@ -7,6 +7,7 @@ import '../provider/poll_provider.dart';
 import '../provider/post_provider.dart';
 import '../responsive/my_flutter_app_icons.dart';
 import '../utils/global_variables.dart';
+import '../utils/utils.dart';
 import '../zFeeds/message_card.dart';
 import '../zFeeds/poll_card.dart';
 import 'filter_screen.dart';
@@ -700,14 +701,51 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
             }
             if (filterProvider.messages == 'true') {
               if (mostLikedProvider.mostLikedPosts.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'No messages yet.',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 114, 114, 114),
-                        fontSize: 18),
-                  ),
-                );
+                return filterProvider.global == "true"
+                    ? const Center(
+                        child: Text(
+                          'No messages yet.',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 114, 114, 114),
+                              fontSize: 18),
+                        ),
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // const Icon(Icons.flag_outlined,
+                            //     color: Colors.black),
+                            // const SizedBox(height: 3),
+                            const Text(
+                              'Coming Soon!',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
+                            InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              splashColor: Colors.grey.withOpacity(0.3),
+                              onTap: () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 100), () {
+                                  nationalLearnMore(context: context);
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 3,
+                                ),
+                                child: const Text(
+                                  'Learn more',
+                                  style: TextStyle(
+                                      color: Colors.blue, fontSize: 13),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
               } else {
                 return ListView(
                   controller: _pollsScrollController,
@@ -825,14 +863,51 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
               }
             } else {
               if (mostLikedProvider.mostLikedPolls.isEmpty) {
-                return const Center(
-                  child: Text(
-                    'No polls yet.',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 114, 114, 114),
-                        fontSize: 18),
-                  ),
-                );
+                return filterProvider.global == "true"
+                    ? const Center(
+                        child: Text(
+                          'No polls yet.',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 114, 114, 114),
+                              fontSize: 18),
+                        ),
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // const Icon(Icons.flag_outlined,
+                            //     color: Colors.black),
+                            // const SizedBox(height: 3),
+                            const Text(
+                              'Coming Soon!',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
+                            InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              splashColor: Colors.grey.withOpacity(0.3),
+                              onTap: () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 100), () {
+                                  nationalLearnMore(context: context);
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 3,
+                                ),
+                                child: const Text(
+                                  'Learn more',
+                                  style: TextStyle(
+                                      color: Colors.blue, fontSize: 13),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
               } else {
                 return ListView(
                   children: [
@@ -896,7 +971,7 @@ class _MostLikedScreenState extends State<MostLikedScreen> {
                     mostLikedProvider.lastPollPage || mostLikedProvider.loading
                         ? const SizedBox()
                         : Visibility(
-                            visible: mostLikedProvider.isPollButtonVisible,
+                            visible: mostLikedProvider.isButtonVisible,
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 10.0, right: 12, left: 12),

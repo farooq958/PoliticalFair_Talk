@@ -99,9 +99,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (_) => MostLikedProvider(),
     ),
-    ChangeNotifierProvider(
-      create: (_) => PostPollProvider(),
-    ),
+    // ChangeNotifierProvider(
+    //   create: (_) => PostPollProvider(),
+    // ),
     ChangeNotifierProvider(
       create: (_) => CommentReplyProvider(),
     ),

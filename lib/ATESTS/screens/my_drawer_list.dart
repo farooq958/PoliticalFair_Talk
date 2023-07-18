@@ -17,6 +17,7 @@ import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'automate.dart';
@@ -285,32 +286,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         const SizedBox(width: 14),
                         Container(
-                            height: 80,
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    user != null
-                                        ? 'Logged in as'
-                                        : 'Logged in as a',
-                                    style: const TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0,
-                                    )),
-                                const SizedBox(height: 2),
-                                Text(
-                                  user != null ? user.username : 'Guest',
+                          height: 80,
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  user != null
+                                      ? 'Logged in as'
+                                      : 'Logged in as a',
                                   style: const TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 19.5,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )),
+                                    color: darkBlue,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0,
+                                  )),
+                              const SizedBox(height: 2),
+                              Text(
+                                user != null ? user.username : 'Guest',
+                                style: const TextStyle(
+                                    color: darkBlue,
+                                    fontSize: 19.5,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              // const SizedBox(height: 2),
+                              // Row(children: [
+                              //   const Icon(
+                              //     MyFlutterApp.coins,
+                              //     size: 12,
+                              //     color: darkBlue,
+                              //   ),
+                              //   const SizedBox(width: 6),
+                              //   Text('${user?.profileScoreValue}',
+                              //       style: TextStyle(
+                              //           color: darkBlue,
+                              //           fontWeight: FontWeight.w500,
+                              //           fontSize: 12))
+                              // ])
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

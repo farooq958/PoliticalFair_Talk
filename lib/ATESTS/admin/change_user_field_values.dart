@@ -42,9 +42,9 @@ class _ChangeUserFieldValuesState extends State<ChangeUserFieldValues> {
   String searchEmailValue = '';
 
   //SET//
-  String collection = 'posts';
-  String field = 'new1';
-  String value = 'test';
+  String collection = 'users';
+  String field = 'tokensCounter';
+  int value = 0;
 
   final TextEditingController _searchEmailController = TextEditingController();
   final TextEditingController _searchUsernameController =

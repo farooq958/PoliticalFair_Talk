@@ -129,7 +129,7 @@ class FirestoreMethods {
   void postCounter(String type) async {
     try {
       await _firestore
-          .collection('postCounter')
+          .collection('aPostCounter')
           .doc(type == 'post'
               ? 'messageCounter'
               : type == 'poll'
@@ -777,12 +777,23 @@ class FirestoreMethods {
     Post post,
     String global,
     String country,
+    // int time,
+    // int? maxDailyTime,
+    // int? tokensCounter,
   ) async {
     try {
       final batch = _firestore.batch();
       var postRef = _firestore.collection('posts').doc(postId);
       var postAuthorRef = _firestore.collection('users').doc(post.UID);
+      var voterRef = _firestore.collection('users').doc(uid);
 
+      // if (maxDailyTime != time) {
+      //   batch.update(voterRef, {
+      //     'maxDailyTime': time,
+      //     'tokensCounter': 1,
+      //     'profileScoreValue': FieldValue.increment(1),
+      //   });
+      // }
       if (plus.contains(uid)) {
         // var postRef = _firestore.collection('posts').doc(postId);
         // var userRef = _firestore.collection('users').doc(uid);
@@ -795,37 +806,13 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(-1),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'plus': FieldValue.arrayRemove([uid]),
-        //             'plusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayRemove([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'plus': FieldValue.arrayRemove([uid]),
-        //             'plusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayRemove([uid]),
-        //           });
-        //         });
-        //       });
+        // if (time == maxDailyTime &&
+        //     (tokensCounter! >= 0 && tokensCounter <= 10)) {
+        //   batch.update(voterRef, {
+        //     'tokensCounter': FieldValue.increment(-1),
+        //     'profileScoreValue': FieldValue.increment(-1),
+        //   });
+        // }
       } else if (neutral.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(1),
@@ -838,42 +825,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'neutral': FieldValue.arrayRemove([uid]),
-        //             'neutralCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'neutral': FieldValue.arrayRemove([uid]),
-        //             'neutralCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       });
-        // //    batch.commit();
       } else if (minus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(2),
@@ -886,42 +837,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(2),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'minus': FieldValue.arrayRemove([uid]),
-        //             'minusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(2),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'minus': FieldValue.arrayRemove([uid]),
-        //             'minusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       });
-        // //    batch.commit();
       } else {
         batch.update(postRef, {
           'score': FieldValue.increment(1),
@@ -932,38 +847,13 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'plus': FieldValue.arrayUnion([uid]),
-        //             'plusCount': FieldValue.increment(1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       });
-        // //  batch.commit();
+        // if (time == maxDailyTime &&
+        //     (tokensCounter! >= 0 && tokensCounter <= 9)) {
+        //   batch.update(voterRef, {
+        //     'tokensCounter': FieldValue.increment(1),
+        //     'profileScoreValue': FieldValue.increment(1),
+        //   });
+        // }
       }
       // batch.update(postRef, {'score': post.plusCount - post.minusCount});
       // postRef.get().then((postSnap) {
@@ -978,9 +868,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .plusPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .plusPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .plusPost(postId, uid);
     } catch (e) {
       // debugPrint('plus message error $e');
       // print(
@@ -1184,9 +1074,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .neutralPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .neutralPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .neutralPost(postId, uid);
     } catch (e) {
       // print(
     }
@@ -1215,37 +1105,6 @@ class FirestoreMethods {
           'minusCount': FieldValue.increment(-1),
           'votesUIDs': FieldValue.arrayRemove([uid]),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'minus': FieldValue.arrayRemove([uid]),
-        //             'minusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayRemove([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(1),
-        //             'minus': FieldValue.arrayRemove([uid]),
-        //             'minusCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayRemove([uid]),
-        //           });
-        //         });
-        //       });
       } else if (neutral.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(-1),
@@ -1255,41 +1114,6 @@ class FirestoreMethods {
           'neutralCount': FieldValue.increment(-1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'minus': FieldValue.arrayUnion([uid]),
-        //             'minusCount': FieldValue.increment(1),
-        //             'neutral': FieldValue.arrayRemove([uid]),
-        //             'neutralCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'minus': FieldValue.arrayUnion([uid]),
-        //             'minusCount': FieldValue.increment(1),
-        //             'neutral': FieldValue.arrayRemove([uid]),
-        //             'neutralCount': FieldValue.increment(-1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       });
       } else if (plus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(-2),
@@ -1302,41 +1126,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(-1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-2),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-2),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
       } else {
         batch.update(postRef, {
           'score': FieldValue.increment(-1),
@@ -1344,37 +1133,6 @@ class FirestoreMethods {
           'minusCount': FieldValue.increment(1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        // global == "true"
-        //     ? _firestore
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'minus': FieldValue.arrayUnion([uid]),
-        //             'minusCount': FieldValue.increment(1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       })
-        //     : _firestore
-        //         .collection("mostLikedByCountry")
-        //         .doc(country)
-        //         .collection("mostLiked")
-        //         .where("postId", isEqualTo: postId)
-        //         .get()
-        //         .then((querySnapshot) {
-        //         querySnapshot.docs.forEach((document) {
-        //           document.reference.update({
-        //             'score': FieldValue.increment(-1),
-        //             'minus': FieldValue.arrayUnion([uid]),
-        //             'minusCount': FieldValue.increment(1),
-        //             'votesUIDs': FieldValue.arrayUnion([uid]),
-        //           });
-        //         });
-        //       });
       }
 
       //  batch.update(postRef, {'score': post.plusCount - post.minusCount});
@@ -1384,9 +1142,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .minusPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .minusPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .minusPost(postId, uid);
       // postRef.get().then((postSnap) {
       //   if (postSnap.data() != null) {
       //     Post post = Post.fromMap(postSnap.data()!);
@@ -1810,14 +1568,20 @@ class FirestoreMethods {
   Future<void> setField(
     String collection,
     String field,
-    String value,
+    int value,
   ) async {
     try {
       FirebaseFirestore.instance.collection(collection).get().then((snapshot) {
         for (DocumentSnapshot ds in snapshot.docs) {
-          ds.reference.update({
-            field: value,
-          });
+          ds.reference.update
+
+              //to delete fields
+              ({field: FieldValue.delete()}).whenComplete(() {});
+
+          //to add fields
+          // ({
+          //   field: value
+          // });
         }
       });
     } catch (e) {
@@ -1869,6 +1633,41 @@ class FirestoreMethods {
             ? FieldValue.increment(1)
             : FieldValue.increment(-1),
       });
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> changeMaxDailyTime(String userId, int time) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'maxDailyTime': time});
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> incrementTokensCounter(
+    String userId,
+  ) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'tokensCounter': FieldValue.increment(1)});
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> resetTokensCounter(String userId) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'tokensCounter': 1});
     } catch (e) {
       // print(
     }

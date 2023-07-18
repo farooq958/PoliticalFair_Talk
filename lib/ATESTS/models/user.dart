@@ -34,6 +34,8 @@ class User {
   String verFailReason;
   int submissionTime;
   String bot;
+  // int tokensCounter;
+  // int maxDailyTime;
 
   User({
     required this.aEmail,
@@ -68,6 +70,8 @@ class User {
     required this.verFailReason,
     required this.submissionTime,
     required this.bot,
+    // required this.tokensCounter,
+    // required this.maxDailyTime,
   });
 
   Map<String, dynamic> toJson() => {
@@ -103,6 +107,8 @@ class User {
         "verFailReason": verFailReason,
         "submissionTime": submissionTime,
         "bot": bot,
+        // "maxDailyTime": maxDailyTime,
+        // "tokensCounter": tokensCounter,
       };
 
   Map<String, dynamic> toRTDBJson() => {
@@ -139,6 +145,8 @@ class User {
         "verFailReason": verFailReason,
         "submissionTime": submissionTime,
         "bot": bot,
+        // "maxDailyTime": maxDailyTime,
+        // "tokensCounter": tokensCounter,
       };
 
   static User fromSnap(DocumentSnapshot snap) {
@@ -176,6 +184,8 @@ class User {
       verFailReason: snapshot['verFailReason'],
       submissionTime: snapshot['submissionTime'],
       bot: snapshot['bot'],
+      // tokensCounter: snapshot['tokensCounter'],
+      // maxDailyTime: snapshot['maxDailyTime'],
     );
   }
 
@@ -213,6 +223,8 @@ class User {
       verFailReason: map['verFailReason'],
       submissionTime: map['submissionTime'],
       bot: map['bot'],
+      // tokensCounter: map['tokensCounter'],
+      // maxDailyTime: map['maxDailyTime'],
     );
   }
 

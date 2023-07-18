@@ -30,6 +30,7 @@ class _NotificationsState extends State<Notifications> {
   bool isCommentVotes = true;
   bool isReplies = true;
   bool isReplyVotes = true;
+  bool isMentions = true;
 
   var snap;
 
@@ -225,63 +226,6 @@ class _NotificationsState extends State<Notifications> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'National Messages',
-                                          style: TextStyle(
-                                            letterSpacing: 0.2,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        userProvider.getUser == null ||
-                                                snap?.aaCountry == ''
-                                            ? const SizedBox()
-                                            : SizedBox(
-                                                width: 25,
-                                                height: 12.5,
-                                                child: Image.asset(
-                                                    'icons/flags/png/${snap?.aaCountry}.png',
-                                                    package: 'country_icons'),
-                                              ),
-                                      ],
-                                    ),
-                                    Switch(
-                                      value: isNationalMessage,
-                                      activeColor: Colors.black,
-                                      onChanged: (bool value) async {
-                                        if (snap?.aaCountry == "") {
-                                          nationalityUnknown(context: context);
-                                        } else if (snap != null) {
-                                          if (value) {
-                                            await userProvider.subscribeTopic(
-                                                'nm', snap!);
-                                          } else {
-                                            await userProvider.subscribeTopic(
-                                                '', userProvider.getUser!);
-                                          }
-
-                                          setState(() {
-                                            if (value) {
-                                              isNationalMessage = true;
-                                            } else {
-                                              isNationalMessage = false;
-                                            }
-                                            setNotificationOn(userProvider
-                                                    .getUser!.fcmTopic ??
-                                                '');
-                                          });
-                                        }
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
                                     const Text(
                                       'Global Polls',
                                       style: TextStyle(
@@ -325,6 +269,66 @@ class _NotificationsState extends State<Notifications> {
                                     Row(
                                       children: [
                                         const Text(
+                                          'National Messages',
+                                          style: TextStyle(
+                                            letterSpacing: 0.2,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        userProvider.getUser == null ||
+                                                snap?.aaCountry == ''
+                                            ? const SizedBox()
+                                            : SizedBox(
+                                                width: 25,
+                                                height: 12.5,
+                                                child: Image.asset(
+                                                    'icons/flags/png/${snap?.aaCountry}.png',
+                                                    package: 'country_icons'),
+                                              ),
+                                      ],
+                                    ),
+                                    Switch(
+                                      value: isNationalMessage,
+                                      activeColor: Colors.black,
+                                      onChanged: (bool value) async {
+                                        showSnackBarError(
+                                            'National is not available yet.',
+                                            context);
+                                        // if (snap?.aaCountry == "") {
+                                        //   nationalityUnknown(context: context);
+                                        // } else if (snap != null) {
+                                        //   if (value) {
+                                        //     await userProvider.subscribeTopic(
+                                        //         'nm', snap!);
+                                        //   } else {
+                                        //     await userProvider.subscribeTopic(
+                                        //         '', userProvider.getUser!);
+                                        //   }
+
+                                        //   setState(() {
+                                        //     if (value) {
+                                        //       isNationalMessage = true;
+                                        //     } else {
+                                        //       isNationalMessage = false;
+                                        //     }
+                                        //     setNotificationOn(userProvider
+                                        //             .getUser!.fcmTopic ??
+                                        //         '');
+                                        //   });
+                                        // }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Text(
                                           'National Polls',
                                           style: TextStyle(
                                             letterSpacing: 0.2,
@@ -349,27 +353,30 @@ class _NotificationsState extends State<Notifications> {
                                       value: isNationalPoll,
                                       activeColor: Colors.black,
                                       onChanged: (bool value) async {
-                                        if (snap?.aaCountry == "") {
-                                          nationalityUnknown(context: context);
-                                        } else if (snap != null) {
-                                          if (value) {
-                                            await userProvider.subscribeTopic(
-                                                'np', snap!);
-                                          } else {
-                                            await userProvider.subscribeTopic(
-                                                '', userProvider.getUser!);
-                                          }
-                                          setState(() {
-                                            if (value) {
-                                              isNationalPoll = true;
-                                            } else {
-                                              isNationalPoll = false;
-                                            }
-                                            setNotificationOn(userProvider
-                                                    .getUser?.fcmTopic ??
-                                                '');
-                                          });
-                                        }
+                                        showSnackBarError(
+                                            'National is not available yet.',
+                                            context);
+                                        // if (snap?.aaCountry == "") {
+                                        //   nationalityUnknown(context: context);
+                                        // } else if (snap != null) {
+                                        //   if (value) {
+                                        //     await userProvider.subscribeTopic(
+                                        //         'np', snap!);
+                                        //   } else {
+                                        //     await userProvider.subscribeTopic(
+                                        //         '', userProvider.getUser!);
+                                        //   }
+                                        //   setState(() {
+                                        //     if (value) {
+                                        //       isNationalPoll = true;
+                                        //     } else {
+                                        //       isNationalPoll = false;
+                                        //     }
+                                        //     setNotificationOn(userProvider
+                                        //             .getUser?.fcmTopic ??
+                                        //         '');
+                                        //   });
+                                        // }
                                       },
                                     ),
                                   ],
@@ -546,6 +553,29 @@ class _NotificationsState extends State<Notifications> {
                                     ),
                                     Switch(
                                       value: isReplyVotes,
+                                      activeColor: Colors.black,
+                                      onChanged: (bool value) async {},
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'Mentions',
+                                          style: TextStyle(
+                                            letterSpacing: 0.2,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Switch(
+                                      value: isMentions,
                                       activeColor: Colors.black,
                                       onChanged: (bool value) async {},
                                     ),

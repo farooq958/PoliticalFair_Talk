@@ -14,17 +14,17 @@ class PostProvider extends ChangeNotifier {
   List<Post> _mostLikedPosts = [];
   List<Post> _posts = [];
   List<Post> _userPosts = [];
-  List<Post> _submissionScore = [];
-  List<Post> _submissionDate = [];
+  List<Post> _userBallots = [];
 
   int _count = 0;
   bool _last = false;
   bool _userPostLast = false;
-  bool _userPostLastDate = false;
-  bool _userPostLastScore = false;
+  bool _userBallotLast = false;
+
   bool _getPostBeingCalled = false;
   bool _getUserPostBeingCalled = false;
-  bool _getUserPostBeingCalledScore = false;
+  bool _getUserBallotBeingCalled = false;
+
   Post? _postSitterValue;
 
   bool _isButtonVisible = false;
@@ -32,12 +32,13 @@ class PostProvider extends ChangeNotifier {
   QuerySnapshot<Map<String, dynamic>>? _mostLikePostsSnapshot;
   QuerySnapshot<Map<String, dynamic>>? _postsSnapshot;
   QuerySnapshot<Map<String, dynamic>>? _userPostSnapshot;
-  QuerySnapshot<Map<String, dynamic>>? _userPostSnapshotScore;
+  QuerySnapshot<Map<String, dynamic>>? _userBallotSnapshot;
+
   StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _snapshotListener;
 
-  final _postPollProvider = Provider.of<PostPollProvider>(
-      navigatorKey.currentContext!,
-      listen: false);
+  // final _postPollProvider = Provider.of<PostPollProvider>(
+  //     navigatorKey.currentContext!,
+  //     listen: false);
 
   final bool _postsLoading = false;
   final bool _loading = false;
@@ -83,10 +84,6 @@ class PostProvider extends ChangeNotifier {
   getPosts(String twoValue, String global, String countryCode,
       int durationInDay, String oneValue) async {
     try {
-      debugPrint("working oneValue$oneValue ");
-      //  _posts = [];
-
-      debugPrint('two values : $twoValue');
       await Future.delayed(Duration.zero);
       _isButtonVisible = false;
       _pLoading = true;
@@ -189,6 +186,8 @@ class PostProvider extends ChangeNotifier {
     String oneValue,
   ) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -294,12 +293,15 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousPosts(String twoValue, String global, String countryCode,
       int durationInDay, String oneValue) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       // print(""
       //     " twoValue: $twoValue"
       //     " global: $global"
@@ -381,6 +383,7 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -447,7 +450,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -492,7 +495,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -538,7 +541,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -584,7 +587,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -630,7 +633,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -676,7 +679,7 @@ class PostProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(_posts, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -914,12 +917,15 @@ class PostProvider extends ChangeNotifier {
 
   getUserPosts(String? userId) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       _pLoading = true;
       notifyListeners();
       var query = (FirebaseFirestore.instance
           .collection('posts')
           .where('reportRemoved', isEqualTo: false)
           .where('UID', isEqualTo: userId ?? '')
+          .where('sub', isEqualTo: 'none')
           .orderBy('datePublished', descending: true));
       var snap = await query.count().get();
       // debugPrint('count is ${snap.count}');
@@ -942,17 +948,21 @@ class PostProvider extends ChangeNotifier {
       _getUserPostBeingCalled = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getNextUserPosts(String? userId) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       _pageLoading = true;
       notifyListeners();
       var query = (FirebaseFirestore.instance
           .collection('posts')
           .where('reportRemoved', isEqualTo: false)
           .where('UID', isEqualTo: userId ?? '')
+          .where('sub', isEqualTo: 'none')
           .orderBy('datePublished', descending: true));
       var snap = await query.count().get();
       // debugPrint('count is ${snap.count}');
@@ -978,6 +988,85 @@ class PostProvider extends ChangeNotifier {
       _getUserPostBeingCalled = false;
       _pageLoading = false;
       notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getUserBallots(String? userId) async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
+          .where('UID', isEqualTo: userId ?? '')
+          .where('time', isEqualTo: 1)
+          .orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+      // debugPrint('count is ${snap.count}');
+      if (!_getUserBallotBeingCalled) {
+        _getUserBallotBeingCalled = true;
+        Future.delayed(Duration.zero);
+        _userBallotSnapshot = await query.limit(_pageSize).get();
+        _userBallots =
+            _userBallotSnapshot!.docs.map((e) => Post.fromSnap(e)).toList();
+        // debugPrint("user post length  : ${_posts.length}");
+        _userBallotLast = false;
+        if (_userBallots.length < _pageSize || _pageSize == snap.count) {
+          _userBallotLast = true;
+        }
+        // debugPrint('post length ${_userPosts.length}');
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getUserPost error $e $st');
+    } finally {
+      _getUserBallotBeingCalled = false;
+      _pLoading = false;
+      notifyListeners();
+      setButtonVisibility();
+    }
+  }
+
+  getNextUserBallots(String? userId) async {
+    try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
+      _pageLoading = true;
+      notifyListeners();
+      var query = (FirebaseFirestore.instance
+          .collection('posts')
+          .where('reportRemoved', isEqualTo: false)
+          .where('UID', isEqualTo: userId ?? '')
+          .where('time', isEqualTo: 1)
+          .orderBy('datePublished', descending: true));
+      var snap = await query.count().get();
+      // debugPrint('count is ${snap.count}');
+      if (!_getUserBallotBeingCalled) {
+        _getUserBallotBeingCalled = true;
+        Future.delayed(Duration.zero);
+        _userBallotSnapshot = await query
+            .startAfterDocument(_userBallotSnapshot!.docs.last)
+            .limit(_pageSize)
+            .get();
+        _userBallots.addAll(
+            _userBallotSnapshot!.docs.map((e) => Post.fromSnap(e)).toList());
+        // debugPrint("user post length  : ${_userPosts.length}");
+        _userBallotLast = false;
+        if (_userBallots.length < _pageSize ||
+            _userPosts.length == snap.count) {
+          _userBallotLast = true;
+        }
+        // debugPrint('post length ${_userPosts.length}');
+      }
+    } catch (e) {
+      // debugPrint('PostProvider getUserPost error $e $st');
+    } finally {
+      _getUserBallotBeingCalled = false;
+      _pageLoading = false;
+      notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -1191,6 +1280,8 @@ class PostProvider extends ChangeNotifier {
 
   getNextSubmissions() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -1231,11 +1322,14 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getNextUpdates() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -1276,11 +1370,14 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getNextSubmissionsDate() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -1321,11 +1418,14 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousSubmissions() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_postsSnapshot != null) {
         _pLoading = true;
         notifyListeners();
@@ -1351,11 +1451,14 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getNextUpdatesDate() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -1396,11 +1499,14 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousUpdates() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_postsSnapshot != null) {
         _pLoading = true;
         notifyListeners();
@@ -1426,11 +1532,14 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousSubmissionsDate() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_postsSnapshot != null) {
         _pLoading = true;
         notifyListeners();
@@ -1456,11 +1565,14 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousUpdatesDate() async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_postsSnapshot != null) {
         _pLoading = true;
         notifyListeners();
@@ -1486,6 +1598,7 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -1534,6 +1647,8 @@ class PostProvider extends ChangeNotifier {
 
   getNextOrganicMessages(int durationInDay) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_postsSnapshot != null) {
         _pLoading = true;
         notifyListeners();
@@ -1567,11 +1682,14 @@ class PostProvider extends ChangeNotifier {
     } finally {
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousOrganicMessages(int durationInDay) async {
     try {
+      await Future.delayed(Duration.zero);
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -1620,6 +1738,7 @@ class PostProvider extends ChangeNotifier {
       _postPageLoading = false;
       _pLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -1649,9 +1768,7 @@ class PostProvider extends ChangeNotifier {
 
   List<Post> get userProfilePost => _userPosts;
 
-  List<Post> get submissionPostScore => _submissionScore;
-
-  List<Post> get submissionPostDate => _submissionDate;
+  List<Post> get userProfileBallot => _userBallots;
 
   bool get loading => _loading;
 
@@ -1660,7 +1777,6 @@ class PostProvider extends ChangeNotifier {
   bool get pageLoadingScore => _pageLoadingScore;
 
   bool get pLoading => _pLoading;
-  bool get pLoadingScore => _pLoadingScore;
 
   bool get postLoading => _postsLoading;
 
@@ -1675,12 +1791,10 @@ class PostProvider extends ChangeNotifier {
   bool get isButtonVisible => _isButtonVisible;
 
   bool get isLastUserPost => _userPostLast;
-  bool get isLastUserPostDate => _userPostLastDate;
-  bool get isLastUserPostScore => _userPostLastScore;
+  bool get isLastUserBallot => _userBallotLast;
 
   ScrollController get postScrollController => _postScrollController;
 
   get canUserPostLoadMore => !(_userPostLast);
-  get canUserPostLoadMoreDate => !(_userPostLastDate);
-  get canUserPostLoadMoreScore => !(_userPostLastScore);
+  get canUserBallotLoadMore => !(_userBallotLast);
 }

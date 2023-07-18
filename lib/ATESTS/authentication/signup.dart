@@ -191,7 +191,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
           googleSignIn.signOut();
 
-          showSnackBarError("This email has already been signed up.", context);
+          showSnackBarError("This email has already been used.", context);
           setState(() {
             _isLoadingGoogle = false;
           });

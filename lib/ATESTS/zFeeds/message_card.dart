@@ -209,7 +209,32 @@ class _PostCardTestState extends State<PostCardTest> {
               context,
             )
           : null;
+      // showSnackBar('+1', context);
     }
+
+    // void verifiedPlusVote() async {
+    //   await FirestoreMethods().plusMessage(
+    //     _post.postId,
+    //     user?.UID ?? '',
+    //     _post.plus,
+    //     _post.neutral,
+    //     _post.minus,
+    //     _post,
+    //     _post.global,
+    //     _post.country,
+    //   );
+    //   user?.maxDailyTime != widget.durationInDay
+    //       ? await FirestoreMethods()
+    //           .changeMaxDailyTime(user?.UID ?? '', widget.durationInDay)
+    //       : null;
+    //   user?.maxDailyTime != widget.durationInDay
+    //       ? await FirestoreMethods().resetTokensCounter(user?.UID ?? '')
+    //       : null;
+    //   user?.maxDailyTime == widget.durationInDay &&
+    //           user?.tokensCounter.clamp(1, 9) == user?.tokensCounter
+    //       ? await FirestoreMethods().incrementTokensCounter(user?.UID ?? '')
+    //       : null;
+    // }
 
     void unverifiedNeutralVote(bool pending) async {
       await FirestoreMethods().neutralMessageUnverified(
@@ -1437,8 +1462,7 @@ class _PostCardTestState extends State<PostCardTest> {
                                                     //   } else {
                                                     //     return
                                                     Text(
-                                                      _post.time == 0 ||
-                                                              _post.time == 1
+                                                      _post.time == 1
                                                           ? 'Unlimited'
                                                           : widget.durationInDay ==
                                                                   (_post.time)
@@ -1713,16 +1737,7 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                                                           ? showSnackBarError("This message's voting cycle has already ended.", context)
                                                                                                           : user?.admin == true
                                                                                                               ? await FirestoreMethods().messageScore(_post.postId, 'plus', _post)
-                                                                                                              : await FirestoreMethods().plusMessage(
-                                                                                                                  _post.postId,
-                                                                                                                  user?.UID ?? '',
-                                                                                                                  _post.plus,
-                                                                                                                  _post.neutral,
-                                                                                                                  _post.minus,
-                                                                                                                  _post,
-                                                                                                                  _post.global,
-                                                                                                                  _post.country,
-                                                                                                                );
+                                                                                                              : await FirestoreMethods().plusMessage(_post.postId, user?.UID ?? '', _post.plus, _post.neutral, _post.minus, _post, _post.global, _post.country);
                                                                               // FirestoreMethods()
                                                                               //     .scoreMessage(
                                                                               //   _post.postId,

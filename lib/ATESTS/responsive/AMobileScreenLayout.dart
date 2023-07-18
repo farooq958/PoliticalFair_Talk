@@ -2094,11 +2094,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           AddPost(
                             durationInDay: durationInDay,
                           ),
-                          NotificationsTab(),
-
                           // Search(
                           //   durationInDay: durationInDay,
                           // ),
+
                           // Submissions(
                           //   durationInDay: durationInDay,
                           // ),
@@ -2124,19 +2123,18 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             ),
                             label: 'Archives',
                           ),
-
                           BottomNavigationBarItem(
                             icon: Stack(
                               children: const [
                                 Padding(
                                   padding: EdgeInsets.only(top: 3.0),
                                   child: Icon(
-                                    Icons.create,
+                                    Icons.create_outlined,
                                   ),
                                 ),
                                 Positioned(
-                                  top: 15,
-                                  left: 13,
+                                  top: 16,
+                                  left: 14,
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 3.0),
                                     child: Icon(
@@ -2149,15 +2147,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             ),
                             label: 'Create',
                           ),
-                          BottomNavigationBarItem(
-                            icon: Padding(
-                              padding: const EdgeInsets.only(top: 3.0),
-                              child: Icon(
-                                Icons.notifications,
-                              ),
-                            ),
-                            label: 'Notifications',
-                          ),
                           // const BottomNavigationBarItem(
                           //   icon: Padding(
                           //     padding: EdgeInsets.only(top: 3.0),
@@ -2167,6 +2156,16 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           //   ),
                           //   label: 'Search',
                           // ),
+                          // // BottomNavigationBarItem(
+                          // //   icon: Padding(
+                          // //     padding: const EdgeInsets.only(top: 3.0),
+                          // //     child: Icon(
+                          // //       Icons.notifications,
+                          // //     ),
+                          // //   ),
+                          // //   label: 'Notifications',
+                          // // ),
+
                           // const BottomNavigationBarItem(
                           //   icon: Padding(
                           //     padding: EdgeInsets.only(top: 6.0),

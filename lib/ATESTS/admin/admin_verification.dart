@@ -64,7 +64,7 @@ class _AdminVerificationState extends State<AdminVerification> {
   }
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   Future<String> _loadVerifiedCounter() async {
     String res1 = "Some error occurred.";

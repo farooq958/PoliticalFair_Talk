@@ -68,7 +68,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
 
   PostProvider? postProvider;
   PollsProvider? pollsProvider;
-  PostPollProvider? postPollProvider;
+  // PostPollProvider? postPollProvider;
   CommentReplyProvider? commentReplyProvider;
 
   double scrollOffset = 0.0;
@@ -92,6 +92,10 @@ class ProfileAllUserState extends State<ProfileAllUser>
     const Padding(
         padding: EdgeInsets.only(top: 2),
         child: Tab(child: Icon(MyFlutterApp.comment_discussion, size: 23))),
+    const Tab(
+        child: Icon(
+      Icons.check_box_outlined,
+    )),
   ];
 
   @override
@@ -133,6 +137,11 @@ class ProfileAllUserState extends State<ProfileAllUser>
       commentReplyProvider?.getCommentResult(widget.uid);
       commentReplyProvider?.getReplyResult(widget.uid);
     });
+
+    Future.delayed(Duration.zero, () async {
+      postProvider = Provider.of<PostProvider>(context, listen: false);
+      postProvider?.getUserBallots(widget.uid);
+    });
   }
 
   @override
@@ -155,6 +164,11 @@ class ProfileAllUserState extends State<ProfileAllUser>
       if (!(pollsProvider?.userPollsLast ?? true) &&
           !(pollsProvider?.scrollLoading ?? true)) {
         pollsProvider?.getNextUserPolls(widget.uid);
+      }
+    } else if (_tabController?.index == 3) {
+      if (!(postProvider?.isLastUserBallot ?? true) &&
+          !(postProvider?.pageLoading ?? true)) {
+        postProvider?.getNextUserBallots(widget.uid);
       }
     }
     // else if (_tabController?.index == 3) {
@@ -239,7 +253,7 @@ class ProfileAllUserState extends State<ProfileAllUser>
     // double halfScreenHeight = MediaQuery.of(context).size.height * 0.4;
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       initialIndex: widget.initialTab,
       child: Container(
         color: Colors.white,
@@ -1044,21 +1058,29 @@ class ProfileAllUserState extends State<ProfileAllUser>
                                           onLoadMore:
                                               initScrollControllerListener,
                                           durationInDay: durationInDay)
-                                      : StreamBuilder<int>(
-                                          initialData: 0,
-                                          stream: _commentRepliesIndexController
-                                              .stream,
-                                          builder: (context, snapshot) {
-                                            return _CommentRepliesTabScreen(
-                                              selectedIndex: snapshot.data ?? 0,
+                                      : _tabController?.index == 2
+                                          ? StreamBuilder<int>(
+                                              initialData: 0,
+                                              stream:
+                                                  _commentRepliesIndexController
+                                                      .stream,
+                                              builder: (context, snapshot) {
+                                                return _CommentRepliesTabScreen(
+                                                  selectedIndex:
+                                                      snapshot.data ?? 0,
+                                                  filter: filter,
+                                                  uId: widget.uid,
+                                                  commentReplyProvider:
+                                                      commentReplyProvider,
+                                                  durationInDay: durationInDay,
+                                                );
+                                              },
+                                            )
+                                          : _BallotTabScreen(
                                               filter: filter,
-                                              uId: widget.uid,
-                                              commentReplyProvider:
-                                                  commentReplyProvider,
-                                              durationInDay: durationInDay,
-                                            );
-                                          },
-                                        ),
+                                              onLoadMore:
+                                                  initScrollControllerListener,
+                                              durationInDay: durationInDay)
                             ],
                           ),
                         ],
@@ -1202,7 +1224,8 @@ class _PostTabScreen extends StatelessWidget {
                           archives: false,
                           durationInDay: durationInDay),
                       Visibility(
-                        visible: postProvider.canUserPostLoadMore &&
+                        visible: postProvider.isButtonVisible &&
+                            postProvider.canUserPostLoadMore &&
                             !postProvider.pageLoading &&
                             (postProvider.userProfilePost.length - 1) == index,
                         child: Column(
@@ -1249,6 +1272,130 @@ class _PostTabScreen extends StatelessWidget {
                       Visibility(
                         visible: postProvider.pageLoading &&
                             (postProvider.userProfilePost.length - 1) == index,
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Center(
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+            ],
+          );
+        }
+      }
+    });
+  }
+}
+
+class _BallotTabScreen extends StatelessWidget {
+  final bool filter;
+  final Function() onLoadMore;
+  var durationInDay;
+
+  _BallotTabScreen(
+      {Key? key,
+      required this.filter,
+      required this.onLoadMore,
+      required this.durationInDay})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    int screenWidth = 650;
+    return Consumer<PostProvider>(builder: (context, postProvider, child) {
+      if (postProvider.pLoading) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height - 280,
+          child: const Center(child: CircularProgressIndicator()),
+        );
+      } else {
+        if (postProvider.userProfileBallot.isEmpty) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height - 280,
+            child: const Center(
+              child: Text(
+                'No ballots yet.',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 114, 114, 114), fontSize: 18),
+              ),
+            ),
+          );
+        } else {
+          return Column(
+            children: [
+              ListView.builder(
+                // key: UniqueKey(),
+                itemCount: postProvider.userProfileBallot.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      PostCardTest(
+                          post: postProvider.userProfileBallot[index],
+                          profileScreen: true,
+                          archives: false,
+                          durationInDay: durationInDay),
+                      Visibility(
+                        visible: postProvider.isButtonVisible &&
+                            postProvider.canUserBallotLoadMore &&
+                            !postProvider.pageLoading &&
+                            (postProvider.userProfileBallot.length - 1) ==
+                                index,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: PhysicalModel(
+                                color: Colors.white,
+                                elevation: 2,
+                                borderRadius: BorderRadius.circular(25),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(25),
+                                    splashColor: const Color.fromARGB(
+                                        255, 245, 245, 245),
+                                    onTap: onLoadMore,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          'View More',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13.5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: postProvider.pageLoading &&
+                            (postProvider.userProfileBallot.length - 1) ==
+                                index,
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Center(
@@ -1323,7 +1470,8 @@ class _PollTabScreen extends StatelessWidget {
                         archives: false,
                         durationInDay: durationInDay),
                     Visibility(
-                      visible: !pollsProvider.userPollsLast &&
+                      visible: pollsProvider.isButtonVisible &&
+                          !pollsProvider.userPollsLast &&
                           !pollsProvider.scrollLoading &&
                           (pollsProvider.userPolls.length - 1) == index,
                       child: Column(
@@ -1548,12 +1696,16 @@ class _CommentRepliesTabScreen extends StatelessWidget {
                 ),
                 Visibility(
                   visible: (selectedIndex == 0)
-                      ? ((!commentReplyProvider.commentLastCheck &&
-                              !commentReplyProvider.commentPageScrollLoading) &&
-                          (commentRepliesList.length - 1) == index)
-                      : ((!commentReplyProvider.replyLastCheck &&
-                              !commentReplyProvider.replyPageScrollLoading) &&
-                          (commentRepliesList.length - 1) == index),
+                      ? commentReplyProvider.isButtonVisible &&
+                          ((!commentReplyProvider.commentLastCheck &&
+                                  !commentReplyProvider
+                                      .commentPageScrollLoading) &&
+                              (commentRepliesList.length - 1) == index)
+                      : commentReplyProvider.isButtonVisible &&
+                          ((!commentReplyProvider.replyLastCheck &&
+                                  !commentReplyProvider
+                                      .replyPageScrollLoading) &&
+                              (commentRepliesList.length - 1) == index),
                   child: Column(
                     children: [
                       const SizedBox(

@@ -3122,1051 +3122,966 @@ class _SearchState extends State<Search> {
                                     },
                                   );
                           })
-                        : filterProvider.searchController.text.isEmpty &&
-                                filterProvider.isAllKey &&
-                                filterProvider.isHome
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 6, bottom: 3.5),
-                                child: Consumer<SearchPageProvider>(builder:
-                                    (context, searchPageProvider, child) {
-                                  return FutureBuilder(
-                                    // future: filterProvider.messages == "true"
-                                    //     ? searchPageProvider.getkeywordList(
-                                    //         filterProvider.global,
-                                    //         filterProvider.countryCode)
-                                    //     : searchPageProvider.getpollKeywordList(
-                                    //         filterProvider.global,
-                                    //         filterProvider.countryCode),
-                                    builder: (BuildContext context, snapshot) {
-                                      return searchPageProvider.Loading == true
-                                          ? const Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            )
-                                          : searchPageProvider
-                                                          .list.isNotEmpty &&
-                                                      filterProvider.messages ==
-                                                          "true" ||
-                                                  searchPageProvider.listPoll
-                                                          .isNotEmpty &&
-                                                      filterProvider.messages !=
-                                                          "true"
-                                              ? SingleChildScrollView(
-                                                  child: Column(
-                                                    children: [
-                                                      filterProvider.messages ==
+                        : filterProvider.global == "false"
+                            ? Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // const Icon(Icons.flag_outlined,
+                                    //     color: Colors.black),
+                                    // const SizedBox(height: 3),
+                                    const Text(
+                                      'Coming Soon!',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(25),
+                                      splashColor: Colors.grey.withOpacity(0.3),
+                                      onTap: () {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 100),
+                                            () {
+                                          nationalLearnMore(context: context);
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 3,
+                                        ),
+                                        child: const Text(
+                                          'Learn more',
+                                          style: TextStyle(
+                                              color: Colors.blue, fontSize: 13),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : filterProvider.searchController.text.isEmpty &&
+                                    filterProvider.isAllKey &&
+                                    filterProvider.isHome
+                                ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 6, bottom: 3.5),
+                                    child: Consumer<SearchPageProvider>(builder:
+                                        (context, searchPageProvider, child) {
+                                      return FutureBuilder(
+                                        // future: filterProvider.messages == "true"
+                                        //     ? searchPageProvider.getkeywordList(
+                                        //         filterProvider.global,
+                                        //         filterProvider.countryCode)
+                                        //     : searchPageProvider.getpollKeywordList(
+                                        //         filterProvider.global,
+                                        //         filterProvider.countryCode),
+                                        builder:
+                                            (BuildContext context, snapshot) {
+                                          return searchPageProvider.Loading ==
+                                                  true
+                                              ? const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                )
+                                              : searchPageProvider.list
+                                                              .isNotEmpty &&
+                                                          filterProvider
+                                                                  .messages ==
+                                                              "true" ||
+                                                      searchPageProvider
+                                                              .listPoll
+                                                              .isNotEmpty &&
+                                                          filterProvider
+                                                                  .messages !=
                                                               "true"
-                                                          ? searchPageProvider
-                                                                      .postKeywordListCount >
-                                                                  1
-                                                              ? Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      top: 3.5,
-                                                                      bottom:
-                                                                          3.5,
-                                                                      right: 12,
-                                                                      left: 12),
-                                                                  child:
-                                                                      PhysicalModel(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    elevation:
-                                                                        2,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                    child:
-                                                                        Material(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      child: InkWell(
-                                                                          borderRadius: BorderRadius.circular(25),
-                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                          onTap: () {
-                                                                            searchPageProvider.getkeywordList(
-                                                                                filterProvider.global,
-                                                                                filterProvider.countryCode,
-                                                                                filterProvider.durationInDay,
-                                                                                filterProvider.twoValueSearch,
-                                                                                getNextList1: false);
-                                                                          },
-                                                                          child: Container(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Colors.transparent,
-                                                                              borderRadius: BorderRadius.circular(25),
-                                                                            ),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Text(
-                                                                                  'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
-                                                                                  style: const TextStyle(
-                                                                                    color: Colors.black,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    fontSize: 13.5,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          )),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              : Container()
-                                                          : searchPageProvider
-                                                                      .pollKeywordListCount >
-                                                                  1
-                                                              ? Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      top: 3.5,
-                                                                      bottom:
-                                                                          3.5,
-                                                                      right: 12,
-                                                                      left: 12),
-                                                                  child:
-                                                                      PhysicalModel(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    elevation:
-                                                                        2,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                    child:
-                                                                        Material(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      child: InkWell(
-                                                                          borderRadius: BorderRadius.circular(25),
-                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                          onTap: () {
-                                                                            // setState(
-                                                                            //     () {
-                                                                            //   print("poll----");
-                                                                            //   getNextListPoll =
-                                                                            //       false;
-                                                                            // });
-                                                                            searchPageProvider.getpollKeywordList(
-                                                                                filterProvider.global,
-                                                                                filterProvider.countryCode,
-                                                                                filterProvider.durationInDay,
-                                                                                filterProvider.twoValueSearch,
-                                                                                getNextListPoll: false);
-                                                                          },
-                                                                          child: Container(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Colors.transparent,
-                                                                              borderRadius: BorderRadius.circular(25),
-                                                                            ),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Text(
-                                                                                  'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
-                                                                                  style: const TextStyle(
-                                                                                    color: Colors.black,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    fontSize: 13.5,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          )),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              : Container(),
-                                                      ListView.builder(
-                                                          physics:
-                                                              const NeverScrollableScrollPhysics(),
-                                                          shrinkWrap: true,
-                                                          itemCount: filterProvider
+                                                  ? SingleChildScrollView(
+                                                      child: Column(
+                                                        children: [
+                                                          filterProvider
                                                                       .messages ==
                                                                   "true"
                                                               ? searchPageProvider
-                                                                  .list.length
+                                                                          .postKeywordListCount >
+                                                                      1
+                                                                  ? Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              3.5,
+                                                                          bottom:
+                                                                              3.5,
+                                                                          right:
+                                                                              12,
+                                                                          left:
+                                                                              12),
+                                                                      child:
+                                                                          PhysicalModel(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        elevation:
+                                                                            2,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                        child:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child: InkWell(
+                                                                              borderRadius: BorderRadius.circular(25),
+                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                              onTap: () {
+                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: false);
+                                                                              },
+                                                                              child: Container(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.transparent,
+                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 13.5,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              )),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : Container()
                                                               : searchPageProvider
-                                                                  .listPoll
-                                                                  .length,
-                                                          // ? keywordCount ==
-                                                          //         lastPagekeyword
-                                                          //     ? list.length % 10
-                                                          //     : 10
-                                                          // : pollKeywordCount ==
-                                                          //         lastPollKewword
-                                                          //     ? listPoll.length % 10
-                                                          //     : 10,
-                                                          itemBuilder: (context,
-                                                              indexValue) {
-                                                            // int indexValue = messages ==
-                                                            //         "true"
-                                                            //     ? index +
-                                                            //         ((keywordCount - 1) *
-                                                            //             10)
-                                                            //     : index +
-                                                            //         ((pollKeywordCount -
-                                                            //                 1) *
-                                                            //             10);
+                                                                          .pollKeywordListCount >
+                                                                      1
+                                                                  ? Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              3.5,
+                                                                          bottom:
+                                                                              3.5,
+                                                                          right:
+                                                                              12,
+                                                                          left:
+                                                                              12),
+                                                                      child:
+                                                                          PhysicalModel(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        elevation:
+                                                                            2,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                        child:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child: InkWell(
+                                                                              borderRadius: BorderRadius.circular(25),
+                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                              onTap: () {
+                                                                                // setState(
+                                                                                //     () {
+                                                                                //   print("poll----");
+                                                                                //   getNextListPoll =
+                                                                                //       false;
+                                                                                // });
+                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: false);
+                                                                              },
+                                                                              child: Container(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.transparent,
+                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 13.5,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              )),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : Container(),
+                                                          ListView.builder(
+                                                              physics:
+                                                                  const NeverScrollableScrollPhysics(),
+                                                              shrinkWrap: true,
+                                                              itemCount: filterProvider
+                                                                          .messages ==
+                                                                      "true"
+                                                                  ? searchPageProvider
+                                                                      .list
+                                                                      .length
+                                                                  : searchPageProvider
+                                                                      .listPoll
+                                                                      .length,
+                                                              // ? keywordCount ==
+                                                              //         lastPagekeyword
+                                                              //     ? list.length % 10
+                                                              //     : 10
+                                                              // : pollKeywordCount ==
+                                                              //         lastPollKewword
+                                                              //     ? listPoll.length % 10
+                                                              //     : 10,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      indexValue) {
+                                                                // int indexValue = messages ==
+                                                                //         "true"
+                                                                //     ? index +
+                                                                //         ((keywordCount - 1) *
+                                                                //             10)
+                                                                //     : index +
+                                                                //         ((pollKeywordCount -
+                                                                //                 1) *
+                                                                //             10);
 
-                                                            return Padding(
-                                                              padding:
-                                                                  const EdgeInsets
+                                                                return Padding(
+                                                                  padding: const EdgeInsets
                                                                           .symmetric(
                                                                       vertical:
                                                                           3.5),
-                                                              child:
-                                                                  PhysicalModel(
-                                                                elevation: 2,
-                                                                color: Colors
-                                                                    .transparent,
-                                                                child: Material(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor: Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.25),
-                                                                    onTap:
-                                                                        () async {
-                                                                      await filterProvider.messages ==
-                                                                              "true"
-                                                                          ? searchPageProvider
-                                                                              .initList(
-                                                                              searchPageProvider.list[indexValue].keyName ?? "",
-                                                                              filterProvider.global,
-                                                                              filterProvider.countryCode,
-                                                                              filterProvider.oneValueSearch,
-                                                                              filterProvider.twoValueSearch,
-                                                                              filterProvider.durationInDay,
-                                                                            )
-                                                                          : searchPageProvider
-                                                                              .initPollList(
-                                                                              searchPageProvider.listPoll[indexValue].keyName ?? "",
-                                                                              filterProvider.global,
-                                                                              filterProvider.countryCode,
-                                                                              filterProvider.oneValueSearch,
-                                                                              filterProvider.twoValueSearch,
-                                                                              filterProvider.durationInDay,
-                                                                            );
-                                                                      filterProvider
-                                                                          .setisAllKey(
-                                                                              false);
-                                                                      filterProvider
-                                                                          .setShowMessage(
-                                                                              true);
-                                                                      filterProvider.messages ==
-                                                                              "true"
-                                                                          ? filterProvider.setTrendKeyStore(searchPageProvider.list[indexValue].keyName ??
-                                                                              "")
-                                                                          : filterProvider.setTrendKeyStore(searchPageProvider.listPoll[indexValue].keyName ??
-                                                                              "");
-                                                                      // setState(() {
-                                                                      // isAllKey =
-                                                                      //     false;
-                                                                      // showMessages =
-                                                                      //     true;
-                                                                      // });
-                                                                    },
-                                                                    child: NoRadioListTile<
-                                                                            String>(
-                                                                        start: filterProvider.messages ==
-                                                                                "true"
-                                                                            ? ((((searchPageProvider.postKeywordListCount - 1) * 10) + 1) + indexValue)
-                                                                                .toString()
-                                                                            : ((((searchPageProvider.pollKeywordListCount - 1) * 10) + 1) + indexValue)
-                                                                                .toString(),
-                                                                        center: filterProvider.messages ==
-                                                                                "true"
-                                                                            ? searchPageProvider.list[indexValue].keyName ??
-                                                                                ""
-                                                                            : searchPageProvider.listPoll[indexValue].keyName ??
-                                                                                "",
-                                                                        end: filterProvider.messages ==
-                                                                                "true"
-                                                                            ? searchPageProvider.list[indexValue].length.toString()
-                                                                            : searchPageProvider.listPoll[indexValue].length.toString()),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }),
-                                                      filterProvider.messages ==
-                                                              "true"
-                                                          ? searchPageProvider
-                                                                      .postKeywordLast ==
-                                                                  false
-                                                              ? Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      top: 3.5,
-                                                                      bottom:
-                                                                          3.5,
-                                                                      right: 12,
-                                                                      left: 12),
                                                                   child:
                                                                       PhysicalModel(
-                                                                    color: Colors
-                                                                        .white,
                                                                     elevation:
                                                                         2,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
+                                                                    color: Colors
+                                                                        .transparent,
                                                                     child:
                                                                         Material(
                                                                       color: Colors
-                                                                          .transparent,
-                                                                      child: InkWell(
-                                                                          borderRadius: BorderRadius.circular(25),
-                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                          onTap: () {
-                                                                            // Future.delayed(
-                                                                            //     const Duration(
-                                                                            //         milliseconds:
-                                                                            //             100),
-                                                                            //     () {});
-                                                                            // setState(
-                                                                            //     () {
-                                                                            //   getNextList1 =
-                                                                            //       true;
-                                                                            // });
-                                                                            searchPageProvider.getkeywordList(
-                                                                                filterProvider.global,
-                                                                                filterProvider.countryCode,
-                                                                                filterProvider.durationInDay,
-                                                                                filterProvider.twoValueSearch,
-                                                                                getNextList1: true);
-                                                                          },
-                                                                          child: Container(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Colors.transparent,
-                                                                              borderRadius: BorderRadius.circular(25),
-                                                                            ),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Text(
-                                                                                  "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
-                                                                                  // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                  style: const TextStyle(
-                                                                                    color: Colors.black,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    fontSize: 13.5,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          )),
+                                                                          .white,
+                                                                      child:
+                                                                          InkWell(
+                                                                        splashColor: Colors
+                                                                            .grey
+                                                                            .withOpacity(0.25),
+                                                                        onTap:
+                                                                            () async {
+                                                                          await filterProvider.messages == "true"
+                                                                              ? searchPageProvider.initList(
+                                                                                  searchPageProvider.list[indexValue].keyName ?? "",
+                                                                                  filterProvider.global,
+                                                                                  filterProvider.countryCode,
+                                                                                  filterProvider.oneValueSearch,
+                                                                                  filterProvider.twoValueSearch,
+                                                                                  filterProvider.durationInDay,
+                                                                                )
+                                                                              : searchPageProvider.initPollList(
+                                                                                  searchPageProvider.listPoll[indexValue].keyName ?? "",
+                                                                                  filterProvider.global,
+                                                                                  filterProvider.countryCode,
+                                                                                  filterProvider.oneValueSearch,
+                                                                                  filterProvider.twoValueSearch,
+                                                                                  filterProvider.durationInDay,
+                                                                                );
+                                                                          filterProvider
+                                                                              .setisAllKey(false);
+                                                                          filterProvider
+                                                                              .setShowMessage(true);
+                                                                          filterProvider.messages == "true"
+                                                                              ? filterProvider.setTrendKeyStore(searchPageProvider.list[indexValue].keyName ?? "")
+                                                                              : filterProvider.setTrendKeyStore(searchPageProvider.listPoll[indexValue].keyName ?? "");
+                                                                          // setState(() {
+                                                                          // isAllKey =
+                                                                          //     false;
+                                                                          // showMessages =
+                                                                          //     true;
+                                                                          // });
+                                                                        },
+                                                                        child: NoRadioListTile<String>(
+                                                                            start: filterProvider.messages == "true"
+                                                                                ? ((((searchPageProvider.postKeywordListCount - 1) * 10) + 1) + indexValue).toString()
+                                                                                : ((((searchPageProvider.pollKeywordListCount - 1) * 10) + 1) + indexValue).toString(),
+                                                                            center: filterProvider.messages == "true" ? searchPageProvider.list[indexValue].keyName ?? "" : searchPageProvider.listPoll[indexValue].keyName ?? "",
+                                                                            end: filterProvider.messages == "true" ? searchPageProvider.list[indexValue].length.toString() : searchPageProvider.listPoll[indexValue].length.toString()),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                )
-                                                              : Container()
-                                                          : searchPageProvider
-                                                                      .pollKeywordLast ==
-                                                                  false
-                                                              ? Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          3.5,
-                                                                      horizontal:
-                                                                          12),
-                                                                  child:
-                                                                      PhysicalModel(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    elevation:
-                                                                        2,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                    child:
-                                                                        Material(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      child: InkWell(
-                                                                          borderRadius: BorderRadius.circular(25),
-                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                          onTap: () {
-                                                                            // Future.delayed(
-                                                                            //     const Duration(
-                                                                            //         milliseconds:
-                                                                            //             100),
-                                                                            //     () {});
-                                                                            // setState(
-                                                                            //     () {
-                                                                            //   getNextListPoll =
-                                                                            //       true;
-                                                                            // });
-                                                                            searchPageProvider.getpollKeywordList(
-                                                                                filterProvider.global,
-                                                                                filterProvider.countryCode,
-                                                                                filterProvider.durationInDay,
-                                                                                filterProvider.twoValueSearch,
-                                                                                getNextListPoll: true);
-                                                                          },
-                                                                          child: Container(
-                                                                            padding:
-                                                                                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Colors.transparent,
+                                                                );
+                                                              }),
+                                                          filterProvider
+                                                                      .messages ==
+                                                                  "true"
+                                                              ? searchPageProvider
+                                                                          .postKeywordLast ==
+                                                                      false
+                                                                  ? Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              3.5,
+                                                                          bottom:
+                                                                              3.5,
+                                                                          right:
+                                                                              12,
+                                                                          left:
+                                                                              12),
+                                                                      child:
+                                                                          PhysicalModel(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        elevation:
+                                                                            2,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                        child:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child: InkWell(
                                                                               borderRadius: BorderRadius.circular(25),
-                                                                            ),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Text(
-                                                                                  "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
-                                                                                  // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                  style: const TextStyle(
-                                                                                    color: Colors.black,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    fontSize: 13.5,
-                                                                                  ),
+                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                              onTap: () {
+                                                                                // Future.delayed(
+                                                                                //     const Duration(
+                                                                                //         milliseconds:
+                                                                                //             100),
+                                                                                //     () {});
+                                                                                // setState(
+                                                                                //     () {
+                                                                                //   getNextList1 =
+                                                                                //       true;
+                                                                                // });
+                                                                                searchPageProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextList1: true);
+                                                                              },
+                                                                              child: Container(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.transparent,
+                                                                                  borderRadius: BorderRadius.circular(25),
                                                                                 ),
-                                                                              ],
-                                                                            ),
-                                                                          )),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              : Container()
-                                                    ],
-                                                  ),
-                                                )
-                                              : Center(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: const [
-                                                      Text(
-                                                        'No trending keywords yet.',
-                                                        style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 18),
+                                                                                child: Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
+                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 13.5,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              )),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : Container()
+                                                              : searchPageProvider
+                                                                          .pollKeywordLast ==
+                                                                      false
+                                                                  ? Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              3.5,
+                                                                          horizontal:
+                                                                              12),
+                                                                      child:
+                                                                          PhysicalModel(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        elevation:
+                                                                            2,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                        child:
+                                                                            Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child: InkWell(
+                                                                              borderRadius: BorderRadius.circular(25),
+                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                              onTap: () {
+                                                                                // Future.delayed(
+                                                                                //     const Duration(
+                                                                                //         milliseconds:
+                                                                                //             100),
+                                                                                //     () {});
+                                                                                // setState(
+                                                                                //     () {
+                                                                                //   getNextListPoll =
+                                                                                //       true;
+                                                                                // });
+                                                                                searchPageProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, filterProvider.durationInDay, filterProvider.twoValueSearch, getNextListPoll: true);
+                                                                              },
+                                                                              child: Container(
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.transparent,
+                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
+                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                      style: const TextStyle(
+                                                                                        color: Colors.black,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 13.5,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              )),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : Container()
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
-                                                );
-                                    },
-                                  );
-                                }),
-                              )
-                            : Consumer<SearchPageProvider>(
-                                builder: (context, searchPageProvider, child) {
-                                return searchPageProvider.Loading == true
-                                    ? const Center(
-                                        child: CircularProgressIndicator(),
-                                      )
-                                    : filterProvider.showMessages == true &&
-                                                filterProvider.isUser ==
-                                                    false &&
-                                                searchPageProvider
-                                                    .postsList.isNotEmpty &&
-                                                filterProvider.messages ==
-                                                    "true" &&
-                                                filterProvider.isHome ||
-                                            filterProvider.showMessages == true &&
-                                                filterProvider.isUser ==
-                                                    false &&
-                                                searchPageProvider
-                                                    .pollsList.isNotEmpty &&
-                                                filterProvider.messages !=
-                                                    "true" &&
-                                                filterProvider.isHome
-                                        ? SingleChildScrollView(
-                                            controller: searchPageProvider
-                                                .scrollController,
-                                            child: Column(
-                                              children: [
-                                                filterProvider.messages ==
-                                                        "true"
-                                                    ? Visibility(
-                                                        visible: searchPageProvider
-                                                            .previousButtonVisible,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 10,
-                                                                  bottom: 4,
-                                                                  right: 12,
-                                                                  left: 12),
-                                                          child: PhysicalModel(
-                                                            color: Colors.white,
-                                                            elevation: 2,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        25),
-                                                            child: Material(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: InkWell(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            25),
-                                                                splashColor:
-                                                                    const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        245,
-                                                                        245,
-                                                                        245),
-                                                                onTap: () {
-                                                                  Future
-                                                                      .delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            100),
-                                                                    () {
-                                                                      if (filterProvider
-                                                                              .messages ==
-                                                                          "true") {
-                                                                        searchPageProvider.initList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                false);
-                                                                      } else {
-                                                                        searchPageProvider.initPollList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                false);
-                                                                      }
-                                                                      // initList(
-                                                                      //     trendkeystore!,
-                                                                      //     getNextList:
-                                                                      //         false);
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          10),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        'View ${(searchPageProvider.postPageCount - 2) * 6 + 1} - ${(searchPageProvider.postPageCount - 1) * 6}',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontSize:
-                                                                              13.5,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
+                                                    )
+                                                  : Center(
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Text(
+                                                            'No trending keywords yet.',
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.grey,
+                                                                fontSize: 18),
                                                           ),
-                                                        ),
-                                                      )
-                                                    : Visibility(
-                                                        visible: searchPageProvider
-                                                            .previousButtonVisible,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 10,
-                                                                  bottom: 4,
-                                                                  right: 12,
-                                                                  left: 12),
-                                                          child: PhysicalModel(
-                                                            color: Colors.white,
-                                                            elevation: 2,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        25),
-                                                            child: Material(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: InkWell(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            25),
-                                                                splashColor:
-                                                                    const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        245,
-                                                                        245,
-                                                                        245),
-                                                                onTap: () {
-                                                                  Future
-                                                                      .delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            100),
-                                                                    () {
-                                                                      if (filterProvider
-                                                                              .messages ==
-                                                                          "true") {
-                                                                        searchPageProvider.initList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                false);
-                                                                      } else {
-                                                                        searchPageProvider.initPollList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                false);
-                                                                      }
-                                                                      // initPollList(
-                                                                      //     trendkeystore!,
-                                                                      //     getNextList:
-                                                                      //         false);
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          10),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        'View ${(searchPageProvider.pollPageCount - 2) * 6 + 1} - ${(searchPageProvider.pollPageCount - 1) * 6}',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontSize:
-                                                                              13.5,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                // Consumer2<PostProvider, PollsProvider>(
-                                                //     builder: (context, postProvider,
-                                                //         pollProvider, child) {
-                                                //   forsetInitState(
-                                                //       postProvider, pollProvider);
-                                                //   return
-                                                ListView.builder(
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  shrinkWrap: true,
-                                                  itemCount: filterProvider
-                                                              .messages ==
-                                                          "true"
-                                                      ? searchPageProvider
-                                                          .postsList.length
-                                                      : searchPageProvider
-                                                          .pollsList.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    final User? user = Provider
-                                                            .of<UserProvider>(
-                                                                context)
-                                                        .getUser;
-                                                    return filterProvider
-                                                                .messages ==
-                                                            "true"
-                                                        ? PostCardTest(
-                                                            post: searchPageProvider
-                                                                    .postsList[
-                                                                index],
-                                                            archives: false,
-                                                            profileScreen:
-                                                                false,
-                                                            durationInDay: widget
-                                                                .durationInDay
-                                                            // currentUserId: null,
-                                                            )
-                                                        : PollCard(
-                                                            poll: searchPageProvider
-                                                                    .pollsList[
-                                                                index],
-                                                            archives: false,
-                                                            profileScreen:
-                                                                false,
-                                                            durationInDay: widget
-                                                                .durationInDay
-                                                            // currentUserId: null,
-                                                            );
-                                                  },
-                                                ),
-                                                // }),
-                                                filterProvider.messages ==
-                                                        "true"
-                                                    ? Visibility(
-                                                        visible: searchPageProvider
-                                                            .nextButtonVisible,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 10,
-                                                                  horizontal:
-                                                                      12),
-                                                          child: PhysicalModel(
-                                                            color: Colors.white,
-                                                            elevation: 2,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        25),
-                                                            child: Material(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: InkWell(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            25),
-                                                                splashColor:
-                                                                    const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        245,
-                                                                        245,
-                                                                        245),
-                                                                onTap: () {
-                                                                  Future
-                                                                      .delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            100),
-                                                                    () {
-                                                                      if (filterProvider
-                                                                              .messages ==
-                                                                          "true") {
-                                                                        searchPageProvider.initList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                true);
-                                                                      } else {
-                                                                        searchPageProvider.initPollList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                true);
-                                                                      }
-                                                                      // initList(
-                                                                      //     trendkeystore!,
-                                                                      //     getNextList:
-                                                                      //         true);
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          10),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        'View ${searchPageProvider.postPageCount * 6 + 1} - ${(searchPageProvider.postPageCount + 1) * 6}',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontSize:
-                                                                              13.5,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Visibility(
-                                                        visible: searchPageProvider
-                                                            .nextButtonVisible,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 10,
-                                                                  horizontal:
-                                                                      12),
-                                                          child: PhysicalModel(
-                                                            color: Colors.white,
-                                                            elevation: 2,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        25),
-                                                            child: Material(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: InkWell(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            25),
-                                                                splashColor:
-                                                                    const Color
-                                                                            .fromARGB(
-                                                                        255,
-                                                                        245,
-                                                                        245,
-                                                                        245),
-                                                                onTap: () {
-                                                                  Future
-                                                                      .delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            100),
-                                                                    () {
-                                                                      if (filterProvider
-                                                                              .messages ==
-                                                                          "true") {
-                                                                        searchPageProvider.initList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                true);
-                                                                      } else {
-                                                                        searchPageProvider.initPollList(
-                                                                            filterProvider.trendkeystore ??
-                                                                                "",
-                                                                            filterProvider
-                                                                                .global,
-                                                                            filterProvider
-                                                                                .countryCode,
-                                                                            filterProvider
-                                                                                .oneValueSearch,
-                                                                            filterProvider
-                                                                                .twoValueSearch,
-                                                                            filterProvider
-                                                                                .durationInDay,
-                                                                            getNextList:
-                                                                                true);
-                                                                      }
-                                                                      // initPollList(
-                                                                      //     trendkeystore!,
-                                                                      //     getNextList:
-                                                                      //         true);
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          10),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            25),
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        'View ${searchPageProvider.pollPageCount * 6 + 1} - ${(searchPageProvider.pollPageCount + 1) * 6}',
-                                                                        // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
-                                                                        style:
-                                                                            const TextStyle(
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontSize:
-                                                                              13.5,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                              ],
-                                            ),
+                                                    );
+                                        },
+                                      );
+                                    }),
+                                  )
+                                : Consumer<SearchPageProvider>(builder:
+                                    (context, searchPageProvider, child) {
+                                    return searchPageProvider.Loading == true
+                                        ? const Center(
+                                            child: CircularProgressIndicator(),
                                           )
                                         : filterProvider.showMessages == true &&
-                                                filterProvider.isUser ==
-                                                    false &&
-                                                searchPageProvider
-                                                    .postsList.isEmpty &&
-                                                filterProvider.messages ==
-                                                    "true" &&
-                                                filterProvider.isHome
-                                            ? Center(
+                                                    filterProvider.isUser ==
+                                                        false &&
+                                                    searchPageProvider
+                                                        .postsList.isNotEmpty &&
+                                                    filterProvider.messages ==
+                                                        "true" &&
+                                                    filterProvider.isHome ||
+                                                filterProvider.showMessages == true &&
+                                                    filterProvider.isUser ==
+                                                        false &&
+                                                    searchPageProvider
+                                                        .pollsList.isNotEmpty &&
+                                                    filterProvider.messages !=
+                                                        "true" &&
+                                                    filterProvider.isHome
+                                            ? SingleChildScrollView(
+                                                controller: searchPageProvider
+                                                    .scrollController,
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: const [
-                                                    Text(
-                                                      'No messages found.',
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 18),
+                                                  children: [
+                                                    filterProvider.messages ==
+                                                            "true"
+                                                        ? Visibility(
+                                                            visible:
+                                                                searchPageProvider
+                                                                    .previousButtonVisible,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 10,
+                                                                      bottom: 4,
+                                                                      right: 12,
+                                                                      left: 12),
+                                                              child:
+                                                                  PhysicalModel(
+                                                                color: Colors
+                                                                    .white,
+                                                                elevation: 2,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                                child: Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child:
+                                                                      InkWell(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25),
+                                                                    splashColor:
+                                                                        const Color.fromARGB(
+                                                                            255,
+                                                                            245,
+                                                                            245,
+                                                                            245),
+                                                                    onTap: () {
+                                                                      Future
+                                                                          .delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                100),
+                                                                        () {
+                                                                          if (filterProvider.messages ==
+                                                                              "true") {
+                                                                            searchPageProvider.initList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: false);
+                                                                          } else {
+                                                                            searchPageProvider.initPollList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: false);
+                                                                          }
+                                                                          // initList(
+                                                                          //     trendkeystore!,
+                                                                          //     getNextList:
+                                                                          //         false);
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              10),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                      ),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Text(
+                                                                            'View Previous',
+                                                                            // 'View ${(searchPageProvider.postPageCount - 2) * 6 + 1} - ${(searchPageProvider.postPageCount - 1) * 6}',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              fontSize: 13.5,
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : Visibility(
+                                                            visible:
+                                                                searchPageProvider
+                                                                    .previousButtonVisible,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 10,
+                                                                      bottom: 4,
+                                                                      right: 12,
+                                                                      left: 12),
+                                                              child:
+                                                                  PhysicalModel(
+                                                                color: Colors
+                                                                    .white,
+                                                                elevation: 2,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                                child: Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child:
+                                                                      InkWell(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25),
+                                                                    splashColor:
+                                                                        const Color.fromARGB(
+                                                                            255,
+                                                                            245,
+                                                                            245,
+                                                                            245),
+                                                                    onTap: () {
+                                                                      Future
+                                                                          .delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                100),
+                                                                        () {
+                                                                          if (filterProvider.messages ==
+                                                                              "true") {
+                                                                            searchPageProvider.initList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: false);
+                                                                          } else {
+                                                                            searchPageProvider.initPollList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: false);
+                                                                          }
+                                                                          // initPollList(
+                                                                          //     trendkeystore!,
+                                                                          //     getNextList:
+                                                                          //         false);
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              10),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                      ),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Text(
+                                                                            'View Previous',
+                                                                            // 'View ${(searchPageProvider.pollPageCount - 2) * 6 + 1} - ${(searchPageProvider.pollPageCount - 1) * 6}',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              fontSize: 13.5,
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                    // Consumer2<PostProvider, PollsProvider>(
+                                                    //     builder: (context, postProvider,
+                                                    //         pollProvider, child) {
+                                                    //   forsetInitState(
+                                                    //       postProvider, pollProvider);
+                                                    //   return
+                                                    ListView.builder(
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      shrinkWrap: true,
+                                                      itemCount: filterProvider
+                                                                  .messages ==
+                                                              "true"
+                                                          ? searchPageProvider
+                                                              .postsList.length
+                                                          : searchPageProvider
+                                                              .pollsList.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        final User? user = Provider
+                                                                .of<UserProvider>(
+                                                                    context)
+                                                            .getUser;
+                                                        return filterProvider
+                                                                    .messages ==
+                                                                "true"
+                                                            ? PostCardTest(
+                                                                post: searchPageProvider
+                                                                        .postsList[
+                                                                    index],
+                                                                archives: false,
+                                                                profileScreen:
+                                                                    false,
+                                                                durationInDay:
+                                                                    widget
+                                                                        .durationInDay
+                                                                // currentUserId: null,
+                                                                )
+                                                            : PollCard(
+                                                                poll: searchPageProvider
+                                                                        .pollsList[
+                                                                    index],
+                                                                archives: false,
+                                                                profileScreen:
+                                                                    false,
+                                                                durationInDay:
+                                                                    widget
+                                                                        .durationInDay
+                                                                // currentUserId: null,
+                                                                );
+                                                      },
                                                     ),
+                                                    // }),
+                                                    filterProvider.messages ==
+                                                            "true"
+                                                        ? Visibility(
+                                                            visible:
+                                                                searchPageProvider
+                                                                    .nextButtonVisible,
+                                                            child: Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10,
+                                                                  horizontal:
+                                                                      12),
+                                                              child:
+                                                                  PhysicalModel(
+                                                                color: Colors
+                                                                    .white,
+                                                                elevation: 2,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                                child: Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child:
+                                                                      InkWell(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25),
+                                                                    splashColor:
+                                                                        const Color.fromARGB(
+                                                                            255,
+                                                                            245,
+                                                                            245,
+                                                                            245),
+                                                                    onTap: () {
+                                                                      Future
+                                                                          .delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                100),
+                                                                        () {
+                                                                          if (filterProvider.messages ==
+                                                                              "true") {
+                                                                            searchPageProvider.initList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: true);
+                                                                          } else {
+                                                                            searchPageProvider.initPollList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: true);
+                                                                          }
+                                                                          // initList(
+                                                                          //     trendkeystore!,
+                                                                          //     getNextList:
+                                                                          //         true);
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              10),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                      ),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Text(
+                                                                            'View More',
+                                                                            // 'View ${searchPageProvider.postPageCount * 6 + 1} - ${(searchPageProvider.postPageCount + 1) * 6}',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              fontSize: 13.5,
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : Visibility(
+                                                            visible:
+                                                                searchPageProvider
+                                                                    .nextButtonVisible,
+                                                            child: Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10,
+                                                                  horizontal:
+                                                                      12),
+                                                              child:
+                                                                  PhysicalModel(
+                                                                color: Colors
+                                                                    .white,
+                                                                elevation: 2,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                                child: Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child:
+                                                                      InkWell(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25),
+                                                                    splashColor:
+                                                                        const Color.fromARGB(
+                                                                            255,
+                                                                            245,
+                                                                            245,
+                                                                            245),
+                                                                    onTap: () {
+                                                                      Future
+                                                                          .delayed(
+                                                                        const Duration(
+                                                                            milliseconds:
+                                                                                100),
+                                                                        () {
+                                                                          if (filterProvider.messages ==
+                                                                              "true") {
+                                                                            searchPageProvider.initList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: true);
+                                                                          } else {
+                                                                            searchPageProvider.initPollList(
+                                                                                filterProvider.trendkeystore ?? "",
+                                                                                filterProvider.global,
+                                                                                filterProvider.countryCode,
+                                                                                filterProvider.oneValueSearch,
+                                                                                filterProvider.twoValueSearch,
+                                                                                filterProvider.durationInDay,
+                                                                                getNextList: true);
+                                                                          }
+                                                                          // initPollList(
+                                                                          //     trendkeystore!,
+                                                                          //     getNextList:
+                                                                          //         true);
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          horizontal:
+                                                                              16,
+                                                                          vertical:
+                                                                              10),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25),
+                                                                      ),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Text(
+                                                                            'View More',
+                                                                            // 'View ${searchPageProvider.pollPageCount * 6 + 1} - ${(searchPageProvider.pollPageCount + 1) * 6}',
+                                                                            // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              fontSize: 13.5,
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
                                                   ],
                                                 ),
                                               )
@@ -4174,8 +4089,8 @@ class _SearchState extends State<Search> {
                                                     filterProvider.isUser ==
                                                         false &&
                                                     searchPageProvider
-                                                        .pollsList.isEmpty &&
-                                                    filterProvider.messages !=
+                                                        .postsList.isEmpty &&
+                                                    filterProvider.messages ==
                                                         "true" &&
                                                     filterProvider.isHome
                                                 ? Center(
@@ -4183,351 +4098,61 @@ class _SearchState extends State<Search> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      children: [
-                                                        Column(
-                                                          children: const [
-                                                            Text(
-                                                              'No polls found.',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontSize: 18),
-                                                            ),
-                                                          ],
+                                                      children: const [
+                                                        Text(
+                                                          'No messages found.',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 18),
                                                         ),
                                                       ],
                                                     ),
                                                   )
-                                                : filterProvider.isAllKey == true &&
-                                                        filterProvider
-                                                            .searchController
-                                                            .text
-                                                            .isNotEmpty &&
+                                                : filterProvider.showMessages == true &&
+                                                        filterProvider.isUser ==
+                                                            false &&
+                                                        searchPageProvider
+                                                            .pollsList
+                                                            .isEmpty &&
+                                                        filterProvider.messages !=
+                                                            "true" &&
                                                         filterProvider.isHome
-                                                    ? Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                top: 6,
-                                                                bottom: 3.5),
-                                                        child: FutureBuilder(
-                                                            // future: filterProvider
-                                                            //             .messages ==
-                                                            //         "true"
-                                                            //     ? searchPageProvider
-                                                            //         .getsearchData(
-                                                            //         searchController
-                                                            //             .text,
-                                                            //         filterProvider
-                                                            //             .global,
-                                                            //         filterProvider
-                                                            //             .countryCode,
-                                                            //       )
-                                                            //     : searchPageProvider
-                                                            //         .getsearchData(
-                                                            //         searchController
-                                                            //             .text,
-                                                            //         filterProvider
-                                                            //             .global,
-                                                            //         filterProvider
-                                                            //             .countryCode,
-                                                            //       ),
-                                                            builder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    snapshot) {
-                                                          return searchPageProvider
-                                                                      .Loading ==
-                                                                  true
-                                                              ? const Center(
-                                                                  child:
-                                                                      CircularProgressIndicator(),
-                                                                )
-                                                              : searchPageProvider
-                                                                              .searchResult
-                                                                              .isEmpty &&
-                                                                          filterProvider.messages ==
-                                                                              "true" ||
-                                                                      searchPageProvider
-                                                                              .searchResultPoll
-                                                                              .isEmpty &&
-                                                                          filterProvider.messages !=
-                                                                              "true"
-                                                                  ? Center(
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: const [
-                                                                          Text(
-                                                                            'No keywords found.',
-                                                                            style:
-                                                                                TextStyle(color: Colors.grey, fontSize: 18),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    )
-                                                                  : SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                        children: [
-                                                                          filterProvider.messages == "true"
-                                                                              ? searchPageProvider.postKeywordListCount > 1
-                                                                                  ? Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                      child: PhysicalModel(
-                                                                                        color: Colors.white,
-                                                                                        elevation: 2,
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        child: Material(
-                                                                                          color: Colors.transparent,
-                                                                                          child: InkWell(
-                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                              onTap: () {
-                                                                                                // setState(() {
-                                                                                                //   getNextListSearchMeassage = false;
-                                                                                                // });
-                                                                                                searchPageProvider.getsearchData(
-                                                                                                  filterProvider.searchController.text,
-                                                                                                  filterProvider.global,
-                                                                                                  filterProvider.countryCode,
-                                                                                                  filterProvider.twoValueSearch,
-                                                                                                  filterProvider.durationInDay,
-                                                                                                  getnextPage: false,
-                                                                                                );
-                                                                                              },
-                                                                                              child: Container(
-                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                decoration: BoxDecoration(
-                                                                                                  color: Colors.transparent,
-                                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                                ),
-                                                                                                child: Row(
-                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                  children: [
-                                                                                                    Text(
-                                                                                                      'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
-                                                                                                      style: const TextStyle(
-                                                                                                        color: Colors.black,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 13.5,
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                ),
-                                                                                              )),
-                                                                                        ),
-                                                                                      ),
-                                                                                    )
-                                                                                  : Container()
-                                                                              : searchPageProvider.pollKeywordListCount > 1
-                                                                                  ? Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                      child: PhysicalModel(
-                                                                                        color: Colors.white,
-                                                                                        elevation: 2,
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        child: Material(
-                                                                                          color: Colors.transparent,
-                                                                                          child: InkWell(
-                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                              onTap: () {
-                                                                                                searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: false);
-                                                                                              },
-                                                                                              child: Container(
-                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                decoration: BoxDecoration(
-                                                                                                  color: Colors.transparent,
-                                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                                ),
-                                                                                                child: Row(
-                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                  children: [
-                                                                                                    Text(
-                                                                                                      'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                      style: const TextStyle(
-                                                                                                        color: Colors.black,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 13.5,
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                ),
-                                                                                              )),
-                                                                                        ),
-                                                                                      ),
-                                                                                    )
-                                                                                  : Container(),
-                                                                          ListView
-                                                                              .builder(
-                                                                            physics:
-                                                                                const NeverScrollableScrollPhysics(),
-                                                                            shrinkWrap:
-                                                                                true,
-                                                                            itemCount: filterProvider.messages == "true"
-                                                                                ? searchPageProvider.searchResult.length
-                                                                                : searchPageProvider.searchResultPoll.length,
-                                                                            itemBuilder: (context, index) =>
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 3.5),
-                                                                              child: PhysicalModel(
-                                                                                elevation: 2,
-                                                                                color: Colors.transparent,
-                                                                                child: Material(
-                                                                                  color: Colors.white,
-                                                                                  child: InkWell(
-                                                                                    splashColor: Colors.grey.withOpacity(0.25),
-                                                                                    onTap: () async {
-                                                                                      Future.delayed(const Duration(milliseconds: 250), () async {
-                                                                                        filterProvider.setShowMessage(true);
-                                                                                        filterProvider.messages == "true"
-                                                                                            ? searchPageProvider.initList(
-                                                                                                searchPageProvider.searchResult[index].keyName ?? "",
-                                                                                                filterProvider.global,
-                                                                                                filterProvider.countryCode,
-                                                                                                filterProvider.oneValueSearch,
-                                                                                                filterProvider.twoValueSearch,
-                                                                                                filterProvider.durationInDay,
-                                                                                              )
-                                                                                            : searchPageProvider.initPollList(
-                                                                                                searchPageProvider.searchResultPoll[index].keyName ?? "",
-                                                                                                filterProvider.global,
-                                                                                                filterProvider.countryCode,
-                                                                                                filterProvider.oneValueSearch,
-                                                                                                filterProvider.twoValueSearch,
-                                                                                                filterProvider.durationInDay,
-                                                                                              );
-                                                                                        // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
-                                                                                        filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(searchPageProvider.searchResult[index].keyName ?? "") : filterProvider.setTrendKeyStore(searchPageProvider.searchResultPoll[index].keyName ?? "");
-                                                                                      });
-                                                                                    },
-                                                                                    child: SearchRadioListTile<String>(
-                                                                                      center: filterProvider.messages == "true" ? searchPageProvider.searchResult[index].keyName ?? "" : searchPageProvider.searchResultPoll[index].keyName ?? "",
-                                                                                      end: filterProvider.messages == "true" ? searchPageProvider.searchResult[index].length.toString() : searchPageProvider.searchResultPoll[index].length.toString(),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          filterProvider.messages == "true"
-                                                                              ? searchPageProvider.postKeywordLast == false
-                                                                                  ? Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                      child: PhysicalModel(
-                                                                                        color: Colors.white,
-                                                                                        elevation: 2,
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        child: Material(
-                                                                                          color: Colors.transparent,
-                                                                                          child: InkWell(
-                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                              onTap: () {
-                                                                                                // Future.delayed(
-                                                                                                //     const Duration(
-                                                                                                //         milliseconds:
-                                                                                                //             100),
-                                                                                                //     () {});
-                                                                                                // setState(() {
-                                                                                                //   getNextListSearchMeassage = true;
-                                                                                                // });
-                                                                                                searchPageProvider.getsearchData(
-                                                                                                  filterProvider.searchController.text,
-                                                                                                  filterProvider.global,
-                                                                                                  filterProvider.countryCode,
-                                                                                                  filterProvider.twoValueSearch,
-                                                                                                  filterProvider.durationInDay,
-                                                                                                  getnextPage: true,
-                                                                                                );
-                                                                                              },
-                                                                                              child: Padding(
-                                                                                                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                                                                                                child: Row(
-                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                  children: [
-                                                                                                    Text(
-                                                                                                      "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
-                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                      style: const TextStyle(
-                                                                                                        color: Colors.black,
-                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                        fontSize: 13.5,
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                ),
-                                                                                              )),
-                                                                                        ),
-                                                                                      ),
-                                                                                    )
-                                                                                  : Container()
-                                                                              : searchPageProvider.pollKeywordLast == false
-                                                                                  ? Padding(
-                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                      child: PhysicalModel(
-                                                                                        color: Colors.white,
-                                                                                        elevation: 2,
-                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                        child: Material(
-                                                                                          color: Colors.transparent,
-                                                                                          child: InkWell(
-                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                            onTap: () {
-                                                                                              // Future.delayed(
-                                                                                              //     const Duration(
-                                                                                              //         milliseconds:
-                                                                                              //             100),
-                                                                                              //     () {});
-                                                                                              // setState(() {
-                                                                                              //   getNextListSearchPoll = true;
-                                                                                              // });
-                                                                                              searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: true);
-                                                                                            },
-                                                                                            child: Container(
-                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                              decoration: BoxDecoration(
-                                                                                                color: Colors.transparent,
-                                                                                                borderRadius: BorderRadius.circular(25),
-                                                                                              ),
-                                                                                              child: Row(
-                                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                children: [
-                                                                                                  Text(
-                                                                                                    "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                    // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                    style: const TextStyle(
-                                                                                                      color: Colors.black,
-                                                                                                      fontWeight: FontWeight.w500,
-                                                                                                      fontSize: 13.5,
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    )
-                                                                                  : Container()
-                                                                        ],
-                                                                      ),
-                                                                    );
-                                                        }),
+                                                    ? Center(
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Column(
+                                                              children: const [
+                                                                Text(
+                                                                  'No polls found.',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      fontSize:
+                                                                          18),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
                                                       )
-                                                    : filterProvider.isAllKey == false &&
+                                                    : filterProvider.isAllKey == true &&
                                                             filterProvider
                                                                 .searchController
                                                                 .text
-                                                                .isNotEmpty
+                                                                .isNotEmpty &&
+                                                            filterProvider
+                                                                .isHome
                                                         ? Padding(
                                                             padding:
                                                                 const EdgeInsets
                                                                         .only(
-                                                                    top: 6),
+                                                                    top: 6,
+                                                                    bottom:
+                                                                        3.5),
                                                             child: FutureBuilder(
                                                                 // future: filterProvider
                                                                 //             .messages ==
@@ -4542,7 +4167,7 @@ class _SearchState extends State<Search> {
                                                                 //             .countryCode,
                                                                 //       )
                                                                 //     : searchPageProvider
-                                                                //         .getsearchDataPoll(
+                                                                //         .getsearchData(
                                                                 //         searchController
                                                                 //             .text,
                                                                 //         filterProvider
@@ -4595,8 +4220,16 @@ class _SearchState extends State<Search> {
                                                                                                   splashColor: const Color.fromARGB(255, 245, 245, 245),
                                                                                                   onTap: () {
                                                                                                     // setState(() {
-                                                                                                    //   searchPageProvider.getNextListSearchMeassage = false;
+                                                                                                    //   getNextListSearchMeassage = false;
                                                                                                     // });
+                                                                                                    searchPageProvider.getsearchData(
+                                                                                                      filterProvider.searchController.text,
+                                                                                                      filterProvider.global,
+                                                                                                      filterProvider.countryCode,
+                                                                                                      filterProvider.twoValueSearch,
+                                                                                                      filterProvider.durationInDay,
+                                                                                                      getnextPage: false,
+                                                                                                    );
                                                                                                   },
                                                                                                   child: Container(
                                                                                                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -4635,9 +4268,7 @@ class _SearchState extends State<Search> {
                                                                                                   borderRadius: BorderRadius.circular(25),
                                                                                                   splashColor: const Color.fromARGB(255, 245, 245, 245),
                                                                                                   onTap: () {
-                                                                                                    // setState(() {
-                                                                                                    //   getNextListSearchPoll = false;
-                                                                                                    // });
+                                                                                                    searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: false);
                                                                                                   },
                                                                                                   child: Container(
                                                                                                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -4668,7 +4299,7 @@ class _SearchState extends State<Search> {
                                                                                 shrinkWrap: true,
                                                                                 itemCount: filterProvider.messages == "true" ? searchPageProvider.searchResult.length : searchPageProvider.searchResultPoll.length,
                                                                                 itemBuilder: (context, index) => Padding(
-                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5),
+                                                                                  padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 3.5),
                                                                                   child: PhysicalModel(
                                                                                     elevation: 2,
                                                                                     color: Colors.transparent,
@@ -4731,13 +4362,17 @@ class _SearchState extends State<Search> {
                                                                                                     // setState(() {
                                                                                                     //   getNextListSearchMeassage = true;
                                                                                                     // });
+                                                                                                    searchPageProvider.getsearchData(
+                                                                                                      filterProvider.searchController.text,
+                                                                                                      filterProvider.global,
+                                                                                                      filterProvider.countryCode,
+                                                                                                      filterProvider.twoValueSearch,
+                                                                                                      filterProvider.durationInDay,
+                                                                                                      getnextPage: true,
+                                                                                                    );
                                                                                                   },
-                                                                                                  child: Container(
-                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                    decoration: BoxDecoration(
-                                                                                                      color: Colors.transparent,
-                                                                                                      borderRadius: BorderRadius.circular(25),
-                                                                                                    ),
+                                                                                                  child: Padding(
+                                                                                                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                                                                                                     child: Row(
                                                                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                                                                       children: [
@@ -4746,8 +4381,8 @@ class _SearchState extends State<Search> {
                                                                                                           // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
                                                                                                           style: const TextStyle(
                                                                                                             color: Colors.black,
-                                                                                                            fontSize: 13.5,
                                                                                                             fontWeight: FontWeight.w500,
+                                                                                                            fontSize: 13.5,
                                                                                                           ),
                                                                                                         ),
                                                                                                       ],
@@ -4767,39 +4402,41 @@ class _SearchState extends State<Search> {
                                                                                             child: Material(
                                                                                               color: Colors.transparent,
                                                                                               child: InkWell(
-                                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                                  splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                  onTap: () {
-                                                                                                    // Future.delayed(
-                                                                                                    //     const Duration(
-                                                                                                    //         milliseconds:
-                                                                                                    //             100),
-                                                                                                    //     () {});
-                                                                                                    // setState(() {
-                                                                                                    //   getNextListSearchPoll = true;
-                                                                                                    // });
-                                                                                                  },
-                                                                                                  child: Container(
-                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                    decoration: BoxDecoration(
-                                                                                                      color: Colors.transparent,
-                                                                                                      borderRadius: BorderRadius.circular(25),
-                                                                                                    ),
-                                                                                                    child: Row(
-                                                                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                      children: [
-                                                                                                        Text(
-                                                                                                          "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                          // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                          style: const TextStyle(
-                                                                                                            color: Colors.black,
-                                                                                                            fontWeight: FontWeight.w500,
-                                                                                                            fontSize: 13.5,
-                                                                                                          ),
+                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                onTap: () {
+                                                                                                  // Future.delayed(
+                                                                                                  //     const Duration(
+                                                                                                  //         milliseconds:
+                                                                                                  //             100),
+                                                                                                  //     () {});
+                                                                                                  // setState(() {
+                                                                                                  //   getNextListSearchPoll = true;
+                                                                                                  // });
+                                                                                                  searchPageProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, filterProvider.twoValueSearch, filterProvider.durationInDay, getnextPage: true);
+                                                                                                },
+                                                                                                child: Container(
+                                                                                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                  decoration: BoxDecoration(
+                                                                                                    color: Colors.transparent,
+                                                                                                    borderRadius: BorderRadius.circular(25),
+                                                                                                  ),
+                                                                                                  child: Row(
+                                                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                    children: [
+                                                                                                      Text(
+                                                                                                        "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                        // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                        style: const TextStyle(
+                                                                                                          color: Colors.black,
+                                                                                                          fontWeight: FontWeight.w500,
+                                                                                                          fontSize: 13.5,
                                                                                                         ),
-                                                                                                      ],
-                                                                                                    ),
-                                                                                                  )),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  ),
+                                                                                                ),
+                                                                                              ),
                                                                                             ),
                                                                                           ),
                                                                                         )
@@ -4809,269 +4446,296 @@ class _SearchState extends State<Search> {
                                                                         );
                                                             }),
                                                           )
-                                                        : filterProvider.isMostLiked &&
+                                                        : filterProvider.isAllKey == false &&
                                                                 filterProvider
                                                                     .searchController
                                                                     .text
-                                                                    .isEmpty &&
-                                                                filterProvider.showMessages ==
-                                                                    false
+                                                                    .isNotEmpty
                                                             ? Padding(
                                                                 padding:
                                                                     const EdgeInsets
                                                                             .only(
-                                                                        top: 6,
-                                                                        bottom:
-                                                                            3.5),
-                                                                child: Consumer<
-                                                                        MostLikedKeyProvider>(
-                                                                    builder: (context,
-                                                                        mostLikedKeyProvider,
-                                                                        child) {
-                                                                  return FutureBuilder(
-                                                                    builder: (BuildContext
-                                                                            context,
-                                                                        snapshot) {
-                                                                      return mostLikedKeyProvider.Loading ==
-                                                                              true
-                                                                          ? const Center(
-                                                                              child: CircularProgressIndicator(),
+                                                                        top: 6),
+                                                                child: FutureBuilder(
+                                                                    // future: filterProvider
+                                                                    //             .messages ==
+                                                                    //         "true"
+                                                                    //     ? searchPageProvider
+                                                                    //         .getsearchData(
+                                                                    //         searchController
+                                                                    //             .text,
+                                                                    //         filterProvider
+                                                                    //             .global,
+                                                                    //         filterProvider
+                                                                    //             .countryCode,
+                                                                    //       )
+                                                                    //     : searchPageProvider
+                                                                    //         .getsearchDataPoll(
+                                                                    //         searchController
+                                                                    //             .text,
+                                                                    //         filterProvider
+                                                                    //             .global,
+                                                                    //         filterProvider
+                                                                    //             .countryCode,
+                                                                    //       ),
+                                                                    builder: (BuildContext context, snapshot) {
+                                                                  return searchPageProvider
+                                                                              .Loading ==
+                                                                          true
+                                                                      ? const Center(
+                                                                          child:
+                                                                              CircularProgressIndicator(),
+                                                                        )
+                                                                      : searchPageProvider.searchResult.isEmpty && filterProvider.messages == "true" ||
+                                                                              searchPageProvider.searchResultPoll.isEmpty && filterProvider.messages != "true"
+                                                                          ? Center(
+                                                                              child: Column(
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                children: const [
+                                                                                  Text(
+                                                                                    'No keywords found.',
+                                                                                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             )
-                                                                          : mostLikedKeyProvider.list.isNotEmpty && filterProvider.messages == "true" || mostLikedKeyProvider.listPoll.isNotEmpty && filterProvider.messages != "true"
-                                                                              ? SingleChildScrollView(
-                                                                                  child: Column(
-                                                                                    children: [
-                                                                                      filterProvider.messages == "true"
-                                                                                          ? mostLikedKeyProvider.postKeywordListCount > 1
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: false);
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
-                                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
-                                                                                                                ),
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                          )),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                          : mostLikedKeyProvider.pollKeywordListCount > 1
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: false);
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
-                                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
-                                                                                                                ),
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                          )),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container(),
-                                                                                      ListView.builder(
-                                                                                          physics: const NeverScrollableScrollPhysics(),
-                                                                                          shrinkWrap: true,
-                                                                                          itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.list.length : mostLikedKeyProvider.listPoll.length,
-                                                                                          itemBuilder: (context, indexValue) {
-                                                                                            return Padding(
-                                                                                              padding: const EdgeInsets.symmetric(vertical: 3.5),
+                                                                          : SingleChildScrollView(
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  filterProvider.messages == "true"
+                                                                                      ? searchPageProvider.postKeywordListCount > 1
+                                                                                          ? Padding(
+                                                                                              padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
                                                                                               child: PhysicalModel(
+                                                                                                color: Colors.white,
                                                                                                 elevation: 2,
-                                                                                                color: Colors.transparent,
+                                                                                                borderRadius: BorderRadius.circular(25),
                                                                                                 child: Material(
-                                                                                                  color: Colors.white,
+                                                                                                  color: Colors.transparent,
                                                                                                   child: InkWell(
-                                                                                                    splashColor: Colors.grey.withOpacity(0.25),
-                                                                                                    onTap: () async {
-                                                                                                      await filterProvider.messages == "true"
-                                                                                                          ? mostLikedKeyProvider.initList(
-                                                                                                              mostLikedKeyProvider.list[indexValue].keyName ?? "",
-                                                                                                              filterProvider.global,
-                                                                                                              filterProvider.countryCode,
-                                                                                                              filterProvider.oneValueSearch,
-                                                                                                            )
-                                                                                                          : mostLikedKeyProvider.initPollList(
-                                                                                                              mostLikedKeyProvider.listPoll[indexValue].keyName ?? "",
-                                                                                                              filterProvider.global,
-                                                                                                              filterProvider.countryCode,
-                                                                                                              filterProvider.oneValueSearch,
-                                                                                                            );
-                                                                                                      filterProvider.setisAllKey(false);
-                                                                                                      filterProvider.setShowMessage(true);
-                                                                                                      filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(mostLikedKeyProvider.list[indexValue].keyName ?? "") : filterProvider.setTrendKeyStore(mostLikedKeyProvider.listPoll[indexValue].keyName ?? "");
-                                                                                                      // filterProvider.messages == "true" ? filterProvider.setListPostPollId(mostLikedKeyProvider.list[indexValue].post_id ?? []) : filterProvider.setListPostPollId(mostLikedKeyProvider.listPoll[indexValue].pollId ?? []);
-                                                                                                    },
-                                                                                                    child: NoRadioListTile<String>(
-                                                                                                      start: filterProvider.messages == "true" ? ((((mostLikedKeyProvider.postKeywordListCount - 1) * 10) + 1) + indexValue).toString() : ((((mostLikedKeyProvider.pollKeywordListCount - 1) * 10) + 1) + indexValue).toString(),
-                                                                                                      center: filterProvider.messages == "true" ? mostLikedKeyProvider.list[indexValue].keyName ?? "" : mostLikedKeyProvider.listPoll[indexValue].keyName ?? "",
-                                                                                                      end: filterProvider.messages == "true" ? mostLikedKeyProvider.list[indexValue].length.toString() : mostLikedKeyProvider.listPoll[indexValue].length.toString(),
-                                                                                                    ),
-                                                                                                  ),
+                                                                                                      borderRadius: BorderRadius.circular(25),
+                                                                                                      splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                      onTap: () {
+                                                                                                        // setState(() {
+                                                                                                        //   searchPageProvider.getNextListSearchMeassage = false;
+                                                                                                        // });
+                                                                                                      },
+                                                                                                      child: Container(
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                        decoration: BoxDecoration(
+                                                                                                          color: Colors.transparent,
+                                                                                                          borderRadius: BorderRadius.circular(25),
+                                                                                                        ),
+                                                                                                        child: Row(
+                                                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                          children: [
+                                                                                                            Text(
+                                                                                                              'View ${((searchPageProvider.postKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.postKeywordListCount - 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontWeight: FontWeight.w500,
+                                                                                                                fontSize: 13.5,
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ],
+                                                                                                        ),
+                                                                                                      )),
                                                                                                 ),
                                                                                               ),
-                                                                                            );
-                                                                                          }),
-                                                                                      filterProvider.messages == "true"
-                                                                                          ? mostLikedKeyProvider.postKeywordLast == false
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: true);
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
-                                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
-                                                                                                                  // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
-                                                                                                                ),
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                          )),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                          : mostLikedKeyProvider.pollKeywordLast == false
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                                  child: Row(
-                                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                    children: [
-                                                                                                      PhysicalModel(
-                                                                                                        color: Colors.white,
-                                                                                                        elevation: 2,
-                                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                                        child: Material(
+                                                                                            )
+                                                                                          : Container()
+                                                                                      : searchPageProvider.pollKeywordListCount > 1
+                                                                                          ? Padding(
+                                                                                              padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                              child: PhysicalModel(
+                                                                                                color: Colors.white,
+                                                                                                elevation: 2,
+                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                child: Material(
+                                                                                                  color: Colors.transparent,
+                                                                                                  child: InkWell(
+                                                                                                      borderRadius: BorderRadius.circular(25),
+                                                                                                      splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                      onTap: () {
+                                                                                                        // setState(() {
+                                                                                                        //   getNextListSearchPoll = false;
+                                                                                                        // });
+                                                                                                      },
+                                                                                                      child: Container(
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                        decoration: BoxDecoration(
                                                                                                           color: Colors.transparent,
-                                                                                                          child: InkWell(
-                                                                                                              borderRadius: BorderRadius.circular(25),
-                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                              onTap: () {
-                                                                                                                mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: true);
-                                                                                                              },
-                                                                                                              child: Container(
-                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                                decoration: BoxDecoration(
-                                                                                                                  color: Colors.transparent,
-                                                                                                                  borderRadius: BorderRadius.circular(25),
-                                                                                                                ),
-                                                                                                                child: Row(
-                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                                  children: [
-                                                                                                                    Text(
-                                                                                                                      "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                      style: const TextStyle(
-                                                                                                                        color: Colors.black,
-                                                                                                                        fontWeight: FontWeight.w500,
-                                                                                                                        fontSize: 13.5,
-                                                                                                                      ),
-                                                                                                                    ),
-                                                                                                                  ],
-                                                                                                                ),
-                                                                                                              )),
+                                                                                                          borderRadius: BorderRadius.circular(25),
                                                                                                         ),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                    ],
-                                                                                  ),
-                                                                                )
-                                                                              : Center(
-                                                                                  child: Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: const [
-                                                                                      Text(
-                                                                                        'No trending keywords yet.',
-                                                                                        style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                                        child: Row(
+                                                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                          children: [
+                                                                                                            Text(
+                                                                                                              'View ${((searchPageProvider.pollKeywordListCount - 2) * 10) + 1} - ${(searchPageProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontWeight: FontWeight.w500,
+                                                                                                                fontSize: 13.5,
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ],
+                                                                                                        ),
+                                                                                                      )),
+                                                                                                ),
+                                                                                              ),
+                                                                                            )
+                                                                                          : Container(),
+                                                                                  ListView.builder(
+                                                                                    physics: const NeverScrollableScrollPhysics(),
+                                                                                    shrinkWrap: true,
+                                                                                    itemCount: filterProvider.messages == "true" ? searchPageProvider.searchResult.length : searchPageProvider.searchResultPoll.length,
+                                                                                    itemBuilder: (context, index) => Padding(
+                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5),
+                                                                                      child: PhysicalModel(
+                                                                                        elevation: 2,
+                                                                                        color: Colors.transparent,
+                                                                                        child: Material(
+                                                                                          color: Colors.white,
+                                                                                          child: InkWell(
+                                                                                            splashColor: Colors.grey.withOpacity(0.25),
+                                                                                            onTap: () async {
+                                                                                              Future.delayed(const Duration(milliseconds: 250), () async {
+                                                                                                filterProvider.setShowMessage(true);
+                                                                                                filterProvider.messages == "true"
+                                                                                                    ? searchPageProvider.initList(
+                                                                                                        searchPageProvider.searchResult[index].keyName ?? "",
+                                                                                                        filterProvider.global,
+                                                                                                        filterProvider.countryCode,
+                                                                                                        filterProvider.oneValueSearch,
+                                                                                                        filterProvider.twoValueSearch,
+                                                                                                        filterProvider.durationInDay,
+                                                                                                      )
+                                                                                                    : searchPageProvider.initPollList(
+                                                                                                        searchPageProvider.searchResultPoll[index].keyName ?? "",
+                                                                                                        filterProvider.global,
+                                                                                                        filterProvider.countryCode,
+                                                                                                        filterProvider.oneValueSearch,
+                                                                                                        filterProvider.twoValueSearch,
+                                                                                                        filterProvider.durationInDay,
+                                                                                                      );
+                                                                                                // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
+                                                                                                filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(searchPageProvider.searchResult[index].keyName ?? "") : filterProvider.setTrendKeyStore(searchPageProvider.searchResultPoll[index].keyName ?? "");
+                                                                                              });
+                                                                                            },
+                                                                                            child: SearchRadioListTile<String>(
+                                                                                              center: filterProvider.messages == "true" ? searchPageProvider.searchResult[index].keyName ?? "" : searchPageProvider.searchResultPoll[index].keyName ?? "",
+                                                                                              end: filterProvider.messages == "true" ? searchPageProvider.searchResult[index].length.toString() : searchPageProvider.searchResultPoll[index].length.toString(),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
                                                                                       ),
-                                                                                    ],
+                                                                                    ),
                                                                                   ),
-                                                                                );
-                                                                    },
-                                                                  );
+                                                                                  filterProvider.messages == "true"
+                                                                                      ? searchPageProvider.postKeywordLast == false
+                                                                                          ? Padding(
+                                                                                              padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                              child: PhysicalModel(
+                                                                                                color: Colors.white,
+                                                                                                elevation: 2,
+                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                child: Material(
+                                                                                                  color: Colors.transparent,
+                                                                                                  child: InkWell(
+                                                                                                      borderRadius: BorderRadius.circular(25),
+                                                                                                      splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                      onTap: () {
+                                                                                                        // Future.delayed(
+                                                                                                        //     const Duration(
+                                                                                                        //         milliseconds:
+                                                                                                        //             100),
+                                                                                                        //     () {});
+                                                                                                        // setState(() {
+                                                                                                        //   getNextListSearchMeassage = true;
+                                                                                                        // });
+                                                                                                      },
+                                                                                                      child: Container(
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                        decoration: BoxDecoration(
+                                                                                                          color: Colors.transparent,
+                                                                                                          borderRadius: BorderRadius.circular(25),
+                                                                                                        ),
+                                                                                                        child: Row(
+                                                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                          children: [
+                                                                                                            Text(
+                                                                                                              "View ${(searchPageProvider.postKeywordListCount * 10) + 1} - ${(searchPageProvider.postKeywordListCount + 1) * 10}",
+                                                                                                              // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontSize: 13.5,
+                                                                                                                fontWeight: FontWeight.w500,
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ],
+                                                                                                        ),
+                                                                                                      )),
+                                                                                                ),
+                                                                                              ),
+                                                                                            )
+                                                                                          : Container()
+                                                                                      : searchPageProvider.pollKeywordLast == false
+                                                                                          ? Padding(
+                                                                                              padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                              child: PhysicalModel(
+                                                                                                color: Colors.white,
+                                                                                                elevation: 2,
+                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                child: Material(
+                                                                                                  color: Colors.transparent,
+                                                                                                  child: InkWell(
+                                                                                                      borderRadius: BorderRadius.circular(25),
+                                                                                                      splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                      onTap: () {
+                                                                                                        // Future.delayed(
+                                                                                                        //     const Duration(
+                                                                                                        //         milliseconds:
+                                                                                                        //             100),
+                                                                                                        //     () {});
+                                                                                                        // setState(() {
+                                                                                                        //   getNextListSearchPoll = true;
+                                                                                                        // });
+                                                                                                      },
+                                                                                                      child: Container(
+                                                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                        decoration: BoxDecoration(
+                                                                                                          color: Colors.transparent,
+                                                                                                          borderRadius: BorderRadius.circular(25),
+                                                                                                        ),
+                                                                                                        child: Row(
+                                                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                          children: [
+                                                                                                            Text(
+                                                                                                              "View ${(searchPageProvider.pollKeywordListCount * 10) + 1} - ${(searchPageProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                              // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                              style: const TextStyle(
+                                                                                                                color: Colors.black,
+                                                                                                                fontWeight: FontWeight.w500,
+                                                                                                                fontSize: 13.5,
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ],
+                                                                                                        ),
+                                                                                                      )),
+                                                                                                ),
+                                                                                              ),
+                                                                                            )
+                                                                                          : Container()
+                                                                                ],
+                                                                              ),
+                                                                            );
                                                                 }),
                                                               )
                                                             : filterProvider.isMostLiked &&
                                                                     filterProvider
                                                                         .searchController
                                                                         .text
-                                                                        .isNotEmpty &&
+                                                                        .isEmpty &&
                                                                     filterProvider.showMessages ==
                                                                         false
                                                                 ? Padding(
@@ -5085,527 +4749,779 @@ class _SearchState extends State<Search> {
                                                                         builder: (context,
                                                                             mostLikedKeyProvider,
                                                                             child) {
-                                                                      // print(
-                                                                      //     "filterProvider.messages ${mostLikedKeyProvider.searchResultPoll}");
-                                                                      return mostLikedKeyProvider.Loading ==
-                                                                              true
-                                                                          ? const Center(
-                                                                              child: CircularProgressIndicator(),
-                                                                            )
-                                                                          : mostLikedKeyProvider.searchResult.isEmpty && filterProvider.messages == "true" && filterProvider.showMessages == false || mostLikedKeyProvider.searchResultPoll.isEmpty && filterProvider.messages != "true" && filterProvider.showMessages == false
-                                                                              ? Center(
-                                                                                  child: Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: const [
-                                                                                      Text(
-                                                                                        'No keywords found.',
-                                                                                        style: TextStyle(color: Colors.grey, fontSize: 18),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                      return FutureBuilder(
+                                                                        builder:
+                                                                            (BuildContext context,
+                                                                                snapshot) {
+                                                                          return mostLikedKeyProvider.Loading == true
+                                                                              ? const Center(
+                                                                                  child: CircularProgressIndicator(),
                                                                                 )
-                                                                              : SingleChildScrollView(
-                                                                                  child: Column(
-                                                                                    children: [
-                                                                                      filterProvider.messages == "true"
-                                                                                          ? mostLikedKeyProvider.postKeywordListCount > 1
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getsearchData(
-                                                                                                              filterProvider.searchController.text,
-                                                                                                              filterProvider.global,
-                                                                                                              filterProvider.countryCode,
-                                                                                                              getnextPage: false,
-                                                                                                            );
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
+                                                                              : mostLikedKeyProvider.list.isNotEmpty && filterProvider.messages == "true" || mostLikedKeyProvider.listPoll.isNotEmpty && filterProvider.messages != "true"
+                                                                                  ? SingleChildScrollView(
+                                                                                      child: Column(
+                                                                                        children: [
+                                                                                          filterProvider.messages == "true"
+                                                                                              ? mostLikedKeyProvider.postKeywordListCount > 1
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
                                                                                                               borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: false);
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
                                                                                                                 ),
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                          )),
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              )),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container()
+                                                                                              : mostLikedKeyProvider.pollKeywordListCount > 1
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                              borderRadius: BorderRadius.circular(25),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: false);
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                                                ),
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              )),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container(),
+                                                                                          ListView.builder(
+                                                                                              physics: const NeverScrollableScrollPhysics(),
+                                                                                              shrinkWrap: true,
+                                                                                              itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.list.length : mostLikedKeyProvider.listPoll.length,
+                                                                                              itemBuilder: (context, indexValue) {
+                                                                                                return Padding(
+                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5),
+                                                                                                  child: PhysicalModel(
+                                                                                                    elevation: 2,
+                                                                                                    color: Colors.transparent,
+                                                                                                    child: Material(
+                                                                                                      color: Colors.white,
+                                                                                                      child: InkWell(
+                                                                                                        splashColor: Colors.grey.withOpacity(0.25),
+                                                                                                        onTap: () async {
+                                                                                                          await filterProvider.messages == "true"
+                                                                                                              ? mostLikedKeyProvider.initList(
+                                                                                                                  mostLikedKeyProvider.list[indexValue].keyName ?? "",
+                                                                                                                  filterProvider.global,
+                                                                                                                  filterProvider.countryCode,
+                                                                                                                  filterProvider.oneValueSearch,
+                                                                                                                )
+                                                                                                              : mostLikedKeyProvider.initPollList(
+                                                                                                                  mostLikedKeyProvider.listPoll[indexValue].keyName ?? "",
+                                                                                                                  filterProvider.global,
+                                                                                                                  filterProvider.countryCode,
+                                                                                                                  filterProvider.oneValueSearch,
+                                                                                                                );
+                                                                                                          filterProvider.setisAllKey(false);
+                                                                                                          filterProvider.setShowMessage(true);
+                                                                                                          filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(mostLikedKeyProvider.list[indexValue].keyName ?? "") : filterProvider.setTrendKeyStore(mostLikedKeyProvider.listPoll[indexValue].keyName ?? "");
+                                                                                                          // filterProvider.messages == "true" ? filterProvider.setListPostPollId(mostLikedKeyProvider.list[indexValue].post_id ?? []) : filterProvider.setListPostPollId(mostLikedKeyProvider.listPoll[indexValue].pollId ?? []);
+                                                                                                        },
+                                                                                                        child: NoRadioListTile<String>(
+                                                                                                          start: filterProvider.messages == "true" ? ((((mostLikedKeyProvider.postKeywordListCount - 1) * 10) + 1) + indexValue).toString() : ((((mostLikedKeyProvider.pollKeywordListCount - 1) * 10) + 1) + indexValue).toString(),
+                                                                                                          center: filterProvider.messages == "true" ? mostLikedKeyProvider.list[indexValue].keyName ?? "" : mostLikedKeyProvider.listPoll[indexValue].keyName ?? "",
+                                                                                                          end: filterProvider.messages == "true" ? mostLikedKeyProvider.list[indexValue].length.toString() : mostLikedKeyProvider.listPoll[indexValue].length.toString(),
+                                                                                                        ),
+                                                                                                      ),
                                                                                                     ),
                                                                                                   ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                          : mostLikedKeyProvider.pollKeywordListCount > 1
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: false);
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
+                                                                                                );
+                                                                                              }),
+                                                                                          filterProvider.messages == "true"
+                                                                                              ? mostLikedKeyProvider.postKeywordLast == false
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.only(top: 3.5, bottom: 3.5, right: 12, left: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
                                                                                                               borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getkeywordList(filterProvider.global, filterProvider.countryCode, getNextList1: true);
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
                                                                                                                 ),
-                                                                                                              ],
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
+                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              )),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container()
+                                                                                              : mostLikedKeyProvider.pollKeywordLast == false
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                                      child: Row(
+                                                                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                        children: [
+                                                                                                          PhysicalModel(
+                                                                                                            color: Colors.white,
+                                                                                                            elevation: 2,
+                                                                                                            borderRadius: BorderRadius.circular(25),
+                                                                                                            child: Material(
+                                                                                                              color: Colors.transparent,
+                                                                                                              child: InkWell(
+                                                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                                                  splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                                  onTap: () {
+                                                                                                                    mostLikedKeyProvider.getpollKeywordList(filterProvider.global, filterProvider.countryCode, getNextListPoll: true);
+                                                                                                                  },
+                                                                                                                  child: Container(
+                                                                                                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                    decoration: BoxDecoration(
+                                                                                                                      color: Colors.transparent,
+                                                                                                                      borderRadius: BorderRadius.circular(25),
+                                                                                                                    ),
+                                                                                                                    child: Row(
+                                                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                      children: [
+                                                                                                                        Text(
+                                                                                                                          "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                                          // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                          style: const TextStyle(
+                                                                                                                            color: Colors.black,
+                                                                                                                            fontWeight: FontWeight.w500,
+                                                                                                                            fontSize: 13.5,
+                                                                                                                          ),
+                                                                                                                        ),
+                                                                                                                      ],
+                                                                                                                    ),
+                                                                                                                  )),
                                                                                                             ),
-                                                                                                          )),
+                                                                                                          ),
+                                                                                                        ],
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container()
+                                                                                        ],
+                                                                                      ),
+                                                                                    )
+                                                                                  : Center(
+                                                                                      child: Column(
+                                                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                                                        children: const [
+                                                                                          Text(
+                                                                                            'No trending keywords yet.',
+                                                                                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                          ),
+                                                                                        ],
+                                                                                      ),
+                                                                                    );
+                                                                        },
+                                                                      );
+                                                                    }),
+                                                                  )
+                                                                : filterProvider.isMostLiked &&
+                                                                        filterProvider.searchController.text.isNotEmpty &&
+                                                                        filterProvider.showMessages == false
+                                                                    ? Padding(
+                                                                        padding: const EdgeInsets.only(
+                                                                            top:
+                                                                                6,
+                                                                            bottom:
+                                                                                3.5),
+                                                                        child: Consumer<MostLikedKeyProvider>(builder: (context,
+                                                                            mostLikedKeyProvider,
+                                                                            child) {
+                                                                          // print(
+                                                                          //     "filterProvider.messages ${mostLikedKeyProvider.searchResultPoll}");
+                                                                          return mostLikedKeyProvider.Loading == true
+                                                                              ? const Center(
+                                                                                  child: CircularProgressIndicator(),
+                                                                                )
+                                                                              : mostLikedKeyProvider.searchResult.isEmpty && filterProvider.messages == "true" && filterProvider.showMessages == false || mostLikedKeyProvider.searchResultPoll.isEmpty && filterProvider.messages != "true" && filterProvider.showMessages == false
+                                                                                  ? Center(
+                                                                                      child: Column(
+                                                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                                                        children: const [
+                                                                                          Text(
+                                                                                            'No keywords found.',
+                                                                                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                          ),
+                                                                                        ],
+                                                                                      ),
+                                                                                    )
+                                                                                  : SingleChildScrollView(
+                                                                                      child: Column(
+                                                                                        children: [
+                                                                                          filterProvider.messages == "true"
+                                                                                              ? mostLikedKeyProvider.postKeywordListCount > 1
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                              borderRadius: BorderRadius.circular(25),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getsearchData(
+                                                                                                                  filterProvider.searchController.text,
+                                                                                                                  filterProvider.global,
+                                                                                                                  filterProvider.countryCode,
+                                                                                                                  getnextPage: false,
+                                                                                                                );
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                                                ),
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.postKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              )),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container()
+                                                                                              : mostLikedKeyProvider.pollKeywordListCount > 1
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                              borderRadius: BorderRadius.circular(25),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: false);
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
+                                                                                                                ),
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      'View ${((mostLikedKeyProvider.pollKeywordListCount - 2) * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount - 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
+                                                                                                              )),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    )
+                                                                                                  : Container(),
+                                                                                          ListView.builder(
+                                                                                            physics: const NeverScrollableScrollPhysics(),
+                                                                                            shrinkWrap: true,
+                                                                                            itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult.length : mostLikedKeyProvider.searchResultPoll.length,
+                                                                                            itemBuilder: (context, index) => Padding(
+                                                                                              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 3.5),
+                                                                                              child: PhysicalModel(
+                                                                                                elevation: 2,
+                                                                                                color: Colors.transparent,
+                                                                                                child: Material(
+                                                                                                  color: Colors.white,
+                                                                                                  child: InkWell(
+                                                                                                    splashColor: Colors.grey.withOpacity(0.25),
+                                                                                                    onTap: () async {
+                                                                                                      Future.delayed(const Duration(milliseconds: 250), () async {
+                                                                                                        filterProvider.setShowMessage(true);
+                                                                                                        filterProvider.messages == "true"
+                                                                                                            ? mostLikedKeyProvider.initList(
+                                                                                                                mostLikedKeyProvider.list[index].keyName ?? "",
+                                                                                                                filterProvider.global,
+                                                                                                                filterProvider.countryCode,
+                                                                                                                filterProvider.oneValueSearch,
+                                                                                                              )
+                                                                                                            : mostLikedKeyProvider.initPollList(
+                                                                                                                mostLikedKeyProvider.listPoll[index].keyName ?? "",
+                                                                                                                filterProvider.global,
+                                                                                                                filterProvider.countryCode,
+                                                                                                                filterProvider.oneValueSearch,
+                                                                                                              );
+                                                                                                        // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
+                                                                                                        filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResult[index].keyName ?? "") : filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResultPoll[index].keyName ?? "");
+                                                                                                        // filterProvider.messages == "true" ? filterProvider.setListPostPollId(mostLikedKeyProvider.list[index].post_id ?? []) : filterProvider.setListPostPollId(mostLikedKeyProvider.listPoll[index].pollId ?? []);
+                                                                                                      });
+                                                                                                    },
+                                                                                                    child: SearchRadioListTile<String>(
+                                                                                                      center: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult[index].keyName ?? "" : mostLikedKeyProvider.searchResultPoll[index].keyName ?? "",
+                                                                                                      end: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult[index].length.toString() : mostLikedKeyProvider.searchResultPoll[index].length.toString(),
                                                                                                     ),
                                                                                                   ),
-                                                                                                )
-                                                                                              : Container(),
-                                                                                      ListView.builder(
-                                                                                        physics: const NeverScrollableScrollPhysics(),
-                                                                                        shrinkWrap: true,
-                                                                                        itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult.length : mostLikedKeyProvider.searchResultPoll.length,
-                                                                                        itemBuilder: (context, index) => Padding(
-                                                                                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 3.5),
-                                                                                          child: PhysicalModel(
-                                                                                            elevation: 2,
-                                                                                            color: Colors.transparent,
-                                                                                            child: Material(
-                                                                                              color: Colors.white,
-                                                                                              child: InkWell(
-                                                                                                splashColor: Colors.grey.withOpacity(0.25),
-                                                                                                onTap: () async {
-                                                                                                  Future.delayed(const Duration(milliseconds: 250), () async {
-                                                                                                    filterProvider.setShowMessage(true);
-                                                                                                    filterProvider.messages == "true"
-                                                                                                        ? mostLikedKeyProvider.initList(
-                                                                                                            mostLikedKeyProvider.list[index].keyName ?? "",
-                                                                                                            filterProvider.global,
-                                                                                                            filterProvider.countryCode,
-                                                                                                            filterProvider.oneValueSearch,
-                                                                                                          )
-                                                                                                        : mostLikedKeyProvider.initPollList(
-                                                                                                            mostLikedKeyProvider.listPoll[index].keyName ?? "",
-                                                                                                            filterProvider.global,
-                                                                                                            filterProvider.countryCode,
-                                                                                                            filterProvider.oneValueSearch,
-                                                                                                          );
-                                                                                                    // filterProvider.messages == "true" ? initList(_searchResult[index].keyName ?? "") : initPollList(_searchResultPoll[index].keyName ?? "");
-                                                                                                    filterProvider.messages == "true" ? filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResult[index].keyName ?? "") : filterProvider.setTrendKeyStore(mostLikedKeyProvider.searchResultPoll[index].keyName ?? "");
-                                                                                                    // filterProvider.messages == "true" ? filterProvider.setListPostPollId(mostLikedKeyProvider.list[index].post_id ?? []) : filterProvider.setListPostPollId(mostLikedKeyProvider.listPoll[index].pollId ?? []);
-                                                                                                  });
-                                                                                                },
-                                                                                                child: SearchRadioListTile<String>(
-                                                                                                  center: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult[index].keyName ?? "" : mostLikedKeyProvider.searchResultPoll[index].keyName ?? "",
-                                                                                                  end: filterProvider.messages == "true" ? mostLikedKeyProvider.searchResult[index].length.toString() : mostLikedKeyProvider.searchResultPoll[index].length.toString(),
                                                                                                 ),
                                                                                               ),
                                                                                             ),
                                                                                           ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      filterProvider.messages == "true"
-                                                                                          ? mostLikedKeyProvider.postKeywordLast == false
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                          borderRadius: BorderRadius.circular(25),
-                                                                                                          splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                          onTap: () {
-                                                                                                            mostLikedKeyProvider.getsearchData(
-                                                                                                              filterProvider.searchController.text,
-                                                                                                              filterProvider.global,
-                                                                                                              filterProvider.countryCode,
-                                                                                                              getnextPage: true,
-                                                                                                            );
-                                                                                                          },
-                                                                                                          child: Container(
-                                                                                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                            decoration: BoxDecoration(
-                                                                                                              color: Colors.transparent,
+                                                                                          filterProvider.messages == "true"
+                                                                                              ? mostLikedKeyProvider.postKeywordLast == false
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
                                                                                                               borderRadius: BorderRadius.circular(25),
-                                                                                                            ),
-                                                                                                            child: Row(
-                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              children: [
-                                                                                                                Text(
-                                                                                                                  "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
-                                                                                                                  // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                  style: const TextStyle(
-                                                                                                                    color: Colors.black,
-                                                                                                                    fontWeight: FontWeight.w500,
-                                                                                                                    fontSize: 13.5,
-                                                                                                                  ),
+                                                                                                              splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                              onTap: () {
+                                                                                                                mostLikedKeyProvider.getsearchData(
+                                                                                                                  filterProvider.searchController.text,
+                                                                                                                  filterProvider.global,
+                                                                                                                  filterProvider.countryCode,
+                                                                                                                  getnextPage: true,
+                                                                                                                );
+                                                                                                              },
+                                                                                                              child: Container(
+                                                                                                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                                decoration: BoxDecoration(
+                                                                                                                  color: Colors.transparent,
+                                                                                                                  borderRadius: BorderRadius.circular(25),
                                                                                                                 ),
-                                                                                                              ],
-                                                                                                            ),
-                                                                                                          )),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                          : mostLikedKeyProvider.pollKeywordLast == false
-                                                                                              ? Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                                        splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                        onTap: () {
-                                                                                                          // Future.delayed(
-                                                                                                          //     const Duration(
-                                                                                                          //         milliseconds:
-                                                                                                          //             100),
-                                                                                                          //     () {});
-                                                                                                          // setState(() {
-                                                                                                          //   getNextListSearchPoll = true;
-                                                                                                          // });
-                                                                                                          mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: true);
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.transparent,
-                                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                                          ),
-                                                                                                          child: Row(
-                                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                            children: [
-                                                                                                              Text(
-                                                                                                                "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
-                                                                                                                // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Colors.black,
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13.5,
+                                                                                                                child: Row(
+                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                  children: [
+                                                                                                                    Text(
+                                                                                                                      "View ${(mostLikedKeyProvider.postKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.postKeywordListCount + 1) * 10}",
+                                                                                                                      // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                      style: const TextStyle(
+                                                                                                                        color: Colors.black,
+                                                                                                                        fontWeight: FontWeight.w500,
+                                                                                                                        fontSize: 13.5,
+                                                                                                                      ),
+                                                                                                                    ),
+                                                                                                                  ],
                                                                                                                 ),
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
+                                                                                                              )),
                                                                                                         ),
                                                                                                       ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                )
-                                                                                              : Container()
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                    }),
-                                                                  )
-                                                                : filterProvider.showMessages == true && filterProvider.isMostLiked == true
-                                                                    ? Consumer<MostLikedKeyProvider>(builder: (context, mostLikedKeyProvider, child) {
-                                                                        return mostLikedKeyProvider.Loading ==
-                                                                                true
-                                                                            ? const Center(
-                                                                                child: CircularProgressIndicator(),
-                                                                              )
-                                                                            : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.postsList.isNotEmpty && filterProvider.messages == "true" || filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.pollsList.isNotEmpty && filterProvider.messages != "true"
-                                                                                ? SingleChildScrollView(
-                                                                                    controller: mostLikedKeyProvider.scrollController,
-                                                                                    child: Column(
-                                                                                      children: [
-                                                                                        filterProvider.messages == "true"
-                                                                                            ? Visibility(
-                                                                                                visible: mostLikedKeyProvider.previousButtonVisible,
-                                                                                                child: Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 10, bottom: 4, right: 12, left: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                                        splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                        onTap: () {
-                                                                                                          Future.delayed(
-                                                                                                            const Duration(milliseconds: 100),
-                                                                                                            () {
-                                                                                                              if (filterProvider.messages == "true") {
-                                                                                                                mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
-                                                                                                              } else {
-                                                                                                                mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
-                                                                                                              }
-                                                                                                            },
-                                                                                                          );
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.transparent,
-                                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                                          ),
-                                                                                                          child: Row(
-                                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                            children: [
-                                                                                                              Text(
-                                                                                                                'View ${(mostLikedKeyProvider.postPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.postPageCount - 1) * 6}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Colors.black,
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13.5,
-                                                                                                                ),
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              )
-                                                                                            : Visibility(
-                                                                                                visible: mostLikedKeyProvider.previousButtonVisible,
-                                                                                                child: Padding(
-                                                                                                  padding: const EdgeInsets.only(top: 10, bottom: 4, right: 12, left: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                                        splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                        onTap: () {
-                                                                                                          Future.delayed(
-                                                                                                            const Duration(milliseconds: 100),
-                                                                                                            () {
-                                                                                                              if (filterProvider.messages == "true") {
-                                                                                                                mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
-                                                                                                              } else {
-                                                                                                                mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
-                                                                                                              }
-                                                                                                            },
-                                                                                                          );
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.transparent,
-                                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                                          ),
-                                                                                                          child: Row(
-                                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                            children: [
-                                                                                                              Text(
-                                                                                                                'View ${(mostLikedKeyProvider.pollPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount - 1) * 6}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Colors.black,
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13.5,
-                                                                                                                ),
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                        // Consumer2<PostProvider, PollsProvider>(
-                                                                                        //     builder: (context, postProvider,
-                                                                                        //         pollProvider, child) {
-                                                                                        //   forsetInitState(
-                                                                                        //       postProvider, pollProvider);
-                                                                                        //   return
-                                                                                        ListView.builder(
-                                                                                          physics: const NeverScrollableScrollPhysics(),
-                                                                                          shrinkWrap: true,
-                                                                                          itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.postsList.length : mostLikedKeyProvider.pollsList.length,
-                                                                                          itemBuilder: (context, index) {
-                                                                                            final User? user = Provider.of<UserProvider>(context).getUser;
-                                                                                            return filterProvider.messages == "true"
-                                                                                                ? PostCardTest(key: Key(mostLikedKeyProvider.postsList[index].postId), post: mostLikedKeyProvider.postsList[index], archives: true, profileScreen: false, durationInDay: widget.durationInDay
-                                                                                                    // currentUserId: null,
                                                                                                     )
-                                                                                                : PollCard(key: Key(mostLikedKeyProvider.pollsList[index].pollId), poll: mostLikedKeyProvider.pollsList[index], archives: true, profileScreen: false, durationInDay: widget.durationInDay
-                                                                                                    // currentUserId: null,
-                                                                                                    );
-                                                                                          },
-                                                                                        ),
-                                                                                        // }),
-                                                                                        filterProvider.messages == "true"
-                                                                                            ? Visibility(
-                                                                                                visible: mostLikedKeyProvider.nextButtonVisible,
-                                                                                                child: Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
+                                                                                                  : Container()
+                                                                                              : mostLikedKeyProvider.pollKeywordLast == false
+                                                                                                  ? Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 3.5, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
                                                                                                         borderRadius: BorderRadius.circular(25),
-                                                                                                        splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                        onTap: () {
-                                                                                                          Future.delayed(
-                                                                                                            const Duration(milliseconds: 100),
-                                                                                                            () {
-                                                                                                              if (filterProvider.messages == "true") {
-                                                                                                                mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
-                                                                                                              } else {
-                                                                                                                mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
-                                                                                                              }
-                                                                                                            },
-                                                                                                          );
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.transparent,
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
                                                                                                             borderRadius: BorderRadius.circular(25),
-                                                                                                          ),
-                                                                                                          child: Row(
-                                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                            children: [
-                                                                                                              Text(
-                                                                                                                'View ${mostLikedKeyProvider.postPageCount * 6 + 1} - ${(mostLikedKeyProvider.postPageCount + 1) * 6}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Colors.black,
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13.5,
-                                                                                                                ),
+                                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                            onTap: () {
+                                                                                                              // Future.delayed(
+                                                                                                              //     const Duration(
+                                                                                                              //         milliseconds:
+                                                                                                              //             100),
+                                                                                                              //     () {});
+                                                                                                              // setState(() {
+                                                                                                              //   getNextListSearchPoll = true;
+                                                                                                              // });
+                                                                                                              mostLikedKeyProvider.getsearchDataPoll(filterProvider.searchController.text, filterProvider.global, filterProvider.countryCode, getnextPage: true);
+                                                                                                            },
+                                                                                                            child: Container(
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                              decoration: BoxDecoration(
+                                                                                                                color: Colors.transparent,
+                                                                                                                borderRadius: BorderRadius.circular(25),
                                                                                                               ),
-                                                                                                            ],
+                                                                                                              child: Row(
+                                                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                children: [
+                                                                                                                  Text(
+                                                                                                                    "View ${(mostLikedKeyProvider.pollKeywordListCount * 10) + 1} - ${(mostLikedKeyProvider.pollKeywordListCount + 1) * 10}",
+                                                                                                                    // '${keywordCount * 10 + 1} - ${(keywordCount + 1) * 10}',
+                                                                                                                    style: const TextStyle(
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                                      fontSize: 13.5,
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
+                                                                                                            ),
                                                                                                           ),
                                                                                                         ),
                                                                                                       ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              )
-                                                                                            : Visibility(
-                                                                                                visible: mostLikedKeyProvider.nextButtonVisible,
-                                                                                                child: Padding(
-                                                                                                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-                                                                                                  child: PhysicalModel(
-                                                                                                    color: Colors.white,
-                                                                                                    elevation: 2,
-                                                                                                    borderRadius: BorderRadius.circular(25),
-                                                                                                    child: Material(
-                                                                                                      color: Colors.transparent,
-                                                                                                      child: InkWell(
-                                                                                                        borderRadius: BorderRadius.circular(25),
-                                                                                                        splashColor: const Color.fromARGB(255, 245, 245, 245),
-                                                                                                        onTap: () {
-                                                                                                          Future.delayed(
-                                                                                                            const Duration(milliseconds: 100),
-                                                                                                            () {
-                                                                                                              if (filterProvider.messages == "true") {
-                                                                                                                mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
-                                                                                                              } else {
-                                                                                                                mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
-                                                                                                              }
-                                                                                                            },
-                                                                                                          );
-                                                                                                        },
-                                                                                                        child: Container(
-                                                                                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                                                                                          decoration: BoxDecoration(
-                                                                                                            color: Colors.transparent,
-                                                                                                            borderRadius: BorderRadius.circular(25),
-                                                                                                          ),
-                                                                                                          child: Row(
-                                                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                            children: [
-                                                                                                              Text(
-                                                                                                                'View ${mostLikedKeyProvider.pollPageCount * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount + 1) * 6}',
-                                                                                                                // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
-                                                                                                                style: const TextStyle(
-                                                                                                                  color: Colors.black,
-                                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                                  fontSize: 13.5,
-                                                                                                                ),
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              )
-                                                                                      ],
-                                                                                    ),
+                                                                                                    )
+                                                                                                  : Container()
+                                                                                        ],
+                                                                                      ),
+                                                                                    );
+                                                                        }),
+                                                                      )
+                                                                    : filterProvider.showMessages == true && filterProvider.isMostLiked == true
+                                                                        ? Consumer<MostLikedKeyProvider>(builder: (context, mostLikedKeyProvider, child) {
+                                                                            return mostLikedKeyProvider.Loading == true
+                                                                                ? const Center(
+                                                                                    child: CircularProgressIndicator(),
                                                                                   )
-                                                                                : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.postsList.isEmpty && filterProvider.messages == "true"
-                                                                                    ? Center(
+                                                                                : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.postsList.isNotEmpty && filterProvider.messages == "true" || filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.pollsList.isNotEmpty && filterProvider.messages != "true"
+                                                                                    ? SingleChildScrollView(
+                                                                                        controller: mostLikedKeyProvider.scrollController,
                                                                                         child: Column(
-                                                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                                                          children: const [
-                                                                                            Text(
-                                                                                              'No messages found.',
-                                                                                              style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                          children: [
+                                                                                            filterProvider.messages == "true"
+                                                                                                ? Visibility(
+                                                                                                    visible: mostLikedKeyProvider.previousButtonVisible,
+                                                                                                    child: Padding(
+                                                                                                      padding: const EdgeInsets.only(top: 10, bottom: 4, right: 12, left: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                            borderRadius: BorderRadius.circular(25),
+                                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                            onTap: () {
+                                                                                                              Future.delayed(
+                                                                                                                const Duration(milliseconds: 100),
+                                                                                                                () {
+                                                                                                                  if (filterProvider.messages == "true") {
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
+                                                                                                                  } else {
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
+                                                                                                                  }
+                                                                                                                },
+                                                                                                              );
+                                                                                                            },
+                                                                                                            child: Container(
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                              decoration: BoxDecoration(
+                                                                                                                color: Colors.transparent,
+                                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                              ),
+                                                                                                              child: Row(
+                                                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                children: [
+                                                                                                                  Text(
+                                                                                                                    'View Previous',
+                                                                                                                    // 'View ${(mostLikedKeyProvider.postPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.postPageCount - 1) * 6}',
+                                                                                                                    style: const TextStyle(
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                                      fontSize: 13.5,
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  )
+                                                                                                : Visibility(
+                                                                                                    visible: mostLikedKeyProvider.previousButtonVisible,
+                                                                                                    child: Padding(
+                                                                                                      padding: const EdgeInsets.only(top: 10, bottom: 4, right: 12, left: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                            borderRadius: BorderRadius.circular(25),
+                                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                            onTap: () {
+                                                                                                              Future.delayed(
+                                                                                                                const Duration(milliseconds: 100),
+                                                                                                                () {
+                                                                                                                  if (filterProvider.messages == "true") {
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
+                                                                                                                  } else {
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: false);
+                                                                                                                  }
+                                                                                                                },
+                                                                                                              );
+                                                                                                            },
+                                                                                                            child: Container(
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                              decoration: BoxDecoration(
+                                                                                                                color: Colors.transparent,
+                                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                              ),
+                                                                                                              child: Row(
+                                                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                children: [
+                                                                                                                  Text(
+                                                                                                                    'View Previous',
+                                                                                                                    // 'View ${(mostLikedKeyProvider.pollPageCount - 2) * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount - 1) * 6}',
+                                                                                                                    style: const TextStyle(
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                                      fontSize: 13.5,
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                            // Consumer2<PostProvider, PollsProvider>(
+                                                                                            //     builder: (context, postProvider,
+                                                                                            //         pollProvider, child) {
+                                                                                            //   forsetInitState(
+                                                                                            //       postProvider, pollProvider);
+                                                                                            //   return
+                                                                                            ListView.builder(
+                                                                                              physics: const NeverScrollableScrollPhysics(),
+                                                                                              shrinkWrap: true,
+                                                                                              itemCount: filterProvider.messages == "true" ? mostLikedKeyProvider.postsList.length : mostLikedKeyProvider.pollsList.length,
+                                                                                              itemBuilder: (context, index) {
+                                                                                                final User? user = Provider.of<UserProvider>(context).getUser;
+                                                                                                return filterProvider.messages == "true"
+                                                                                                    ? PostCardTest(key: Key(mostLikedKeyProvider.postsList[index].postId), post: mostLikedKeyProvider.postsList[index], archives: true, profileScreen: false, durationInDay: widget.durationInDay
+                                                                                                        // currentUserId: null,
+                                                                                                        )
+                                                                                                    : PollCard(key: Key(mostLikedKeyProvider.pollsList[index].pollId), poll: mostLikedKeyProvider.pollsList[index], archives: true, profileScreen: false, durationInDay: widget.durationInDay
+                                                                                                        // currentUserId: null,
+                                                                                                        );
+                                                                                              },
                                                                                             ),
+                                                                                            // }),
+                                                                                            filterProvider.messages == "true"
+                                                                                                ? Visibility(
+                                                                                                    visible: mostLikedKeyProvider.nextButtonVisible,
+                                                                                                    child: Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                            borderRadius: BorderRadius.circular(25),
+                                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                            onTap: () {
+                                                                                                              Future.delayed(
+                                                                                                                const Duration(milliseconds: 100),
+                                                                                                                () {
+                                                                                                                  if (filterProvider.messages == "true") {
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
+                                                                                                                  } else {
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
+                                                                                                                  }
+                                                                                                                },
+                                                                                                              );
+                                                                                                            },
+                                                                                                            child: Container(
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                              decoration: BoxDecoration(
+                                                                                                                color: Colors.transparent,
+                                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                              ),
+                                                                                                              child: Row(
+                                                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                children: [
+                                                                                                                  Text(
+                                                                                                                    'View More',
+                                                                                                                    // 'View ${mostLikedKeyProvider.postPageCount * 6 + 1} - ${(mostLikedKeyProvider.postPageCount + 1) * 6}',
+                                                                                                                    style: const TextStyle(
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                                      fontSize: 13.5,
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  )
+                                                                                                : Visibility(
+                                                                                                    visible: mostLikedKeyProvider.nextButtonVisible,
+                                                                                                    child: Padding(
+                                                                                                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                                                                                                      child: PhysicalModel(
+                                                                                                        color: Colors.white,
+                                                                                                        elevation: 2,
+                                                                                                        borderRadius: BorderRadius.circular(25),
+                                                                                                        child: Material(
+                                                                                                          color: Colors.transparent,
+                                                                                                          child: InkWell(
+                                                                                                            borderRadius: BorderRadius.circular(25),
+                                                                                                            splashColor: const Color.fromARGB(255, 245, 245, 245),
+                                                                                                            onTap: () {
+                                                                                                              Future.delayed(
+                                                                                                                const Duration(milliseconds: 100),
+                                                                                                                () {
+                                                                                                                  if (filterProvider.messages == "true") {
+                                                                                                                    mostLikedKeyProvider.initList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
+                                                                                                                  } else {
+                                                                                                                    mostLikedKeyProvider.initPollList(filterProvider.trendkeystore ?? "", filterProvider.global, filterProvider.countryCode, filterProvider.oneValueSearch, getNextList: true);
+                                                                                                                  }
+                                                                                                                },
+                                                                                                              );
+                                                                                                            },
+                                                                                                            child: Container(
+                                                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                                                                                              decoration: BoxDecoration(
+                                                                                                                color: Colors.transparent,
+                                                                                                                borderRadius: BorderRadius.circular(25),
+                                                                                                              ),
+                                                                                                              child: Row(
+                                                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                children: [
+                                                                                                                  Text(
+                                                                                                                    'View More',
+                                                                                                                    // 'View ${mostLikedKeyProvider.pollPageCount * 6 + 1} - ${(mostLikedKeyProvider.pollPageCount + 1) * 6}',
+                                                                                                                    // '${(postPageCount - 2) * 10 + 1} - ${(postPageCount - 1) * 10}',
+                                                                                                                    style: const TextStyle(
+                                                                                                                      color: Colors.black,
+                                                                                                                      fontWeight: FontWeight.w500,
+                                                                                                                      fontSize: 13.5,
+                                                                                                                    ),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  )
                                                                                           ],
                                                                                         ),
                                                                                       )
-                                                                                    : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.pollsList.isEmpty && filterProvider.messages != "true"
+                                                                                    : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.postsList.isEmpty && filterProvider.messages == "true"
                                                                                         ? Center(
                                                                                             child: Column(
                                                                                               mainAxisAlignment: MainAxisAlignment.center,
-                                                                                              children: [
-                                                                                                Column(
-                                                                                                  children: const [
-                                                                                                    Text(
-                                                                                                      'No polls found.',
-                                                                                                      style: TextStyle(color: Colors.grey, fontSize: 18),
-                                                                                                    ),
-                                                                                                  ],
+                                                                                              children: const [
+                                                                                                Text(
+                                                                                                  'No messages found.',
+                                                                                                  style: TextStyle(color: Colors.grey, fontSize: 18),
                                                                                                 ),
                                                                                               ],
                                                                                             ),
                                                                                           )
-                                                                                        : Container();
-                                                                      })
-                                                                    : Container();
-                              });
+                                                                                        : filterProvider.showMessages == true && filterProvider.isUser == false && mostLikedKeyProvider.pollsList.isEmpty && filterProvider.messages != "true"
+                                                                                            ? Center(
+                                                                                                child: Column(
+                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                  children: [
+                                                                                                    Column(
+                                                                                                      children: const [
+                                                                                                        Text(
+                                                                                                          'No polls found.',
+                                                                                                          style: TextStyle(color: Colors.grey, fontSize: 18),
+                                                                                                        ),
+                                                                                                      ],
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                ),
+                                                                                              )
+                                                                                            : Container();
+                                                                          })
+                                                                        : Container();
+                                  });
               },
             ),
           ),

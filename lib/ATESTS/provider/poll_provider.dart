@@ -224,6 +224,7 @@ class PollsProvider extends ChangeNotifier {
   getNextPolls(String twoValue, String global, String countryCode,
       int durationInDay, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -337,6 +338,7 @@ class PollsProvider extends ChangeNotifier {
   getPreviousPolls(String twoValue, String global, String countryCode,
       int durationInDay, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_pollsSnapshot != null
           // && oneValue == 'Highest Score'
           ) {
@@ -422,6 +424,7 @@ class PollsProvider extends ChangeNotifier {
 
   getUserPolls(String? userId) async {
     try {
+      _isButtonVisible = false;
       // debugPrint('called');
       if (_loading == false) {
         _loading = true;
@@ -450,11 +453,13 @@ class PollsProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getNextUserPolls(String? userId) async {
     try {
+      _isButtonVisible = false;
       // debugPrint('called');
       if (_scrollLoading == false) {
         _scrollLoading = true;
@@ -492,6 +497,7 @@ class PollsProvider extends ChangeNotifier {
     } finally {
       _scrollLoading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -537,6 +543,7 @@ class PollsProvider extends ChangeNotifier {
 
   getNextOrganicPolls(int durationInDay) async {
     try {
+      _isButtonVisible = false;
       if (_pollsSnapshot != null) {
         _loading = true;
         notifyListeners();
@@ -570,11 +577,13 @@ class PollsProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousOrganicPolls(int durationInDay) async {
     try {
+      _isButtonVisible = false;
       if (_last) {
         return;
       }
@@ -623,6 +632,7 @@ class PollsProvider extends ChangeNotifier {
       _pollPageLoading = false;
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 

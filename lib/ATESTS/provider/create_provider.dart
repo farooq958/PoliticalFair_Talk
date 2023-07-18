@@ -16,9 +16,9 @@ class CreatePageProvider extends ChangeNotifier {
   int paginationNumber = 10;
 
   QuerySnapshot<Map<String, dynamic>>? _postKeywordListSnapshot;
-  final _postPollProvider = Provider.of<PostPollProvider>(
-      navigatorKey.currentContext!,
-      listen: false);
+  // final _postPollProvider = Provider.of<PostPollProvider>(
+  //     navigatorKey.currentContext!,
+  //     listen: false);
 
   Future<void> getkeywordList(String global, String countryCode, durationInDay,
       {bool? getNextList1}) async {

@@ -18,7 +18,6 @@ class MostLikedProvider extends ChangeNotifier {
   bool _lastPostPage = false;
   bool _lastPollPage = false;
   bool _isButtonVisible = false;
-  bool _isPollButtonVisible = false;
   Poll? _mostLikedPoll;
   List<Poll> _mostLikedPolls = [];
 
@@ -34,6 +33,12 @@ class MostLikedProvider extends ChangeNotifier {
   final int _pageSize = 6;
 
   final ScrollController _postScrollController = ScrollController();
+
+  setButtonVisibility() async {
+    await Future.delayed(const Duration(seconds: 1));
+    _isButtonVisible = true;
+    notifyListeners();
+  }
 
   startScrollListener() {
     _postScrollController.addListener(postNextScroll);
@@ -149,6 +154,7 @@ class MostLikedProvider extends ChangeNotifier {
 
   getNextMostLikedPosts(String global, String country, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_lastPostPage) {
         return;
       }
@@ -194,12 +200,14 @@ class MostLikedProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousMostLikedPosts(
       String global, String country, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_mostLikePostsSnapshot != null && !_loading) {
         _loading = true;
         notifyListeners();
@@ -236,6 +244,7 @@ class MostLikedProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -243,7 +252,7 @@ class MostLikedProvider extends ChangeNotifier {
     try {
       // debugPrint('getMostLikedPolls one value is $oneValue');
       _loading = true;
-      _isPollButtonVisible = false;
+      _isButtonVisible = false;
       await Future.delayed(Duration.zero);
       notifyListeners();
       final query = global == 'true'
@@ -274,13 +283,14 @@ class MostLikedProvider extends ChangeNotifier {
       //
     } finally {
       _loading = false;
-      setPollButtonVisibility();
+      setButtonVisibility();
       notifyListeners();
     }
   }
 
   getNextMostLikedPolls(String global, String country, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_lastPollPage) {
         return;
       }
@@ -326,12 +336,14 @@ class MostLikedProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
   getPreviousMostLikedPolls(
       String global, String country, String oneValue) async {
     try {
+      _isButtonVisible = false;
       if (_mostLikePollsSnapshot != null && !_loading) {
         _loading = true;
         notifyListeners();
@@ -368,19 +380,8 @@ class MostLikedProvider extends ChangeNotifier {
     } finally {
       _loading = false;
       notifyListeners();
+      setButtonVisibility();
     }
-  }
-
-  setButtonVisibility() async {
-    await Future.delayed(const Duration(seconds: 1));
-    _isButtonVisible = true;
-    notifyListeners();
-  }
-
-  setPollButtonVisibility() async {
-    await Future.delayed(const Duration(seconds: 1));
-    _isPollButtonVisible = true;
-    notifyListeners();
   }
 
   @override
@@ -408,7 +409,7 @@ class MostLikedProvider extends ChangeNotifier {
 
   bool get isButtonVisible => _isButtonVisible;
 
-  bool get isPollButtonVisible => _isPollButtonVisible;
+  // bool get isPollButtonVisible => _isPollButtonVisible;
 
   int get pageSize => _pageSize;
 

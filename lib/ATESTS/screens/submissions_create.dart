@@ -52,22 +52,16 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
   bool isWaitingMessage = false;
   int getCounterPost = 0;
 
-  InterstitialAd? interstitialAd;
+  // InterstitialAd? interstitialAd;
 
-  final String interstitialAdUnitIdIOS =
-      'ca-app-pub-1591305463797264/4735037493';
-  final String interstitialAdUnitIdAndroid =
-      'ca-app-pub-1591305463797264/9016556769';
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   isFairtalk = user?.usernameLower == 'fairtalk' ? true : false;
-  // }
+  // final String interstitialAdUnitIdIOS =
+  //     'ca-app-pub-1591305463797264/4735037493';
+  // final String interstitialAdUnitIdAndroid =
+  //     'ca-app-pub-1591305463797264/9016556769';
 
   void initState() {
     super.initState();
-    _loadInterstitialAd();
+    // _loadInterstitialAd();
   }
 
   @override
@@ -92,7 +86,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
   }
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   Future<String> _loadMessageCounter() async {
     String res1 = "Some error occurred.";
@@ -109,68 +103,68 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
     return res1;
   }
 
-  void _loadInterstitialAd() {
-    if (Platform.isIOS) {
-      InterstitialAd.load(
-        adUnitId: interstitialAdUnitIdIOS,
+  // void _loadInterstitialAd() {
+  //   if (Platform.isIOS) {
+  //     InterstitialAd.load(
+  //       adUnitId: interstitialAdUnitIdIOS,
 
-        request: const AdRequest(),
-        adLoadCallback:
-            InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
-          interstitialAd = ad;
+  //       request: const AdRequest(),
+  //       adLoadCallback:
+  //           InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
+  //         interstitialAd = ad;
 
-          _setFullScreenContentCallback(ad);
-        }, onAdFailedToLoad: (LoadAdError loadAdError) {
-          debugPrint('$loadAdError');
-        }),
-        // orientation: AppOpenAd.orientationPortrait,
-      );
-    } else if (Platform.isAndroid) {
-      InterstitialAd.load(
-        adUnitId: interstitialAdUnitIdAndroid,
-        request: const AdRequest(),
-        adLoadCallback:
-            InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
-          interstitialAd = ad;
+  //         _setFullScreenContentCallback(ad);
+  //       }, onAdFailedToLoad: (LoadAdError loadAdError) {
+  //         debugPrint('$loadAdError');
+  //       }),
+  //       // orientation: AppOpenAd.orientationPortrait,
+  //     );
+  //   } else if (Platform.isAndroid) {
+  //     InterstitialAd.load(
+  //       adUnitId: interstitialAdUnitIdAndroid,
+  //       request: const AdRequest(),
+  //       adLoadCallback:
+  //           InterstitialAdLoadCallback(onAdLoaded: (InterstitialAd ad) {
+  //         interstitialAd = ad;
 
-          _setFullScreenContentCallback(ad);
-        }, onAdFailedToLoad: (LoadAdError loadAdError) {
-          debugPrint('$loadAdError');
-        }),
-        // orientation: AppOpenAd.orientationPortrait,
-      );
-    }
-  }
+  //         _setFullScreenContentCallback(ad);
+  //       }, onAdFailedToLoad: (LoadAdError loadAdError) {
+  //         debugPrint('$loadAdError');
+  //       }),
+  //       // orientation: AppOpenAd.orientationPortrait,
+  //     );
+  //   }
+  // }
 
-  void _setFullScreenContentCallback(InterstitialAd ad) {
-    ad.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (InterstitialAd ad) => print('$ad'),
-      onAdDismissedFullScreenContent: (InterstitialAd ad) {
-        debugPrint('$ad');
-        // isWaitingMessage = true;
-        showSnackBar(
-          'Ballot successfully created.',
-          context,
-        );
-        ballotMessage(context: context);
-        ad.dispose();
-        interstitialAd = null;
-        _loadInterstitialAd();
-      },
-      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        debugPrint('$ad - error: $error');
-        ad.dispose();
-        interstitialAd = null;
-        _loadInterstitialAd();
-      },
-      onAdImpression: (InterstitialAd ad) =>
-          debugPrint('$ad Impression occurred'),
-    );
-  }
+  // void _setFullScreenContentCallback(InterstitialAd ad) {
+  //   ad.fullScreenContentCallback = FullScreenContentCallback(
+  //     onAdShowedFullScreenContent: (InterstitialAd ad) => print('$ad'),
+  //     onAdDismissedFullScreenContent: (InterstitialAd ad) {
+  //       debugPrint('$ad');
+  //       // isWaitingMessage = true;
+  //       showSnackBar(
+  //         'Ballot successfully created.',
+  //         context,
+  //       );
+  //       ballotMessage(context: context);
+  //       ad.dispose();
+  //       interstitialAd = null;
+  //       _loadInterstitialAd();
+  //     },
+  //     onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+  //       debugPrint('$ad - error: $error');
+  //       ad.dispose();
+  //       interstitialAd = null;
+  //       _loadInterstitialAd();
+  //     },
+  //     onAdImpression: (InterstitialAd ad) =>
+  //         debugPrint('$ad Impression occurred'),
+  //   );
+  // }
 
-  void _showInterstitialAd() {
-    interstitialAd?.show();
-  }
+  // void _showInterstitialAd() {
+  //   interstitialAd?.show();
+  // }
 
   void postImage(String uid, String username, String profImage, String sub,
       bool bot) async {
@@ -197,7 +191,7 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
       );
       if (res == "success" && res1 == "success") {
         Future.delayed(const Duration(milliseconds: 1500), () {
-          _showInterstitialAd();
+          // _showInterstitialAd();
           FocusScope.of(context).unfocus();
           _titleController.clear();
 
@@ -205,14 +199,16 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
             _isLoading = false;
           });
 
+          showSnackBar(
+            'Ballot successfully created.',
+            context,
+          );
+          // ballotMessage(context: context);
+
           sub == 'fairtalk' ? null : waitSubmission(time: widget.durationInDay);
-          // showSnackBar(
-          //   'Ballot successfully created.',
-          //   context,
-          // );
         });
       } else {
-        showSnackBar(res, context);
+        // showSnackBar(res, context);
       }
       // }
     } catch (e) {
@@ -951,18 +947,18 @@ class _SubmissionCreateState extends State<SubmissionCreate> {
                                                           snap?.submissionTime ==
                                                                   widget
                                                                       .durationInDay
-                                                              ? sendTimerDialog(
+                                                              ? sendTimerBallot(
                                                                   context:
                                                                       context,
                                                                   type:
-                                                                      'ballot',
-                                                                  type2: '')
+                                                                      'Ballot',
+                                                                )
                                                               : _titleController
                                                                       .text
                                                                       .trim()
                                                                       .isEmpty
                                                                   ? showSnackBarError(
-                                                                      'Create a ballot field cannot be empty.',
+                                                                      'Create a ballot text field cannot be empty.',
                                                                       context)
                                                                   : postImage(
                                                                       user?.UID ??

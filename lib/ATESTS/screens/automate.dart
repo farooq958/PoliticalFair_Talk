@@ -413,7 +413,7 @@ class _AutomateState extends State<Automate> {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 139, 139, 139),
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       MyFlutterApp.youtube,
@@ -616,7 +616,7 @@ class _AutomateState extends State<Automate> {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 139, 139, 139),
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.collections,

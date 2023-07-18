@@ -31,7 +31,7 @@ class _VerifyCompleteState extends State<VerifyComplete> {
   int getVerifiedCounter = 0;
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   Future<String> _loadVerifiedCounter() async {
     String res1 = "Some error occurred.";
