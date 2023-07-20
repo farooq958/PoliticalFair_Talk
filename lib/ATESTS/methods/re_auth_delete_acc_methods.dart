@@ -1,4 +1,7 @@
+import 'package:aft/ATESTS/utils/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart' as f_auth;
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
@@ -22,6 +25,11 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final f_auth.FirebaseAuth _auth = f_auth.FirebaseAuth.instance;
+    f_auth.User? firebaseUser = _auth.currentUser;
+    print("providerdata");
+    String? providerAuth=firebaseUser?.providerData[0].providerId;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Stack(
@@ -61,7 +69,7 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
                   //         letterSpacing: 0.2,
                   //         fontWeight: FontWeight.w500,
                   //         color: whiteDialog)),
-                  Padding(
+                 providerAuth=="google.com"?const SizedBox(height: 10,) : Padding(
                     padding: const EdgeInsets.only(
                       top: 12,
                       bottom: 15,
@@ -164,25 +172,69 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
                                       context,
                                       listen: false)
                                   .getUser;
+if(providerAuth=='google.com'){
+  //User? _user;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  final GoogleSignInAccount? googleUser =
+  await googleSignIn.signIn();
 
-                              String res = await AuthMethods().loginUser(
-                                email: user?.aEmail ?? '',
-                                password: passwordController.text,
-                              );
-                              await userProvider.refreshTokenAndTopic();
-                              if (res == "success") {
-                                setState(() {
-                                  _authenticationFailed = false;
-                                  _isLoading = false;
-                                });
+  if (googleUser == null) return null;
+  // _user = googleUser;
 
-                                Navigator.pop(context, true);
-                              } else {
-                                setState(() {
-                                  _authenticationFailed = true;
-                                  _isLoading = false;
-                                });
-                              }
+  final googleAuth = await googleUser.authentication;
+
+  final credential = f_auth.GoogleAuthProvider.credential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
+
+  // Re-authenticate the user with Google credentials
+  final f_auth.UserCredential? userCredential = await firebaseUser?.reauthenticateWithCredential(credential);
+  if(userCredential?.user != null)
+    {
+      setState(() {
+        _authenticationFailed = false;
+        _isLoading = false;
+      });
+      Navigator.pop(context, true);
+
+    }
+  else
+    {
+
+      setState(() {
+        _authenticationFailed = true;
+        _isLoading = false;
+      });
+      showSnackBar('Something Went Wrong Could Not Delete try again later',context);
+      Navigator.pop(context, true);
+      return null;
+
+    }
+}
+else
+  {
+    String res = await AuthMethods().loginUser(
+      email: user?.aEmail ?? '',
+      password: passwordController.text,
+    );
+    await userProvider.refreshTokenAndTopic();
+    if (res == "success") {
+      setState(() {
+        _authenticationFailed = false;
+        _isLoading = false;
+      });
+
+      Navigator.pop(context, true);
+    } else {
+      setState(() {
+        _authenticationFailed = true;
+        _isLoading = false;
+      });
+    }
+  }
+
+
                             });
                           },
                           child: Container(
@@ -204,9 +256,9 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
                                       ),
                                     ),
                                   )
-                                : Row(
+                                : const Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
+                                    children: [
                                       Text('CONFIRM',
                                           style: TextStyle(
                                             fontSize: 16,

@@ -148,6 +148,37 @@ class _AutomateState extends State<Automate> {
 
     keywordMessageController = TextfieldTagsController();
 
+
+    // controller = YoutubePlayerController.fromVideoId(
+    //   videoId: '$videoUrl',
+    //   params:  const YoutubePlayerParams(
+    //     showControls: true,
+    //     // autoPlay: widget.index!,
+    //     showFullscreenButton: true,
+    //     //desktopMode: false,
+    //     //privacyEnhanced: true,
+    //     //useHybridComposition: true,
+    //   ),
+    // );
+
+    // controller?.setFullScreenListener((value) {
+    //
+    //   if(value)
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight,
+    //     ]);
+    //   }
+    //   else
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown,
+    //     ]);
+    //   }
+    //
+    // });
     controller = YoutubePlayerController(
       initialVideoId: '$videoUrl',
       params: const YoutubePlayerParams(
@@ -168,7 +199,7 @@ class _AutomateState extends State<Automate> {
     controller!.onExitFullscreen = () {
       log('Exited Fullscreen');
     };
-    // setState(() {});
+     setState(() {});
   }
 
   Widget _icon(int index, {required IconData icon}) {
@@ -292,6 +323,18 @@ class _AutomateState extends State<Automate> {
 
                             if (videoUrl != null) {
                               setState(() {
+
+                                // controller = YoutubePlayerController.fromVideoId(
+                                //   videoId: '$videoUrl',
+                                //   params:  const YoutubePlayerParams(
+                                //     showControls: true,
+                                //     // autoPlay: widget.index!,
+                                //     showFullscreenButton: true,
+                                //     //desktopMode: false,
+                                //     //privacyEnhanced: true,
+                                //     //useHybridComposition: true,
+                                //   ),
+                                // );
                                 controller = YoutubePlayerController(
                                   initialVideoId: '$videoUrl',
                                   params: const YoutubePlayerParams(
@@ -639,7 +682,7 @@ class _AutomateState extends State<Automate> {
 
   @override
   Widget build(BuildContext context) {
-    const player = YoutubePlayerIFrame();
+    var player = YoutubePlayerIFrame(controller: controller!);
     final automateProvider =
         Provider.of<AutomateProvider>(context, listen: false);
     return Container(
@@ -1774,7 +1817,7 @@ class _AutomateState extends State<Automate> {
                                                                                       controller: controller,
                                                                                       builder: (context, value) {
                                                                                         return AnimatedCrossFade(
-                                                                                          crossFadeState: value.isReady ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                                                                                          crossFadeState: value.playerState==PlayerState.cued ? CrossFadeState.showSecond : CrossFadeState.showFirst,
                                                                                           duration: const Duration(milliseconds: 300),
                                                                                           secondChild: const SizedBox.shrink(),
                                                                                           firstChild: Material(
@@ -1787,7 +1830,7 @@ class _AutomateState extends State<Automate> {
                                                                                                 image: DecorationImage(
                                                                                                   image: NetworkImage(
                                                                                                     YoutubePlayerController.getThumbnail(
-                                                                                                      videoId: controller!.initialVideoId,
+                                                                                                      videoId: controller!.value.metaData.videoId,
                                                                                                       quality: ThumbnailQuality.medium,
                                                                                                     ),
                                                                                                   ),

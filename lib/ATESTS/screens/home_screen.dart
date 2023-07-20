@@ -40,7 +40,8 @@ class _FeedScreenState extends State<FeedScreen> {
   String twoValue = '';
   String threeValue = '';
   String countryCode = "";
-
+  ValueNotifier<int> indexFirst=ValueNotifier(0);
+  int count=0;
   // User? user;
   bool isLoading = false;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -56,7 +57,8 @@ class _FeedScreenState extends State<FeedScreen> {
   StreamController<Poll> updatingStreamPoll = StreamController.broadcast();
   final _postScrollController = ScrollController();
   final _pollsScrollController = ScrollController();
-
+int indexOfFirstVideo=0;
+//bool indexFirst=false;
   @override
   void initState() {
     super.initState();
@@ -773,13 +775,39 @@ class _FeedScreenState extends State<FeedScreen> {
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return PostCardTest(
-                                        key: Key(
-                                            postProvider.posts[index].postId),
-                                        post: postProvider.posts[index],
-                                        profileScreen: false,
-                                        archives: false,
-                                        durationInDay: widget.durationInDay);
+                                    print(postProvider.posts[index].aVideoUrl);
+                                   if(postProvider.posts[index].aVideoUrl!="")
+                                     {
+                                       indexFirst.value+=1;
+                                       print(indexFirst.value);
+// if(indexFirst.value!=true)
+//   {
+// count++;
+//     indexFirst.value=true;
+//
+//   }
+
+                                     }
+//print(count);
+                                   // else
+                                   //   {indexFirst.value=false;
+                                   //  }
+                                    return ValueListenableBuilder(
+
+                                      builder: (context,int value, child) {
+                                        //print(value);
+                                        return PostCardTest(
+                                            key: Key(
+                                                postProvider.posts[index].postId),
+                                            post: postProvider.posts[index],
+                                            profileScreen: false,
+                                            archives: false,
+                                            durationInDay: widget.durationInDay,
+                                          index: value==1?true:false,
+
+                                        );
+                                      }, valueListenable: indexFirst,
+                                    );
                                   },
                                 ),
                                 postProvider.last || postProvider.pLoading

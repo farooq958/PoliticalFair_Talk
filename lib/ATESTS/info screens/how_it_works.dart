@@ -29,6 +29,36 @@ class _HowItWorksState extends State<HowItWorks> {
   @override
   void initState() {
     super.initState();
+
+    // controller = YoutubePlayerController.fromVideoId(
+    //   videoId: 'b9JQWJ7B1Go',
+    //   params:  const YoutubePlayerParams(
+    //     showControls: true,
+    //     // autoPlay: widget.index!,
+    //     showFullscreenButton: true,
+    //     //desktopMode: false,
+    //     //privacyEnhanced: true,
+    //     //useHybridComposition: true,
+    //   ),
+    // );
+    // controller?.setFullScreenListener((value) {
+    //
+    //   if(value)
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight,
+    //     ]);
+    //   }
+    //   else
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown,
+    //     ]);
+    //   }
+    //
+    // });
     controller = YoutubePlayerController(
       initialVideoId: 'b9JQWJ7B1Go',
       params: const YoutubePlayerParams(
@@ -61,8 +91,8 @@ class _HowItWorksState extends State<HowItWorks> {
 
   @override
   Widget build(BuildContext context) {
-    const player = YoutubePlayerIFrame(
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+    var player = YoutubePlayerIFrame(
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{}, controller: controller!,
     );
     return YoutubePlayerControllerProvider(
       controller: controller!,

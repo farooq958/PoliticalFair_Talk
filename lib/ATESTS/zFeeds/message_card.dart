@@ -31,7 +31,7 @@ class PostCardTest extends StatefulWidget {
   final Post post;
   final profileScreen;
   final archives;
-
+final bool? index;
   var durationInDay;
 
   PostCardTest({
@@ -39,7 +39,8 @@ class PostCardTest extends StatefulWidget {
     required this.post,
     required this.profileScreen,
     required this.archives,
-    required this.durationInDay,
+    required this.durationInDay, this.index,
+
   }) : super(key: key);
 
   @override
@@ -74,15 +75,21 @@ class _PostCardTestState extends State<PostCardTest> {
 
     _post = widget.post;
     // plusCounter = widget.post.plusCount;
+    print(_post.aVideoUrl+"videourl");
 
     controller = YoutubePlayerController(
       initialVideoId: _post.aVideoUrl,
-      params: const YoutubePlayerParams(
-        showControls: true,
+      params:   YoutubePlayerParams(
+        origin: "https://www.youtube.com/embed/${_post.aVideoUrl}?showInfo=0" ,
+        //showControls: false,
+        enableCaption: false,
+        autoPlay: widget.index??false,
+
         showFullscreenButton: true,
         desktopMode: false,
         privacyEnhanced: true,
-        useHybridComposition: true,
+        showVideoAnnotations: false,
+        useHybridComposition: false,
       ),
     );
     getAllUserDetails();
@@ -97,7 +104,7 @@ class _PostCardTestState extends State<PostCardTest> {
     //     looping: false,
     //   );
     // }
-
+    //
     controller.onEnterFullscreen = () {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
@@ -106,9 +113,30 @@ class _PostCardTestState extends State<PostCardTest> {
       log('Entered Fullscreen');
     };
     controller.onExitFullscreen = () {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
       log('Exited Fullscreen');
     };
-
+// controller.setFullScreenListener((value) {
+//
+// if(value)
+//   {
+//       SystemChrome.setPreferredOrientations([
+//         DeviceOrientation.landscapeLeft,
+//         DeviceOrientation.landscapeRight,
+//       ]);
+//   }
+// else
+//   {
+//       SystemChrome.setPreferredOrientations([
+//         DeviceOrientation.portraitUp,
+//         DeviceOrientation.portraitDown,
+//       ]);
+//   }
+//
+// });
     // getComments();
   }
 
@@ -152,9 +180,9 @@ class _PostCardTestState extends State<PostCardTest> {
     // int endTime = widget.post.endDate.toDate().millisecondsSinceEpoch;
     //  debugPrint('end time is ${widget.post.endDate.toDate()}');
 
-    const player = YoutubePlayerIFrame(
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
-    );
+    // const player = YoutubePlayerIFrame(
+    //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+    // );
     final User? user = Provider.of<UserProvider>(context).getUser;
 
     return StreamBuilder(
@@ -186,8 +214,9 @@ class _PostCardTestState extends State<PostCardTest> {
     // int endTime = widget.post.endDate.toDate().millisecondsSinceEpoch;
     //  debugPrint('end time is ${widget.post.endDate.toDate()}');
 
-    const player = YoutubePlayerIFrame(
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+   var  player = YoutubePlayerIFrame(controller: controller,
+
+     gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
     );
     final User? user = Provider.of<UserProvider>(context).getUser;
 
@@ -390,8 +419,8 @@ class _PostCardTestState extends State<PostCardTest> {
                                 child: Row(
                                   children: [
                                     _userProfile?.profileBadge == true
-                                        ? Stack(
-                                            children: const [
+                                        ? const Stack(
+                                            children: [
                                               Positioned(
                                                 right: 3,
                                                 top: 3,
@@ -1215,7 +1244,7 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                 .width,
                                                         child: Stack(
                                                           children: [
-                                                            player,
+                                                           player,
                                                             Positioned.fill(
                                                               child:
                                                                   YoutubeValueBuilder(
@@ -1224,6 +1253,7 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                 builder:
                                                                     (context,
                                                                         value) {
+
                                                                   return AnimatedCrossFade(
                                                                     crossFadeState: value.isReady
                                                                         ? CrossFadeState
@@ -1243,11 +1273,11 @@ class _PostCardTestState extends State<PostCardTest> {
                                                                               children: [
                                                                                 Center(
                                                                                   child: Container(
+                                                                                    height: 25,
+                                                                                    width: 25,
                                                                                     child: CircularProgressIndicator(
                                                                                       color: whiteDialog,
                                                                                     ),
-                                                                                    height: 25,
-                                                                                    width: 25,
                                                                                   ),
                                                                                 ),
                                                                                 // FadeInImage.memoryNetwork(

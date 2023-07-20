@@ -153,6 +153,36 @@ class _AddPostState extends State<AddPost> {
     // DateTime startDate = NTP.now();
     // init();
     keywordMessageController = TextfieldTagsController();
+    // controller = YoutubePlayerController.fromVideoId(
+    //   videoId: '$videoUrl',
+    //   params:  const YoutubePlayerParams(
+    //     showControls: true,
+    //     // autoPlay: widget.index!,
+    //     showFullscreenButton: true,
+    //     //desktopMode: false,
+    //     //privacyEnhanced: true,
+    //     //useHybridComposition: true,
+    //   ),
+    // );
+    //
+    // controller?.setFullScreenListener((value) {
+    //
+    //   if(value)
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight,
+    //     ]);
+    //   }
+    //   else
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown,
+    //     ]);
+    //   }
+    //
+    // });
 
     controller = YoutubePlayerController(
       initialVideoId: '$videoUrl',
@@ -645,7 +675,7 @@ class _AddPostState extends State<AddPost> {
     //   disableButton = true;
     // }
 
-    const player = YoutubePlayerIFrame();
+  //  var player = YoutubePlayer(controller: controller!);
     user = Provider.of<UserProvider>(context).getUser;
 
     // return InkWell(
@@ -802,6 +832,18 @@ class _AddPostState extends State<AddPost> {
 
                             if (videoUrl != null) {
                               setState(() {
+                                // controller = YoutubePlayerController.fromVideoId(
+                                //   videoId: '$videoUrl',
+                                //   params:  const YoutubePlayerParams(
+                                //     showControls: true,
+                                //     // autoPlay: widget.index!,
+                                //     showFullscreenButton: true,
+                                //     //desktopMode: false,
+                                //     //privacyEnhanced: true,
+                                //     //useHybridComposition: true,
+                                //   ),
+                                // );
+
                                 controller = YoutubePlayerController(
                                   initialVideoId: '$videoUrl',
                                   params: const YoutubePlayerParams(
@@ -1337,7 +1379,7 @@ class _AddPostState extends State<AddPost> {
 
   Widget buildAdd(BuildContext context,
       [AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>? snapshot]) {
-    const player = YoutubePlayerIFrame();
+    var  player = YoutubePlayerIFrame(controller: controller!);
     User? user;
     user = Provider.of<UserProvider>(context).getUser;
 

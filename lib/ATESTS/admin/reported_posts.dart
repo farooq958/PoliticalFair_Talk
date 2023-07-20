@@ -43,6 +43,17 @@ class _ReportPostsState extends State<ReportPosts> {
     super.initState();
 
     _post = widget.post;
+    // controller = YoutubePlayerController.fromVideoId(
+    //   videoId: _post.aVideoUrl,
+    //   params:  const YoutubePlayerParams(
+    //     showControls: true,
+    //     // autoPlay: widget.index!,
+    //     showFullscreenButton: true,
+    //     //desktopMode: false,
+    //     //privacyEnhanced: true,
+    //     //useHybridComposition: true,
+    //   ),
+    // );
 
     controller = YoutubePlayerController(
       initialVideoId: _post.aVideoUrl,
@@ -64,16 +75,24 @@ class _ReportPostsState extends State<ReportPosts> {
     //   );
     // }
 
-    controller.onEnterFullscreen = () {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ]);
-      log('Entered Fullscreen');
-    };
-    controller.onExitFullscreen = () {
-      log('Exited Fullscreen');
-    };
+    // controller.setFullScreenListener((value) {
+    //
+    //   if(value)
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight,
+    //     ]);
+    //   }
+    //   else
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown,
+    //     ]);
+    //   }
+    //
+    // });
   }
 
   getAllUserDetails() async {
@@ -87,8 +106,8 @@ class _ReportPostsState extends State<ReportPosts> {
   Widget build(BuildContext context) {
     _post = widget.post;
 
-    const player = YoutubePlayerIFrame(
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+    var player = YoutubePlayerIFrame(
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{}, controller: controller,
     );
 
     return StreamBuilder(
@@ -317,7 +336,7 @@ class _ReportPostsState extends State<ReportPosts> {
                                                                         (context,
                                                                             value) {
                                                                       return AnimatedCrossFade(
-                                                                        crossFadeState: value.isReady
+                                                                        crossFadeState: value.playerState==PlayerState.cued
                                                                             ? CrossFadeState.showSecond
                                                                             : CrossFadeState.showFirst,
                                                                         duration:
@@ -335,7 +354,7 @@ class _ReportPostsState extends State<ReportPosts> {
                                                                                 placeholder: kTransparentImage,
                                                                                 fadeInDuration: const Duration(milliseconds: 200),
                                                                                 image: YoutubePlayerController.getThumbnail(
-                                                                                  videoId: controller.initialVideoId,
+                                                                                  videoId: controller.metadata.videoId,
                                                                                   quality: ThumbnailQuality.medium,
                                                                                 )),
                                                                           ],

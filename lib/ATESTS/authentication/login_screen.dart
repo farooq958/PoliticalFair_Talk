@@ -347,12 +347,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                             context,
                                             listen: false);
                                     final user=await provider.googleLogin();
-                                    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
                                 if(user!=null) {
 
                                   {
                                     DocumentSnapshot snap =
-                                    await _firestore.collection('users').doc(user.uid).get();
+                                    await fireStore.collection('users').doc(user.uid).get();
                                     if(snap.data() == null)
                                     {
                                       final GoogleSignIn googleSignIn = GoogleSignIn();

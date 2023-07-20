@@ -336,9 +336,21 @@ class _FullMessageState extends State<FullMessage> {
         clickedReplyId: replyId,
       );
     });
+    // controller = YoutubePlayerController.fromVideoId(
+    //   videoId: _post.aVideoUrl,
+    //   params:  const YoutubePlayerParams(
+    //     showControls: true,
+    //     // autoPlay: widget.index!,
+    //     showFullscreenButton: true,
+    //     //desktopMode: false,
+    //     //privacyEnhanced: true,
+    //     //useHybridComposition: true,
+    //   ),
+    // );
     controller = YoutubePlayerController(
       initialVideoId: _post.aVideoUrl,
       params: const YoutubePlayerParams(
+        autoPlay: false,
         showControls: true,
         showFullscreenButton: true,
         desktopMode: false,
@@ -347,6 +359,25 @@ class _FullMessageState extends State<FullMessage> {
       ),
     );
     getAllUserDetails();
+
+    // controller.setFullScreenListener((value) {
+    //
+    //   if(value)
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight,
+    //     ]);
+    //   }
+    //   else
+    //   {
+    //     SystemChrome.setPreferredOrientations([
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown,
+    //     ]);
+    //   }
+    //
+    // });
 
     controller.onEnterFullscreen = () {
       SystemChrome.setPreferredOrientations([
@@ -508,9 +539,13 @@ class _FullMessageState extends State<FullMessage> {
   Widget buildFullMessage(BuildContext context) {
     _post = widget.post;
     final postProvider = Provider.of<PostProvider>(context, listen: false);
-    const player = YoutubePlayerIFrame(
-      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+    var  player = YoutubePlayerIFrame(controller: controller,
+
+      //  gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
     );
+    // const player = YoutubePlayerIFrame(
+    //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{},
+    // );
     final User? user = Provider.of<UserProvider>(context).getUser;
 
     // timer = Timer.periodic(

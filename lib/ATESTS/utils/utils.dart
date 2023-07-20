@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ import '../info screens/verification_fail.dart';
 import '../info screens/verification_success.dart';
 import '../methods/firestore_methods.dart';
 import '../methods/re_auth_delete_acc_methods.dart';
-import '../models/user.dart';
+import '../models/user.dart' as customUser;
 import '../provider/user_provider.dart';
 import '../methods/re_auth_methods.dart';
 import '../responsive/AMobileScreenLayout.dart';
@@ -1455,7 +1456,7 @@ performLoggedUserAction({
   required BuildContext context,
   required Function action,
 }) {
-  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
+  final customUser.User? user = Provider.of<UserProvider>(context, listen: false).getUser;
   if (user != null) {
     action();
   } else {
@@ -4957,7 +4958,8 @@ Future<bool> performReAuthenticationDeleteAccountAction({
   required BuildContext context,
 }) async {
   bool? authenticated = false;
-  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
+  final customUser.User? user = Provider.of<UserProvider>(context, listen: false).getUser;
+
   if (user != null) {
     authenticated = await showDialog<bool>(
       context: context,
@@ -4972,7 +4974,7 @@ Future<bool> performReAuthenticationAction({
   required username,
 }) async {
   bool? authenticated = false;
-  final User? user = Provider.of<UserProvider>(context, listen: false).getUser;
+  final customUser.User? user = Provider.of<UserProvider>(context, listen: false).getUser;
   var idk = username;
   if (user != null) {
     authenticated = await showDialog<bool>(
