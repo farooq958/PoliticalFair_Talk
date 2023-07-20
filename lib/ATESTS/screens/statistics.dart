@@ -21,7 +21,7 @@ class _StatisticsState extends State<Statistics> {
   int getPollCounter = 0;
 
   // Future getDocId() async {
-  //   await FirebaseFirestore.instance.collection('postCounter').get().then(
+  //   await FirebaseFirestore.instance.collection('aPostCounter').get().then(
   //         (snapshot) => snapshot.docs.forEach((element) {
   //           counters.add(element.reference.id);
   //         }),
@@ -29,7 +29,7 @@ class _StatisticsState extends State<Statistics> {
   // }
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   Future<String> _loadVerifiedCounter() async {
     String res1 = "Some error occurred.";

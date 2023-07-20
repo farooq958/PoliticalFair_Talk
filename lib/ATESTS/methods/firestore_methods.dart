@@ -41,6 +41,7 @@ class FirestoreMethods {
     String bOption10,
     int time,
     int datePublishedCounter,
+    bool bot,
     List<String>? tagsLowerCase,
   ) async {
     String res = "Some error occurred.";
@@ -109,6 +110,7 @@ class FirestoreMethods {
         reportChecked: false,
         reportRemoved: false,
         time: time,
+        bot: bot,
         tagsLowerCase: tagsLowerCase,
       );
 
@@ -127,7 +129,7 @@ class FirestoreMethods {
   void postCounter(String type) async {
     try {
       await _firestore
-          .collection('postCounter')
+          .collection('aPostCounter')
           .doc(type == 'post'
               ? 'messageCounter'
               : type == 'poll'
@@ -296,6 +298,7 @@ class FirestoreMethods {
       int datePublishedCounter,
       int time,
       String sub,
+      bool bot,
       List<String>? tagsLowerCase) async {
     String res = "Some error occurred.";
     try {
@@ -336,6 +339,7 @@ class FirestoreMethods {
           commentCount: 0,
           score: 0,
           time: time,
+          bot: bot,
           // endDate: timeNow.add(Duration(
           //   days: 6,
           //   hours: 23 - timeNow.hour,
@@ -423,239 +427,242 @@ class FirestoreMethods {
             });
           }
         });
-        var weeklyRef = type == "posts"
-            ? (global == "true"
-                ? _firestore
-                    .collectionGroup("globallyPost")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isEqualTo: element)
-                    .where("global", isEqualTo: "true")
-                : _firestore
-                    .collectionGroup("byCountryWeeklyPost")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isEqualTo: element)
-                    .where("country", isEqualTo: country))
-            : (global == "true"
-                ? _firestore
-                    .collectionGroup("globallyPolls")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isEqualTo: element)
-                    .where("global", isEqualTo: "true")
-                : _firestore
-                    .collectionGroup("byCountryWeeklyPolls")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isEqualTo: element)
-                    .where("country", isEqualTo: country));
+        /////////////////
+        //WEEKLY KEYWORD DO NOT DELETE //
+        ///////////////////
+        // var weeklyRef = type == "posts"
+        //     ? (global == "true"
+        //         ? _firestore
+        //             .collectionGroup("globallyPost")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isEqualTo: element)
+        //             .where("global", isEqualTo: "true")
+        //         : _firestore
+        //             .collectionGroup("byCountryWeeklyPost")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isEqualTo: element)
+        //             .where("country", isEqualTo: country))
+        //     : (global == "true"
+        //         ? _firestore
+        //             .collectionGroup("globallyPolls")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isEqualTo: element)
+        //             .where("global", isEqualTo: "true")
+        //         : _firestore
+        //             .collectionGroup("byCountryWeeklyPolls")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isEqualTo: element)
+        //             .where("country", isEqualTo: country));
 
-        var weeklyRefElse = type == "posts"
-            ? (global == "true"
-                ? _firestore
-                    .collectionGroup("globallyPost")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isNotEqualTo: element)
-                    .where("global", isEqualTo: "true")
-                : _firestore
-                    .collectionGroup("byCountryWeeklyPost")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isNotEqualTo: element)
-                    .where("country", isEqualTo: country))
-            : (global == "true"
-                ? _firestore
-                    .collectionGroup("globallyPolls")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isNotEqualTo: element)
-                    .where("global", isEqualTo: "true")
-                : _firestore
-                    .collectionGroup("byCountryWeeklyPolls")
-                    .where("weekList", arrayContains: time)
-                    .where("keyName", isNotEqualTo: element)
-                    .where("country", isEqualTo: country));
+        // var weeklyRefElse = type == "posts"
+        //     ? (global == "true"
+        //         ? _firestore
+        //             .collectionGroup("globallyPost")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isNotEqualTo: element)
+        //             .where("global", isEqualTo: "true")
+        //         : _firestore
+        //             .collectionGroup("byCountryWeeklyPost")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isNotEqualTo: element)
+        //             .where("country", isEqualTo: country))
+        //     : (global == "true"
+        //         ? _firestore
+        //             .collectionGroup("globallyPolls")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isNotEqualTo: element)
+        //             .where("global", isEqualTo: "true")
+        //         : _firestore
+        //             .collectionGroup("byCountryWeeklyPolls")
+        //             .where("weekList", arrayContains: time)
+        //             .where("keyName", isNotEqualTo: element)
+        //             .where("country", isEqualTo: country));
 
-        weeklyRef.get().then((QuerySnapshot compareValue) {
-          if (compareValue.docs == null || compareValue.docs.length == 0) {
-            for (int n = 0; n < 7; n++) {
-              List<String> searchList = setSearchParam(element);
-              List<int> weekList = [];
-              for (int i = 0; i < 7; i++) {
-                weekList.add(time - n + i);
-              }
-              Keyword _keyword = Keyword(
-                keyName: element,
-                postIds: [postId],
-                // userIds: [uid],
-                postType: type,
-                length: 1,
-                country: country,
-                global: global,
-                nameSearchList: searchList,
-                time: time - n,
-                weekList: weekList,
-                WeekName: "week ${time - n}-${time - n + 6}",
-                lastDay: time - n + 6,
-              );
-              if (type == "posts") {
-                // FirebaseFirestore.instance
-                //     .collection('weeklyKeywordsPost')
-                //     .doc("week ${time - n}-${time - n + 6}")
-                //     .collection(global == "true"
-                //         ? "globallyPost"
-                //         : "byCountryWeeklyPost")
-                //     .doc(global == "true" ? element : "$element-$country")
-                //     .set(_keyword.toJson());
-              } else {
-                // FirebaseFirestore.instance
-                //     .collection('weeklyKeywordsPolls')
-                //     .doc("week ${time - n}-${time - n + 6}")
-                //     .collection(global == "true"
-                //         ? "globallyPolls"
-                //         : "byCountryWeeklyPolls")
-                //     .doc(global == "true" ? element : "$element-$country")
-                //     .set(_keyword.toJson());
-              }
-            }
-          } else {
-            if (type == "posts") {
-              compareValue.docs.forEach(
-                (element1) {
-                  FirebaseFirestore.instance
-                      .collection('weeklyKeywordsPost')
-                      .doc(
-                          "week ${element1["weekList"][0]}-${element1["weekList"][6]}")
-                      .collection(global == "true"
-                          ? "globallyPost"
-                          : "byCountryWeeklyPost")
-                      .doc(global == "true" ? element : "$element-$country")
-                      .update({
-                    'postIds': FieldValue.arrayUnion([postId]),
-                    // 'userIds': FieldValue.arrayUnion([uid]),
-                    'length': FieldValue.increment(1)
-                  });
-                },
-              );
+        // weeklyRef.get().then((QuerySnapshot compareValue) {
+        //   if (compareValue.docs == null || compareValue.docs.length == 0) {
+        //     for (int n = 0; n < 7; n++) {
+        //       List<String> searchList = setSearchParam(element);
+        //       List<int> weekList = [];
+        //       for (int i = 0; i < 7; i++) {
+        //         weekList.add(time - n + i);
+        //       }
+        //       Keyword _keyword = Keyword(
+        //         keyName: element,
+        //         postIds: [postId],
+        //         // userIds: [uid],
+        //         postType: type,
+        //         length: 1,
+        //         country: country,
+        //         global: global,
+        //         nameSearchList: searchList,
+        //         time: time - n,
+        //         weekList: weekList,
+        //         WeekName: "week ${time - n}-${time - n + 6}",
+        //         lastDay: time - n + 6,
+        //       );
+        //       if (type == "posts") {
+        //         // FirebaseFirestore.instance
+        //         //     .collection('weeklyKeywordsPost')
+        //         //     .doc("week ${time - n}-${time - n + 6}")
+        //         //     .collection(global == "true"
+        //         //         ? "globallyPost"
+        //         //         : "byCountryWeeklyPost")
+        //         //     .doc(global == "true" ? element : "$element-$country")
+        //         //     .set(_keyword.toJson());
+        //       } else {
+        //         // FirebaseFirestore.instance
+        //         //     .collection('weeklyKeywordsPolls')
+        //         //     .doc("week ${time - n}-${time - n + 6}")
+        //         //     .collection(global == "true"
+        //         //         ? "globallyPolls"
+        //         //         : "byCountryWeeklyPolls")
+        //         //     .doc(global == "true" ? element : "$element-$country")
+        //         //     .set(_keyword.toJson());
+        //       }
+        //     }
+        //   } else {
+        //     if (type == "posts") {
+        //       compareValue.docs.forEach(
+        //         (element1) {
+        //           FirebaseFirestore.instance
+        //               .collection('weeklyKeywordsPost')
+        //               .doc(
+        //                   "week ${element1["weekList"][0]}-${element1["weekList"][6]}")
+        //               .collection(global == "true"
+        //                   ? "globallyPost"
+        //                   : "byCountryWeeklyPost")
+        //               .doc(global == "true" ? element : "$element-$country")
+        //               .update({
+        //             'postIds': FieldValue.arrayUnion([postId]),
+        //             // 'userIds': FieldValue.arrayUnion([uid]),
+        //             'length': FieldValue.increment(1)
+        //           });
+        //         },
+        //       );
 
-              for (int i = 0; i < 7; i++) {
-                (global == "true"
-                        ? FirebaseFirestore.instance
-                            .collectionGroup("globallyPost")
-                            .where("WeekName",
-                                isEqualTo: "week ${time - i}-${(time - i) + 6}")
-                            .where("keyName", isEqualTo: element)
-                            .where("global", isEqualTo: "true")
-                        : FirebaseFirestore.instance
-                            .collectionGroup("byCountryWeeklyPost")
-                            .where("WeekName",
-                                isEqualTo: "week ${time - i}-${(time - i) + 6}")
-                            .where("keyName", isEqualTo: element)
-                            .where("country", isEqualTo: country))
-                    .get()
-                    .then((QuerySnapshot Query) {
-                  // print("Query.docs-- ${Query.docs[0]["weekList"]}");
-                  if (Query.docs == null || Query.docs.length == 0) {
-                    List<String> searchList = setSearchParam(element);
+        //       for (int i = 0; i < 7; i++) {
+        //         (global == "true"
+        //                 ? FirebaseFirestore.instance
+        //                     .collectionGroup("globallyPost")
+        //                     .where("WeekName",
+        //                         isEqualTo: "week ${time - i}-${(time - i) + 6}")
+        //                     .where("keyName", isEqualTo: element)
+        //                     .where("global", isEqualTo: "true")
+        //                 : FirebaseFirestore.instance
+        //                     .collectionGroup("byCountryWeeklyPost")
+        //                     .where("WeekName",
+        //                         isEqualTo: "week ${time - i}-${(time - i) + 6}")
+        //                     .where("keyName", isEqualTo: element)
+        //                     .where("country", isEqualTo: country))
+        //             .get()
+        //             .then((QuerySnapshot Query) {
+        //           // print("Query.docs-- ${Query.docs[0]["weekList"]}");
+        //           if (Query.docs == null || Query.docs.length == 0) {
+        //             List<String> searchList = setSearchParam(element);
 
-                    List<int> weekList = [];
-                    for (int inV = 0; inV < 7; inV++) {
-                      weekList.add(time - 1 + inV);
-                    }
-                    Keyword _keyword = Keyword(
-                      keyName: element,
-                      postIds: [postId],
-                      // userIds: [uid],
-                      postType: type,
-                      length: 1,
-                      country: country,
-                      global: global,
-                      nameSearchList: searchList,
-                      time: time - i,
-                      weekList: weekList,
-                      WeekName: "week ${time - i}-${(time - i) + 6}",
-                      lastDay: time - i + 6,
-                    );
-                    FirebaseFirestore.instance
-                        .collection('weeklyKeywordsPost')
-                        .doc("week ${time - i}-${(time - i) + 6}")
-                        .collection(global == "true"
-                            ? "globallyPost"
-                            : "byCountryWeeklyPost")
-                        .doc(global == "true" ? element : "$element-$country")
-                        .set(_keyword.toJson());
-                  }
-                });
-              }
-            } else {
-              compareValue.docs.forEach((element1) {
-                FirebaseFirestore.instance
-                    .collection('weeklyKeywordsPolls')
-                    .doc(
-                        "week ${element1["weekList"][0]}-${element1["weekList"][6]}")
-                    .collection(global == "true"
-                        ? "globallyPolls"
-                        : "byCountryWeeklyPolls")
-                    .doc(global == "true" ? element : "$element-$country")
-                    .update({
-                  'postIds': FieldValue.arrayUnion([postId]),
-                  // 'lastDay': time,
-                  // 'userIds': FieldValue.arrayUnion([uid]),
-                  'length': FieldValue.increment(1)
-                });
-              });
-              for (int i = 0; i < 7; i++) {
-                (global == "true"
-                        ? FirebaseFirestore.instance
-                            .collectionGroup("globallyPolls")
-                            .where("WeekName",
-                                isEqualTo: "week ${time - i}-${time - i + 6}")
-                            .where("keyName", isEqualTo: element)
-                            .where("global", isEqualTo: "true")
-                        : FirebaseFirestore.instance
-                            .collectionGroup("byCountryWeeklyPolls")
-                            .where("WeekName",
-                                isEqualTo: "week ${time - i}-${time - i + 6}")
-                            .where("keyName", isEqualTo: element)
-                            .where("country", isEqualTo: country))
-                    .get()
-                    .then((QuerySnapshot Query) {
-                  if (Query.docs == null || Query.docs.length == 0) {
-                    List<String> searchList = setSearchParam(element);
+        //             List<int> weekList = [];
+        //             for (int inV = 0; inV < 7; inV++) {
+        //               weekList.add(time - 1 + inV);
+        //             }
+        //             Keyword _keyword = Keyword(
+        //               keyName: element,
+        //               postIds: [postId],
+        //               // userIds: [uid],
+        //               postType: type,
+        //               length: 1,
+        //               country: country,
+        //               global: global,
+        //               nameSearchList: searchList,
+        //               time: time - i,
+        //               weekList: weekList,
+        //               WeekName: "week ${time - i}-${(time - i) + 6}",
+        //               lastDay: time - i + 6,
+        //             );
+        //             FirebaseFirestore.instance
+        //                 .collection('weeklyKeywordsPost')
+        //                 .doc("week ${time - i}-${(time - i) + 6}")
+        //                 .collection(global == "true"
+        //                     ? "globallyPost"
+        //                     : "byCountryWeeklyPost")
+        //                 .doc(global == "true" ? element : "$element-$country")
+        //                 .set(_keyword.toJson());
+        //           }
+        //         });
+        //       }
+        //     } else {
+        //       compareValue.docs.forEach((element1) {
+        //         FirebaseFirestore.instance
+        //             .collection('weeklyKeywordsPolls')
+        //             .doc(
+        //                 "week ${element1["weekList"][0]}-${element1["weekList"][6]}")
+        //             .collection(global == "true"
+        //                 ? "globallyPolls"
+        //                 : "byCountryWeeklyPolls")
+        //             .doc(global == "true" ? element : "$element-$country")
+        //             .update({
+        //           'postIds': FieldValue.arrayUnion([postId]),
+        //           // 'lastDay': time,
+        //           // 'userIds': FieldValue.arrayUnion([uid]),
+        //           'length': FieldValue.increment(1)
+        //         });
+        //       });
+        //       for (int i = 0; i < 7; i++) {
+        //         (global == "true"
+        //                 ? FirebaseFirestore.instance
+        //                     .collectionGroup("globallyPolls")
+        //                     .where("WeekName",
+        //                         isEqualTo: "week ${time - i}-${time - i + 6}")
+        //                     .where("keyName", isEqualTo: element)
+        //                     .where("global", isEqualTo: "true")
+        //                 : FirebaseFirestore.instance
+        //                     .collectionGroup("byCountryWeeklyPolls")
+        //                     .where("WeekName",
+        //                         isEqualTo: "week ${time - i}-${time - i + 6}")
+        //                     .where("keyName", isEqualTo: element)
+        //                     .where("country", isEqualTo: country))
+        //             .get()
+        //             .then((QuerySnapshot Query) {
+        //           if (Query.docs == null || Query.docs.length == 0) {
+        //             List<String> searchList = setSearchParam(element);
 
-                    List<int> weekList = [];
-                    for (int inV = 0; inV < 7; inV++) {
-                      weekList.add(time - i + inV);
-                    }
-                    Keyword _keyword = Keyword(
-                      keyName: element,
-                      postIds: [postId],
-                      // userIds: [uid],
-                      postType: type,
-                      length: 1,
-                      country: country,
-                      global: global,
-                      nameSearchList: searchList,
-                      time: time - i,
-                      weekList: weekList,
-                      WeekName: "week ${time - i}-${time - i + 6}",
-                      lastDay: time - i + 6,
-                    );
-                    FirebaseFirestore.instance
-                        .collection('weeklyKeywordsPolls')
-                        .doc("week ${time - i}-${time - i + 6}")
-                        .collection(global == "true"
-                            ? "globallyPolls"
-                            : "byCountryWeeklyPolls")
-                        .doc(global == "true" ? element : "$element-$country")
-                        .set(_keyword.toJson());
-                  }
-                });
-              }
-            }
+        //             List<int> weekList = [];
+        //             for (int inV = 0; inV < 7; inV++) {
+        //               weekList.add(time - i + inV);
+        //             }
+        //             Keyword _keyword = Keyword(
+        //               keyName: element,
+        //               postIds: [postId],
+        //               // userIds: [uid],
+        //               postType: type,
+        //               length: 1,
+        //               country: country,
+        //               global: global,
+        //               nameSearchList: searchList,
+        //               time: time - i,
+        //               weekList: weekList,
+        //               WeekName: "week ${time - i}-${time - i + 6}",
+        //               lastDay: time - i + 6,
+        //             );
+        //             FirebaseFirestore.instance
+        //                 .collection('weeklyKeywordsPolls')
+        //                 .doc("week ${time - i}-${time - i + 6}")
+        //                 .collection(global == "true"
+        //                     ? "globallyPolls"
+        //                     : "byCountryWeeklyPolls")
+        //                 .doc(global == "true" ? element : "$element-$country")
+        //                 .set(_keyword.toJson());
+        //           }
+        //         });
+        //       }
+        //     }
 
-            // weeklyRef.update({
-            //   'postIds': FieldValue.arrayUnion([postId]),
-            //   // 'userIds': FieldValue.arrayUnion([uid]),
-            //   'length': FieldValue.increment(1)
-            // });
-          }
-        });
+        //     // weeklyRef.update({
+        //     //   'postIds': FieldValue.arrayUnion([postId]),
+        //     //   // 'userIds': FieldValue.arrayUnion([uid]),
+        //     //   'length': FieldValue.increment(1)
+        //     // });
+        //   }
+        // });
       });
     } catch (err) {
       err.toString();
@@ -726,33 +733,33 @@ class FirestoreMethods {
         _firestore.collection('users').doc(poll.UID).update({
           'profileScoreValue': FieldValue.increment(1),
         });
-        poll.global == "true"
-            ? _firestore
-                .collection("mostLikedPolls")
-                .where("pollId", isEqualTo: pollId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'totalVotes': FieldValue.increment(1),
-                    'voteCount$optionIndex': FieldValue.increment(1),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountryPolls")
-                .doc(country)
-                .collection("mostLiked")
-                .where("pollId", isEqualTo: pollId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'totalVotes': FieldValue.increment(1),
-                    'voteCount$optionIndex': FieldValue.increment(1),
-                  });
-                });
-              });
+        // poll.global == "true"
+        //     ? _firestore
+        //         .collection("mostLikedPolls")
+        //         .where("pollId", isEqualTo: pollId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'totalVotes': FieldValue.increment(1),
+        //             'voteCount$optionIndex': FieldValue.increment(1),
+        //           });
+        //         });
+        //       })
+        //     : _firestore
+        //         .collection("mostLikedByCountryPolls")
+        //         .doc(country)
+        //         .collection("mostLiked")
+        //         .where("pollId", isEqualTo: pollId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'totalVotes': FieldValue.increment(1),
+        //             'voteCount$optionIndex': FieldValue.increment(1),
+        //           });
+        //         });
+        //       });
       }
       res = "success";
     } catch (err) {
@@ -770,12 +777,23 @@ class FirestoreMethods {
     Post post,
     String global,
     String country,
+    // int time,
+    // int? maxDailyTime,
+    // int? tokensCounter,
   ) async {
     try {
       final batch = _firestore.batch();
       var postRef = _firestore.collection('posts').doc(postId);
       var postAuthorRef = _firestore.collection('users').doc(post.UID);
+      var voterRef = _firestore.collection('users').doc(uid);
 
+      // if (maxDailyTime != time) {
+      //   batch.update(voterRef, {
+      //     'maxDailyTime': time,
+      //     'tokensCounter': 1,
+      //     'profileScoreValue': FieldValue.increment(1),
+      //   });
+      // }
       if (plus.contains(uid)) {
         // var postRef = _firestore.collection('posts').doc(postId);
         // var userRef = _firestore.collection('users').doc(uid);
@@ -788,39 +806,13 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(-1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              });
-
-        //       batch.commit();
+        // if (time == maxDailyTime &&
+        //     (tokensCounter! >= 0 && tokensCounter <= 10)) {
+        //   batch.update(voterRef, {
+        //     'tokensCounter': FieldValue.increment(-1),
+        //     'profileScoreValue': FieldValue.increment(-1),
+        //   });
+        // }
       } else if (neutral.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(1),
@@ -833,42 +825,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
-        //    batch.commit();
       } else if (minus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(2),
@@ -881,42 +837,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(2),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(2),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
-        //    batch.commit();
       } else {
         batch.update(postRef, {
           'score': FieldValue.increment(1),
@@ -927,38 +847,13 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'plus': FieldValue.arrayUnion([uid]),
-                    'plusCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
-        //  batch.commit();
+        // if (time == maxDailyTime &&
+        //     (tokensCounter! >= 0 && tokensCounter <= 9)) {
+        //   batch.update(voterRef, {
+        //     'tokensCounter': FieldValue.increment(1),
+        //     'profileScoreValue': FieldValue.increment(1),
+        //   });
+        // }
       }
       // batch.update(postRef, {'score': post.plusCount - post.minusCount});
       // postRef.get().then((postSnap) {
@@ -973,9 +868,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .plusPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .plusPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .plusPost(postId, uid);
     } catch (e) {
       // debugPrint('plus message error $e');
       // print(
@@ -1006,35 +901,35 @@ class FirestoreMethods {
           'votesUIDs': FieldValue.arrayRemove([uid]),
         });
 
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              });
+        // global == "true"
+        //     ? _firestore
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'neutral': FieldValue.arrayRemove([uid]),
+        //             'neutralCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayRemove([uid]),
+        //           });
+        //         });
+        //       })
+        //     : _firestore
+        //         .collection("mostLikedByCountry")
+        //         .doc(country)
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'neutral': FieldValue.arrayRemove([uid]),
+        //             'neutralCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayRemove([uid]),
+        //           });
+        //         });
+        //       });
       } else if (plus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(-1),
@@ -1047,42 +942,42 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(-1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
-        //   batch.commit();
+        // global == "true"
+        //     ? _firestore
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'score': FieldValue.increment(-1),
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'plus': FieldValue.arrayRemove([uid]),
+        //             'plusCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       })
+        //     : _firestore
+        //         .collection("mostLikedByCountry")
+        //         .doc(country)
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'score': FieldValue.increment(-1),
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'plus': FieldValue.arrayRemove([uid]),
+        //             'plusCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       });
+        // //   batch.commit();
       } else if (minus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(1),
@@ -1092,76 +987,76 @@ class FirestoreMethods {
           'minusCount': FieldValue.increment(-1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
+        // global == "true"
+        //     ? _firestore
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'score': FieldValue.increment(1),
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'minus': FieldValue.arrayRemove([uid]),
+        //             'minusCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       })
+        //     : _firestore
+        //         .collection("mostLikedByCountry")
+        //         .doc(country)
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'score': FieldValue.increment(1),
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'minus': FieldValue.arrayRemove([uid]),
+        //             'minusCount': FieldValue.increment(-1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       });
       } else {
         batch.update(postRef, {
           'neutral': FieldValue.arrayUnion([uid]),
           'neutralCount': FieldValue.increment(1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'neutral': FieldValue.arrayUnion([uid]),
-                    'neutralCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
+        // global == "true"
+        //     ? _firestore
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       })
+        //     : _firestore
+        //         .collection("mostLikedByCountry")
+        //         .doc(country)
+        //         .collection("mostLiked")
+        //         .where("postId", isEqualTo: postId)
+        //         .get()
+        //         .then((querySnapshot) {
+        //         querySnapshot.docs.forEach((document) {
+        //           document.reference.update({
+        //             'neutral': FieldValue.arrayUnion([uid]),
+        //             'neutralCount': FieldValue.increment(1),
+        //             'votesUIDs': FieldValue.arrayUnion([uid]),
+        //           });
+        //         });
+        //       });
       }
       //   batch.update(postRef, {'score': post.plusCount - post.minusCount});
 
@@ -1179,9 +1074,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .neutralPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .neutralPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .neutralPost(postId, uid);
     } catch (e) {
       // print(
     }
@@ -1210,37 +1105,6 @@ class FirestoreMethods {
           'minusCount': FieldValue.increment(-1),
           'votesUIDs': FieldValue.arrayRemove([uid]),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(1),
-                    'minus': FieldValue.arrayRemove([uid]),
-                    'minusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayRemove([uid]),
-                  });
-                });
-              });
       } else if (neutral.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(-1),
@@ -1250,41 +1114,6 @@ class FirestoreMethods {
           'neutralCount': FieldValue.increment(-1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'neutral': FieldValue.arrayRemove([uid]),
-                    'neutralCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
       } else if (plus.contains(uid)) {
         batch.update(postRef, {
           'score': FieldValue.increment(-2),
@@ -1297,41 +1126,6 @@ class FirestoreMethods {
         batch.update(postAuthorRef, {
           'profileScoreValue': FieldValue.increment(-1),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-2),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-2),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'plus': FieldValue.arrayRemove([uid]),
-                    'plusCount': FieldValue.increment(-1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
       } else {
         batch.update(postRef, {
           'score': FieldValue.increment(-1),
@@ -1339,37 +1133,6 @@ class FirestoreMethods {
           'minusCount': FieldValue.increment(1),
           'votesUIDs': FieldValue.arrayUnion([uid]),
         });
-        global == "true"
-            ? _firestore
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              })
-            : _firestore
-                .collection("mostLikedByCountry")
-                .doc(country)
-                .collection("mostLiked")
-                .where("postId", isEqualTo: postId)
-                .get()
-                .then((querySnapshot) {
-                querySnapshot.docs.forEach((document) {
-                  document.reference.update({
-                    'score': FieldValue.increment(-1),
-                    'minus': FieldValue.arrayUnion([uid]),
-                    'minusCount': FieldValue.increment(1),
-                    'votesUIDs': FieldValue.arrayUnion([uid]),
-                  });
-                });
-              });
       }
 
       //  batch.update(postRef, {'score': post.plusCount - post.minusCount});
@@ -1379,9 +1142,9 @@ class FirestoreMethods {
       Provider.of<SearchPageProvider>(navigatorKey.currentContext!,
               listen: false)
           .minusPost(postId, uid);
-      Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
-              listen: false)
-          .minusPost(postId, uid);
+      // Provider.of<MostLikedKeyProvider>(navigatorKey.currentContext!,
+      //         listen: false)
+      //     .minusPost(postId, uid);
       // postRef.get().then((postSnap) {
       //   if (postSnap.data() != null) {
       //     Post post = Post.fromMap(postSnap.data()!);
@@ -1577,7 +1340,7 @@ class FirestoreMethods {
   }
 
   Future<String> comment(String postId, String text, String uid,
-      String username, int datePublishedCounter) async {
+      String username, int datePublishedCounter, bool bot) async {
     String res = "Some error occurred.";
     try {
       if (text.isNotEmpty) {
@@ -1591,31 +1354,31 @@ class FirestoreMethods {
         // String trimmedText = trimText(text: text);
         String commentId = const Uuid().v1();
         Comment comment = Comment(
-          parentId: postId,
-          username: username,
-          UID: uid,
-          text: text,
-          commentId: commentId,
-          datePublished: datePublishedCounter,
-          datePublishedNTP: timeNow,
-          likes: [],
-          likeCount: 0,
-          dislikes: [],
-          dislikeCount: 0,
-          reportCounter: 0,
-          reportChecked: false,
-          reportRemoved: false,
-        );
+            parentId: postId,
+            username: username,
+            UID: uid,
+            text: text,
+            commentId: commentId,
+            datePublished: datePublishedCounter,
+            datePublishedNTP: timeNow,
+            likes: [],
+            likeCount: 0,
+            dislikes: [],
+            dislikeCount: 0,
+            reportCounter: 0,
+            reportChecked: false,
+            reportRemoved: false,
+            bot: bot);
 
         commentReplyProvider.addNewCommentInPostPoll(
-          postId: postId,
-          text: text,
-          uid: uid,
-          username: username,
-          commentId: commentId,
-          datePublished: datePublishedCounter,
-          datePublishedNTP: timeNow,
-        );
+            postId: postId,
+            text: text,
+            uid: uid,
+            username: username,
+            commentId: commentId,
+            datePublished: datePublishedCounter,
+            datePublishedNTP: timeNow,
+            bot: bot);
 
         _firestore.collection('comments').doc(commentId).set(
               comment.toJson(),
@@ -1636,6 +1399,7 @@ class FirestoreMethods {
     String text,
     String uid,
     String username,
+    bool bot,
     bool isReply, {
     required int insertAt,
   }) async {
@@ -1660,6 +1424,7 @@ class FirestoreMethods {
           replyId: replyId,
           datePublished: timeNow,
           datePublishedNTP: timeNow,
+          bot: bot,
           likes: [],
           likeCount: 0,
           dislikes: [],
@@ -1670,15 +1435,15 @@ class FirestoreMethods {
         );
 
         commentReplyProvider.addNewReplyInPostPoll(
-          postId: postId,
-          text: text,
-          uid: uid,
-          username: username,
-          commentId: commentId,
-          replyId: replyId,
-          insertAt: insertAt,
-          datePublishedNTP: timeNow,
-        );
+            postId: postId,
+            text: text,
+            uid: uid,
+            username: username,
+            commentId: commentId,
+            replyId: replyId,
+            insertAt: insertAt,
+            datePublishedNTP: timeNow,
+            bot: bot);
         _firestore.collection('replies').doc(replyId).set(
               reply.toJson(),
             );
@@ -1800,6 +1565,30 @@ class FirestoreMethods {
     }
   }
 
+  Future<void> setField(
+    String collection,
+    String field,
+    int value,
+  ) async {
+    try {
+      FirebaseFirestore.instance.collection(collection).get().then((snapshot) {
+        for (DocumentSnapshot ds in snapshot.docs) {
+          ds.reference.update
+
+              //to delete fields
+              ({field: FieldValue.delete()}).whenComplete(() {});
+
+          //to add fields
+          // ({
+          //   field: value
+          // });
+        }
+      });
+    } catch (e) {
+      // print(
+    }
+  }
+
   Future<void> removeReport(String postId, String uid, String type) async {
     try {
       await _firestore
@@ -1844,6 +1633,41 @@ class FirestoreMethods {
             ? FieldValue.increment(1)
             : FieldValue.increment(-1),
       });
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> changeMaxDailyTime(String userId, int time) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'maxDailyTime': time});
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> incrementTokensCounter(
+    String userId,
+  ) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'tokensCounter': FieldValue.increment(1)});
+    } catch (e) {
+      // print(
+    }
+  }
+
+  Future<void> resetTokensCounter(String userId) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .update({'tokensCounter': 1});
     } catch (e) {
       // print(
     }

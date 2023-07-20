@@ -12,7 +12,6 @@ import '../authentication/signup.dart';
 import '../camera/camera_screen.dart';
 import '../info screens/add_post_rules.dart';
 import '../info screens/how_it_works.dart';
-import '../info screens/submissions_info.dart';
 import '../info screens/terms_conditions.dart';
 import '../info screens/verification_fail.dart';
 import '../info screens/verification_success.dart';
@@ -124,7 +123,7 @@ showSnackBarAction(
                               color: Colors.white,
                               size: 17,
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: 8),
                             Text(
                               "FIND OUT WHY",
                               style: TextStyle(
@@ -618,7 +617,7 @@ Future<dynamic> openCamera({
 //                   elevation: 4,
 //                   shape: BoxShape.circle,
 //                   child: CircleAvatar(
-//                     radius: 43.5,
+//                     radius: 46,
 //                     backgroundColor: Colors.white,
 //                     child: Icon(
 //                       Icons.info,
@@ -756,7 +755,7 @@ Future<dynamic> openCamera({
 //                 shape: BoxShape.circle,
 //                 child: CircleAvatar(
 //                   backgroundColor: whiteDialog,
-//                   radius: 43.5,
+//                   radius: 46,
 //                   child: FittedBox(
 //                     child: Icon(
 //                       Icons.delete,
@@ -1006,7 +1005,7 @@ Future<dynamic> openCamera({
 //                 shape: BoxShape.circle,
 //                 child: CircleAvatar(
 //                   backgroundColor: Colors.white,
-//                   radius: 43.5,
+//                   radius: 46,
 //                   child: FittedBox(
 //                     child: Icon(
 //                       Icons.report,
@@ -1217,7 +1216,7 @@ Future<dynamic> openCamera({
 //                 shape: BoxShape.circle,
 //                 child: CircleAvatar(
 //                   backgroundColor: Colors.white,
-//                   radius: 43.5,
+//                   radius: 46,
 //                   child: FittedBox(
 //                     child: Icon(
 //                       Icons.block,
@@ -1431,7 +1430,7 @@ Future<dynamic> openCamera({
 //                 shape: BoxShape.circle,
 //                 child: CircleAvatar(
 //                   backgroundColor: whiteDialog,
-//                   radius: 43.5,
+//                   radius: 46,
 //                   child: FittedBox(
 //                     child: Icon(
 //                       Icons.delete_forever,
@@ -1620,7 +1619,7 @@ performLoggedUserAction({
                   elevation: 4,
                   shape: BoxShape.circle,
                   child: CircleAvatar(
-                    radius: 43.5,
+                    radius: 46,
                     backgroundColor: darkBlue,
                     child: Icon(
                       MyFlutterApp.info,
@@ -1744,7 +1743,7 @@ verificationRequired({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.verified,
@@ -1860,7 +1859,7 @@ voteIfPending({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.verified_user,
@@ -1977,7 +1976,7 @@ nationalityUnknown({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.flag,
@@ -1995,7 +1994,7 @@ nationalityUnknown({required BuildContext context}) {
   );
 }
 
-ballotMessage({required BuildContext context}) {
+nationalLearnMore({required BuildContext context}) {
   return showDialog(
     context: context,
     builder: (_) => Dialog(
@@ -2013,60 +2012,25 @@ ballotMessage({required BuildContext context}) {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Waiting Period',
+                const Text('National',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 19,
-                        letterSpacing: 0,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                         color: darkBlue)),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 12),
                   child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 10),
-                      child: Column(children: [
-                        Center(
-                          child: RichText(
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                const TextSpan(
-                                  text:
-                                      "FairTalk's democracy will only begin once we reach 1,000 verified users. This will ensure that there's enough people that can vote & participate. To view the current amount of verified users, ",
-                                  style: TextStyle(
-                                    color: darkBlue,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                TextSpan(
-                                    text: 'click here.',
-                                    style: const TextStyle(
-                                      color: Color.fromARGB(255, 103, 187, 255),
-                                      fontSize: 13,
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Statistics(),
-                                          ),
-                                        );
-                                      }),
-                                const TextSpan(
-                                    text:
-                                        " In the meantime, you can still create ballots to suggest features and we'll make sure to implement the ones that receive the highest scores. We thank everyone for staying patient.",
-                                    style: TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 13,
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ])),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: const Text(
+                      "Other platforms collect your IP address to determine your location/Nationality. This system is flawed because anyone can simply use a VPN to infiltrate & manipulate the voting results of other Nations. FairTalk is fixing this issue.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: darkBlue,
+                      ),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -2092,13 +2056,15 @@ ballotMessage({required BuildContext context}) {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Text('Continue',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: whiteDialog,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 0,
-                                )),
+                            Text(
+                              'Continue',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: whiteDialog,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -2119,12 +2085,160 @@ ballotMessage({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
+                  child: FittedBox(
+                    child: Icon(
+                      Icons.flag,
+                      size: 50,
+                      color: whiteDialog,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+ballotMessage({required BuildContext context}) {
+  return showDialog(
+    barrierColor: Colors.transparent,
+    context: context,
+    builder: (_) => Dialog(
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            // width: 295,
+            // height: 220,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25), color: darkBlue),
+            padding: const EdgeInsets.fromLTRB(20, 55, 20, 25),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Waiting Period',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 19,
+                        letterSpacing: 0,
+                        fontWeight: FontWeight.bold,
+                        color: whiteDialog)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 12),
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 10),
+                      child: Column(children: [
+                        Center(
+                          child: RichText(
+                            softWrap: true,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                const TextSpan(
+                                  text:
+                                      "FairTalk's democracy will only begin once we've reached 1,000 verified users. To view the current amount of verified users, ",
+                                  style: TextStyle(
+                                    color: whiteDialog,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                    text: 'click here.',
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 103, 187, 255),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Statistics(),
+                                          ),
+                                        );
+                                      }),
+                                const TextSpan(
+                                    text:
+                                        " This will ensure there's enough people that can vote & participate. In the meantime, you can still create ballots to suggest features and we'll do our best to implement the ones that receive the highest scores. We thank everyone for staying patient.",
+                                    style: TextStyle(
+                                      color: whiteDialog,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ])),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Material(
+                    elevation: 3,
+                    color: whiteDialog,
+                    borderRadius: BorderRadius.circular(25),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(25),
+                      splashColor: Colors.black.withOpacity(0.3),
+                      onTap: () {
+                        Future.delayed(const Duration(milliseconds: 150), () {
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.transparent,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              'Continue',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: darkBlue,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            top: -50,
+            child: CircleAvatar(
+              backgroundColor: darkBlue,
+              radius: 50,
+              child: PhysicalModel(
+                color: whiteDialog,
+                elevation: 4,
+                shape: BoxShape.circle,
+                child: CircleAvatar(
+                  backgroundColor: whiteDialog,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.timer,
                       size: 50,
-                      color: whiteDialog,
+                      color: darkBlue,
                     ),
                   ),
                 ),
@@ -2268,7 +2382,7 @@ scoreDialogProfile({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       MyFlutterApp.medal,
@@ -2391,7 +2505,7 @@ earnedDialogProfile({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: Padding(
                     padding: EdgeInsets.only(left: 4.5),
                     child: Icon(
@@ -2450,14 +2564,16 @@ scoreDialogMessage({required BuildContext context}) {
                       ),
                       child: Column(
                         children: [
-                          const SizedBox(height: 6),
+                          const SizedBox(
+                            height: 8,
+                          ),
                           const Text(
                             'Message Score =',
                             style: TextStyle(
                                 fontSize: 15,
                                 color: whiteDialog,
                                 letterSpacing: 0,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500),
                           ),
                           // const SizedBox(height: 6),
                           Row(
@@ -2474,7 +2590,7 @@ scoreDialogMessage({required BuildContext context}) {
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: whiteDialog,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w500),
                               ),
                               SizedBox(width: 8),
                               Text(
@@ -2482,7 +2598,7 @@ scoreDialogMessage({required BuildContext context}) {
                                 style: TextStyle(
                                     fontSize: 16,
                                     color: whiteDialog,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w500),
                               ),
                               SizedBox(width: 8),
                               Icon(Icons.do_not_disturb_on,
@@ -2493,11 +2609,11 @@ scoreDialogMessage({required BuildContext context}) {
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: whiteDialog,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(height: 8),
                         ],
                       ),
                     ),
@@ -2507,7 +2623,7 @@ scoreDialogMessage({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The message that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
+                      "Only votes from verified accounts count. The message that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2569,7 +2685,7 @@ scoreDialogMessage({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 18.0),
@@ -2620,13 +2736,13 @@ scoreDialogPoll({required BuildContext context}) {
                     ),
                     child: Column(
                       children: const [
-                        SizedBox(height: 6),
+                        SizedBox(height: 8),
                         Text(
                           'Poll Score =',
                           style: TextStyle(
                               fontSize: 15,
                               color: whiteDialog,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                         ),
                         // SizedBox(height: 6),
                         Text(
@@ -2634,9 +2750,9 @@ scoreDialogPoll({required BuildContext context}) {
                           style: TextStyle(
                               fontSize: 15,
                               color: whiteDialog,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(height: 6),
+                        SizedBox(height: 8),
                       ],
                     ),
                   ),
@@ -2645,7 +2761,7 @@ scoreDialogPoll({required BuildContext context}) {
                   padding:
                       EdgeInsets.only(top: 12.0, bottom: 12, right: 0, left: 0),
                   child: Text(
-                      "The poll that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
+                      "Only votes from verified accounts count. The poll that receives the highest score by the end of its voting cycle will be added to FairTalk's Archives collection.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,
@@ -2706,7 +2822,7 @@ scoreDialogPoll({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 18.0),
@@ -2802,7 +2918,7 @@ contactInfo({required BuildContext context}) {
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.email_outlined,
@@ -2859,7 +2975,7 @@ timerDialog({
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              "Time left represents the total remaining time before this ${type}'s voting cycle ends. The total duration of a voting cycle is 7 days.",
+                              "Time left represents the total remaining time before this ${type}'s voting cycle ends.",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 15, color: darkBlue)),
@@ -2953,7 +3069,7 @@ timerDialog({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.timer,
@@ -3006,10 +3122,13 @@ sendTimerDialog({
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Text(
-                              'Every user is limited to one $type2 $type for every voting cycle. A new voting cycle begins every 24 hours (12:01 AM EST).',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 15, color: darkBlue)),
+                            'Each user is limited to one $type2 $type for every voting cycle. The duration of a voting cycle is 24 hours. Cycles refresh every day at 12:01 AM EST.',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: darkBlue,
+                            ),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -3073,7 +3192,129 @@ sendTimerDialog({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
+                  child: FittedBox(
+                    child: Icon(
+                      Icons.timer,
+                      size: 55,
+                      color: whiteDialog,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+sendTimerBallot({
+  required BuildContext context,
+  required String type,
+}) {
+  return showDialog(
+    context: context,
+    builder: (_) => Dialog(
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            // width: 295,
+            // height: type == 'message' ? 234 : 216,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25), color: whiteDialog),
+            padding: const EdgeInsets.fromLTRB(20, 55, 20, 25),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  children: [
+                    Column(
+                      children: [
+                        const Text('Waiting Time',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                                color: darkBlue)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 12),
+                          child: Text(
+                            'Each user is limited to one $type for every voting cycle. The duration of a voting cycle is 24 hours. Cycles refresh every day at 12:01 AM EST.',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: darkBlue,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Material(
+                            color: darkBlue,
+                            elevation: 3,
+                            borderRadius: BorderRadius.circular(25),
+                            child: InkWell(
+                              splashColor: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 150), () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HowItWorks()),
+                                  );
+                                });
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                padding: const EdgeInsets.all(12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Icon(Icons.info_outline,
+                                        color: whiteDialog, size: 16),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      'Learn more about FairTalk',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        letterSpacing: 0,
+                                        color: whiteDialog,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            top: -50,
+            child: CircleAvatar(
+              backgroundColor: whiteDialog,
+              radius: 50,
+              child: PhysicalModel(
+                color: darkBlue,
+                elevation: 4,
+                shape: BoxShape.circle,
+                child: CircleAvatar(
+                  backgroundColor: darkBlue,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.timer,
@@ -3190,7 +3431,7 @@ sendTimerDialogSubmission({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.timelapse,
@@ -3328,7 +3569,7 @@ deleteConfirmation(
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: whiteDialog,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.delete_forever_outlined,
@@ -3440,7 +3681,7 @@ keywordsDialog({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.key,
@@ -3716,7 +3957,7 @@ percentageBarDialog({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.assessment_outlined,
@@ -3967,7 +4208,7 @@ reportDialog(
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.report,
@@ -4170,7 +4411,7 @@ blockDialog({
                 shape: BoxShape.circle,
                 child: CircleAvatar(
                   backgroundColor: darkBlue,
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.block,
@@ -4934,7 +5175,7 @@ filterDialog({
                     shape: BoxShape.circle,
                     child: CircleAvatar(
                       backgroundColor: darkBlue,
-                      radius: 43.5,
+                      radius: 46,
                       child: FittedBox(
                         child: Icon(
                           Icons.filter_list,

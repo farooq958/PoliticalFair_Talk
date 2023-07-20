@@ -39,9 +39,7 @@ class SubmissionsState extends State<Submissions>
   bool isPoster = true;
   int _selectedIndex = 0;
   int currentTab = 0;
-  User? _userProfile;
-  User? _userAdmin;
-  User? _userP;
+
   final ScrollController _scrollController = ScrollController();
   final _postScrollController = ScrollController();
 
@@ -67,11 +65,12 @@ class SubmissionsState extends State<Submissions>
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Icon(
-              Icons.check_circle_outline,
-              size: 14,
+              Icons.check_box_outlined,
+              size: 15,
             ),
             SizedBox(width: 6),
-            Text('BALLOTS', style: TextStyle(fontSize: 12)),
+            Text('BALLOTS',
+                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -82,13 +81,13 @@ class SubmissionsState extends State<Submissions>
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Icon(
-              Icons.check_circle,
-              size: 14,
+              MyFlutterApp.medal,
+              size: 13,
             ),
             SizedBox(width: 6),
             Text(
               'WINNING BALLOTS',
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -139,23 +138,23 @@ class SubmissionsState extends State<Submissions>
 
   @override
   Widget build(BuildContext context) {
-    _userAdmin = Provider.of<UserProvider>(context).getUser;
-    _userProfile = Provider.of<UserProvider>(context).getAllUser;
-    String data = _userAdmin?.UID ?? "";
-    String userProfiledata = _userProfile?.UID ?? "";
-    User? user =
-        userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
-    // return buildProfileScreen(context);
+    // _userAdmin = Provider.of<UserProvider>(context).getUser;
+    // _userProfile = Provider.of<UserProvider>(context).getAllUser;
+    // String data = _userAdmin?.UID ?? "";
+    // String userProfiledata = _userProfile?.UID ?? "";
+    // User? user =
+    //     userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
+    // // return buildProfileScreen(context);
     return buildProfileScreen(context);
   }
 
   Widget buildProfileScreen(BuildContext context) {
-    _userAdmin = Provider.of<UserProvider>(context).getUser;
-    _userProfile = Provider.of<UserProvider>(context).getAllUser;
-    String data = _userAdmin?.UID ?? "";
-    String userProfiledata = _userProfile?.UID ?? "";
-    User? user =
-        userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
+    // _userAdmin = Provider.of<UserProvider>(context).getUser;
+    // _userProfile = Provider.of<UserProvider>(context).getAllUser;
+    // String data = _userAdmin?.UID ?? "";
+    // String userProfiledata = _userProfile?.UID ?? "";
+    // User? user =
+    //     userProfiledata == data ? _userAdmin ?? _userP : _userProfile ?? _userP;
 
     return DefaultTabController(
       length: 2,
@@ -279,10 +278,10 @@ class SubmissionsState extends State<Submissions>
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          "FAIRTALK'S DEMOCRACY",
+                                          "FairTalk's Democracy",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 18,
+                                            fontSize: 22,
                                             letterSpacing: 0,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -290,17 +289,17 @@ class SubmissionsState extends State<Submissions>
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    // height: 1,
-                                    width: 215,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.grey,
-                                      border: Border(
-                                        top: BorderSide(
-                                            width: 1, color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   // height: 1,
+                                  //   width: 215,
+                                  //   decoration: const BoxDecoration(
+                                  //     color: Colors.grey,
+                                  //     border: Border(
+                                  //       top: BorderSide(
+                                  //           width: 1, color: Colors.white),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                               Padding(
@@ -487,7 +486,7 @@ class SubmissionsState extends State<Submissions>
                                                 color: darkBlue,
                                                 elevation: 3,
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(15),
                                                 child: Column(
                                                   children: [
                                                     InkWell(
@@ -512,10 +511,10 @@ class SubmissionsState extends State<Submissions>
                                                                       .only(
                                                                   topRight: Radius
                                                                       .circular(
-                                                                          25),
+                                                                          15),
                                                                   topLeft: Radius
                                                                       .circular(
-                                                                          25)),
+                                                                          15)),
                                                           border: Border.all(
                                                               width: 5,
                                                               color: darkBlue),
@@ -1089,7 +1088,7 @@ class SubmissionsState extends State<Submissions>
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: PhysicalModel(
-                      elevation: 4,
+                      elevation: 3,
                       color: darkBlue,
                       borderRadius: BorderRadius.circular(100),
                       child: Material(
@@ -1102,14 +1101,6 @@ class SubmissionsState extends State<Submissions>
                             Future.delayed(
                               const Duration(milliseconds: 50),
                               () {
-                                // Navigator.push(
-                                //   context,
-
-                                //   MaterialPageRoute(
-                                //       builder: (context) => SubmissionCreate(
-                                //             durationInDay: widget.durationInDay,
-                                //           )),
-                                // );
                                 Navigator.of(context).push(PageTransition(
                                   type: PageTransitionType.bottomToTop,
                                   duration: const Duration(milliseconds: 600),
@@ -1126,18 +1117,18 @@ class SubmissionsState extends State<Submissions>
                             child: Stack(
                               children: const [
                                 Positioned(
-                                  left: 17,
-                                  top: 16,
-                                  child: Icon(Icons.create,
-                                      color: Colors.white, size: 26),
+                                  left: 16,
+                                  top: 15,
+                                  child: Icon(Icons.create_outlined,
+                                      color: whiteDialog, size: 27),
                                 ),
                                 Positioned(
-                                  top: 29,
-                                  left: 29,
+                                  top: 28.5,
+                                  left: 28.5,
                                   child: Icon(
                                     Icons.add,
-                                    size: 13,
-                                    color: Colors.white,
+                                    size: 13.5,
+                                    color: whiteDialog,
                                   ),
                                 ),
                               ],

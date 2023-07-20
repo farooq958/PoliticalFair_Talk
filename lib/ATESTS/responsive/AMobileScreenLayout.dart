@@ -20,6 +20,7 @@ import '../provider/user_report_provider.dart';
 import '../screens/add_post.dart';
 import '../screens/add_post_daily.dart';
 import '../screens/home_screen.dart';
+import '../screens/notifications.dart';
 import '../screens/search.dart';
 import '../screens/submissions.dart';
 import '../utils/global_variables.dart';
@@ -639,10 +640,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                                   ),
                                                 ),
                                               )
-                                            : const Row(
+                                            : Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: [
+                                                children: const [
                                                   Text('Sign up',
                                                       style: TextStyle(
                                                         fontSize: 16,
@@ -733,8 +734,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                       borderRadius: BorderRadius.circular(50),
                                       splashColor: Colors.grey.withOpacity(0.3),
                                       onTap: () async {
-
-                                   //  await  AuthService().signInWithGoogle();
+                                        //  await  AuthService().signInWithGoogle();
                                         // await signInWithGoogle();
                                         // if (mounted) {
                                         //   Navigator.push(
@@ -854,7 +854,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                                         splashColor:
                                             Colors.white.withOpacity(0.3),
                                         onTap: navigateToLogin,
-                                        child: const Padding(
+                                        child: Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: SizedBox(
@@ -2094,12 +2094,13 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           AddPost(
                             durationInDay: durationInDay,
                           ),
-                          Search(
-                            durationInDay: durationInDay,
-                          ),
-                          Submissions(
-                            durationInDay: durationInDay,
-                          ),
+                          // Search(
+                          //   durationInDay: durationInDay,
+                          // ),
+
+                          // Submissions(
+                          //   durationInDay: durationInDay,
+                          // ),
                         ]),
                     bottomNavigationBar: CupertinoTabBar(
                         inactiveColor: Colors.white.withOpacity(0.6),
@@ -2122,19 +2123,18 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                             ),
                             label: 'Archives',
                           ),
-
                           BottomNavigationBarItem(
                             icon: Stack(
                               children: const [
                                 Padding(
                                   padding: EdgeInsets.only(top: 3.0),
                                   child: Icon(
-                                    Icons.create,
+                                    Icons.create_outlined,
                                   ),
                                 ),
                                 Positioned(
-                                  top: 15,
-                                  left: 13,
+                                  top: 16,
+                                  left: 14,
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 3.0),
                                     child: Icon(
@@ -2156,6 +2156,16 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           //   ),
                           //   label: 'Search',
                           // ),
+                          // // BottomNavigationBarItem(
+                          // //   icon: Padding(
+                          // //     padding: const EdgeInsets.only(top: 3.0),
+                          // //     child: Icon(
+                          // //       Icons.notifications,
+                          // //     ),
+                          // //   ),
+                          // //   label: 'Notifications',
+                          // // ),
+
                           // const BottomNavigationBarItem(
                           //   icon: Padding(
                           //     padding: EdgeInsets.only(top: 6.0),
@@ -2165,15 +2175,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           //     ),
                           //   ),
                           //   label: 'Democracy',
-                          // ),
-                          // BottomNavigationBarItem(
-                          //   icon: Padding(
-                          //     padding: const EdgeInsets.only(top: 3.0),
-                          //     child: Icon(
-                          //       Icons.notifications,
-                          //     ),
-                          //   ),
-                          //   label: 'Notifications',
                           // ),
                         ],
                         currentIndex: _page,

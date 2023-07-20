@@ -135,7 +135,7 @@ class _FullMessageState extends State<FullMessage> {
   // StreamSubscription? loadDataStream;
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   int getCounterComment = 0;
 
@@ -155,20 +155,11 @@ class _FullMessageState extends State<FullMessage> {
   }
 
   void messageComment(
-    String postId,
-    String text,
-    String uid,
-    String name,
-  ) async {
+      String postId, String text, String uid, String name, bool bot) async {
     try {
       String res1 = await _loadCommentCounter();
-      String res = await FirestoreMethods().comment(
-        postId,
-        text,
-        uid,
-        name,
-        getCounterComment,
-      );
+      String res = await FirestoreMethods()
+          .comment(postId, text, uid, name, getCounterComment, bot);
       if (res1 == "success" && res == "success") {
         // _showInterstitialAd();
         FirestoreMethods().commentCounter(_post.postId, 'message', true);
@@ -646,7 +637,7 @@ class _FullMessageState extends State<FullMessage> {
               child: Scaffold(
                 backgroundColor: const Color.fromARGB(255, 245, 245, 245),
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: darkBlue,
                   automaticallyImplyLeading: false,
                   elevation: 4,
                   toolbarHeight: 68,
@@ -684,8 +675,9 @@ class _FullMessageState extends State<FullMessage> {
                                                 },
                                               );
                                             },
-                                            icon: const Icon(Icons.arrow_back,
-                                                color: Colors.black),
+                                            icon: const Icon(
+                                                Icons.keyboard_arrow_left,
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -831,7 +823,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                             )
                                                                           : const Icon(
                                                                               Icons.add_circle,
-                                                                              color: Color.fromARGB(255, 206, 204, 204),
+                                                                              color: Colors.white,
                                                                             ),
                                                                     ),
                                                                   ),
@@ -939,14 +931,14 @@ class _FullMessageState extends State<FullMessage> {
                                                                               quarterTurns: 1,
                                                                               child: Icon(
                                                                                 Icons.pause_circle_filled,
-                                                                                color: Color.fromARGB(255, 111, 111, 111),
+                                                                                color: Colors.grey,
                                                                               ),
                                                                             )
                                                                           : const RotatedBox(
                                                                               quarterTurns: 1,
                                                                               child: Icon(
                                                                                 Icons.pause_circle_filled,
-                                                                                color: Color.fromARGB(255, 206, 204, 204),
+                                                                                color: Colors.white,
                                                                               ),
                                                                             ),
                                                                     ),
@@ -1048,7 +1040,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                             )
                                                                           : const Icon(
                                                                               Icons.do_not_disturb_on,
-                                                                              color: Color.fromARGB(255, 206, 204, 204),
+                                                                              color: Colors.white,
                                                                             ),
                                                                     ),
                                                                   ),
@@ -1111,7 +1103,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                             .center,
                                                                     style: const TextStyle(
                                                                         color: Colors
-                                                                            .black,
+                                                                            .white,
                                                                         fontSize:
                                                                             11.5,
                                                                         fontWeight:
@@ -1144,7 +1136,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                             .center,
                                                                     style: const TextStyle(
                                                                         color: Colors
-                                                                            .black,
+                                                                            .white,
                                                                         fontSize:
                                                                             11.5,
                                                                         fontWeight:
@@ -1175,7 +1167,7 @@ class _FullMessageState extends State<FullMessage> {
                                                                             .center,
                                                                     style: const TextStyle(
                                                                         color: Colors
-                                                                            .black,
+                                                                            .white,
                                                                         fontSize:
                                                                             11.5,
                                                                         fontWeight:
@@ -1339,18 +1331,13 @@ class _FullMessageState extends State<FullMessage> {
                                                           const Text(
                                                             ' Score ',
                                                             style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
-                                                                letterSpacing:
-                                                                    0.5),
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
                                                           ),
                                                           Row(
                                                             mainAxisAlignment:
@@ -1358,15 +1345,11 @@ class _FullMessageState extends State<FullMessage> {
                                                                     .center,
                                                             children: [
                                                               const Icon(
-                                                                Icons.check_box,
-                                                                size: 13,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
-                                                              ),
+                                                                  Icons
+                                                                      .check_box,
+                                                                  size: 13,
+                                                                  color: Colors
+                                                                      .white),
                                                               Container(
                                                                   width: 4),
                                                               Text(
@@ -1374,14 +1357,8 @@ class _FullMessageState extends State<FullMessage> {
                                                                 style: const TextStyle(
                                                                     fontSize:
                                                                         13,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            81,
-                                                                            81),
-                                                                    letterSpacing:
-                                                                        0.5,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500),
@@ -1433,14 +1410,8 @@ class _FullMessageState extends State<FullMessage> {
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         12,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            81,
-                                                                            81),
-                                                                    letterSpacing:
-                                                                        0.5,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500),
@@ -1455,12 +1426,8 @@ class _FullMessageState extends State<FullMessage> {
                                                               const Icon(
                                                                 Icons.timer,
                                                                 size: 13,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
+                                                                color: Colors
+                                                                    .white,
                                                               ),
                                                               Container(
                                                                   width: 4),
@@ -1501,14 +1468,8 @@ class _FullMessageState extends State<FullMessage> {
                                                                 style: const TextStyle(
                                                                     fontSize:
                                                                         13,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            81,
-                                                                            81),
-                                                                    letterSpacing:
-                                                                        0.5,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500),
@@ -1586,14 +1547,8 @@ class _FullMessageState extends State<FullMessage> {
                                                             'Comments',
                                                             style: TextStyle(
                                                                 fontSize: 12,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
-                                                                letterSpacing:
-                                                                    0.5,
+                                                                color:
+                                                                    whiteDialog,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500),
@@ -1607,12 +1562,8 @@ class _FullMessageState extends State<FullMessage> {
                                                                 MyFlutterApp
                                                                     .comments,
                                                                 size: 13,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        81,
-                                                                        81,
-                                                                        81),
+                                                                color: Colors
+                                                                    .white,
                                                               ),
                                                               Container(
                                                                   width: 6),
@@ -1621,14 +1572,8 @@ class _FullMessageState extends State<FullMessage> {
                                                                 style: const TextStyle(
                                                                     fontSize:
                                                                         13,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            81,
-                                                                            81,
-                                                                            81),
-                                                                    letterSpacing:
-                                                                        0.5,
+                                                                    color:
+                                                                        whiteDialog,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500),
@@ -1667,7 +1612,7 @@ class _FullMessageState extends State<FullMessage> {
                                             icon: const Icon(
                                               Icons.swap_horiz,
                                             ),
-                                            color: Colors.black,
+                                            color: whiteDialog,
                                           ),
                                         ),
                                       )),
@@ -2666,12 +2611,15 @@ class _FullMessageState extends State<FullMessage> {
                                                                               elevation: 2,
                                                                               borderRadius: BorderRadius.circular(5),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
                                                                                 child: Row(
                                                                                   children: [
                                                                                     _selectedCommentSort == commentSort ? commentSort.iconSelected : commentSort.icon,
                                                                                     const SizedBox(width: 5),
-                                                                                    Text(commentSort.label, style: TextStyle(color: _selectedCommentSort == commentSort ? Colors.white : Colors.grey, fontWeight: FontWeight.w500)),
+                                                                                    Text(commentSort.label,
+                                                                                        style: TextStyle(
+                                                                                          color: _selectedCommentSort == commentSort ? Colors.white : Colors.grey,
+                                                                                        )),
                                                                                   ],
                                                                                 ),
                                                                               ),
@@ -2750,14 +2698,16 @@ class _FullMessageState extends State<FullMessage> {
                                                                               elevation: 2,
                                                                               borderRadius: BorderRadius.circular(5),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                                                                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                                                                 child: Row(
                                                                                   children: [
                                                                                     _selectedCommentFilter == commentFilter ? commentFilter.prefixIconSelected : commentFilter.prefixIcon,
                                                                                     const SizedBox(width: 5),
                                                                                     Text(
                                                                                       commentFilter.label,
-                                                                                      style: TextStyle(color: _selectedCommentFilter == commentFilter ? Colors.white : Colors.grey, fontWeight: FontWeight.w500),
+                                                                                      style: TextStyle(
+                                                                                        color: _selectedCommentFilter == commentFilter ? Colors.white : Colors.grey,
+                                                                                      ),
                                                                                     ),
                                                                                     commentFilter.icon ?? commentFilter.rotatedBox ?? Row(),
                                                                                   ],
@@ -3043,6 +2993,9 @@ class _FullMessageState extends State<FullMessage> {
                                                               .text,
                                                           user?.UID ?? '',
                                                           user?.username ?? '',
+                                                          user?.admin == true
+                                                              ? true
+                                                              : false,
                                                         );
 
                                                         setState(() {
@@ -3216,6 +3169,8 @@ class _FullMessageState extends State<FullMessage> {
                                     ),
                                     Visibility(
                                       visible: commentReplyProvider
+                                              .isButtonVisible &&
+                                          commentReplyProvider
                                               .canPostPollLoadMore &&
                                           !commentReplyProvider
                                               .postPollPaginationLoader,

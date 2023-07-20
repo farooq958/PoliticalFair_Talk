@@ -18,9 +18,9 @@ class MostLikedKeyProvider extends ChangeNotifier {
   int paginationLengthKeyword = 10;
   QuerySnapshot<Map<String, dynamic>>? _postKeywordListSnapshot;
 
-  final _postPollProvider = Provider.of<PostPollProvider>(
-      navigatorKey.currentContext!,
-      listen: false);
+  // final _postPollProvider = Provider.of<PostPollProvider>(
+  //     navigatorKey.currentContext!,
+  //     listen: false);
 
   Future<void> getkeywordList(String global, String countryCode,
       {bool? getNextList1}) async {
@@ -703,53 +703,53 @@ class MostLikedKeyProvider extends ChangeNotifier {
     }
   }
 
-  plusPost(postId, uid) {
-    try {
-      Post? post;
-      bool postListContainsPost = elementFoundInList(postsList, postId);
-      // bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
-      if (postListContainsPost) {
-        post = postsList.where((element) => element.postId == postId).first;
-      }
-      // else if (userPostListContainsPost) {
-      //   post = _userPosts.where((element) => element.postId == postId).first;
-      // }
-      if (post != null && post.plus.contains(uid)) {
-        post.score--;
-        post.plus.removeWhere((element) => element == uid);
-        post.plusCount--;
-        post.votesUIDs.removeWhere((element) => element == uid);
-      } else if (post != null && post.neutral.contains(uid)) {
-        post.score++;
-        post.plus.add(uid);
-        post.plusCount++;
-        post.neutral.removeWhere((element) => element == uid);
-        post.neutralCount--;
-        post.votesUIDs.add(uid);
-      } else if (post != null && post.minus.contains(uid)) {
-        post.score += 2;
-        post.plus.add(uid);
-        post.plusCount++;
-        post.minus.removeWhere((element) => element == uid);
-        post.minusCount--;
-        post.votesUIDs.add(uid);
-      } else {
-        post?.score++;
-        post?.plus.add(uid);
-        post?.plusCount++;
-        post?.votesUIDs.add(uid);
-      }
-      if (post != null) {
-        checkItemIndexAndUpdateInList(postsList, post);
-        checkItemIndexAndUpdateInList(postsList, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
-      }
+  // plusPost(postId, uid) {
+  //   try {
+  //     Post? post;
+  //     bool postListContainsPost = elementFoundInList(postsList, postId);
+  //     // bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+  //     if (postListContainsPost) {
+  //       post = postsList.where((element) => element.postId == postId).first;
+  //     }
+  //     // else if (userPostListContainsPost) {
+  //     //   post = _userPosts.where((element) => element.postId == postId).first;
+  //     // }
+  //     if (post != null && post.plus.contains(uid)) {
+  //       post.score--;
+  //       post.plus.removeWhere((element) => element == uid);
+  //       post.plusCount--;
+  //       post.votesUIDs.removeWhere((element) => element == uid);
+  //     } else if (post != null && post.neutral.contains(uid)) {
+  //       post.score++;
+  //       post.plus.add(uid);
+  //       post.plusCount++;
+  //       post.neutral.removeWhere((element) => element == uid);
+  //       post.neutralCount--;
+  //       post.votesUIDs.add(uid);
+  //     } else if (post != null && post.minus.contains(uid)) {
+  //       post.score += 2;
+  //       post.plus.add(uid);
+  //       post.plusCount++;
+  //       post.minus.removeWhere((element) => element == uid);
+  //       post.minusCount--;
+  //       post.votesUIDs.add(uid);
+  //     } else {
+  //       post?.score++;
+  //       post?.plus.add(uid);
+  //       post?.plusCount++;
+  //       post?.votesUIDs.add(uid);
+  //     }
+  //     if (post != null) {
+  //       checkItemIndexAndUpdateInList(postsList, post);
+  //       checkItemIndexAndUpdateInList(postsList, post);
+  //       // _postPollProvider.updatePostPollCombinedList(post: post);
+  //     }
 
-      notifyListeners();
-    } catch (e) {
-      // debugPrint('error $e $st');
-    }
-  }
+  //     notifyListeners();
+  //   } catch (e) {
+  //     // debugPrint('error $e $st');
+  //   }
+  // }
 
   checkItemIndexAndUpdateInList(List<dynamic> list, dynamic item) {
     int? postIndex =
@@ -855,96 +855,96 @@ class MostLikedKeyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  minusPost(postId, uid) {
-    try {
-      Post? post;
-      bool postListContainsPost = elementFoundInList(postsList, postId);
-      bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
-      if (postListContainsPost) {
-        post = postsList.where((element) => element.postId == postId).first;
-      } else if (userPostListContainsPost) {
-        post = _userPosts.where((element) => element.postId == postId).first;
-      }
-      if (post != null && post.minus.contains(uid)) {
-        post.score++;
-        post.minus.removeWhere((element) => element == uid);
-        post.minusCount--;
-        post.votesUIDs.removeWhere((element) => element == uid);
-      } else if (post != null && post.neutral.contains(uid)) {
-        post.score--;
-        post.minus.add(uid);
-        post.minusCount++;
-        post.neutral.removeWhere((element) => element == uid);
-        post.neutralCount--;
-        post.votesUIDs.add(uid);
-      } else if (post != null && post.plus.contains(uid)) {
-        post.score -= 2;
-        post.minus.add(uid);
-        post.minusCount++;
-        post.plus.removeWhere((element) => element == uid);
-        post.plusCount--;
-        post.votesUIDs.add(uid);
-      } else {
-        post?.score--;
-        post?.minus.add(uid);
-        post?.minusCount++;
-        post?.votesUIDs.add(uid);
-      }
-      if (post != null) {
-        checkItemIndexAndUpdateInList(postsList, post);
-        checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
-      }
-      // searchTabcard = true;
-      notifyListeners();
-    } catch (e) {
-      // debugPrint('error $e $st');
-    }
-  }
+  // minusPost(postId, uid) {
+  //   try {
+  //     Post? post;
+  //     bool postListContainsPost = elementFoundInList(postsList, postId);
+  //     bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+  //     if (postListContainsPost) {
+  //       post = postsList.where((element) => element.postId == postId).first;
+  //     } else if (userPostListContainsPost) {
+  //       post = _userPosts.where((element) => element.postId == postId).first;
+  //     }
+  //     if (post != null && post.minus.contains(uid)) {
+  //       post.score++;
+  //       post.minus.removeWhere((element) => element == uid);
+  //       post.minusCount--;
+  //       post.votesUIDs.removeWhere((element) => element == uid);
+  //     } else if (post != null && post.neutral.contains(uid)) {
+  //       post.score--;
+  //       post.minus.add(uid);
+  //       post.minusCount++;
+  //       post.neutral.removeWhere((element) => element == uid);
+  //       post.neutralCount--;
+  //       post.votesUIDs.add(uid);
+  //     } else if (post != null && post.plus.contains(uid)) {
+  //       post.score -= 2;
+  //       post.minus.add(uid);
+  //       post.minusCount++;
+  //       post.plus.removeWhere((element) => element == uid);
+  //       post.plusCount--;
+  //       post.votesUIDs.add(uid);
+  //     } else {
+  //       post?.score--;
+  //       post?.minus.add(uid);
+  //       post?.minusCount++;
+  //       post?.votesUIDs.add(uid);
+  //     }
+  //     if (post != null) {
+  //       checkItemIndexAndUpdateInList(postsList, post);
+  //       checkItemIndexAndUpdateInList(_userPosts, post);
+  //       _postPollProvider.updatePostPollCombinedList(post: post);
+  //     }
+  //     // searchTabcard = true;
+  //     notifyListeners();
+  //   } catch (e) {
+  //     // debugPrint('error $e $st');
+  //   }
+  // }
 
-  neutralPost(postId, uid) {
-    try {
-      Post? post;
-      bool postListContainsPost = elementFoundInList(postsList, postId);
-      bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
-      if (postListContainsPost) {
-        post = postsList.where((element) => element.postId == postId).first;
-      } else if (userPostListContainsPost) {
-        post = _userPosts.where((element) => element.postId == postId).first;
-      }
-      if (post != null && post.neutral.contains(uid)) {
-        post.neutral.removeWhere((element) => element == uid);
-        post.neutralCount--;
-        post.votesUIDs.removeWhere((element) => element == uid);
-      } else if (post != null && post.plus.contains(uid)) {
-        post.score--;
-        post.neutral.add(uid);
-        post.neutralCount++;
-        post.plus.removeWhere((element) => element == uid);
-        post.plusCount--;
-        post.votesUIDs.add(uid);
-        //   batch.commit();
-      } else if (post != null && post.minus.contains(uid)) {
-        post.score++;
-        post.neutral.add(uid);
-        post.neutralCount++;
-        post.minus.removeWhere((element) => element == uid);
-        post.minusCount--;
-        post.votesUIDs.add(uid);
-      } else {
-        post?.neutral.add(uid);
-        post?.neutralCount++;
-        post?.votesUIDs.add(uid);
-      }
-      if (post != null) {
-        checkItemIndexAndUpdateInList(postsList, post);
-        checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
-      }
-      // searchTabcard = true;
-      notifyListeners();
-    } catch (e) {
-      // debugPrint('error $e $st');
-    }
-  }
+  // neutralPost(postId, uid) {
+  //   try {
+  //     Post? post;
+  //     bool postListContainsPost = elementFoundInList(postsList, postId);
+  //     bool userPostListContainsPost = elementFoundInList(_userPosts, postId);
+  //     if (postListContainsPost) {
+  //       post = postsList.where((element) => element.postId == postId).first;
+  //     } else if (userPostListContainsPost) {
+  //       post = _userPosts.where((element) => element.postId == postId).first;
+  //     }
+  //     if (post != null && post.neutral.contains(uid)) {
+  //       post.neutral.removeWhere((element) => element == uid);
+  //       post.neutralCount--;
+  //       post.votesUIDs.removeWhere((element) => element == uid);
+  //     } else if (post != null && post.plus.contains(uid)) {
+  //       post.score--;
+  //       post.neutral.add(uid);
+  //       post.neutralCount++;
+  //       post.plus.removeWhere((element) => element == uid);
+  //       post.plusCount--;
+  //       post.votesUIDs.add(uid);
+  //       //   batch.commit();
+  //     } else if (post != null && post.minus.contains(uid)) {
+  //       post.score++;
+  //       post.neutral.add(uid);
+  //       post.neutralCount++;
+  //       post.minus.removeWhere((element) => element == uid);
+  //       post.minusCount--;
+  //       post.votesUIDs.add(uid);
+  //     } else {
+  //       post?.neutral.add(uid);
+  //       post?.neutralCount++;
+  //       post?.votesUIDs.add(uid);
+  //     }
+  //     if (post != null) {
+  //       checkItemIndexAndUpdateInList(postsList, post);
+  //       checkItemIndexAndUpdateInList(_userPosts, post);
+  //       _postPollProvider.updatePostPollCombinedList(post: post);
+  //     }
+  //     // searchTabcard = true;
+  //     notifyListeners();
+  //   } catch (e) {
+  //     // debugPrint('error $e $st');
+  //   }
+  // }
 }

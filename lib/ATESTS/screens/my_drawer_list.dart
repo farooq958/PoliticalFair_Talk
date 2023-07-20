@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../admin/admin_verification.dart';
 import '../admin/bug_screen.dart';
 import '../admin/change_user_field_values.dart';
+import '../admin/organic.dart';
 import '../admin/reported_screen.dart';
 import '../authentication/signup.dart';
 import '../info screens/data_privacy.dart';
@@ -16,11 +17,12 @@ import '../info screens/welcome_screen.dart';
 import '../methods/auth_methods.dart';
 import '../models/user.dart';
 import '../provider/user_provider.dart';
+import '../responsive/my_flutter_app_icons.dart';
 import '../utils/global_variables.dart';
 import '../utils/utils.dart';
 import 'automate.dart';
 import 'blocked_list.dart';
-import 'notifications.dart';
+import 'notifications_pref.dart';
 import 'profile_all_user.dart';
 import 'profile_screen_edit.dart';
 import 'report_bug.dart';
@@ -284,32 +286,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         const SizedBox(width: 14),
                         Container(
-                            height: 80,
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    user != null
-                                        ? 'Logged in as'
-                                        : 'Logged in as a',
-                                    style: const TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0,
-                                    )),
-                                const SizedBox(height: 2),
-                                Text(
-                                  user != null ? user.username : 'Guest',
+                          height: 80,
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  user != null
+                                      ? 'Logged in as'
+                                      : 'Logged in as a',
                                   style: const TextStyle(
-                                      color: darkBlue,
-                                      fontSize: 19.5,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )),
+                                    color: darkBlue,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0,
+                                  )),
+                              const SizedBox(height: 2),
+                              Text(
+                                user != null ? user.username : 'Guest',
+                                style: const TextStyle(
+                                    color: darkBlue,
+                                    fontSize: 19.5,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              // const SizedBox(height: 2),
+                              // Row(children: [
+                              //   const Icon(
+                              //     MyFlutterApp.coins,
+                              //     size: 12,
+                              //     color: darkBlue,
+                              //   ),
+                              //   const SizedBox(width: 6),
+                              //   Text('${user?.profileScoreValue}',
+                              //       style: TextStyle(
+                              //           color: darkBlue,
+                              //           fontWeight: FontWeight.w500,
+                              //           fontSize: 12))
+                              // ])
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -475,6 +492,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                       fontSize: 16.5,
                                                       color: darkBlue,
                                                     ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                1,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                            splashColor:
+                                                Colors.grey.withOpacity(0.3),
+                                            onTap: () {
+                                              Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 150), () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) => Organic(
+                                                          durationInDay: widget
+                                                              .durationInDay)),
+                                                );
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12,
+                                                  top: 17,
+                                                  bottom: 17),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                      Icons.lock_outlined,
+                                                      size: 23,
+                                                      color: darkBlue),
+                                                  Container(width: 15),
+                                                  const Text(
+                                                    'Organic Content',
+                                                    style: TextStyle(
+                                                        fontSize: 16.5,
+                                                        color: darkBlue),
                                                   ),
                                                 ],
                                               ),
@@ -692,56 +754,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),
-                                user?.admin == true
-                                    ? SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                1,
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                            splashColor:
-                                                Colors.grey.withOpacity(0.3),
-                                            onTap: () {
-                                              Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 150), () {
-                                                if (user != null) {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Automate(
-                                                              user: user,
-                                                            )),
-                                                  );
-                                                }
-                                              });
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 12,
-                                                  top: 17,
-                                                  bottom: 17),
-                                              child: Row(
-                                                children: [
-                                                  const Icon(
-                                                      Icons.person_outline,
-                                                      size: 23,
-                                                      color: darkBlue),
-                                                  Container(width: 15),
-                                                  const Text(
-                                                    'Automate',
-                                                    style: TextStyle(
-                                                        fontSize: 16.5,
-                                                        color: darkBlue),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : const SizedBox(),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * 1,
                                   child: Material(

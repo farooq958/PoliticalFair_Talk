@@ -163,7 +163,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void signUpUserGoogle() async {
     try {
-    //  final userProvider = Provider.of<UserProvider>(context, listen: false);
+      //  final userProvider = Provider.of<UserProvider>(context, listen: false);
       //final user = FirebaseAuth.instance.currentUser!;
       final provider =
           Provider.of<GoogleSignInProvider>(context, listen: false);
@@ -175,86 +175,83 @@ class _SignupScreenState extends State<SignupScreen> {
       //   showSnackBarError(userNameValid, context);
       //   return;
       // }
-     // await AuthMethods().signOut();
+      // await AuthMethods().signOut();
 
       setState(() {
         _isLoadingGoogle = true;
       });
 
-    final user=await provider.googleLogin();
+      final user = await provider.googleLogin();
       final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-if(user!=null) {
-  DocumentSnapshot snap =
-  await _firestore.collection('users').doc(user.uid).get();
-  if(snap.data() != null)
-  {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+      if (user != null) {
+        DocumentSnapshot snap =
+            await _firestore.collection('users').doc(user.uid).get();
+        if (snap.data() != null) {
+          final GoogleSignIn googleSignIn = GoogleSignIn();
 
-    googleSignIn.signOut();
+          googleSignIn.signOut();
 
+          showSnackBarError("This email has already been used.", context);
+          setState(() {
+            _isLoadingGoogle = false;
+          });
+        } else {
+          String res = await AuthMethods().signUpUserGoogle(
+            UID: user.uid,
+            username: user.displayName.toString(),
+            aEmail: user.email!,
+            password: '',
+            profilePicFile: _image,
+            aaCountry: '',
+            pending: 'false',
+            bio: '',
+          );
+          print("responseee");
+          print(res);
 
+          // if (res != "success") {
+          //   Future.delayed(const Duration(milliseconds: 1500), () {
+          //     setState(() {
+          //       _isLoading = false;
+          //     });
+          //   });
+          //   if (!mounted) return;
+          //   showSnackBarError(res, context);
+          // } else {
+          //   // goToHome(context);
+          //
+          //   Navigator.of(context).pushAndRemoveUntil(
+          //     MaterialPageRoute(
+          //       builder: (context) => WelcomeScreen(
+          //         username: user.displayName!,
+          //       ),
+          //     ),
+          //     (route) => false,
+          //   );
+          //   FirestoreMethods().postCounter('user');
+          // }
 
+          if (res == "success") {
+            setState(() {
+              _isLoadingGoogle = false;
+            });
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => WelcomeScreen(
+                  username: user.displayName.toString(),
+                ),
+              ),
+              (route) => false,
+            );
 
-    showSnackBar(
-        "User is already Signed Up", context);
-    setState(() {
-      _isLoadingGoogle = false;
-    });
-
-
-  }
-  else {
-    String res = await AuthMethods().signUpUserGoogle(
-      UID: user.uid,
-      username: user.displayName.toString(),
-      aEmail: user.email!,
-      password: '',
-      profilePicFile: _image,
-      aaCountry: '',
-      pending: 'false',
-      bio: '',
-    );
-    print("responseee");
-    print(res);
-
-    // if (res != "success") {
-    //   Future.delayed(const Duration(milliseconds: 1500), () {
-    //     setState(() {
-    //       _isLoading = false;
-    //     });
-    //   });
-    //   if (!mounted) return;
-    //   showSnackBarError(res, context);
-    // } else {
-    //   // goToHome(context);
-    //
-    //   Navigator.of(context).pushAndRemoveUntil(
-    //     MaterialPageRoute(
-    //       builder: (context) => WelcomeScreen(
-    //         username: user.displayName!,
-    //       ),
-    //     ),
-    //     (route) => false,
-    //   );
-    //   FirestoreMethods().postCounter('user');
-    // }
-
-    if (res == "success") {
-      setState(() {
-        _isLoadingGoogle = false;
-      });
-      goToHome(context);
-
-      FirestoreMethods().postCounter('user');
-    }
-  }
-}
-else
-  {
-    setState(() {
-      _isLoadingGoogle = false;
-    });
-  }
+            FirestoreMethods().postCounter('user');
+          }
+        }
+      } else {
+        setState(() {
+          _isLoadingGoogle = false;
+        });
+      }
     } catch (e) {
       // debugPrint('signup error $e $st');
     }

@@ -288,7 +288,7 @@ else
                 elevation: 4,
                 shape: BoxShape.circle,
                 child: CircleAvatar(
-                  radius: 43.5,
+                  radius: 46,
                   backgroundColor: whiteDialog,
                   child: Icon(
                     Icons.delete,

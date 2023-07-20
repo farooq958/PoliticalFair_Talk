@@ -38,8 +38,8 @@ class UserProvider with ChangeNotifier {
 
   Future<void> logoutUser() async {
     _user = null;
-    final GoogleSignIn googleSignIn=GoogleSignIn();
-   await googleSignIn.signOut();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
     notifyListeners();
   }
 

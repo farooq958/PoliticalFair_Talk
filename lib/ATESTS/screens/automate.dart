@@ -456,7 +456,7 @@ class _AutomateState extends State<Automate> {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 139, 139, 139),
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       MyFlutterApp.youtube,
@@ -659,7 +659,7 @@ class _AutomateState extends State<Automate> {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 139, 139, 139),
-                  radius: 43.5,
+                  radius: 46,
                   child: FittedBox(
                     child: Icon(
                       Icons.collections,
@@ -961,265 +961,300 @@ class _AutomateState extends State<Automate> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            one = !one;
-                            two ? two = !two : null;
-                            three ? three = !three : null;
-                            four ? four = !four : null;
-                            five ? five = !five : null;
-                            six ? six = !six : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: one ? Colors.blue : Colors.white,
-                                  width: one ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('1')),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            two = !two;
-                            one ? one = !one : null;
-                            three ? three = !three : null;
-                            four ? four = !four : null;
-                            five ? five = !five : null;
-                            six ? six = !six : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: two ? Colors.blue : Colors.white,
-                                  width: two ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('2')),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            three = !three;
-                            two ? two = !two : null;
-                            one ? one = !one : null;
-                            four ? four = !four : null;
-                            five ? five = !five : null;
-                            six ? six = !six : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: three ? Colors.blue : Colors.white,
-                                  width: three ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('3')),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            four = !four;
-                            two ? two = !two : null;
-                            three ? three = !three : null;
-                            one ? one = !one : null;
-                            five ? five = !five : null;
-                            six ? six = !six : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: four ? Colors.blue : Colors.white,
-                                  width: four ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('4')),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            five = !five;
-                            two ? two = !two : null;
-                            three ? three = !three : null;
-                            four ? four = !four : null;
-                            one ? one = !one : null;
-                            six ? six = !six : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: five ? Colors.blue : Colors.white,
-                                  width: five ? 2 : 0)),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 8),
-                            child: Text('5'),
+                      Column(
+                        children: [
+                          const Text('M'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                one = !one;
+                                two ? two = !two : null;
+                                three ? three = !three : null;
+                                four ? four = !four : null;
+                                five ? five = !five : null;
+                                six ? six = !six : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: one ? Colors.blue : Colors.white,
+                                      width: one ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('1')),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            six = !six;
-                            two ? two = !two : null;
-                            three ? three = !three : null;
-                            four ? four = !four : null;
-                            five ? five = !five : null;
-                            one ? one = !one : null;
-                            seven ? seven = !seven : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: six ? Colors.blue : Colors.white,
-                                  width: six ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('6')),
-                        ),
+                      Column(
+                        children: [
+                          const Text('T'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                two = !two;
+                                one ? one = !one : null;
+                                three ? three = !three : null;
+                                four ? four = !four : null;
+                                five ? five = !five : null;
+                                six ? six = !six : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: two ? Colors.blue : Colors.white,
+                                      width: two ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('2')),
+                            ),
+                          ),
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            seven = !seven;
-                            two ? two = !two : null;
-                            three ? three = !three : null;
-                            four ? four = !four : null;
-                            five ? five = !five : null;
-                            one ? one = !one : null;
-                            six ? six = !six : null;
-                          });
-                          automateProvider.setValues(
-                              global: global,
-                              messages: messages,
-                              ca: ca,
-                              us: us,
-                              one: one,
-                              two: two,
-                              three: three,
-                              four: four,
-                              five: five,
-                              six: six,
-                              seven: seven);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: seven ? Colors.blue : Colors.white,
-                                  width: seven ? 2 : 0)),
-                          child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Text('7')),
-                        ),
+                      Column(
+                        children: [
+                          const Text('W'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                three = !three;
+                                two ? two = !two : null;
+                                one ? one = !one : null;
+                                four ? four = !four : null;
+                                five ? five = !five : null;
+                                six ? six = !six : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: three ? Colors.blue : Colors.white,
+                                      width: three ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('3')),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text('T'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                four = !four;
+                                two ? two = !two : null;
+                                three ? three = !three : null;
+                                one ? one = !one : null;
+                                five ? five = !five : null;
+                                six ? six = !six : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: four ? Colors.blue : Colors.white,
+                                      width: four ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('4')),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text('F'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                five = !five;
+                                two ? two = !two : null;
+                                three ? three = !three : null;
+                                four ? four = !four : null;
+                                one ? one = !one : null;
+                                six ? six = !six : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: five ? Colors.blue : Colors.white,
+                                      width: five ? 2 : 0)),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 8),
+                                child: Text('5'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text('S'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                six = !six;
+                                two ? two = !two : null;
+                                three ? three = !three : null;
+                                four ? four = !four : null;
+                                five ? five = !five : null;
+                                one ? one = !one : null;
+                                seven ? seven = !seven : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: six ? Colors.blue : Colors.white,
+                                      width: six ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('6')),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text('S'),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                seven = !seven;
+                                two ? two = !two : null;
+                                three ? three = !three : null;
+                                four ? four = !four : null;
+                                five ? five = !five : null;
+                                one ? one = !one : null;
+                                six ? six = !six : null;
+                              });
+                              automateProvider.setValues(
+                                  global: global,
+                                  messages: messages,
+                                  ca: ca,
+                                  us: us,
+                                  one: one,
+                                  two: two,
+                                  three: three,
+                                  four: four,
+                                  five: five,
+                                  six: six,
+                                  seven: seven);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: seven ? Colors.blue : Colors.white,
+                                      width: seven ? 2 : 0)),
+                              child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Text('7')),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -1272,11 +1307,18 @@ class _AutomateState extends State<Automate> {
                   ),
                   fresh
                       ? Column(children: [
-                          const Align(
+                           Align(
                               alignment: Alignment.topLeft,
-                              child: Text(
-                                'Initial Score: ',
-                                textAlign: TextAlign.left,
+                              child: Consumer<AutomateProvider>(
+                                builder: (context, automateProvider, child) {
+                                  if(automateProvider.initialScoreLoading) {
+                                    return const CircularProgressIndicator();
+                                  }
+                                  return Text(
+                                    'Initial Score: ${automateProvider.initialScore}',
+                                    textAlign: TextAlign.left,
+                                  );
+                                }
                               )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

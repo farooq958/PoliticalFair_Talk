@@ -44,12 +44,21 @@ class CommentReplyProvider extends ChangeNotifier {
 
   bool _pollPostUserCommentLast = false;
 
+  bool _isButtonVisible = false;
+
+  setButtonVisibility() async {
+    await Future.delayed(const Duration(seconds: 1));
+    _isButtonVisible = true;
+    notifyListeners();
+  }
+
   // Returns Combined List of Poll and posts done by user
   getCommentResult(
     String? userId, {
     bool getNextPage = false,
   }) async {
     try {
+      _isButtonVisible = false;
       if (getNextPage) {
         _commentPageScrollLoading = true;
         notifyListeners();
@@ -157,6 +166,7 @@ class CommentReplyProvider extends ChangeNotifier {
         _pageLoading = false;
       }
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -166,6 +176,7 @@ class CommentReplyProvider extends ChangeNotifier {
     bool getNextPage = false,
   }) async {
     try {
+      _isButtonVisible = false;
       if (getNextPage) {
         _replyPageScrollLoading = true;
         notifyListeners();
@@ -269,6 +280,7 @@ class CommentReplyProvider extends ChangeNotifier {
         _pageLoading = false;
       }
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -283,6 +295,7 @@ class CommentReplyProvider extends ChangeNotifier {
     String? clickedReplyId,
   }) async {
     try {
+      _isButtonVisible = false;
       if (isNextPage) {
         _postPollCommentPaginationLoader = true;
         notifyListeners();
@@ -409,6 +422,7 @@ class CommentReplyProvider extends ChangeNotifier {
       _postPollCommentPaginationLoader = false;
       _postPollCommentLoader = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -419,6 +433,7 @@ class CommentReplyProvider extends ChangeNotifier {
     String? clickedReplyId,
     bool isFromProfile = false,
   }) async {
+    _isButtonVisible = false;
     try {
       bool _pollPostUserReplyLast = false;
       int _pollPostUserReplySizeCount = 0;
@@ -523,6 +538,7 @@ class CommentReplyProvider extends ChangeNotifier {
     } finally {
       _pollPostRepliesPaginationLoading[commentId] = false;
       notifyListeners();
+      setButtonVisibility();
     }
   }
 
@@ -691,6 +707,7 @@ class CommentReplyProvider extends ChangeNotifier {
     required String commentId,
     required int datePublished,
     required DateTime datePublishedNTP,
+    required bool bot,
   }) {
     // String trimmedText = trimText(text: text);
     // var timeNow = dateEST;
@@ -703,6 +720,7 @@ class CommentReplyProvider extends ChangeNotifier {
       commentId: commentId,
       datePublished: datePublished,
       datePublishedNTP: Timestamp.fromDate(datePublishedNTP),
+      bot: bot,
       likes: [],
       likeCount: 0,
       dislikes: [],
@@ -718,16 +736,16 @@ class CommentReplyProvider extends ChangeNotifier {
     );
   }
 
-  addNewReplyInPostPoll({
-    required String postId,
-    required String text,
-    required String uid,
-    required String username,
-    required String commentId,
-    required String replyId,
-    required int insertAt,
-    required DateTime datePublishedNTP,
-  }) {
+  addNewReplyInPostPoll(
+      {required String postId,
+      required String text,
+      required String uid,
+      required String username,
+      required String commentId,
+      required String replyId,
+      required int insertAt,
+      required DateTime datePublishedNTP,
+      required bool bot}) {
     // String trimmedText = trimText(text: text);
     // var timeNow = await NTP.now();
     Reply reply = Reply(
@@ -739,6 +757,7 @@ class CommentReplyProvider extends ChangeNotifier {
       replyId: replyId,
       datePublished: Timestamp.fromDate(datePublishedNTP),
       datePublishedNTP: Timestamp.fromDate(datePublishedNTP),
+      bot: bot,
       likes: [],
       likeCount: 0,
       dislikes: [],
@@ -876,6 +895,8 @@ class CommentReplyProvider extends ChangeNotifier {
     }
     return commentsList;
   }
+
+  bool get isButtonVisible => _isButtonVisible;
 
   get userCommentList => _userCommentList;
 

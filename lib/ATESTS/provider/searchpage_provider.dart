@@ -29,9 +29,9 @@ class SearchPageProvider extends ChangeNotifier {
   int paginationLengthKeyword = 10;
 
   QuerySnapshot<Map<String, dynamic>>? _postKeywordListSnapshot;
-  final _postPollProvider = Provider.of<PostPollProvider>(
-      navigatorKey.currentContext!,
-      listen: false);
+  // final _postPollProvider = Provider.of<PostPollProvider>(
+  //     navigatorKey.currentContext!,
+  //     listen: false);
   Future<void> getkeywordList(
       String global, String countryCode, durationInDay, String twoValue,
       {bool? getNextList1}) async {
@@ -1172,7 +1172,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(postsList, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
 
       notifyListeners();
@@ -1323,7 +1323,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       // searchTabcard = true;
       notifyListeners();
@@ -1369,7 +1369,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       // searchTabcard = true;
       notifyListeners();
@@ -1415,7 +1415,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -1461,7 +1461,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {
@@ -1507,7 +1507,7 @@ class SearchPageProvider extends ChangeNotifier {
       if (post != null) {
         checkItemIndexAndUpdateInList(postsList, post);
         checkItemIndexAndUpdateInList(_userPosts, post);
-        _postPollProvider.updatePostPollCombinedList(post: post);
+        // _postPollProvider.updatePostPollCombinedList(post: post);
       }
       notifyListeners();
     } catch (e) {

@@ -345,7 +345,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
   CommentReplyProvider? commentReplyProvider;
 
   final CollectionReference firestoreInstance =
-      FirebaseFirestore.instance.collection('postCounter');
+      FirebaseFirestore.instance.collection('aPostCounter');
 
   int getCounterComment = 0;
 
@@ -365,11 +365,11 @@ class _FullMessagePollState extends State<FullMessagePoll> {
   }
 
   void pollComment(
-      String pollId, String text, String uid, String username) async {
+      String pollId, String text, String uid, String username, bool bot) async {
     try {
       String res1 = await _loadCommentCounter();
       String res = await FirestoreMethods()
-          .comment(pollId, text, uid, username, getCounterComment);
+          .comment(pollId, text, uid, username, getCounterComment, bot);
       if (res1 == "success" && res == "success") {
         FirestoreMethods().commentCounter(_poll.pollId, 'poll', true);
         // _showInterstitialAd();
@@ -642,7 +642,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
               child: Scaffold(
                 backgroundColor: Colors.black.withOpacity(0.05),
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: darkBlue,
                   automaticallyImplyLeading: false,
                   elevation: 4,
                   actions: [
@@ -668,8 +668,8 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                         },
                                       );
                                     },
-                                    icon: const Icon(Icons.arrow_back,
-                                        color: Colors.black),
+                                    icon: const Icon(Icons.keyboard_arrow_left,
+                                        color: whiteDialog),
                                   ),
                                 ),
                               ),
@@ -734,9 +734,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                             ' Score ',
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
-                                                letterSpacing: 0.5,
+                                                color: whiteDialog,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Container(height: 0),
@@ -744,12 +742,8 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
-                                                Icons.check_box,
-                                                size: 13,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
-                                              ),
+                                              const Icon(Icons.check_box,
+                                                  size: 13, color: whiteDialog),
                                               Container(width: 4),
                                               Text(
                                                 _poll.totalVotes == 1
@@ -757,9 +751,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                     : '${_poll.totalVotes}',
                                                 style: const TextStyle(
                                                     fontSize: 13,
-                                                    color: Color.fromARGB(
-                                                        255, 81, 81, 81),
-                                                    letterSpacing: 0.5,
+                                                    color: whiteDialog,
                                                     fontWeight:
                                                         FontWeight.w500),
                                               ),
@@ -796,9 +788,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                             'Time Left',
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
-                                                letterSpacing: 0.5,
+                                                color: whiteDialog,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Container(height: 0),
@@ -806,12 +796,8 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
-                                                Icons.timer,
-                                                size: 13,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
-                                              ),
+                                              const Icon(Icons.timer,
+                                                  size: 13, color: whiteDialog),
                                               Container(width: 4),
                                               // Consumer<LeftTimeProvider>(
                                               //     builder: (context,
@@ -856,9 +842,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                             : 'None',
                                                 style: const TextStyle(
                                                     fontSize: 13,
-                                                    color: Color.fromARGB(
-                                                        255, 81, 81, 81),
-                                                    letterSpacing: 0.5,
+                                                    color: whiteDialog,
                                                     fontWeight:
                                                         FontWeight.w500),
                                               ),
@@ -925,9 +909,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                             'Comments',
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
-                                                letterSpacing: 0.5,
+                                                color: whiteDialog,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           const SizedBox(height: 0),
@@ -938,8 +920,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                               const Icon(
                                                 MyFlutterApp.comments,
                                                 size: 13,
-                                                color: Color.fromARGB(
-                                                    255, 81, 81, 81),
+                                                color: whiteDialog,
                                               ),
                                               Container(width: 8),
                                               Center(
@@ -947,9 +928,7 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                   '${_poll.commentCount}',
                                                   style: const TextStyle(
                                                       fontSize: 13,
-                                                      color: Color.fromARGB(
-                                                          255, 81, 81, 81),
-                                                      letterSpacing: 0.5,
+                                                      color: whiteDialog,
                                                       fontWeight:
                                                           FontWeight.w500),
                                                 ),
@@ -2026,12 +2005,15 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                                 elevation: 2,
                                                                                 borderRadius: BorderRadius.circular(5),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
+                                                                                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
                                                                                   child: Row(
                                                                                     children: [
                                                                                       _selectedCommentSort == commentSort ? commentSort.iconSelected : commentSort.icon,
                                                                                       const SizedBox(width: 5),
-                                                                                      Text(commentSort.label, style: TextStyle(color: _selectedCommentSort == commentSort ? whiteDialog : Colors.grey, fontWeight: FontWeight.w500)),
+                                                                                      Text(commentSort.label,
+                                                                                          style: TextStyle(
+                                                                                            color: _selectedCommentSort == commentSort ? whiteDialog : Colors.grey,
+                                                                                          )),
                                                                                     ],
                                                                                   ),
                                                                                 ),
@@ -2107,14 +2089,16 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                                 elevation: 2,
                                                                                 borderRadius: BorderRadius.circular(5),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                                                                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                                                                   child: Row(
                                                                                     children: [
                                                                                       _selectedCommentFilter == commentFilter ? commentFilter.prefixIconSelected : commentFilter.prefixIcon,
                                                                                       const SizedBox(width: 5),
                                                                                       Text(
                                                                                         commentFilter.label == 'Show All' ? commentFilter.label : 'Voted: ${commentFilter.label}',
-                                                                                        style: TextStyle(color: _selectedCommentFilter == commentFilter ? whiteDialog : Colors.grey, fontWeight: FontWeight.w500),
+                                                                                        style: TextStyle(
+                                                                                          color: _selectedCommentFilter == commentFilter ? whiteDialog : Colors.grey,
+                                                                                        ),
                                                                                       ),
                                                                                       commentFilter.icon ??
                                                                                           // Container(),
@@ -2386,7 +2370,11 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                                                   .text,
                                                               user?.UID ?? '',
                                                               user?.username ??
-                                                                  '');
+                                                                  '',
+                                                              user?.admin ==
+                                                                      true
+                                                                  ? true
+                                                                  : false);
                                                           setState(() {
                                                             _commentController
                                                                 .text = "";
@@ -2496,6 +2484,8 @@ class _FullMessagePollState extends State<FullMessagePoll> {
                                       ),
                                       Visibility(
                                         visible: commentReplyProvider
+                                                .isButtonVisible &&
+                                            commentReplyProvider
                                                 .canPostPollLoadMore &&
                                             !commentReplyProvider
                                                 .postPollPaginationLoader,

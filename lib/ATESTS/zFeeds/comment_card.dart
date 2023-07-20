@@ -145,7 +145,8 @@ class _CommentCardState extends State<CommentCard> {
     String commentId,
     String text,
     String uid,
-    String name, {
+    String name,
+    bool bot, {
     required int insertAt,
   }) async {
     try {
@@ -155,6 +156,7 @@ class _CommentCardState extends State<CommentCard> {
         text,
         uid,
         name,
+        bot,
         widget.isReply,
         insertAt: insertAt,
       );
@@ -1086,26 +1088,26 @@ class _CommentCardState extends State<CommentCard> {
                                             child: Row(
                                               children: [
                                                 Container(
-                                                  padding:
-                                                      const EdgeInsets.all(4),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 5),
                                                   child: Icon(
-                                                    Icons.thumb_up,
+                                                    Icons.add_circle,
                                                     color: widget.snap['likes']
                                                                 ?.contains(user
                                                                     ?.UID) ??
                                                             false
-                                                        ? Colors.blueAccent
+                                                        ? Colors.green
                                                         : const Color.fromARGB(
                                                             255, 206, 204, 204),
-                                                    size: 16.0,
+                                                    size: 20.0,
                                                   ),
                                                 ),
-                                                Container(width: 6),
+                                                Container(width: 10),
                                                 Text(
                                                     '${widget.snap['likeCount']}',
                                                     style: const TextStyle(
                                                       color: Colors.black,
-                                                      fontSize: 13,
+                                                      fontSize: 14,
                                                     )),
                                               ],
                                             ),
@@ -1159,27 +1161,27 @@ class _CommentCardState extends State<CommentCard> {
                                             child: Row(
                                               children: [
                                                 Container(
-                                                  padding:
-                                                      const EdgeInsets.all(4),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 5),
                                                   child: Icon(
-                                                    Icons.thumb_down,
-                                                    size: 16,
+                                                    Icons.do_not_disturb_on,
+                                                    size: 20,
                                                     color: widget.snap[
                                                                     'dislikes']
                                                                 ?.contains(user
                                                                     ?.UID) ??
                                                             false
-                                                        ? Colors.blueAccent
+                                                        ? Colors.red
                                                         : const Color.fromARGB(
                                                             255, 206, 204, 204),
                                                   ),
                                                 ),
-                                                Container(width: 6),
+                                                Container(width: 10),
                                                 Text(
                                                     '${widget.snap['dislikeCount']}',
                                                     style: const TextStyle(
                                                       color: Colors.black,
-                                                      fontSize: 13,
+                                                      fontSize: 14,
                                                     )),
                                               ],
                                             ),
@@ -1409,58 +1411,63 @@ class _CommentCardState extends State<CommentCard> {
                                           postUId: postUID,
                                           parentSetState: widget.parentSetState,
                                           durationInDay: widget.durationInDay),
-                                      Visibility(
-                                        visible: !(commentReplyProvider
-                                                        .canPostPollRepliesLoadMoreMap[
-                                                    widget.snap['commentId']] ??
-                                                true) &&
-                                            !(commentReplyProvider
-                                                        .canPostPollRepliesPaginationLoadingMap[
-                                                    widget.snap['commentId']] ??
-                                                true),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 8,
-                                            right: 12,
-                                            left: 12,
-                                          ),
-                                          child: PhysicalModel(
-                                            color: const Color.fromARGB(
-                                                255, 245, 245, 245),
-                                            elevation: 2,
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                                splashColor:
-                                                    const Color.fromARGB(
-                                                        255, 245, 245, 245),
-                                                onTap: () {
-                                                  commentReplyProvider
-                                                      .getPollOrPostReplyList(
-                                                    postId: widget.postId,
-                                                    commentId: widget.snap[
-                                                            'commentId'] ??
-                                                        "",
-                                                    isNext: true,
-                                                  );
-                                                },
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    vertical: 10,
-                                                  ),
-                                                  child: const Center(
-                                                    child: Text(
-                                                      'View More Replies',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 13.5,
+                                      Container(
+                                        color: whiteDialog,
+                                        child: Visibility(
+                                          visible: !(commentReplyProvider
+                                                          .canPostPollRepliesLoadMoreMap[
+                                                      widget
+                                                          .snap['commentId']] ??
+                                                  true) &&
+                                              !(commentReplyProvider
+                                                          .canPostPollRepliesPaginationLoadingMap[
+                                                      widget
+                                                          .snap['commentId']] ??
+                                                  true),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 8,
+                                              right: 12,
+                                              left: 12,
+                                            ),
+                                            child: PhysicalModel(
+                                              color: const Color.fromARGB(
+                                                  255, 245, 245, 245),
+                                              elevation: 2,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  splashColor:
+                                                      const Color.fromARGB(
+                                                          255, 245, 245, 245),
+                                                  onTap: () {
+                                                    commentReplyProvider
+                                                        .getPollOrPostReplyList(
+                                                      postId: widget.postId,
+                                                      commentId: widget.snap[
+                                                              'commentId'] ??
+                                                          "",
+                                                      isNext: true,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                      vertical: 10,
+                                                    ),
+                                                    child: const Center(
+                                                      child: Text(
+                                                        'View More Replies',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 13.5,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -1470,19 +1477,22 @@ class _CommentCardState extends State<CommentCard> {
                                           ),
                                         ),
                                       ),
-                                      Visibility(
-                                        visible: (commentReplyProvider
-                                                    .canPostPollRepliesPaginationLoadingMap[
-                                                widget.snap['commentId']] ??
-                                            false),
-                                        child: const Center(
-                                          child: Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: SizedBox(
-                                              height: 30,
-                                              width: 30,
-                                              child:
-                                                  CircularProgressIndicator(),
+                                      Container(
+                                        color: whiteDialog,
+                                        child: Visibility(
+                                          visible: (commentReplyProvider
+                                                      .canPostPollRepliesPaginationLoadingMap[
+                                                  widget.snap['commentId']] ??
+                                              false),
+                                          child: const Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                height: 30,
+                                                width: 30,
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -1748,6 +1758,7 @@ class _CommentCardState extends State<CommentCard> {
                                       _replyController.text,
                                       user?.UID ?? '',
                                       user?.username ?? '',
+                                      user?.admin == true ? true : false,
                                       insertAt: widget.isReply
                                           ? ((widget.index ?? 0) + 1)
                                           : 0,

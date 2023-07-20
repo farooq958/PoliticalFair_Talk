@@ -116,6 +116,8 @@ class AuthMethods {
           verFailReason: "",
           submissionTime: 0,
           bot: 'none',
+          // maxDailyTime: 0,
+          // tokensCounter: 0,
 
           // timeNow.add(Duration(
           //   minutes: 3,
@@ -201,6 +203,8 @@ class AuthMethods {
       verFailReason: "",
       submissionTime: 0,
       bot: 'none',
+      // maxDailyTime: 0,
+      // tokensCounter: 0,
 
       // timeNow.add(Duration(
       //   minutes: 3,
