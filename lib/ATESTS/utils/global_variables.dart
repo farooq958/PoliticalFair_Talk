@@ -42,5 +42,6 @@ String twoValue11 = 'selected_radio1Search';
 class RealTimeDBValues {
   static const automateAdminDbUrl = 'https://aft-flutter-admin.firebaseio.com';
   static const String initialScore = 'initialScore';
+  static const String botPosts = 'botPosts';
   static const String admins = 'admins';
 }

@@ -2,6 +2,7 @@ import 'package:aft/ATESTS/utils/global_variables.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import '../models/post.dart';
 import '../models/user.dart';
 
 class AutomateProvider extends ChangeNotifier {
@@ -106,10 +107,9 @@ class AutomateProvider extends ChangeNotifier {
       if (snapshot.exists && snapshot.value != null) {
         debugPrint('Data received ${snapshot.value}');
 
-          Map values = snapshot.value! as dynamic;
-          _initialScore = values[RealTimeDBValues.initialScore];
-      }
-      else {
+        Map values = snapshot.value! as dynamic;
+        _initialScore = values[RealTimeDBValues.initialScore];
+      } else {
         _initialScore = null;
       }
     } catch (e, st) {
@@ -119,6 +119,53 @@ class AutomateProvider extends ChangeNotifier {
       _initialScoreLoading = false;
       notifyListeners();
     }
+  }
+
+  Future<void> addPosts(
+      String aTitle,
+      String aBody,
+      String aVideoUrl,
+      String aPhotoUrl,
+      timeNow,
+      List<String>? tagsLowerCase,
+      String sub) async {
+    final botPostRef = database
+        .ref(RealTimeDBValues.botPosts)
+        .child(_global!)
+        .child(_postType!)
+        .child(_day!);
+    final postId = botPostRef.push().key;
+    Post post = Post(
+        postId: postId ?? '',
+        UID: "",
+        bUsername: '',
+        bProfImage: '',
+        country: _global != 'global' ? _global ?? '' : '',
+        datePublished: 0,
+        datePublishedNTP: timeNow,
+        global: _global == "global" ? 'true' : 'false',
+        aTitle: aTitle,
+        aBody: aBody,
+        aVideoUrl: aVideoUrl,
+        aPostUrl: aPhotoUrl,
+        // selected: selected,
+        plusCount: 0,
+        neutralCount: 0,
+        minusCount: 0,
+        plus: [],
+        neutral: [],
+        minus: [],
+        votesUIDs: [],
+        // reportUIDs: [],
+        reportChecked: false,
+        reportRemoved: false,
+        reportCounter: 0,
+        commentCount: 0,
+        score: 0,
+        time: 1,
+        bot: true,
+        tagsLowerCase: tagsLowerCase,
+        sub: sub);
   }
 
   int? get initialScore => _initialScore;
