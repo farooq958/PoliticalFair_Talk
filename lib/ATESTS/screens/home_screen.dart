@@ -775,11 +775,12 @@ int indexOfFirstVideo=0;
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    print(postProvider.posts[index].aVideoUrl);
-                                   if(postProvider.posts[index].aVideoUrl!="")
+                                    print(postProvider.posts[index].aVideoUrl+"url22");
+                                   if(postProvider.posts[index].aVideoUrl.isNotEmpty)
                                      {
                                        indexFirst.value+=1;
-                                       print(indexFirst.value);
+                                       print("index value");
+                             //          print(indexFirst.value);
 // if(indexFirst.value!=true)
 //   {
 // count++;
@@ -795,7 +796,12 @@ int indexOfFirstVideo=0;
                                     return ValueListenableBuilder(
 
                                       builder: (context,int value, child) {
-                                        //print(value);
+                                        if(value==1) {
+                                          print("rhere");
+                                          print(value);
+                                        }
+
+                                       // Future.delayed(Duration(seconds: 2));
                                         return PostCardTest(
                                             key: Key(
                                                 postProvider.posts[index].postId),

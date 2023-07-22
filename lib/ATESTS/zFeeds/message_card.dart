@@ -76,11 +76,11 @@ class _PostCardTestState extends State<PostCardTest> {
     _post = widget.post;
     // plusCounter = widget.post.plusCount;
     print(_post.aVideoUrl+"videourl");
-
+print(widget.index.toString() + "testin");
     controller = YoutubePlayerController(
       initialVideoId: _post.aVideoUrl,
       params:   YoutubePlayerParams(
-        origin: "https://www.youtube.com/embed/${_post.aVideoUrl}?showInfo=0" ,
+      //  origin: "https://www.youtube.com/embed/${_post.aVideoUrl}?showInfo=0" ,
         //showControls: false,
         enableCaption: false,
         autoPlay: widget.index??false,
